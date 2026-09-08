@@ -1732,5 +1732,305 @@
     "en": "Two rows of barrel-shaped rollers",
     "fa": "دو ردیف غلتک بشکه‌ای",
     "group": "Home"
+  },
+  "txt_d92463ae": {
+    "original": "PRODUCT SHOWROOM / TECHNICAL DISCOVERY",
+    "en": "PRODUCT SHOWROOM / TECHNICAL DISCOVERY",
+    "fa": "کاتالوگ محصولات / جستجوی فنی",
+    "group": "Home"
+  },
+  "txt_483d1c9d": {
+    "original": "Width B",
+    "en": "Width B",
+    "fa": "عرض B",
+    "group": "Home"
+  },
+  "txt_8eb61aed": {
+    "original": "Any",
+    "en": "Any",
+    "fa": "همه",
+    "group": "Home"
+  },
+  "txt_d57a0a54": {
+    "original": "Compare",
+    "en": "Compare",
+    "fa": "مقایسه",
+    "group": "Home"
+  },
+  "txt_d297e6a": {
+    "original": "components selected",
+    "en": "components selected",
+    "fa": "قطعه انتخاب شده",
+    "group": "Home"
+  },
+  "txt_c389b326": {
+    "original": "Compare specifications",
+    "en": "Compare specifications",
+    "fa": "مقایسه مشخصات",
+    "group": "Home"
+  },
+  "txt_4a57fc2": {
+    "original": "Clear",
+    "en": "Clear",
+    "fa": "پاک کردن",
+    "group": "Home"
+  },
+  "txt_e195fe29": {
+    "original": "Technical comparison",
+    "en": "Technical comparison",
+    "fa": "مقایسه فنی",
+    "group": "Home"
+  },
+  "txt_c5e0af8a": {
+    "original": "Close geometry view",
+    "en": "Close geometry view",
+    "fa": "بستن نمای هندسی",
+    "group": "Home"
+  },
+  "txt_feec152d": {
+    "original": "Explore product geometry",
+    "en": "Explore product geometry",
+    "fa": "بررسی هندسه محصول",
+    "group": "Home"
+  },
+  "txt_dd14b702": {
+    "original": "Product documents",
+    "en": "Product documents",
+    "fa": "اسناد محصول",
+    "group": "Home"
+  },
+  "txt_9b081f0a": {
+    "original": "Open attached product PDF",
+    "en": "Open attached product PDF",
+    "fa": "باز کردن PDF محصول",
+    "group": "Home"
+  },
+  "txt_35f33494": {
+    "original": "No manufacturer PDF attached yet. The generated datasheet summarizes this catalog record.",
+    "en": "No manufacturer PDF attached yet. The generated datasheet summarizes this catalog record.",
+    "fa": "هنوز PDF سازنده پیوست نشده است. دیتاشیت تولیدشده خلاصه اطلاعات این رکورد است.",
+    "group": "Home"
+  },
+  "txt_dc9d882b": {
+    "original": "L10 is the fatigue life reached or exceeded by 90% of a sufficiently large group of identical bearings under the same conditions. It is not a guaranteed service interval.",
+    "en": "L10 is the fatigue life reached or exceeded by 90% of a sufficiently large group of identical bearings under the same conditions. It is not a guaranteed service interval.",
+    "fa": "L10 عمر خستگی است که ۹۰٪ گروه بزرگی از بیرینگ‌های یکسان در شرایط یکسان به آن می‌رسند یا از آن عبور می‌کنند؛ زمان سرویس تضمین‌شده نیست.",
+    "group": "Home"
+  },
+  "txt_dfce4ce1": {
+    "original": "Hours = million revolutions × 1,000,000 ÷ (60 × RPM).",
+    "en": "Hours = million revolutions × 1,000,000 ÷ (60 × RPM).",
+    "fa": "ساعت = میلیون دور × ۱٬۰۰۰٬۰۰۰ ÷ (۶۰ × دور در دقیقه).",
+    "group": "Home"
+  },
+  "txt_c46f8f49": {
+    "original": "Family",
+    "en": "Family",
+    "fa": "خانواده",
+    "group": "Home"
+  },
+  "txt_a9ebb398": {
+    "original": "Bore d / mm",
+    "en": "Bore d / mm",
+    "fa": "قطر داخلی / mm",
+    "group": "Home"
+  },
+  "txt_8fd11161": {
+    "original": "Outside D / mm",
+    "en": "Outside D / mm",
+    "fa": "قطر خارجی / mm",
+    "group": "Home"
+  },
+  "txt_4193d356": {
+    "original": "Width B / mm",
+    "en": "Width B / mm",
+    "fa": "عرض / mm",
+    "group": "Home"
+  },
+  "txt_a46c2b": {
+    "original": "Dynamic rating / kN",
+    "en": "Dynamic rating / kN",
+    "fa": "بار دینامیکی / kN",
+    "group": "Home"
+  },
+  "txt_674a336a": {
+    "original": "Static rating / kN",
+    "en": "Static rating / kN",
+    "fa": "بار استاتیکی / kN",
+    "group": "Home"
+  },
+  "txt_4c8a51fd": {
+    "original": "Grease speed / RPM",
+    "en": "Grease speed / RPM",
+    "fa": "سرعت گریس / RPM",
+    "group": "Home"
+  },
+  "txt_11a5a47c": {
+    "original": "Oil speed / RPM",
+    "en": "Oil speed / RPM",
+    "fa": "سرعت روغن / RPM",
+    "group": "Home"
+  },
+  "txt_365491be": {
+    "original": "Weight / kg",
+    "en": "Weight / kg",
+    "fa": "وزن / kg",
+    "group": "Home"
+  },
+  "txt_ca0f07a9": {
+    "original": "TECHNICAL COMPARISON",
+    "en": "TECHNICAL COMPARISON",
+    "fa": "مقایسه فنی",
+    "group": "Home"
+  },
+  "txt_e4c4825a": {
+    "original": "Understand the differences.",
+    "en": "Understand the differences.",
+    "fa": "تفاوت‌ها را بشناسید.",
+    "group": "Home"
+  },
+  "txt_2ad28780": {
+    "original": "Component",
+    "en": "Component",
+    "fa": "قطعه",
+    "group": "Home"
+  },
+  "txt_eae06924": {
+    "original": "Choose a component",
+    "en": "Choose a component",
+    "fa": "انتخاب قطعه",
+    "group": "Home"
+  },
+  "txt_922b0176": {
+    "original": "Show differences only",
+    "en": "Show differences only",
+    "fa": "فقط تفاوت‌ها",
+    "group": "Home"
+  },
+  "txt_556c67cd": {
+    "original": "Choose two or three components to compare their specifications.",
+    "en": "Choose two or three components to compare their specifications.",
+    "fa": "دو یا سه قطعه را برای مقایسه مشخصات انتخاب کنید.",
+    "group": "Home"
+  },
+  "txt_a7e0a514": {
+    "original": "Catalog specifications · matching dimensions do not establish interchangeability.",
+    "en": "Catalog specifications · matching dimensions do not establish interchangeability.",
+    "fa": "مشخصات کاتالوگ · ابعاد یکسان به معنی قابلیت جایگزینی نیست.",
+    "group": "Home"
+  },
+  "txt_1e371702": {
+    "original": "Specification",
+    "en": "Specification",
+    "fa": "مشخصه",
+    "group": "Home"
+  },
+  "txt_25d49f1a": {
+    "original": "FIT LIMIT EXPLORER",
+    "en": "FIT LIMIT EXPLORER",
+    "fa": "بررسی حدود انطباق",
+    "group": "Home"
+  },
+  "txt_f2b48b5e": {
+    "original": "From dimensions to fit.",
+    "en": "From dimensions to fit.",
+    "fa": "از ابعاد تا انطباق.",
+    "group": "Home"
+  },
+  "txt_1ebd1ddd": {
+    "original": "Enter verified mating diameter limits in millimetres. Positive values mean clearance; negative values mean interference.",
+    "en": "Enter verified mating diameter limits in millimetres. Positive values mean clearance; negative values mean interference.",
+    "fa": "حدود تأییدشده قطرهای جفت‌شونده را بر حسب میلی‌متر وارد کنید. مقدار مثبت لقی و مقدار منفی تداخل است.",
+    "group": "Home"
+  },
+  "txt_f7db8104": {
+    "original": "Hole minimum / mm",
+    "en": "Hole minimum / mm",
+    "fa": "حداقل سوراخ / mm",
+    "group": "Home"
+  },
+  "txt_7d7ffcfe": {
+    "original": "Hole maximum / mm",
+    "en": "Hole maximum / mm",
+    "fa": "حداکثر سوراخ / mm",
+    "group": "Home"
+  },
+  "txt_d19b02f0": {
+    "original": "Shaft minimum / mm",
+    "en": "Shaft minimum / mm",
+    "fa": "حداقل شفت / mm",
+    "group": "Home"
+  },
+  "txt_dcb8eaf2": {
+    "original": "Shaft maximum / mm",
+    "en": "Shaft maximum / mm",
+    "fa": "حداکثر شفت / mm",
+    "group": "Home"
+  },
+  "txt_7ad755c6": {
+    "original": "Clearance fit",
+    "en": "Clearance fit",
+    "fa": "انطباق لقی",
+    "group": "Home"
+  },
+  "txt_4285aae": {
+    "original": "Interference fit",
+    "en": "Interference fit",
+    "fa": "انطباق تداخلی",
+    "group": "Home"
+  },
+  "txt_51698dcd": {
+    "original": "Transition fit",
+    "en": "Transition fit",
+    "fa": "انطباق انتقالی",
+    "group": "Home"
+  },
+  "txt_7769f8c7": {
+    "original": "Minimum = smallest hole − largest shaft. Maximum = largest hole − smallest shaft.",
+    "en": "Minimum = smallest hole − largest shaft. Maximum = largest hole − smallest shaft.",
+    "fa": "حداقل = کوچک‌ترین سوراخ − بزرگ‌ترین شفت. حداکثر = بزرگ‌ترین سوراخ − کوچک‌ترین شفت.",
+    "group": "Home"
+  },
+  "txt_8458b0d0": {
+    "original": "Enter positive limits with minimum ≤ maximum.",
+    "en": "Enter positive limits with minimum ≤ maximum.",
+    "fa": "حدود مثبت وارد کنید؛ حداقل باید کمتر یا مساوی حداکثر باشد.",
+    "group": "Home"
+  },
+  "txt_5835a350": {
+    "original": "This calculates the dimensional fit only, not a recommended tolerance class or operating internal clearance.",
+    "en": "This calculates the dimensional fit only, not a recommended tolerance class or operating internal clearance.",
+    "fa": "این ابزار فقط انطباق ابعادی را محاسبه می‌کند، نه کلاس تلرانس پیشنهادی یا لقی داخلی کارکرد.",
+    "group": "Home"
+  },
+  "txt_921196d1": {
+    "original": "A rotating load on a ring generally requires interference to resist creep. Fit choice also depends on load, temperature and mounting arrangement. Interference can reduce internal clearance.",
+    "en": "A rotating load on a ring generally requires interference to resist creep. Fit choice also depends on load, temperature and mounting arrangement. Interference can reduce internal clearance.",
+    "fa": "بار چرخان روی رینگ معمولاً برای جلوگیری از خزش به تداخل نیاز دارد. انتخاب انطباق به بار، دما و آرایش نصب نیز بستگی دارد. تداخل می‌تواند لقی داخلی را کاهش دهد.",
+    "group": "Home"
+  },
+  "txt_ee3ca682": {
+    "original": "NSK · Fits and internal clearance",
+    "en": "NSK · Fits and internal clearance",
+    "fa": "NSK · انطباق و لقی داخلی",
+    "group": "Home"
+  },
+  "txt_b3754519": {
+    "original": "Official manufacturer references",
+    "en": "Official manufacturer references",
+    "fa": "مراجع رسمی سازندگان",
+    "group": "Home"
+  },
+  "txt_d04c5f93": {
+    "original": "Reference catalogs cover product families. Confirm the exact designation and suffix in the original document. These links do not mean every record has been independently verified.",
+    "en": "Reference catalogs cover product families. Confirm the exact designation and suffix in the original document. These links do not mean every record has been independently verified.",
+    "fa": "کاتالوگ‌های مرجع خانواده محصولات را پوشش می‌دهند. کد و پسوند دقیق را در سند اصلی بررسی کنید. این پیوندها به معنی تأیید مستقل تمام رکوردها نیستند.",
+    "group": "Home"
+  },
+  "txt_3351bccc": {
+    "original": "Fit limits",
+    "en": "Fit limits",
+    "fa": "حدود انطباق",
+    "group": "Home"
   }
 }

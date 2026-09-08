@@ -1,3 +1,6 @@
+import ManufacturerLibrary from './ManufacturerLibrary';
+import Comparison from './Comparison';
+import FitGuide from './FitGuide';
 import Copy from './Copy';
 import { useState } from 'react';
 import { Calculator, RotateCw, ArrowUpRight } from 'lucide-react';
@@ -70,6 +73,7 @@ export default function Engineering() {
                   value={p.slug}
                   onChange={(e) => {
                     setSelected(e.target.value);
+                    setConfirmed(false);
                     clear();
                   }}
                 >
@@ -87,6 +91,8 @@ export default function Engineering() {
                 ['basic', 'Known equivalent load', 'بار معادل معلوم'],
                 ['converter', 'Unit converter', 'تبدیل واحد'],
                 ['clearance', 'Clearance guide', 'راهنمای لقی'],
+                ['fits', 'Fit limits', 'حدود انطباق'],
+                ['compare', 'Technical comparison', 'مقایسه فنی'],
               ].map(([k, e, f]) => (
                 <button
                   key={k}
@@ -100,7 +106,7 @@ export default function Engineering() {
                 </button>
               ))}
             </div>
-            {['life', 'basic'].includes(tab) ? (
+            {tab==='compare'?<Comparison initial={[p.id]}/>:tab==='fits'?<FitGuide/>:['life', 'basic'].includes(tab) ? (
               <div className="calculator-grid">
                 <form
                   className="panel"
@@ -315,6 +321,8 @@ export default function Engineering() {
                         )}
                       </div>
                       <code>{result.formula || 'L10 = (C/P)^p'}</code>
+                      <p>{t('L10 is the fatigue life reached or exceeded by 90% of a sufficiently large group of identical bearings under the same conditions. It is not a guaranteed service interval.','L10 عمر خستگی است که ۹۰٪ گروه بزرگی از بیرینگ‌های یکسان در شرایط یکسان به آن می‌رسند یا از آن عبور می‌کنند؛ زمان سرویس تضمین‌شده نیست.')}</p>
+                      <p>{t('Hours = million revolutions × 1,000,000 ÷ (60 × RPM).','ساعت = میلیون دور × ۱٬۰۰۰٬۰۰۰ ÷ (۶۰ × دور در دقیقه).')}</p>
                       {result.overspeed && (
                         <p className="error">
                           {t(
@@ -434,6 +442,7 @@ export default function Engineering() {
                 </a>
               </div>
             )}
+            <ManufacturerLibrary/>
             <div className="source-note">
               {t('Calculation reference', 'مرجع محاسبات')}:{' '}
               <a

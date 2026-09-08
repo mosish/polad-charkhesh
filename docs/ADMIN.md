@@ -53,3 +53,10 @@ The scene loads on demand and renders locally with Three.js. If WebGL is unavail
 Motion and Thermal now share the physically shaded 3D renderer used by the homepage. Bore, outside diameter and width use the selected catalog record with a uniform scale. Internal raceway profiles, count and cages remain illustrative estimates. Ball, angular-contact, self-aligning, cylindrical, needle, tapered and spherical/toroidal models vary their elements and row arrangement. Explicit double-row product names are respected. Section & dimensions remains the existing schematic; unsupported components retain that view.
 
 The RPM input remains shared with the calculator. Inner-ring, estimated cage and element-spin angles integrate elapsed time and the playback multiplier. Outer ring pose remains fixed. Pause, zero speed, hidden tabs and offscreen models stop the animation loop. At high RPM use 0.02x Inspection to see the parts clearly. A 2D fallback remains for unavailable WebGL. No product data or admin settings are replaced by this change.
+
+### Product showroom and engineering references — 2026-09-09
+The catalog supports family, code/application and all three exact dimensions (d/D/B), including Persian digits in text search. Filter URLs can be bookmarked. Select up to three records in grid/table view for technical comparison; the engineering workspace offers the same comparison independently.
+
+Product pages include an on-demand geometry viewer, generated company datasheet, attached product PDF and relevant official manufacturer references. Upload the exact photograph/gallery and PDF in Products > Media. Product media overrides the bundled family references. Missing manufacturer documents remain explicitly identified. Reference illustrations are not exact product photographs; unmatched types retain dimensional drawings.
+
+Engineering adds a fit-limit explorer with worst-case clearance/interference ranges in micrometres, alongside the existing clearance guide and life calculator. New text is registered in All website text. Source links are curated in code. No commercial workflow is included.

@@ -1,3 +1,4 @@
+import ScrollReveal from './ScrollReveal';
 import {
   Globe2,
   ArrowUpRight,
@@ -60,6 +61,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         </a>
       </header>
       {children}
+      <ScrollReveal/>
       <footer>
         <a href="/" className="footer-brand">
           <img

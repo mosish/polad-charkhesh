@@ -1,3 +1,5 @@
+import ManufacturerLibrary from './ManufacturerLibrary';
+import { BearingViewer } from './Viewer';
 import Copy from './Copy';
 import { mediaFor } from '../../lib/media';
 import { useEffect, useState } from 'react';
@@ -27,7 +29,7 @@ export function ProductImage({ p }: { p: BearingProduct }) {
     <>
       <img
         src={media.url}
-        alt={media.reference ? 'Bearing family reference photograph' : p.nameEn}
+        alt={media.reference ? 'Bearing family reference image' : p.nameEn}
         onError={() => setFailed(true)}
         loading="lazy"
       />
@@ -139,6 +141,8 @@ function TechnicalContent({
   const { fa, t, company, content } = usePlatform();
   const [image, setImage] = useState(p.imageUrl);
   const [error, setError] = useState('');
+  const [view,setView]=useState(false);
+  const [rpm,setRpm]=useState(0);
   const rows = [
     ['d / D / B', `${p.d} / ${p.D} / ${p.B} mm`],
     [t('Weight', 'وزن'), p.weightKg + ' kg'],
@@ -228,6 +232,9 @@ function TechnicalContent({
           </a>
         </div>
       </div>
+      {full&&<section className="product-explorer"><button className="button" aria-expanded={view} onClick={()=>setView(!view)}>{view?t('Close geometry view','بستن نمای هندسی'):t('Explore product geometry','بررسی هندسه محصول')}</button>{view&&<BearingViewer p={p} rpm={rpm} onRpmChange={setRpm}/>}</section>}
+      <ManufacturerLibrary brands={p.brands}/>
+      <section className="product-documents"><h3>{t('Product documents','اسناد محصول')}</h3>{p.pdfUrl?<a className="button" href={p.pdfUrl} target="_blank" rel="noreferrer">{t('Open attached product PDF','باز کردن PDF محصول')} ↗</a>:<p className="muted">{t('No manufacturer PDF attached yet. The generated datasheet summarizes this catalog record.','هنوز PDF سازنده پیوست نشده است. دیتاشیت تولیدشده خلاصه اطلاعات این رکورد است.')}</p>}</section>
       <div className="source-note">
         <strong>{t('Technical provenance', 'منشأ اطلاعات فنی')}</strong>
         <p>

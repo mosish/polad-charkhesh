@@ -159,5 +159,7 @@ export function basicLife(C: number, P: number, rpm: number, roller: boolean) {
   if ([C, P, rpm].some((x) => !Number.isFinite(x) || x <= 0))
     throw new Error('C, P and speed must be positive.');
   const p = roller ? 10 / 3 : 3;
-  return { L10: (C / P) ** p, hours: ((C / P) ** p * 1e6) / (60 * rpm) };
+  const L10=(C/P)**p, hours=L10*1e6/(60*rpm);
+  if(!Number.isFinite(L10)||!Number.isFinite(hours))throw new Error('The result exceeds the supported numerical range.');
+  return {L10,hours};
 }

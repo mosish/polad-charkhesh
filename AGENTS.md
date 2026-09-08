@@ -9,3 +9,7 @@ This directory is the active website source and Git repository.
 - Preserve the local website and admin data. This repository holds application source, not the live data backup.
 - Verify a successful push and state any synchronization blocker accurately.
 - This workflow runs while working on the project; it is not a background file watcher and does not authorize deploying the website.
+
+## Website purpose
+- Company presentation, technical product showroom and engineering tools only. Do not add prices, shopping carts, checkout, ordering, quote baskets or other commerce flows.
+- Prefer admin-uploaded product media. Label family reference photographs and rendered illustrations accurately. Keep company-generated datasheets distinct from original manufacturer publications.

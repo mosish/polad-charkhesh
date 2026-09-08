@@ -1,3 +1,4 @@
+import { manufacturerResources } from './manufacturer-resources';
 import { jsPDF } from 'jspdf';
 import type { BearingProduct } from '../domain/product';
 export function buildDatasheet(
@@ -116,6 +117,7 @@ export function buildDatasheet(
     y += lines.length * 4.5 + 7;
   };
   y += 7;
+  paragraph('POLAD CHARKHESH TECHNICAL SUMMARY - not a manufacturer-issued datasheet.');
   paragraph('TECHNICAL SOURCES (INHERITED RECORDS)');
   for (const s of p.technicalSources || [])
     paragraph(
@@ -130,12 +132,19 @@ export function buildDatasheet(
   paragraph(
     'Specifications are imported from the reference catalog. Source verification dates are inherited and have not been independently reverified in this build. Confirm manufacturer, suffix, load, lubricant, speed, fit and application suitability before selection. No availability or performance guarantee is implied.',
   );
+  paragraph('OFFICIAL MANUFACTURER REFERENCES (family catalogs; verify exact suffix)');
+  for(const r of manufacturerResources.filter(r=>p.brands.some(b=>b.toLowerCase().includes(r.brand.toLowerCase())))){
+    if(y+8>252){pdf.addPage();header();y=50;}
+    pdf.setFontSize(9);pdf.setTextColor(35,75,130);pdf.textWithLink(r.brand+' - Official reference',16,y,{url:r.url});y+=7;
+  }
+  pdf.setTextColor(21,36,67);
   if (options.reference)
     paragraph(
-      'Reference imagery: Wikimedia Commons. Image credits and licenses: /asset-credits.html. The photograph illustrates a bearing family, not this exact product.',
+      'Reference imagery: Wikimedia Commons. Image credits and licenses: /asset-credits.html. The reference image illustrates a component family, not this exact product.',
     );
   for (let page = 1; page <= pdf.getNumberOfPages(); page++) {
     pdf.setPage(page);
+    header();
     pdf.setFont(brandFont);
     pdf.setFontSize(8);
     pdf.setTextColor(100);

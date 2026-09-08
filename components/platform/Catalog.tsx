@@ -1,3 +1,7 @@
+import ManufacturerLibrary from './ManufacturerLibrary';
+import { searchProducts } from '../../lib/showroom';
+import Comparison from './Comparison';
+import Dialog from './Dialog';
 import { useEffect, useMemo, useState } from 'react';
 import {
   Search,
@@ -19,60 +23,23 @@ export const categoryNames: any = {
   seal: ['Industrial seals', 'کاسه نمد صنعتی'],
   lubricant: ['Lubricants', 'روانکارها'],
 };
-export function searchProducts(
-  products: BearingProduct[],
-  q: string,
-  category = 'all',
-  d = '',
-  D = '',
-) {
-  const n = q
-    .trim()
-    .toLowerCase()
-    .replace(/[\s/-]/g, '');
-  const score = (p: BearingProduct) => {
-    const code = p.code.toLowerCase().replace(/[\s/-]/g, '');
-    if (code === n) return 100;
-    if (code.startsWith(n)) return 80;
-    if (code.includes(n)) return 60;
-    const text = [
-      p.nameEn,
-      p.nameFa,
-      p.category,
-      p.schematicType,
-      ...p.applicationsEn,
-      ...p.applicationsFa,
-      ...p.brands,
-      `${p.d}x${p.D}x${p.B}`,
-    ]
-      .join(' ')
-      .toLowerCase()
-      .replace(/[\s/-]/g, '');
-    return text.includes(n) ? 20 : 0;
-  };
-  return products
-    .filter(
-      (p) =>
-        (category === 'all' || p.category === category) &&
-        (!d || p.d === Number(d)) &&
-        (!D || p.D === Number(D)) &&
-        (!q || score(p) > 0),
-    )
-    .sort((a, b) => (q ? score(b) - score(a) : 0));
-}
+export { searchProducts } from '../../lib/showroom';
 export default function Catalog() {
   const { products, fa, t, loading, error } = usePlatform();
   const params = new URLSearchParams(location.search);
   const [q, setQ] = useState(params.get('q') || '');
   const [cat, setCat] = useState(params.get('category') || 'all');
-  const [d, setD] = useState(''),
-    [outer, setOuter] = useState('');
+  const [d, setD] = useState(params.get('d') || ''),
+    [outer, setOuter] = useState(params.get('D') || '');
+  const [width,setWidth]=useState(params.get('B')||'');
+  const [compare,setCompare]=useState<string[]>([]);
+  const [comparing,setComparing]=useState(false);
   const [table, setTable] = useState(false),
     [selected, setSelected] = useState<BearingProduct | null>(null),
     [filters, setFilters] = useState(false);
   const results = useMemo(
-    () => searchProducts(products, q, cat, d, outer),
-    [products, q, cat, d, outer],
+    () => searchProducts(products, q, cat, d, outer, width),
+    [products, q, cat, d, outer, width],
   );
   useEffect(() => {
     const context = (document as any).modelContext;
@@ -97,7 +64,7 @@ export default function Catalog() {
             setQ(input.query);
             setCat('all');
             setD('');
-            setOuter('');
+            setOuter(''); setWidth('');
             return {
               products: searchProducts(products, input.query).map((p) => ({
                 code: p.code,
@@ -114,12 +81,14 @@ export default function Catalog() {
     ).catch(() => {});
     return () => lifecycle.abort();
   }, [products]);
+  const toggleCompare=(id:string)=>setCompare(old=>old.includes(id)?old.filter(x=>x!==id):old.length<3?[...old,id]:old);
+  useEffect(()=>{const next=new URLSearchParams();for(const [key,value] of Object.entries({q,category:cat==='all'?'':cat,d,D:outer,B:width}))if(value)next.set(key,value);history.replaceState(null,'',location.pathname+(next.size?'?'+next.toString():''));},[q,cat,d,outer,width]);
   return (
     <main id="main">
       <section className="page-heading">
         <div className="section-label">
           {t(
-            'PRODUCT CATALOG / TECHNICAL DISCOVERY',
+            'PRODUCT SHOWROOM / TECHNICAL DISCOVERY',
             'کاتالوگ محصولات / جستجوی فنی',
           )}
         </div>
@@ -134,6 +103,7 @@ export default function Catalog() {
           )}
         </p>
       </section>
+      <div className="section"><ManufacturerLibrary/></div>
       <div className="catalog-layout">
         <aside className={'filters ' + (filters ? 'expanded' : '')}>
           <button
@@ -173,6 +143,7 @@ export default function Catalog() {
                 <input
                   type="number"
                   min="0"
+                  step="any"
                   value={d}
                   onChange={(e) => setD(e.target.value)}
                   placeholder="Any"
@@ -183,16 +154,18 @@ export default function Catalog() {
                 <input
                   type="number"
                   min="0"
+                  step="any"
                   value={outer}
                   onChange={(e) => setOuter(e.target.value)}
                   placeholder="Any"
                 />
               </label>
+              <label>{t('Width B','عرض B')}<input type="number" min="0" step="any" value={width} onChange={e=>setWidth(e.target.value)} placeholder={t('Any','همه')}/></label>
               <button
                 className="reset"
                 onClick={() => {
                   setD('');
-                  setOuter('');
+                  setOuter(''); setWidth('');
                   setCat('all');
                   setQ('');
                 }}
@@ -292,7 +265,7 @@ export default function Catalog() {
                 <table>
                   <thead>
                     <tr>
-                      {['Code', 'Family', 'd', 'D', 'B', 'Cr kN', ''].map(
+                      {['Code', 'Family', 'd', 'D', 'B', 'Cr kN', t('Compare','مقایسه'), ''].map(
                         (h, i) => (
                           <th key={i}>{h}</th>
                         ),
@@ -316,7 +289,7 @@ export default function Catalog() {
                         <td>{p.d}</td>
                         <td>{p.D}</td>
                         <td>{p.B}</td>
-                        <td>{p.crKn}</td>
+                        <td>{p.crKn}</td><td><input type="checkbox" aria-label={t('Compare','مقایسه')+' '+p.code} checked={compare.includes(p.id)} disabled={!compare.includes(p.id)&&compare.length>=3} onChange={()=>toggleCompare(p.id)}/></td>
                         <td>
                           <button
                             onClick={() => setSelected(p)}
@@ -333,12 +306,14 @@ export default function Catalog() {
             ) : (
               <div className="product-grid">
                 {results.map((p) => (
-                  <ProductCard p={p} key={p.id} onSelect={setSelected} />
+                  <div className="showroom-card" key={p.id}><ProductCard p={p} onSelect={setSelected} /><label className="compare-choice"><input type="checkbox" checked={compare.includes(p.id)} disabled={!compare.includes(p.id)&&compare.length>=3} onChange={()=>toggleCompare(p.id)}/>{t('Compare','مقایسه')} <span dir="ltr">{p.code}</span></label></div>
                 ))}
               </div>
             ))}
         </div>
       </div>
+      {compare.length>0&&<div className="comparison-dock"><span>{compare.length} / 3 {t('components selected','قطعه انتخاب شده')}</span><button className="button primary" disabled={compare.length<2} onClick={()=>setComparing(true)}>{t('Compare specifications','مقایسه مشخصات')}</button><button className="button" onClick={()=>setCompare([])}>{t('Clear','پاک کردن')}</button></div>}
+      {comparing&&<Dialog title={t('Technical comparison','مقایسه فنی')} onClose={()=>setComparing(false)}><Comparison initial={compare}/></Dialog>}
       {selected && <QuickView p={selected} onClose={() => setSelected(null)} />}
     </main>
   );
