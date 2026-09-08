@@ -1,0 +1,1664 @@
+{
+  "txt_7189c07": {
+    "original": "Ball bearings",
+    "en": "Ball bearings",
+    "fa": "بلبرینگ",
+    "group": "Catalog"
+  },
+  "txt_73c38fc": {
+    "original": "Tapered roller",
+    "en": "Tapered roller",
+    "fa": "رولبرینگ مخروطی",
+    "group": "Catalog"
+  },
+  "txt_4d80b9a0": {
+    "original": "Spherical roller",
+    "en": "Spherical roller",
+    "fa": "رولبرینگ بشکه‌ای",
+    "group": "Catalog"
+  },
+  "txt_feee9edc": {
+    "original": "Cylindrical & needle",
+    "en": "Cylindrical & needle",
+    "fa": "استوانه‌ای و سوزنی",
+    "group": "Catalog"
+  },
+  "txt_b10ca7ee": {
+    "original": "Thrust bearings",
+    "en": "Thrust bearings",
+    "fa": "بیرینگ کف‌گرد",
+    "group": "Catalog"
+  },
+  "txt_ca8e5d32": {
+    "original": "Units & housings",
+    "en": "Units & housings",
+    "fa": "یاتاقان و محفظه",
+    "group": "Catalog"
+  },
+  "txt_d9091d70": {
+    "original": "Industrial seals",
+    "en": "Industrial seals",
+    "fa": "کاسه نمد صنعتی",
+    "group": "Catalog"
+  },
+  "txt_be2a9bb0": {
+    "original": "Lubricants",
+    "en": "Lubricants",
+    "fa": "روانکارها",
+    "group": "Catalog"
+  },
+  "txt_774b6e23": {
+    "original": "PRODUCT CATALOG / TECHNICAL DISCOVERY",
+    "en": "PRODUCT CATALOG / TECHNICAL DISCOVERY",
+    "fa": "کاتالوگ محصولات / جستجوی فنی",
+    "group": "Catalog"
+  },
+  "txt_5f88d3bf": {
+    "original": "The right part.",
+    "en": "The right part.",
+    "fa": "قطعه درست.",
+    "group": "Catalog"
+  },
+  "txt_d810f615": {
+    "original": "Precisely.",
+    "en": "Precisely.",
+    "fa": "با دقت.",
+    "group": "Catalog"
+  },
+  "txt_26ba7dd": {
+    "original": "Search by designation, dimensions or application. Explore the details, then speak to our engineering team.",
+    "en": "Search by designation, dimensions or application. Explore the details, then speak to our engineering team.",
+    "fa": "بر اساس شماره فنی، ابعاد یا کاربرد جستجو کنید؛ مشخصات را بررسی کنید و با تیم فنی در ارتباط باشید.",
+    "group": "Catalog"
+  },
+  "txt_b3aa6ec": {
+    "original": "Filters",
+    "en": "Filters",
+    "fa": "فیلترها",
+    "group": "Catalog"
+  },
+  "txt_7db1d02f": {
+    "original": "BEARING FAMILIES",
+    "en": "BEARING FAMILIES",
+    "fa": "خانواده بیرینگ",
+    "group": "Catalog"
+  },
+  "txt_e6c5c528": {
+    "original": "All components",
+    "en": "All components",
+    "fa": "همه قطعات",
+    "group": "Catalog"
+  },
+  "txt_e7243919": {
+    "original": "DIMENSIONS / mm",
+    "en": "DIMENSIONS / mm",
+    "fa": "ابعاد / mm",
+    "group": "Catalog"
+  },
+  "txt_be151c52": {
+    "original": "Bore diameter d",
+    "en": "Bore diameter d",
+    "fa": "قطر داخلی d",
+    "group": "Catalog"
+  },
+  "txt_d7d1931b": {
+    "original": "Outside diameter D",
+    "en": "Outside diameter D",
+    "fa": "قطر خارجی D",
+    "group": "Catalog"
+  },
+  "txt_e9f55f38": {
+    "original": "Reset all filters",
+    "en": "Reset all filters",
+    "fa": "پاک کردن فیلترها",
+    "group": "Catalog"
+  },
+  "txt_1f217fa9": {
+    "original": "Need a second opinion?",
+    "en": "Need a second opinion?",
+    "fa": "نیاز به راهنمایی دارید؟",
+    "group": "Catalog"
+  },
+  "txt_fe8c48f": {
+    "original": "Our team can help identify your component.",
+    "en": "Our team can help identify your component.",
+    "fa": "تیم فنی در شناسایی قطعه همراه شماست.",
+    "group": "Catalog"
+  },
+  "txt_409cd0de": {
+    "original": "Ask an engineer",
+    "en": "Ask an engineer",
+    "fa": "ارتباط با کارشناس",
+    "group": "Catalog"
+  },
+  "txt_5befba46": {
+    "original": "Search catalog",
+    "en": "Search catalog",
+    "fa": "جستجوی کاتالوگ",
+    "group": "Catalog"
+  },
+  "txt_d7feb790": {
+    "original": "Code, dimensions or application",
+    "en": "Code, dimensions or application",
+    "fa": "کد، ابعاد یا کاربرد",
+    "group": "Catalog"
+  },
+  "txt_aa1b6d65": {
+    "original": "APPLICATION",
+    "en": "APPLICATION",
+    "fa": "کاربرد",
+    "group": "Catalog"
+  },
+  "txt_1bf51169": {
+    "original": "components",
+    "en": "components",
+    "fa": "قطعه",
+    "group": "Catalog"
+  },
+  "txt_ffe0ce1a": {
+    "original": "Specifications before selection.",
+    "en": "Specifications before selection.",
+    "fa": "مشخصات فنی، پیش از انتخاب.",
+    "group": "Catalog"
+  },
+  "txt_4ba1b3d7": {
+    "original": "No matching components",
+    "en": "No matching components",
+    "fa": "قطعه‌ای یافت نشد",
+    "group": "Catalog"
+  },
+  "txt_130b70e6": {
+    "original": "Try a shorter code or remove dimensional filters.",
+    "en": "Try a shorter code or remove dimensional filters.",
+    "fa": "کد کوتاه‌تر وارد کنید یا فیلتر ابعاد را بردارید.",
+    "group": "Catalog"
+  },
+  "txt_2186304": {
+    "original": "MECHANICAL ENGINEERING WORKSPACE",
+    "en": "MECHANICAL ENGINEERING WORKSPACE",
+    "fa": "کارگاه مهندسی مکانیک",
+    "group": "Engineering"
+  },
+  "txt_d20c24c7": {
+    "original": "Make the numbers work.",
+    "en": "Make the numbers work.",
+    "fa": "انتخاب بر پایه محاسبه.",
+    "group": "Engineering"
+  },
+  "txt_93f35269": {
+    "original": "Explore bearing geometry, estimate basic rating life, and check your operating inputs.",
+    "en": "Explore bearing geometry, estimate basic rating life, and check your operating inputs.",
+    "fa": "هندسه بیرینگ را بررسی کنید، عمر پایه را برآورد کنید و شرایط کار را بسنجید.",
+    "group": "Engineering"
+  },
+  "txt_111c183b": {
+    "original": "Engineering tools",
+    "en": "Engineering tools",
+    "fa": "ابزارهای مهندسی",
+    "group": "Engineering"
+  },
+  "txt_3777ab3b": {
+    "original": "Selected component",
+    "en": "Selected component",
+    "fa": "قطعه انتخاب‌شده",
+    "group": "Engineering"
+  },
+  "txt_2cd47aca": {
+    "original": "OPERATING CONDITIONS",
+    "en": "OPERATING CONDITIONS",
+    "fa": "شرایط کارکرد",
+    "group": "Engineering"
+  },
+  "txt_4ac76fa8": {
+    "original": "Basic rating life",
+    "en": "Basic rating life",
+    "fa": "عمر نامی پایه",
+    "group": "Engineering"
+  },
+  "txt_78db4f7c": {
+    "original": "Radial load Fr / kN",
+    "en": "Radial load Fr / kN",
+    "fa": "بار شعاعی Fr / kN",
+    "group": "Engineering"
+  },
+  "txt_fe4da3a7": {
+    "original": "Axial load Fa / kN",
+    "en": "Axial load Fa / kN",
+    "fa": "بار محوری Fa / kN",
+    "group": "Engineering"
+  },
+  "txt_e4361c5b": {
+    "original": "Reliability",
+    "en": "Reliability",
+    "fa": "قابلیت اطمینان",
+    "group": "Engineering"
+  },
+  "txt_fc713a36": {
+    "original": "The bearing arrangement and induced axial loads have been reviewed.",
+    "en": "The bearing arrangement and induced axial loads have been reviewed.",
+    "fa": "آرایش بیرینگ و بارهای محوری القایی بررسی شده‌اند.",
+    "group": "Engineering"
+  },
+  "txt_f3a07930": {
+    "original": "C / kN",
+    "en": "C / kN",
+    "fa": "C / kN",
+    "group": "Engineering"
+  },
+  "txt_6ea8a4df": {
+    "original": "P / kN",
+    "en": "P / kN",
+    "fa": "P / kN",
+    "group": "Engineering"
+  },
+  "txt_30d48ea7": {
+    "original": "Bearing type",
+    "en": "Bearing type",
+    "fa": "نوع بیرینگ",
+    "group": "Engineering"
+  },
+  "txt_2fbf8adf": {
+    "original": "Ball · p = 3",
+    "en": "Ball · p = 3",
+    "fa": "Ball · p = 3",
+    "group": "Engineering"
+  },
+  "txt_b65ef932": {
+    "original": "Roller · p = 10/3",
+    "en": "Roller · p = 10/3",
+    "fa": "Roller · p = 10/3",
+    "group": "Engineering"
+  },
+  "txt_5375da14": {
+    "original": "Use a manufacturer-verified equivalent load that accounts for the exact bearing family and arrangement.",
+    "en": "Use a manufacturer-verified equivalent load that accounts for the exact bearing family and arrangement.",
+    "fa": "بار معادل تأییدشده سازنده را با در نظر گرفتن خانواده و آرایش بیرینگ وارد کنید.",
+    "group": "Engineering"
+  },
+  "txt_f5c4ab71": {
+    "original": "Rotational speed / rpm",
+    "en": "Rotational speed / rpm",
+    "fa": "سرعت دوران / rpm",
+    "group": "Engineering"
+  },
+  "txt_113ad86a": {
+    "original": "Calculate rating life",
+    "en": "Calculate rating life",
+    "fa": "محاسبه عمر پایه",
+    "group": "Engineering"
+  },
+  "txt_55be7b5b": {
+    "original": "CALCULATION RESULT",
+    "en": "CALCULATION RESULT",
+    "fa": "نتیجه محاسبه",
+    "group": "Engineering"
+  },
+  "txt_c6bbfbe5": {
+    "original": "Engineering review required",
+    "en": "Engineering review required",
+    "fa": "نیاز به بررسی مهندسی",
+    "group": "Engineering"
+  },
+  "txt_bc7a0413": {
+    "original": "Contact an engineer",
+    "en": "Contact an engineer",
+    "fa": "ارتباط با کارشناس",
+    "group": "Engineering"
+  },
+  "txt_2e7e85bc": {
+    "original": "hours · L10h",
+    "en": "hours · L10h",
+    "fa": "ساعت · L10h",
+    "group": "Engineering"
+  },
+  "txt_27b728b7": {
+    "original": "L10 · 10⁶ rev",
+    "en": "L10 · 10⁶ rev",
+    "fa": "L10 · 10⁶ rev",
+    "group": "Engineering"
+  },
+  "txt_613d2a2c": {
+    "original": "kN",
+    "en": "kN",
+    "fa": "kN",
+    "group": "Engineering"
+  },
+  "txt_bfc897ef": {
+    "original": "Equivalent load P",
+    "en": "Equivalent load P",
+    "fa": "بار معادل P",
+    "group": "Engineering"
+  },
+  "txt_4cff1adf": {
+    "original": "Static safety C₀/P₀",
+    "en": "Static safety C₀/P₀",
+    "fa": "ضریب اطمینان استاتیکی",
+    "group": "Engineering"
+  },
+  "txt_ed0c3757": {
+    "original": "h",
+    "en": "h",
+    "fa": "h",
+    "group": "Engineering"
+  },
+  "txt_a50837b8": {
+    "original": "a₁ =",
+    "en": "a₁ =",
+    "fa": "a₁ =",
+    "group": "Engineering"
+  },
+  "txt_51b2b9eb": {
+    "original": "Speed exceeds at least one catalog lubricant speed rating. Check the lubricant-specific limit.",
+    "en": "Speed exceeds at least one catalog lubricant speed rating. Check the lubricant-specific limit.",
+    "fa": "سرعت از حد مجاز حداقل یکی از روانکارها بالاتر است. حد مرتبط با روانکار را بررسی کنید.",
+    "group": "Engineering"
+  },
+  "txt_ade8b2e0": {
+    "original": "Start with your operating loads.",
+    "en": "Start with your operating loads.",
+    "fa": "از بارهای کاری شروع کنید.",
+    "group": "Engineering"
+  },
+  "txt_825d6f90": {
+    "original": "Your basic rating life, equivalent load and static safety factor will appear here.",
+    "en": "Your basic rating life, equivalent load and static safety factor will appear here.",
+    "fa": "عمر پایه، بار معادل و ضریب اطمینان استاتیکی در این بخش نمایش داده می‌شوند.",
+    "group": "Engineering"
+  },
+  "txt_d5f3da6": {
+    "original": "Basic rating life only. Reliability adjustment is not full ISO 281 modified life. Lubrication, contamination, fit and duty cycle require separate assessment.",
+    "en": "Basic rating life only. Reliability adjustment is not full ISO 281 modified life. Lubrication, contamination, fit and duty cycle require separate assessment.",
+    "fa": "فقط عمر نامی پایه محاسبه می‌شود. اصلاح قابلیت اطمینان معادل عمر اصلاح‌شده کامل ISO 281 نیست. روانکاری، آلودگی، انطباق و چرخه کاری نیاز به بررسی جداگانه دارند.",
+    "group": "Engineering"
+  },
+  "txt_f742a4b2": {
+    "original": "Engineering unit converter",
+    "en": "Engineering unit converter",
+    "fa": "تبدیل واحدهای مهندسی",
+    "group": "Engineering"
+  },
+  "txt_d147f96a": {
+    "original": "Value",
+    "en": "Value",
+    "fa": "مقدار",
+    "group": "Engineering"
+  },
+  "txt_608c6aa5": {
+    "original": "Conversion",
+    "en": "Conversion",
+    "fa": "تبدیل",
+    "group": "Engineering"
+  },
+  "txt_f8ef9a6f": {
+    "original": "mm → inch",
+    "en": "mm → inch",
+    "fa": "mm → inch",
+    "group": "Engineering"
+  },
+  "txt_5f008e87": {
+    "original": "inch → mm",
+    "en": "inch → mm",
+    "fa": "inch → mm",
+    "group": "Engineering"
+  },
+  "txt_7f08b18": {
+    "original": "kN → N",
+    "en": "kN → N",
+    "fa": "kN → N",
+    "group": "Engineering"
+  },
+  "txt_87923914": {
+    "original": "°C → °F",
+    "en": "°C → °F",
+    "fa": "°C → °F",
+    "group": "Engineering"
+  },
+  "txt_8e09af65": {
+    "original": "rpm → rad/s",
+    "en": "rpm → rad/s",
+    "fa": "rpm → rad/s",
+    "group": "Engineering"
+  },
+  "txt_271b2f4c": {
+    "original": "Clearance is an application decision.",
+    "en": "Clearance is an application decision.",
+    "fa": "لقی با توجه به کاربرد انتخاب می‌شود.",
+    "group": "Engineering"
+  },
+  "txt_c14b9cda": {
+    "original": "CN denotes normal internal clearance; C3 is greater than normal and C4 greater than C3. These are clearance groups, not accuracy classes. Exact micrometre ranges vary with bore and bearing family.",
+    "en": "CN denotes normal internal clearance; C3 is greater than normal and C4 greater than C3. These are clearance groups, not accuracy classes. Exact micrometre ranges vary with bore and bearing family.",
+    "fa": "CN نشان‌دهنده لقی داخلی نرمال، C3 بیشتر از نرمال و C4 بیشتر از C3 است. این‌ها گروه لقی هستند، نه کلاس دقت. دامنه دقیق میکرومتری به قطر داخلی و خانواده بیرینگ بستگی دارد.",
+    "group": "Engineering"
+  },
+  "txt_1d5e9d32": {
+    "original": "Available options in this record:",
+    "en": "Available options in this record:",
+    "fa": "گزینه‌های این رکورد:",
+    "group": "Engineering"
+  },
+  "txt_6a62a96a": {
+    "original": "Interference fits and temperature differences can reduce operating clearance. Confirm residual clearance with manufacturer tables.",
+    "en": "Interference fits and temperature differences can reduce operating clearance. Confirm residual clearance with manufacturer tables.",
+    "fa": "انطباق تداخلی و اختلاف دما می‌توانند لقی کارکرد را کاهش دهند. لقی باقیمانده را با جداول سازنده بررسی کنید.",
+    "group": "Engineering"
+  },
+  "txt_85b7096e": {
+    "original": "View source record",
+    "en": "View source record",
+    "fa": "مشاهده رکورد منبع",
+    "group": "Engineering"
+  },
+  "txt_5b321bd7": {
+    "original": "Calculation reference",
+    "en": "Calculation reference",
+    "fa": "مرجع محاسبات",
+    "group": "Engineering"
+  },
+  "txt_4771ed04": {
+    "original": "SKF — Basic rating life",
+    "en": "SKF — Basic rating life",
+    "fa": "SKF — Basic rating life",
+    "group": "Engineering"
+  },
+  "txt_1a41ed4c": {
+    "original": "Imported manufacturer ratings still require independent verification.",
+    "en": "Imported manufacturer ratings still require independent verification.",
+    "fa": "مقادیر واردشده سازنده همچنان نیاز به بررسی مستقل دارند.",
+    "group": "Engineering"
+  },
+  "txt_c65a7b7e": {
+    "original": "Engineered for",
+    "en": "Engineered for",
+    "fa": "Engineered for",
+    "group": "Home"
+  },
+  "txt_24f15219": {
+    "original": "what keeps",
+    "en": "what keeps",
+    "fa": "what keeps",
+    "group": "Home"
+  },
+  "txt_72465cd3": {
+    "original": "industry moving.",
+    "en": "industry moving.",
+    "fa": "industry moving.",
+    "group": "Home"
+  },
+  "txt_7921e47c": {
+    "original": "Explore product catalog",
+    "en": "Explore product catalog",
+    "fa": "مشاهده کاتالوگ محصولات",
+    "group": "Home"
+  },
+  "txt_e6836c3c": {
+    "original": "Talk to an engineer",
+    "en": "Talk to an engineer",
+    "fa": "مشاوره فنی",
+    "group": "Home"
+  },
+  "txt_fd636402": {
+    "original": "Search bearing code, dimensions or application…",
+    "en": "Search bearing code, dimensions or application…",
+    "fa": "کد بیرینگ، ابعاد یا کاربرد…",
+    "group": "Home"
+  },
+  "txt_8e215908": {
+    "original": "QUICK SEARCH",
+    "en": "QUICK SEARCH",
+    "fa": "جستجوی سریع",
+    "group": "Home"
+  },
+  "txt_a4124d92": {
+    "original": "NU208",
+    "en": "NU208",
+    "fa": "NU208",
+    "group": "Home"
+  },
+  "txt_37f5d34f": {
+    "original": "● ENGINEERING / 01",
+    "en": "● ENGINEERING / 01",
+    "fa": "● ENGINEERING / 01",
+    "group": "Home"
+  },
+  "txt_4e77b79a": {
+    "original": "DEEP GROOVE BALL BEARING",
+    "en": "DEEP GROOVE BALL BEARING",
+    "fa": "DEEP GROOVE BALL BEARING",
+    "group": "Home"
+  },
+  "txt_8b6e8edd": {
+    "original": "01 — OUTER RING",
+    "en": "01 — OUTER RING",
+    "fa": "01 — OUTER RING",
+    "group": "Home"
+  },
+  "txt_857330ab": {
+    "original": "02 — ROLLING ELEMENTS",
+    "en": "02 — ROLLING ELEMENTS",
+    "fa": "02 — ROLLING ELEMENTS",
+    "group": "Home"
+  },
+  "txt_2053d4f2": {
+    "original": "03 — INNER RING",
+    "en": "03 — INNER RING",
+    "fa": "03 — INNER RING",
+    "group": "Home"
+  },
+  "txt_d149826a": {
+    "original": "BEARING FAMILY REFERENCE",
+    "en": "BEARING FAMILY REFERENCE",
+    "fa": "تصویر مرجع خانواده بیرینگ",
+    "group": "Home"
+  },
+  "txt_a3e7505": {
+    "original": "Built around your application.",
+    "en": "Built around your application.",
+    "fa": "متناسب با کاربرد شما.",
+    "group": "Home"
+  },
+  "txt_46a79c0d": {
+    "original": "Application-led",
+    "en": "Application-led",
+    "fa": "انتخاب بر اساس کاربرد",
+    "group": "Home"
+  },
+  "txt_edf1298d": {
+    "original": "Engineering consultation",
+    "en": "Engineering consultation",
+    "fa": "مشاوره مهندسی",
+    "group": "Home"
+  },
+  "txt_30bcf463": {
+    "original": "Confident sourcing",
+    "en": "Confident sourcing",
+    "fa": "تأمین آگاهانه",
+    "group": "Home"
+  },
+  "txt_6fb01956": {
+    "original": "Technical identification",
+    "en": "Technical identification",
+    "fa": "شناسایی فنی",
+    "group": "Home"
+  },
+  "txt_efffbcc3": {
+    "original": "Details that matter",
+    "en": "Details that matter",
+    "fa": "جزئیات مهم",
+    "group": "Home"
+  },
+  "txt_46a22cc8": {
+    "original": "Dimensional & load data",
+    "en": "Dimensional & load data",
+    "fa": "ابعاد و ظرفیت بار",
+    "group": "Home"
+  },
+  "txt_7731722c": {
+    "original": "Explore engineering tools",
+    "en": "Explore engineering tools",
+    "fa": "ابزارهای مهندسی",
+    "group": "Home"
+  },
+  "txt_9868a2e9": {
+    "original": "THE RIGHT COMPONENT",
+    "en": "THE RIGHT COMPONENT",
+    "fa": "قطعه مناسب",
+    "group": "Home"
+  },
+  "txt_3bb6cfb6": {
+    "original": "Steel & metals",
+    "en": "Steel & metals",
+    "fa": "فولاد و فلزات",
+    "group": "HomeSections"
+  },
+  "txt_86c31d35": {
+    "original": "Mining & cement",
+    "en": "Mining & cement",
+    "fa": "معدن و سیمان",
+    "group": "HomeSections"
+  },
+  "txt_b5b64e4b": {
+    "original": "Oil & petrochemical",
+    "en": "Oil & petrochemical",
+    "fa": "نفت و پتروشیمی",
+    "group": "HomeSections"
+  },
+  "txt_d78c25cc": {
+    "original": "Power generation",
+    "en": "Power generation",
+    "fa": "تولید برق",
+    "group": "HomeSections"
+  },
+  "txt_7b296078": {
+    "original": "Pumps & fluid systems",
+    "en": "Pumps & fluid systems",
+    "fa": "پمپ و سیالات",
+    "group": "HomeSections"
+  },
+  "txt_2f40c3b9": {
+    "original": "Gearboxes & machinery",
+    "en": "Gearboxes & machinery",
+    "fa": "گیربکس و ماشین‌آلات",
+    "group": "HomeSections"
+  },
+  "txt_f84b113f": {
+    "original": "COMPONENTS, CONSIDERED",
+    "en": "COMPONENTS, CONSIDERED",
+    "fa": "انتخاب دقیق قطعات",
+    "group": "HomeSections"
+  },
+  "txt_892bb369": {
+    "original": "Find your next solution.",
+    "en": "Find your next solution.",
+    "fa": "راه‌حل بعدی را پیدا کنید.",
+    "group": "HomeSections"
+  },
+  "txt_4a4ffecb": {
+    "original": "View all",
+    "en": "View all",
+    "fa": "مشاهده همه",
+    "group": "HomeSections"
+  },
+  "txt_81e8d6bf": {
+    "original": "ENGINEERING, WITH CONTEXT",
+    "en": "ENGINEERING, WITH CONTEXT",
+    "fa": "مهندسی با شناخت کاربرد",
+    "group": "HomeSections"
+  },
+  "txt_ed0349bb": {
+    "original": "Go beyond the part number. Explore bearing geometry, calculate basic rating life and understand how operating conditions shape your selection.",
+    "en": "Go beyond the part number. Explore bearing geometry, calculate basic rating life and understand how operating conditions shape your selection.",
+    "fa": "فراتر از شماره فنی بروید؛ هندسه بیرینگ، عمر پایه و اثر شرایط کاری بر انتخاب را بررسی کنید.",
+    "group": "HomeSections"
+  },
+  "txt_cfeb404f": {
+    "original": "Open engineering workspace",
+    "en": "Open engineering workspace",
+    "fa": "ورود به کارگاه مهندسی",
+    "group": "HomeSections"
+  },
+  "txt_d296efe8": {
+    "original": "BASIC RATING LIFE",
+    "en": "BASIC RATING LIFE",
+    "fa": "BASIC RATING LIFE",
+    "group": "HomeSections"
+  },
+  "txt_12b7710": {
+    "original": "L₁₀ = (C/P)",
+    "en": "L₁₀ = (C/P)",
+    "fa": "L₁₀ = (C/P)",
+    "group": "HomeSections"
+  },
+  "txt_f50c43ef": {
+    "original": "p",
+    "en": "p",
+    "fa": "p",
+    "group": "HomeSections"
+  },
+  "txt_d1798ec9": {
+    "original": "p = 3",
+    "en": "p = 3",
+    "fa": "p = 3",
+    "group": "HomeSections"
+  },
+  "txt_61eea393": {
+    "original": "p = 10/3",
+    "en": "p = 10/3",
+    "fa": "p = 10/3",
+    "group": "HomeSections"
+  },
+  "txt_c621221c": {
+    "original": "Roller bearings",
+    "en": "Roller bearings",
+    "fa": "Roller bearings",
+    "group": "HomeSections"
+  },
+  "txt_364895c4": {
+    "original": "From specification to an informed decision.",
+    "en": "From specification to an informed decision.",
+    "fa": "از مشخصات فنی تا تصمیم آگاهانه.",
+    "group": "HomeSections"
+  },
+  "txt_6e4701c6": {
+    "original": "INDUSTRIES WE SUPPORT",
+    "en": "INDUSTRIES WE SUPPORT",
+    "fa": "صنایع تحت پوشش",
+    "group": "HomeSections"
+  },
+  "txt_65a91a16": {
+    "original": "Different environments. Different demands. One considered approach to selection.",
+    "en": "Different environments. Different demands. One considered approach to selection.",
+    "fa": "محیط‌های متفاوت، نیازهای متفاوت؛ انتخاب بر پایه شرایط واقعی.",
+    "group": "HomeSections"
+  },
+  "txt_be5497ba": {
+    "original": "WHY POLAD CHARKHESH",
+    "en": "WHY POLAD CHARKHESH",
+    "fa": "چرا پولاد چرخش",
+    "group": "HomeSections"
+  },
+  "txt_f6e2ff0b": {
+    "original": "Application understanding",
+    "en": "Application understanding",
+    "fa": "شناخت کاربرد",
+    "group": "HomeSections"
+  },
+  "txt_a3b65764": {
+    "original": "We start with loads, geometry and operating conditions.",
+    "en": "We start with loads, geometry and operating conditions.",
+    "fa": "بررسی را از بار، هندسه و شرایط کار آغاز می‌کنیم.",
+    "group": "HomeSections"
+  },
+  "txt_68937d87": {
+    "original": "Codes, suffixes and dimensions checked together.",
+    "en": "Codes, suffixes and dimensions checked together.",
+    "fa": "کد، پسوند و ابعاد در کنار هم بررسی می‌شوند.",
+    "group": "HomeSections"
+  },
+  "txt_be72c06b": {
+    "original": "Documented selection",
+    "en": "Documented selection",
+    "fa": "انتخاب مستند",
+    "group": "HomeSections"
+  },
+  "txt_f2ac250f": {
+    "original": "Manufacturer references support informed conversations.",
+    "en": "Manufacturer references support informed conversations.",
+    "fa": "منابع سازنده مبنای گفت‌وگوی فنی هستند.",
+    "group": "HomeSections"
+  },
+  "txt_40b91543": {
+    "original": "YOUR TECHNICAL SUPPORT TEAM",
+    "en": "YOUR TECHNICAL SUPPORT TEAM",
+    "fa": "تیم پشتیبانی فنی شما",
+    "group": "HomeSections"
+  },
+  "txt_3ff5da21": {
+    "original": "People behind the precision.",
+    "en": "People behind the precision.",
+    "fa": "کارشناسان، پشتوانه دقت.",
+    "group": "HomeSections"
+  },
+  "txt_1656b749": {
+    "original": "Share a part number, dimensional sketch or operating challenge. Our team can help you move the discussion forward.",
+    "en": "Share a part number, dimensional sketch or operating challenge. Our team can help you move the discussion forward.",
+    "fa": "شماره قطعه، نقشه ابعادی یا مسئله کاربردی خود را مطرح کنید؛ تیم فنی در بررسی و انتخاب همراه شماست.",
+    "group": "HomeSections"
+  },
+  "txt_db8b9f0f": {
+    "original": "LET’S TALK ENGINEERING",
+    "en": "LET’S TALK ENGINEERING",
+    "fa": "گفت‌وگوی مهندسی",
+    "group": "HomeSections"
+  },
+  "txt_bd627b4e": {
+    "original": "Central office",
+    "en": "Central office",
+    "fa": "دفتر مرکزی",
+    "group": "HomeSections"
+  },
+  "txt_43352167": {
+    "original": "Email",
+    "en": "Email",
+    "fa": "ایمیل",
+    "group": "HomeSections"
+  },
+  "txt_f01f8e01": {
+    "original": "Continue on WhatsApp",
+    "en": "Continue on WhatsApp",
+    "fa": "ارتباط در واتساپ",
+    "group": "HomeSections"
+  },
+  "txt_307da739": {
+    "original": "Tell us what you’re working on.",
+    "en": "Tell us what you’re working on.",
+    "fa": "از نیاز فنی خود بگویید.",
+    "group": "HomeSections"
+  },
+  "txt_9010932f": {
+    "original": "Full name",
+    "en": "Full name",
+    "fa": "نام و نام خانوادگی",
+    "group": "HomeSections"
+  },
+  "txt_3ade6bf8": {
+    "original": "Phone number",
+    "en": "Phone number",
+    "fa": "شماره تماس",
+    "group": "HomeSections"
+  },
+  "txt_c1bf0f5c": {
+    "original": "Company",
+    "en": "Company",
+    "fa": "شرکت",
+    "group": "HomeSections"
+  },
+  "txt_6b82ef32": {
+    "original": "Email (optional)",
+    "en": "Email (optional)",
+    "fa": "ایمیل (اختیاری)",
+    "group": "HomeSections"
+  },
+  "txt_144354f8": {
+    "original": "Your technical inquiry",
+    "en": "Your technical inquiry",
+    "fa": "موضوع استعلام فنی",
+    "group": "HomeSections"
+  },
+  "txt_7beb3d0c": {
+    "original": "Part number, dimensions, application or operating conditions…",
+    "en": "Part number, dimensions, application or operating conditions…",
+    "fa": "شماره قطعه، ابعاد، کاربرد یا شرایط کار…",
+    "group": "HomeSections"
+  },
+  "txt_951c2725": {
+    "original": "Your inquiry has been saved. Our team will review your request.",
+    "en": "Your inquiry has been saved. Our team will review your request.",
+    "fa": "استعلام شما ثبت شد. تیم فنی درخواست را بررسی خواهد کرد.",
+    "group": "HomeSections"
+  },
+  "txt_6468cd29": {
+    "original": "Submitting…",
+    "en": "Submitting…",
+    "fa": "در حال ارسال…",
+    "group": "HomeSections"
+  },
+  "txt_69f7ffe9": {
+    "original": "Send technical inquiry",
+    "en": "Send technical inquiry",
+    "fa": "ارسال استعلام فنی",
+    "group": "HomeSections"
+  },
+  "txt_15febda6": {
+    "original": "We use these details to respond to your inquiry. Availability and commercial terms are confirmed directly.",
+    "en": "We use these details to respond to your inquiry. Availability and commercial terms are confirmed directly.",
+    "fa": "اطلاعات شما فقط برای پاسخ‌گویی به استعلام استفاده می‌شود. موجودی و شرایط تجاری مستقیماً تأیید خواهند شد.",
+    "group": "HomeSections"
+  },
+  "txt_4a3d05f7": {
+    "original": "kg",
+    "en": "kg",
+    "fa": "kg",
+    "group": "Product"
+  },
+  "txt_d6811000": {
+    "original": "Lubricant · technical reference",
+    "en": "Lubricant · technical reference",
+    "fa": "Lubricant · technical reference",
+    "group": "Product"
+  },
+  "txt_6611c6a9": {
+    "original": "Family reference · illustration only",
+    "en": "Family reference · illustration only",
+    "fa": "Family reference · illustration only",
+    "group": "Product"
+  },
+  "txt_e10c2473": {
+    "original": "d",
+    "en": "d",
+    "fa": "d",
+    "group": "Product"
+  },
+  "txt_c10bf213": {
+    "original": "D",
+    "en": "D",
+    "fa": "D",
+    "group": "Product"
+  },
+  "txt_c70bfb85": {
+    "original": "B",
+    "en": "B",
+    "fa": "B",
+    "group": "Product"
+  },
+  "txt_602e1e0f": {
+    "original": "mm",
+    "en": "mm",
+    "fa": "mm",
+    "group": "Product"
+  },
+  "txt_fd0ecb17": {
+    "original": "View technical specifications",
+    "en": "View technical specifications",
+    "fa": "مشاهده مشخصات فنی",
+    "group": "Product"
+  },
+  "txt_993014d9": {
+    "original": "Weight",
+    "en": "Weight",
+    "fa": "وزن",
+    "group": "Product"
+  },
+  "txt_f2186944": {
+    "original": "Dynamic rating Cr",
+    "en": "Dynamic rating Cr",
+    "fa": "بار دینامیکی Cr",
+    "group": "Product"
+  },
+  "txt_9c9448df": {
+    "original": "Static rating C₀r",
+    "en": "Static rating C₀r",
+    "fa": "بار استاتیکی C₀r",
+    "group": "Product"
+  },
+  "txt_de94cadc": {
+    "original": "Grease / oil speed",
+    "en": "Grease / oil speed",
+    "fa": "سرعت گریس / روغن",
+    "group": "Product"
+  },
+  "txt_1b3502bd": {
+    "original": "Cage",
+    "en": "Cage",
+    "fa": "قفسه",
+    "group": "Product"
+  },
+  "txt_99f43948": {
+    "original": "Sealing",
+    "en": "Sealing",
+    "fa": "آب‌بندی",
+    "group": "Product"
+  },
+  "txt_ccd438a5": {
+    "original": "Clearance",
+    "en": "Clearance",
+    "fa": "لقی",
+    "group": "Product"
+  },
+  "txt_1ab2f77": {
+    "original": "Use in engineering tools",
+    "en": "Use in engineering tools",
+    "fa": "محاسبه مهندسی",
+    "group": "Product"
+  },
+  "txt_cd0307ba": {
+    "original": "PDF datasheet",
+    "en": "PDF datasheet",
+    "fa": "دیتاشیت PDF",
+    "group": "Product"
+  },
+  "txt_3928e473": {
+    "original": "Technical inquiry: ",
+    "en": "Technical inquiry: ",
+    "fa": "استعلام فنی: ",
+    "group": "Product"
+  },
+  "txt_193ddab6": {
+    "original": "Ask about this component",
+    "en": "Ask about this component",
+    "fa": "مشاوره و استعلام این قطعه",
+    "group": "Product"
+  },
+  "txt_2afb977b": {
+    "original": "Technical provenance",
+    "en": "Technical provenance",
+    "fa": "منشأ اطلاعات فنی",
+    "group": "Product"
+  },
+  "txt_7b26fe55": {
+    "original": "Specifications and source notes imported from the reference repository. Verification dates below are inherited records, not new verification by this platform. Confirm the exact manufacturer and suffix before selection.",
+    "en": "Specifications and source notes imported from the reference repository. Verification dates below are inherited records, not new verification by this platform. Confirm the exact manufacturer and suffix before selection.",
+    "fa": "مشخصات و یادداشت‌های منابع از مخزن مرجع وارد شده‌اند. تاریخ‌های تأیید زیر متعلق به مرجع هستند و به معنی تأیید مجدد در این سامانه نیستند. پیش از انتخاب، سازنده و پسوند دقیق را بررسی کنید.",
+    "group": "Product"
+  },
+  "txt_7e0efd96": {
+    "original": "Source-record date",
+    "en": "Source-record date",
+    "fa": "تاریخ ثبت مرجع",
+    "group": "Product"
+  },
+  "txt_15c79162": {
+    "original": "Unverified",
+    "en": "Unverified",
+    "fa": "تأیید نشده",
+    "group": "Product"
+  },
+  "txt_d83ad066": {
+    "original": "Typical applications",
+    "en": "Typical applications",
+    "fa": "کاربردهای رایج",
+    "group": "Product"
+  },
+  "txt_9f32eb8c": {
+    "original": "Ratings describe the imported record. Availability and suitability are confirmed manually. Basic life calculations do not replace application engineering.",
+    "en": "Ratings describe the imported record. Availability and suitability are confirmed manually. Basic life calculations do not replace application engineering.",
+    "fa": "مقادیر مربوط به رکورد واردشده هستند. موجودی و تناسب کاربرد به صورت دستی تأیید می‌شوند. محاسبه عمر پایه جایگزین بررسی مهندسی کاربرد نیست.",
+    "group": "Product"
+  },
+  "txt_d05e6906": {
+    "original": "Open complete product page",
+    "en": "Open complete product page",
+    "fa": "صفحه کامل محصول",
+    "group": "Product"
+  },
+  "txt_66ec6dd1": {
+    "original": "Product not found",
+    "en": "Product not found",
+    "fa": "محصول یافت نشد",
+    "group": "Product"
+  },
+  "txt_9fbec649": {
+    "original": "Search the catalog",
+    "en": "Search the catalog",
+    "fa": "جستجوی کاتالوگ",
+    "group": "Product"
+  },
+  "txt_4d27978b": {
+    "original": "Ask the engineering team",
+    "en": "Ask the engineering team",
+    "fa": "ارتباط با تیم فنی",
+    "group": "Product"
+  },
+  "txt_52f50eae": {
+    "original": "Home",
+    "en": "Home",
+    "fa": "خانه",
+    "group": "Product"
+  },
+  "txt_a6a0fbb8": {
+    "original": "Catalog",
+    "en": "Catalog",
+    "fa": "کاتالوگ",
+    "group": "Product"
+  },
+  "txt_a8004f2c": {
+    "original": "Related components",
+    "en": "Related components",
+    "fa": "قطعات مرتبط",
+    "group": "Product"
+  },
+  "txt_610978d3": {
+    "original": "SIDE VIEW",
+    "en": "SIDE VIEW",
+    "fa": "SIDE VIEW",
+    "group": "Schematic"
+  },
+  "txt_e7e24e0a": {
+    "original": "DIMENSIONAL ENVELOPE · mm · NOT TO SCALE",
+    "en": "DIMENSIONAL ENVELOPE · mm · NOT TO SCALE",
+    "fa": "DIMENSIONAL ENVELOPE · mm · NOT TO SCALE",
+    "group": "Schematic"
+  },
+  "txt_3f2102c2": {
+    "original": "AXIAL HALF-SECTION / IDEALIZED BALL BEARING",
+    "en": "AXIAL HALF-SECTION / IDEALIZED BALL BEARING",
+    "fa": "AXIAL HALF-SECTION / IDEALIZED BALL BEARING",
+    "group": "SectionView"
+  },
+  "txt_e8ed2f56": {
+    "original": "OUTER RING",
+    "en": "OUTER RING",
+    "fa": "OUTER RING",
+    "group": "SectionView"
+  },
+  "txt_e1856d8b": {
+    "original": "INNER RING",
+    "en": "INNER RING",
+    "fa": "INNER RING",
+    "group": "SectionView"
+  },
+  "txt_84431e0d": {
+    "original": "HATCH = CUT METAL / BALL & CAGE SHOWN UNCUT",
+    "en": "HATCH = CUT METAL / BALL & CAGE SHOWN UNCUT",
+    "fa": "HATCH = CUT METAL / BALL & CAGE SHOWN UNCUT",
+    "group": "SectionView"
+  },
+  "txt_c7af44e6": {
+    "original": "Skip to content",
+    "en": "Skip to content",
+    "fa": "رفتن به محتوا",
+    "group": "Shell"
+  },
+  "txt_58b737a7": {
+    "original": "BEARINGS. ENGINEERING. CONTINUITY.",
+    "en": "BEARINGS. ENGINEERING. CONTINUITY.",
+    "fa": "تأمین تخصصی بیرینگ و قطعات صنعتی",
+    "group": "Shell"
+  },
+  "txt_4f89a016": {
+    "original": "Polad Charkhesh company logo",
+    "en": "Polad Charkhesh company logo",
+    "fa": "نشان شرکت پولاد چرخش",
+    "group": "Shell"
+  },
+  "txt_3815224c": {
+    "original": "POLAD CHARKHESH",
+    "en": "POLAD CHARKHESH",
+    "fa": "پولاد چرخش",
+    "group": "Shell"
+  },
+  "txt_aa839e85": {
+    "original": "INDUSTRIAL ENGINEERING",
+    "en": "INDUSTRIAL ENGINEERING",
+    "fa": "مهندسی و تأمین صنعتی",
+    "group": "Shell"
+  },
+  "txt_c5a8374a": {
+    "original": "Main navigation",
+    "en": "Main navigation",
+    "fa": "ناوبری اصلی",
+    "group": "Shell"
+  },
+  "txt_37182ffb": {
+    "original": "Product catalog",
+    "en": "Product catalog",
+    "fa": "کاتالوگ محصولات",
+    "group": "Shell"
+  },
+  "txt_1bd6d757": {
+    "original": "Industries",
+    "en": "Industries",
+    "fa": "صنایع",
+    "group": "Shell"
+  },
+  "txt_7283a276": {
+    "original": "Switch to Persian",
+    "en": "Switch to Persian",
+    "fa": "Switch to English",
+    "group": "Shell"
+  },
+  "txt_7f78c98f": {
+    "original": "Let’s talk engineering",
+    "en": "Let’s talk engineering",
+    "fa": "مشاوره مهندسی",
+    "group": "Shell"
+  },
+  "txt_c354fae0": {
+    "original": "Image credits",
+    "en": "Image credits",
+    "fa": "منابع تصاویر",
+    "group": "Shell"
+  },
+  "txt_8fd91fef": {
+    "original": "Administration",
+    "en": "Administration",
+    "fa": "مدیریت",
+    "group": "Shell"
+  },
+  "txt_59477612": {
+    "original": "Call company",
+    "en": "Call company",
+    "fa": "تماس با شرکت",
+    "group": "Shell"
+  },
+  "txt_babbd70": {
+    "original": "Back to top",
+    "en": "Back to top",
+    "fa": "بازگشت به بالا",
+    "group": "Shell"
+  },
+  "txt_e99ad5f0": {
+    "original": "BEARING EXPLORER",
+    "en": "BEARING EXPLORER",
+    "fa": "کاوش بیرینگ",
+    "group": "Viewer"
+  },
+  "txt_e23e006e": {
+    "original": "Inside the motion.",
+    "en": "Inside the motion.",
+    "fa": "درون حرکت.",
+    "group": "Viewer"
+  },
+  "txt_8e413aca": {
+    "original": "Understand the geometry.",
+    "en": "Understand the geometry.",
+    "fa": "شناخت هندسه.",
+    "group": "Viewer"
+  },
+  "txt_d0b6a1cd": {
+    "original": "Speed & thermal estimate",
+    "en": "Speed & thermal estimate",
+    "fa": "برآورد سرعت و دما",
+    "group": "Viewer"
+  },
+  "txt_1e41a23": {
+    "original": "IDEALIZED BALL-BEARING MODEL",
+    "en": "IDEALIZED BALL-BEARING MODEL",
+    "fa": "IDEALIZED BALL-BEARING MODEL",
+    "group": "Viewer"
+  },
+  "txt_a41a0620": {
+    "original": "OUTER RING FIXED / INNER RING + CAGE ROTATING",
+    "en": "OUTER RING FIXED / INNER RING + CAGE ROTATING",
+    "fa": "OUTER RING FIXED / INNER RING + CAGE ROTATING",
+    "group": "Viewer"
+  },
+  "txt_a7ffc21f": {
+    "original": "Play inspection",
+    "en": "Play inspection",
+    "fa": "شروع نمایش",
+    "group": "Viewer"
+  },
+  "txt_e41fb161": {
+    "original": "Pause inspection",
+    "en": "Pause inspection",
+    "fa": "توقف نمایش",
+    "group": "Viewer"
+  },
+  "txt_89039347": {
+    "original": "Dimensional envelope uses the selected product. The animated sectional model is an idealized ball bearing, not a manufacturing drawing of this component.",
+    "en": "Dimensional envelope uses the selected product. The animated sectional model is an idealized ball bearing, not a manufacturing drawing of this component.",
+    "fa": "ابعاد کلی متعلق به قطعه انتخاب‌شده است. مدل متحرک، بیرینگ ساچمه‌ای ساده‌شده است و نقشه ساخت این قطعه نیست.",
+    "group": "Viewer"
+  },
+  "txt_3e4d58e2": {
+    "original": "INDICATIVE ENGINEERING ESTIMATE",
+    "en": "INDICATIVE ENGINEERING ESTIMATE",
+    "fa": "برآورد تقریبی مهندسی",
+    "group": "Viewer"
+  },
+  "txt_6db0b704": {
+    "original": "°C",
+    "en": "°C",
+    "fa": "°C",
+    "group": "Viewer"
+  },
+  "txt_4dd8bed6": {
+    "original": "rpm",
+    "en": "rpm",
+    "fa": "rpm",
+    "group": "Viewer"
+  },
+  "txt_8c1adcce": {
+    "original": "Low speed",
+    "en": "Low speed",
+    "fa": "سرعت پایین",
+    "group": "Viewer"
+  },
+  "txt_e269cb61": {
+    "original": "Normal indicative range",
+    "en": "Normal indicative range",
+    "fa": "دامنه تقریبی عادی",
+    "group": "Viewer"
+  },
+  "txt_a7a52c8e": {
+    "original": "Elevated range",
+    "en": "Elevated range",
+    "fa": "دامنه افزایش‌یافته",
+    "group": "Viewer"
+  },
+  "txt_5ac5d736": {
+    "original": "Near reference speed limit",
+    "en": "Near reference speed limit",
+    "fa": "نزدیک حد سرعت مرجع",
+    "group": "Viewer"
+  },
+  "txt_255acab4": {
+    "original": "Grease reference limit",
+    "en": "Grease reference limit",
+    "fa": "حد سرعت مرجع گریس",
+    "group": "Viewer"
+  },
+  "txt_68beaa28": {
+    "original": "Illustrative model: 25 + 10r + 65r² °C, r = rpm / reference speed. This is not a validated physical temperature prediction. Actual temperature depends on load, lubricant, ambient conditions, bearing design, fit, cage, shaft/housing and heat dissipation.",
+    "en": "Illustrative model: 25 + 10r + 65r² °C, r = rpm / reference speed. This is not a validated physical temperature prediction. Actual temperature depends on load, lubricant, ambient conditions, bearing design, fit, cage, shaft/housing and heat dissipation.",
+    "fa": "مدل نمایشی: ۲۵ + ۱۰r + ۶۵r² درجه، که r نسبت سرعت به سرعت مرجع است. این مدل پیش‌بینی فیزیکی تأییدشده نیست. دمای واقعی به بار، روانکار، محیط، طرح بیرینگ، انطباق، قفسه، شفت، محفظه و دفع حرارت بستگی دارد.",
+    "group": "Viewer"
+  },
+  "txt_3d35678b": {
+    "original": "MECHANICAL PRINCIPLES",
+    "en": "MECHANICAL PRINCIPLES",
+    "fa": "اصول مکانیکی",
+    "group": "Viewer"
+  },
+  "txt_85a7bf62": {
+    "original": "A system in balance.",
+    "en": "A system in balance.",
+    "fa": "سامانه‌ای در تعادل.",
+    "group": "Viewer"
+  },
+  "txt_54402345": {
+    "original": "Outer ring · fixed raceway",
+    "en": "Outer ring · fixed raceway",
+    "fa": "رینگ خارجی · مسیر غلتش ثابت",
+    "group": "Viewer"
+  },
+  "txt_733c1245": {
+    "original": "Rolling elements · load transfer",
+    "en": "Rolling elements · load transfer",
+    "fa": "اجزای غلتشی · انتقال بار",
+    "group": "Viewer"
+  },
+  "txt_99d42a98": {
+    "original": "Inner ring · shaft rotation",
+    "en": "Inner ring · shaft rotation",
+    "fa": "رینگ داخلی · دوران شفت",
+    "group": "Viewer"
+  },
+  "txt_3eb1ed2c": {
+    "original": "Cage · element separation",
+    "en": "Cage · element separation",
+    "fa": "قفسه · جداسازی اجزای غلتشی",
+    "group": "Viewer"
+  },
+  "txt_18a30dc8": {
+    "original": "Inspection motion is slowed for clarity. Cage speed is lower than inner-ring speed. This model explains the mechanism; it does not simulate the selected product’s actual RPM.",
+    "en": "Inspection motion is slowed for clarity. Cage speed is lower than inner-ring speed. This model explains the mechanism; it does not simulate the selected product’s actual RPM.",
+    "fa": "حرکت برای وضوح آهسته شده است. سرعت قفسه از رینگ داخلی کمتر است. مدل، سازوکار را توضیح می‌دهد و سرعت واقعی قطعه را شبیه‌سازی نمی‌کند.",
+    "group": "Viewer"
+  },
+  "txt_a6b8020": {
+    "original": "Speed",
+    "en": "Speed",
+    "fa": "سرعت",
+    "group": "Viewer"
+  },
+  "txt_2fe0fa56": {
+    "original": "Shaft speed in RPM",
+    "en": "Shaft speed in RPM",
+    "fa": "سرعت شفت بر حسب دور در دقیقه",
+    "group": "Viewer"
+  },
+  "txt_4d72110c": {
+    "original": "Playback",
+    "en": "Playback",
+    "fa": "نمایش",
+    "group": "Viewer"
+  },
+  "txt_c6fa7189": {
+    "original": "1× · Real time",
+    "en": "1× · Real time",
+    "fa": "۱× · زمان واقعی",
+    "group": "Viewer"
+  },
+  "txt_f1c89907": {
+    "original": "0.1× · Slow motion",
+    "en": "0.1× · Slow motion",
+    "fa": "۰٫۱× · حرکت آهسته",
+    "group": "Viewer"
+  },
+  "txt_bd32270f": {
+    "original": "0.02× · Inspection",
+    "en": "0.02× · Inspection",
+    "fa": "۰٫۰۲× · بررسی جزئیات",
+    "group": "Viewer"
+  },
+  "txt_de281feb": {
+    "original": "Paused",
+    "en": "Paused",
+    "fa": "متوقف",
+    "group": "Viewer"
+  },
+  "txt_cb34ec6e": {
+    "original": "Stopped · 0 RPM",
+    "en": "Stopped · 0 RPM",
+    "fa": "توقف · ۰ دور در دقیقه",
+    "group": "Viewer"
+  },
+  "txt_fb4b3a5": {
+    "original": "Real-time rotation",
+    "en": "Real-time rotation",
+    "fa": "دوران در زمان واقعی",
+    "group": "Viewer"
+  },
+  "txt_cb0b0969": {
+    "original": "Slow-motion inspection",
+    "en": "Slow-motion inspection",
+    "fa": "بررسی با حرکت آهسته",
+    "group": "Viewer"
+  },
+  "txt_2d468be8": {
+    "original": "Displayed shaft",
+    "en": "Displayed shaft",
+    "fa": "شفت نمایشی",
+    "group": "Viewer"
+  },
+  "txt_2baf1fa4": {
+    "original": "SELECTED PRODUCT DIMENSIONS",
+    "en": "SELECTED PRODUCT DIMENSIONS",
+    "fa": "ابعاد محصول انتخاب‌شده",
+    "group": "Viewer"
+  },
+  "txt_bb8c7c96": {
+    "original": "Bore × outside diameter × width, from this product’s catalog record.",
+    "en": "Bore × outside diameter × width, from this product’s catalog record.",
+    "fa": "قطر داخلی × قطر خارجی × عرض، از اطلاعات کاتالوگ این محصول.",
+    "group": "Viewer"
+  },
+  "txt_96bc81e": {
+    "original": "This component has no supported rolling-element animation. Its catalog dimensions are shown instead.",
+    "en": "This component has no supported rolling-element animation. Its catalog dimensions are shown instead.",
+    "fa": "این قطعه مدل متحرک اجزای غلتشی ندارد. ابعاد کاتالوگ آن نمایش داده می‌شود.",
+    "group": "Viewer"
+  },
+  "txt_4afd9413": {
+    "original": "OPERATING SPEED",
+    "en": "OPERATING SPEED",
+    "fa": "سرعت کارکرد",
+    "group": "Viewer"
+  },
+  "txt_90a4880b": {
+    "original": "Shaft rotation follows this input, shared with the life calculator.",
+    "en": "Shaft rotation follows this input, shared with the life calculator.",
+    "fa": "دوران شفت از این ورودی مشترک با محاسبه‌گر عمر پیروی می‌کند.",
+    "group": "Viewer"
+  },
+  "txt_2641fd76": {
+    "original": "Catalog speed reference",
+    "en": "Catalog speed reference",
+    "fa": "سرعت مرجع کاتالوگ",
+    "group": "Viewer"
+  },
+  "txt_e9b90d86": {
+    "original": "Grease",
+    "en": "Grease",
+    "fa": "گریس",
+    "group": "Viewer"
+  },
+  "txt_25c308db": {
+    "original": "Oil",
+    "en": "Oil",
+    "fa": "روغن",
+    "group": "Viewer"
+  },
+  "txt_26388fe8": {
+    "original": "Not specified",
+    "en": "Not specified",
+    "fa": "ذکر نشده",
+    "group": "Viewer"
+  },
+  "txt_2cb1680c": {
+    "original": "Use reference RPM",
+    "en": "Use reference RPM",
+    "fa": "استفاده از دور مرجع",
+    "group": "Viewer"
+  },
+  "txt_7d58528f": {
+    "original": "Input exceeds the selected catalog speed reference.",
+    "en": "Input exceeds the selected catalog speed reference.",
+    "fa": "سرعت ورودی از مرجع انتخاب‌شده کاتالوگ بیشتر است.",
+    "group": "Viewer"
+  },
+  "txt_b4565500": {
+    "original": "Illustrative temperature only: 25 + 10r + 65r², where r is RPM / reference RPM. Load, lubrication and heat dissipation are not modeled.",
+    "en": "Illustrative temperature only: 25 + 10r + 65r², where r is RPM / reference RPM. Load, lubrication and heat dissipation are not modeled.",
+    "fa": "دمای صرفاً نمایشی: ۲۵ + ۱۰r + ۶۵r²؛ r نسبت دور ورودی به دور مرجع است. بار، روانکاری و دفع حرارت مدل‌سازی نشده‌اند.",
+    "group": "Viewer"
+  },
+  "txt_e6ab10c6": {
+    "original": "Inner ring / shaft",
+    "en": "Inner ring / shaft",
+    "fa": "رینگ داخلی / شفت",
+    "group": "Viewer"
+  },
+  "txt_f327c606": {
+    "original": "Cage · estimated",
+    "en": "Cage · estimated",
+    "fa": "قفسه · تخمینی",
+    "group": "Viewer"
+  },
+  "txt_e3ddddd6": {
+    "original": "Outer ring",
+    "en": "Outer ring",
+    "fa": "رینگ خارجی",
+    "group": "Viewer"
+  },
+  "txt_5c2b3699": {
+    "original": "Fixed",
+    "en": "Fixed",
+    "fa": "ثابت",
+    "group": "Viewer"
+  },
+  "txt_4a17beb": {
+    "original": "Outer dimensions match the selected product. Raceway shape, rolling-element count and cage geometry are representative estimates; seals are removed to show the mechanism. Catalog ratings are not live RPM measurements.",
+    "en": "Outer dimensions match the selected product. Raceway shape, rolling-element count and cage geometry are representative estimates; seals are removed to show the mechanism. Catalog ratings are not live RPM measurements.",
+    "fa": "ابعاد خارجی مطابق محصول انتخاب‌شده است. شکل مسیر غلتش، تعداد اجزای غلتشی و هندسه قفسه تقریبی‌اند؛ آب‌بندها برای نمایش سازوکار حذف شده‌اند. دور کاتالوگ اندازه‌گیری زنده نیست.",
+    "group": "Viewer"
+  },
+  "txt_32b463fa": {
+    "original": "At high RPM, screen sampling can make rotation appear slow or reversed. Select slow motion to inspect the parts.",
+    "en": "At high RPM, screen sampling can make rotation appear slow or reversed. Select slow motion to inspect the parts.",
+    "fa": "در دور بالا، نمونه‌برداری نمایشگر ممکن است حرکت را کند یا معکوس نشان دهد. برای بررسی قطعات، حرکت آهسته را انتخاب کنید.",
+    "group": "Viewer"
+  },
+  "txt_7eb7112d": {
+    "original": "PRODUCT GEOMETRY / OPEN CUTAWAY",
+    "en": "PRODUCT GEOMETRY / OPEN CUTAWAY",
+    "fa": "هندسه محصول / نمای باز",
+    "group": "Viewer"
+  },
+  "txt_beddbbb": {
+    "original": "Play rotation",
+    "en": "Play rotation",
+    "fa": "شروع دوران",
+    "group": "Viewer"
+  },
+  "txt_b5fff199": {
+    "original": "Pause rotation",
+    "en": "Pause rotation",
+    "fa": "توقف دوران",
+    "group": "Viewer"
+  },
+  "txt_d7f8d9e0": {
+    "original": "PRECISION IN MOTION",
+    "en": "PRECISION IN MOTION",
+    "fa": "دقت در حرکت",
+    "group": "Home"
+  },
+  "txt_66fe730a": {
+    "original": "01 / BALL BEARING",
+    "en": "01 / BALL BEARING",
+    "fa": "۰۱ / بلبرینگ",
+    "group": "Home"
+  },
+  "txt_5c9c544e": {
+    "original": "Ball bearing",
+    "en": "Ball bearing",
+    "fa": "بلبرینگ",
+    "group": "Home"
+  },
+  "txt_e722c256": {
+    "original": "Open bearing · illustrative motion",
+    "en": "Open bearing · illustrative motion",
+    "fa": "بلبرینگ باز · حرکت نمایشی",
+    "group": "Home"
+  },
+  "txt_7acea422": {
+    "original": "ENGINEERED TO KEEP YOU MOVING",
+    "en": "ENGINEERED TO KEEP YOU MOVING",
+    "fa": "مهندسی برای تداوم حرکت",
+    "group": "Home"
+  },
+  "txt_e063618d": {
+    "original": "Every revolution matters.",
+    "en": "Every revolution matters.",
+    "fa": "هر چرخش اهمیت دارد.",
+    "group": "Home"
+  },
+  "txt_12b7ae39": {
+    "original": "Explore bearing engineering",
+    "en": "Explore bearing engineering",
+    "fa": "کاوش مهندسی بیرینگ",
+    "group": "Home"
+  },
+  "txt_99426483": {
+    "original": "Play bearing animation",
+    "en": "Play bearing animation",
+    "fa": "شروع حرکت بیرینگ",
+    "group": "Home"
+  },
+  "txt_1a5f6d21": {
+    "original": "Pause bearing animation",
+    "en": "Pause bearing animation",
+    "fa": "توقف حرکت بیرینگ",
+    "group": "Home"
+  },
+  "txt_bfef330d": {
+    "original": "Super-precision",
+    "en": "Super-precision",
+    "fa": "فوق دقیق",
+    "group": "Home"
+  },
+  "txt_209a189b": {
+    "original": "Angular-contact ball bearing",
+    "en": "Angular-contact ball bearing",
+    "fa": "بلبرینگ تماس زاویه‌ای",
+    "group": "Home"
+  },
+  "txt_3939ec2": {
+    "original": "Precision for spindle applications",
+    "en": "Precision for spindle applications",
+    "fa": "دقت برای کاربردهای اسپیندل",
+    "group": "Home"
+  },
+  "txt_7eff9375": {
+    "original": "Rolling bearings",
+    "en": "Rolling bearings",
+    "fa": "بیرینگ‌های غلتشی",
+    "group": "Home"
+  },
+  "txt_7f604baf": {
+    "original": "Cylindrical roller bearing",
+    "en": "Cylindrical roller bearing",
+    "fa": "رولبرینگ استوانه‌ای",
+    "group": "Home"
+  },
+  "txt_419f9384": {
+    "original": "Rollers designed for radial loads",
+    "en": "Rollers designed for radial loads",
+    "fa": "غلتک‌ها برای تحمل بار شعاعی",
+    "group": "Home"
+  },
+  "txt_22723362": {
+    "original": "Plain bearings",
+    "en": "Plain bearings",
+    "fa": "یاتاقان‌های لغزشی",
+    "group": "Home"
+  },
+  "txt_b9653dd6": {
+    "original": "Spherical plain bearing",
+    "en": "Spherical plain bearing",
+    "fa": "یاتاقان لغزشی کروی",
+    "group": "Home"
+  },
+  "txt_a911a395": {
+    "original": "Sliding contact. Angular freedom.",
+    "en": "Sliding contact. Angular freedom.",
+    "fa": "تماس لغزشی، آزادی زاویه‌ای",
+    "group": "Home"
+  },
+  "txt_c921e457": {
+    "original": "Bearing family",
+    "en": "Bearing family",
+    "fa": "خانواده بیرینگ",
+    "group": "Home"
+  },
+  "txt_28a8a3bc": {
+    "original": "Preparing bearing view…",
+    "en": "Preparing bearing view…",
+    "fa": "آماده‌سازی نمای بیرینگ…",
+    "group": "Home"
+  },
+  "txt_a2d44dd8": {
+    "original": "3D view unavailable on this device",
+    "en": "3D view unavailable on this device",
+    "fa": "نمای سه‌بعدی در این دستگاه در دسترس نیست",
+    "group": "Home"
+  },
+  "txt_efb92d4a": {
+    "original": "Illustrative model · motion slowed for clarity",
+    "en": "Illustrative model · motion slowed for clarity",
+    "fa": "مدل نمایشی · حرکت آهسته برای وضوح بیشتر",
+    "group": "Home"
+  }
+}
