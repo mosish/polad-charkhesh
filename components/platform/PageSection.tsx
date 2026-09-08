@@ -45,6 +45,8 @@ export function CustomSections() {
                   src={c.imageUrl}
                   alt={c[fa ? 'titleFa' : 'titleEn']}
                   loading="lazy"
+                  width={720}
+                  height={420}
                 />
               )}
             </section>

@@ -50,12 +50,39 @@ export default function HeroBearing() {
       <button type="button" aria-pressed={exploded} onClick={()=>setExploded(true)}>{t('Exploded view','نمای انفجاری')}</button>
     </div>
     <div className="hero-bearing-stage" ref={stage}
+      tabIndex={0}
+      role="img"
+      aria-label={t('Bearing view. Use arrow keys to adjust the angle.', 'نمای بیرینگ. برای تنظیم زاویه از کلیدهای جهتی استفاده کنید.')}
       onPointerMove={e => {
         if (e.pointerType !== 'mouse' || stopped) return;
         const rect = e.currentTarget.getBoundingClientRect();
         e.currentTarget.style.setProperty('--tilt-x', ((.5 - (e.clientY - rect.top) / rect.height) * 10) + 'deg');
         e.currentTarget.style.setProperty('--tilt-y', (((e.clientX - rect.left) / rect.width - .5) * 14) + 'deg');
-      }} onPointerLeave={resetTilt}>
+      }}
+      onPointerLeave={resetTilt}
+      onKeyDown={(e) => {
+        if (stopped) return;
+        const step = 4;
+        const currentX = Number.parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('--tilt-x')) || 0;
+        const currentY = Number.parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('--tilt-y')) || 0;
+        switch (e.key) {
+          case 'ArrowUp':
+            e.currentTarget.style.setProperty('--tilt-x', `${Math.min(currentX + step, 12)}deg`);
+            break;
+          case 'ArrowDown':
+            e.currentTarget.style.setProperty('--tilt-x', `${Math.max(currentX - step, -12)}deg`);
+            break;
+          case 'ArrowLeft':
+            e.currentTarget.style.setProperty('--tilt-y', `${Math.max(currentY - step, -14)}deg`);
+            break;
+          case 'ArrowRight':
+            e.currentTarget.style.setProperty('--tilt-y', `${Math.min(currentY + step, 14)}deg`);
+            break;
+          default:
+            return;
+        }
+        e.preventDefault();
+      }}>
       <div className="hero-bearing-halo" aria-hidden="true" />
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">

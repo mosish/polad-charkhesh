@@ -141,6 +141,8 @@ export default function HomeSections() {
                     src={card.imageUrl}
                     alt=""
                     loading="lazy"
+                    width={480}
+                    height={260}
                   />
                 ) : (
                   <Factory size={32} />
@@ -179,7 +181,7 @@ export default function HomeSections() {
                   <p>{card[fa ? 'descriptionFa' : 'descriptionEn']}</p>
                 </div>
                 {card.imageUrl ? (
-                  <img className="card-icon-image" src={card.imageUrl} alt="" />
+                  <img className="card-icon-image" src={card.imageUrl} alt="" width={56} height={56} />
                 ) : (
                   <CheckCircle2 size={20} />
                 )}

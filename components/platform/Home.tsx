@@ -92,6 +92,8 @@ export default function Home() {
               {content?.media?.heroUrl&&<img
                 src={content?.media?.heroUrl}
                 alt={content?.media?.[fa ? 'heroAltFa' : 'heroAltEn']}
+                width={880}
+                height={620}
               />}
               <span className="callout c1">
                 <Copy text="01 — OUTER RING" />
@@ -127,7 +129,7 @@ export default function Home() {
           {content?.cards?.capabilities.map((card: any) => (
             <div key={card.id}>
               {card.imageUrl ? (
-                <img className="card-icon-image" src={card.imageUrl} alt="" />
+                <img className="card-icon-image" src={card.imageUrl} alt="" width={64} height={64} />
               ) : (
                 <Compass />
               )}

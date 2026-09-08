@@ -32,6 +32,8 @@ export function ProductImage({ p }: { p: BearingProduct }) {
         alt={media.reference ? 'Bearing family reference image' : p.nameEn}
         onError={() => setFailed(true)}
         loading="lazy"
+        width={640}
+        height={640}
       />
       {media.reference && (
         <small className="reference-label">
@@ -173,8 +175,9 @@ function TechnicalContent({
                     key={u}
                     onClick={() => setImage(u)}
                     aria-label="Select image"
+                    type="button"
                   >
-                    <img src={u} alt="Product view" />
+                    <img src={u} alt="Product view" width={120} height={120} />
                   </button>
                 ))}
             </div>

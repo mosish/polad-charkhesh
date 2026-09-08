@@ -185,6 +185,7 @@ body.liquid-glass {
 
 /* Quiet, interactive hero bearing; no external rendering or media service. */
 .liquid-glass .hero-bearing-showcase { background: radial-gradient(ellipse at 50% 46%,#8bc8e61c,transparent 64%), linear-gradient(140deg,#c4e7ff12,#0b1d303d); padding: 24px; display: flex; flex-direction: column; min-width: 0; }
+.liquid-glass .hero-bearing-stage { touch-action: manipulation; outline: none; }
 .hero-bearing-heading { display: flex; justify-content: space-between; gap: 12px; color: #b3cbe2; font-size: 11px; letter-spacing: 1.2px; }
 .hero-bearing-heading>span:first-child { display: flex; align-items: center; gap: 8px; }
 .hero-bearing-heading i { width: 5px; height: 5px; border-radius: 50%; background: #bfeeff; box-shadow: 0 0 12px #91d8ff; }
