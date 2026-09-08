@@ -1714,5 +1714,23 @@
     "en": "Bearing parts",
     "fa": "اجزای بیرینگ",
     "group": "Home"
+  },
+  "txt_d4a48729": {
+    "original": "Spherical rollers",
+    "en": "Spherical rollers",
+    "fa": "رولبرینگ بشکه‌ای",
+    "group": "Home"
+  },
+  "txt_b34383ec": {
+    "original": "Double-row spherical roller bearing",
+    "en": "Double-row spherical roller bearing",
+    "fa": "رولبرینگ بشکه‌ای دو ردیفه",
+    "group": "Home"
+  },
+  "txt_15b94252": {
+    "original": "Two rows of barrel-shaped rollers",
+    "en": "Two rows of barrel-shaped rollers",
+    "fa": "دو ردیف غلتک بشکه‌ای",
+    "group": "Home"
   }
 }

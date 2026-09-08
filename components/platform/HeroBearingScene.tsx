@@ -5,7 +5,7 @@ import type { BearingProduct } from '../../domain/product';
 import { buildProductBearing3D } from '../../lib/product-bearing-3d';
 import { advanceRotation } from '../../lib/bearing-motion';
 
-export type BearingFamily = 'precision' | 'rolling' | 'plain';
+export type BearingFamily = 'precision' | 'rolling' | 'spherical';
 
 // Illustrative family geometry, not manufacturer CAD or a rated operating simulation.
 function buildBearing(family: BearingFamily) {
@@ -29,12 +29,29 @@ function buildBearing(family: BearingFamily) {
     const m = mesh(new THREE.TorusGeometry(radius,tube,8,128),material,group); m.position.z=z; return m;
   };
   root.add(shell,moving,cage,elements);
-  if (family === 'plain') {
-    // A one-piece bronze sleeve, with a cylindrical sliding bore and machined chamfers.
-    lathe([[2.24,-1.05],[2.3,-.99],[2.3,.99],[2.24,1.05],[1.81,1.05],[1.75,.99],[1.75,-.99],[1.81,-1.05],[2.24,-1.05]],bronze);
-    torus(2.255,.012,1.03,bronze);
-    torus(1.80,.012,1.03,bronze);
-    for(let i=0;i<9;i++)torus(2.299,.0015,-.85+i*.21,bronze);
+  if (family === 'spherical') {
+    // Two inclined rows of barrel rollers share a concave spherical outer raceway.
+    const half=.8;
+    const race=Array.from({length:25},(_,i)=>{const z=half-i*2*half/24;return [Math.sqrt(2.08**2-z*z),z];});
+    lathe([[2.26,-half],[2.3,-half+.04],[2.3,half-.04],[2.26,half],...race,[2.26,-half]]);
+    lathe([[1.45,-half],[1.48,-.74],[1.38,-.43],[1.48,-.09],[1.5,0],[1.48,.09],[1.38,.43],[1.48,.74],[1.45,half],[1.08,half],[1.045,.76],[1.045,-.76],[1.08,-half],[1.45,-half]],steel,moving);
+    torus(2.26,.013,half-.004);
+    torus(1.08,.013,half-.004,polished,moving);
+    const profile=[new THREE.Vector2(0,-.32),...Array.from({length:17},(_,i)=>{const z=-.32+i*.04;return new THREE.Vector2(.28-.08*(z/.32)**2,z);}),new THREE.Vector2(0,.32)];
+    const rollerGeometry=new THREE.LatheGeometry(profile,40);
+    for(const row of [-1,1]) {
+      for(const z of [row*.09,row*.73])torus(1.69,.045,z,bronze,cage);
+      for(let i=0;i<16;i++) {
+        const a=i*Math.PI*2/16, pitch=1.69;
+        const roller=mesh(rollerGeometry,polished,elements);
+        roller.position.set(Math.cos(a)*pitch,Math.sin(a)*pitch,row*.41);
+        roller.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(-row*.2*Math.cos(a),-row*.2*Math.sin(a),1).normalize());
+        const between=a+Math.PI/16;
+        const bridge=mesh(new THREE.BoxGeometry(.1,.065,.66),bronze,cage);
+        bridge.position.set(Math.cos(between)*pitch,Math.sin(between)*pitch,row*.41);
+        bridge.rotation.z=between;
+      }
+    }
   } else {
     const precision = family === 'precision';
     const half = precision ? .35 : .48;
@@ -64,11 +81,11 @@ function buildBearing(family: BearingFamily) {
     }
   }
   // Fine concentric machining lines and restrained laser-style face markings.
-  const front=family==='rolling' ? .48 : family==='plain' ? 1.05 : .35;
+  const front=family==='rolling' ? .48 : family==='spherical' ? .8 : .35;
   for(let i=0;i<6;i++)torus(2.035+i*.035,.0015,front+.001,steel);
   const canvas=document.createElement('canvas');canvas.width=canvas.height=1024;
   const ctx=canvas.getContext('2d')!;ctx.translate(512,512);ctx.fillStyle='#27313d';ctx.font='500 20px Arial';ctx.textAlign='center';
-  const label=family==='precision' ? 'POLAD CHARKHESH  •  SUPER PRECISION' : family==='rolling' ? 'POLAD CHARKHESH  •  ROLLER SERIES' : 'POLAD CHARKHESH  •  BRONZE SLEEVE';
+  const label=family==='precision' ? 'POLAD CHARKHESH  •  SUPER PRECISION' : family==='rolling' ? 'POLAD CHARKHESH  •  ROLLER SERIES' : 'POLAD CHARKHESH  •  SPHERICAL ROLLER';
   Array.from(label).forEach((c,i)=>{ctx.save();ctx.rotate((i-(label.length-1)/2)*.028);ctx.fillText(c,0,-469);ctx.restore();});
   const engraving=new THREE.CanvasTexture(canvas);engraving.colorSpace=THREE.SRGBColorSpace;textures.push(engraving);
   const ink=new THREE.MeshBasicMaterial({map:engraving,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1});materials.push(ink);
@@ -105,12 +122,12 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const heroModel=product ? undefined : buildBearing(family);
     const model=productModel || heroModel!;scene.add(model.root);
     let frame=0,previous=0,elapsed=0,running=false,inView=true;
-    let expansion=viewRef.current.exploded&&family!=='plain'?1:0;
+    let expansion=viewRef.current.exploded?1:0;
     let shaftAngle=0,cageAngle=0,spinAngle=0;
     const draw=(now:number)=>{
       const delta=previous?(now-previous)/1000:1/60;
       const seconds=previous&&running?delta:0;previous=now;
-      const targetExpansion=!product&&family!=='plain'&&viewRef.current.exploded?1:0;
+      const targetExpansion=!product&&viewRef.current.exploded?1:0;
       expansion=viewRef.current.reducedMotion?targetExpansion:THREE.MathUtils.damp(expansion,targetExpansion,7,Math.min(delta,.05));
       if(Math.abs(expansion-targetExpansion)<.001)expansion=targetExpansion;
       elapsed+=product ? seconds : Math.min(seconds,.05);
@@ -127,7 +144,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
         model.root.rotation.set(.56+Math.sin(elapsed*.35)*.055,-.40+Math.cos(elapsed*.25)*.07-expansion*.62,-.22);
         model.root.scale.setScalar(1-expansion*.23);
         model.root.position.y=Math.sin(elapsed*.55)*.045;
-        if(family!=='plain'){model.moving.rotation.z=elapsed*.65;model.cage.rotation.z=elapsed*.24;heroModel!.elements.rotation.z=elapsed*.24;heroModel!.setExploded(expansion);}
+        {model.moving.rotation.z=elapsed*.65;model.cage.rotation.z=elapsed*.24;heroModel!.elements.rotation.z=elapsed*.24;heroModel!.setExploded(expansion);}
         model.root.updateMatrixWorld(true);
         heroModel!.parts.forEach((part,i)=>{
           const badge=target.querySelector<HTMLElement>(`[data-part="${i}"]`);if(!badge)return;
@@ -152,6 +169,6 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
   },[family,failed,product]);
   useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion]);
   return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={product?playback:undefined}>
-    {!product&&family!=='plain'&&partLabels.map((name,i)=><span key={i} className="bearing-part-pin" data-part={i} aria-hidden="true" title={name}>{i+1}</span>)}
+    {!product&&partLabels.map((name,i)=><span key={i} className="bearing-part-pin" data-part={i} aria-hidden="true" title={name}>{i+1}</span>)}
   </div>;
 }
