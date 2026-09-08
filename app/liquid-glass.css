@@ -245,3 +245,17 @@ body.liquid-glass {
 .explorer-model-dimensions>span:first-child { direction:ltr; }
 @media(max-width:760px){ .explorer-model-stage { height:320px; } .explorer-model-heading,.explorer-model-dimensions { padding:14px 16px; font-size:11px; } }
 .liquid-glass .mechanical-model { background-size:auto; background-repeat:no-repeat; }
+
+/* Assembly inspection shares the original homepage stage. */
+.bearing-view-switch { display:flex; justify-content:center; gap:6px; margin-top:14px; }
+.bearing-view-switch button { background:transparent; color:#a8bfd5; border:1px solid transparent; padding:7px 13px; border-radius:9px; font:inherit; font-size:12px; cursor:pointer; }
+.bearing-view-switch button[aria-pressed=true] { color:#e9f5ff; background:#c3e4ff12; border-color:#c0dfff29; }
+.bearing-view-switch button:disabled { opacity:.38; cursor:default; }
+.bearing-view-switch button:focus-visible { outline:2px solid #bde7ff; outline-offset:2px; }
+.hero-bearing-stage { min-width:0; grid-template-columns:minmax(0,1fr); }
+.hero-bearing-model,.hero-bearing-canvas { min-width:0; max-width:100%; }
+.hero-bearing-canvas { position:relative; }
+.bearing-part-pin { position:absolute; z-index:1; transform:translate(-50%,-50%); display:grid; place-items:center; width:24px; height:24px; border:1px solid #e5f6ff9c; border-radius:50%; background:#14283edb; color:#eaf6ff; font-size:11px; box-shadow:0 2px 12px #0005; pointer-events:none; opacity:0; }
+.bearing-parts-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px 16px; padding:0 3px 18px; color:#bcd0e3; font-size:12px; }
+.bearing-parts-key>span { display:flex; align-items:center; gap:8px; }
+.bearing-parts-key b { display:grid; place-items:center; width:20px; height:20px; border:1px solid #c9e5ff38; border-radius:50%; font-weight:400; color:#eff8ff; }

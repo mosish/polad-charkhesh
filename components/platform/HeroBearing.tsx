@@ -8,11 +8,13 @@ const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 export default function HeroBearing() {
   const { products, content, t } = usePlatform();
   const [family, setFamily] = useState<BearingFamily>('precision');
+  const [exploded,setExploded] = useState(false);
   const families: {id: BearingFamily; label: string; detail: string; caption: string}[] = [
     {id:'precision',label:t('Super-precision','فوق دقیق'),detail:t('Angular-contact ball bearing','بلبرینگ تماس زاویه‌ای'),caption:t('Precision for spindle applications','دقت برای کاربردهای اسپیندل')},
     {id:'rolling',label:t('Rolling bearings','بیرینگ‌های غلتشی'),detail:t('Cylindrical roller bearing','رولبرینگ استوانه‌ای'),caption:t('Rollers designed for radial loads','غلتک‌ها برای تحمل بار شعاعی')},
-    {id:'plain',label:t('Plain bearings','یاتاقان‌های لغزشی'),detail:t('Spherical plain bearing','یاتاقان لغزشی کروی'),caption:t('Sliding contact. Angular freedom.','تماس لغزشی، آزادی زاویه‌ای')},
+    {id:'plain',label:t('Plain bearings','یاتاقان‌های لغزشی'),detail:t('Bronze sleeve bearing','یاتاقان بوشی برنزی'),caption:t('A simple sleeve. A smooth sliding surface.','بوش ساده با سطح لغزشی صاف')},
   ];
+  const partLabels=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
   const selected = families.find(f => f.id === family)!;
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -41,7 +43,11 @@ export default function HeroBearing() {
       <span dir="ltr">{String(families.findIndex(f => f.id === family) + 1).padStart(2,'0')} / 03</span>
     </div>
     <div className="hero-bearing-selector" role="group" aria-label={t('Bearing family','خانواده بیرینگ')}>
-      {families.map(f => <button key={f.id} type="button" aria-pressed={family===f.id} onClick={()=>{setFamily(f.id);resetTilt();}}>{f.label}</button>)}
+      {families.map(f => <button key={f.id} type="button" aria-pressed={family===f.id} onClick={()=>{setFamily(f.id);if(f.id==='plain')setExploded(false);resetTilt();}}>{f.label}</button>)}
+    </div>
+    <div className="bearing-view-switch" role="group" aria-label={t('Bearing assembly view','نمای مونتاژ بیرینگ')}>
+      <button type="button" aria-pressed={!exploded} onClick={()=>setExploded(false)}>{t('Assembled','مونتاژشده')}</button>
+      <button type="button" aria-pressed={exploded} disabled={family==='plain'} onClick={()=>setExploded(true)}>{t('Exploded view','نمای انفجاری')}</button>
     </div>
     <div className="hero-bearing-stage" ref={stage}
       onPointerMove={e => {
@@ -54,11 +60,12 @@ export default function HeroBearing() {
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
         <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-          <HeroBearingScene family={family} paused={stopped} label={selected.detail} fallback={family !== 'plain' && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
+          <HeroBearingScene family={family} paused={stopped} exploded={exploded} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+(exploded?' · '+t('Exploded view','نمای انفجاری'):'')} fallback={!exploded && family !== 'plain' && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
         </Suspense>
       </div>
-      <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
+      <span className="hero-bearing-caption">{family==='plain'?t('One-piece sleeve · no rolling elements','بوش یک‌تکه · بدون اجزای غلتشی'):t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
     </div>
+    {exploded&&<div className="bearing-parts-key" aria-label={t('Bearing parts','اجزای بیرینگ')}>{partLabels.map((name,i)=><span key={name}><b>{i+1}</b>{name}</span>)}</div>}
     <div className="hero-bearing-footer">
       <div aria-live="polite"><small>{selected.caption}</small><strong>{selected.detail}</strong></div>
       <div className="hero-bearing-actions">
