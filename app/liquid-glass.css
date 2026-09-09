@@ -52,6 +52,9 @@ body.liquid-glass {
 .liquid-glass .eyebrow { color: #b3d9fa; font-size: 12px; letter-spacing: 1.7px; }
 .liquid-glass .eyebrow>span { background: #96c9f3; box-shadow: 0 0 8px #8cc4ff66; }
 .liquid-glass .hero-copy>p { color: #b3c3d8; }
+.liquid-glass .hero-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin: 26px 0 18px; }
+.liquid-glass .hero-actions .button, .liquid-glass .hero-actions .text-link { min-height: 52px; border-radius: 14px; padding: 0 20px; }
+.liquid-glass .hero-actions .button.primary { box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 18px 32px rgba(130, 188, 255, .18); }
 .liquid-glass .hero-visual { padding: 26px; position: relative; background: radial-gradient(ellipse at 50% 35%,#c5dcf52b,transparent 65%), var(--glass-fill); }
 .liquid-glass .visual-top { color: #b6c9df; gap: 14px; }
 .liquid-glass .bearing-stage { min-height: 355px; }
@@ -60,10 +63,12 @@ body.liquid-glass {
 .liquid-glass .visual-bottom { border-color: var(--glass-line); }
 .liquid-glass .visual-bottom small { color: #b5c6db; }
 .liquid-glass .visual-bottom a { background: #b9dfff12; border-color: #d0e6ff45; }
-.liquid-glass .hero-search, .liquid-glass .search-field { border: 1px solid #b6d7f638; border-radius: 18px; background: #d7e8ff0c; color: #bfcee0; box-shadow: inset 0 1px 0 #ffffff18; backdrop-filter: blur(14px); }
-.liquid-glass .hero-search input { background: transparent; border: 0; color: white; box-shadow: none; }
-.liquid-glass .search-hints { color: #a6b9d0; font-size: 11px; }
-.liquid-glass .search-hints a, .liquid-glass .chips span { border-radius: 999px; padding: 4px 10px; border: 1px solid #d0e7ff24; color: #cfdeef; background: #ffffff08; }
+.liquid-glass .hero-search, .liquid-glass .search-field { border: 1px solid #b6d7f638; border-radius: 18px; background: linear-gradient(135deg, rgba(214,232,255,.09), rgba(87,120,170,.12)); color: #bfcee0; box-shadow: inset 0 1px 0 #ffffff18, 0 16px 32px rgba(5, 11, 18, .18); backdrop-filter: blur(14px); }
+.liquid-glass .hero-search { min-height: 64px; padding: 0 12px 0 18px; }
+.liquid-glass .hero-search button { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #d9eeff, #9fcbff); color: #0d1d2d; border: 0; box-shadow: 0 10px 20px rgba(159,203,255,.28); }
+.liquid-glass .hero-search input { background: transparent; border: 0; color: white; box-shadow: none; font-size: 14px; }
+.liquid-glass .search-hints { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; color: #a6b9d0; font-size: 11px; }
+.liquid-glass .search-hints a, .liquid-glass .chips span { border-radius: 999px; padding: 4px 10px; border: 1px solid #d0e7ff24; color: #cfdeef; background: rgba(255,255,255,.04); }
 .liquid-glass .capabilities { margin: 0 4%; padding: 22px; background: #adc7e50a; border: 1px solid var(--glass-line); border-radius: 20px; gap: 24px; }
 .liquid-glass .capabilities :is(svg,small) { color: #a8c4e1; }
 .liquid-glass .section { padding-block: 70px; }
@@ -72,9 +77,13 @@ body.liquid-glass {
 .liquid-glass .section-label { color: #a4c0dc; font-size: 12px; }
 .liquid-glass :is(h1,h2,h3,.product-title,.product-code,.product-info code,.dimension-row b,.result-number,.specs dd,.contact-details b,.admin-stats strong) { color: var(--glass-text); }
 .liquid-glass h2 span { color: #a5c7e5; }
-.liquid-glass .product-card:hover { border-color: #d5eaff65; box-shadow: inset 0 1px 0 #fff3, 0 15px 45px #0004; transform: translateY(-4px); }
-.liquid-glass .product-photo { margin: 12px 12px 0; width: calc(100% - 24px); border-radius: 14px; background: #e9eef5; color: #263b55; }
+.liquid-glass .product-card { background: linear-gradient(180deg, rgba(12,23,37,.85), rgba(18,31,49,.76)); border-radius: 22px; border: 1px solid rgba(193,223,255,.2); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 18px 34px rgba(0,0,0,.14); }
+.liquid-glass .product-card:hover { border-color: rgba(197,232,255,.46); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 20px 48px rgba(5,16,26,.26); transform: translateY(-4px); }
+.liquid-glass .product-photo { margin: 12px 12px 0; width: calc(100% - 24px); border-radius: 14px; background: linear-gradient(180deg, rgba(220,233,246,.9), rgba(167,188,213,.78)); color: #263b55; }
 .liquid-glass .product-info { padding: 22px; }
+.liquid-glass .product-info code { color: #e7f4ff; }
+.liquid-glass .product-info h3 { color: #dfeeff; }
+.liquid-glass .card-cta { color: #bddcff; }
 .liquid-glass .dimension-row { border-color: var(--glass-line); color: #b1c3d9; }
 .liquid-glass :is(.product-info h3,.product-info p,.result-count,.specs dt,.breadcrumbs,.privacy-note,.source-note,.contact-details small,.contact-details span) { color: #b4c7dc; }
 .liquid-glass .card-cta { color: #bce0ff; }

@@ -52,7 +52,12 @@ export function ProductCard({
 }) {
   const { fa, t } = usePlatform();
   return (
-    <button className="product-card" onClick={() => onSelect(p)}>
+    <button
+      type="button"
+      className="product-card"
+      aria-label={t('View product details', 'مشاهده جزئیات محصول') + ' ' + p.code}
+      onClick={() => onSelect(p)}
+    >
       <div className="product-photo">
         <ProductImage p={p} />
         <span>{p.schematicType.replaceAll('-', ' ')}</span>
