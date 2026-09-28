@@ -89,7 +89,7 @@ export function Provider({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => {
     const brand = state.content?.brand;
-    if (!brand || location.pathname === '/admin') return;
+    if (!brand || /^\/admin\/*$/.test(location.pathname)) return;
     for (const key of ['navy', 'accent', 'ink'])
       document.documentElement.style.setProperty(
         '--' + (key === 'accent' ? 'blue' : key),
@@ -118,7 +118,7 @@ export function Provider({ children }: { children: ReactNode }) {
         fa,
         t: (e, f) => {
           const entry =
-            location.pathname === '/admin'
+            /^\/admin\/*$/.test(location.pathname)
               ? null
               : state.content?.copy?.[textKey(e)];
           return entry?.[fa ? 'fa' : 'en'] ?? (fa ? f : e);

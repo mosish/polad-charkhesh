@@ -7,7 +7,7 @@ const Catalog = lazy(() => import('../components/platform/Catalog')),
   Engineering = lazy(() => import('../components/platform/Engineering')),
   Admin = lazy(() => import('../components/admin/Admin'));
 export default function Router() {
-  const path = location.pathname;
+  const path = location.pathname.replace(/\/+$/, '') || '/';
   const Layout = path === '/admin' ? Fragment : Shell;
   return (
     <Provider>
