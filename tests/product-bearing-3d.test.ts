@@ -34,3 +34,20 @@ test('3D explorer changes rolling-element geometry and rows with the selected pr
     assert.equal(bearingGeometry(p).rows,2,p.code);
   }
 });
+
+test('exploded product view separates four assemblies and restores catalog dimensions',()=>{
+  const p=bearingProducts.find(p=>p.schematicType==='spherical')!;
+  const model=buildProductBearing3D(p);
+  const assembled=new Box3().setFromObject(model.root);
+  assert.equal(model.parts.length,4);
+  assert.ok(model.parts.every(part=>part.children.length>0));
+  model.setExploded(1);
+  assert.equal(new Set(model.parts.map(part=>part.position.z)).size,4);
+  const exploded=new Box3().setFromObject(model.root);
+  assert.ok(exploded.max.z-exploded.min.z>assembled.max.z-assembled.min.z);
+  model.setExploded(0);
+  const restored=new Box3().setFromObject(model.root);
+  assert.ok(Math.abs(restored.max.z-assembled.max.z)<.001);
+  assert.ok(Math.abs(restored.min.z-assembled.min.z)<.001);
+  model.dispose();
+});

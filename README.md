@@ -25,7 +25,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Canonical product seed | ✅ Verified in tests | All 68 imported identities and engineering fields are preserved; manufacturer values still need business verification. |
 | Catalog search and product comparison | ✅ Verified in tests | Family/code/dimension filtering and up to three-product comparison are implemented. |
 | Product detail pages and documents | 🟢 Implemented | Specifications, 3D view, company-generated PDF, and attachment support exist; exact SKU media are incomplete. |
-| Animated bearing visuals | 🟢 Implemented | Three homepage families and assembled/exploded views; models are illustrative. |
+| Animated bearing visuals | 🟢 Implemented | Five homepage family illustrations and assembled/exploded views; the product-specific Explorer also separates its four main assemblies. Models are illustrative. |
 | Engineering workspace | 🟢 Implemented | Basic life, fit/clearance guidance, comparison, and RPM-driven exploration; application review remains essential. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
@@ -40,7 +40,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **19 tests**. The most recent admin route change passed TypeScript checking and the production build. These checks do not replace real browser and product-data review.
+The last full automated suite passed **20 tests**. The five-family showcase and product-specific exploded Explorer passed TypeScript checking, a production build, and a local browser interaction check. These checks do not replace final device and product-data review.
 
 ---
 
@@ -107,6 +107,7 @@ Keep the public experience focused on company presentation, technical discovery,
 - **2026-09-09 — Presentation refinement:** Improved homepage accessibility, image sizing, cards, and dark visual details.
 - **2026-09-28 — Admin route repair:** Made `/admin/` resolve to the same admin page as `/admin`; type checking and production build passed.
 - **2026-09-28 — Project documentation:** Established this status dashboard and a same-commit README update practice.
+- **2026-09-28 — Family showcase and Explorer:** Expanded Precision in Motion to ball bearings, roller bearings, bearing accessories, engineered products, and track rollers. Added an assembled/exploded control to the product-specific Bearing Explorer, with labeled assemblies and paused rotation during inspection.
 
 ## Remaining roadmap
 

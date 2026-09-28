@@ -2032,5 +2032,143 @@
     "en": "Fit limits",
     "fa": "حدود انطباق",
     "group": "Home"
+  },
+  "txt_954732f8": {
+    "original": "Bearings accessories",
+    "en": "Bearings accessories",
+    "fa": "متعلقات بیرینگ",
+    "group": "Experience"
+  },
+  "txt_53ad82f3": {
+    "original": "Engineered products",
+    "en": "Engineered products",
+    "fa": "محصولات مهندسی‌شده",
+    "group": "Experience"
+  },
+  "txt_2ea473fd": {
+    "original": "Track rollers",
+    "en": "Track rollers",
+    "fa": "رولرهای مسیر",
+    "group": "Experience"
+  },
+  "txt_1a562ff8": {
+    "original": "Precision balls for spindle applications",
+    "en": "Precision balls for spindle applications",
+    "fa": "ساچمه‌های دقیق برای کاربردهای اسپیندل",
+    "group": "Experience"
+  },
+  "txt_79206d42": {
+    "original": "Mounting components shown as an illustrative assembly",
+    "en": "Mounting components shown as an illustrative assembly",
+    "fa": "اجزای نصب به‌صورت مجموعه نمایشی",
+    "group": "Experience"
+  },
+  "txt_48b00d61": {
+    "original": "Bearing insert within a mounted housing",
+    "en": "Bearing insert within a mounted housing",
+    "fa": "بیرینگ داخلی درون محفظه نصب‌شونده",
+    "group": "Experience"
+  },
+  "txt_3e8709b1": {
+    "original": "Cam follower with a fixed stud and rotating outer ring",
+    "en": "Cam follower with a fixed stud and rotating outer ring",
+    "fa": "رولر پیرو با پایه ثابت و رینگ بیرونی چرخان",
+    "group": "Experience"
+  },
+  "txt_d7c931": {
+    "original": "Adapter sleeve, locknut and washer",
+    "en": "Adapter sleeve, locknut and washer",
+    "fa": "بوش تبدیلی، مهره قفلی و واشر",
+    "group": "Experience"
+  },
+  "txt_f830e43": {
+    "original": "Housed bearing unit",
+    "en": "Housed bearing unit",
+    "fa": "واحد بیرینگ محفظه‌دار",
+    "group": "Experience"
+  },
+  "txt_702eaf3f": {
+    "original": "Stud-type track roller",
+    "en": "Stud-type track roller",
+    "fa": "رولر مسیر پایه‌دار",
+    "group": "Experience"
+  },
+  "txt_cb5fa14": {
+    "original": "Adapter sleeve",
+    "en": "Adapter sleeve",
+    "fa": "بوش تبدیلی",
+    "group": "Experience"
+  },
+  "txt_4d42d395": {
+    "original": "Locknut",
+    "en": "Locknut",
+    "fa": "مهره قفلی",
+    "group": "Experience"
+  },
+  "txt_a32e7d56": {
+    "original": "Lock washer",
+    "en": "Lock washer",
+    "fa": "واشر قفلی",
+    "group": "Experience"
+  },
+  "txt_2609f010": {
+    "original": "Shaft seat",
+    "en": "Shaft seat",
+    "fa": "نشیمن شفت",
+    "group": "Experience"
+  },
+  "txt_b49ea45c": {
+    "original": "Housing",
+    "en": "Housing",
+    "fa": "محفظه",
+    "group": "Experience"
+  },
+  "txt_64071436": {
+    "original": "Bearing insert",
+    "en": "Bearing insert",
+    "fa": "بیرینگ داخلی",
+    "group": "Experience"
+  },
+  "txt_7757c282": {
+    "original": "Mounting bolts",
+    "en": "Mounting bolts",
+    "fa": "پیچ‌های نصب",
+    "group": "Experience"
+  },
+  "txt_bcf19e54": {
+    "original": "Outer roller",
+    "en": "Outer roller",
+    "fa": "رولر بیرونی",
+    "group": "Experience"
+  },
+  "txt_f6ed97e3": {
+    "original": "Needle rollers",
+    "en": "Needle rollers",
+    "fa": "غلتک‌های سوزنی",
+    "group": "Experience"
+  },
+  "txt_edc63c1e": {
+    "original": "End washer",
+    "en": "End washer",
+    "fa": "واشر انتهایی",
+    "group": "Experience"
+  },
+  "txt_53991b83": {
+    "original": "Stud",
+    "en": "Stud",
+    "fa": "پایه",
+    "group": "Experience"
+  },
+  "txt_71e32925": {
+    "original": "Exploded inspection · rotation paused",
+    "en": "Exploded inspection · rotation paused",
+    "fa": "بررسی نمای انفجاری · دوران متوقف است",
+    "group": "Experience"
+  },
+  "txt_ef6b3294": {
+    "original": "The assembly is stopped for inspection. The RPM readings below describe the selected operating input; reassemble to view rotation.",
+    "en": "The assembly is stopped for inspection. The RPM readings below describe the selected operating input; reassemble to view rotation.",
+    "fa": "مجموعه برای بررسی متوقف شده است. مقادیر دور در دقیقه در پایین، ورودی کارکرد انتخاب‌شده را نشان می‌دهند؛ برای دیدن دوران، مجموعه را مونتاژ کنید.",
+    "group": "Experience"
   }
 }

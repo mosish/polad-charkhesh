@@ -7,21 +7,24 @@ const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
 export default function HeroBearing() {
   const { products, content, t } = usePlatform();
-  const [family, setFamily] = useState<BearingFamily>('precision');
+  const [family, setFamily] = useState<BearingFamily>('ball');
   const [exploded,setExploded] = useState(false);
   const families: {id: BearingFamily; label: string; detail: string; caption: string}[] = [
-    {id:'precision',label:t('Super-precision','فوق دقیق'),detail:t('Angular-contact ball bearing','بلبرینگ تماس زاویه‌ای'),caption:t('Precision for spindle applications','دقت برای کاربردهای اسپیندل')},
-    {id:'rolling',label:t('Rolling bearings','بیرینگ‌های غلتشی'),detail:t('Cylindrical roller bearing','رولبرینگ استوانه‌ای'),caption:t('Rollers designed for radial loads','غلتک‌ها برای تحمل بار شعاعی')},
-    {id:'spherical',label:t('Spherical rollers','رولبرینگ بشکه‌ای'),detail:t('Double-row spherical roller bearing','رولبرینگ بشکه‌ای دو ردیفه'),caption:t('Two rows of barrel-shaped rollers','دو ردیف غلتک بشکه‌ای')},
+    {id:'ball',label:t('Ball bearings','بلبرینگ‌ها'),detail:t('Angular-contact ball bearing','بلبرینگ تماس زاویه‌ای'),caption:t('Precision balls for spindle applications','ساچمه‌های دقیق برای کاربردهای اسپیندل')},
+    {id:'roller',label:t('Roller bearings','رولبرینگ‌ها'),detail:t('Double-row spherical roller bearing','رولبرینگ بشکه‌ای دو ردیفه'),caption:t('Two rows of barrel-shaped rollers','دو ردیف غلتک بشکه‌ای')},
+    {id:'accessories',label:t('Bearings accessories','متعلقات بیرینگ'),detail:t('Adapter sleeve, locknut and washer','بوش تبدیلی، مهره قفلی و واشر'),caption:t('Mounting components shown as an illustrative assembly','اجزای نصب به‌صورت مجموعه نمایشی')},
+    {id:'engineered',label:t('Engineered products','محصولات مهندسی‌شده'),detail:t('Housed bearing unit','واحد بیرینگ محفظه‌دار'),caption:t('Bearing insert within a mounted housing','بیرینگ داخلی درون محفظه نصب‌شونده')},
+    {id:'track',label:t('Track rollers','رولرهای مسیر'),detail:t('Stud-type track roller','رولر مسیر پایه‌دار'),caption:t('Cam follower with a fixed stud and rotating outer ring','رولر پیرو با پایه ثابت و رینگ بیرونی چرخان')},
   ];
-  const partLabels=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
+  const bearingParts=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
+  const partLabels=family==='accessories'?[t('Adapter sleeve','بوش تبدیلی'),t('Locknut','مهره قفلی'),t('Lock washer','واشر قفلی'),t('Shaft seat','نشیمن شفت')]:family==='engineered'?[t('Housing','محفظه'),t('Bearing insert','بیرینگ داخلی'),t('Mounting bolts','پیچ‌های نصب'),t('Shaft seat','نشیمن شفت')]:family==='track'?[t('Outer roller','رولر بیرونی'),t('Needle rollers','غلتک‌های سوزنی'),t('End washer','واشر انتهایی'),t('Stud','پایه')]:bearingParts;
   const selected = families.find(f => f.id === family)!;
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [visible, setVisible] = useState(true);
   const [tabVisible, setTabVisible] = useState(!document.hidden);
   const stage = useRef<HTMLDivElement>(null);
-  const p = products.find(p => p.schematicType === (family === 'spherical' ? 'spherical' : family === 'rolling' ? 'cylindrical' : 'angular-contact')) || products.find(p => p.schematicType === 'deep-groove');
+  const p = products.find(p => p.schematicType === (family === 'roller' ? 'spherical' : family === 'track' ? 'needle' : 'angular-contact')) || products.find(p => p.schematicType === 'deep-groove');
   const stopped = paused || reduced || !visible || !tabVisible;
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
@@ -40,7 +43,7 @@ export default function HeroBearing() {
   return <div className={'hero-visual hero-bearing-showcase' + (stopped ? ' is-still' : '')}>
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
-      <span dir="ltr">{String(families.findIndex(f => f.id === family) + 1).padStart(2,'0')} / 03</span>
+      <span dir="ltr">{String(families.findIndex(f => f.id === family) + 1).padStart(2,'0')} / {String(families.length).padStart(2,'0')}</span>
     </div>
     <div className="hero-bearing-selector" role="group" aria-label={t('Bearing family','خانواده بیرینگ')}>
       {families.map(f => <button key={f.id} type="button" aria-pressed={family===f.id} onClick={()=>{setFamily(f.id);resetTilt();}}>{f.label}</button>)}
@@ -87,7 +90,7 @@ export default function HeroBearing() {
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
         <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-          <HeroBearingScene family={family} paused={stopped} exploded={exploded} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+(exploded?' · '+t('Exploded view','نمای انفجاری'):'')} fallback={!exploded && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
+          <HeroBearingScene family={family} paused={stopped} exploded={exploded} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+(exploded?' · '+t('Exploded view','نمای انفجاری'):'')} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
         </Suspense>
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>

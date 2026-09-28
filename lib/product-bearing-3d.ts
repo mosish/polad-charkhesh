@@ -7,20 +7,20 @@ export function buildProductBearing3D(p: BearingProduct) {
   const g=bearingGeometry(p), scale=2.3/g.outer;
   const R=2.3, bore=g.bore*scale, half=R*p.B/p.D, gap=R-bore;
   const pitch=g.pitch*scale, radius=g.elementDiameter*scale/2;
-  const root=new THREE.Group(),moving=new THREE.Group(),cage=new THREE.Group();
+  const root=new THREE.Group(),shell=new THREE.Group(),moving=new THREE.Group(),cage=new THREE.Group(),elements=new THREE.Group();
   const spins:THREE.Group[]=[];
-  root.add(moving,cage);moving.name='inner-ring';cage.name='cage';
+  root.add(shell,elements,cage,moving);shell.name='outer-ring';elements.name='rolling-elements';moving.name='inner-ring';cage.name='cage';
   const steel=new THREE.MeshStandardMaterial({color:'#bcc5d0',metalness:1,roughness:.22});
   const polished=new THREE.MeshStandardMaterial({color:'#e2e6ed',metalness:1,roughness:.13});
   const bronze=new THREE.MeshStandardMaterial({color:'#b78b45',metalness:.85,roughness:.3});
   const dark=new THREE.MeshStandardMaterial({color:'#293744',metalness:.65,roughness:.33});
   const materials=[steel,polished,bronze,dark];
-  const mesh=(geometry:THREE.BufferGeometry,material:THREE.Material,group:THREE.Group=root)=>{const m=new THREE.Mesh(geometry,material);group.add(m);return m;};
-  const lathe=(points:number[][],material:THREE.Material,group:THREE.Group=root)=>{
+  const mesh=(geometry:THREE.BufferGeometry,material:THREE.Material,group:THREE.Group=shell)=>{const m=new THREE.Mesh(geometry,material);group.add(m);return m;};
+  const lathe=(points:number[][],material:THREE.Material,group:THREE.Group=shell)=>{
     const geometry=new THREE.LatheGeometry(points.map(([r,z])=>new THREE.Vector2(r,z)),128);
     geometry.rotateX(Math.PI/2);return mesh(geometry,material,group);
   };
-  const torus=(r:number,tube:number,z:number,material:THREE.Material,group:THREE.Group=root)=>{
+  const torus=(r:number,tube:number,z:number,material:THREE.Material,group:THREE.Group=shell)=>{
     const m=mesh(new THREE.TorusGeometry(r,tube,8,128),material,group);m.position.z=z;return m;
   };
   const b=Math.min(.035,gap*.055,half*.12), trackOuter=pitch+radius*.72,trackInner=pitch-radius*.72;
@@ -55,7 +55,7 @@ export function buildProductBearing3D(p: BearingProduct) {
     torus(pitch+radius*.86,.022,front,bronze,cage);
     for(let i=0;i<g.count;i++) {
       const a=i*Math.PI*2/g.count+row*Math.PI/g.count;
-      const mount=new THREE.Group();mount.position.set(Math.cos(a)*pitch,Math.sin(a)*pitch,centerZ);cage.add(mount);
+      const mount=new THREE.Group();mount.position.set(Math.cos(a)*pitch,Math.sin(a)*pitch,centerZ);elements.add(mount);
       if(tapered||barrel){
         const tilt=tapered?.09:(g.rows===2?(row===0?-.10:.10):0);
         mount.quaternion.setFromAxisAngle(new THREE.Vector3(-Math.sin(a),Math.cos(a),0),tilt);
@@ -78,7 +78,11 @@ export function buildProductBearing3D(p: BearingProduct) {
       bridge.position.set(Math.cos(between)*pitch,Math.sin(between)*pitch,centerZ);bridge.rotation.z=between;
     }
   }
-  return {root,moving,cage,spins,geometry:g,dispose(){
+  const parts=[shell,elements,cage,moving];
+  return {root,moving,cage,elements,parts,spins,geometry:g,setExploded(amount:number){
+    const spacing=Math.max(.85,Math.min(1.6,half*1.3+.6));
+    parts.forEach((part,i)=>{part.position.z=(i-1.5)*spacing*amount;});
+  },dispose(){
     const geometries=new Set<THREE.BufferGeometry>();root.traverse(o=>{if(o instanceof THREE.Mesh)geometries.add(o.geometry);});
     geometries.forEach(v=>v.dispose());materials.forEach(v=>v.dispose());
   }};

@@ -219,9 +219,9 @@ body.liquid-glass {
 @keyframes bearing-float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
 @media(max-width:760px) { .liquid-glass .hero-bearing-showcase { min-height: 410px; padding: 20px; } .hero-bearing-stage { min-height: 320px; } .hero-bearing-heading { font-size: 10px; letter-spacing: .6px; } .hero-bearing-entrance { width: 100%; } .hero-bearing-footer strong { font-size: 16px; } }
 @media(prefers-reduced-motion:reduce) { .hero-bearing-entrance,.hero-bearing-float { animation: none; } .hero-bearing-tilt { transition: none; } }
-/* Three distinct, physically shaded bearing families. */
-.hero-bearing-selector { display:flex; gap:4px; padding:4px; border:1px solid #c3dcf520; border-radius:16px; background:#07142145; margin-top:20px; }
-.hero-bearing-selector button { flex:1; min-width:0; border:1px solid transparent; border-radius:12px; color:#a8bbd0; padding:10px 5px; background:transparent; font:inherit; font-size:13px; line-height:1.4; cursor:pointer; transition:background .2s,color .2s; }
+/* Five distinct, physically shaded product-family illustrations. */
+.hero-bearing-selector { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; padding:4px; border:1px solid #c3dcf520; border-radius:16px; background:#07142145; margin-top:20px; }
+.hero-bearing-selector button { min-width:0; border:1px solid transparent; border-radius:12px; color:#a8bbd0; padding:10px 5px; background:transparent; font:inherit; font-size:12px; line-height:1.4; cursor:pointer; transition:background .2s,color .2s; }
 .hero-bearing-selector button[aria-pressed=true] { background:linear-gradient(130deg,#b9d9f42d,#abcdf111); border-color:#c0e0ff32; color:#f0f7ff; box-shadow:inset 0 1px #ffffff12; }
 .hero-bearing-selector button:hover { color:white; background-color:#c7e4ff12; }
 .hero-bearing-selector button:focus-visible { outline:2px solid #bde7ff; outline-offset:2px; }
@@ -235,8 +235,8 @@ body.liquid-glass {
 .hero-bearing-showcase .hero-bearing-footer small { font-size:12px; letter-spacing:0; }
 .hero-bearing-showcase .hero-bearing-caption { font-size:12px; }
 @media(max-width:760px) {
- .hero-bearing-selector { margin-top:16px; }
- .hero-bearing-selector button { font-size:12px; padding:10px 3px; }
+ .hero-bearing-selector { display:flex; margin-top:16px; overflow-x:auto; scroll-snap-type:x proximity; scrollbar-width:thin; }
+ .hero-bearing-selector button { flex:0 0 118px; font-size:11px; padding:10px 5px; scroll-snap-align:start; }
  .hero-bearing-model,.hero-model-fallback .bearing-render { height:300px; }
  .liquid-glass .hero-bearing-showcase .hero-bearing-stage { min-height:330px; }
  .hero-bearing-showcase .hero-bearing-caption { font-size:11px; }
@@ -262,6 +262,8 @@ body.liquid-glass {
 .bearing-view-switch button[aria-pressed=true] { color:#e9f5ff; background:#c3e4ff12; border-color:#c0dfff29; }
 .bearing-view-switch button:disabled { opacity:.38; cursor:default; }
 .bearing-view-switch button:focus-visible { outline:2px solid #bde7ff; outline-offset:2px; }
+.explorer-assembly-switch { margin:0 16px 4px; }
+.explorer-parts-key { padding:4px 22px 16px; }
 .hero-bearing-stage { min-width:0; grid-template-columns:minmax(0,1fr); }
 .hero-bearing-model,.hero-bearing-canvas { min-width:0; max-width:100%; }
 .hero-bearing-canvas { position:relative; }
