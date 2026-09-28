@@ -4,9 +4,9 @@ Repository: https://github.com/mosish/polad-charkhesh
 
 Branch: `main`. Remote: `origin`.
 
-The active local Git repository is the website source directory (`outputs/site` in the Codex workspace). The user's initial upload is preserved in the Git history.
+The active local checkout may be the main repository or an attached worktree. Check the current Git branch and working tree before changing or pushing files. The initial website upload is preserved in Git history.
 
-After completing a requested change, Codex reviews the diff, runs appropriate checks, commits the source and pushes to this repository. Future sessions should follow the root `AGENTS.md`. Synchronization is performed during project work, not continuously in the background.
+After completing a requested change, review the diff, run appropriate checks, update the [README progress section](../README.md#progress) with the outcome and remaining work, commit the source and documentation together, and push to this repository. Synchronization is performed during project work, not continuously in the background.
 
 Before a push, fetch remote changes and reconcile them without overwriting other work. Never force-push. If branch protection prevents a direct push, use a separate branch and draft pull request.
 
