@@ -152,7 +152,8 @@ export function calculate(
     a1: reliabilityFactors[reliability],
     safety: p.corKn / P0,
     overspeed:
-      rpm > Math.min(...[p.speedGreaseRpm, p.speedOilRpm].filter((x) => x > 0)),
+      rpm > (p.speedLimitingRpm ||
+        Math.min(...[p.speedGreaseRpm, p.speedOilRpm].filter((x) => x > 0))),
   };
 }
 export function basicLife(C: number, P: number, rpm: number, roller: boolean) {

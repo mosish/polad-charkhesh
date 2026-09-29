@@ -5,12 +5,12 @@ The Sites starter supplies the React/TypeScript project and UI dependencies. The
 - `app/Router.tsx`: route selection and lazy loading for catalog, product detail, engineering and administration.
 - `components/platform`: public interface, reusable modal, product views, inquiry form and geometry tools.
 - `components/admin`: authenticated administration and grouped editors.
-- `domain`: canonical product contracts, the 68-product migration seed and reference company information.
+- `domain`: canonical product contracts, the 68-product legacy seed, 42 sourced SKF additions, and reference company information.
 - `lib`: centralized API client, engineering calculations, metadata, media resolution and PDF generation.
 - `api`: separate authentication, products, content/inquiries, media and backup domains.
 - `tests`: isolated SQLite and HTTP regression tests.
 
-New data mappings preserve complete JSON product records behind explicit validation. SQLite also stores indexed identity/category/archive columns. This prevents the source implementation's lost optional engineering fields. Source data is seeded only into an empty product table.
+New data mappings preserve complete JSON product records behind explicit validation. SQLite also stores indexed identity/category/archive columns. This prevents the source implementation's lost optional engineering fields. The legacy source data seeds an empty product table. A versioned one-time migration inserts only missing SKF additions into existing tables, preserving admin edits and archived rows.
 
 Reference: `mosish/PoladCharkhesh`, default branch main, revision prefix `12b8bc7`, downloaded 2026-09-08. All 68 product identities and technical fields were retained. Source source-verification claims are inherited and explicitly labeled as such.
 

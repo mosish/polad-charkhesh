@@ -21,6 +21,8 @@ const groups: any = {
   Speed: [
     'speedGreaseRpm',
     'speedOilRpm',
+    'speedReferenceRpm',
+    'speedLimitingRpm',
     'thermalSpeedRatingRpm',
     'speedReferenceType',
   ],
@@ -74,6 +76,8 @@ const numeric = new Set([
   'corKn',
   'speedGreaseRpm',
   'speedOilRpm',
+  'speedReferenceRpm',
+  'speedLimitingRpm',
   'thermalSpeedRatingRpm',
   ...groups.Factors.filter((s: string) => s !== 'contactAngle'),
 ]);

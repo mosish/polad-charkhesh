@@ -16,7 +16,7 @@ export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: 
   const [playback, setPlayback] = useState(1);
   const [reference, setReference] = useState('grease');
   const g = bearingGeometry(p);
-  const limit = reference === 'oil' ? p.speedOilRpm : p.speedGreaseRpm;
+  const limit = p.speedLimitingRpm || (reference === 'oil' ? p.speedOilRpm : p.speedGreaseRpm);
   const hasLimit = Number.isFinite(limit) && limit > 0;
   const safeRpm = Number.isFinite(rpm) ? Math.max(0, rpm) : 0;
   useEffect(() => { setExploded(initialExploded && g.supported); if (!g.supported) setMode('section'); }, [p.id, g.supported, initialExploded]);
@@ -58,7 +58,7 @@ export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: 
           <div className="shaft-readout">{safeRpm.toLocaleString()} <small>RPM</small></div>
           <p>{t('Shaft rotation follows this input, shared with the life calculator.','دوران شفت از این ورودی مشترک با محاسبه‌گر عمر پیروی می‌کند.')}</p>
           {exploded&&<p className="model-disclosure">{t('The assembly is stopped for inspection. The RPM readings below describe the selected operating input; reassemble to view rotation.','مجموعه برای بررسی متوقف شده است. مقادیر دور در دقیقه در پایین، ورودی کارکرد انتخاب‌شده را نشان می‌دهند؛ برای دیدن دوران، مجموعه را مونتاژ کنید.')}</p>}
-          <div className="speed-reference"><label>{t('Catalog speed reference','سرعت مرجع کاتالوگ')}<select value={reference} onChange={e=>setReference(e.target.value)}><option value="grease">{t('Grease','گریس')}</option><option value="oil">{t('Oil','روغن')}</option></select></label><strong>{hasLimit?limit.toLocaleString()+' RPM':t('Not specified','ذکر نشده')}</strong><button disabled={!hasLimit} onClick={()=>onRpmChange(limit)}>{t('Use reference RPM','استفاده از دور مرجع')}</button></div>
+          <div className="speed-reference"><label>{p.speedLimitingRpm ? t('Catalog limiting speed','سرعت حدی کاتالوگ') : t('Catalog speed reference','سرعت مرجع کاتالوگ')}{!p.speedLimitingRpm && <select value={reference} onChange={e=>setReference(e.target.value)}><option value="grease">{t('Grease','گریس')}</option><option value="oil">{t('Oil','روغن')}</option></select>}</label><strong>{hasLimit?limit.toLocaleString()+' RPM':t('Not specified','ذکر نشده')}</strong><button disabled={!hasLimit} onClick={()=>onRpmChange(limit)}>{t('Use reference RPM','استفاده از دور مرجع')}</button></div>
           {hasLimit && safeRpm>limit && <p className="speed-exceeded" role="status">{t('Input exceeds the selected catalog speed reference.','سرعت ورودی از مرجع انتخاب‌شده کاتالوگ بیشتر است.')}</p>}
           <dl className="motion-readings"><div><dt>{t('Inner ring / shaft','رینگ داخلی / شفت')}</dt><dd>{safeRpm.toLocaleString()} RPM</dd></div><div><dt>{t('Cage · estimated','قفسه · تخمینی')}</dt><dd>{Math.round(safeRpm*g.cageRatio).toLocaleString()} RPM</dd></div><div><dt>{t('Outer ring','رینگ خارجی')}</dt><dd>{t('Fixed','ثابت')}</dd></div></dl>
           <p className="model-disclosure">{t('Outer dimensions match the selected product. Raceway shape, rolling-element count and cage geometry are representative estimates; seals are removed to show the mechanism. Catalog ratings are not live RPM measurements.','ابعاد خارجی مطابق محصول انتخاب‌شده است. شکل مسیر غلتش، تعداد اجزای غلتشی و هندسه قفسه تقریبی‌اند؛ آب‌بندها برای نمایش سازوکار حذف شده‌اند. دور کاتالوگ اندازه‌گیری زنده نیست.')}</p>

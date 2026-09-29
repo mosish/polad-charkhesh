@@ -16,7 +16,7 @@ pnpm smoke:production
 
 `smoke:production` starts the built server against a temporary SQLite database and temporary upload directory. It checks both language hosts, public and admin routes (including trailing slashes), product pages, assets, metadata, security headers, first-run admin setup, content/product edits, public inquiries, media uploads, backup access and logout. It does not touch the live database or prove that a real domain, TLS certificate or admin browser workflow works.
 
-Before launch, approve the company contact details, both languages, canonical domains, and manufacturer specifications for all 68 imported records. The current family illustrations are labeled references; attach exact product photographs and manufacturer-issued PDFs in the admin panel as they become available. Company-generated PDFs are not manufacturer publications.
+Before launch, approve the company contact details, both languages, canonical domains, and manufacturer specifications for the 68 legacy records and 42 new SKF additions. The current family illustrations are labeled references; attach approved exact product photographs and manufacturer-issued PDFs in the admin panel as they become available. Company-generated PDFs are not manufacturer publications.
 
 ## VPS layout and secrets
 

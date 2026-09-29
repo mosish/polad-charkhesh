@@ -178,11 +178,11 @@ export function TechnicalContent({
     [t('Weight', 'وزن'), p.weightKg + ' kg'],
     [t('Dynamic rating Cr', 'بار دینامیکی Cr'), p.crKn + ' kN'],
     [t('Static rating C₀r', 'بار استاتیکی C₀r'), p.corKn + ' kN'],
-    [
-      t('Grease / oil speed', 'سرعت گریس / روغن'),
-      `${p.speedGreaseRpm} / ${p.speedOilRpm} rpm`,
-    ],
-    [t('Cage', 'قفسه'), p[fa ? 'cageMaterialFa' : 'cageMaterialEn']],
+    ...(p.speedLimitingRpm ? [
+      [t('Reference speed', 'سرعت مرجع'), p.speedReferenceRpm ? `${p.speedReferenceRpm} rpm` : '—'],
+      [t('Limiting speed', 'سرعت حدی'), `${p.speedLimitingRpm} rpm`],
+    ] : [[t('Grease / oil speed', 'سرعت گریس / روغن'), `${p.speedGreaseRpm} / ${p.speedOilRpm} rpm`]]),
+    [t('Cage', 'قفسه'), p[fa ? 'cageMaterialFa' : 'cageMaterialEn'] || '—'],
     [t('Sealing', 'آب‌بندی'), p[fa ? 'sealingFa' : 'sealingEn']],
     [t('Clearance', 'لقی'), p.clearanceOptions.join(' · ')],
   ];
@@ -259,15 +259,15 @@ export function TechnicalContent({
         <strong>{t('Technical provenance', 'منشأ اطلاعات فنی')}</strong>
         <p>
           {t(
-            'Specifications and source notes imported from the reference repository. Verification dates below are inherited records, not new verification by this platform. Confirm the exact manufacturer and suffix before selection.',
-            'مشخصات و یادداشت‌های منابع از مخزن مرجع وارد شده‌اند. تاریخ‌های تأیید زیر متعلق به مرجع هستند و به معنی تأیید مجدد در این سامانه نیستند. پیش از انتخاب، سازنده و پسوند دقیق را بررسی کنید.',
+            'Source notes identify each catalog reference. Dates on legacy imported records are inherited; new SKF entries are transcribed from the linked SKF table. Confirm the current manufacturer specification and exact suffix before selection.',
+            'یادداشت‌های منبع، مرجع هر رکورد را مشخص می‌کنند. تاریخ رکوردهای قدیمی از منبع اولیه به ارث رسیده و رکوردهای جدید SKF از جدول پیوندشده ثبت شده‌اند. پیش از انتخاب، مشخصات فعلی سازنده و پسوند دقیق را بررسی کنید.',
           )}
         </p>
         {p.technicalSources?.map((s, i) => (
           <p key={i}>
             {s.manufacturer} · {s.catalogCode}
             <br />
-            {s.reference} · {t('Source-record date', 'تاریخ ثبت مرجع')}:{' '}
+            {s.url ? <a href={s.url} target="_blank" rel="noreferrer">{s.reference} ↗</a> : s.reference} · {t('Source-record date', 'تاریخ ثبت مرجع')}:{' '}
             {s.verifiedAt || t('Unverified', 'تأیید نشده')}
           </p>
         ))}
@@ -319,6 +319,7 @@ export function ShowroomProductPanel({
 }) {
   const { fa, t, company, content } = usePlatform();
   const media = mediaFor(p, content);
+  const catalogSourceUrl = p.technicalSources?.find((source) => source.url)?.url;
   const uploadedImages = [p.imageUrl, ...(p.images || [])].filter(
     (url): url is string => typeof url === 'string' && url.length > 0 && !url.startsWith('/assets/images/'),
   );
@@ -347,8 +348,13 @@ export function ShowroomProductPanel({
     [t('Weight', 'وزن'), `${p.weightKg} kg`],
     [t('Dynamic load · Cr', 'بار دینامیکی · Cr'), `${p.crKn} kN`],
     [t('Static load · C₀r', 'بار استاتیکی · C₀r'), `${p.corKn} kN`],
-    [t('Grease speed', 'سرعت گریس'), `${p.speedGreaseRpm} rpm`],
-    [t('Oil speed', 'سرعت روغن'), `${p.speedOilRpm} rpm`],
+    ...(p.speedLimitingRpm ? [
+      [t('Reference speed', 'سرعت مرجع'), p.speedReferenceRpm ? `${p.speedReferenceRpm} rpm` : '—'],
+      [t('Limiting speed', 'سرعت حدی'), `${p.speedLimitingRpm} rpm`],
+    ] : [
+      [t('Grease speed', 'سرعت گریس'), `${p.speedGreaseRpm} rpm`],
+      [t('Oil speed', 'سرعت روغن'), `${p.speedOilRpm} rpm`],
+    ]),
     [t('Cage', 'قفسه'), p[fa ? 'cageMaterialFa' : 'cageMaterialEn'] || '—'],
     [t('Sealing', 'آب‌بندی'), p[fa ? 'sealingFa' : 'sealingEn'] || '—'],
     [t('Clearance', 'لقی'), p.clearanceOptions.join(' · ') || '—'],
@@ -390,6 +396,7 @@ export function ShowroomProductPanel({
       </div>
       <div className="product-panel-actions">
         <ProductCallOptions p={p} company={company} />
+        {catalogSourceUrl && <a className="button" href={catalogSourceUrl} target="_blank" rel="noreferrer">{t('Official SKF catalog', 'کاتالوگ رسمی SKF')} <ArrowUpRight size={16} /></a>}
         <button className="button" disabled={downloading} onClick={async () => { setDownloading(true); setDownloadError(''); try { await datasheet(p, company, content); } catch (error) { setDownloadError(error instanceof Error ? error.message : String(error)); } finally { setDownloading(false); } }}><Download size={16} />{t(downloading ? 'Preparing PDF…' : 'Company datasheet', downloading ? 'آماده‌سازی PDF…' : 'دیتاشیت شرکت')}</button>
         {p.pdfUrl ? <a className="button" href={p.pdfUrl} target="_blank" rel="noreferrer">{t('Attached manufacturer PDF', 'PDF پیوست سازنده')} <ArrowUpRight size={16} /></a> : <span className="product-panel-document-note">{t('No manufacturer PDF attached yet.', 'هنوز PDF سازنده پیوست نشده است.')}</span>}
       </div>

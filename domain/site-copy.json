@@ -995,10 +995,10 @@
     "fa": "منشأ اطلاعات فنی",
     "group": "Product"
   },
-  "txt_7b26fe55": {
-    "original": "Specifications and source notes imported from the reference repository. Verification dates below are inherited records, not new verification by this platform. Confirm the exact manufacturer and suffix before selection.",
-    "en": "Specifications and source notes imported from the reference repository. Verification dates below are inherited records, not new verification by this platform. Confirm the exact manufacturer and suffix before selection.",
-    "fa": "مشخصات و یادداشت‌های منابع از مخزن مرجع وارد شده‌اند. تاریخ‌های تأیید زیر متعلق به مرجع هستند و به معنی تأیید مجدد در این سامانه نیستند. پیش از انتخاب، سازنده و پسوند دقیق را بررسی کنید.",
+  "txt_24a4391f": {
+    "original": "Source notes identify each catalog reference. Dates on legacy imported records are inherited; new SKF entries are transcribed from the linked SKF table. Confirm the current manufacturer specification and exact suffix before selection.",
+    "en": "Source notes identify each catalog reference. Dates on legacy imported records are inherited; new SKF entries are transcribed from the linked SKF table. Confirm the current manufacturer specification and exact suffix before selection.",
+    "fa": "یادداشت‌های منبع، مرجع هر رکورد را مشخص می‌کنند. تاریخ رکوردهای قدیمی از منبع اولیه به ارث رسیده و رکوردهای جدید SKF از جدول پیوندشده ثبت شده‌اند. پیش از انتخاب، مشخصات فعلی سازنده و پسوند دقیق را بررسی کنید.",
     "group": "Product"
   },
   "txt_7e0efd96": {
@@ -2169,6 +2169,30 @@
     "original": "The assembly is stopped for inspection. The RPM readings below describe the selected operating input; reassemble to view rotation.",
     "en": "The assembly is stopped for inspection. The RPM readings below describe the selected operating input; reassemble to view rotation.",
     "fa": "مجموعه برای بررسی متوقف شده است. مقادیر دور در دقیقه در پایین، ورودی کارکرد انتخاب‌شده را نشان می‌دهند؛ برای دیدن دوران، مجموعه را مونتاژ کنید.",
+    "group": "Experience"
+  },
+  "txt_52dab4b1": {
+    "original": "Reference speed",
+    "en": "Reference speed",
+    "fa": "سرعت مرجع",
+    "group": "Product"
+  },
+  "txt_ef24eec7": {
+    "original": "Limiting speed",
+    "en": "Limiting speed",
+    "fa": "سرعت حدی",
+    "group": "Product"
+  },
+  "txt_b81dba5f": {
+    "original": "Official SKF catalog",
+    "en": "Official SKF catalog",
+    "fa": "کاتالوگ رسمی SKF",
+    "group": "Product"
+  },
+  "txt_77897d72": {
+    "original": "Catalog limiting speed",
+    "en": "Catalog limiting speed",
+    "fa": "سرعت حدی کاتالوگ",
     "group": "Experience"
   }
 }

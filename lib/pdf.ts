@@ -84,7 +84,10 @@ export function buildDatasheet(
     ['Bore d / outside D / width B', `${p.d} / ${p.D} / ${p.B} mm`],
     ['Weight', p.weightKg + ' kg'],
     ['Dynamic / static rating', `${p.crKn} / ${p.corKn} kN`],
-    ['Grease / oil speed', `${p.speedGreaseRpm} / ${p.speedOilRpm} rpm`],
+    ...(p.speedLimitingRpm ? [
+      ['Reference speed', p.speedReferenceRpm ? `${p.speedReferenceRpm} rpm` : 'Not specified'],
+      ['Limiting speed', `${p.speedLimitingRpm} rpm`],
+    ] : [['Grease / oil speed', `${p.speedGreaseRpm} / ${p.speedOilRpm} rpm`]]),
     ['Cage', p.cageMaterialEn],
     ['Sealing', p.sealingEn],
     ['Clearance options', p.clearanceOptions.join(', ')],

@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { basicLife, calculate } from '../lib/engineering';
 import { bearingProducts } from '../domain/catalog';
+import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
 import { validateProduct, validateSettings } from '../api/validation';
 process.env.TEST_IMPORT = '1';
 process.env.DATABASE_PATH = path.join(
@@ -49,15 +50,18 @@ async function req(
   });
   return { r, b: await r.json() };
 }
-test('catalog baseline preserves all 68 canonical identities and engineering values', async () => {
-  assert.equal(bearingProducts.length, 68);
+test('catalog preserves 68 legacy identities and adds sourced SKF designations', async () => {
+  assert.equal(bearingProducts.length, 110);
+  assert.equal(skfCatalogAdditions.length, 42);
   const { b } = await req('/products');
-  assert.equal(b.count, 68);
+  assert.equal(b.count, 110);
   for (const p of bearingProducts)
     assert.deepEqual(
       b.products.find((v: any) => v.id === p.id),
       p,
     );
+  assert.ok(skfCatalogAdditions.every((p) => p.technicalSources?.[0]?.url?.startsWith('https://cdn.skfmediahub.skf.com/')));
+  assert.ok(skfCatalogAdditions.every((p) => !p.imageUrl && p.speedLimitingRpm && !validateProduct(p).length));
 });
 test('server rejects invalid dimensions, incomplete numbers and unsafe fields', () => {
   const p = bearingProducts[0];
@@ -112,6 +116,9 @@ test('family restrictions prevent misleading outputs', () => {
   assert.throws(() =>
     calculate({ ...sph, calculationFactorY1: undefined }, 2, 1, 1500),
   );
+  const skf = skfCatalogAdditions.find((p) => p.code === '6002-2RSH')!;
+  assert.equal(calculate(skf, 2, 0, 14000).overspeed, false);
+  assert.equal(calculate(skf, 2, 0, 14001).overspeed, true);
 });
 test('unauthorized API, CSRF and malformed payload defenses', async () => {
   assert.equal(
@@ -155,8 +162,8 @@ test('secure provisioning, session issuance, CRUD, archive, restore and role enf
   cookie = c.split(';')[0];
   assert.equal((await req('/auth/status')).b.user.role, 'superadmin');
   const dashboard = (await req('/system/status')).b;
-  assert.equal(dashboard.products, 68);
-  assert.equal(dashboard.active, 68);
+  assert.equal(dashboard.products, 110);
+  assert.equal(dashboard.active, 110);
   assert.equal(dashboard.newInquiries, 0);
   assert.equal(dashboard.factorsRecorded, bearingProducts.filter((p) => [p.calculationFactorE,p.calculationFactorY,p.calculationFactorF0].some((v) => typeof v === 'number' && Number.isFinite(v))).length);
   assert.ok(dashboard.brands > 0);
@@ -285,7 +292,7 @@ test('inquiry persistence, status changes and upload validation', async () => {
 });
 test('backup omits secrets, validates restore, snapshots and transactions roll back', async () => {
   const backup = (await req('/system/backup')).b;
-  assert.equal(backup.products.length, 68);
+  assert.equal(backup.products.length, 110);
   const text = JSON.stringify(backup);
   assert.ok(!text.includes('password_hash'));
   assert.ok(!text.includes('token_hash'));
@@ -317,7 +324,7 @@ test('backup omits secrets, validates restore, snapshots and transactions roll b
       throw new Error('force rollback');
     }),
   );
-  assert.equal(database.allProducts().length, 68);
+  assert.equal(database.allProducts().length, 110);
 });
 test('password change revokes all sessions, login and logout revoke cookies', async () => {
   const changed = await req('/auth/change-password', 'POST', {

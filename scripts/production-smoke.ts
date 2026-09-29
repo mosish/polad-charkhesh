@@ -146,7 +146,7 @@ try {
   const catalog = await request('/api/products');
   assert.equal(catalog.status, 200, 'Public product API');
   const products = JSON.parse(catalog.body).products;
-  assert.ok(products.length >= 68, 'Seeded product catalog');
+  assert.ok(products.length >= 110, 'Expanded product catalog');
   const product = await request('/product/' + encodeURIComponent(products[0].slug));
   assert.equal(product.status, 200, 'Product page');
   assert.match(product.body, /"@type":"Product"/);

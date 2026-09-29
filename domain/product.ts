@@ -35,6 +35,7 @@ export interface TechnicalSource {
     | 'industry_standard';
   catalogCode?: string;
   reference: string;
+  url?: string;
   verifiedAt: string;
 }
 
@@ -63,6 +64,8 @@ export interface ProductTechnicalSpecs {
   corKn: number; // Static load rating (kN)
   speedGreaseRpm: number;
   speedOilRpm: number;
+  speedReferenceRpm?: number;
+  speedLimitingRpm?: number;
   thermalSpeedRatingRpm?: number;
   speedReferenceType?: 'limiting' | 'thermal' | 'both';
   cageMaterialFa: string;

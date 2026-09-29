@@ -22,7 +22,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | --- | --- | --- |
 | Public website and industrial visual system | 🟢 Implemented | Responsive dark glass design, company branding, and a unified single-page public journey are in place; final device review remains. |
 | Persian/English experience | 🟢 Implemented | RTL/LTR and language switching exist; final copy parity needs review. |
-| Canonical product seed | ✅ Verified in tests | All 68 imported identities and engineering fields are preserved; manufacturer values still need business verification. |
+| Canonical product seed | ✅ Verified in tests | All 68 legacy identities are preserved, and 42 SKF sealed deep-groove designations bring the bundled catalog to 110 records. Current SKU verification remains a launch task. |
 | Catalog search and product comparison | ✅ Verified in tests | Horizontal family filters and code/dimension search are in the catalog; up to three-product comparison is in the engineering workspace. |
 | Product specifications and documents | 🟢 Implemented | A floating catalog panel presents the image gallery, specifications, available exploded 3D view, company-generated PDF, attached documents, and direct mobile/office call choices from saved company settings. Exact SKU media are incomplete. |
 | Animated bearing visuals | 🟢 Implemented | Five homepage family illustrations and assembled/exploded views; the product-specific Explorer also separates its four main assemblies. Models are illustrative. |
@@ -33,7 +33,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
-| Exact product photos and manufacturer PDFs | 🟡 Pending content | The bundled 68-product seed has no exact-product uploads or attached manufacturer PDFs. Family references and company-generated datasheets are labeled separately; runtime admin uploads may differ. |
+| Exact product photos and manufacturer PDFs | 🟡 Pending content | Exact SKU photos are still missing. SKF's public product/image hosts blocked reliable access, so the 42 new records use clearly labeled family-reference visuals and link to SKF's official catalog. Admin uploads can replace each image later. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | 🟡 Pending | TypeScript, tests, and production build pass; the repository-wide lint command still reports rule violations across application and test files. |
 | Multi-contributor coordination | 🟢 Documented | The GitHub workflow guide covers branch checks and synchronization; no automated enforcement is configured. |
@@ -41,7 +41,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **21 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
+The last full automated suite passed **22 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -67,7 +67,7 @@ Administrators can:
 - Set featured/availability fields and attach a gallery image or PDF document.
 - Archive and restore records; permanent deletion requires an archived record, a super-admin, and typed confirmation.
 
-The 68 imported products are preserved as a seed; future edits live in SQLite. Duplication does not alter the source record or silently create a catalog item: it opens a reviewable draft.
+The 68 legacy products remain unchanged; 42 SKF catalog entries are added once to existing databases without overwriting admin edits or archived records. Future edits live in SQLite. Duplication does not alter the source record or silently create a catalog item: it opens a reviewable draft.
 
 ### Website content and company settings
 
@@ -87,7 +87,7 @@ Backup JSON includes catalog, content/settings, inquiries, and media metadata. I
 
 - **Frontend:** React 19, TypeScript, Vite, Three.js, responsive Persian/English and RTL/LTR UI.
 - **Backend:** Express on Node, SQLite, server-side sessions, signed HttpOnly cookies, protected admin endpoints, validation, and audit logging.
-- **Runtime data:** SQLite is authoritative for saved products and website content. The bundled catalog seeds an empty product table; it does not overwrite later admin edits.
+- **Runtime data:** SQLite is authoritative for saved products and website content. The bundled catalog seeds an empty product table; the one-time SKF expansion inserts missing records into existing databases without overwriting admin edits.
 - **Local paths:** `data/platform.sqlite` for the database and `data/uploads` for uploaded files. Both are excluded from Git.
 
 The current Node/SQLite application is prepared for a VPS. It is not a Cloudflare Worker deployment. Pushing source to GitHub does not publish the site. See [architecture](docs/ARCHITECTURE.md), [data model](docs/DATA_MODEL.md), and [deployment preparation](docs/DEPLOYMENT.md).
@@ -97,6 +97,8 @@ The current Node/SQLite application is prepared for a VPS. It is not a Cloudflar
 Products are engineering catalog entries, not retail merchandise. A product may include designation, family, manufacturer reference, dimensions, load/speed ratings, applications, source notes, gallery images, and documents.
 
 The 3D views use catalog dimensions and vary rolling-element types, but raceways, cages, and internal details are illustrative estimates rather than manufacturer CAD. The generated PDFs are Polad Charkhesh summaries of imported records, **not manufacturer-issued documents**. Family reference images are labeled and are not exact-SKU photographs. Basic bearing-life and fit results are guidance, not a substitute for manufacturer selection or review of operating conditions. See [engineering calculations](docs/ENGINEERING_CALCULATIONS.md).
+
+The 42 new SKF entries are transcribed from the [official SKF sealed single-row deep-groove table, section 1.2](https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf). The table reports **reference** and **limiting** speed, which the site displays under those names rather than treating them as grease/oil-specific ratings. Blank cage, clearance, and application fields remain blank where this source did not identify them. These records are catalog references, not a claim that Polad Charkhesh stocks each variant.
 
 ## Design and language direction
 
@@ -123,12 +125,13 @@ Keep the public experience focused on company presentation, technical discovery,
 - **2026-09-29 — Product specification actions:** Added an exploded view option to the floating product gallery and a direct exploded-view entry on full product pages for supported bearing models. Replaced the separate technical-inquiry action on full specifications with the existing product-specific engineering tools path; components without an applicable 3D assembly explain that limitation.
 - **2026-09-29 — Product call choices:** Replaced the product specifications' engineering shortcut with direct mobile and central-office call actions in both the floating panel and full product pages. The numbers follow admin-managed company settings; the engineering workspace remains available from the main page.
 - **2026-09-29 — Live engineering tools:** Removed the redundant Bearing Explorer and Clearance guide from section 03. Life and known-load modes now start with labeled example inputs and recalculate immediately on edits; a reset control restores the example. Fit limits, comparison, and unit conversion remain.
+- **2026-09-29 — SKF catalog expansion:** Added 42 distinct SKF sealed deep-groove designations from an official SKF table, bringing the bundled catalog to 110. A one-time, conflict-safe migration adds them to existing admin databases; source links and separate reference/limiting speed fields keep provenance clear. Exact SKF SKU images remain pending a usable authorized asset source.
 - **2026-09-29 — Deployment preparation:** Added an isolated built-server smoke check, corrected trailing-slash production routes including `/admin/`, required stable production secrets and absolute data paths, and created verified SQLite/upload backup tools plus generic VPS templates. Hosting and business-data approval are still pending.
 
 ## Remaining roadmap
 
 1. **Integration audit:** Check each visible admin flow from UI through API and SQLite to the public site, including product editing/archive, company settings, CMS preview/save, uploads, inquiry statuses, SEO, account roles, restore, and audit logs.
-2. **Data and media verification:** Review company details and all 68 imported records against original manufacturer data. Add exact product photographs and manufacturer-issued documents where approved.
+2. **Data and media verification:** Review company details and the 68 legacy records against original manufacturer data. Recheck the 42 SKF additions against current SKU pages and attach exact product photographs and manufacturer-issued documents when an authorized asset source is available.
 3. **Browser and accessibility QA:** Exercise desktop, tablet, mobile, Persian RTL, English LTR, forms, dialogs, loading/error states, keyboard access, and reduced motion.
 4. **Production readiness:** Verify secrets, HTTPS and reverse proxy behavior, cookies, rate limits, persistent paths, permissions, logs, and recoverable backups of SQLite and uploads.
 5. **Deployment candidate:** Once launch blockers are resolved, rerun type checks, tests, build, and end-to-end checks; identify the release commit or tag.

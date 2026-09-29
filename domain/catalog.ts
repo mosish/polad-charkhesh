@@ -1,4 +1,5 @@
 import { BearingProduct } from './product';
+import { skfCatalogAdditions } from './skf-catalog-additions';
 
 export const bearingProducts: BearingProduct[] = [
   {
@@ -3930,4 +3931,5 @@ export const bearingProducts: BearingProduct[] = [
     updatedAt: '2026-09-07T12:00:00.000Z',
     updatedBy: 'Lead Standards Auditor',
   },
+  ...skfCatalogAdditions,
 ];

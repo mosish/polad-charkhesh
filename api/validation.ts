@@ -24,7 +24,7 @@ export const schematics = [
   'oil-seal',
 ];
 const fields =
-  `id code slug category nameFa nameEn descriptionFa descriptionEn inStock featured isArchived d D B weightKg crKn corKn speedGreaseRpm speedOilRpm thermalSpeedRatingRpm speedReferenceType cageMaterialFa cageMaterialEn sealingFa sealingEn clearanceOptions schematicType rMin contactAngle calculationFactorE calculationFactorX calculationFactorY calculationFactorY0 calculationFactorY1 calculationFactorY2 calculationFactorF0 imageUrl images pdfUrl applicationsFa applicationsEn industryIds brands technicalSources metaTitleFa metaTitleEn metaDescriptionFa metaDescriptionEn keywords createdAt updatedAt updatedBy`.split(
+  `id code slug category nameFa nameEn descriptionFa descriptionEn inStock featured isArchived d D B weightKg crKn corKn speedGreaseRpm speedOilRpm speedReferenceRpm speedLimitingRpm thermalSpeedRatingRpm speedReferenceType cageMaterialFa cageMaterialEn sealingFa sealingEn clearanceOptions schematicType rMin contactAngle calculationFactorE calculationFactorX calculationFactorY calculationFactorY0 calculationFactorY1 calculationFactorY2 calculationFactorF0 imageUrl images pdfUrl applicationsFa applicationsEn industryIds brands technicalSources metaTitleFa metaTitleEn metaDescriptionFa metaDescriptionEn keywords createdAt updatedAt updatedBy`.split(
     ' ',
   );
 export function safeUrl(s: any) {
@@ -69,7 +69,7 @@ export function validateProduct(p: any) {
     errors.push('Dimensions must satisfy 0 < d < D and B > 0.');
   for (const k of fields
     .filter((x) => x.startsWith('calculationFactor'))
-    .concat(['thermalSpeedRatingRpm', 'rMin']))
+    .concat(['speedReferenceRpm', 'speedLimitingRpm', 'thermalSpeedRatingRpm', 'rMin']))
     if (
       p[k] !== undefined &&
       (typeof p[k] !== 'number' ||

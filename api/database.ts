@@ -3,6 +3,7 @@ import { mkdirSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { bearingProducts } from '../domain/catalog';
+import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
 import { COMPANY_INFO } from '../domain/company';
 import { upgradeContent } from '../domain/site-content';
 if (
@@ -80,6 +81,21 @@ export function audit(actor: string, action: string, entity = '') {
 }
 if (!(db.prepare('SELECT count(*) n FROM products').get() as any).n) {
   transaction(() => bearingProducts.forEach((p) => putProduct(p)));
+}
+// Add the new sourced designations once on existing installations. INSERT OR
+// IGNORE preserves admin-created, edited and archived records on any conflict.
+if (!setting('catalog.skf-sealed-2026-09')) {
+  transaction(() => {
+    const insert = db.prepare(
+      'INSERT OR IGNORE INTO products(id,code,slug,category,archived,data) VALUES(?,?,?,?,?,?)',
+    );
+    for (const p of skfCatalogAdditions)
+      insert.run(p.id, p.code, p.slug || p.id, p.category, 0, JSON.stringify(p));
+    putSetting('catalog.skf-sealed-2026-09', {
+      appliedAt: new Date().toISOString(),
+      count: skfCatalogAdditions.length,
+    });
+  });
 }
 const defaults: any = {
   company: COMPANY_INFO,
