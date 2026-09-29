@@ -299,6 +299,80 @@ export function QuickView({
     </Dialog>
   );
 }
+/** Compact, complete catalog view that stays over the showroom. */
+export function ShowroomProductPanel({
+  p,
+  onClose,
+}: {
+  p: BearingProduct;
+  onClose: () => void;
+}) {
+  const { fa, t, company, content } = usePlatform();
+  const media = mediaFor(p, content);
+  const uploadedImages = [p.imageUrl, ...(p.images || [])].filter(
+    (url): url is string => typeof url === 'string' && url.length > 0 && !url.startsWith('/assets/images/'),
+  );
+  const photos = [...new Set([...uploadedImages, ...(media.url ? [media.url] : [])])];
+  const [activeImage, setActiveImage] = useState(photos[0] || '');
+  const [drawing, setDrawing] = useState(!photos.length);
+  const [imageFailed, setImageFailed] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState('');
+  const referenceImage = media.reference && activeImage === media.url && !uploadedImages.includes(activeImage);
+  const specifications = [
+    [t('Bore diameter · d', 'قطر داخلی · d'), `${p.d} mm`],
+    [t('Outside diameter · D', 'قطر خارجی · D'), `${p.D} mm`],
+    [t('Width · B', 'عرض · B'), `${p.B} mm`],
+    [t('Weight', 'وزن'), `${p.weightKg} kg`],
+    [t('Dynamic load · Cr', 'بار دینامیکی · Cr'), `${p.crKn} kN`],
+    [t('Static load · C₀r', 'بار استاتیکی · C₀r'), `${p.corKn} kN`],
+    [t('Grease speed', 'سرعت گریس'), `${p.speedGreaseRpm} rpm`],
+    [t('Oil speed', 'سرعت روغن'), `${p.speedOilRpm} rpm`],
+    [t('Cage', 'قفسه'), p[fa ? 'cageMaterialFa' : 'cageMaterialEn'] || '—'],
+    [t('Sealing', 'آب‌بندی'), p[fa ? 'sealingFa' : 'sealingEn'] || '—'],
+    [t('Clearance', 'لقی'), p.clearanceOptions.join(' · ') || '—'],
+    ...(p.rMin ? [[t('Minimum chamfer', 'حداقل پخ'), `${p.rMin} mm`]] : []),
+    ...(p.contactAngle ? [[t('Contact angle', 'زاویه تماس'), p.contactAngle]] : []),
+  ];
+  return (
+    <Dialog title={t('Product specifications', 'مشخصات فنی محصول') + ' · ' + p.code} onClose={onClose} className="product-float">
+      <div className="product-panel-layout">
+        <div className="product-panel-gallery">
+          <div className="product-panel-stage">
+            {drawing || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
+            {!drawing && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
+          </div>
+          <div className="product-panel-thumbnails" aria-label={t('Product image gallery', 'گالری تصاویر محصول')}>
+            {photos.map((url, index) => <button type="button" key={url} className={!drawing && activeImage === url ? 'active' : ''} aria-pressed={!drawing && activeImage === url} aria-label={t('View image', 'نمایش تصویر') + ' ' + (index + 1)} onClick={() => { setActiveImage(url); setDrawing(false); setImageFailed(false); }}><img src={url} alt="" /></button>)}
+            <button type="button" className={drawing ? 'active' : ''} aria-pressed={drawing} onClick={() => setDrawing(true)}>{t('Drawing', 'نقشه')}</button>
+          </div>
+          <small className="product-panel-media-note">{!drawing && !imageFailed && referenceImage ? t('Family illustration; confirm the exact product with its manufacturer.', 'تصویر خانواده محصول است؛ کد دقیق را با سازنده بررسی کنید.') : t('Image and dimensional drawing from the current catalog record.', 'تصویر و نقشه ابعادی از رکورد فعلی کاتالوگ.')}</small>
+        </div>
+        <div className="product-panel-details">
+          <div className="product-panel-identity">
+            <span className="section-label">{p.schematicType.replaceAll('-', ' ').toUpperCase()}</span>
+            <h2 dir="ltr">{p.code}</h2>
+            <h3>{p[fa ? 'nameFa' : 'nameEn']}</h3>
+            <p>{p[fa ? 'descriptionFa' : 'descriptionEn']}</p>
+          </div>
+          <dl className="product-panel-specs">
+            {specifications.map(([name, value]) => <div key={name}><dt>{name}</dt><dd dir="auto">{value}</dd></div>)}
+          </dl>
+          <div className="product-panel-context">
+            <span><b>{t('Applications', 'کاربردها')}</b> {p[fa ? 'applicationsFa' : 'applicationsEn'].slice(0, 3).join(' · ') || '—'}</span>
+            <span><b>{t('References', 'مراجع')}</b> {p.brands.join(' · ') || '—'}</span>
+          </div>
+        </div>
+      </div>
+      <div className="product-panel-actions">
+        <a className="button primary" href={'/?product=' + encodeURIComponent(p.slug || p.id) + '#engineering'}>{t('Use in engineering tools', 'استفاده در ابزارهای مهندسی')} <ArrowUpRight size={16} /></a>
+        <button className="button" disabled={downloading} onClick={async () => { setDownloading(true); setDownloadError(''); try { await datasheet(p, company, content); } catch (error) { setDownloadError(error instanceof Error ? error.message : String(error)); } finally { setDownloading(false); } }}><Download size={16} />{t(downloading ? 'Preparing PDF…' : 'Company datasheet', downloading ? 'آماده‌سازی PDF…' : 'دیتاشیت شرکت')}</button>
+        {p.pdfUrl ? <a className="button" href={p.pdfUrl} target="_blank" rel="noreferrer">{t('Attached manufacturer PDF', 'PDF پیوست سازنده')} <ArrowUpRight size={16} /></a> : <span className="product-panel-document-note">{t('No manufacturer PDF attached yet.', 'هنوز PDF سازنده پیوست نشده است.')}</span>}
+      </div>
+      {downloadError && <p role="alert" className="error">{downloadError}</p>}
+    </Dialog>
+  );
+}
 export default function ProductPage() {
   const { products, loading, error, t, fa, seo } = usePlatform();
   const slug = decodeURIComponent(location.pathname.split('/').pop() || '');

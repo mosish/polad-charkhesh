@@ -4,10 +4,12 @@ export default function Dialog({
   title,
   onClose,
   children,
+  className = '',
 }: {
   title: string;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function Dialog({
   return (
     <dialog
       ref={ref}
-      className="dialog"
+      className={'dialog ' + className}
       aria-label={title}
       onCancel={(e) => {
         e.preventDefault();

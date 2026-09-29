@@ -19,8 +19,6 @@ export function BearingViewer({ p, rpm, onRpmChange }: { p: BearingProduct; rpm:
   const limit = reference === 'oil' ? p.speedOilRpm : p.speedGreaseRpm;
   const hasLimit = Number.isFinite(limit) && limit > 0;
   const safeRpm = Number.isFinite(rpm) ? Math.max(0, rpm) : 0;
-  const ratio = hasLimit ? safeRpm / limit : 0;
-  const temp = 25 + 10 * ratio + 65 * ratio * ratio;
   useEffect(() => { setExploded(false); if (!g.supported) setMode('section'); }, [p.id, g.supported]);
   useEffect(() => { const media=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setReducedMotion(media.matches);media.addEventListener('change',update);return()=>media.removeEventListener('change',update); }, []);
   const partLabels=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
@@ -28,7 +26,7 @@ export function BearingViewer({ p, rpm, onRpmChange }: { p: BearingProduct; rpm:
     <div className="viewer-toolbar">
       <div><span className="section-label">{t('BEARING EXPLORER', 'کاوش بیرینگ')}</span><strong>{p.code}</strong></div>
       <div className="viewer-tabs">
-        {[['motion','Motion','حرکت'],['section','Section & dimensions','مقطع و ابعاد'],['thermal','Thermal','حرارتی']].map(([key,en,fa]) => <button key={key} disabled={!g.supported && key !== 'section'} onClick={()=>setMode(key)} className={mode===key?'active':''}>{t(en,fa)}</button>)}
+        {[['motion','Motion','حرکت'],['section','Section & dimensions','مقطع و ابعاد']].map(([key,en,fa]) => <button key={key} disabled={!g.supported && key !== 'section'} onClick={()=>setMode(key)} className={mode===key?'active':''}>{t(en,fa)}</button>)}
       </div>
     </div>
     <div className="viewer-body">
@@ -62,7 +60,7 @@ export function BearingViewer({ p, rpm, onRpmChange }: { p: BearingProduct; rpm:
           {exploded&&<p className="model-disclosure">{t('The assembly is stopped for inspection. The RPM readings below describe the selected operating input; reassemble to view rotation.','مجموعه برای بررسی متوقف شده است. مقادیر دور در دقیقه در پایین، ورودی کارکرد انتخاب‌شده را نشان می‌دهند؛ برای دیدن دوران، مجموعه را مونتاژ کنید.')}</p>}
           <div className="speed-reference"><label>{t('Catalog speed reference','سرعت مرجع کاتالوگ')}<select value={reference} onChange={e=>setReference(e.target.value)}><option value="grease">{t('Grease','گریس')}</option><option value="oil">{t('Oil','روغن')}</option></select></label><strong>{hasLimit?limit.toLocaleString()+' RPM':t('Not specified','ذکر نشده')}</strong><button disabled={!hasLimit} onClick={()=>onRpmChange(limit)}>{t('Use reference RPM','استفاده از دور مرجع')}</button></div>
           {hasLimit && safeRpm>limit && <p className="speed-exceeded" role="status">{t('Input exceeds the selected catalog speed reference.','سرعت ورودی از مرجع انتخاب‌شده کاتالوگ بیشتر است.')}</p>}
-          {mode==='thermal' ? <><div className="thermal-value">{hasLimit?temp.toFixed(1):'—'}<small>°C</small></div><p>{t('Illustrative temperature only: 25 + 10r + 65r², where r is RPM / reference RPM. Load, lubrication and heat dissipation are not modeled.','دمای صرفاً نمایشی: ۲۵ + ۱۰r + ۶۵r²؛ r نسبت دور ورودی به دور مرجع است. بار، روانکاری و دفع حرارت مدل‌سازی نشده‌اند.')}</p></> : <dl className="motion-readings"><div><dt>{t('Inner ring / shaft','رینگ داخلی / شفت')}</dt><dd>{safeRpm.toLocaleString()} RPM</dd></div><div><dt>{t('Cage · estimated','قفسه · تخمینی')}</dt><dd>{Math.round(safeRpm*g.cageRatio).toLocaleString()} RPM</dd></div><div><dt>{t('Outer ring','رینگ خارجی')}</dt><dd>{t('Fixed','ثابت')}</dd></div></dl>}
+          <dl className="motion-readings"><div><dt>{t('Inner ring / shaft','رینگ داخلی / شفت')}</dt><dd>{safeRpm.toLocaleString()} RPM</dd></div><div><dt>{t('Cage · estimated','قفسه · تخمینی')}</dt><dd>{Math.round(safeRpm*g.cageRatio).toLocaleString()} RPM</dd></div><div><dt>{t('Outer ring','رینگ خارجی')}</dt><dd>{t('Fixed','ثابت')}</dd></div></dl>
           <p className="model-disclosure">{t('Outer dimensions match the selected product. Raceway shape, rolling-element count and cage geometry are representative estimates; seals are removed to show the mechanism. Catalog ratings are not live RPM measurements.','ابعاد خارجی مطابق محصول انتخاب‌شده است. شکل مسیر غلتش، تعداد اجزای غلتشی و هندسه قفسه تقریبی‌اند؛ آب‌بندها برای نمایش سازوکار حذف شده‌اند. دور کاتالوگ اندازه‌گیری زنده نیست.')}</p>
           {playback===1&&safeRpm>600&&<p className="model-disclosure">{t('At high RPM, screen sampling can make rotation appear slow or reversed. Select slow motion to inspect the parts.','در دور بالا، نمونه‌برداری نمایشگر ممکن است حرکت را کند یا معکوس نشان دهد. برای بررسی قطعات، حرکت آهسته را انتخاب کنید.')}</p>}
         </>}

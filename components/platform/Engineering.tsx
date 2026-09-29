@@ -25,7 +25,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
   const [c, setC] = useState(13.5),
     [load, setLoad] = useState(2),
     [roller, setRoller] = useState(false);
-  const p = products.find((x) => x.slug === selected) || products[0];
+  const p = products.find((x) => x.slug === selected || x.id === selected) || products[0];
   const clear = () => {
     setResult(null);
     setErr('');
@@ -50,10 +50,30 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
         <div className="section-label">
           {embedded ? '03 / ' : ''}{t('MECHANICAL ENGINEERING REFERENCE TOOLS', 'ابزارهای مرجع مهندسی مکانیک')}
         </div>
-        {embedded ? <h2>{content?.engineering?.[fa ? 'titleFa' : 'titleEn'] || t('Make the numbers work.', 'انتخاب بر پایه محاسبه.')}</h2> : <h1>
-          {content?.engineering?.[fa ? 'titleFa' : 'titleEn'] ||
-            t('Make the numbers work.', 'انتخاب بر پایه محاسبه.')}
-        </h1>}
+        <div className="engineering-heading-row">
+          {embedded ? <h2>{content?.engineering?.[fa ? 'titleFa' : 'titleEn'] || t('Make the numbers work.', 'انتخاب بر پایه محاسبه.')}</h2> : <h1>
+            {content?.engineering?.[fa ? 'titleFa' : 'titleEn'] ||
+              t('Make the numbers work.', 'انتخاب بر پایه محاسبه.')}
+          </h1>}
+          <label className="engineering-product-picker">
+            {t('Selected component', 'قطعه انتخاب‌شده')}
+            <select
+              value={p?.slug || p?.id || ''}
+              disabled={!products.length}
+              onChange={(event) => {
+                setSelected(event.target.value);
+                const nextProduct = products.find((product) => (product.slug || product.id) === event.target.value);
+                if (nextProduct?.crKn) setC(nextProduct.crKn);
+                if (nextProduct) setRoller(['tapered', 'spherical', 'cylindrical', 'needle', 'carb', 'spherical-thrust'].includes(nextProduct.schematicType));
+                setConfirmed(false);
+                clear();
+              }}
+            >
+              {products.map((product) => <option key={product.id} value={product.slug || product.id}>{product.code}</option>)}
+            </select>
+            {p && <small dir="ltr">{p.d} × {p.D} × {p.B} mm</small>}
+          </label>
+        </div>
         <p>
           {t(
             'Explore bearing geometry, estimate basic rating life, and check your operating inputs.',
@@ -68,23 +88,6 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
             <BearingViewer p={p} rpm={rpm} onRpmChange={(value) => { setRpm(value); clear(); }} />
             <div className="tool-header">
               <h2>{t('Engineering tools', 'ابزارهای مهندسی')}</h2>
-              <label>
-                {t('Selected component', 'قطعه انتخاب‌شده')}
-                <select
-                  value={p.slug}
-                  onChange={(e) => {
-                    setSelected(e.target.value);
-                    setConfirmed(false);
-                    clear();
-                  }}
-                >
-                  {products.map((x) => (
-                    <option key={x.id} value={x.slug}>
-                      {x.code}
-                    </option>
-                  ))}
-                </select>
-              </label>
             </div>
             <div className="tool-tabs">
               {[
@@ -107,7 +110,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                 </button>
               ))}
             </div>
-            {tab==='compare'?<Comparison initial={[p.id]}/>:tab==='fits'?<FitGuide/>:['life', 'basic'].includes(tab) ? (
+            {tab==='compare'?<Comparison key={p.id} initial={[p.id]}/>:tab==='fits'?<FitGuide/>:['life', 'basic'].includes(tab) ? (
               <div className="calculator-grid">
                 <form
                   className="panel"

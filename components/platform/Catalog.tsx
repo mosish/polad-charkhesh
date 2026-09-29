@@ -1,17 +1,16 @@
 import ManufacturerLibrary from './ManufacturerLibrary';
 import { searchProducts } from '../../lib/showroom';
-import Comparison from './Comparison';
-import Dialog from './Dialog';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Search,
   Grid2X2,
   List,
-  SlidersHorizontal,
   ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { usePlatform, DataState } from './Context';
-import { ProductCard, TechnicalContent } from './Product';
+import { ProductCard, ShowroomProductPanel } from './Product';
 import type { BearingProduct } from '../../domain/product';
 export const categoryNames: any = {
   ball: ['Ball bearings', 'بلبرینگ'],
@@ -24,24 +23,31 @@ export const categoryNames: any = {
   lubricant: ['Lubricants', 'روانکارها'],
 };
 export { searchProducts } from '../../lib/showroom';
+function columnsForViewport() {
+  if (window.innerWidth <= 760) return 1;
+  if (window.innerWidth <= 1100) return 2;
+  return window.innerWidth >= 1500 ? 4 : 3;
+}
 export default function Catalog({ embedded = false }: { embedded?: boolean }) {
-  const { products, fa, t, loading, error } = usePlatform();
+  const { products, t, loading, error } = usePlatform();
+  const familyScroll = useRef<HTMLDivElement>(null);
   const params = new URLSearchParams(location.search);
   const [q, setQ] = useState(params.get('q') || '');
   const [cat, setCat] = useState(params.get('category') || 'all');
-  const [d, setD] = useState(params.get('d') || ''),
-    [outer, setOuter] = useState(params.get('D') || '');
-  const [width,setWidth]=useState(params.get('B')||'');
-  const [compare,setCompare]=useState<string[]>([]);
-  const [comparing,setComparing]=useState(false);
+  const [columns, setColumns] = useState(columnsForViewport);
   const [table, setTable] = useState(false),
     [selected, setSelected] = useState(params.get('item') || ''),
-    [visibleCount, setVisibleCount] = useState(12),
-    [filters, setFilters] = useState(false);
+    [visibleCount, setVisibleCount] = useState(columns * 6),
+    [expanded, setExpanded] = useState(false);
   const results = useMemo(
-    () => searchProducts(products, q, cat, d, outer, width),
-    [products, q, cat, d, outer, width],
+    () => searchProducts(products, q, cat),
+    [products, q, cat],
   );
+  useEffect(() => {
+    const update = () => setColumns(columnsForViewport());
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
   useEffect(() => {
     const context = (document as any).modelContext;
     if (!context?.registerTool) return;
@@ -64,8 +70,6 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
               throw new Error('Query must be a short string.');
             setQ(input.query);
             setCat('all');
-            setD('');
-            setOuter(''); setWidth('');
             return {
               products: searchProducts(products, input.query).map((p) => ({
                 code: p.code,
@@ -82,25 +86,26 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
     ).catch(() => {});
     return () => lifecycle.abort();
   }, [products]);
-  const toggleCompare=(id:string)=>setCompare(old=>old.includes(id)?old.filter(x=>x!==id):old.length<3?[...old,id]:old);
   useEffect(() => {
     const next = new URLSearchParams(location.search);
     for (const key of ['q', 'category', 'd', 'D', 'B', 'item']) next.delete(key);
-    for (const [key, value] of Object.entries({ q, category: cat === 'all' ? '' : cat, d, D: outer, B: width, item: selected })) {
+    for (const [key, value] of Object.entries({ q, category: cat === 'all' ? '' : cat, item: selected })) {
       if (value) next.set(key, value);
     }
     history.replaceState(null, '', location.pathname + (next.size ? '?' + next.toString() : '') + location.hash);
-  }, [q, cat, d, outer, width, selected]);
-  useEffect(() => setVisibleCount(12), [q, cat, d, outer, width]);
+  }, [q, cat, selected]);
+  useEffect(() => { setExpanded(false); setVisibleCount(columns * 6); }, [q, cat, columns]);
   const chooseProduct = (product: BearingProduct) => {
     setSelected(product.slug || product.id);
   };
   const currentProduct = products.find((product) => product.slug === selected || product.id === selected);
-  useEffect(() => {
-    if (!currentProduct) return;
-    const timer = window.setTimeout(() => document.getElementById('product-detail')?.scrollIntoView({ behavior: 'smooth' }), 80);
-    return () => window.clearTimeout(timer);
-  }, [currentProduct?.id]);
+  const preview = !table && !expanded && results.length > columns * 2;
+  const renderCount = table ? Math.max(12, expanded ? visibleCount : 12) : expanded ? visibleCount : columns * 3;
+  const moreAvailable = preview || results.length > renderCount;
+  const showMore = () => {
+    setVisibleCount((count) => expanded ? count + (table ? 12 : columns * 3) : Math.max(count, table ? 24 : columns * 6));
+    setExpanded(true);
+  };
   const Container = embedded ? 'div' : 'main';
   return (
     <Container id={embedded ? undefined : 'main'} className={embedded ? 'catalog-workspace embedded-workspace' : 'catalog-workspace'}>
@@ -123,96 +128,14 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
         </p>
       </section>
       <div className="section"><ManufacturerLibrary/></div>
-      {currentProduct && <section id="product-detail" className="section inline-product-detail" aria-label={t('Product specifications', 'مشخصات فنی محصول')}>
-        <div className="inline-detail-heading"><span className="section-label">{t('PRODUCT SPECIFICATIONS', 'مشخصات فنی محصول')}</span><button className="button" onClick={() => setSelected('')}>{t('Close details', 'بستن جزئیات')}</button></div>
-        <TechnicalContent key={currentProduct.id} p={currentProduct} full inline />
-      </section>}
+      <div className="family-bar">
+        <div className="family-bar-heading"><span className="section-label">{t('BEARING FAMILIES', 'خانواده بیرینگ')}</span><div className="family-bar-arrows"><button type="button" aria-label={t('Scroll families left', 'پیمایش خانواده‌ها به چپ')} onClick={() => familyScroll.current?.scrollBy({ left: -320, behavior: 'smooth' })}><ChevronLeft size={17} /></button><button type="button" aria-label={t('Scroll families right', 'پیمایش خانواده‌ها به راست')} onClick={() => familyScroll.current?.scrollBy({ left: 320, behavior: 'smooth' })}><ChevronRight size={17} /></button></div></div>
+        <div ref={familyScroll} className="family-options" role="group" aria-label={t('Bearing families', 'خانواده‌های بیرینگ')}>
+          <button type="button" aria-pressed={cat === 'all'} className={cat === 'all' ? 'active' : ''} onClick={() => setCat('all')}>{t('All components', 'همه قطعات')} <small>{products.length}</small></button>
+          {Object.entries(categoryNames).map(([key, names]: any) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}>{t(names[0], names[1])} <small>{products.filter((product) => product.category === key).length}</small></button>)}
+        </div>
+      </div>
       <div className="catalog-layout">
-        <aside className={'filters ' + (filters ? 'expanded' : '')}>
-          <button
-            className="mobile-filters button"
-            onClick={() => setFilters(!filters)}
-          >
-            <SlidersHorizontal size={18} />
-            {t('Filters', 'فیلترها')}
-          </button>
-          <div className="filter-body">
-            <div className="section-label">
-              {t('BEARING FAMILIES', 'خانواده بیرینگ')}
-            </div>
-            <button
-              className={cat === 'all' ? 'active' : ''}
-              onClick={() => setCat('all')}
-            >
-              {t('All components', 'همه قطعات')}
-              <small>{products.length}</small>
-            </button>
-            {Object.entries(categoryNames).map(([k, v]: any) => (
-              <button
-                className={cat === k ? 'active' : ''}
-                key={k}
-                onClick={() => setCat(k)}
-              >
-                {t(v[0], v[1])}
-                <small>{products.filter((p) => p.category === k).length}</small>
-              </button>
-            ))}
-            <div className="filter-dimensions">
-              <div className="section-label">
-                {t('DIMENSIONS / mm', 'ابعاد / mm')}
-              </div>
-              <label>
-                {t('Bore diameter d', 'قطر داخلی d')}
-                <input
-                  type="number"
-                  min="0"
-                  step="any"
-                  value={d}
-                  onChange={(e) => setD(e.target.value)}
-                  placeholder="Any"
-                />
-              </label>
-              <label>
-                {t('Outside diameter D', 'قطر خارجی D')}
-                <input
-                  type="number"
-                  min="0"
-                  step="any"
-                  value={outer}
-                  onChange={(e) => setOuter(e.target.value)}
-                  placeholder="Any"
-                />
-              </label>
-              <label>{t('Width B','عرض B')}<input type="number" min="0" step="any" value={width} onChange={e=>setWidth(e.target.value)} placeholder={t('Any','همه')}/></label>
-              <button
-                className="reset"
-                onClick={() => {
-                  setD('');
-                  setOuter(''); setWidth('');
-                  setCat('all');
-                  setQ('');
-                }}
-              >
-                {t('Reset all filters', 'پاک کردن فیلترها')}
-              </button>
-            </div>
-            <div className="filter-help">
-              <strong>
-                {t('Need a second opinion?', 'نیاز به راهنمایی دارید؟')}
-              </strong>
-              <p>
-                {t(
-                  'Our team can help identify your component.',
-                  'تیم فنی در شناسایی قطعه همراه شماست.',
-                )}
-              </p>
-              <a href="/#contact">
-                {t('Ask an engineer', 'ارتباط با کارشناس')}
-                <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </div>
-        </aside>
         <div className="catalog-results">
           <div className="catalog-toolbar">
             <div className="search-field">
@@ -278,8 +201,8 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                 <h2>{t('No matching components', 'قطعه‌ای یافت نشد')}</h2>
                 <p>
                   {t(
-                    'Try a shorter code or remove dimensional filters.',
-                    'کد کوتاه‌تر وارد کنید یا فیلتر ابعاد را بردارید.',
+                    'Try a shorter code or another bearing family.',
+                    'کد کوتاه‌تر یا خانواده بیرینگ دیگری را امتحان کنید.',
                   )}
                 </p>
               </div>
@@ -288,7 +211,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                 <table>
                   <thead>
                     <tr>
-                      {['Code', 'Family', 'd', 'D', 'B', 'Cr kN', t('Compare','مقایسه'), ''].map(
+                      {['Code', 'Family', 'd', 'D', 'B', 'Cr kN', ''].map(
                         (h, i) => (
                           <th key={i}>{h}</th>
                         ),
@@ -296,7 +219,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {results.slice(0, visibleCount).map((p) => (
+                    {results.slice(0, renderCount).map((p) => (
                       <tr key={p.id}>
                         <td>
                           <button onClick={() => chooseProduct(p)}>
@@ -312,7 +235,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                         <td>{p.d}</td>
                         <td>{p.D}</td>
                         <td>{p.B}</td>
-                        <td>{p.crKn}</td><td><input type="checkbox" aria-label={t('Compare','مقایسه')+' '+p.code} checked={compare.includes(p.id)} disabled={!compare.includes(p.id)&&compare.length>=3} onChange={()=>toggleCompare(p.id)}/></td>
+                        <td>{p.crKn}</td>
                         <td>
                           <button
                             onClick={() => chooseProduct(p)}
@@ -327,17 +250,18 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                 </table>
               </div>
             ) : (
-              <div className="product-grid">
-                {results.slice(0, visibleCount).map((p) => (
-                  <div className="showroom-card" key={p.id}><ProductCard p={p} onSelect={chooseProduct} /><label className="compare-choice"><input type="checkbox" checked={compare.includes(p.id)} disabled={!compare.includes(p.id)&&compare.length>=3} onChange={()=>toggleCompare(p.id)}/>{t('Compare','مقایسه')} <span dir="ltr">{p.code}</span></label></div>
-                ))}
+              <div className={preview ? 'catalog-grid-preview' : ''}>
+                <div className="product-grid">
+                  {results.slice(0, renderCount).map((p) => (
+                    <div className="showroom-card" key={p.id}><ProductCard p={p} onSelect={chooseProduct} /></div>
+                  ))}
+                </div>
               </div>
             ))}
-          {results.length > visibleCount && <button className="button catalog-more" onClick={() => setVisibleCount((count) => count + 12)}>{t('Show more components', 'نمایش قطعات بیشتر')} ({results.length - visibleCount})</button>}
+          {moreAvailable && <button className="button catalog-more" onClick={showMore}>{t('Show more components', 'نمایش قطعات بیشتر')} <span>↓</span></button>}
         </div>
       </div>
-      {compare.length>0&&<div className="comparison-dock"><span>{compare.length} / 3 {t('components selected','قطعه انتخاب شده')}</span><button className="button primary" disabled={compare.length<2} onClick={()=>setComparing(true)}>{t('Compare specifications','مقایسه مشخصات')}</button><button className="button" onClick={()=>setCompare([])}>{t('Clear','پاک کردن')}</button></div>}
-      {comparing&&<Dialog title={t('Technical comparison','مقایسه فنی')} onClose={()=>setComparing(false)}><Comparison initial={compare}/></Dialog>}
+      {currentProduct && <ShowroomProductPanel key={currentProduct.id} p={currentProduct} onClose={() => setSelected('')} />}
     </Container>
   );
 }

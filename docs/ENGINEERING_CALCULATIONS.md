@@ -10,6 +10,6 @@ Angular-contact and self-aligning families intentionally request a manufacturer-
 
 Static safety is `C0/P0`. Results exceeding lubricant-specific catalog speed limits are flagged. These calculations do not establish minimum-load, fatigue, lubrication, mounting, fit, temperature or failure safety for a real installation.
 
-The thermal view is expressly illustrative: `25 + 10r + 65r²` °C where `r = rpm / grease-reference-speed`. It is not a validated physical thermal model. Ambient conditions, load, lubricant, fit, shaft/housing, cage and heat dissipation determine actual temperature.
+The earlier illustrative Thermal view was removed. An operating-temperature estimate needs ambient conditions, load, lubricant, fit, shaft and housing details, cage behavior and heat-dissipation data; RPM alone cannot establish one.
 
-The motion and axial half-section diagrams are idealized ball-bearing explanations. The dimensional envelope uses the selected record and is marked not to scale. They are not CAD manufacturing drawings or product-specific 3D models.
+The Motion view uses an illustrative bearing model whose dimensions and rolling-element arrangement follow the selected catalog record; the Section & dimensions view is a schematic. The internal geometry is not manufacturer CAD or a manufacturing drawing.

@@ -967,27 +967,6 @@ td code {
     transform: rotate(360deg);
   }
 }
-.thermal-value {
-  font:
-    58px 'IRANSans',
-    sans-serif;
-  padding: 13px 0;
-}
-.thermal-value small {
-  font-size: 20px;
-}
-.thermal-scale {
-  height: 5px;
-  background: linear-gradient(
-    90deg,
-    #579ae0,
-    #51cac7,
-    #e4d487,
-    #e89258,
-    #d55b51
-  );
-  border-radius: 2px;
-}
 .tool-header {
   display: flex;
   gap: 40px;
