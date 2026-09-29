@@ -2,12 +2,14 @@ import ManufacturerLibrary from './ManufacturerLibrary';
 import { BearingViewer } from './Viewer';
 import Copy from './Copy';
 import { mediaFor } from '../../lib/media';
-import { useEffect, useState } from 'react';
-import { ArrowRight, Download, ArrowUpRight } from 'lucide-react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { ArrowRight, Box, Download, ArrowUpRight } from 'lucide-react';
 import type { BearingProduct } from '../../domain/product';
+import { bearingGeometry } from '../../lib/bearing-motion';
 import { usePlatform, DataState } from './Context';
 import Dialog from './Dialog';
 import { Schematic } from './Schematic';
+const BearingScene = lazy(() => import('./HeroBearingScene'));
 export function ProductImage({ p }: { p: BearingProduct }) {
   const { content } = usePlatform();
   const [failed, setFailed] = useState(false);
@@ -151,7 +153,10 @@ export function TechnicalContent({
   const [image, setImage] = useState(p.imageUrl);
   const [error, setError] = useState('');
   const [view,setView]=useState(false);
+  const [startExploded,setStartExploded]=useState(false);
+  const [viewerReset,setViewerReset]=useState(0);
   const [rpm,setRpm]=useState(0);
+  const canExplode = bearingGeometry(p).supported;
   const rows = [
     ['d / D / B', `${p.d} / ${p.D} / ${p.B} mm`],
     [t('Weight', 'وزن'), p.weightKg + ' kg'],
@@ -214,6 +219,16 @@ export function TechnicalContent({
               {t('Use in engineering tools', 'محاسبه مهندسی')}
               <ArrowUpRight size={16} />
             </a>
+            {full && <button
+              type="button"
+              className="button"
+              disabled={!canExplode}
+              title={!canExplode ? t('No rolling-element 3D model is available for this component.', 'مدل سه‌بعدی اجزای غلتشی برای این قطعه موجود نیست.') : undefined}
+              onClick={() => { setStartExploded(true); setViewerReset((count) => count + 1); setView(true); requestAnimationFrame(() => document.getElementById('product-explorer')?.scrollIntoView({ behavior: 'smooth', block: 'start' })); }}
+            >
+              <Box size={16} />
+              {t('Exploded view', 'نمای انفجاری')}
+            </button>}
             <button
               className="button"
               onClick={() =>
@@ -225,24 +240,9 @@ export function TechnicalContent({
             </button>
           </div>
           {error && <p role="alert">{error}</p>}
-          <a
-            className="text-link"
-            href={
-              company.whatsappUrl +
-              '?text=' +
-              encodeURIComponent(
-                t('Technical inquiry: ', 'استعلام فنی: ') + p.code,
-              )
-            }
-            target="_blank"
-            rel="noreferrer"
-          >
-            {t('Ask about this component', 'مشاوره و استعلام این قطعه')}
-            <ArrowUpRight size={16} />
-          </a>
         </div>
       </div>
-      {full&&<section className="product-explorer"><button className="button" aria-expanded={view} onClick={()=>setView(!view)}>{view?t('Close geometry view','بستن نمای هندسی'):t('Explore product geometry','بررسی هندسه محصول')}</button>{view&&<BearingViewer p={p} rpm={rpm} onRpmChange={setRpm}/>}</section>}
+      {full&&<section id="product-explorer" className="product-explorer"><button className="button" aria-expanded={view} onClick={()=>{ setStartExploded(false); setView(!view); }}>{view?t('Close geometry view','بستن نمای هندسی'):t('Explore product geometry','بررسی هندسه محصول')}</button>{view&&<BearingViewer key={`${startExploded?'exploded':'assembled'}-${viewerReset}`} p={p} rpm={rpm} onRpmChange={setRpm} initialExploded={startExploded}/>}</section>}
       <ManufacturerLibrary brands={p.brands}/>
       <section className="product-documents"><h3>{t('Product documents','اسناد محصول')}</h3>{p.pdfUrl?<a className="button" href={p.pdfUrl} target="_blank" rel="noreferrer">{t('Open attached product PDF','باز کردن PDF محصول')} ↗</a>:<p className="muted">{t('No manufacturer PDF attached yet. The generated datasheet summarizes this catalog record.','هنوز PDF سازنده پیوست نشده است. دیتاشیت تولیدشده خلاصه اطلاعات این رکورد است.')}</p>}</section>
       <div className="source-note">
@@ -314,8 +314,19 @@ export function ShowroomProductPanel({
   );
   const photos = [...new Set([...uploadedImages, ...(media.url ? [media.url] : [])])];
   const [activeImage, setActiveImage] = useState(photos[0] || '');
-  const [drawing, setDrawing] = useState(!photos.length);
+  const [stageView, setStageView] = useState<'image' | 'drawing' | 'exploded'>(photos.length ? 'image' : 'drawing');
   const [imageFailed, setImageFailed] = useState(false);
+  const geometry = bearingGeometry(p);
+  const canExplode = geometry.supported;
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(preference.matches);
+    update();
+    preference.addEventListener('change', update);
+    return () => preference.removeEventListener('change', update);
+  }, []);
+  const partLabels = [t('Outer ring', 'رینگ خارجی'), t('Rolling elements', 'اجزای غلتشی'), t('Cage', 'قفسه'), t('Inner ring', 'رینگ داخلی')];
   const [downloading, setDownloading] = useState(false);
   const [downloadError, setDownloadError] = useState('');
   const referenceImage = media.reference && activeImage === media.url && !uploadedImages.includes(activeImage);
@@ -339,14 +350,17 @@ export function ShowroomProductPanel({
       <div className="product-panel-layout">
         <div className="product-panel-gallery">
           <div className="product-panel-stage">
-            {drawing || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
-            {!drawing && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
+            {stageView === 'exploded' ? <Suspense fallback={<div className="hero-model-loading">{t('Preparing exploded view…', 'آماده‌سازی نمای انفجاری…')}</div>}><BearingScene family={geometry.roller ? 'roller' : 'ball'} product={p} paused exploded reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${t('Illustrative exploded view', 'نمای انفجاری نمایشی')}`} fallback={<div className="hero-model-loading">{t('3D view unavailable on this device', 'نمای سه‌بعدی در این دستگاه در دسترس نیست')}</div>} /></Suspense> : stageView === 'drawing' || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
+            {stageView === 'exploded' && <div className="product-panel-parts-key" aria-label={t('Bearing parts', 'اجزای بیرینگ')}>{partLabels.map((name, index) => <span key={name}><b>{index + 1}</b>{name}</span>)}</div>}
+            {stageView === 'image' && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
           </div>
           <div className="product-panel-thumbnails" aria-label={t('Product image gallery', 'گالری تصاویر محصول')}>
-            {photos.map((url, index) => <button type="button" key={url} className={!drawing && activeImage === url ? 'active' : ''} aria-pressed={!drawing && activeImage === url} aria-label={t('View image', 'نمایش تصویر') + ' ' + (index + 1)} onClick={() => { setActiveImage(url); setDrawing(false); setImageFailed(false); }}><img src={url} alt="" /></button>)}
-            <button type="button" className={drawing ? 'active' : ''} aria-pressed={drawing} onClick={() => setDrawing(true)}>{t('Drawing', 'نقشه')}</button>
+            {photos.map((url, index) => <button type="button" key={url} className={stageView === 'image' && activeImage === url ? 'active' : ''} aria-pressed={stageView === 'image' && activeImage === url} aria-label={t('View image', 'نمایش تصویر') + ' ' + (index + 1)} onClick={() => { setActiveImage(url); setStageView('image'); setImageFailed(false); }}><img src={url} alt="" /></button>)}
+            <button type="button" className={stageView === 'drawing' ? 'active' : ''} aria-pressed={stageView === 'drawing'} onClick={() => setStageView('drawing')}>{t('Drawing', 'نقشه')}</button>
+            <button type="button" className={'product-panel-exploded-control ' + (stageView === 'exploded' ? 'active' : '')} aria-pressed={stageView === 'exploded'} disabled={!canExplode} title={!canExplode ? t('No rolling-element 3D model is available for this component.', 'مدل سه‌بعدی اجزای غلتشی برای این قطعه موجود نیست.') : undefined} onClick={() => setStageView('exploded')}><Box size={16} />{t('Exploded view', 'نمای انفجاری')}</button>
           </div>
-          <small className="product-panel-media-note">{!drawing && !imageFailed && referenceImage ? t('Family illustration; confirm the exact product with its manufacturer.', 'تصویر خانواده محصول است؛ کد دقیق را با سازنده بررسی کنید.') : t('Image and dimensional drawing from the current catalog record.', 'تصویر و نقشه ابعادی از رکورد فعلی کاتالوگ.')}</small>
+          {!canExplode && <small className="product-panel-media-note">{t('An exploded 3D model is not available for this component; use its drawing for dimensions.', 'مدل سه‌بعدی انفجاری برای این قطعه موجود نیست؛ برای ابعاد از نقشه استفاده کنید.')}</small>}
+          <small className="product-panel-media-note">{stageView === 'exploded' ? t('Illustrative geometry based on catalog dimensions; internal parts are estimates, not manufacturer CAD.', 'هندسه نمایشی بر اساس ابعاد کاتالوگ است؛ اجزای داخلی تخمینی‌اند و مدل CAD سازنده نیستند.') : stageView === 'image' && !imageFailed && referenceImage ? t('Family illustration; confirm the exact product with its manufacturer.', 'تصویر خانواده محصول است؛ کد دقیق را با سازنده بررسی کنید.') : t('Image and dimensional drawing from the current catalog record.', 'تصویر و نقشه ابعادی از رکورد فعلی کاتالوگ.')}</small>
         </div>
         <div className="product-panel-details">
           <div className="product-panel-identity">

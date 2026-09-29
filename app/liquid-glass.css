@@ -381,10 +381,17 @@ html { scroll-behavior:smooth; scroll-padding-top:140px; }
 .product-panel-stage { height:clamp(250px,40vh,390px); display:grid; place-items:center; position:relative; overflow:hidden; border-radius:18px; background:linear-gradient(145deg,#e4ecf5,#aebfd1); }
 .product-panel-stage>img { width:100%; height:100%; object-fit:contain; }
 .product-panel-stage .schematic { width:100%; height:100%; margin:0; }
+.product-panel-stage .hero-bearing-canvas,.product-panel-stage .hero-model-fallback { width:100%; height:100%; }
+.product-panel-stage .hero-model-loading { min-height:100%; color:#3e536b; }
+.product-panel-parts-key { position:absolute; inset-inline:10px; bottom:8px; display:flex; flex-wrap:wrap; justify-content:center; gap:4px 10px; padding:6px 10px; border-radius:10px; background:#10253ad9; color:#edf7ff; font-size:10px; pointer-events:none; }
+.product-panel-parts-key span { display:inline-flex; align-items:center; gap:4px; }
+.product-panel-parts-key b { display:grid; place-items:center; width:16px; height:16px; border:1px solid #dceeff8c; border-radius:50%; font-weight:500; }
 .product-panel-reference { position:absolute; inset-inline-start:12px; bottom:12px; padding:5px 8px; border-radius:6px; background:#f0f5facf; color:#3e536b; font-size:10px; }
 .product-panel-thumbnails { display:flex; align-items:center; gap:8px; margin-top:10px; padding-bottom:4px; overflow-x:auto; }
 .product-panel-thumbnails button { flex:0 0 60px; height:60px; border:1px solid #d6ebff42; border-radius:11px; background:#dce8f3; color:#1a314e; overflow:hidden; font-size:11px; }
 .product-panel-thumbnails button.active { border:2px solid #afdbff; box-shadow:0 0 0 2px #91c9f633; }
+.product-panel-thumbnails .product-panel-exploded-control { flex:0 0 auto; width:auto; min-width:124px; display:flex; align-items:center; justify-content:center; gap:6px; padding:6px 10px; }
+.product-panel-thumbnails .product-panel-exploded-control:disabled { opacity:.55; cursor:not-allowed; }
 .product-panel-thumbnails img { width:100%; height:100%; object-fit:cover; }
 .product-panel-media-note { display:block; margin-top:7px; color:#9bb1c9; font-size:11px; }
 .product-panel-identity h2 { margin:4px 0 2px; font-size:26px; overflow-wrap:anywhere; }

@@ -7,11 +7,11 @@ import BearingModel from './BearingModel';
 import { bearingGeometry } from '../../lib/bearing-motion';
 const BearingScene = lazy(() => import('./HeroBearingScene'));
 
-export function BearingViewer({ p, rpm, onRpmChange }: { p: BearingProduct; rpm: number; onRpmChange: (rpm: number) => void }) {
+export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: { p: BearingProduct; rpm: number; onRpmChange: (rpm: number) => void; initialExploded?: boolean }) {
   const { t } = usePlatform();
   const [mode, setMode] = useState('motion');
   const [paused, setPaused] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [exploded, setExploded] = useState(false);
+  const [exploded, setExploded] = useState(initialExploded);
   const [reducedMotion,setReducedMotion] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [playback, setPlayback] = useState(1);
   const [reference, setReference] = useState('grease');
@@ -19,7 +19,7 @@ export function BearingViewer({ p, rpm, onRpmChange }: { p: BearingProduct; rpm:
   const limit = reference === 'oil' ? p.speedOilRpm : p.speedGreaseRpm;
   const hasLimit = Number.isFinite(limit) && limit > 0;
   const safeRpm = Number.isFinite(rpm) ? Math.max(0, rpm) : 0;
-  useEffect(() => { setExploded(false); if (!g.supported) setMode('section'); }, [p.id, g.supported]);
+  useEffect(() => { setExploded(initialExploded && g.supported); if (!g.supported) setMode('section'); }, [p.id, g.supported, initialExploded]);
   useEffect(() => { const media=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setReducedMotion(media.matches);media.addEventListener('change',update);return()=>media.removeEventListener('change',update); }, []);
   const partLabels=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
   return <div className="viewer">
