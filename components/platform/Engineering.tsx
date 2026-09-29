@@ -7,7 +7,7 @@ import { Calculator, RotateCw, ArrowUpRight } from 'lucide-react';
 import { calculate, basicLife } from '../../lib/engineering';
 import { usePlatform, DataState } from './Context';
 import { BearingViewer } from './Viewer';
-export default function Engineering() {
+export default function Engineering({ embedded = false }: { embedded?: boolean }) {
   const { products, fa, t, loading, error, content } = usePlatform();
   const [selected, setSelected] = useState(
     new URLSearchParams(location.search).get('product') || '6204-2rs',
@@ -43,16 +43,17 @@ export default function Engineering() {
       setResult(null);
     }
   };
+  const Container = embedded ? 'div' : 'main';
   return (
-    <main id="main">
-      <section className="page-heading">
+    <Container id={embedded ? undefined : 'main'} className={embedded ? 'engineering-workspace embedded-workspace' : 'engineering-workspace'}>
+      <section className={embedded ? 'section-heading engineering-intro' : 'page-heading'}>
         <div className="section-label">
-          {t('MECHANICAL ENGINEERING WORKSPACE', 'کارگاه مهندسی مکانیک')}
+          {embedded ? '03 / ' : ''}{t('MECHANICAL ENGINEERING REFERENCE TOOLS', 'ابزارهای مرجع مهندسی مکانیک')}
         </div>
-        <h1>
+        {embedded ? <h2>{content?.engineering?.[fa ? 'titleFa' : 'titleEn'] || t('Make the numbers work.', 'انتخاب بر پایه محاسبه.')}</h2> : <h1>
           {content?.engineering?.[fa ? 'titleFa' : 'titleEn'] ||
             t('Make the numbers work.', 'انتخاب بر پایه محاسبه.')}
-        </h1>
+        </h1>}
         <p>
           {t(
             'Explore bearing geometry, estimate basic rating life, and check your operating inputs.',
@@ -436,13 +437,13 @@ export default function Engineering() {
                     'انطباق تداخلی و اختلاف دما می‌توانند لقی کارکرد را کاهش دهند. لقی باقیمانده را با جداول سازنده بررسی کنید.',
                   )}
                 </p>
-                <a className="button" href={'/product/' + p.slug}>
+                <a className="button" href={'/?item=' + encodeURIComponent(p.slug || p.id) + '#catalog'}>
                   {t('View source record', 'مشاهده رکورد منبع')}
                   <ArrowUpRight size={16} />
                 </a>
               </div>
             )}
-            <ManufacturerLibrary/>
+            {!embedded && <ManufacturerLibrary/>}
             <div className="source-note">
               {t('Calculation reference', 'مرجع محاسبات')}:{' '}
               <a
@@ -461,6 +462,6 @@ export default function Engineering() {
           </div>
         </>
       )}
-    </main>
+    </Container>
   );
 }

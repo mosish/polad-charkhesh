@@ -138,12 +138,14 @@ export async function datasheet(
   });
   pdf.save((p.slug || p.id) + '-datasheet.pdf');
 }
-function TechnicalContent({
+export function TechnicalContent({
   p,
   full = false,
+  inline = false,
 }: {
   p: BearingProduct;
   full?: boolean;
+  inline?: boolean;
 }) {
   const { fa, t, company, content } = usePlatform();
   const [image, setImage] = useState(p.imageUrl);
@@ -191,10 +193,10 @@ function TechnicalContent({
         </div>
         <div>
           <div className="section-label">{p.schematicType.toUpperCase()}</div>
-          <h1 className="product-code" dir="ltr">
+          {inline ? <h3 className="product-code" dir="ltr">{p.code}</h3> : <h1 className="product-code" dir="ltr">
             {p.code}
-          </h1>
-          <h2 className="product-title">{p[fa ? 'nameFa' : 'nameEn']}</h2>
+          </h1>}
+          {inline ? <h4 className="product-title">{p[fa ? 'nameFa' : 'nameEn']}</h4> : <h2 className="product-title">{p[fa ? 'nameFa' : 'nameEn']}</h2>}
           <p className="muted">{p[fa ? 'descriptionFa' : 'descriptionEn']}</p>
           <dl className="specs">
             {rows.map(([k, v]) => (
@@ -207,7 +209,7 @@ function TechnicalContent({
           <div className="action-row">
             <a
               className="button primary"
-              href={'/engineering?product=' + p.slug}
+              href={'/?product=' + encodeURIComponent(p.slug || p.id) + '#engineering'}
             >
               {t('Use in engineering tools', 'محاسبه مهندسی')}
               <ArrowUpRight size={16} />

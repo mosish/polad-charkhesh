@@ -99,7 +99,7 @@ export default function Comparison({ initial = [] }: { initial?: string[] }) {
                 <th>{t('Specification', 'مشخصه')}</th>
                 {chosen.map((p) => (
                   <th key={p.id}>
-                    <a href={'/product/' + p.slug}>{p.code}</a>
+                    <a href={'/?item=' + encodeURIComponent(p.slug || p.id) + '#catalog'}>{p.code}</a>
                   </th>
                 ))}
               </tr>

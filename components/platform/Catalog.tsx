@@ -11,7 +11,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { usePlatform, DataState } from './Context';
-import { ProductCard, QuickView } from './Product';
+import { ProductCard, TechnicalContent } from './Product';
 import type { BearingProduct } from '../../domain/product';
 export const categoryNames: any = {
   ball: ['Ball bearings', 'بلبرینگ'],
@@ -24,7 +24,7 @@ export const categoryNames: any = {
   lubricant: ['Lubricants', 'روانکارها'],
 };
 export { searchProducts } from '../../lib/showroom';
-export default function Catalog() {
+export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   const { products, fa, t, loading, error } = usePlatform();
   const params = new URLSearchParams(location.search);
   const [q, setQ] = useState(params.get('q') || '');
@@ -35,7 +35,8 @@ export default function Catalog() {
   const [compare,setCompare]=useState<string[]>([]);
   const [comparing,setComparing]=useState(false);
   const [table, setTable] = useState(false),
-    [selected, setSelected] = useState<BearingProduct | null>(null),
+    [selected, setSelected] = useState(params.get('item') || ''),
+    [visibleCount, setVisibleCount] = useState(12),
     [filters, setFilters] = useState(false);
   const results = useMemo(
     () => searchProducts(products, q, cat, d, outer, width),
@@ -82,20 +83,38 @@ export default function Catalog() {
     return () => lifecycle.abort();
   }, [products]);
   const toggleCompare=(id:string)=>setCompare(old=>old.includes(id)?old.filter(x=>x!==id):old.length<3?[...old,id]:old);
-  useEffect(()=>{const next=new URLSearchParams();for(const [key,value] of Object.entries({q,category:cat==='all'?'':cat,d,D:outer,B:width}))if(value)next.set(key,value);history.replaceState(null,'',location.pathname+(next.size?'?'+next.toString():''));},[q,cat,d,outer,width]);
+  useEffect(() => {
+    const next = new URLSearchParams(location.search);
+    for (const key of ['q', 'category', 'd', 'D', 'B', 'item']) next.delete(key);
+    for (const [key, value] of Object.entries({ q, category: cat === 'all' ? '' : cat, d, D: outer, B: width, item: selected })) {
+      if (value) next.set(key, value);
+    }
+    history.replaceState(null, '', location.pathname + (next.size ? '?' + next.toString() : '') + location.hash);
+  }, [q, cat, d, outer, width, selected]);
+  useEffect(() => setVisibleCount(12), [q, cat, d, outer, width]);
+  const chooseProduct = (product: BearingProduct) => {
+    setSelected(product.slug || product.id);
+  };
+  const currentProduct = products.find((product) => product.slug === selected || product.id === selected);
+  useEffect(() => {
+    if (!currentProduct) return;
+    const timer = window.setTimeout(() => document.getElementById('product-detail')?.scrollIntoView({ behavior: 'smooth' }), 80);
+    return () => window.clearTimeout(timer);
+  }, [currentProduct?.id]);
+  const Container = embedded ? 'div' : 'main';
   return (
-    <main id="main">
-      <section className="page-heading">
+    <Container id={embedded ? undefined : 'main'} className={embedded ? 'catalog-workspace embedded-workspace' : 'catalog-workspace'}>
+      <section className={embedded ? 'section-heading catalog-intro' : 'page-heading'}>
         <div className="section-label">
-          {t(
+          {embedded ? '02 / ' : ''}{t(
             'PRODUCT SHOWROOM / TECHNICAL DISCOVERY',
             'کاتالوگ محصولات / جستجوی فنی',
           )}
         </div>
-        <h1>
+        {embedded ? <h2>{t('Explore every component.', 'همه قطعات را بررسی کنید.')}</h2> : <h1>
           {t('The right part.', 'قطعه درست.')}{' '}
           <em>{t('Precisely.', 'با دقت.')}</em>
-        </h1>
+        </h1>}
         <p>
           {t(
             'Search by designation, dimensions or application. Explore the details, then speak to our engineering team.',
@@ -104,6 +123,10 @@ export default function Catalog() {
         </p>
       </section>
       <div className="section"><ManufacturerLibrary/></div>
+      {currentProduct && <section id="product-detail" className="section inline-product-detail" aria-label={t('Product specifications', 'مشخصات فنی محصول')}>
+        <div className="inline-detail-heading"><span className="section-label">{t('PRODUCT SPECIFICATIONS', 'مشخصات فنی محصول')}</span><button className="button" onClick={() => setSelected('')}>{t('Close details', 'بستن جزئیات')}</button></div>
+        <TechnicalContent key={currentProduct.id} p={currentProduct} full inline />
+      </section>}
       <div className="catalog-layout">
         <aside className={'filters ' + (filters ? 'expanded' : '')}>
           <button
@@ -273,10 +296,10 @@ export default function Catalog() {
                     </tr>
                   </thead>
                   <tbody>
-                    {results.map((p) => (
+                    {results.slice(0, visibleCount).map((p) => (
                       <tr key={p.id}>
                         <td>
-                          <button onClick={() => setSelected(p)}>
+                          <button onClick={() => chooseProduct(p)}>
                             <code>{p.code}</code>
                           </button>
                         </td>
@@ -292,7 +315,7 @@ export default function Catalog() {
                         <td>{p.crKn}</td><td><input type="checkbox" aria-label={t('Compare','مقایسه')+' '+p.code} checked={compare.includes(p.id)} disabled={!compare.includes(p.id)&&compare.length>=3} onChange={()=>toggleCompare(p.id)}/></td>
                         <td>
                           <button
-                            onClick={() => setSelected(p)}
+                            onClick={() => chooseProduct(p)}
                             aria-label={'View ' + p.code}
                           >
                             <ArrowUpRight size={17} />
@@ -305,16 +328,16 @@ export default function Catalog() {
               </div>
             ) : (
               <div className="product-grid">
-                {results.map((p) => (
-                  <div className="showroom-card" key={p.id}><ProductCard p={p} onSelect={setSelected} /><label className="compare-choice"><input type="checkbox" checked={compare.includes(p.id)} disabled={!compare.includes(p.id)&&compare.length>=3} onChange={()=>toggleCompare(p.id)}/>{t('Compare','مقایسه')} <span dir="ltr">{p.code}</span></label></div>
+                {results.slice(0, visibleCount).map((p) => (
+                  <div className="showroom-card" key={p.id}><ProductCard p={p} onSelect={chooseProduct} /><label className="compare-choice"><input type="checkbox" checked={compare.includes(p.id)} disabled={!compare.includes(p.id)&&compare.length>=3} onChange={()=>toggleCompare(p.id)}/>{t('Compare','مقایسه')} <span dir="ltr">{p.code}</span></label></div>
                 ))}
               </div>
             ))}
+          {results.length > visibleCount && <button className="button catalog-more" onClick={() => setVisibleCount((count) => count + 12)}>{t('Show more components', 'نمایش قطعات بیشتر')} ({results.length - visibleCount})</button>}
         </div>
       </div>
       {compare.length>0&&<div className="comparison-dock"><span>{compare.length} / 3 {t('components selected','قطعه انتخاب شده')}</span><button className="button primary" disabled={compare.length<2} onClick={()=>setComparing(true)}>{t('Compare specifications','مقایسه مشخصات')}</button><button className="button" onClick={()=>setCompare([])}>{t('Clear','پاک کردن')}</button></div>}
       {comparing&&<Dialog title={t('Technical comparison','مقایسه فنی')} onClose={()=>setComparing(false)}><Comparison initial={compare}/></Dialog>}
-      {selected && <QuickView p={selected} onClose={() => setSelected(null)} />}
-    </main>
+    </Container>
   );
 }

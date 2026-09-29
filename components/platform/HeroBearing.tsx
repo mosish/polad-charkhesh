@@ -3,6 +3,7 @@ import { ArrowUpRight, Pause, Play } from 'lucide-react';
 import BearingModel from './BearingModel';
 import { usePlatform } from './Context';
 import type { BearingFamily } from './HeroBearingScene';
+import { publicHref } from '../../lib/public-links';
 const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
 export default function HeroBearing() {
@@ -104,7 +105,7 @@ export default function HeroBearing() {
           onClick={() => { if (reduced) setReduced(false); setPaused(!stopped); resetTilt(); }}>
           {stopped ? <Play size={16}/> : <Pause size={16}/>}
         </button>
-        <a href={content?.links?.heroVisual || '/engineering'} aria-label={t('Explore bearing engineering', 'کاوش مهندسی بیرینگ')}><ArrowUpRight size={20}/></a>
+        <a href={publicHref(content?.links?.heroVisual || '/engineering')} aria-label={t('Explore bearing engineering', 'کاوش مهندسی بیرینگ')}><ArrowUpRight size={20}/></a>
       </div>
     </div>
   </div>;

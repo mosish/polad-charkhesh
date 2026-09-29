@@ -329,6 +329,25 @@ html { scroll-behavior:smooth; scroll-padding-top:140px; }
 @media(max-width:760px){.comparison-selectors{grid-template-columns:1fr}.comparison-dock{bottom:8px;padding:12px;gap:8px}.comparison-dock .button{padding:10px}.navigation{backdrop-filter:blur(12px)}.fit-output strong{font-size:24px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal-pending{opacity:1;transform:none}}
 
+/* The catalog and engineering workbench now live in the continuous homepage. */
+.managed-home > section.one-page-workspace { width:auto; margin:32px 4%; border:1px solid var(--glass-line); border-radius:28px; background:linear-gradient(145deg,#bedaff0d,#0a172821 68%); box-shadow:var(--glass-shadow); overflow:clip; }
+.embedded-workspace .catalog-intro,.embedded-workspace .engineering-intro { display:block; margin:0; padding:42px 4% 8px; }
+.embedded-workspace :is(.catalog-intro,.engineering-intro) h2 { font-size:clamp(30px,3.2vw,48px); line-height:1.16; margin:12px 0; }
+.embedded-workspace :is(.catalog-intro,.engineering-intro) p { max-width:720px; margin:0; color:#b8cbdf; }
+.embedded-workspace .catalog-layout { padding-top:20px; padding-bottom:48px; gap:28px; }
+.embedded-workspace > .section:has(.manufacturer-library) { padding:0 4%; }
+.embedded-workspace .engineering-section { padding-top:22px; padding-bottom:48px; }
+.catalog-more { display:block; margin:30px auto 0; }
+.inline-product-detail { margin:18px 4%; padding:28px!important; border:1px solid #c9e5ff3a; border-radius:24px; background:linear-gradient(145deg,#b6d9fb16,#12264270); }
+.inline-detail-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:25px; }
+.inline-product-detail .product-detail-grid { padding:0; }
+@media(max-width:760px){
+  .managed-home > section.one-page-workspace { margin:20px 3%; border-radius:22px; }
+  .embedded-workspace .catalog-intro,.embedded-workspace .engineering-intro { padding:28px 5% 8px; }
+  .embedded-workspace .catalog-layout { gap:16px; padding:16px 5% 36px; }
+  .inline-product-detail { margin:12px 3%; padding:18px!important; }
+}
+
 .manufacturer-library { padding:20px; margin:20px 0; border:1px solid #c0ddff29; border-radius:16px; background:#a8d8f507; }
 .manufacturer-library summary { cursor:pointer; font-weight:500; }
 .resource-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin-top:16px; }

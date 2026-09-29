@@ -1,9 +1,7 @@
 import PageSection from './PageSection';
-import Copy from './Copy';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import {
   ArrowUpRight,
-  ArrowRight,
   Phone,
   Mail,
   MapPin,
@@ -18,8 +16,9 @@ import {
 } from 'lucide-react';
 import { usePlatform, DataState } from './Context';
 import { api } from '../../lib/api';
-import { ProductCard, QuickView } from './Product';
-import type { BearingProduct } from '../../domain/product';
+import { publicHref } from '../../lib/public-links';
+const Catalog = lazy(() => import('./Catalog'));
+const Engineering = lazy(() => import('./Engineering'));
 const industries = [
   ['Steel & metals', 'فولاد و فلزات', 'steel', Factory],
   ['Mining & cement', 'معدن و سیمان', 'mining', Mountain],
@@ -29,88 +28,21 @@ const industries = [
   ['Gearboxes & machinery', 'گیربکس و ماشین‌آلات', 'gearboxes', Settings2],
 ] as const;
 export default function HomeSections() {
-  const { products, fa, t, company, content, loading, error } = usePlatform();
-  const [selected, setSelected] = useState<BearingProduct | null>(null),
-    [busy, setBusy] = useState(false),
+  const { fa, t, company, content, loading, error } = usePlatform();
+  const [busy, setBusy] = useState(false),
     [formError, setFormError] = useState(''),
     [success, setSuccess] = useState(false);
   if (loading || error) return <DataState />;
   return (
     <>
       <PageSection id="featured">
-        <section className="section featured-section" id="catalog">
-          <div className="section-heading">
-            <div>
-              <div className="section-label">
-                02 / {t('COMPONENTS, CONSIDERED', 'انتخاب دقیق قطعات')}
-              </div>
-              <h2>
-                {t('Find your next solution.', 'راه‌حل بعدی را پیدا کنید.')}
-              </h2>
-            </div>
-            <a className="text-link" href={content.links.featured}>
-              {t('View all', 'مشاهده همه')} {products.length}{' '}
-              {t('components', 'قطعه')}
-              <ArrowUpRight size={20} />
-            </a>
-          </div>
-          <div className="product-grid">
-            {products
-              .filter((p) => p.featured)
-              .slice(0, 3)
-              .map((p) => (
-                <ProductCard key={p.id} p={p} onSelect={setSelected} />
-              ))}
-          </div>
+        <section className="one-page-workspace" id="catalog">
+          <Suspense fallback={<div className="state" role="status">{t('Loading catalog…', 'در حال بارگذاری کاتالوگ…')}</div>}><Catalog embedded /></Suspense>
         </section>
       </PageSection>
       <PageSection id="engineering">
-        <section className="engineering-invitation">
-          <div>
-            <div className="section-label">
-              03 / {t('ENGINEERING, WITH CONTEXT', 'مهندسی با شناخت کاربرد')}
-            </div>
-            <h2>{content.engineering[fa ? 'titleFa' : 'titleEn']}</h2>
-            <p>
-              {t(
-                'Go beyond the part number. Explore bearing geometry, calculate basic rating life and understand how operating conditions shape your selection.',
-                'فراتر از شماره فنی بروید؛ هندسه بیرینگ، عمر پایه و اثر شرایط کاری بر انتخاب را بررسی کنید.',
-              )}
-            </p>
-            <a className="button" href={content.links.engineering}>
-              {t('Open engineering workspace', 'ورود به کارگاه مهندسی')}
-              <ArrowRight size={18} />
-            </a>
-          </div>
-          <div className="formula-board">
-            <span>
-              <Copy text="BASIC RATING LIFE" />
-            </span>
-            <strong>
-              <Copy text="L₁₀ = (C/P)" />
-              <sup>
-                <Copy text="p" />
-              </sup>
-            </strong>
-            <p>
-              <Copy text="p = 3" />
-              <span>
-                <Copy text="Ball bearings" />
-              </span>
-            </p>
-            <p>
-              <Copy text="p = 10/3" />
-              <span>
-                <Copy text="Roller bearings" />
-              </span>
-            </p>
-            <small>
-              {t(
-                'From specification to an informed decision.',
-                'از مشخصات فنی تا تصمیم آگاهانه.',
-              )}
-            </small>
-          </div>
+        <section className="one-page-workspace" id="engineering">
+          <Suspense fallback={<div className="state" role="status">{t('Loading engineering tools…', 'در حال بارگذاری ابزارهای مهندسی…')}</div>}><Engineering embedded /></Suspense>
         </section>
       </PageSection>
       <PageSection id="industries">
@@ -131,7 +63,7 @@ export default function HomeSections() {
           </div>
           <div className="industry-grid">
             {content.cards.industries.map((card: any, i: number) => (
-              <a key={card.id} href={card.href || '/catalog'}>
+              <a key={card.id} href={publicHref(card.href || '/catalog')}>
                 <span className="industry-number">
                   {String(i + 1).padStart(2, '0')}
                 </span>
@@ -173,7 +105,7 @@ export default function HomeSections() {
                 <div>
                   <h3>
                     {card.href ? (
-                      <a href={card.href}>{card[fa ? 'titleFa' : 'titleEn']}</a>
+                      <a href={publicHref(card.href)}>{card[fa ? 'titleFa' : 'titleEn']}</a>
                     ) : (
                       card[fa ? 'titleFa' : 'titleEn']
                     )}
@@ -364,7 +296,6 @@ export default function HomeSections() {
           </form>
         </section>
       </PageSection>
-      {selected && <QuickView p={selected} onClose={() => setSelected(null)} />}
     </>
   );
 }

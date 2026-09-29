@@ -11,8 +11,16 @@ import {
 import { usePlatform } from './Context';
 import HomeSections from './HomeSections';
 import HeroBearing from './HeroBearing';
+import { publicHref } from '../../lib/public-links';
+import { useEffect } from 'react';
 export default function Home() {
-  const { fa, t, content } = usePlatform();
+  const { fa, t, content, loading } = usePlatform();
+  useEffect(() => {
+    if (loading || !location.hash) return;
+    const id = decodeURIComponent(location.hash.slice(1));
+    const timer = window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' }), 120);
+    return () => window.clearTimeout(timer);
+  }, [loading]);
   return (
     <main id="main" className="managed-home">
       <PageSection id="hero">
@@ -47,16 +55,24 @@ export default function Home() {
             </h1>
             <p>{content?.hero?.[fa ? 'descriptionFa' : 'descriptionEn']}</p>
             <div className="hero-actions">
-              <a className="button primary" href={content?.links?.heroPrimary}>
+              <a className="button primary" href={publicHref(content?.links?.heroPrimary)}>
                 {t('Explore product catalog', 'مشاهده کاتالوگ محصولات')}
                 <ArrowRight size={18} />
               </a>
-              <a className="text-link" href={content?.links?.heroSecondary}>
+              <a className="text-link" href={publicHref(content?.links?.heroSecondary)}>
                 {t('Talk to an engineer', 'مشاوره فنی')}
                 <ArrowUpRight size={18} />
               </a>
             </div>
-            <form className="hero-search" action="/catalog">
+            <form className="hero-search" action="/" onSubmit={(event) => {
+              event.preventDefault();
+              const query = String(new FormData(event.currentTarget).get('q') || '').trim();
+              const params = new URLSearchParams();
+              const language = new URLSearchParams(location.search).get('lang');
+              if (language) params.set('lang', language);
+              if (query) params.set('q', query);
+              location.assign('/' + (params.size ? '?' + params.toString() : '') + '#catalog');
+            }}>
               <Search size={20} />
               <input
                 aria-label="Search catalog"
@@ -72,9 +88,9 @@ export default function Home() {
             </form>
             <div className="search-hints">
               {t('QUICK SEARCH', 'جستجوی سریع')}{' '}
-              <a href="/catalog?q=6204">6204</a>
-              <a href="/catalog?q=22212">22212</a>
-              <a href="/catalog?q=NU208">
+              <a href="/?q=6204#catalog">6204</a>
+              <a href="/?q=22212#catalog">22212</a>
+              <a href="/?q=NU208#catalog">
                 <Copy text="NU208" />
               </a>
             </div>
@@ -115,7 +131,7 @@ export default function Home() {
                 </strong>
               </div>
               <a
-                href={content?.links?.heroVisual}
+                href={publicHref(content?.links?.heroVisual)}
                 aria-label="Explore engineering"
               >
                 <ArrowUpRight size={24} />
@@ -135,7 +151,7 @@ export default function Home() {
               )}
               <span>
                 {card.href ? (
-                  <a href={card.href}>{card[fa ? 'titleFa' : 'titleEn']}</a>
+                  <a href={publicHref(card.href)}>{card[fa ? 'titleFa' : 'titleEn']}</a>
                 ) : (
                   card[fa ? 'titleFa' : 'titleEn']
                 )}
@@ -143,7 +159,7 @@ export default function Home() {
               </span>
             </div>
           ))}
-          <a href={content?.links?.capabilities}>
+          <a href={publicHref(content?.links?.capabilities)}>
             {t('Explore engineering tools', 'ابزارهای مهندسی')}
             <ArrowUpRight size={19} />
           </a>

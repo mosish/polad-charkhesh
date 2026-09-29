@@ -41,13 +41,13 @@ export const siteExtras: any = {
         id: 'catalog',
         labelEn: 'Product catalog',
         labelFa: 'کاتالوگ محصولات',
-        href: '/catalog',
+        href: '/#catalog',
       },
       {
         id: 'engineering',
         labelEn: 'Engineering tools',
         labelFa: 'ابزارهای مهندسی',
-        href: '/engineering',
+        href: '/#engineering',
       },
       {
         id: 'industries',
@@ -64,12 +64,12 @@ export const siteExtras: any = {
     ],
   },
   links: {
-    heroPrimary: '/catalog',
+    heroPrimary: '/#catalog',
     heroSecondary: '/#contact',
-    heroVisual: '/engineering',
-    capabilities: '/engineering',
-    featured: '/catalog',
-    engineering: '/engineering',
+    heroVisual: '/#engineering',
+    capabilities: '/#engineering',
+    featured: '/#catalog',
+    engineering: '/#engineering',
     header: '/#contact',
   },
   cards: {

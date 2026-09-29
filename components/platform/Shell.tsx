@@ -7,6 +7,7 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { usePlatform } from './Context';
+import { publicHref } from '../../lib/public-links';
 export default function Shell({ children }: { children: React.ReactNode }) {
   const { fa, t, toggle, company, content } = usePlatform();
   return (
@@ -42,7 +43,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         </a>
         <nav aria-label={t('Main navigation', 'ناوبری اصلی')}>
           {content?.navigation?.items?.map((item: any) => (
-            <a key={item.id} href={item.href} aria-current={item.href === location.pathname ? 'page' : undefined}>
+            <a key={item.id} href={publicHref(item.href)}>
               {item[fa ? 'labelFa' : 'labelEn']}
             </a>
           ))}
@@ -55,7 +56,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <Globe2 size={16} />
           {fa ? 'EN' : 'فارسی'}
         </button>
-        <a className="nav-contact" href={content?.links?.header || '/#contact'}>
+        <a className="nav-contact" href={publicHref(content?.links?.header || '/#contact')}>
           {t('Let’s talk engineering', 'مشاوره مهندسی')}
           <ArrowUpRight size={16} />
         </a>

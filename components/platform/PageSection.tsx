@@ -1,5 +1,6 @@
 import { cloneElement, isValidElement, ReactNode } from 'react';
 import { usePlatform } from './Context';
+import { publicHref } from '../../lib/public-links';
 export default function PageSection({
   id,
   children,
@@ -35,7 +36,7 @@ export function CustomSections() {
                 <h2>{c[fa ? 'titleFa' : 'titleEn']}</h2>
                 <p>{c[fa ? 'descriptionFa' : 'descriptionEn']}</p>
                 {c.href && (
-                  <a className="button primary" href={c.href}>
+                  <a className="button primary" href={publicHref(c.href)}>
                     {c[fa ? 'buttonFa' : 'buttonEn']}
                   </a>
                 )}

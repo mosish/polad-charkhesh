@@ -428,7 +428,11 @@ input[type='range'] {
 }
 .honeypot {
   position: absolute;
-  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  pointer-events: none;
 }
 .error {
   color: #a83230 !important;

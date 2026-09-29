@@ -20,13 +20,13 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 | Area | Status | What this means now |
 | --- | --- | --- |
-| Public website and industrial visual system | 🟢 Implemented | Responsive dark glass design, company branding, and public sections are in place; final device review remains. |
+| Public website and industrial visual system | 🟢 Implemented | Responsive dark glass design, company branding, and a unified single-page public journey are in place; final device review remains. |
 | Persian/English experience | 🟢 Implemented | RTL/LTR and language switching exist; final copy parity needs review. |
 | Canonical product seed | ✅ Verified in tests | All 68 imported identities and engineering fields are preserved; manufacturer values still need business verification. |
-| Catalog search and product comparison | ✅ Verified in tests | Family/code/dimension filtering and up to three-product comparison are implemented. |
-| Product detail pages and documents | 🟢 Implemented | Specifications, 3D view, company-generated PDF, and attachment support exist; exact SKU media are incomplete. |
+| Catalog search and product comparison | ✅ Verified in tests | Family/code/dimension filtering and up to three-product comparison are available directly on the homepage. |
+| Product specifications and documents | 🟢 Implemented | Complete specifications, 3D view, company-generated PDF, and attachment support open within the homepage catalog; exact SKU media are incomplete. |
 | Animated bearing visuals | 🟢 Implemented | Five homepage family illustrations and assembled/exploded views; the product-specific Explorer also separates its four main assemblies. Models are illustrative. |
-| Engineering workspace | 🟢 Implemented | Basic life, fit/clearance guidance, comparison, and RPM-driven exploration; application review remains essential. |
+| Engineering workspace | 🟢 Implemented | Basic life, fit/clearance guidance, comparison, and RPM-driven exploration are on the homepage; application review remains essential. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
 | Admin content and product editing | 🟢 Implemented | Website, header, company, SEO, and product controls exist. The dashboard, duplicate draft, featured shortcut, and grouped company settings were checked locally; complete browser workflow audit remains. |
@@ -40,7 +40,13 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **20 tests**. The latest admin integration passed TypeScript checking and a local browser interaction check, including saving a duplicated product into an isolated test database. These checks do not replace final device and product-data review.
+The last full automated suite passed **20 tests**. The single-page integration passed TypeScript checking, a production build, and targeted local-browser checks of section links, product specifications, catalog search/show-more, engineering tabs, and English/Persian mobile layout. These checks do not replace final device and product-data review.
+
+## Public site layout
+
+The primary visitor experience is one continuous page at `/`: company introduction, full searchable catalog, inline technical specifications and documents, mechanical engineering reference tools, industries, and contact. The header and major calls to action jump to these sections instead of opening separate catalog or engineering pages. The catalog initially shows 12 matches and reveals more on request, keeping the page manageable while making all products searchable. Existing `/catalog`, `/engineering`, and `/product/:slug` URLs remain available for old bookmarks and indexing.
+
+Shareable one-page links include `/#catalog`, `/?q=6204#catalog`, `/?item=6204-2rs#catalog`, and `/?product=6204-2rs#engineering`. The admin website preview offers these same section views. Previously saved CMS links to the old catalog, engineering, and product paths are translated to their one-page targets when shown publicly.
 
 ---
 
@@ -111,6 +117,7 @@ Keep the public experience focused on company presentation, technical discovery,
 - **2026-09-28 — Project documentation:** Established this status dashboard and a same-commit README update practice.
 - **2026-09-28 — Family showcase and Explorer:** Expanded Precision in Motion to ball bearings, roller bearings, bearing accessories, engineered products, and track rollers. Added an assembled/exploded control to the product-specific Bearing Explorer, with labeled assemblies and paused rotation during inspection.
 - **2026-09-29 — Admin control center integration:** Compared the separate `PoladCharkhesh-local` admin and brought its useful dashboard and product-management patterns into this panel: grouped icon navigation, catalog and activity metrics, duplicate-as-draft, featured shortcut, and grouped bilingual company fields. The separate database and credentials were not imported because its catalog has unresolved differences.
+- **2026-09-29 — Unified public page:** Brought the complete catalog, inline product specifications/documents, and the mechanical engineering reference tools into the homepage. Updated navigation, CTAs, saved-link compatibility, and admin preview targets to use section links. Retained legacy URLs for existing bookmarks. Removed horizontal overflow in English and Persian layouts.
 
 ## Remaining roadmap
 

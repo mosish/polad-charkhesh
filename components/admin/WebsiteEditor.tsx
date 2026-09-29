@@ -7,18 +7,18 @@ const sections: any = {
   hero: ['Hero / first screen', 'صفحه نخست'],
   capabilities: ['Capabilities', 'توانمندی‌ها'],
   about: ['About the company', 'درباره شرکت'],
-  featured: ['Featured products', 'محصولات منتخب'],
-  engineering: ['Engineering invitation', 'معرفی ابزار مهندسی'],
+  featured: ['Product showroom', 'کاتالوگ محصولات'],
+  engineering: ['Engineering reference tools', 'ابزارهای مرجع مهندسی'],
   industries: ['Industries', 'صنایع'],
   why: ['Why choose us', 'مزیت‌ها'],
   support: ['Technical support', 'پشتیبانی فنی'],
   contact: ['Contact & inquiry', 'تماس و استعلام'],
 };
 const pages = [
-  ['/', 'Home'],
-  ['/catalog', 'Catalog'],
-  ['/engineering', 'Engineering'],
-  ['/product/6204-2rs', 'Product example'],
+  ['/', 'Full page'],
+  ['/#catalog', 'Catalog section'],
+  ['/#engineering', 'Engineering section'],
+  ['/?item=6204-2rs#catalog', 'Product specifications'],
 ];
 const groupLabels:any={Home:['Homepage','صفحه نخست'],HomeSections:['Home sections','بخش‌های صفحه نخست'],Shell:['Header & footer','سربرگ و پاورقی'],Catalog:['Product catalog','کاتالوگ محصولات'],Product:['Product details','جزئیات محصول'],Engineering:['Engineering tools','ابزارهای مهندسی'],Viewer:['Bearing explorer','نمایش بیرینگ'],Schematic:['Dimensional drawings','نقشه‌های ابعادی'],SectionView:['Section drawing','نقشه مقطع']};
 const linkLabels:any={heroPrimary:['Main hero button','دکمه اصلی صفحه نخست'],heroSecondary:['Hero consultation button','دکمه مشاوره صفحه نخست'],heroVisual:['Hero image button','دکمه تصویر نخست'],capabilities:['Capabilities button','دکمه توانمندی‌ها'],featured:['View all products','مشاهده همه محصولات'],engineering:['Engineering workspace button','دکمه کارگاه مهندسی'],header:['Header consultation button','دکمه مشاوره سربرگ']};
@@ -704,7 +704,7 @@ export default function WebsiteEditor({
             ref={frame}
             title="Website preview"
             className={width === 'mobile' ? 'mobile-preview' : ''}
-            src={route + '?preview=1&lang=' + previewLang}
+            src={route.split('#')[0] + (route.includes('?') ? '&' : '?') + 'preview=1&lang=' + previewLang + (route.includes('#') ? '#' + route.split('#')[1] : '')}
             onLoad={preview}
           />
           <small>
