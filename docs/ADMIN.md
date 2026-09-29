@@ -43,7 +43,7 @@ Editor and super-admin roles are enforced on the server. The first account is su
 
 ### Homepage bearing presentation
 
-In Website editor > Brand & images, use Homepage display to choose Animated bearing or Uploaded photograph. Save website applies the choice; the existing hero image is preserved. Animation headings and labels are editable in All website text. The homepage motion is a slow illustrative showcase; the engineering workspace retains its separate product RPM controls.
+In Website editor > Brand & images, use Homepage display to choose Animated bearing or Uploaded photograph. Save website applies the choice; the existing hero image is preserved. Animation headings and labels are editable in All website text. The homepage motion is a slow illustrative showcase; dedicated product pages retain product-specific RPM inspection.
 
 
 ### Three-dimensional bearing family showcase
@@ -51,18 +51,18 @@ The animated homepage offers five illustrative families: Ball bearings, Roller b
 
 Assembled and Exploded view controls smoothly separate four labeled assemblies. Assembly changes also work while motion is paused and respect reduced-motion preferences. All five families support exploded views, with part labels appropriate to each model. The roller family uses two inclined rows of barrel-shaped rollers and a shared curved outer raceway. The stage adapts to desktop and phone widths.
 
-The scene loads on demand and renders locally with Three.js. If WebGL is unavailable, assembled rolling families use the existing static drawing; exploded views show an explanatory label. No remote model or texture requests are required. The engineering workspace continues to use its separate product-specific RPM tools.
+The scene loads on demand and renders locally with Three.js. If WebGL is unavailable, assembled rolling families use the existing static drawing; exploded views show an explanatory label. No remote model or texture requests are required. Section 03 focuses on calculations and reference tools.
 
-### Bearing Explorer 3D cutaway
+### Product-page Bearing Explorer 3D cutaway
 Motion uses the physically shaded 3D renderer shared with the homepage. Bore, outside diameter and width use the selected catalog record with a uniform scale. Internal raceway profiles, count and cages remain illustrative estimates. Ball, angular-contact, self-aligning, cylindrical, needle, tapered and spherical/toroidal models vary their elements and row arrangement. Explicit double-row product names are respected. Section & dimensions remains the existing schematic; unsupported components retain that view. The former Thermal display was removed because its temperature estimate lacked the application inputs needed for a usable result.
 
 For supported 3D products, the Explorer also provides Assembled and Exploded view controls. The latter separates the selected product's outer ring, rolling elements, cage, and inner ring, labels them, and pauses displayed rotation until reassembled. The selected RPM remains available as an operating input.
 
-The RPM input remains shared with the calculator. Inner-ring, estimated cage and element-spin angles integrate elapsed time and the playback multiplier. Outer ring pose remains fixed. Pause, zero speed, hidden tabs and offscreen models stop the animation loop. At high RPM use 0.02x Inspection to see the parts clearly. A 2D fallback remains for unavailable WebGL. No product data or admin settings are replaced by this change.
+The product-page RPM input controls its viewer; the separate engineering life calculator has its own operating-speed input. Inner-ring, estimated cage and element-spin angles integrate elapsed time and the playback multiplier. Outer ring pose remains fixed. Pause, zero speed, hidden tabs and offscreen models stop the animation loop. At high RPM use 0.02x Inspection to see the parts clearly. A 2D fallback remains for unavailable WebGL. No product data or admin settings are replaced by this change.
 
 ### Product showroom and engineering references — 2026-09-09
 The catalog supports horizontal family filtering and code, dimension or application text search, including Persian digits. Filter URLs can be bookmarked. The grid shows two complete rows and a faded third-row preview before **Show more components**; on phones, cards use one column. Select a card or table row to open the floating gallery and specification panel. Up to three records can be compared in the engineering workspace.
 
-The floating product panel presents images, a dimensional drawing, ratings, dimensions and technical attributes together on desktop. It also links to the selected product in engineering tools, provides a generated company datasheet, and shows any attached product PDF. Dedicated product pages retain the geometry viewer and relevant official manufacturer references. Upload the exact photograph/gallery and PDF in Products > Media. Product media overrides the bundled family references. Missing manufacturer documents remain explicitly identified. Reference illustrations are not exact product photographs; unmatched types retain dimensional drawings.
+The floating product panel presents images, a dimensional drawing, available exploded view, ratings, dimensions and technical attributes together on desktop. It offers direct mobile and office call options from the saved company settings, a generated company datasheet, and any attached product PDF. Dedicated product pages retain the geometry viewer and relevant official manufacturer references. Upload the exact photograph/gallery and PDF in Products > Media. Product media overrides the bundled family references. Missing manufacturer documents remain explicitly identified. Reference illustrations are not exact product photographs; unmatched types retain dimensional drawings.
 
-Engineering adds a fit-limit explorer with worst-case clearance/interference ranges in micrometres, alongside the existing clearance guide and life calculator. New text is registered in All website text. Source links are curated in code. No commercial workflow is included.
+Engineering provides live life and known-equivalent-load estimates, a fit-limit explorer with worst-case clearance/interference ranges in micrometres, technical comparison, and unit conversion. Example calculation results appear immediately and update as inputs change. New text is registered in All website text. Source links are curated in code. No commercial workflow is included.

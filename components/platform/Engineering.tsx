@@ -2,46 +2,61 @@ import ManufacturerLibrary from './ManufacturerLibrary';
 import Comparison from './Comparison';
 import FitGuide from './FitGuide';
 import Copy from './Copy';
-import { useState } from 'react';
-import { Calculator, RotateCw, ArrowUpRight } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { RotateCcw } from 'lucide-react';
 import { calculate, basicLife } from '../../lib/engineering';
+import type { BearingProduct } from '../../domain/product';
 import { usePlatform, DataState } from './Context';
-import { BearingViewer } from './Viewer';
+
+type ToolTab = 'life' | 'basic' | 'fits' | 'compare' | 'converter';
+type CalculationPreview =
+  | { kind: 'life'; value: ReturnType<typeof calculate> }
+  | { kind: 'basic'; value: ReturnType<typeof basicLife> }
+  | { kind: 'error'; message: string }
+  | { kind: 'incomplete' }
+  | { kind: 'idle' };
+
+const numberInput = (value: string) => value.trim() === '' ? NaN : Number(value);
+const isRollerProduct = (product?: BearingProduct) => Boolean(product && ['tapered', 'spherical', 'cylindrical', 'needle', 'carb', 'spherical-thrust'].includes(product.schematicType));
+
 export default function Engineering({ embedded = false }: { embedded?: boolean }) {
   const { products, fa, t, loading, error, content } = usePlatform();
   const [selected, setSelected] = useState(
     new URLSearchParams(location.search).get('product') || '6204-2rs',
   );
-  const [tab, setTab] = useState('life'),
-    [fr, setFr] = useState(2),
-    [axial, setAxial] = useState(0),
-    [rpm, setRpm] = useState(1500),
+  const [tab, setTab] = useState<ToolTab>('life'),
+    [fr, setFr] = useState('2'),
+    [axial, setAxial] = useState('0'),
+    [rpm, setRpm] = useState('1500'),
     [rel, setRel] = useState(90),
-    [confirmed, setConfirmed] = useState(false),
-    [result, setResult] = useState<any>(null),
-    [err, setErr] = useState('');
+    [confirmed, setConfirmed] = useState(false);
   const [val, setVal] = useState(25.4),
     [unit, setUnit] = useState('mm-inch');
-  const [c, setC] = useState(13.5),
-    [load, setLoad] = useState(2),
-    [roller, setRoller] = useState(false);
+  const [cOverride, setCOverride] = useState<string | null>(null),
+    [load, setLoad] = useState('2'),
+    [rollerOverride, setRollerOverride] = useState<boolean | null>(null);
   const p = products.find((x) => x.slug === selected || x.id === selected) || products[0];
-  const clear = () => {
-    setResult(null);
-    setErr('');
-  };
-  const run = () => {
+  const c = cOverride ?? (p?.crKn > 0 ? String(p.crKn) : '');
+  const roller = rollerOverride ?? isRollerProduct(p);
+  const preview = useMemo<CalculationPreview>(() => {
+    if (!p || (tab !== 'life' && tab !== 'basic')) return { kind: 'idle' };
+    if ((tab === 'basic' ? [c, load, rpm] : [fr, axial, rpm]).some((value) => value.trim() === '')) return { kind: 'incomplete' };
     try {
-      setResult(
-        tab === 'basic'
-          ? basicLife(c, load, rpm, roller)
-          : calculate(p, fr, axial, rpm, rel, confirmed),
-      );
-      setErr('');
-    } catch (e: any) {
-      setErr(e.message);
-      setResult(null);
+      if (tab === 'basic') return { kind: 'basic', value: basicLife(numberInput(c), numberInput(load), numberInput(rpm), roller) };
+      return { kind: 'life', value: calculate(p, numberInput(fr), numberInput(axial), numberInput(rpm), rel, confirmed) };
+    } catch (e) {
+      return { kind: 'error', message: e instanceof Error ? e.message : 'Calculation unavailable.' };
     }
+  }, [p, tab, c, load, rpm, roller, fr, axial, rel, confirmed]);
+  const resetInputs = () => {
+    setFr(['thrust', 'spherical-thrust'].includes(p?.schematicType || '') ? '0' : '2');
+    setAxial(['thrust', 'spherical-thrust'].includes(p?.schematicType || '') ? '2' : '0');
+    setRpm('1500');
+    setRel(90);
+    setConfirmed(false);
+    setCOverride(null);
+    setLoad('2');
+    setRollerOverride(null);
   };
   const Container = embedded ? 'div' : 'main';
   return (
@@ -62,22 +77,20 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
               disabled={!products.length}
               onChange={(event) => {
                 setSelected(event.target.value);
-                const nextProduct = products.find((product) => (product.slug || product.id) === event.target.value);
-                if (nextProduct?.crKn) setC(nextProduct.crKn);
-                if (nextProduct) setRoller(['tapered', 'spherical', 'cylindrical', 'needle', 'carb', 'spherical-thrust'].includes(nextProduct.schematicType));
+                setCOverride(null);
+                setRollerOverride(null);
                 setConfirmed(false);
-                clear();
               }}
             >
               {products.map((product) => <option key={product.id} value={product.slug || product.id}>{product.code}</option>)}
             </select>
-            {p && <small dir="ltr">{p.d} × {p.D} × {p.B} mm</small>}
+            {p && <small dir="ltr">{p.d} × {p.D} × {p.B} mm{p.crKn > 0 ? ` · Cr ${p.crKn} kN` : ''}</small>}
           </label>
         </div>
         <p>
           {t(
-            'Explore bearing geometry, estimate basic rating life, and check your operating inputs.',
-            'هندسه بیرینگ را بررسی کنید، عمر پایه را برآورد کنید و شرایط کار را بسنجید.',
+            'Estimate bearing life as you adjust the inputs, then compare components and check fit limits.',
+            'با تغییر ورودی‌ها عمر بیرینگ را همان‌لحظه برآورد کنید، سپس قطعات را مقایسه و حدود انطباق را بررسی کنید.',
           )}
         </p>
       </section>
@@ -85,26 +98,23 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
       {!loading && !error && p && (
         <>
           <div className="section engineering-section">
-            <BearingViewer p={p} rpm={rpm} onRpmChange={(value) => { setRpm(value); clear(); }} />
             <div className="tool-header">
               <h2>{t('Engineering tools', 'ابزارهای مهندسی')}</h2>
             </div>
             <div className="tool-tabs">
-              {[
+              {([
                 ['life', 'Life & equivalent load', 'عمر و بار معادل'],
                 ['basic', 'Known equivalent load', 'بار معادل معلوم'],
-                ['converter', 'Unit converter', 'تبدیل واحد'],
-                ['clearance', 'Clearance guide', 'راهنمای لقی'],
                 ['fits', 'Fit limits', 'حدود انطباق'],
                 ['compare', 'Technical comparison', 'مقایسه فنی'],
-              ].map(([k, e, f]) => (
+                ['converter', 'Unit converter', 'تبدیل واحد'],
+              ] as const).map(([k, e, f]) => (
                 <button
                   key={k}
+                  type="button"
                   className={tab === k ? 'active' : ''}
-                  onClick={() => {
-                    setTab(k);
-                    clear();
-                  }}
+                  aria-pressed={tab === k}
+                  onClick={() => setTab(k)}
                 >
                   {t(e, f)}
                 </button>
@@ -112,17 +122,12 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
             </div>
             {tab==='compare'?<Comparison key={p.id} initial={[p.id]}/>:tab==='fits'?<FitGuide/>:['life', 'basic'].includes(tab) ? (
               <div className="calculator-grid">
-                <form
-                  className="panel"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    run();
-                  }}
-                >
+                <div className="panel">
                   <div className="section-label">
                     {t('OPERATING CONDITIONS', 'شرایط کارکرد')}
                   </div>
                   <h3>{t('Basic rating life', 'عمر نامی پایه')}</h3>
+                  <p className="engineering-live-hint">{t('Example operating inputs are shown; results update as you edit them.', 'ورودی‌های کاری نمونه نمایش داده شده‌اند؛ نتیجه با تغییر آنها به‌روز می‌شود.')}</p>
                   {tab === 'life' ? (
                     <>
                       <div className="form-grid">
@@ -133,10 +138,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                             min="0"
                             step="any"
                             value={fr}
-                            onChange={(e) => {
-                              setFr(Number(e.target.value));
-                              clear();
-                            }}
+                            onChange={(e) => setFr(e.target.value)}
                           />
                         </label>
                         <label>
@@ -146,10 +148,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                             min="0"
                             step="any"
                             value={axial}
-                            onChange={(e) => {
-                              setAxial(Number(e.target.value));
-                              clear();
-                            }}
+                            onChange={(e) => setAxial(e.target.value)}
                           />
                         </label>
                       </div>
@@ -157,10 +156,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                         {t('Reliability', 'قابلیت اطمینان')}
                         <select
                           value={rel}
-                          onChange={(e) => {
-                            setRel(Number(e.target.value));
-                            clear();
-                          }}
+                          onChange={(e) => setRel(Number(e.target.value))}
                         >
                           {[90, 95, 98, 99].map((x) => (
                             <option key={x} value={x}>
@@ -174,10 +170,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                           <input
                             type="checkbox"
                             checked={confirmed}
-                            onChange={(e) => {
-                              setConfirmed(e.target.checked);
-                              clear();
-                            }}
+                            onChange={(e) => setConfirmed(e.target.checked)}
                           />
                           {t(
                             'The bearing arrangement and induced axial loads have been reviewed.',
@@ -196,10 +189,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                             min="0.001"
                             step="any"
                             value={c}
-                            onChange={(e) => {
-                              setC(+e.target.value);
-                              clear();
-                            }}
+                            onChange={(e) => setCOverride(e.target.value)}
                           />
                         </label>
                         <label>
@@ -209,10 +199,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                             min="0.001"
                             step="any"
                             value={load}
-                            onChange={(e) => {
-                              setLoad(+e.target.value);
-                              clear();
-                            }}
+                            onChange={(e) => setLoad(e.target.value)}
                           />
                         </label>
                       </div>
@@ -220,10 +207,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                         {t('Bearing type', 'نوع بیرینگ')}
                         <select
                           value={roller ? 'roller' : 'ball'}
-                          onChange={(e) => {
-                            setRoller(e.target.value === 'roller');
-                            clear();
-                          }}
+                          onChange={(e) => setRollerOverride(e.target.value === 'roller')}
                         >
                           <option value="ball">
                             <Copy text="Ball · p = 3" />
@@ -248,52 +232,56 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                       min="1"
                       step="any"
                       value={rpm}
-                      onChange={(e) => {
-                        setRpm(+e.target.value);
-                        clear();
-                      }}
+                      onChange={(e) => setRpm(e.target.value)}
                     />
                   </label>
-                  <button className="button primary" type="submit">
-                    <Calculator size={18} />
-                    {t('Calculate rating life', 'محاسبه عمر پایه')}
+                  <button className="button" type="button" onClick={resetInputs}>
+                    <RotateCcw size={17} />
+                    {t('Reset example inputs', 'بازنشانی ورودی‌های نمونه')}
                   </button>
-                </form>
+                </div>
                 <div className="calculation-result" aria-live="polite">
                   <span className="section-label">
-                    {t('CALCULATION RESULT', 'نتیجه محاسبه')}
+                    {t('LIVE CALCULATION RESULT', 'نتیجه زنده محاسبه')}
                   </span>
-                  {err ? (
+                  {preview.kind === 'error' ? (
                     <>
                       <h3>
                         {t(
-                          'Engineering review required',
-                          'نیاز به بررسی مهندسی',
+                          'Check the inputs or product data',
+                          'ورودی‌ها یا اطلاعات محصول را بررسی کنید',
                         )}
                       </h3>
-                      <p className="error">{err}</p>
-                      <a href="/#contact" className="button">
-                        {t('Contact an engineer', 'ارتباط با کارشناس')}
-                      </a>
+                      <p className="error">{preview.message}</p>
+                      <div className="calculation-actions">
+                        {tab === 'life' && p.crKn > 0 && (
+                          <button type="button" className="button" onClick={() => setTab('basic')}>
+                            {t('Use known equivalent load', 'استفاده از بار معادل معلوم')}
+                          </button>
+                        )}
+                        <a href="/#contact" className="button">
+                          {t('Contact an engineer', 'ارتباط با کارشناس')}
+                        </a>
+                      </div>
                     </>
-                  ) : result ? (
+                  ) : preview.kind === 'life' || preview.kind === 'basic' ? (
                     <>
                       <div className="result-number">
-                        {Math.round(result.hours).toLocaleString()}
+                        {Math.round(preview.value.hours).toLocaleString()}
                         <small>{t('hours · L10h', 'ساعت · L10h')}</small>
                       </div>
                       <div className="result-metrics">
                         <div>
-                          <strong>{result.L10.toFixed(2)}</strong>
+                          <strong>{preview.value.L10.toFixed(2)}</strong>
                           <span>
                             <Copy text="L10 · 10⁶ rev" />
                           </span>
                         </div>
-                        {result.P !== undefined && (
+                        {preview.kind === 'life' ? (
                           <>
                             <div>
                               <strong>
-                                {result.P.toFixed(3)}
+                                {preview.value.P.toFixed(3)}
                                 <Copy text="kN" />
                               </strong>
                               <span>
@@ -301,7 +289,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                               </span>
                             </div>
                             <div>
-                              <strong>{result.safety.toFixed(2)}</strong>
+                              <strong>{preview.value.safety.toFixed(2)}</strong>
                               <span>
                                 {t(
                                   'Static safety C₀/P₀',
@@ -312,22 +300,27 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                             <div>
                               <strong>
                                 {Math.round(
-                                  result.adjustedHours,
+                                  preview.value.adjustedHours,
                                 ).toLocaleString()}{' '}
                                 <Copy text="h" />
                               </strong>
                               <span>
                                 <Copy text="a₁ =" />
-                                {result.a1}
+                                {preview.value.a1}
                               </span>
                             </div>
                           </>
+                        ) : (
+                          <>
+                            <div><strong>{numberInput(c).toLocaleString()} kN</strong><span>{t('Dynamic rating C', 'ظرفیت دینامیکی C')}</span></div>
+                            <div><strong>{numberInput(load).toLocaleString()} kN</strong><span>{t('Known equivalent load P', 'بار معادل معلوم P')}</span></div>
+                            <div><strong>{roller ? '10/3' : '3'}</strong><span>{t('Life exponent p', 'توان عمر p')}</span></div>
+                          </>
                         )}
                       </div>
-                      <code>{result.formula || 'L10 = (C/P)^p'}</code>
-                      <p>{t('L10 is the fatigue life reached or exceeded by 90% of a sufficiently large group of identical bearings under the same conditions. It is not a guaranteed service interval.','L10 عمر خستگی است که ۹۰٪ گروه بزرگی از بیرینگ‌های یکسان در شرایط یکسان به آن می‌رسند یا از آن عبور می‌کنند؛ زمان سرویس تضمین‌شده نیست.')}</p>
-                      <p>{t('Hours = million revolutions × 1,000,000 ÷ (60 × RPM).','ساعت = میلیون دور × ۱٬۰۰۰٬۰۰۰ ÷ (۶۰ × دور در دقیقه).')}</p>
-                      {result.overspeed && (
+                      <code>{preview.kind === 'life' ? preview.value.formula : 'L10 = (C/P)^p'}</code>
+                      <p>{t('L10 is a statistical fatigue-life estimate, not a guaranteed service interval.','L10 برآورد آماری عمر خستگی است و زمان سرویس تضمین‌شده نیست.')}</p>
+                      {preview.kind === 'life' && preview.value.overspeed && (
                         <p className="error">
                           {t(
                             'Speed exceeds at least one catalog lubricant speed rating. Check the lubricant-specific limit.',
@@ -338,17 +331,16 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                     </>
                   ) : (
                     <>
-                      <RotateCw size={40} />
                       <h3>
                         {t(
-                          'Start with your operating loads.',
-                          'از بارهای کاری شروع کنید.',
+                          'Enter all required values',
+                          'همه مقادیر ضروری را وارد کنید',
                         )}
                       </h3>
                       <p>
                         {t(
-                          'Your basic rating life, equivalent load and static safety factor will appear here.',
-                          'عمر پایه، بار معادل و ضریب اطمینان استاتیکی در این بخش نمایش داده می‌شوند.',
+                          'The result will update as soon as the inputs are complete.',
+                          'به‌محض کامل شدن ورودی‌ها، نتیجه به‌روز می‌شود.',
                         )}
                       </p>
                     </>
@@ -413,39 +405,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                   ).toLocaleString(undefined, { maximumFractionDigits: 6 })}
                 </output>
               </div>
-            ) : (
-              <div className="panel">
-                <h3>
-                  {t(
-                    'Clearance is an application decision.',
-                    'لقی با توجه به کاربرد انتخاب می‌شود.',
-                  )}
-                </h3>
-                <p>
-                  {t(
-                    'CN denotes normal internal clearance; C3 is greater than normal and C4 greater than C3. These are clearance groups, not accuracy classes. Exact micrometre ranges vary with bore and bearing family.',
-                    'CN نشان‌دهنده لقی داخلی نرمال، C3 بیشتر از نرمال و C4 بیشتر از C3 است. این‌ها گروه لقی هستند، نه کلاس دقت. دامنه دقیق میکرومتری به قطر داخلی و خانواده بیرینگ بستگی دارد.',
-                  )}
-                </p>
-                <p>
-                  {t(
-                    'Available options in this record:',
-                    'گزینه‌های این رکورد:',
-                  )}{' '}
-                  <code>{p.clearanceOptions.join(' / ')}</code>
-                </p>
-                <p>
-                  {t(
-                    'Interference fits and temperature differences can reduce operating clearance. Confirm residual clearance with manufacturer tables.',
-                    'انطباق تداخلی و اختلاف دما می‌توانند لقی کارکرد را کاهش دهند. لقی باقیمانده را با جداول سازنده بررسی کنید.',
-                  )}
-                </p>
-                <a className="button" href={'/?item=' + encodeURIComponent(p.slug || p.id) + '#catalog'}>
-                  {t('View source record', 'مشاهده رکورد منبع')}
-                  <ArrowUpRight size={16} />
-                </a>
-              </div>
-            )}
+            ) : null}
             {!embedded && <ManufacturerLibrary/>}
             <div className="source-note">
               {t('Calculation reference', 'مرجع محاسبات')}:{' '}

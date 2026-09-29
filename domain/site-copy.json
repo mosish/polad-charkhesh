@@ -173,22 +173,82 @@
     "fa": "کد کوتاه‌تر وارد کنید یا فیلتر ابعاد را بردارید.",
     "group": "Catalog"
   },
-  "txt_2186304": {
-    "original": "MECHANICAL ENGINEERING WORKSPACE",
-    "en": "MECHANICAL ENGINEERING WORKSPACE",
-    "fa": "کارگاه مهندسی مکانیک",
-    "group": "Engineering"
-  },
   "txt_d20c24c7": {
     "original": "Make the numbers work.",
     "en": "Make the numbers work.",
     "fa": "انتخاب بر پایه محاسبه.",
     "group": "Engineering"
   },
-  "txt_93f35269": {
-    "original": "Explore bearing geometry, estimate basic rating life, and check your operating inputs.",
-    "en": "Explore bearing geometry, estimate basic rating life, and check your operating inputs.",
-    "fa": "هندسه بیرینگ را بررسی کنید، عمر پایه را برآورد کنید و شرایط کار را بسنجید.",
+  "txt_3040ede7": {
+    "original": "Estimate bearing life as you adjust the inputs, then compare components and check fit limits.",
+    "en": "Estimate bearing life as you adjust the inputs, then compare components and check fit limits.",
+    "fa": "با تغییر ورودی‌ها عمر بیرینگ را همان‌لحظه برآورد کنید، سپس قطعات را مقایسه و حدود انطباق را بررسی کنید.",
+    "group": "Engineering"
+  },
+  "txt_3204eff1": {
+    "original": "Example operating inputs are shown; results update as you edit them.",
+    "en": "Example operating inputs are shown; results update as you edit them.",
+    "fa": "ورودی‌های کاری نمونه نمایش داده شده‌اند؛ نتیجه با تغییر آنها به‌روز می‌شود.",
+    "group": "Engineering"
+  },
+  "txt_8af728e7": {
+    "original": "Reset example inputs",
+    "en": "Reset example inputs",
+    "fa": "بازنشانی ورودی‌های نمونه",
+    "group": "Engineering"
+  },
+  "txt_fa4149d3": {
+    "original": "LIVE CALCULATION RESULT",
+    "en": "LIVE CALCULATION RESULT",
+    "fa": "نتیجه زنده محاسبه",
+    "group": "Engineering"
+  },
+  "txt_d1e83baf": {
+    "original": "Check the inputs or product data",
+    "en": "Check the inputs or product data",
+    "fa": "ورودی‌ها یا اطلاعات محصول را بررسی کنید",
+    "group": "Engineering"
+  },
+  "txt_ef16059b": {
+    "original": "Use known equivalent load",
+    "en": "Use known equivalent load",
+    "fa": "استفاده از بار معادل معلوم",
+    "group": "Engineering"
+  },
+  "txt_4a2dcc5e": {
+    "original": "Dynamic rating C",
+    "en": "Dynamic rating C",
+    "fa": "ظرفیت دینامیکی C",
+    "group": "Engineering"
+  },
+  "txt_c575ec18": {
+    "original": "Known equivalent load P",
+    "en": "Known equivalent load P",
+    "fa": "بار معادل معلوم P",
+    "group": "Engineering"
+  },
+  "txt_457601ae": {
+    "original": "Life exponent p",
+    "en": "Life exponent p",
+    "fa": "توان عمر p",
+    "group": "Engineering"
+  },
+  "txt_e4af2054": {
+    "original": "L10 is a statistical fatigue-life estimate, not a guaranteed service interval.",
+    "en": "L10 is a statistical fatigue-life estimate, not a guaranteed service interval.",
+    "fa": "L10 برآورد آماری عمر خستگی است و زمان سرویس تضمین‌شده نیست.",
+    "group": "Engineering"
+  },
+  "txt_fdcd9e73": {
+    "original": "Enter all required values",
+    "en": "Enter all required values",
+    "fa": "همه مقادیر ضروری را وارد کنید",
+    "group": "Engineering"
+  },
+  "txt_819821e": {
+    "original": "The result will update as soon as the inputs are complete.",
+    "en": "The result will update as soon as the inputs are complete.",
+    "fa": "به‌محض کامل شدن ورودی‌ها، نتیجه به‌روز می‌شود.",
     "group": "Engineering"
   },
   "txt_111c183b": {
@@ -281,24 +341,6 @@
     "fa": "سرعت دوران / rpm",
     "group": "Engineering"
   },
-  "txt_113ad86a": {
-    "original": "Calculate rating life",
-    "en": "Calculate rating life",
-    "fa": "محاسبه عمر پایه",
-    "group": "Engineering"
-  },
-  "txt_55be7b5b": {
-    "original": "CALCULATION RESULT",
-    "en": "CALCULATION RESULT",
-    "fa": "نتیجه محاسبه",
-    "group": "Engineering"
-  },
-  "txt_c6bbfbe5": {
-    "original": "Engineering review required",
-    "en": "Engineering review required",
-    "fa": "نیاز به بررسی مهندسی",
-    "group": "Engineering"
-  },
   "txt_bc7a0413": {
     "original": "Contact an engineer",
     "en": "Contact an engineer",
@@ -353,18 +395,6 @@
     "fa": "سرعت از حد مجاز حداقل یکی از روانکارها بالاتر است. حد مرتبط با روانکار را بررسی کنید.",
     "group": "Engineering"
   },
-  "txt_ade8b2e0": {
-    "original": "Start with your operating loads.",
-    "en": "Start with your operating loads.",
-    "fa": "از بارهای کاری شروع کنید.",
-    "group": "Engineering"
-  },
-  "txt_825d6f90": {
-    "original": "Your basic rating life, equivalent load and static safety factor will appear here.",
-    "en": "Your basic rating life, equivalent load and static safety factor will appear here.",
-    "fa": "عمر پایه، بار معادل و ضریب اطمینان استاتیکی در این بخش نمایش داده می‌شوند.",
-    "group": "Engineering"
-  },
   "txt_d5f3da6": {
     "original": "Basic rating life only. Reliability adjustment is not full ISO 281 modified life. Lubrication, contamination, fit and duty cycle require separate assessment.",
     "en": "Basic rating life only. Reliability adjustment is not full ISO 281 modified life. Lubrication, contamination, fit and duty cycle require separate assessment.",
@@ -417,36 +447,6 @@
     "original": "rpm → rad/s",
     "en": "rpm → rad/s",
     "fa": "rpm → rad/s",
-    "group": "Engineering"
-  },
-  "txt_271b2f4c": {
-    "original": "Clearance is an application decision.",
-    "en": "Clearance is an application decision.",
-    "fa": "لقی با توجه به کاربرد انتخاب می‌شود.",
-    "group": "Engineering"
-  },
-  "txt_c14b9cda": {
-    "original": "CN denotes normal internal clearance; C3 is greater than normal and C4 greater than C3. These are clearance groups, not accuracy classes. Exact micrometre ranges vary with bore and bearing family.",
-    "en": "CN denotes normal internal clearance; C3 is greater than normal and C4 greater than C3. These are clearance groups, not accuracy classes. Exact micrometre ranges vary with bore and bearing family.",
-    "fa": "CN نشان‌دهنده لقی داخلی نرمال، C3 بیشتر از نرمال و C4 بیشتر از C3 است. این‌ها گروه لقی هستند، نه کلاس دقت. دامنه دقیق میکرومتری به قطر داخلی و خانواده بیرینگ بستگی دارد.",
-    "group": "Engineering"
-  },
-  "txt_1d5e9d32": {
-    "original": "Available options in this record:",
-    "en": "Available options in this record:",
-    "fa": "گزینه‌های این رکورد:",
-    "group": "Engineering"
-  },
-  "txt_6a62a96a": {
-    "original": "Interference fits and temperature differences can reduce operating clearance. Confirm residual clearance with manufacturer tables.",
-    "en": "Interference fits and temperature differences can reduce operating clearance. Confirm residual clearance with manufacturer tables.",
-    "fa": "انطباق تداخلی و اختلاف دما می‌توانند لقی کارکرد را کاهش دهند. لقی باقیمانده را با جداول سازنده بررسی کنید.",
-    "group": "Engineering"
-  },
-  "txt_85b7096e": {
-    "original": "View source record",
-    "en": "View source record",
-    "fa": "مشاهده رکورد منبع",
     "group": "Engineering"
   },
   "txt_5b321bd7": {

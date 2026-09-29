@@ -2,6 +2,8 @@
 
 Prepared 2026-09-08. This is a local deliverable; no public deployment was performed.
 
+This report records the original validation snapshot. The current engineering layout removes the separate Explorer and Clearance guide and calculates life results live; see the README for current status. The revised controls still require final interactive browser review.
+
 ## 1. Architecture
 
 React and TypeScript from the Sites starter, a dedicated Vite client build, Express on Node, and SQLite persistence. Public components, administration, domain records, engineering functions, API services, and PDF generation are separated. The VPS build produces `dist/client` and `dist/server`. See [architecture](ARCHITECTURE.md).
