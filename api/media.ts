@@ -4,6 +4,11 @@ import { mkdirSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { authenticated } from './security';
 import { db, parse, audit } from './database';
+if (
+  process.env.NODE_ENV === 'production' &&
+  (!process.env.UPLOAD_DIR || !path.isAbsolute(process.env.UPLOAD_DIR))
+)
+  throw new Error('UPLOAD_DIR must be an absolute persistent path in production.');
 export const uploadDir = path.resolve(process.env.UPLOAD_DIR || 'data/uploads');
 mkdirSync(uploadDir, { recursive: true });
 export const media = Router();

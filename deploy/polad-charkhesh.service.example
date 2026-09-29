@@ -1,0 +1,26 @@
+[Unit]
+Description=Polad Charkhesh website and API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=polad-charkhesh
+Group=polad-charkhesh
+WorkingDirectory=/opt/polad-charkhesh/current
+EnvironmentFile=/etc/polad-charkhesh/env
+ExecStart=/usr/bin/node /opt/polad-charkhesh/current/dist/server/index.js
+Restart=on-failure
+RestartSec=5
+UMask=0077
+StateDirectory=polad-charkhesh
+StateDirectoryMode=0700
+ReadWritePaths=/var/lib/polad-charkhesh
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+NoNewPrivileges=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target

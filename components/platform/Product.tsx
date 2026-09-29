@@ -375,7 +375,14 @@ export function ShowroomProductPanel({
 }
 export default function ProductPage() {
   const { products, loading, error, t, fa, seo } = usePlatform();
-  const slug = decodeURIComponent(location.pathname.split('/').pop() || '');
+  let slug = '';
+  try {
+    slug = decodeURIComponent(
+      location.pathname.replace(/\/+$/, '').split('/').pop() || '',
+    );
+  } catch {
+    // A malformed product URL resolves to the ordinary not-found view.
+  }
   const p = products.find((p) => p.slug === slug);
   useEffect(() => {
     if (!p || !seo) return;

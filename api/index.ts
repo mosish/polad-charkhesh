@@ -112,14 +112,28 @@ app.get('/sitemap.xml', (req, res) => {
     );
 });
 if (production) {
+  app.use(
+    '/assets',
+    express.static(path.resolve('dist/client/assets'), {
+      immutable: true,
+      maxAge: '1y',
+    }),
+  );
   app.use(express.static(path.resolve('dist/client'), { index: false }));
   app.get('/{*path}', (req, res) => {
-    const p = req.path.startsWith('/product/')
-      ? product(decodeURIComponent(req.path.slice(9)))
-      : null;
-    const missing = req.path.startsWith('/product/')
+    const routePath = req.path === '/' ? '/' : req.path.replace(/\/+$/, '');
+    let productSlug = '';
+    if (routePath.startsWith('/product/')) {
+      try {
+        productSlug = decodeURIComponent(routePath.slice(9));
+      } catch {
+        // Malformed product URLs are missing pages, not server errors.
+      }
+    }
+    const p = productSlug ? product(productSlug) : null;
+    const missing = routePath.startsWith('/product/')
       ? !p || p.isArchived
-      : !['/', '/catalog', '/engineering', '/admin'].includes(req.path);
+      : !['/', '/catalog', '/engineering', '/admin'].includes(routePath);
     const fa =
       req.query.lang === 'fa' ||
       (req.query.lang !== 'en' && req.hostname.endsWith('.ir'));
@@ -171,7 +185,11 @@ if (production) {
         };
     html = html.replace(
       '</head>',
-      `<link rel="canonical" href="${escape(base + req.path)}"/><link rel="alternate" hreflang="en" href="${escape(seo.domainEn + req.path)}"/><link rel="alternate" hreflang="fa" href="${escape(seo.domainFa + req.path)}"/><meta property="og:title" content="${escape(title)}"/><meta property="og:description" content="${escape(description)}"/><meta property="og:url" content="${escape(base + req.path)}"/><meta name="twitter:card" content="summary"/>${req.path === '/admin' || missing ? '<meta name="robots" content="noindex,nofollow"/>' : ''}<script type="application/ld+json">${JSON.stringify(json).replace(/</g, '\\u003c')}</script></head>`,
+      `<link rel="canonical" href="${escape(base + routePath)}"/><link rel="alternate" hreflang="en" href="${escape(seo.domainEn + routePath)}"/><link rel="alternate" hreflang="fa" href="${escape(seo.domainFa + routePath)}"/><meta property="og:title" content="${escape(title)}"/><meta property="og:description" content="${escape(description)}"/><meta property="og:url" content="${escape(base + routePath)}"/><meta name="twitter:card" content="summary"/>${routePath === '/admin' || missing ? '<meta name="robots" content="noindex,nofollow"/>' : ''}<script type="application/ld+json">${JSON.stringify(json).replace(/</g, '\\u003c')}</script></head>`,
+    );
+    res.set(
+      'Cache-Control',
+      routePath === '/admin' || missing ? 'no-store' : 'no-cache',
     );
     res.status(missing ? 404 : 200).send(html);
   });

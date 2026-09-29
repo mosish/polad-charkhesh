@@ -29,19 +29,19 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Engineering workspace | 🟢 Implemented | Basic life, fit/clearance guidance, comparison, and RPM-driven exploration are on the homepage; application review remains essential. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
-| Admin content and product editing | 🟢 Implemented | Website, header, company, SEO, and product controls exist. The dashboard, duplicate draft, featured shortcut, and grouped company settings were checked locally; complete browser workflow audit remains. |
+| Admin content and product editing | 🟢 Implemented | All modules opened in an isolated production browser session. Product editing, website preview/save, inquiry review, and mobile navigation worked; full media, SEO, roles and restore UI review remains. |
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
-| Backup and restore | 🟢 Implemented | Data export/restore is tested; uploaded file bytes and account secrets are outside backup JSON. |
-| Exact product photos and manufacturer PDFs | 🟡 Pending content | Family reference images and company-generated datasheets must not be presented as exact manufacturer assets. |
+| Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
+| Exact product photos and manufacturer PDFs | 🟡 Pending content | The bundled 68-product seed has no exact-product uploads or attached manufacturer PDFs. Family references and company-generated datasheets are labeled separately; runtime admin uploads may differ. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | 🟡 Pending | TypeScript, tests, and production build pass; the repository-wide lint command still reports rule violations across application and test files. |
 | Multi-contributor coordination | 🟢 Documented | The GitHub workflow guide covers branch checks and synchronization; no automated enforcement is configured. |
-| VPS deployment and production smoke test | ⬜ Not started | No public deployment has been performed. |
+| VPS deployment and production smoke test | 🟡 Preparation | The built Node server passes an isolated production smoke check, and systemd/Nginx templates are available. Hosting, TLS, content approval and live verification remain. |
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **20 tests**. TypeScript checking and a production build pass. Targeted local-browser checks cover section links, the floating product panel, the two-row catalog preview and expansion, engineering component selection, and desktop/mobile layout. These checks do not replace final device and product-data review.
+The last full automated suite passed **21 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -120,6 +120,7 @@ Keep the public experience focused on company presentation, technical discovery,
 - **2026-09-29 — Admin control center integration:** Compared the separate `PoladCharkhesh-local` admin and brought its useful dashboard and product-management patterns into this panel: grouped icon navigation, catalog and activity metrics, duplicate-as-draft, featured shortcut, and grouped bilingual company fields. The separate database and credentials were not imported because its catalog has unresolved differences.
 - **2026-09-29 — Unified public page:** Brought the complete catalog, product specifications/documents, and the mechanical engineering reference tools into the homepage. Updated navigation, CTAs, saved-link compatibility, and admin preview targets to use section links. Retained legacy URLs for existing bookmarks. Removed horizontal overflow in English and Persian layouts.
 - **2026-09-29 — Showroom refinement:** Moved product details into a compact image-and-specification panel, simplified the catalog to horizontal family filters and a two-row preview, and placed product selection beside the engineering heading. Removed the illustrative Thermal view because it did not calculate a defensible operating temperature.
+- **2026-09-29 — Deployment preparation:** Added an isolated built-server smoke check, corrected trailing-slash production routes including `/admin/`, required stable production secrets and absolute data paths, and created verified SQLite/upload backup tools plus generic VPS templates. Hosting and business-data approval are still pending.
 
 ## Remaining roadmap
 
@@ -136,7 +137,7 @@ Any visible admin control should work end to end or be clearly disabled before l
 
 ## Run locally
 
-Requires Node.js **22.13 or newer** (Node 24 recommended) and pnpm.
+Requires Node.js **22.16 or newer** (Node 24 recommended) and pnpm.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -149,6 +150,7 @@ Open the [public site](http://127.0.0.1:5173/) or [admin panel](http://127.0.0.1
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm smoke:production
 ```
 
 Do not commit `.env`, `data/`, uploaded files, or credentials. GitHub contains the application source and bundled public assets, not the running site's private content. The [GitHub workflow guide](docs/GITHUB.md) explains synchronization.

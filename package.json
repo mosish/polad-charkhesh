@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=22.16.0"
   },
   "scripts": {
     "dev": "tsx scripts/dev.ts",
@@ -14,7 +14,10 @@
     "dev:web": "vite --config vite.vps.config.ts",
     "dev:api": "tsx watch api/index.ts",
     "typecheck": "tsc --noEmit -p tsconfig.platform.json",
-    "test": "tsx --test tests/*.test.ts"
+    "test": "tsx --test tests/*.test.ts",
+    "smoke:production": "tsx scripts/production-smoke.ts",
+    "backup:data": "tsx scripts/backup-data.ts",
+    "verify:backup": "tsx scripts/verify-backup.ts"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

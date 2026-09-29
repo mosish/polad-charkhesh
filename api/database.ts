@@ -5,6 +5,11 @@ import crypto from 'node:crypto';
 import { bearingProducts } from '../domain/catalog';
 import { COMPANY_INFO } from '../domain/company';
 import { upgradeContent } from '../domain/site-content';
+if (
+  process.env.NODE_ENV === 'production' &&
+  (!process.env.DATABASE_PATH || !path.isAbsolute(process.env.DATABASE_PATH))
+)
+  throw new Error('DATABASE_PATH must be an absolute persistent path in production.');
 const filename =
   process.env.DATABASE_PATH || path.resolve('data/platform.sqlite');
 mkdirSync(path.dirname(filename), { recursive: true });

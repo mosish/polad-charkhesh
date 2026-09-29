@@ -5,10 +5,19 @@ const pbkdf2 = promisify(crypto.pbkdf2);
 export const production = process.env.NODE_ENV === 'production';
 if (
   production &&
-  (!process.env.SESSION_SECRET?.trim() || !process.env.COOKIE_SECRET?.trim())
+  ((process.env.SESSION_SECRET?.trim().length || 0) < 32 ||
+    (process.env.COOKIE_SECRET?.trim().length || 0) < 32)
 )
   throw new Error(
-    'SESSION_SECRET and COOKIE_SECRET are required in production.',
+    'SESSION_SECRET and COOKIE_SECRET must each contain at least 32 characters in production.',
+  );
+if (
+  production &&
+  !(db.prepare('SELECT count(*) AS n FROM admins').get() as { n: number }).n &&
+  (process.env.SETUP_TOKEN?.trim().length || 0) < 24
+)
+  throw new Error(
+    'SETUP_TOKEN must contain at least 24 characters until the first administrator is created.',
   );
 export const cookieSecret =
   process.env.COOKIE_SECRET || crypto.randomBytes(32).toString('hex');
