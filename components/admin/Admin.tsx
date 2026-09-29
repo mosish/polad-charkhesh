@@ -3,7 +3,6 @@ import {
   ArrowUpRight,
   Plus,
   Search,
-  LockKeyhole,
   Package,
   Inbox,
   Settings,
@@ -12,6 +11,14 @@ import {
   FileText,
   Building2,
   ShieldCheck,
+  LayoutDashboard,
+  Menu,
+  X,
+  Globe,
+  PanelTop,
+  ScrollText,
+  Copy,
+  Star,
 } from 'lucide-react';
 import { api } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
@@ -20,16 +27,22 @@ import ProductEditor from './ProductEditor';
 import SettingsEditor from './SettingsEditor';
 import WebsiteEditor from './WebsiteEditor';
 const tabs = [
-  ['overview', 'Overview', 'نمای کلی'],
-  ['products', 'Products', 'محصولات'],
-  ['media', 'Media', 'رسانه'],
-  ['company', 'Company', 'شرکت'],
-  ['inquiries', 'Inquiries', 'استعلام‌ها'],
-  ['content', 'Website editor', 'ویرایشگر وب‌سایت'],
-  ['header', 'Header', 'سربرگ'],
-  ['seo', 'SEO', 'سئو'],
-  ['system', 'System & security', 'سیستم و امنیت'],
-  ['audit', 'Audit logs', 'گزارش رویدادها'],
+  ['overview', 'Overview', 'نمای کلی', LayoutDashboard],
+  ['products', 'Products', 'محصولات', Package],
+  ['media', 'Media', 'رسانه', ImageIcon],
+  ['company', 'Company', 'شرکت', Building2],
+  ['inquiries', 'Inquiries', 'استعلام‌ها', Inbox],
+  ['content', 'Website editor', 'ویرایشگر وب‌سایت', FileText],
+  ['header', 'Header', 'سربرگ', PanelTop],
+  ['seo', 'SEO', 'سئو', Globe],
+  ['system', 'System & security', 'سیستم و امنیت', Settings],
+  ['audit', 'Audit logs', 'گزارش رویدادها', ScrollText],
+] as const;
+const tabGroups = [
+  { labelEn: 'Dashboard', labelFa: 'داشبورد', ids: ['overview'] },
+  { labelEn: 'Catalog & communication', labelFa: 'کاتالوگ و ارتباطات', ids: ['products', 'media', 'inquiries'] },
+  { labelEn: 'Website', labelFa: 'وب‌سایت', ids: ['content', 'header', 'company', 'seo'] },
+  { labelEn: 'Administration', labelFa: 'مدیریت سامانه', ids: ['system', 'audit'] },
 ];
 export default function Admin() {
   const { fa, t, toggle, reload, content } = usePlatform();
@@ -46,7 +59,9 @@ export default function Admin() {
     [confirm, setConfirm] = useState<any>(null),
     [typed, setTyped] = useState(''),
     [backup, setBackup] = useState<any>(null),
-    [settingsDirty, setSettingsDirty] = useState(false);
+    [settingsDirty, setSettingsDirty] = useState(false),
+    [mobileMenuOpen, setMobileMenuOpen] = useState(false),
+    [duplicateSource, setDuplicateSource] = useState('');
   const check = () =>
     api('/auth/status')
       .then(setStatus)
@@ -103,6 +118,7 @@ export default function Admin() {
       return;
     setSettingsDirty(false);
     setTab(x);
+    setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
     setQ('');
     setFilter('all');
@@ -235,22 +251,26 @@ export default function Admin() {
   return (
     <main id="main" className="admin-shell">
       <aside className="admin-sidebar">
+        <button className="admin-mobile-toggle" aria-expanded={mobileMenuOpen} aria-controls="admin-navigation" onClick={() => setMobileMenuOpen((open) => !open)}>
+          {mobileMenuOpen ? <X size={18}/> : <Menu size={18}/>}
+          {t('Management modules', 'بخش‌های مدیریت')}
+        </button>
         <div className="section-label">
           {t('CONTROL CENTER', 'مرکز مدیریت')}
         </div>
         <strong>{status.user.username}</strong>
         <small>{status.user.role}</small>
-        <nav aria-label={t('Admin navigation', 'ناوبری مدیریت')}>
-          {tabs.map(([k, e, f]) => (
-            <button
-              key={k}
-              className={tab === k ? 'active' : ''}
-              aria-current={tab === k ? 'page' : undefined}
-              onClick={() => changeTab(k)}
-            >
-              {t(e, f)}
-            </button>
-          ))}
+        <nav id="admin-navigation" className={mobileMenuOpen ? 'open' : ''} aria-label={t('Admin navigation', 'ناوبری مدیریت')}>
+          {tabGroups.map((group) => <div className="admin-nav-group" key={group.labelEn}>
+            <span className="admin-nav-label">{t(group.labelEn, group.labelFa)}</span>
+            {group.ids.map((id) => {
+              const item = tabs.find(([key]) => key === id)!;
+              const [k, e, f, Icon] = item;
+              return <button key={k} className={tab === k ? 'active' : ''} aria-current={tab === k ? 'page' : undefined} onClick={() => changeTab(k)}>
+                <Icon size={17} aria-hidden="true"/>{t(e, f)}
+              </button>;
+            })}
+          </div>)}
         </nav>
         <button
           onClick={async () => {
@@ -313,14 +333,19 @@ export default function Admin() {
                 ['products', 'Components', 'قطعه'],
                 ['active', 'Active', 'فعال'],
                 ['archived', 'Archived', 'بایگانی'],
-                ['inquiries', 'Inquiries', 'استعلام'],
+                ['newInquiries', 'New inquiries', 'استعلام جدید'],
+                ['factorsRecorded', 'Factors recorded', 'ضرایب ثبت‌شده'],
+                ['brands', 'Referenced brands', 'برندهای ثبت‌شده'],
+                ['media', 'Media files', 'فایل رسانه'],
+                ['auditEvents', 'Audit events', 'رویداد ثبت‌شده'],
               ].map(([k, e, f]) => (
                 <div key={k}>
-                  <strong>{data[k]}</strong>
+                  <strong>{data[k] ?? 0}</strong>
                   <span>{t(e, f)}</span>
                 </div>
               ))}
             </div>
+            <p className="admin-metric-note">{t('Engineering factor coverage counts recorded values only; manufacturer verification is still required.', 'پوشش ضرایب مهندسی فقط مقادیر ثبت‌شده را می‌شمارد؛ تأیید با اطلاعات سازنده همچنان ضروری است.')}</p>
             <div className="panel">
               <h2>
                 {t(
@@ -356,6 +381,8 @@ export default function Admin() {
                 >
                   {t('Review inquiries', 'بررسی استعلام‌ها')}
                 </button>
+                <button className="button" onClick={() => changeTab('company')}>{t('Company settings', 'تنظیمات شرکت')}</button>
+                <a className="button" href="/api/system/backup" download>{t('Export backup', 'دریافت پشتیبان')}</a>
               </div>
             </div>
           </>
@@ -379,7 +406,7 @@ export default function Admin() {
                 <option value="active">{t('Active', 'فعال')}</option>
                 <option value="archived">{t('Archived', 'بایگانی')}</option>
               </select>
-              <button className="button primary" onClick={() => setEdit(null)}>
+              <button className="button primary" onClick={() => { setDuplicateSource(''); setEdit(null); }}>
                 <Plus size={17} />
                 {t('Add product', 'افزودن محصول')}
               </button>
@@ -422,9 +449,20 @@ export default function Admin() {
                         </td>
                         <td>
                           <div className="table-actions">
-                            <button onClick={() => setEdit(p)}>
+                            <button onClick={() => { setDuplicateSource(''); setEdit(p); }}>
                               {t('Edit', 'ویرایش')}
                             </button>
+                            <button onClick={() => {
+                              const template = structuredClone(p);
+                              for (const key of ['id', 'code', 'slug', 'createdAt', 'updatedAt', 'updatedBy', 'isArchived']) delete template[key];
+                              setDuplicateSource(p.code);
+                              setEdit({ ...template, code: '', slug: '', featured: false });
+                            }} title={t('Copy details into a new product draft', 'کپی مشخصات به پیش‌نویس محصول جدید')}>
+                              <Copy size={14} aria-hidden="true"/>{t('Duplicate', 'رونوشت')}
+                            </button>
+                            {!p.isArchived && <button disabled={busy} aria-pressed={!!p.featured} onClick={() => act('/products/' + p.id, 'PUT', { featured: !p.featured }).catch(() => {})} title={t('Toggle featured product', 'تغییر محصول شاخص')}>
+                              <Star size={14} fill={p.featured ? 'currentColor' : 'none'} aria-hidden="true"/>{p.featured ? t('Featured', 'شاخص') : t('Feature', 'شاخص کردن')}
+                            </button>}
                             <button
                               disabled={busy}
                               onClick={() =>
@@ -708,6 +746,7 @@ export default function Admin() {
         {edit !== undefined && (
           <ProductEditor
             product={edit}
+            duplicateSource={duplicateSource}
             onClose={() => setEdit(undefined)}
             onSaved={() => {
               setEdit(undefined);

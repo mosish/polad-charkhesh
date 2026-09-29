@@ -154,6 +154,12 @@ test('secure provisioning, session issuance, CRUD, archive, restore and role enf
   assert.ok(c.includes('SameSite=Strict'));
   cookie = c.split(';')[0];
   assert.equal((await req('/auth/status')).b.user.role, 'superadmin');
+  const dashboard = (await req('/system/status')).b;
+  assert.equal(dashboard.products, 68);
+  assert.equal(dashboard.active, 68);
+  assert.equal(dashboard.newInquiries, 0);
+  assert.equal(dashboard.factorsRecorded, bearingProducts.filter((p) => [p.calculationFactorE,p.calculationFactorY,p.calculationFactorF0].some((v) => typeof v === 'number' && Number.isFinite(v))).length);
+  assert.ok(dashboard.brands > 0);
   assert.equal(
     (
       await req(
@@ -191,6 +197,7 @@ test('secure provisioning, session issuance, CRUD, archive, restore and role enf
     (await req('/products/' + id, 'PUT', { nameEn: 'QA updated' })).r.status,
     200,
   );
+  assert.equal((await req('/products/' + id, 'PUT', { featured: true })).b.product.featured, true);
   assert.equal((await req('/products/' + id, 'PATCH', {})).r.status, 404);
   assert.equal(
     (await req('/products/' + id + '/archive', 'PATCH', {})).b.product

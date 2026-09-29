@@ -189,6 +189,33 @@ body.liquid-glass {
 }
 @media(prefers-reduced-motion:reduce) { .liquid-glass :is(a,button,.product-card) { transition: none; } }
 @media(prefers-reduced-transparency:reduce) { .liquid-glass :is(.navigation,.panel,.product-card,.viewer,.admin-sidebar,.dialog,.editor-savebar) { backdrop-filter: none; background-color: #192a40; } }
+
+/* Admin control center: grouped modules and focused company settings. */
+.liquid-glass .admin-sidebar nav { display:grid; gap:16px; }
+.admin-nav-group { display:grid; gap:4px; }
+.admin-nav-label { display:block; padding:4px 12px 6px; color:#91abc5; font-size:11px; letter-spacing:.07em; text-transform:uppercase; }
+.liquid-glass .admin-sidebar nav button { width:100%; text-align:start; }
+.liquid-glass .admin-sidebar nav button svg { flex:none; opacity:.75; }
+.liquid-glass .admin-sidebar nav button.active svg { opacity:1; }
+.admin-mobile-toggle { display:none!important; }
+.admin-metric-note { margin:-14px 0 24px; color:#adc3d8; font-size:12px; }
+.liquid-glass .admin-stats { gap:12px; }
+.liquid-glass .admin-stats>div { border-radius:16px; min-width:0; }
+.liquid-glass .admin-stats strong { font-size:30px; }
+.admin-content .table-actions { flex-wrap:wrap; gap:6px 12px; white-space:normal; }
+.admin-content .table-actions button { display:inline-flex; align-items:center; gap:5px; }
+.settings-section-tabs { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:24px; }
+.settings-section-tabs button { border:1px solid #bbdcf43a; border-radius:11px; padding:10px 15px; color:#b9cee1; background:#a9ccec0d; cursor:pointer; }
+.settings-section-tabs button[aria-selected=true] { color:#fff; border-color:#cae8ff75; background:#c5e4ff22; }
+.settings-section-tabs button:focus-visible { outline:2px solid #bde7ff; }
+@media(max-width:760px) {
+  .liquid-glass .admin-mobile-toggle { display:inline-flex!important; align-items:center; gap:9px; margin:0 0 12px; border:1px solid #cce6ff44; }
+  .liquid-glass .admin-sidebar nav { display:none; margin:6px 0 16px; }
+  .liquid-glass .admin-sidebar nav.open { display:grid; grid-template-columns:1fr; }
+  .liquid-glass .admin-nav-group { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px; }
+  .liquid-glass .admin-nav-label { grid-column:1/-1; }
+  .liquid-glass .admin-sidebar nav button { white-space:normal; font-size:12px; }
+}
 .liquid-glass .managed-home > :is(.capabilities,.engineering-invitation,.support-strip) { width: 92%; }
 .liquid-glass h1 em { color: #aacce9; }
 

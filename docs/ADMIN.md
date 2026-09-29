@@ -4,6 +4,8 @@ Open `/admin`. The first visit offers administrator provisioning; no credentials
 
 Modules: overview, products, media, company, inquiries, Website editor, Header, SEO, system/security and audit logs.
 
+The navigation is grouped by dashboard, catalog, website, and administration. On phones, **Management modules** opens the module list. The Overview shows counts for products, new inquiries, recorded engineering factors, referenced brands, media files, and audit events. Factor coverage means values are present; it does not certify manufacturer accuracy.
+
 The admin page has its own navigation without the public website header, footer or floating contact buttons. Use **View website** to open the public site and the language button to switch admin language.
 
 ## Edit your website
@@ -22,6 +24,8 @@ The preview supports home, catalog, engineering and an example product, in Engli
 Calculations, validation rules and application code remain maintained in code; the panel manages content and the provided page structure, not arbitrary executable code. IRANSans remains the selected company typeface.
 
 Products are edited in sections for identity, dimensions, loads, speeds, factors, technical details, applications, media, sources and SEO. Source records use an editable JSON array; string arrays use one value per line. Unknown product fields and invalid numeric/geometry inputs are rejected by the API. Saving shows errors from the server; metadata identifies the last editor. Unsaved product edits require a discard choice.
+
+**Duplicate** opens a new-product draft with technical fields copied from a selected product. Enter a distinct code and URL slug and review the copied specifications before saving; the source record is not modified. The catalog list also has a **Featured** shortcut for active products. Company settings are grouped into Identity, Contact, Working hours, and Address & maps; all fields still save through the existing company record.
 
 Archive is reversible. Permanent deletion requires a super-admin, an archived record and typed confirmation of its exact code. Restore from backup likewise requires super-admin access and typed confirmation. The UI has no default credentials or frontend-only auth shortcut.
 
@@ -43,14 +47,16 @@ In Website editor > Brand & images, use Homepage display to choose Animated bear
 
 
 ### Three-dimensional bearing family showcase
-The animated homepage offers Super-precision (angular-contact balls), Rolling bearings (cylindrical rollers), and Spherical rollers (a double-row spherical roller bearing). Visitors select a family using the three buttons. Pause/play applies across family changes. All family labels and descriptions are editable through All website text. The geometry and surface markings are illustrative Polad Charkhesh models, not SKF CAD or catalog product claims. No new products are inserted into the catalog.
+The animated homepage offers five illustrative families: Ball bearings, Roller bearings (double-row spherical roller), Bearings accessories, Engineered products (housed unit), and Track rollers (stud-type cam follower). Visitors select a family using five buttons. Pause/play applies across family changes. All family labels and descriptions are editable through All website text. The geometry and surface markings are illustrative Polad Charkhesh models, not SKF CAD or catalog product claims. No new products are inserted into the catalog.
 
-Assembled and Exploded view controls smoothly separate the outer ring, rolling elements, cage and inner ring, with numbered labels. Assembly changes also work while motion is paused and respect reduced-motion preferences. All three families support exploded views. The spherical family uses two inclined rows of barrel-shaped rollers and a shared curved outer raceway. The stage adapts to desktop and phone widths.
+Assembled and Exploded view controls smoothly separate four labeled assemblies. Assembly changes also work while motion is paused and respect reduced-motion preferences. All five families support exploded views, with part labels appropriate to each model. The roller family uses two inclined rows of barrel-shaped rollers and a shared curved outer raceway. The stage adapts to desktop and phone widths.
 
 The scene loads on demand and renders locally with Three.js. If WebGL is unavailable, assembled rolling families use the existing static drawing; exploded views show an explanatory label. No remote model or texture requests are required. The engineering workspace continues to use its separate product-specific RPM tools.
 
 ### Bearing Explorer 3D cutaway
 Motion and Thermal now share the physically shaded 3D renderer used by the homepage. Bore, outside diameter and width use the selected catalog record with a uniform scale. Internal raceway profiles, count and cages remain illustrative estimates. Ball, angular-contact, self-aligning, cylindrical, needle, tapered and spherical/toroidal models vary their elements and row arrangement. Explicit double-row product names are respected. Section & dimensions remains the existing schematic; unsupported components retain that view.
+
+For supported 3D products, the Explorer also provides Assembled and Exploded view controls. The latter separates the selected product's outer ring, rolling elements, cage, and inner ring, labels them, and pauses displayed rotation until reassembled. The selected RPM remains available as an operating input.
 
 The RPM input remains shared with the calculator. Inner-ring, estimated cage and element-spin angles integrate elapsed time and the playback multiplier. Outer ring pose remains fixed. Pause, zero speed, hidden tabs and offscreen models stop the animation loop. At high RPM use 0.02x Inspection to see the parts clearly. A 2D fallback remains for unavailable WebGL. No product data or admin settings are replaced by this change.
 

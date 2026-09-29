@@ -10,7 +10,6 @@ import {
   putProduct,
   transaction,
   audit,
-  parse,
 } from './database';
 import { authenticated, superadmin } from './security';
 import { validateProduct, validateSettings, safeObject } from './validation';
@@ -30,13 +29,20 @@ export function snapshot() {
 }
 system.get('/status', (_req, res) => {
   const products = allProducts(true);
+  const brands = new Set<string>(products.flatMap((p) => Array.isArray(p.brands) ? p.brands.filter((brand: unknown): brand is string => typeof brand === 'string' && brand.length > 0) : []));
+  const count = (sql: string) => Number((db.prepare(sql).get() as { n: number }).n);
   res.json({
     version: '2026.1',
     database: 'connected',
     products: products.length,
     active: products.filter((p) => !p.isArchived).length,
     archived: products.filter((p) => p.isArchived).length,
-    inquiries: (db.prepare('SELECT count(*) n FROM inquiries').get() as any).n,
+    inquiries: count('SELECT count(*) n FROM inquiries'),
+    newInquiries: count("SELECT count(*) n FROM inquiries WHERE status='new'"),
+    media: count('SELECT count(*) n FROM media'),
+    auditEvents: count('SELECT count(*) n FROM audit_logs'),
+    brands: brands.size,
+    factorsRecorded: products.filter((p) => !p.isArchived && [p.calculationFactorE,p.calculationFactorY,p.calculationFactorF0].some((v) => typeof v === 'number' && Number.isFinite(v))).length,
   });
 });
 system.get('/audit', (_req, res) =>

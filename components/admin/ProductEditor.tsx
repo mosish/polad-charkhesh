@@ -117,14 +117,17 @@ const blank = {
 };
 export default function ProductEditor({
   product,
+  duplicateSource,
   onClose,
   onSaved,
 }: {
   product: any;
+  duplicateSource?: string;
   onClose: () => void;
   onSaved: () => void;
 }) {
   const { fa, t } = usePlatform();
+  const isNew = !product?.id;
   const [p, setP] = useState<any>(product || blank),
     [tab, setTab] = useState('Identity'),
     [dirty, setDirty] = useState(false),
@@ -153,8 +156,8 @@ export default function ProductEditor({
     try {
       const data = { ...p, technicalSources: JSON.parse(sources) };
       await api(
-        '/products' + (product ? '/' + product.id : ''),
-        product ? 'PUT' : 'POST',
+        '/products' + (isNew ? '' : '/' + product.id),
+        isNew ? 'POST' : 'PUT',
         data,
       );
       setDirty(false);
@@ -167,9 +170,10 @@ export default function ProductEditor({
   };
   return (
     <Dialog
-      title={product ? p.code : t('New component', 'قطعه جدید')}
+      title={isNew ? t('New component', 'قطعه جدید') : p.code}
       onClose={() => (dirty ? setDiscard(true) : onClose())}
     >
+      {duplicateSource && <p className="note" role="status">{t('Technical details copied from', 'مشخصات فنی کپی شد از')} <code>{duplicateSource}</code>. {t('Enter a new code and URL slug, then review the specifications before saving.', 'کد و نشانی جدید وارد کنید و پیش از ذخیره مشخصات را بررسی کنید.')}</p>}
       <div className="editor-tabs">
         {Object.keys(groups).map((k) => (
           <button
@@ -319,7 +323,7 @@ export default function ProductEditor({
           ),
         )}
       </div>
-      {product && (
+      {!isNew && (
         <p className="muted">
           {t('Last updated', 'آخرین ویرایش')}: {product.updatedAt || '—'} ·{' '}
           {product.updatedBy || '—'}

@@ -4,7 +4,7 @@
 >
 > **Source of truth for code:** GitHub `main`
 >
-> **Last status review:** 2026-09-28
+> **Last status review:** 2026-09-29
 
 Polad Charkhesh is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
@@ -29,7 +29,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Engineering workspace | 🟢 Implemented | Basic life, fit/clearance guidance, comparison, and RPM-driven exploration; application review remains essential. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
-| Admin content and product editing | 🟢 Implemented | Website, header, company, SEO, and product controls exist; complete browser workflow audit remains. |
+| Admin content and product editing | 🟢 Implemented | Website, header, company, SEO, and product controls exist. The dashboard, duplicate draft, featured shortcut, and grouped company settings were checked locally; complete browser workflow audit remains. |
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | 🟢 Implemented | Data export/restore is tested; uploaded file bytes and account secrets are outside backup JSON. |
@@ -40,7 +40,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **20 tests**. The five-family showcase and product-specific exploded Explorer passed TypeScript checking, a production build, and a local browser interaction check. These checks do not replace final device and product-data review.
+The last full automated suite passed **20 tests**. The latest admin integration passed TypeScript checking and a local browser interaction check, including saving a duplicated product into an isolated test database. These checks do not replace final device and product-data review.
 
 ---
 
@@ -55,10 +55,12 @@ Its current modules are Overview, Products, Media, Company, Inquiries, Website e
 Administrators can:
 
 - Create and edit product identity, specifications, applications, sources, and technical fields.
+- Start a new product draft from an existing record, then enter a new code and slug and review its technical fields before saving.
+- Toggle a product's featured status from the catalog list.
 - Set featured/availability fields and attach a gallery image or PDF document.
 - Archive and restore records; permanent deletion requires an archived record, a super-admin, and typed confirmation.
 
-The 68 imported products are preserved as a seed; future edits live in SQLite. The admin UI does **not** currently provide a duplicate-product action.
+The 68 imported products are preserved as a seed; future edits live in SQLite. Duplication does not alter the source record or silently create a catalog item: it opens a reviewable draft.
 
 ### Website content and company settings
 
@@ -108,6 +110,7 @@ Keep the public experience focused on company presentation, technical discovery,
 - **2026-09-28 — Admin route repair:** Made `/admin/` resolve to the same admin page as `/admin`; type checking and production build passed.
 - **2026-09-28 — Project documentation:** Established this status dashboard and a same-commit README update practice.
 - **2026-09-28 — Family showcase and Explorer:** Expanded Precision in Motion to ball bearings, roller bearings, bearing accessories, engineered products, and track rollers. Added an assembled/exploded control to the product-specific Bearing Explorer, with labeled assemblies and paused rotation during inspection.
+- **2026-09-29 — Admin control center integration:** Compared the separate `PoladCharkhesh-local` admin and brought its useful dashboard and product-management patterns into this panel: grouped icon navigation, catalog and activity metrics, duplicate-as-draft, featured shortcut, and grouped bilingual company fields. The separate database and credentials were not imported because its catalog has unresolved differences.
 
 ## Remaining roadmap
 
