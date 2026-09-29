@@ -3,13 +3,29 @@ import { BearingViewer } from './Viewer';
 import Copy from './Copy';
 import { mediaFor } from '../../lib/media';
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { ArrowRight, Box, Download, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, Box, Download, ArrowUpRight, Phone } from 'lucide-react';
 import type { BearingProduct } from '../../domain/product';
+import type { CompanyContactInfo } from '../../domain/company';
 import { bearingGeometry } from '../../lib/bearing-motion';
 import { usePlatform, DataState } from './Context';
 import Dialog from './Dialog';
 import { Schematic } from './Schematic';
 const BearingScene = lazy(() => import('./HeroBearingScene'));
+function ProductCallOptions({ p, company }: { p: BearingProduct; company: CompanyContactInfo }) {
+  const { fa, t } = usePlatform();
+  return <>
+    <a className="button primary" href={company.primaryPhoneTel} aria-label={t(`Call mobile about ${p.code}`, `تماس با موبایل درباره ${p.code}`)}>
+      <Phone size={16} />
+      {t('Call mobile', 'تماس با موبایل')}
+      <span dir="ltr">{company[fa ? 'primaryPhoneDisplayFa' : 'primaryPhoneDisplayEn']}</span>
+    </a>
+    <a className="button" href={company.landlinePhoneTel} aria-label={t(`Call office about ${p.code}`, `تماس با دفتر درباره ${p.code}`)}>
+      <Phone size={16} />
+      {t('Call office', 'تماس با دفتر')}
+      <span dir="ltr">{company[fa ? 'landlinePhoneDisplayFa' : 'landlinePhoneDisplayEn']}</span>
+    </a>
+  </>;
+}
 export function ProductImage({ p }: { p: BearingProduct }) {
   const { content } = usePlatform();
   const [failed, setFailed] = useState(false);
@@ -212,13 +228,7 @@ export function TechnicalContent({
             ))}
           </dl>
           <div className="action-row">
-            <a
-              className="button primary"
-              href={'/?product=' + encodeURIComponent(p.slug || p.id) + '#engineering'}
-            >
-              {t('Use in engineering tools', 'محاسبه مهندسی')}
-              <ArrowUpRight size={16} />
-            </a>
+            <ProductCallOptions p={p} company={company} />
             {full && <button
               type="button"
               className="button"
@@ -379,7 +389,7 @@ export function ShowroomProductPanel({
         </div>
       </div>
       <div className="product-panel-actions">
-        <a className="button primary" href={'/?product=' + encodeURIComponent(p.slug || p.id) + '#engineering'}>{t('Use in engineering tools', 'استفاده در ابزارهای مهندسی')} <ArrowUpRight size={16} /></a>
+        <ProductCallOptions p={p} company={company} />
         <button className="button" disabled={downloading} onClick={async () => { setDownloading(true); setDownloadError(''); try { await datasheet(p, company, content); } catch (error) { setDownloadError(error instanceof Error ? error.message : String(error)); } finally { setDownloading(false); } }}><Download size={16} />{t(downloading ? 'Preparing PDF…' : 'Company datasheet', downloading ? 'آماده‌سازی PDF…' : 'دیتاشیت شرکت')}</button>
         {p.pdfUrl ? <a className="button" href={p.pdfUrl} target="_blank" rel="noreferrer">{t('Attached manufacturer PDF', 'PDF پیوست سازنده')} <ArrowUpRight size={16} /></a> : <span className="product-panel-document-note">{t('No manufacturer PDF attached yet.', 'هنوز PDF سازنده پیوست نشده است.')}</span>}
       </div>
