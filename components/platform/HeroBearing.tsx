@@ -5,6 +5,7 @@ import { ArrowUpRight, Pause, Play } from 'lucide-react';
 import BearingModel from './BearingModel';
 import { usePlatform } from './Context';
 import type { BearingFamily } from './HeroBearingScene';
+import BearingBackground from './BearingBackground';
 import { publicHref } from '../../lib/public-links';
 const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
@@ -119,12 +120,7 @@ export default function HeroBearing() {
       </div>
     </div>
   </div>
-    {scrollMode && !reduced && family === 'thrust' && <div className="bearing-background-echo" aria-hidden="true" style={{opacity: scrollState.recession*.055, transform:`translateY(${(1-scrollState.recession)*80}px)`}}>
-      <svg viewBox="0 0 1000 1000" fill="none">
-        <g stroke="currentColor" strokeWidth="14" transform="translate(170 50) rotate(-24 400 300)"><ellipse cx="400" cy="300" rx="290" ry="130"/><ellipse cx="400" cy="300" rx="130" ry="58"/></g>
-        <g stroke="currentColor" strokeWidth="9" transform="translate(-190 260) rotate(18 400 300)"><ellipse cx="400" cy="300" rx="290" ry="130"/><ellipse cx="400" cy="300" rx="130" ry="58"/>{Array.from({length:28},(_,i)=>{const a=i*Math.PI*2/28;return <path key={i} d={`M ${400+Math.cos(a)*150} ${300+Math.sin(a)*67} L ${400+Math.cos(a)*270} ${300+Math.sin(a)*121}`}/>;})}</g>
-        <g stroke="currentColor" strokeWidth="14" transform="translate(130 590) rotate(-18 400 300)"><ellipse cx="400" cy="300" rx="290" ry="130"/><ellipse cx="400" cy="300" rx="130" ry="58"/></g>
-      </svg>
-    </div>}
+    {scrollMode && !reduced && <BearingBackground family={family} recession={scrollState.recession}/>}
+
   </>;
 }
