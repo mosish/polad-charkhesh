@@ -24,6 +24,7 @@ export default function Home() {
   return (
     <main id="main" className="managed-home">
       <PageSection id="hero">
+        <section className="hero-scroll">
         <section className="hero">
           <div className="hero-copy">
             <div className="eyebrow">
@@ -138,6 +139,7 @@ export default function Home() {
               </a>
             </div>
           </div>}
+        </section>
         </section>
       </PageSection>
       <PageSection id="capabilities">

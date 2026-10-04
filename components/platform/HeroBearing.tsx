@@ -1,3 +1,5 @@
+import { bearingScrollState } from '../../lib/bearing-scroll';
+import { useBearingScroll } from './useBearingScroll';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Pause, Play } from 'lucide-react';
 import BearingModel from './BearingModel';
@@ -8,9 +10,11 @@ const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
 export default function HeroBearing() {
   const { products, content, t } = usePlatform();
-  const [family, setFamily] = useState<BearingFamily>('ball');
+  const [family, setFamily] = useState<BearingFamily>('thrust');
   const [exploded,setExploded] = useState(false);
+  const [scrollMode, setScrollMode] = useState(true);
   const families: {id: BearingFamily; label: string; detail: string; caption: string}[] = [
+    {id:'thrust',label:t('Thrust bearings','رولبرینگ کف‌گرد'),detail:t('Tapered roller thrust bearing','رولبرینگ مخروطی کف‌گرد'),caption:t('T921-inspired proportions · illustrative construction','با الهام از T921 · مدل نمایشی')},
     {id:'ball',label:t('Ball bearings','بلبرینگ‌ها'),detail:t('Angular-contact ball bearing','بلبرینگ تماس زاویه‌ای'),caption:t('Precision balls for spindle applications','ساچمه‌های دقیق برای کاربردهای اسپیندل')},
     {id:'roller',label:t('Roller bearings','رولبرینگ‌ها'),detail:t('Double-row spherical roller bearing','رولبرینگ بشکه‌ای دو ردیفه'),caption:t('Two rows of barrel-shaped rollers','دو ردیف غلتک بشکه‌ای')},
     {id:'accessories',label:t('Bearings accessories','متعلقات بیرینگ'),detail:t('Adapter sleeve, locknut and washer','بوش تبدیلی، مهره قفلی و واشر'),caption:t('Mounting components shown as an illustrative assembly','اجزای نصب به‌صورت مجموعه نمایشی')},
@@ -18,7 +22,7 @@ export default function HeroBearing() {
     {id:'track',label:t('Track rollers','رولرهای مسیر'),detail:t('Stud-type track roller','رولر مسیر پایه‌دار'),caption:t('Cam follower with a fixed stud and rotating outer ring','رولر پیرو با پایه ثابت و رینگ بیرونی چرخان')},
   ];
   const bearingParts=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
-  const partLabels=family==='accessories'?[t('Adapter sleeve','بوش تبدیلی'),t('Locknut','مهره قفلی'),t('Lock washer','واشر قفلی'),t('Shaft seat','نشیمن شفت')]:family==='engineered'?[t('Housing','محفظه'),t('Bearing insert','بیرینگ داخلی'),t('Mounting bolts','پیچ‌های نصب'),t('Shaft seat','نشیمن شفت')]:family==='track'?[t('Outer roller','رولر بیرونی'),t('Needle rollers','غلتک‌های سوزنی'),t('End washer','واشر انتهایی'),t('Stud','پایه')]:bearingParts;
+  const partLabels=family==='thrust'?[t('Housing washer','واشر محفظه'),t('Tapered rollers','غلتک‌های مخروطی'),t('Cage','قفسه'),t('Shaft washer','واشر شفت')]:family==='accessories'?[t('Adapter sleeve','بوش تبدیلی'),t('Locknut','مهره قفلی'),t('Lock washer','واشر قفلی'),t('Shaft seat','نشیمن شفت')]:family==='engineered'?[t('Housing','محفظه'),t('Bearing insert','بیرینگ داخلی'),t('Mounting bolts','پیچ‌های نصب'),t('Shaft seat','نشیمن شفت')]:family==='track'?[t('Outer roller','رولر بیرونی'),t('Needle rollers','غلتک‌های سوزنی'),t('End washer','واشر انتهایی'),t('Stud','پایه')]:bearingParts;
   const selected = families.find(f => f.id === family)!;
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -27,6 +31,10 @@ export default function HeroBearing() {
   const stage = useRef<HTMLDivElement>(null);
   const p = products.find(p => p.schematicType === (family === 'roller' ? 'spherical' : family === 'track' ? 'needle' : 'angular-contact')) || products.find(p => p.schematicType === 'deep-groove');
   const stopped = paused || reduced || !visible || !tabVisible;
+  const scrollProgress = useBearingScroll(stage, scrollMode && !paused && !reduced);
+  const scrollState = bearingScrollState(scrollProgress);
+  const showParts = scrollMode && !reduced ? scrollState.phase === 'components' : exploded;
+  const phaseLabel = scrollState.phase === 'assembled' ? t('Assembled', 'مونتاژشده') : scrollState.phase === 'components' ? t('Components revealed', 'نمای اجزای بیرینگ') : t('Opening the assembly', 'باز شدن مجموعه');
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const motion = () => setReduced(media.matches);
@@ -41,7 +49,7 @@ export default function HeroBearing() {
     stage.current?.style.setProperty('--tilt-x', '0deg');
     stage.current?.style.setProperty('--tilt-y', '0deg');
   };
-  return <div className={'hero-visual hero-bearing-showcase' + (stopped ? ' is-still' : '')}>
+  return <><div className={'hero-visual hero-bearing-showcase' + (stopped ? ' is-still' : '')} data-scroll-mode={scrollMode && !reduced ? 'auto' : 'manual'}>
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
       <span dir="ltr">{String(families.findIndex(f => f.id === family) + 1).padStart(2,'0')} / {String(families.length).padStart(2,'0')}</span>
@@ -50,9 +58,11 @@ export default function HeroBearing() {
       {families.map(f => <button key={f.id} type="button" aria-pressed={family===f.id} onClick={()=>{setFamily(f.id);resetTilt();}}>{f.label}</button>)}
     </div>
     <div className="bearing-view-switch" role="group" aria-label={t('Bearing assembly view','نمای مونتاژ بیرینگ')}>
-      <button type="button" aria-pressed={!exploded} onClick={()=>setExploded(false)}>{t('Assembled','مونتاژشده')}</button>
-      <button type="button" aria-pressed={exploded} onClick={()=>setExploded(true)}>{t('Exploded view','نمای انفجاری')}</button>
+      <button type="button" aria-pressed={(reduced || !scrollMode) && !exploded} onClick={()=>{setScrollMode(false);setExploded(false);}}>{t('Assembled','مونتاژشده')}</button>
+      <button type="button" aria-pressed={(reduced || !scrollMode) && exploded} onClick={()=>{setScrollMode(false);setExploded(true);}}>{t('Exploded view','نمای انفجاری')}</button>
+      {!reduced && <button type="button" aria-pressed={scrollMode} onClick={()=>setScrollMode(true)}>{t('Follow scroll', 'همراه اسکرول')}</button>}
     </div>
+    {!reduced && scrollMode && <div className="bearing-scroll-status"><span>{t('Scroll to explore', 'با اسکرول کاوش کنید')} <span aria-hidden="true">↓</span></span><strong>{phaseLabel}</strong><div className="bearing-scroll-track" aria-hidden="true"><i style={{ transform: `scaleX(${scrollProgress})` }} /></div></div>}
     <div className="hero-bearing-stage" ref={stage}
       tabIndex={0}
       role="img"
@@ -91,12 +101,12 @@ export default function HeroBearing() {
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
         <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-          <HeroBearingScene family={family} paused={stopped} exploded={exploded} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+(exploded?' · '+t('Exploded view','نمای انفجاری'):'')} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
+          <HeroBearingScene family={family} paused={stopped} exploded={exploded} scrollProgress={scrollMode && !reduced ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(scrollMode && !reduced ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
         </Suspense>
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
     </div>
-    {exploded&&<div className="bearing-parts-key" aria-label={t('Bearing parts','اجزای بیرینگ')}>{partLabels.map((name,i)=><span key={name}><b>{i+1}</b>{name}</span>)}</div>}
+    {(exploded||(scrollMode&&!reduced))&&<div style={{visibility:showParts?'visible':'hidden'}} aria-hidden={!showParts} className="bearing-parts-key" aria-label={t('Bearing parts','اجزای بیرینگ')}>{partLabels.map((name,i)=><span key={name}><b>{i+1}</b>{name}</span>)}</div>}
     <div className="hero-bearing-footer">
       <div aria-live="polite"><small>{selected.caption}</small><strong>{selected.detail}</strong></div>
       <div className="hero-bearing-actions">
@@ -108,5 +118,13 @@ export default function HeroBearing() {
         <a href={publicHref(content?.links?.heroVisual || '/engineering')} aria-label={t('Explore bearing engineering', 'کاوش مهندسی بیرینگ')}><ArrowUpRight size={20}/></a>
       </div>
     </div>
-  </div>;
+  </div>
+    {scrollMode && !reduced && family === 'thrust' && <div className="bearing-background-echo" aria-hidden="true" style={{opacity: scrollState.recession*.055, transform:`translateY(${(1-scrollState.recession)*80}px)`}}>
+      <svg viewBox="0 0 1000 1000" fill="none">
+        <g stroke="currentColor" strokeWidth="14" transform="translate(170 50) rotate(-24 400 300)"><ellipse cx="400" cy="300" rx="290" ry="130"/><ellipse cx="400" cy="300" rx="130" ry="58"/></g>
+        <g stroke="currentColor" strokeWidth="9" transform="translate(-190 260) rotate(18 400 300)"><ellipse cx="400" cy="300" rx="290" ry="130"/><ellipse cx="400" cy="300" rx="130" ry="58"/>{Array.from({length:28},(_,i)=>{const a=i*Math.PI*2/28;return <path key={i} d={`M ${400+Math.cos(a)*150} ${300+Math.sin(a)*67} L ${400+Math.cos(a)*270} ${300+Math.sin(a)*121}`}/>;})}</g>
+        <g stroke="currentColor" strokeWidth="14" transform="translate(130 590) rotate(-18 400 300)"><ellipse cx="400" cy="300" rx="290" ry="130"/><ellipse cx="400" cy="300" rx="130" ry="58"/></g>
+      </svg>
+    </div>}
+  </>;
 }

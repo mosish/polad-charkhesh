@@ -25,7 +25,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Canonical product seed | ✅ Verified in tests | All 68 legacy identities are preserved, and 42 SKF sealed deep-groove designations bring the bundled catalog to 110 records. Current SKU verification remains a launch task. |
 | Catalog search and product comparison | ✅ Verified in tests | Horizontal family filters and code/dimension search are in the catalog; up to three-product comparison is in the engineering workspace. |
 | Product specifications and documents | 🟢 Implemented | A floating catalog panel groups images, specifications, exploded 3D, documents and contact actions. Related records open in the same panel and are ranked by family and dimensions. Exact SKU media are incomplete. |
-| Animated bearing visuals | 🟢 Implemented | Five homepage family illustrations and assembled/exploded views; the product-specific Explorer also separates its four main assemblies. Models are illustrative. |
+| Animated bearing visuals | 🟢 Implemented | A T921-inspired tapered roller thrust illustration plus five existing family illustrations; reversible scroll-driven separation and recession into a subtle background, with manual assembly controls; the product-specific Explorer also separates its four main assemblies. Models are illustrative. |
 | Engineering workspace | 🟢 Implemented | Life and known-load estimates show example results immediately and recalculate as inputs change. Fit limits, comparison, and unit conversion remain on the homepage; application review remains essential. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
@@ -42,7 +42,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **30 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
+The last full automated suite passed **32 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -196,3 +196,9 @@ Major local features are already present. Prioritize launch blockers, real produ
 - Scope: source and local verification. Hosting, both domains/TLS, Search Console verification/submission, exact SKU media, engineering reconciliation, full accessibility/security review and repository lint remain separate launch gates.
 
 See [SEO configuration and launch guide](docs/SEO.md) for editable fields, URL rules and post-launch verification.
+
+### Scroll-driven bearing introduction (2026-10-04)
+
+The homepage defaults to a tapered roller thrust illustration. Its envelope proportions reference [Timken T921-902A1](https://cad.timken.com/item/thrust-tapered-roller-bearings/thrust-tapered-roller-bearings-type-tthd/t921-902a1); internal construction is illustrative, not manufacturer CAD or a new catalog record. Scroll separates two race washers, radial tapered rollers and cage, then recedes the assembly into a faint decorative background. Scrolling upward reverses it. The five previous families remain selectable.
+
+Tall desktop screens briefly pin the introduction using normal document scrolling. Mobile avoids pinning and the persistent background. Reduced-motion preferences disable automatic scroll animation; manual assembled/exploded views remain available. Pause freezes scroll response. The existing renderer is reused, capped at 30 FPS for the hero and stopped offscreen or in hidden tabs. Targeted browser checks cover desktop reversal, pause/manual controls, Persian mobile and reduced motion.

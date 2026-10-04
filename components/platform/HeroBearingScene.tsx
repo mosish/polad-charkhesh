@@ -1,3 +1,4 @@
+import { bearingScrollState } from '../../lib/bearing-scroll';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
@@ -5,7 +6,7 @@ import type { BearingProduct } from '../../domain/product';
 import { buildProductBearing3D } from '../../lib/product-bearing-3d';
 import { advanceRotation } from '../../lib/bearing-motion';
 
-export type BearingFamily = 'ball' | 'roller' | 'accessories' | 'engineered' | 'track';
+export type BearingFamily = 'thrust' | 'ball' | 'roller' | 'accessories' | 'engineered' | 'track';
 
 // Illustrative family geometry, not manufacturer CAD or a rated operating simulation.
 function buildBearing(family: BearingFamily) {
@@ -33,7 +34,26 @@ function buildBearing(family: BearingFamily) {
     m.rotation.x=Math.PI/2;m.position.z=z;return m;
   };
   root.add(shell,moving,cage,elements);
-  if (family === 'accessories') {
+  if (family === 'thrust') {
+    // T921 envelope proportions (234.95 / 546.1 / 127 mm), illustrative TTHD construction.
+    // Axial race washers sandwich one row of radially oriented tapered rollers.
+    for (const [group, sign] of [[shell, -1], [moving, 1]] as const) {
+      lathe([[.99,sign*.535],[2.26,sign*.535],[2.3,sign*.495],[2.3,sign*.26],[2.24,sign*.22],[1.06,sign*.29],[.99,sign*.33],[.99,sign*.535]],steel,group);
+      for(let j=0;j<5;j++)torus(2.08+j*.035,.002,sign*.536,polished,group);
+      torus(1.015,.014,sign*.53,polished,group);
+    }
+    torus(1.13,.065,0,bronze,cage);torus(2.12,.065,0,bronze,cage);
+    const rollerGeometry=new THREE.CylinderGeometry(.22,.12,.91,32);
+    for(let i=0;i<28;i++){
+      const a=i*Math.PI*2/28;
+      const roller=mesh(rollerGeometry,polished,elements);
+      roller.position.set(Math.cos(a)*1.63,Math.sin(a)*1.63,0);
+      roller.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(Math.cos(a),Math.sin(a),0));
+      const between=a+Math.PI/28;
+      const bridge=mesh(new THREE.BoxGeometry(1.04,.045,.055),bronze,cage);
+      bridge.position.set(Math.cos(between)*1.63,Math.sin(between)*1.63,0);bridge.rotation.z=between;
+    }
+  } else if (family === 'accessories') {
     // A tapered adapter sleeve, locknut and tab washer around a shaft seat.
     lathe([[1.02,-.85],[1.11,-.85],[1.37,.7],[1.37,.85],[1.06,.85],[1.02,-.85]],steel,shell);
     torus(1.35,.025,.82,polished,shell);
@@ -149,12 +169,12 @@ function buildBearing(family: BearingFamily) {
   }};
 }
 
-export default function HeroBearingScene({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[]}:{family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[]}) {
+export default function HeroBearingScene({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress}:{family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number}) {
   const host=useRef<HTMLDivElement>(null);
   const controller=useRef<{play:(value:boolean)=>void}|null>(null);
   const pauseRef=useRef(paused);pauseRef.current=paused;
   const speedRef=useRef({rpm,playback});speedRef.current={rpm,playback};
-  const viewRef=useRef({exploded,reducedMotion});viewRef.current={exploded,reducedMotion};
+  const viewRef=useRef({exploded,reducedMotion,scrollProgress});viewRef.current={exploded,reducedMotion,scrollProgress};
   const [failed,setFailed]=useState(false);
   useEffect(()=>{
     const target=host.current;if(!target || failed)return;
@@ -183,7 +203,8 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
       if(previous && now-previous < frameInterval-.5){frame=requestAnimationFrame(draw);return;}
       const delta=previous?(now-previous)/1000:1/60;
       const seconds=previous&&running?delta:0;previous=now;
-      const targetExpansion=viewRef.current.exploded?1:0;
+      const scrollView=viewRef.current.scrollProgress === undefined ? undefined : bearingScrollState(viewRef.current.scrollProgress);
+      const targetExpansion=scrollView ? scrollView.expansion : viewRef.current.exploded?1:0;
       expansion=viewRef.current.reducedMotion?targetExpansion:THREE.MathUtils.damp(expansion,targetExpansion,7,Math.min(delta,.05));
       if(Math.abs(expansion-targetExpansion)<.001)expansion=targetExpansion;
       elapsed+=product ? seconds : Math.min(seconds,.05);
@@ -200,18 +221,21 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
         productModel.spins.forEach(spin=>{if(productModel.geometry.roller)spin.rotation.z=-spinAngle*Math.PI/180;else spin.rotation.y=-spinAngle*Math.PI/180;});
         target.dataset.shaftAngle=shaftAngle.toFixed(3);target.dataset.cageAngle=cageAngle.toFixed(3);
       } else {
-        model.root.rotation.set(.56+Math.sin(elapsed*.35)*.055,-.40+Math.cos(elapsed*.25)*.07-expansion*.62,-.22);
-        model.root.scale.setScalar(1-expansion*.23);
+        model.root.rotation.set(.56+(scrollView ? scrollView.progress*.16 : Math.sin(elapsed*.35)*.055),-.40+(scrollView ? -scrollView.turn*(family==='thrust'?.3:1) : Math.cos(elapsed*.25)*.07)-expansion*(family==='thrust'?.2:.62),-.22);
+        model.root.scale.setScalar((family==='thrust'?1.15:1)*(1-expansion*.23)*(1-(scrollView?.recession || 0)*.3));
+        model.root.position.z=-(scrollView?.recession || 0)*2.2;
+        target.dataset.recession=String(scrollView?.recession || 0);
         model.root.position.y=Math.sin(elapsed*.55)*.045;
         if(family==='track'){
           heroModel!.parts[0].rotation.z=elapsed*.55;
           heroModel!.elements.rotation.z=elapsed*.4;
         }else if(family==='engineered'){
           model.moving.rotation.z=elapsed*.55;heroModel!.elements.rotation.z=elapsed*.22;
-        }else if(family==='ball'||family==='roller'){
+        }else if(family==='thrust'||family==='ball'||family==='roller'){
           model.moving.rotation.z=elapsed*.65;model.cage.rotation.z=elapsed*.24;heroModel!.elements.rotation.z=elapsed*.24;
         }
         heroModel!.setExploded(expansion);
+        if(scrollView){camera.position.z=Math.max(9.8,(2.65+expansion*1.5)/(Math.tan(17*Math.PI/180)*camera.aspect));camera.updateProjectionMatrix();}
       }
       model.root.updateMatrixWorld(true);
       model.parts.forEach((part,i)=>{
@@ -221,11 +245,12 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
         badge.style.opacity=String(expansion>.9?1:0);
       });
       target.dataset.expansion=expansion.toFixed(3);
+      target.dataset.scrollProgress=viewRef.current.scrollProgress?.toFixed(3) || 'manual';
       renderer.render(scene,camera);
       target.dataset.motionTime=elapsed.toFixed(3);
       if(running||(inView&&!document.hidden&&expansion!==targetExpansion))frame=requestAnimationFrame(draw);
     };
-    const resize=()=>{const {width,height}=target.getBoundingClientRect();if(!width||!height)return;camera.aspect=width/height;camera.position.z=Math.max(9.8,(viewRef.current.exploded?4.15:2.65)/(Math.tan(17*Math.PI/180)*camera.aspect),product?7.5+2.3*product.B/product.D:0);camera.updateProjectionMatrix();renderer.setSize(width,height);if(!running){cancelAnimationFrame(frame);draw(performance.now());}};
+    const resize=()=>{const {width,height}=target.getBoundingClientRect();if(!width||!height)return;camera.aspect=width/height;camera.position.z=Math.max(9.8,(viewRef.current.exploded || viewRef.current.scrollProgress !== undefined ?4.15:2.65)/(Math.tan(17*Math.PI/180)*camera.aspect),product?7.5+2.3*product.B/product.D:0);camera.updateProjectionMatrix();renderer.setSize(width,height);if(!running){cancelAnimationFrame(frame);draw(performance.now());}};
     const sync=()=>{running=!pauseRef.current&&!viewRef.current.reducedMotion&&inView&&!document.hidden&&(!product||speedRef.current.rpm>0);cancelAnimationFrame(frame);previous=0;draw(performance.now());};
     const observer=new ResizeObserver(resize);observer.observe(target);resize();sync();
     const intersection=new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;sync();},{threshold:.05});intersection.observe(target);
@@ -234,7 +259,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const lost=(event:Event)=>{event.preventDefault();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
     return()=>{cancelAnimationFrame(frame);controller.current=null;observer.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
   },[family,failed,product]);
-  useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion]);
+  useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,scrollProgress === undefined]);
   return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={product?playback:undefined}>
     {partLabels.map((name,i)=><span key={i} className="bearing-part-pin" data-part={i} aria-hidden="true" title={name}>{i+1}</span>)}
   </div>;
