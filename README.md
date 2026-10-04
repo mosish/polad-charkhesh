@@ -42,7 +42,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **32 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
+The last full automated suite passed **33 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -202,3 +202,5 @@ See [SEO configuration and launch guide](docs/SEO.md) for editable fields, URL r
 The homepage defaults to a tapered roller thrust illustration. Its envelope proportions reference [Timken T921-902A1](https://cad.timken.com/item/thrust-tapered-roller-bearings/thrust-tapered-roller-bearings-type-tthd/t921-902a1); internal construction is illustrative, not manufacturer CAD or a new catalog record. Scroll separates two race washers, radial tapered rollers and cage, then recedes the assembly into a faint decorative background. All six selected illustrations now continue into matching background silhouettes: thrust, ball, double-row spherical roller, mounting accessories, housed units and track rollers. Scrolling upward reverses it. The five previous families remain selectable.
 
 Tall desktop screens briefly pin the introduction using normal document scrolling. Mobile avoids pinning and the persistent background. Reduced-motion preferences disable automatic scroll animation; manual assembled/exploded views remain available. Pause freezes scroll response. The existing renderer is reused, capped at 30 FPS for the hero and stopped offscreen or in hidden tabs. Targeted browser checks cover desktop reversal, pause/manual controls, Persian mobile and reduced motion.
+
+The closing homepage assembly now returns the selected family to an assembled 3D view while fading its background silhouettes. Scroll upward to separate it again. The finale loads its renderer only on approach and stops it offscreen; hero pause and reduced-motion settings apply to both ends. Photo-only hero mode omits the assembly finale.

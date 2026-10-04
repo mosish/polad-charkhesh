@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  bearingReturnProgress,
   bearingScrollProgress,
   bearingScrollState,
 } from '../lib/bearing-scroll';
@@ -30,4 +31,13 @@ test('pinned progress follows available document travel, never viewport scroll l
   assert.equal(bearingScrollProgress(-1000, 1400, 750), 1);
   assert.equal(bearingScrollProgress(500, 1400, 750), 0);
   assert.equal(bearingScrollProgress(0, 700, 750), 0);
+});
+
+test('closing assembly finishes at the page end and reverses on upward scroll',()=>{
+ assert.equal(bearingReturnProgress(1000,480,1000),0);
+ assert.equal(bearingReturnProgress(760,480,1000),.5);
+ assert.equal(bearingReturnProgress(520,480,1000),1);
+ assert.equal(bearingReturnProgress(-50,480,1000),1);
+ assert.equal(bearingReturnProgress(0,0,1000),0);
+ assert.equal(bearingReturnProgress(0,480,0),0);
 });

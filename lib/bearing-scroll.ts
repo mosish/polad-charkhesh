@@ -29,3 +29,8 @@ export function bearingScrollProgress(
   const travel = height - visibleHeight;
   return travel > 0 ? clamp((pinTop - top) / travel) : 0;
 }
+
+/** Complete the closing assembly as its section enters the viewport. */
+export function bearingReturnProgress(top:number,height:number,viewport:number){
+ return height>0&&viewport>0?clamp((viewport-top)/Math.min(height,viewport*.8)):0;
+}

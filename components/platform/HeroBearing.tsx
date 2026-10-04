@@ -6,11 +6,13 @@ import BearingModel from './BearingModel';
 import { usePlatform } from './Context';
 import type { BearingFamily } from './HeroBearingScene';
 import BearingBackground from './BearingBackground';
+import {useBearingJourney} from './BearingJourney';
 import { publicHref } from '../../lib/public-links';
 const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
 export default function HeroBearing() {
   const { products, content, t } = usePlatform();
+  const journey=useBearingJourney(),configure=journey?.configure;
   const [family, setFamily] = useState<BearingFamily>('thrust');
   const [exploded,setExploded] = useState(false);
   const [scrollMode, setScrollMode] = useState(true);
@@ -31,6 +33,7 @@ export default function HeroBearing() {
   const [tabVisible, setTabVisible] = useState(!document.hidden);
   const stage = useRef<HTMLDivElement>(null);
   const p = products.find(p => p.schematicType === (family === 'roller' ? 'spherical' : family === 'track' ? 'needle' : 'angular-contact')) || products.find(p => p.schematicType === 'deep-groove');
+  useEffect(()=>configure?.({family,paused,automatic:scrollMode,reduced}),[configure,family,paused,scrollMode,reduced]);
   const stopped = paused || reduced || !visible || !tabVisible;
   const scrollProgress = useBearingScroll(stage, scrollMode && !paused && !reduced);
   const scrollState = bearingScrollState(scrollProgress);
@@ -120,7 +123,7 @@ export default function HeroBearing() {
       </div>
     </div>
   </div>
-    {scrollMode && !reduced && <BearingBackground family={family} recession={scrollState.recession}/>}
+    {scrollMode && !reduced && <BearingBackground family={family} recession={scrollState.recession*(1-(journey?.returnProgress||0))}/>}
 
   </>;
 }
