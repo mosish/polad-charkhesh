@@ -426,7 +426,7 @@ html { scroll-behavior:smooth; scroll-padding-top:140px; }
 }
 
 /* Catalog maintenance and compact product discovery. */
-.catalog-quality-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.catalog-quality-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:12px}
 .catalog-quality-cards button{display:grid;gap:6px;text-align:start;border:1px solid #c7e3ff30;border-radius:16px;padding:17px;background:#c7e3ff08;color:#c7dbee}
 .catalog-quality-cards button[aria-pressed=true]{border-color:#a9d8ff;background:#a9d8ff18}
 .catalog-quality-cards strong{font-size:28px;color:#edf7ff}.catalog-quality-cards span{font-size:12px}

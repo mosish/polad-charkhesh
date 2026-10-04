@@ -1,12 +1,18 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { bearingProducts } from '../domain/catalog';
-import { productGaps, relatedComponents } from '../lib/catalog-quality';
+import { productGaps, catalogReview, relatedComponents } from '../lib/catalog-quality';
 import { planCatalogImport } from '../api/catalog-import';
 
 void test('catalog coverage distinguishes references, documents and language gaps', () => {
   const p = bearingProducts[0];
   assert.ok(productGaps(p).includes('image'));
+  const linked={...p,technicalSources:[{...p.technicalSources![0],url:'https://example.com/catalog.pdf'}]};
+  assert.ok(productGaps(linked).includes('documents'));
+  assert.equal(productGaps(linked).includes('sources'),false);
+  assert.equal(catalogReview(linked).exactPhotoCandidates.length,0);
+  assert.ok(catalogReview({...linked,weightKg:0}).missingFields.includes('weightKg'));
+  assert.ok(catalogReview(linked).reviewReasons.length>0);
   const complete = { ...p, imageUrl: '/uploads/exact-code.webp', pdfUrl: '/uploads/catalog.pdf' };
   assert.equal(productGaps(complete).includes('image'), false);
   assert.equal(productGaps(complete).includes('documents'), false);

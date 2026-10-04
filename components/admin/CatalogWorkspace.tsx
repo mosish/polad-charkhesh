@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { BearingProduct } from '../../domain/product';
-import { productGaps, gapLabels, type CatalogGap } from '../../lib/catalog-quality';
+import { productGaps, catalogReview, gapLabels, type CatalogGap } from '../../lib/catalog-quality';
 import { usePlatform } from '../platform/Context';
 import { api } from '../../lib/api';
 import Dialog from '../platform/Dialog';
@@ -73,6 +73,7 @@ export default function CatalogWorkspace({ products, onEdit, onDuplicate, onDele
       <button className="button primary" onClick={() => onEdit(null)}>{t('Add product', 'افزودن محصول')}</button>
     </div>
     <div className="catalog-maintenance-actions">
+      <button className="button" onClick={() => download('polad-catalog-review.json', { generatedAt: new Date().toISOString(), scope: 'Current admin catalog; presence checks only, no independent verification', products: products.map(catalogReview) })}>{t('Export content checklist', 'دریافت فهرست نواقص محتوا')}</button>
       <button className="button" onClick={() => download('polad-catalog.json', { products })}>{t('Export catalog JSON', 'دریافت JSON کاتالوگ')}</button>
       <button className="button" disabled={busy} onClick={() => input.current?.click()}>{t('Import JSON · preview first', 'ورود JSON · پیش‌نمایش اولیه')}</button>
       <input hidden type="file" accept=".json,application/json" ref={input} onChange={e => { void loadImport(e.target.files?.[0]); }} />

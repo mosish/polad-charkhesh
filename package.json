@@ -15,6 +15,7 @@
     "dev:api": "tsx watch api/index.ts",
     "typecheck": "tsc --noEmit -p tsconfig.platform.json",
     "test": "tsx --test tests/*.test.ts",
+    "audit:catalog": "tsx scripts/catalog-audit.ts",
     "smoke:production": "tsx scripts/production-smoke.ts",
     "backup:data": "tsx scripts/backup-data.ts",
     "verify:backup": "tsx scripts/verify-backup.ts"

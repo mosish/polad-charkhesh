@@ -1,0 +1,4043 @@
+{
+  "generatedAt": "2026-10-04T13:00:43.581Z",
+  "scope": "Published local catalog snapshot; owner data unchanged",
+  "limits": [
+    "Presence and browser decoding checks do not establish exact manufacturer photo identity or image reuse rights.",
+    "Source references and verifiedAt metadata are recorded claims; numeric specifications were not independently reverified against every manufacturer in this audit.",
+    "Seed comparisons identify differences, not authority or errors. Archived records may not be included by the public endpoint."
+  ],
+  "summary": {
+    "active": 110,
+    "archived": 0,
+    "photoMissingOrReferenceOnly": 110,
+    "attachedPdfMissing": 110,
+    "sourceLinkMissing": 68,
+    "recordsWithMissingFields": 42,
+    "multiManufacturerOrSuffixReview": 57,
+    "recordsDifferentFromSeed": 0,
+    "fieldDifferences": 0,
+    "linkedSourcePdfReferences": 42,
+    "displayedImageFailures": 0,
+    "legacyImageFailures": 29,
+    "imagesProbed": 35,
+    "failedImageProbes": 29
+  },
+  "mediaChecks": [
+    {
+      "url": "/assets/images/bearing_6204_2rs_1787678583210.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/reference-images/ball-bearing.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "decoded": true,
+      "width": 1109,
+      "height": 1083,
+      "displayed": true
+    },
+    {
+      "url": "/assets/images/bearing_6308_2z_1787678597854.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_6005_open_1787678608569.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/ball_bearing_photo_1787677355061.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_30208_tapered_1787678619565.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/reference-images/tapered-roller-bearing.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "decoded": true,
+      "width": 1300,
+      "height": 1228,
+      "displayed": true
+    },
+    {
+      "url": "/assets/images/bearing_32210_tapered_1787678639800.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_22212_spherical_1787678650795.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/reference-images/spherical-roller.png",
+      "status": 200,
+      "contentType": "image/png",
+      "decoded": true,
+      "width": 300,
+      "height": 300,
+      "displayed": true
+    },
+    {
+      "url": "/assets/images/bearing_22316_spherical_1787678662094.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/spherical_bearing_photo_1787677386106.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_nu208_cylindrical_1787678672477.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/reference-images/cylindrical-roller.png",
+      "status": 200,
+      "contentType": "image/png",
+      "decoded": true,
+      "width": 300,
+      "height": 300,
+      "displayed": true
+    },
+    {
+      "url": "/assets/images/cylindrical_bearing_photo_1787677431892.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_51108_thrust_1787678727693.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/unit_ucp205_pillow_1787678692893.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/reference-images/pillow-block.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "decoded": true,
+      "width": 2592,
+      "height": 1936,
+      "displayed": true
+    },
+    {
+      "url": "/assets/images/unit_ucf208_flange_1787678704716.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/housing_snl511_split_1787678749335.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/seal_tc35_nbr_1787678715667.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/reference-images/shaft-seal.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "decoded": true,
+      "width": 3000,
+      "height": 4000,
+      "displayed": true
+    },
+    {
+      "url": "/assets/images/seal_tc50_viton_1787678737812.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/grease_skf_lgmt2_1787678760211.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_22324_brass_1787678785316.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/tapered_bearing_photo_1787677370531.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_29420_thrust_1787678796134.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_6210_kiln_1787678818521.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/grease_mobilith_red_1787678829445.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_7312_brass_1787678774838.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_3308_doublerow_1787678851991.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_1309_align_1787678841334.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/bearing_na4910_needle_1787678806671.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/pillow_block_photo_1787677398497.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    },
+    {
+      "url": "/assets/images/oil_seal_photo_1787677410030.webp",
+      "decoded": false,
+      "error": "EncodingError: The source image cannot be decoded.",
+      "displayed": false
+    }
+  ],
+  "products": [
+    {
+      "id": "pc-6204-2rs",
+      "code": "6204-2RSH / 2RS1",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_6204_2rs_1787678583210.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Deep Groove Ball Bearings / ISO 15:2017 & DIN 625-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-6308-2z",
+      "code": "6308-2Z / ZZ C3",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_6308_2z_1787678597854.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Deep Groove Ball Bearings / ISO 15:2017 & DIN 625-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-6005-open",
+      "code": "6005 Open / C3",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_6005_open_1787678608569.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NSK Ltd. (Japan)",
+          "catalogCode": "CAT. No. E1102m",
+          "reference": "NSK Rolling Bearings Global Catalog - Deep Groove Ball Bearings / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-6206-c3",
+      "code": "6206-2RS1 C3",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Deep Groove Ball Bearings / ISO 15:2017 & DIN 625-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-6310-2z",
+      "code": "6310-2Z / C3",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_6308_2z_1787678597854.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Deep Groove Ball Bearings / ISO 15:2017 & DIN 625-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-30206",
+      "code": "30206 J2/Q",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_30208_tapered_1787678619565.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Metric Tapered Roller Bearings / ISO 355:2019 & DIN 720",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-30208",
+      "code": "30208 J2/Q",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_30208_tapered_1787678619565.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Metric Tapered Roller Bearings / ISO 355:2019 & DIN 720",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-32210",
+      "code": "32210 J2/Q",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_32210_tapered_1787678639800.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Metric Tapered Roller Bearings / ISO 355:2019 & DIN 720",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-32014-x",
+      "code": "32014 X / Q",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_30208_tapered_1787678619565.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Metric Tapered Roller Bearings / ISO 355:2019 & DIN 720",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-22212-ek",
+      "code": "22212 EK / C3 + H312",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_22212_spherical_1787678650795.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Spherical Roller Bearings / ISO 15:2017 & DIN 635-2",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-22316-cc-w33",
+      "code": "22316 CC/W33 / C3",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_22316_spherical_1787678662094.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Spherical Roller Bearings / ISO 15:2017 & DIN 635-2",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-22220-ek",
+      "code": "22220 EK / C3",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/spherical_bearing_photo_1787677386106.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Spherical Roller Bearings / ISO 15:2017 & DIN 635-2",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nu-208-ecp",
+      "code": "NU 208 ECP / C3",
+      "category": "cylindrical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_nu208_cylindrical_1787678672477.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Cylindrical Roller Bearings NU / ISO 15:2017 & DIN 5412-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nj-212-ecp",
+      "code": "NJ 212 ECP",
+      "category": "cylindrical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Cylindrical Roller Bearings NJ / ISO 15:2017 & DIN 5412-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nup-310-ecp",
+      "code": "NUP 310 ECP / C3",
+      "category": "cylindrical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Locating Cylindrical Roller Bearings NUP / ISO 15:2017 & DIN 5412-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-51106",
+      "code": "51106 Single Direction",
+      "category": "thrust",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_51108_thrust_1787678727693.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Thrust Ball Bearings Single Direction / ISO 104:2015 & DIN 711",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": null,
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-51108",
+      "code": "51108 Single Direction",
+      "category": "thrust",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_51108_thrust_1787678727693.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Thrust Ball Bearings Single Direction / ISO 104:2015 & DIN 711",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": null,
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-51210",
+      "code": "51210 High Capacity",
+      "category": "thrust",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_51108_thrust_1787678727693.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Thrust Ball Bearings Single Direction / ISO 104:2015 & DIN 711",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": null,
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ucp-205",
+      "code": "UCP 205 (Cast Iron Pillow Block)",
+      "category": "housing",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/unit_ucp205_pillow_1787678692893.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "FYH Bearings (Japan) / ASAHI Seiko",
+          "catalogCode": "CAT. No. 2005-B",
+          "reference": "Pillow Block Units UCP 205 - Cast Iron Housing P205 / ISO 3228 & JIS B 1559",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/pillow-block.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ucf-208",
+      "code": "UCF 208 (4-Bolt Flange Housing)",
+      "category": "housing",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/unit_ucf208_flange_1787678704716.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "FYH Bearings (Japan) / ASAHI Seiko",
+          "catalogCode": "CAT. No. 2005-B",
+          "reference": "Flanged Housing Units UCF 208 - 4-Bolt Cast Iron Housing F208 / ISO 3228 & JIS B 1559",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/pillow-block.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-snl-511-609",
+      "code": "SNL 511-609 (Split Plummer Block)",
+      "category": "housing",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/housing_snl511_split_1787678749335.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB 131-001 EN",
+          "reference": "SKF Split Plummer Block Housings SNL 2, 3, 5 and 6 Series / ISO 113:2010 & DIN 736",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/pillow-block.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-tc-35-52-10",
+      "code": "TC 35-52-10 NBR (Dual Lip)",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/seal_tc35_nbr_1787678715667.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring Industrial Cat. 2022",
+          "reference": "Rotary Shaft Lip Seals TC / Type AS Double Lip with Garter Spring - DIN 3760 & ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-tc-50-72-8-viton",
+      "code": "TC 50-72-8 Viton / FKM High-Temp",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/seal_tc50_viton_1787678737812.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring Industrial Cat. 2022",
+          "reference": "Fluoroelastomer FKM / Viton® Rotary Shaft Lip Seal DIN 3760 Form AS / ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-tc-75-100-12",
+      "code": "TC 75-100-12 NBR Heavy Duty",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/seal_tc35_nbr_1787678715667.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring Industrial Cat. 2022",
+          "reference": "NBR Rotary Shaft Lip Seal DIN 3760 Form AS / ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-skf-lgmt-2",
+      "code": "SKF LGMT 2 / 1kg",
+      "category": "lubricant",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/grease_skf_lgmt2_1787678760211.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB MP/P1 10000 EN",
+          "reference": "SKF Maintenance and Lubrication Products - General Purpose Industrial Grease DIN 51825: K2K-30",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": null,
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-22324-ccja-w33va405",
+      "code": "22324 CCJA/W33VA405 (Vibrating Screen Special)",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_22324_brass_1787678785316.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB 6103 EN",
+          "reference": "SKF Spherical Roller Bearings for Vibrating Applications VA405 / ISO 15:2017 & DIN 635-2",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-32218-j2-q",
+      "code": "32218 J2/Q (Heavy Steel Mill & Axle)",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/tapered_bearing_photo_1787677370531.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Metric Tapered Roller Bearings / ISO 355:2019 & DIN 720",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-29420-e",
+      "code": "29420 E (Spherical Roller Thrust Bearing)",
+      "category": "thrust",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_29420_thrust_1787678796134.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Spherical Roller Thrust Bearings / ISO 104:2015 & DIN 728",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": null,
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nu-2224-ecp",
+      "code": "NU 2224 ECP / C3 (Heavy Refinery Pump)",
+      "category": "cylindrical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_nu208_cylindrical_1787678672477.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Heavy Cylindrical Roller Bearings NU 22 Series / ISO 15:2017 & DIN 5412-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-6210-2z-va208",
+      "code": "6210-2Z/VA208 (High-Temp 350°C Kiln Bearing)",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_6210_kiln_1787678818521.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Bearings for Extreme Temperatures VA208 (+350°C Kiln Duty) / ISO 15:2017",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-fkm-tc-80-100-12",
+      "code": "TC 80-100-12 Viton / FKM Petrochemical",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/seal_tc50_viton_1787678737812.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring Industrial Cat. 2022",
+          "reference": "Viton® / FKM High Temperature Chemical Rotary Shaft Seal DIN 3760 Form AS / ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-snl-518-615",
+      "code": "SNL 518-615 (Heavy Mining Split Housing)",
+      "category": "housing",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/housing_snl511_split_1787678749335.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB 131-001 EN",
+          "reference": "SKF Split Plummer Block Housings SNL Heavy Duty Series / ISO 113:2010 & DIN 736",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/pillow-block.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-mobilith-shc-220",
+      "code": "Mobilith SHC 220 Synthetic",
+      "category": "lubricant",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/grease_mobilith_red_1787678829445.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "ExxonMobil Chemical",
+          "catalogCode": "PDS 01-2023",
+          "reference": "Mobilith SHC Series Synthetic Grease - ISO 6743-9: L-XDDIB 2 / DIN 51825: KPHC2N-40",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-7312-becbm",
+      "code": "7312 BECBM (40° Brass Cage)",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_7312_brass_1787678774838.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Angular Contact Ball Bearings 40° Brass Cage / ISO 15:2017 & DIN 628-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-7210-becbp",
+      "code": "7210 BECBP / P6",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_7312_brass_1787678774838.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Angular Contact Ball Bearings 40° Polyamide Cage / ISO 15:2017 & DIN 628-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-3308-a-2z",
+      "code": "3308 A-2Z/C3 (Double Row)",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_3308_doublerow_1787678851991.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Double Row Angular Contact Ball Bearings 3308 A / ISO 15:2017 & DIN 628-3",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-1309-ektn9",
+      "code": "1309 EKTN9 (Self-Aligning Tapered Bore)",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_1309_align_1787678841334.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Self-Aligning Ball Bearings Tapered Bore 1309 / ISO 15:2017 & DIN 630",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-na-4910",
+      "code": "NA 4910 (Machined Needle Roller)",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_na4910_needle_1787678806671.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Schaeffler (INA / Germany)",
+          "catalogCode": "Cat. HR 1 INA",
+          "reference": "INA Machined Needle Roller Bearings with Flanges NA 4910 / ISO 1206:2018 & DIN 617",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-23228-cc-w33",
+      "code": "23228 CC/W33 (Heavy Mining SAG Mill)",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/spherical_bearing_photo_1787677386106.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Spherical Roller Bearings 23228 CC Heavy Mining Series / ISO 15:2017 & DIN 635-2",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-32314-j2-q",
+      "code": "32314 J2/Q (Heavy Crusher & Crane Wheel)",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/bearing_32210_tapered_1787678639800.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Rolling Bearings Master Catalog - Heavy Tapered Roller Bearings 32314 / ISO 355:2019 & DIN 720",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ucp-210",
+      "code": "UCP 210 (50mm Heavy Duty Pillow Block)",
+      "category": "housing",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/pillow_block_photo_1787677398497.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "FYH Bearings (Japan) / ASAHI Seiko",
+          "catalogCode": "CAT. No. 2005-B",
+          "reference": "Pillow Block Units UCP 210 (50mm Shaft) - Cast Iron Housing P210 / ISO 3228 & JIS B 1559",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/pillow-block.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-tc-100-125-13-viton",
+      "code": "TC 100-125-13 Viton / FKM Heavy Refractory",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/seal_tc50_viton_1787678737812.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring Industrial Cat. 2022",
+          "reference": "Heavy Viton® / FKM Rotary Shaft Seal DIN 3760 Form AS / ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-tc-60-85-10",
+      "code": "TC 60-85-10 NBR (Dual Lip)",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/oil_seal_photo_1787677410030.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring Industrial Cat. 2022",
+          "reference": "NBR Rotary Shaft Seal DIN 3760 Form AS / ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-skf-6311-c3",
+      "code": "SKF 6311 / C3 Explorer",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Explorer Deep Groove Ball Bearings 6311 / ISO 15:2017 & DIN 625-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-skf-c-2215-k",
+      "code": "SKF C 2215 K CARB® Toroidal",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB 6100 EN",
+          "reference": "SKF CARB® Toroidal Roller Bearings C 2215 K / ISO 15:2017",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-skf-sy-50-tf",
+      "code": "SKF SY 50 TF (Y-Bearing Unit)",
+      "category": "housing",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/pillow_block_photo_1787677398497.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF Group (Sweden)",
+          "catalogCode": "PUB BU/P1 17000/1 EN",
+          "reference": "SKF Y-Bearings & Y-Bearing Units SY 50 TF (Cast Iron Housing SY 510 M) / ISO 3228",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/pillow-block.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-fag-6312-tb-p6",
+      "code": "FAG 6312-TB-P6 Schaeffler",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Schaeffler Technologies AG (FAG / Germany)",
+          "catalogCode": "HR 1 Rolling Bearings",
+          "reference": "FAG Precision Deep Groove Ball Bearings 6312-TB-P6 / ISO 15:2017 & ISO 492 Class 6",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-fag-22216-e1-xl-k",
+      "code": "FAG 22216-E1-XL-K X-Life",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/spherical_bearing_photo_1787677386106.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Schaeffler Technologies AG (FAG / Germany)",
+          "catalogCode": "HR 1 Rolling Bearings",
+          "reference": "FAG Spherical Roller Bearings X-Life 22216-E1-XL-K / ISO 15:2017 & DIN 635-2",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-fag-nj-2312-e-m1a",
+      "code": "FAG NJ2312-E-XL-M1A Cylindrical",
+      "category": "cylindrical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Schaeffler Technologies AG (FAG / Germany)",
+          "catalogCode": "HR 1 Rolling Bearings",
+          "reference": "FAG Heavy Cylindrical Roller Bearings NJ2312-E-XL-M1A / ISO 15:2017 & DIN 5412-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ina-nk-25-20",
+      "code": "INA NK 25/20 Heavy Needle Roller",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Schaeffler Technologies AG (INA / Germany)",
+          "catalogCode": "HR 1 Needle Bearings",
+          "reference": "INA Needle Roller Bearings without Inner Ring NK 25/20 / ISO 1206:2018",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record",
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ina-kr-35-pp",
+      "code": "INA KR 35 PP Cam Follower",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Schaeffler Technologies AG (INA / Germany)",
+          "catalogCode": "HR 1 Track Rollers",
+          "reference": "INA Cam Followers / Stud Type Track Rollers KR 35 PP / DIN 623",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-timken-lm11749-10",
+      "code": "TIMKEN LM11749 / LM11710 (SET1)",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/tapered_bearing_photo_1787677370531.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "The Timken Company (USA)",
+          "catalogCode": "Order No. 10424",
+          "reference": "Timken Engineering Manual - Tapered Roller Bearings SET1 (LM11749/LM11710) / ABMA Std 19",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-timken-lm67048-10",
+      "code": "TIMKEN LM67048 / LM67010 (SET6)",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/tapered_bearing_photo_1787677370531.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "The Timken Company (USA)",
+          "catalogCode": "Order No. 10424",
+          "reference": "Timken Engineering Manual - Tapered Roller Bearings SET6 (LM67048/LM67010) / ABMA Std 19",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-timken-22220-emw33c3",
+      "code": "TIMKEN 22220EMW33C3 Solid Brass",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/spherical_bearing_photo_1787677386106.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "The Timken Company (USA)",
+          "catalogCode": "Timken Spherical Cat.",
+          "reference": "Timken Spherical Roller Bearings Solid Brass Cage 22220EMW33 / ISO 15:2017",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nsk-6206-ddu-cm",
+      "code": "NSK 6206 DDU CM Japan",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NSK Ltd. (Japan)",
+          "catalogCode": "CAT. No. E1102m",
+          "reference": "NSK Rolling Bearings Global Catalog - Deep Groove Ball Bearings Electric Motor Quality CM / ISO 15:2017",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nsk-7010-ctyndblp4",
+      "code": "NSK 7010 CTYNDBLP4 Super Precision",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NSK Ltd. (Japan)",
+          "catalogCode": "CAT. No. E1228",
+          "reference": "NSK Precision Machine Tool Bearings - Angular Contact Ball Bearings 7010 / ISO 492 Class 4 (P4)",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nsk-nu-2214-et",
+      "code": "NSK NU 2214 ET Cylindrical",
+      "category": "cylindrical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NSK Ltd. (Japan)",
+          "catalogCode": "CAT. No. E1102m",
+          "reference": "NSK Cylindrical Roller Bearings High Capacity ET Series NU 2214 / ISO 15:2017 & DIN 5412-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ntn-6204-llu-c3",
+      "code": "NTN 6204 LLU / C3 Japan",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NTN Corporation (Japan)",
+          "catalogCode": "CAT. No. 2203/E",
+          "reference": "NTN Ball and Roller Bearings Catalog - Deep Groove Ball Bearings 6204 LLU / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Designation contains alternative suffixes"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ntn-22214-eakd1",
+      "code": "NTN 22214 EAKD1 ULTAGE®",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/spherical_bearing_photo_1787677386106.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NTN Corporation (Japan)",
+          "catalogCode": "CAT. No. 2203/E",
+          "reference": "NTN ULTAGE® Spherical Roller Bearings 22214 EAKD1 / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-ntn-5206-s",
+      "code": "NTN 5206 S Double Row",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NTN Corporation (Japan)",
+          "catalogCode": "CAT. No. 2203/E",
+          "reference": "NTN Double Row Angular Contact Ball Bearings 5206 S / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-koyo-6207-2rs",
+      "code": "KOYO 6207-2RS (JTEKT Japan)",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/ball_bearing_photo_1787677355061.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "JTEKT Corporation (Koyo Bearings / Japan)",
+          "catalogCode": "CAT. No. B2001E",
+          "reference": "Koyo Ball & Roller Bearings Catalog - Deep Groove Ball Bearings 6207 / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-koyo-30212-jr",
+      "code": "KOYO 30212 JR Tapered Roller",
+      "category": "roller",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/tapered_bearing_photo_1787677370531.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "JTEKT Corporation (Koyo Bearings / Japan)",
+          "catalogCode": "CAT. No. B2001E",
+          "reference": "Koyo Tapered Roller Bearings 30212 JR / ISO 355:2019 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/tapered-roller-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-koyo-22218-rhr",
+      "code": "KOYO 22218 RHR Spherical Roller",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/spherical_bearing_photo_1787677386106.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "JTEKT Corporation (Koyo Bearings / Japan)",
+          "catalogCode": "CAT. No. B2001E",
+          "reference": "Koyo High Capacity Spherical Roller Bearings 22218 RHR / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nachi-6008-2nse9",
+      "code": "NACHI 6008-2NSE9 Quest® Japan",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NACHI-FUJIKOSHI Corp. (Japan)",
+          "catalogCode": "CAT. No. 2200-8",
+          "reference": "NACHI Quest® Deep Groove Ball Bearings 6008-2NSE9 / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nachi-22222-ex",
+      "code": "NACHI 22222 EX Quest Spherical",
+      "category": "spherical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/spherical_bearing_photo_1787677386106.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NACHI-FUJIKOSHI Corp. (Japan)",
+          "catalogCode": "CAT. No. 2200-8",
+          "reference": "NACHI Quest® Spherical Roller Bearings 22222 EX / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/spherical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-nachi-nup-310-eg",
+      "code": "NACHI NUP 310 EG Cylindrical",
+      "category": "cylindrical",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "NACHI-FUJIKOSHI Corp. (Japan)",
+          "catalogCode": "CAT. No. 2200-8",
+          "reference": "NACHI Cylindrical Roller Bearings High Load EG Series NUP 310 / ISO 15:2017 & JIS B 1512",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/cylindrical-roller.png",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-corteco-12011153b",
+      "code": "CORTECO 12011153B Simmerring® TC 35x52x7",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/oil_seal_photo_1787677410030.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring 12011153B",
+          "reference": "Corteco Simmerring® TC 35x52x7 - 72 NBR 902 / DIN 3760 Type AS & ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "pc-corteco-12012014b",
+      "code": "CORTECO 12012014B Viton® TC 50x72x8",
+      "category": "seal",
+      "archived": false,
+      "gaps": [
+        "image",
+        "documents",
+        "sources"
+      ],
+      "missingFields": [],
+      "photos": [
+        "/assets/images/oil_seal_photo_1787677410030.webp"
+      ],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "Freudenberg / Corteco (Germany)",
+          "catalogCode": "Simmerring 12012014B",
+          "reference": "Corteco Simmerring® TC 50x72x8 - 80 FKM 595 (Viton) / DIN 3760 Type AS & ISO 6194-1",
+          "sourceType": "official_catalog",
+          "verifiedAt": "2026-09"
+        }
+      ],
+      "reviewReasons": [
+        "Multiple manufacturers share one specification record"
+      ],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/shaft-seal.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6002-2z",
+      "code": "6002-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6002-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6002-2rsl",
+      "code": "6002-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6002-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6002-2rsh",
+      "code": "6002-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6002-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6202-2z",
+      "code": "6202-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6202-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6202-2rsl",
+      "code": "6202-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6202-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6202-2rsh",
+      "code": "6202-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6202-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6302-2z",
+      "code": "6302-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6302-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6302-2rsl",
+      "code": "6302-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6302-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6302-2rsh",
+      "code": "6302-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 59, designation 6302-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6003-2z",
+      "code": "6003-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6003-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6003-2rsl",
+      "code": "6003-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6003-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6003-2rsh",
+      "code": "6003-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6003-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6203-2z",
+      "code": "6203-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6203-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6203-2rsl",
+      "code": "6203-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6203-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6203-2rsh",
+      "code": "6203-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6203-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6303-2z",
+      "code": "6303-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6303-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6303-2rsl",
+      "code": "6303-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6303-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6303-2rsh",
+      "code": "6303-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6303-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6004-2z",
+      "code": "6004-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6004-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6004-2rsl",
+      "code": "6004-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6004-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6004-2rsh",
+      "code": "6004-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 61, designation 6004-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6304-2z",
+      "code": "6304-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6304-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6304-2rsl",
+      "code": "6304-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6304-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6304-2rsh",
+      "code": "6304-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6304-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6005-2z",
+      "code": "6005-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6005-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6005-2rsl",
+      "code": "6005-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6005-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6005-2rsh",
+      "code": "6005-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6005-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6205-2z",
+      "code": "6205-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6205-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6205-2rsl",
+      "code": "6205-2RSL",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6205-2RSL",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6205-2rsh",
+      "code": "6205-2RSH",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6205-2RSH",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6305-2z",
+      "code": "6305-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6305-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6305-2rz",
+      "code": "6305-2RZ",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6305-2RZ",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6305-2rs1",
+      "code": "6305-2RS1",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 63, designation 6305-2RS1",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6006-2z",
+      "code": "6006-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6006-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6006-2rz",
+      "code": "6006-2RZ",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6006-2RZ",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6006-2rs1",
+      "code": "6006-2RS1",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6006-2RS1",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6206-2z",
+      "code": "6206-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6206-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6206-2rz",
+      "code": "6206-2RZ",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6206-2RZ",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6206-2rs1",
+      "code": "6206-2RS1",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6206-2RS1",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6306-2z",
+      "code": "6306-2Z",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6306-2Z",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6306-2rz",
+      "code": "6306-2RZ",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6306-2RZ",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    },
+    {
+      "id": "skf-6306-2rs1",
+      "code": "6306-2RS1",
+      "category": "ball",
+      "archived": false,
+      "gaps": [
+        "image",
+        "specifications",
+        "documents"
+      ],
+      "missingFields": [
+        "clearanceOptions",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "photos": [],
+      "exactPhotoCandidates": [],
+      "pdfUrl": null,
+      "sources": [
+        {
+          "manufacturer": "SKF",
+          "sourceType": "official_catalog",
+          "catalogCode": "Sealed single-row deep groove ball bearings, section 1.2",
+          "reference": "SKF catalog table, PDF page 65, designation 6306-2RS1",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+          "verifiedAt": "2026-09-29"
+        }
+      ],
+      "reviewReasons": [],
+      "manufacturerVerification": "Pending independent check; recorded source metadata is not proof of current accuracy",
+      "displayedImage": "/reference-images/ball-bearing.jpg",
+      "displayedImageIsReference": true,
+      "differencesFromSeed": [],
+      "notInSeed": false
+    }
+  ]
+}
