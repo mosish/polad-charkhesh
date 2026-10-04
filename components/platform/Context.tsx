@@ -22,9 +22,14 @@ type State = {
   reload: () => void;
 };
 const Context = createContext<State>(null!);
+function publicSnapshot() {
+  try { return JSON.parse(document.getElementById('public-data')?.textContent || 'null'); } catch { return null; }
+}
 export const usePlatform = () => useContext(Context);
 export function Provider({ children }: { children: ReactNode }) {
   const [fa, setFa] = useState(() => {
+    const initial = publicSnapshot();
+    if (initial) return initial.fa;
     const q = new URLSearchParams(location.search).get('lang');
     const saved = localStorage.getItem('pc-language');
     return q
@@ -33,7 +38,7 @@ export function Provider({ children }: { children: ReactNode }) {
         ? saved === 'fa'
         : location.hostname.endsWith('.ir');
   });
-  const [state, setState] = useState({
+  const [state, setState] = useState(() => publicSnapshot() ? { ...publicSnapshot(), loading: false, error: '' } : {
     products: [] as BearingProduct[],
     company: null as any,
     content: null as any,
@@ -42,7 +47,7 @@ export function Provider({ children }: { children: ReactNode }) {
     error: '',
   });
   const reload = () => {
-    setState((s) => ({ ...s, loading: true, error: '' }));
+    setState((s) => ({ ...s, loading: !s.company, error: '' }));
     Promise.all([
       api('/products'),
       api('/company'),
@@ -104,13 +109,14 @@ export function Provider({ children }: { children: ReactNode }) {
     if (new URLSearchParams(location.search).get('preview') !== '1')
       localStorage.setItem('pc-language', fa ? 'fa' : 'en');
     if (state.seo && state.company) {
-      const slug = location.pathname.split('/').pop();
-      const p = state.products.find((p) => p.slug === slug);
+      let slug = '';
+      try { slug = decodeURIComponent(location.pathname.replace(/\/+$/, '').split('/').pop() || ''); } catch {}
+      const p = location.pathname.startsWith('/product/') ? state.products.find((p: BearingProduct) => p.slug === slug) : undefined;
       updateMetadata(
-        metadataFor(location.pathname, fa, state.seo, state.company, p),
+        metadataFor(location.pathname, fa, state.seo, state.company, p, state.content, state.products, location.search),
       );
     }
-  }, [fa, state.seo]);
+  }, [fa, state.seo, state.company, state.content, state.products]);
   return (
     <Context.Provider
       value={{
@@ -123,7 +129,19 @@ export function Provider({ children }: { children: ReactNode }) {
               : state.content?.copy?.[textKey(e)];
           return entry?.[fa ? 'fa' : 'en'] ?? (fa ? f : e);
         },
-        toggle: () => setFa((x) => !x),
+        toggle: () => {
+          const next = !fa;
+          const params = new URLSearchParams(location.search);
+          const live = state.seo && [new URL(state.seo.domainEn).hostname, new URL(state.seo.domainFa).hostname].includes(location.hostname);
+          if (live && !location.pathname.startsWith('/admin') && params.get('preview') !== '1') {
+            params.delete('lang');
+            location.assign(new URL(location.pathname + (params.size ? '?' + params.toString() : '') + location.hash, state.seo[next ? 'domainFa' : 'domainEn']).href);
+          } else {
+            params.set('lang', next ? 'fa' : 'en');
+            history.replaceState(null, '', location.pathname + '?' + params.toString() + location.hash);
+            setFa(next);
+          }
+        },
         reload,
       }}
     >

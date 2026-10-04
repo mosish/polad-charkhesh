@@ -171,9 +171,34 @@ try {
   assert.equal((await request('/api/content', 'poladcharkhesh.com', { method: 'PUT', body: editedContent, cookie: sessionCookie })).status, 200, 'Administrator can save website content');
   assert.equal(JSON.parse((await request('/api/content')).body).data.hero.titleEn, 'Production smoke title', 'Saved content is public');
 
-  const editedProduct = { ...products[0], descriptionEn: 'Production smoke product description.' };
+  const editedProduct = { ...products[0], descriptionEn: 'Production smoke product description.', metaTitleEn: 'Owner SEO title for smoke test', metaDescriptionEn: 'Owner SEO description for smoke test' };
   assert.equal((await request('/api/products/' + encodeURIComponent(editedProduct.id), 'poladcharkhesh.com', { method: 'PUT', body: editedProduct, cookie: sessionCookie })).status, 200, 'Administrator can save product data');
   assert.equal(JSON.parse((await request('/api/products/' + encodeURIComponent(editedProduct.id))).body).product.descriptionEn, editedProduct.descriptionEn);
+  const seoProduct = await request('/product/' + encodeURIComponent(editedProduct.slug));
+  assert.match(seoProduct.body, /<title>Owner SEO title for smoke test<\/title>/);
+  assert.match(seoProduct.body, /name="description" content="Owner SEO description for smoke test"/);
+  assert.match(seoProduct.body, /Production smoke product description/);
+  assert.match(seoProduct.body, /Technical specifications/);
+  assert.equal((seoProduct.body.match(/type="application\/ld\+json"/g) || []).length, 1, 'One structured data graph');
+  assert.equal(JSON.parse(seoProduct.body.match(/id="public-data" type="application\/json">(.*?)<\/script>/s)![1]).products.length, products.length);
+  assert.match((await request('/')).body, /Production smoke title/);
+  const preview = await request('/?preview=1');
+  assert.match(preview.body, /noindex,nofollow/);
+  assert.equal(preview.headers['x-robots-tag'], 'noindex, nofollow');
+  for (const host of ['poladcharkhesh.com', 'poladcharkhesh.ir']) {
+    const sitemap = await request('/sitemap.xml', host);
+    assert.equal((sitemap.body.match(/<loc>/g) || []).length, products.length + 3);
+    assert.match(sitemap.body, /hreflang="x-default"/);
+    assert.ok(!sitemap.body.includes('/admin'));
+    assert.ok(sitemap.body.includes('<loc>https://' + host + '/product/'));
+  }
+  assert.equal((await request('/brand/social-preview.png')).status, 200, 'Social image is served');
+  assert.equal((await request('/product/%E0%A4%A')).status, 400, 'Malformed URL encoding is rejected by Express without a server error');
+  await request('/api/products/' + encodeURIComponent(editedProduct.id) + '/archive', 'poladcharkhesh.com', { method: 'PATCH', body: {}, cookie: sessionCookie });
+  assert.equal((await request('/product/' + editedProduct.slug)).status, 404, 'Archived product is not indexable');
+  assert.ok(!(await request('/sitemap.xml')).body.includes('/product/' + editedProduct.slug + '<'), 'Archive removes sitemap entry');
+  await request('/api/products/' + encodeURIComponent(editedProduct.id) + '/archive', 'poladcharkhesh.com', { method: 'PATCH', body: {}, cookie: sessionCookie });
+
 
   const inquiry = await request('/api/inquiries', 'poladcharkhesh.com', { method: 'POST', body: { name: 'Smoke test', phone: '+12025550123', message: 'Temporary production inquiry.' } });
   assert.equal(inquiry.status, 201, 'Public inquiry can be saved');
@@ -191,7 +216,7 @@ try {
   assert.equal((await request('/api/system/backup', 'poladcharkhesh.com', { cookie: sessionCookie })).status, 200, 'Administrator can export metadata backup');
   assert.equal((await request('/api/auth/logout', 'poladcharkhesh.com', { method: 'POST', body: {}, cookie: sessionCookie })).status, 200, 'Administrator can sign out');
   assert.equal((await request('/api/system/status', 'poladcharkhesh.com', { cookie: sessionCookie })).status, 401, 'Signed-out session is revoked');
-  assert.match((await request('/robots.txt')).body, /Disallow: \/admin/);
+  assert.match((await request('/robots.txt')).body, /Sitemap: https:\/\/poladcharkhesh\.com\/sitemap\.xml/);
   assert.match((await request('/sitemap.xml')).body, /https:\/\/poladcharkhesh\.com\/product\//);
   console.log('Production smoke check passed: pages, assets, metadata, admin setup, product/content edits, inquiry, media, backup and logout.');
 } finally {

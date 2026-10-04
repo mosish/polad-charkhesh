@@ -1,0 +1,37 @@
+{
+  "reviewDate": "2026-10-04",
+  "scope": "isolated production build and local preview; no deployment",
+  "activeProducts": 110,
+  "productResponsesChecked": 220,
+  "uniqueProductTitles": {
+    "en": 110,
+    "fa": 110
+  },
+  "sitemapEntriesPerDomain": 113,
+  "automatedTests": {
+    "passed": 30,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "productionSmoke": "passed",
+  "newSeoProductionModulesLint": "passed",
+  "repositoryWideLint": "still pending; existing repository configuration and violations are outside this task",
+  "browser": {
+    "serverClientMetadataParity": true,
+    "singleStructuredDataGraph": true,
+    "noJavaScriptPublicContent": true,
+    "productModal": true,
+    "adminSeoSave": true,
+    "languageSwitchAndReload": true,
+    "persianMobileOverflowCheck": true,
+    "pageErrors": 0
+  },
+  "remainingLaunchWork": [
+    "Hosting and HTTPS for both domains",
+    "Search Console domain verification and sitemap submission",
+    "Exact SKU media and authoritative engineering/content approval",
+    "Final accessibility/security/performance review",
+    "Repository-wide lint"
+  ]
+}

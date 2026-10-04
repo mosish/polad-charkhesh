@@ -1,3 +1,4 @@
+import { seoDefaults } from '../domain/seo';
 import { sameShape } from './settings-shape';
 import { upgradeContent } from '../domain/site-content';
 import { Router } from 'express';
@@ -83,6 +84,8 @@ system.post('/restore', superadmin, (req: any, res) => {
       .json({ error: 'Duplicate product identities in backup.' });
   if(!b.content||typeof b.content!=='object'||Array.isArray(b.content))return res.status(400).json({error:'Invalid backup content.'});
   b.content = upgradeContent(b.content);
+  // Version-1 backups predate route-specific SEO. Add only the new group.
+  if (b.seo && b.seo.pages === undefined) b.seo = { ...b.seo, pages: structuredClone(seoDefaults.pages) };
   for (const k of ['company', 'content', 'seo'])
     if (
       validateSettings(k, b[k]).length ||

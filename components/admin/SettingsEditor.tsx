@@ -1,6 +1,15 @@
+import SeoOverview from './SeoOverview';
 import { useEffect, useState } from 'react';
 import { api } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
+const seoLabels: Record<string, [string, string]> = {
+  titleEn: ['Search title · English', 'عنوان جستجو · انگلیسی'], titleFa: ['Search title · Persian', 'عنوان جستجو · فارسی'],
+  descriptionEn: ['Search description · English', 'توضیح جستجو · انگلیسی'], descriptionFa: ['Search description · Persian', 'توضیح جستجو · فارسی'],
+  domainEn: ['English canonical domain', 'دامنه اصلی انگلیسی'], domainFa: ['Persian canonical domain', 'دامنه اصلی فارسی'],
+  ogImage: ['Social sharing image URL', 'نشانی تصویر اشتراک‌گذاری'], verification: ['Google Search Console token', 'توکن تأیید سرچ کنسول گوگل'],
+  keywords: ['Editorial topic keywords (not a Google ranking signal)', 'کلیدواژه‌های تحریریه (بدون تأثیر مستقیم در رتبه گوگل)'],
+  pages: ['Page-specific metadata', 'اطلاعات سئو هر صفحه'], catalog: ['Product catalog', 'کاتالوگ محصولات'], engineering: ['Engineering tools', 'ابزارهای مهندسی'],
+};
 const companyGroups = [
   { id: 'identity', en: 'Identity', fa: 'هویت شرکت', keys: ['nameFa','nameEn','legalNameFa','legalNameEn','sloganFa','sloganEn','website'] },
   { id: 'contact', en: 'Contact', fa: 'راه‌های ارتباطی', keys: ['email','primaryPhone','primaryPhoneDisplayFa','primaryPhoneDisplayEn','primaryPhoneTel','landlinePhone','landlinePhoneDisplayFa','landlinePhoneDisplayEn','landlinePhoneTel','whatsappNumber','whatsappUrl'] },
@@ -59,7 +68,7 @@ export default function SettingsEditor({
   };
   const labelFor = (key: string) => kind === 'company' && companyLabels[key]
     ? t(...companyLabels[key])
-    : key.replace(/([a-z])([A-Z])/g, '$1 $2');
+    : kind === 'seo' && seoLabels[key] ? t(...seoLabels[key]) : key.replace(/([a-z])([A-Z])/g, '$1 $2');
   function fields(obj: any, prefix: string[] = []): React.ReactNode {
     return Object.entries(obj).map(([k, v]) =>
       typeof v === 'object' && v && !Array.isArray(v) ? (
@@ -72,6 +81,7 @@ export default function SettingsEditor({
           {labelFor(k)}
           {v.length > 140 || /description|title|address/i.test(k) ? (
             <textarea
+              aria-label={labelFor(k)}
               rows={3}
               value={v}
               dir={k.endsWith('Fa') ? 'rtl' : 'ltr'}
@@ -79,11 +89,13 @@ export default function SettingsEditor({
             />
           ) : (
             <input
+              aria-label={labelFor(k)}
               value={v}
               dir={k.endsWith('Fa') ? 'rtl' : 'ltr'}
               onChange={(e) => update([...prefix, k], e.target.value)}
             />
           )}
+          {kind === 'seo' && /title|description/i.test(k) && <small className="muted">{v.length} {t('characters · keep this specific and readable', 'نویسه · متن دقیق و خوانا باشد')}</small>}
         </label>
       ) : null,
     );
@@ -92,7 +104,7 @@ export default function SettingsEditor({
     try {
       await api('/' + kind, 'PUT', value);
       setDirty(false);
-      setMessage(t('Changes saved.', 'تغییرات ذخیره شد.'));
+      setMessage('saved');
       setError('');
       reload();
     } catch (e: any) {
@@ -105,6 +117,7 @@ export default function SettingsEditor({
         <p>{error || t('Loading…', 'در حال دریافت…')}</p>
       ) : (
         <>
+          {kind === 'seo' && <SeoOverview seo={value} />}
           {kind === 'company' && <div className="settings-section-tabs" role="tablist" aria-label={t('Company settings sections', 'بخش‌های تنظیمات شرکت')}>
             {companyGroups.map((group) => <button key={group.id} type="button" role="tab" aria-selected={companyGroup === group.id} onClick={() => setCompanyGroup(group.id)}>{t(group.en, group.fa)}</button>)}
           </div>}
@@ -119,7 +132,7 @@ export default function SettingsEditor({
               {t('Save changes', 'ذخیره تغییرات')}
             </button>
             <span role="status">
-              {message ||
+              {message ? t('Changes saved.', 'تغییرات ذخیره شد.') :
                 (dirty ? t('Unsaved changes', 'تغییرات ذخیره‌نشده') : '')}
             </span>
           </div>

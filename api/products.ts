@@ -70,7 +70,7 @@ products.post('/', authenticated, (req: any, res) => {
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
   putProduct(p);
   audit(req.user.username, 'PRODUCT_CREATED', p.id);
-  res.status(201).json({ product: p });
+  res.status(201).json({ product: product(p.id) });
 });
 products.put('/:id', authenticated, (req: any, res) => {
   const old = product(req.params.id);
@@ -87,7 +87,7 @@ products.put('/:id', authenticated, (req: any, res) => {
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
   putProduct(p);
   audit(req.user.username, 'PRODUCT_UPDATED', p.id);
-  res.json({ product: p });
+  res.json({ product: product(p.id) });
 });
 products.patch('/:id/archive', authenticated, (req: any, res) => {
   const p = product(req.params.id);
@@ -101,7 +101,7 @@ products.patch('/:id/archive', authenticated, (req: any, res) => {
     p.isArchived ? 'PRODUCT_ARCHIVED' : 'PRODUCT_RESTORED',
     p.id,
   );
-  res.json({ product: p });
+  res.json({ product: product(p.id) });
 });
 products.delete('/:id', authenticated, superadmin, (req: any, res) => {
   const p = product(req.params.id);

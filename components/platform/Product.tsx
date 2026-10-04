@@ -44,7 +44,7 @@ function ProductCallOptions({ p, company }: { p: BearingProduct; company: Compan
     </a>
   </>;
 }
-export function ProductImage({ p }: { p: BearingProduct }) {
+export function ProductImage({ p, priority = false }: { p: BearingProduct; priority?: boolean }) {
   const { content, fa, t } = usePlatform();
   const [failed, setFailed] = useState(false);
   const media = mediaFor(p, content);
@@ -65,9 +65,10 @@ export function ProductImage({ p }: { p: BearingProduct }) {
     <>
       <img
         src={media.url}
-        alt={media.reference ? t('Bearing family reference image', 'تصویر مرجع خانواده بیرینگ') : p[fa ? 'nameFa' : 'nameEn']}
+        alt={media.reference ? typeLabel(p.schematicType, t) + ' · ' + t('family reference illustration', 'تصویر مرجع خانواده') : p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']}
         onError={() => setFailed(true)}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
         width={640}
         height={640}
       />
@@ -88,11 +89,11 @@ export function ProductCard({
 }) {
   const { fa, t } = usePlatform();
   return (
-    <button
-      type="button"
+    <a
+      href={'/product/' + encodeURIComponent(p.slug || p.id)}
       className="product-card"
       aria-label={t('View product details', 'مشاهده جزئیات محصول') + ' ' + p.code}
-      onClick={() => onSelect(p)}
+      onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onSelect(p); } }}
     >
       <div className="product-photo">
         <ProductImage p={p} />
@@ -124,7 +125,7 @@ export function ProductCard({
           <ArrowRight size={16} />
         </span>
       </div>
-    </button>
+    </a>
   );
 }
 export async function datasheet(
@@ -209,7 +210,7 @@ export function TechnicalContent({
       <div className="product-detail-grid">
         <div>
           <div className="detail-image">
-            <ProductImage p={{ ...p, imageUrl: image }} />
+            <ProductImage p={{ ...p, imageUrl: image }} priority={!inline} />
           </div>
           {(p.images?.filter((u) => !u.startsWith('/assets/images/')).length ||
             0) > 1 && (
@@ -220,10 +221,10 @@ export function TechnicalContent({
                   <button
                     key={u}
                     onClick={() => setImage(u)}
-                    aria-label="Select image"
+                    aria-label={t('Select product image', 'انتخاب تصویر محصول') + ' ' + p.code}
                     type="button"
                   >
-                    <img src={u} alt="Product view" width={120} height={120} />
+                    <img src={u} alt={p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']} width={120} height={120} loading="lazy" />
                   </button>
                 ))}
             </div>
@@ -431,7 +432,7 @@ function ProductPanelBody({ p, onClose, onSelect }: { p: BearingProduct; onClose
   );
 }
 export default function ProductPage() {
-  const { products, loading, error, t, fa, seo } = usePlatform();
+  const { products, loading, error, t, fa } = usePlatform();
   let slug = '';
   try {
     slug = decodeURIComponent(
@@ -441,11 +442,6 @@ export default function ProductPage() {
     // A malformed product URL resolves to the ordinary not-found view.
   }
   const p = products.find((p) => p.slug === slug);
-  useEffect(() => {
-    if (!p || !seo) return;
-    document.title =
-      p[fa ? 'metaTitleFa' : 'metaTitleEn'] || p[fa ? 'nameFa' : 'nameEn'];
-  }, [p, fa, seo]);
   if (loading || error)
     return (
       <main id="main">

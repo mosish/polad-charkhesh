@@ -11,6 +11,8 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       // Preserve the browser's host so API same-origin checks work through Vite.
+      '/robots.txt': { target: 'http://127.0.0.1:3001', changeOrigin: false },
+      '/sitemap.xml': { target: 'http://127.0.0.1:3001', changeOrigin: false },
       '/api': { target: 'http://127.0.0.1:3001', changeOrigin: false },
       '/uploads': { target: 'http://127.0.0.1:3001', changeOrigin: false },
     },

@@ -4,7 +4,7 @@
 >
 > **Source of truth for code:** GitHub `main`
 >
-> **Last status review:** 2026-09-29
+> **Last status review:** 2026-10-04
 
 Polad Charkhesh is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
@@ -29,10 +29,11 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Engineering workspace | 🟢 Implemented | Life and known-load estimates show example results immediately and recalculate as inputs change. Fit limits, comparison, and unit conversion remain on the homepage; application review remains essential. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
-| Admin content and product editing | 🟢 Implemented | Product editing, missing-content filters, bulk actions and reviewed JSON import/export are implemented and tested. Full media, SEO, roles and restore UI review remains. |
+| Admin content and product editing | 🟢 Implemented | Product editing, missing-content filters, bulk actions and reviewed JSON import/export are implemented and tested. SEO previews and saving were reviewed in an isolated browser session; full media, roles and restore UI review remains. |
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
+| Technical SEO | ✅ Verified locally | English/Persian metadata for 110 products and three public pages, server-delivered content, canonical/hreflang, sitemap, structured data, sharing previews and admin editing pass targeted checks. Live Search Console and indexing remain post-launch tasks. |
 | Exact product photos and manufacturer PDFs | 🟡 Pending content | Exact SKU photos are still missing. SKF's public product/image hosts blocked reliable access, so the 42 new records use clearly labeled family-reference visuals and link to SKF's official catalog. Admin uploads can replace each image later. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | 🟡 Pending | TypeScript, tests, and production build pass; the repository-wide lint command still reports rule violations across application and test files. |
@@ -41,7 +42,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **26 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
+The last full automated suite passed **30 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -182,3 +183,16 @@ GitHub `main` is the source of truth for application code. Before work, read the
 ## Launch philosophy
 
 Major local features are already present. Prioritize launch blockers, real product data, integration defects, security, backups, and deployment preparation. Defer unrelated feature expansion until the site is stable and the business approves its public content.
+
+
+### 2026-10-04 — Bilingual SEO overhaul
+
+- Filled missing English/Persian product titles and descriptions for the 110-record catalog without changing technical data, media or existing custom SEO copy. New and restored products receive descriptive defaults when saved.
+- Added independent homepage, catalog and engineering metadata, editable search previews, product coverage counts, sharing-image settings and Search Console token support in **Admin → SEO**.
+- Unified the server/browser head: canonical URLs, reciprocal `en`/`fa` and `x-default` links, Open Graph/Twitter cards and one Organization/WebSite/WebPage/Product/Breadcrumb graph. Product schema carries factual specifications, with no invented prices, reviews, stock offers or manufacturer identity.
+- Added published HTML content and genuine product links before JavaScript starts. Product cards still open the floating panel; their real links also support opening a specification page in a new tab.
+- Added domain-specific XML sitemaps and robots sitemap discovery. Admin, previews, missing and archived product pages receive `noindex`; missing/archived product routes return 404.
+- Checked 220 product pages (110 per language), 220 unique titles, server/browser metadata parity, no-JavaScript browsing, admin SEO saving, the product modal and Persian phone-width layout. Automated suite: 30 tests; typecheck, production build and isolated production smoke passed.
+- Scope: source and local verification. Hosting, both domains/TLS, Search Console verification/submission, exact SKU media, engineering reconciliation, full accessibility/security review and repository lint remain separate launch gates.
+
+See [SEO configuration and launch guide](docs/SEO.md) for editable fields, URL rules and post-launch verification.

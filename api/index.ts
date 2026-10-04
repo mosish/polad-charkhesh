@@ -1,3 +1,5 @@
+import { metadataFor, metadataHead, pageUrl, languageFor, escapeHtml, jsonForHtml } from '../domain/seo';
+import { initialPublicHtml } from './seo-html';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import path from 'node:path';
@@ -82,34 +84,16 @@ app.use(
     },
   }),
 );
-const escape = (s: any) =>
-  String(s || '').replace(
-    /[&<>"']/g,
-    (c) =>
-      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[
-        c
-      ]!,
-  );
-app.get('/robots.txt', (_req, res) =>
-  res.type('text').send('User-agent: *\nDisallow: /admin\nDisallow: /api/\n'),
-);
+app.get('/robots.txt', (req, res) => {
+  const seo = setting('seo');
+  res.type('text/plain').send('User-agent: *\nDisallow: /api/\nSitemap: ' + pageUrl('/sitemap.xml', seo, languageFor(req.hostname)) + '\n');
+});
 app.get('/sitemap.xml', (req, res) => {
-  const seo = setting('seo'),
-    origin = req.hostname.endsWith('.ir') ? seo.domainFa : seo.domainEn;
-  res
-    .type('xml')
-    .send(
-      '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
-        [
-          '/',
-          '/catalog',
-          '/engineering',
-          ...allProducts().map((p) => '/product/' + p.slug),
-        ]
-          .map((p) => '<url><loc>' + escape(origin + p) + '</loc></url>')
-          .join('') +
-        '</urlset>',
-    );
+  const seo = setting('seo'), fa = languageFor(req.hostname);
+  const routes = ['/', '/catalog', '/engineering', ...allProducts().map((p) => '/product/' + p.slug)];
+  res.type('application/xml').send('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+    + routes.map((route) => '<url><loc>' + escapeHtml(pageUrl(route, seo, fa)) + '</loc>'
+      + [['en', false], ['fa', true], ['x-default', false]].map(([lang, persian]) => '<xhtml:link rel="alternate" hreflang="' + lang + '" href="' + escapeHtml(pageUrl(route, seo, Boolean(persian))) + '"/>').join('') + '</url>').join('') + '</urlset>');
 });
 if (production) {
   app.use(
@@ -131,67 +115,21 @@ if (production) {
       }
     }
     const p = productSlug ? product(productSlug) : null;
-    const missing = routePath.startsWith('/product/')
-      ? !p || p.isArchived
-      : !['/', '/catalog', '/engineering', '/admin'].includes(routePath);
-    const fa =
-      req.query.lang === 'fa' ||
-      (req.query.lang !== 'en' && req.hostname.endsWith('.ir'));
-    const seo = setting('seo'),
-      company = setting('company'),
-      suffix = fa ? 'Fa' : 'En',
-      base = seo['domain' + suffix];
-    const title = missing
-        ? fa
-          ? 'صفحه یافت نشد'
-          : 'Page not found'
-        : p
-          ? p['metaTitle' + suffix] || p['name' + suffix]
-          : seo['title' + suffix],
-      description = p ? p['description' + suffix] : seo['description' + suffix];
+    const fa = languageFor(req.hostname, req.url.split('?')[1] || '');
+    const seo = setting('seo'), company = setting('company'), content = setting('content'), products = allProducts();
+    const data = metadataFor(routePath, fa, seo, company, p, content, products, req.url.split('?')[1] || '');
     let html = readFileSync(path.resolve('dist/client/index.html'), 'utf8')
-      .replace(
-        '<html lang="en">',
-        `<html lang="${fa ? 'fa' : 'en'}" dir="${fa ? 'rtl' : 'ltr'}">`,
-      )
-      .replace(/<title>.*?<\/title>/s, `<title>${escape(title)}</title>`)
-      .replace(
-        /<meta name="description"[^>]*>/,
-        `<meta name="description" content="${escape(description)}"/>`,
-      );
-    const json = p
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: p['name' + suffix],
-          sku: p.code,
-          mpn: p.code,
-          description,
-          category: p.category,
-          additionalProperty: ['d', 'D', 'B', 'crKn', 'corKn'].map((k) => ({
-            '@type': 'PropertyValue',
-            name: k,
-            value: p[k],
-            unitText: ['d', 'D', 'B'].includes(k) ? 'mm' : 'kN',
-          })),
-        }
-      : {
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: company['name' + suffix],
-          telephone: company.primaryPhone,
-          email: company.email,
-          address: company['address' + suffix],
-        };
-    html = html.replace(
-      '</head>',
-      `<link rel="canonical" href="${escape(base + routePath)}"/><link rel="alternate" hreflang="en" href="${escape(seo.domainEn + routePath)}"/><link rel="alternate" hreflang="fa" href="${escape(seo.domainFa + routePath)}"/><meta property="og:title" content="${escape(title)}"/><meta property="og:description" content="${escape(description)}"/><meta property="og:url" content="${escape(base + routePath)}"/><meta name="twitter:card" content="summary"/>${routePath === '/admin' || missing ? '<meta name="robots" content="noindex,nofollow"/>' : ''}<script type="application/ld+json">${JSON.stringify(json).replace(/</g, '\\u003c')}</script></head>`,
-    );
-    res.set(
-      'Cache-Control',
-      routePath === '/admin' || missing ? 'no-store' : 'no-cache',
-    );
-    res.status(missing ? 404 : 200).send(html);
+      .replace('<html lang="en">', `<html lang="${fa ? 'fa' : 'en'}" dir="${fa ? 'rtl' : 'ltr'}">`)
+      .replace(/<title>.*?<\/title>/s, '')
+      .replace(/<meta name="description"[^>]*>/, '')
+      .replace('</head>', metadataHead(data) + '</head>');
+    html = html.replace('<div id="root"></div>', '<div id="root">' + initialPublicHtml(routePath, fa, { company, content, products }, data.missing, p) + '</div>');
+    // The public snapshot is exactly the same API data used by the React app.
+    // No account, draft, session, archived product or inquiry data is embedded.
+    if (!data.privatePage) html = html.replace('</body>', `<script id="public-data" type="application/json">${jsonForHtml({ company, content, products, seo, fa })}</script></body>`);
+    res.set('Cache-Control', data.privatePage ? 'private, no-store' : 'no-cache');
+    if (data.privatePage) res.set('X-Robots-Tag', 'noindex, nofollow');
+    res.status(data.missing ? 404 : 200).send(html);
   });
 }
 app.use((err: any, _req: any, res: any, _next: any) => {

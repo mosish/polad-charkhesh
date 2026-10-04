@@ -1,3 +1,4 @@
+import { seoDefaults } from '../domain/seo';
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync } from 'node:fs';
@@ -55,11 +56,12 @@ test('catalog preserves 68 legacy identities and adds sourced SKF designations',
   assert.equal(skfCatalogAdditions.length, 42);
   const { b } = await req('/products');
   assert.equal(b.count, 110);
-  for (const p of bearingProducts)
-    assert.deepEqual(
-      b.products.find((v: any) => v.id === p.id),
-      p,
-    );
+  for (const p of bearingProducts) {
+    const actual = b.products.find((v: any) => v.id === p.id);
+    const withoutSeo = (value: any) => Object.fromEntries(Object.entries(value).filter(([key]) => !['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa', 'keywords'].includes(key)));
+    assert.deepEqual(withoutSeo(actual), withoutSeo(p), 'SEO enrichment must preserve all technical and media data');
+    for (const key of ['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa']) assert.ok(actual[key]?.trim());
+  }
   assert.ok(skfCatalogAdditions.every((p) => p.technicalSources?.[0]?.url?.startsWith('https://cdn.skfmediahub.skf.com/')));
   assert.ok(skfCatalogAdditions.every((p) => !p.imageUrl && p.speedLimitingRpm && !validateProduct(p).length));
 });
@@ -83,6 +85,7 @@ test('production canonical settings reject localhost and non-HTTPS', () => {
   );
   assert.deepEqual(
     validateSettings('seo', {
+      ...seoDefaults,
       domainEn: 'https://poladcharkhesh.com',
       domainFa: 'https://poladcharkhesh.ir',
     }),
@@ -358,6 +361,28 @@ test('backup omits secrets, validates restore, snapshots and transactions roll b
   );
   assert.equal(database.allProducts().length, 110);
 });
+test('SEO admin settings preserve overrides, validate fields and enrich new product metadata', async () => {
+  const original = (await req('/seo')).b.data;
+  const edited = structuredClone(original);
+  edited.pages.catalog.titleEn = 'Owner catalog SEO title';
+  edited.pages.engineering.descriptionFa = 'توضیح اختصاصی ابزارهای مهندسی';
+  edited.verification = 'test-token_not-a-real-verification';
+  assert.equal((await req('/seo', 'PUT', edited, false)).r.status, 401);
+  assert.equal((await req('/seo', 'PUT', edited)).r.status, 200);
+  assert.deepEqual((await req('/seo')).b.data, edited);
+  assert.equal((await req('/seo', 'PUT', { ...edited, domainEn: 'https://user:password@example.com' })).r.status, 400);
+  assert.equal((await req('/seo', 'PUT', { ...edited, titleFa: '' })).r.status, 400);
+  assert.equal((await req('/seo', 'PUT', { ...edited, verification: '<meta name="bad">' })).r.status, 400);
+  assert.deepEqual((await req('/seo')).b.data, edited, 'Rejected SEO edits never mutate saved settings');
+  await req('/seo', 'PUT', original);
+  const product = database.product(bearingProducts[0].id);
+  const enriched = await req('/products/' + product.id, 'PUT', { ...product, metaTitleEn: '', metaDescriptionFa: '' });
+  assert.equal(enriched.r.status, 200);
+  assert.ok(enriched.b.product.metaTitleEn); assert.ok(enriched.b.product.metaDescriptionFa);
+  assert.equal(enriched.b.product.crKn, product.crKn);
+  database.putProduct(product);
+});
+
 test('password change revokes all sessions, login and logout revoke cookies', async () => {
   const changed = await req('/auth/change-password', 'POST', {
     currentPassword: 'test-only-strong-passphrase',
@@ -448,6 +473,7 @@ test('website editor persists content, rejects unsafe layout/media and preserves
     changed.hero.titleEn,
   );
   const legacy = structuredClone(backup);
+  delete legacy.seo.pages;
   for (const k of [
     'brand',
     'layout',

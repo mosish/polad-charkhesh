@@ -222,9 +222,9 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                     {results.slice(0, renderCount).map((p) => (
                       <tr key={p.id}>
                         <td>
-                          <button onClick={() => chooseProduct(p)}>
+                          <a href={'/product/' + encodeURIComponent(p.slug || p.id)} onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { event.preventDefault(); chooseProduct(p); } }}>
                             <code>{p.code}</code>
-                          </button>
+                          </a>
                         </td>
                         <td>
                           {t(

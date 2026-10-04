@@ -2262,3 +2262,23 @@ body {
 .viewer-notes .model-disclosure { font-size: 12px; line-height: 1.7; color: #afbed1; }
 .speed-exceeded { color: #f4cb84; }
 @media(max-width:760px) { .motion-controls { gap: 9px; padding-inline: 6px; } .motion-controls select { max-width: 160px; } }
+
+/* The initial public document is useful without JavaScript and before startup. */
+.seo-initial { max-width: 1100px; margin: auto; padding: 28px; line-height: 1.7; }
+.seo-initial header, .seo-initial footer { padding-block: 24px; }
+.seo-initial section { padding-block: 24px; }
+.seo-initial ul { columns: 3; column-gap: 24px; }
+.seo-initial li { break-inside: avoid; margin-block: 8px; }
+.seo-initial img { max-width: 100%; object-fit: contain; }
+.seo-initial dt { font-weight: 600; }
+.seo-initial dd { margin-inline-start: 0; margin-bottom: 12px; }
+.seo-overview { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.seo-overview .admin-stats { margin-block: 16px; }
+.seo-overview label { display: grid; gap: 8px; }
+.seo-search-preview { margin-block: 16px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; }
+.seo-search-preview small { display: block; overflow-wrap: anywhere; }
+.seo-search-preview h3 { color: #91b9ff; margin-block: 8px; }
+.product-card { text-decoration: none; color: inherit; }
+@media (max-width: 700px) { .seo-initial ul { columns: 1; } }
+
+.seo-overview .admin-stats strong { font-size: 24px; white-space: nowrap; }

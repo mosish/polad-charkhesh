@@ -1,3 +1,4 @@
+import { seoDefaults, upgradeSeo, fillProductSeo } from '../domain/seo';
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync } from 'node:fs';
 import path from 'node:path';
@@ -60,7 +61,7 @@ export function putProduct(p: any) {
     p.slug,
     p.category,
     p.isArchived ? 1 : 0,
-    JSON.stringify(p),
+    JSON.stringify(fillProductSeo(p)),
   );
 }
 export const setting = (kind: string) =>
@@ -143,21 +144,25 @@ const defaults: any = {
       descriptionFa: 'تأمین تخصصی بیرینگ و قطعات صنعتی',
     },
   },
-  seo: {
-    titleEn: 'Polad Charkhesh | Industrial Bearings & Engineering',
-    titleFa: 'پولاد چرخش | بیرینگ صنعتی و مشاوره مهندسی',
-    descriptionEn:
-      'Industrial bearing identification, technical product data and engineering consultation.',
-    descriptionFa: 'شناسایی و تأمین بیرینگ صنعتی، کاتالوگ فنی و مشاوره مهندسی.',
-    domainEn: 'https://poladcharkhesh.com',
-    domainFa: 'https://poladcharkhesh.ir',
-    verification: '',
-    keywords: 'bearings, industrial engineering',
-    ogImage: '',
-  },
+  seo: seoDefaults,
 };
 for (const [k, v] of Object.entries(defaults))
   if (!setting(k)) putSetting(k, v);
 const upgradedContent = upgradeContent(setting('content'));
 if (JSON.stringify(upgradedContent) !== JSON.stringify(setting('content')))
   putSetting('content', upgradedContent);
+
+// SEO-only enrichment: preserve every technical field and nonblank custom override.
+const upgradedSeo = upgradeSeo(setting('seo'));
+if (JSON.stringify(upgradedSeo) !== JSON.stringify(setting('seo')))
+  putSetting('seo', upgradedSeo);
+if (!setting('seo.catalog-2026-10')) {
+  transaction(() => {
+    let count = 0;
+    for (const p of allProducts(true)) {
+      const enriched = fillProductSeo(p);
+      if (JSON.stringify(enriched) !== JSON.stringify(p)) { putProduct(enriched); count++; }
+    }
+    putSetting('seo.catalog-2026-10', { appliedAt: new Date().toISOString(), count });
+  });
+}

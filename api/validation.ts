@@ -141,7 +141,7 @@ export function validateSettings(kind: string, x: any) {
         if (
           u.protocol !== 'https:' ||
           u.pathname !== '/' ||
-          u.hostname === 'localhost'
+          u.hostname === 'localhost' || u.username || u.password || u.search || u.hash
         )
           return ['Canonical domains must be HTTPS origins.'];
       } catch {
@@ -149,6 +149,13 @@ export function validateSettings(kind: string, x: any) {
       }
     }
     if (x.ogImage && !safeUrl(x.ogImage)) return ['Invalid image URL.'];
+    for (const page of [x, ...Object.values(x.pages || {})] as any[]) {
+      for (const key of ['titleEn', 'titleFa', 'descriptionEn', 'descriptionFa'])
+        if (typeof page?.[key] !== 'string' || !page[key].trim() || page[key].length > (/title/i.test(key) ? 300 : 1000))
+          return ['Fill every English and Persian SEO title and description (titles up to 300 characters, descriptions up to 1000).'];
+    }
+    if (typeof x.verification !== 'string' || !/^[A-Za-z0-9_-]*$/.test(x.verification))
+      return ['Paste only the Google verification token, not the HTML tag.'];
   }
   if (kind === 'company') {
     for (const [k, v] of Object.entries(x)) {
