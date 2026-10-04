@@ -1,3 +1,4 @@
+import CategoryIcon from './CategoryIcon';
 import ManufacturerLibrary from './ManufacturerLibrary';
 import { searchProducts } from '../../lib/showroom';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -131,8 +132,8 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
       <div className="family-bar">
         <div className="family-bar-heading"><span className="section-label">{t('BEARING FAMILIES', 'خانواده بیرینگ')}</span><div className="family-bar-arrows"><button type="button" aria-label={t('Scroll families left', 'پیمایش خانواده‌ها به چپ')} onClick={() => familyScroll.current?.scrollBy({ left: -320, behavior: 'smooth' })}><ChevronLeft size={17} /></button><button type="button" aria-label={t('Scroll families right', 'پیمایش خانواده‌ها به راست')} onClick={() => familyScroll.current?.scrollBy({ left: 320, behavior: 'smooth' })}><ChevronRight size={17} /></button></div></div>
         <div ref={familyScroll} className="family-options" role="group" aria-label={t('Bearing families', 'خانواده‌های بیرینگ')}>
-          <button type="button" aria-pressed={cat === 'all'} className={cat === 'all' ? 'active' : ''} onClick={() => setCat('all')}>{t('All components', 'همه قطعات')} <small>{products.length}</small></button>
-          {Object.entries(categoryNames).map(([key, names]: any) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}>{t(names[0], names[1])} <small>{products.filter((product) => product.category === key).length}</small></button>)}
+          <button type="button" aria-pressed={cat === 'all'} className={cat === 'all' ? 'active' : ''} onClick={() => setCat('all')}><span className="category-tile-label">{t('All components', 'همه قطعات')}</span><small>{products.filter(p=>!p.isArchived).length}</small><CategoryIcon category="all"/></button>
+          {Object.entries(categoryNames).map(([key, names]: any) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}><span className="category-tile-label">{t(names[0], names[1])}</span><small>{products.filter((product) => !product.isArchived && product.category === key).length}</small><CategoryIcon category={key}/></button>)}
         </div>
       </div>
       <div className="catalog-layout">
