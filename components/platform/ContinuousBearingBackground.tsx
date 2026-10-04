@@ -1,12 +1,7 @@
 import {lazy,Suspense,useEffect,useState} from 'react';
 import {useBearingJourney} from './BearingJourney';
-import {usePlatform} from './Context';
 import {continuousBearingState} from '../../lib/bearing-scroll';
 const Scene=lazy(()=>import('./HeroBearingScene'));
-export function BackgroundPreviewSwitch(){
- const journey=useBearingJourney(),{t}=usePlatform();if(!journey)return null;
- return <button className="background-preview-switch" type="button" aria-pressed={journey.experiment} onClick={()=>journey.setExperiment(!journey.experiment)}>{t('Background preview','پیش‌نمایش پس‌زمینه')}: {journey.experiment?t('On','روشن'):t('Off','خاموش')}</button>;
-}
 export default function ContinuousBearingBackground(){
  const journey=useBearingJourney(),[progress,setProgress]=useState(0);
  const settings=journey?.settings,enabled=journey?.experiment;

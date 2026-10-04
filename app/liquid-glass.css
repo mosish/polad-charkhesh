@@ -499,6 +499,6 @@ html { scroll-behavior:smooth; scroll-padding-top:140px; }
 .managed-home>.bearing-return{width:92%;max-width:92%;box-sizing:border-box;min-width:0}.bearing-return>div{min-width:0}
 
 /* Reversible public-page background experiment; classic mode is still available. */
-.liquid-glass{isolation:isolate}.continuous-bearing-background{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:layout paint;will-change:transform,opacity}.continuous-bearing-background .hero-bearing-canvas{position:absolute;width:80vw;height:90vh;right:-18vw;top:8vh}.background-preview-switch{border:1px solid #bddafa30;background:#bedaff0a;color:inherit;border-radius:16px;padding:8px 12px;cursor:pointer;font:inherit;font-size:11px}.background-preview-switch:focus-visible{outline:2px solid #c5e5ff;outline-offset:3px}
+.liquid-glass{isolation:isolate}.continuous-bearing-background{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:layout paint;will-change:transform,opacity}.continuous-bearing-background .hero-bearing-canvas{position:absolute;width:80vw;height:90vh;right:-18vw;top:8vh}
 @media(max-width:760px){.continuous-bearing-background .hero-bearing-canvas{width:110vw;right:-35vw;height:65vh;top:22vh}.continuous-bearing-background{filter:opacity(.55)}}
 @media(prefers-reduced-motion:reduce){.continuous-bearing-background{display:none}}

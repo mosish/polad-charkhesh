@@ -15,7 +15,8 @@ export default function HeroBearing() {
   const journey=useBearingJourney(),configure=journey?.configure;
   const [family, setFamily] = useState<BearingFamily>(journey?.settings.family || 'thrust');
   const [exploded,setExploded] = useState(false);
-  const [scrollMode, setScrollMode] = useState(true);
+  const scrollMode = true;
+  const [manualPreview, setManualPreview] = useState(false);
   const families: {id: BearingFamily; label: string; detail: string; caption: string}[] = [
     {id:'thrust',label:t('Thrust bearings','رولبرینگ کف‌گرد'),detail:t('Tapered roller thrust bearing','رولبرینگ مخروطی کف‌گرد'),caption:t('T921-inspired proportions · illustrative construction','با الهام از T921 · مدل نمایشی')},
     {id:'ball',label:t('Ball bearings','بلبرینگ‌ها'),detail:t('Angular-contact ball bearing','بلبرینگ تماس زاویه‌ای'),caption:t('Precision balls for spindle applications','ساچمه‌های دقیق برای کاربردهای اسپیندل')},
@@ -37,8 +38,9 @@ export default function HeroBearing() {
   const stopped = paused || reduced || !visible || !tabVisible;
   const scrollProgress = useBearingScroll(stage, scrollMode && !paused && !reduced);
   const scrollState = bearingScrollState(scrollProgress);
-  const showParts = scrollMode && !reduced ? scrollState.phase === 'components' : exploded;
-  const phaseLabel = scrollState.phase === 'assembled' ? t('Assembled', 'مونتاژشده') : scrollState.phase === 'components' ? t('Components revealed', 'نمای اجزای بیرینگ') : t('Opening the assembly', 'باز شدن مجموعه');
+  const followView = !manualPreview && !reduced;
+  const showParts = followView ? scrollState.phase === 'components' : exploded;
+  const phaseLabel = !followView ? (exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده')) : scrollState.phase === 'assembled' ? t('Assembled', 'مونتاژشده') : scrollState.phase === 'components' ? t('Components revealed', 'نمای اجزای بیرینگ') : t('Opening the assembly', 'باز شدن مجموعه');
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const motion = () => setReduced(media.matches);
@@ -49,6 +51,13 @@ export default function HeroBearing() {
     document.addEventListener('visibilitychange', visibility);
     return () => { observer.disconnect(); media.removeEventListener('change', motion); document.removeEventListener('visibilitychange', visibility); };
   }, []);
+  useEffect(() => {
+    if (!manualPreview || paused || reduced) return;
+    const startingScroll = window.scrollY;
+    const resume = () => { if (Math.abs(window.scrollY - startingScroll) > 2) setManualPreview(false); };
+    window.addEventListener('scroll', resume, { passive: true });
+    return () => window.removeEventListener('scroll', resume);
+  }, [manualPreview, paused, reduced]);
   const resetTilt = () => {
     stage.current?.style.setProperty('--tilt-x', '0deg');
     stage.current?.style.setProperty('--tilt-y', '0deg');
@@ -62,9 +71,9 @@ export default function HeroBearing() {
       {families.map(f => <button key={f.id} type="button" aria-pressed={family===f.id} onClick={()=>{setFamily(f.id);resetTilt();}}>{f.label}</button>)}
     </div>
     <div className="bearing-view-switch" role="group" aria-label={t('Bearing assembly view','نمای مونتاژ بیرینگ')}>
-      <button type="button" aria-pressed={(reduced || !scrollMode) && !exploded} onClick={()=>{setScrollMode(false);setExploded(false);}}>{t('Assembled','مونتاژشده')}</button>
-      <button type="button" aria-pressed={(reduced || !scrollMode) && exploded} onClick={()=>{setScrollMode(false);setExploded(true);}}>{t('Exploded view','نمای انفجاری')}</button>
-      {!reduced && <button type="button" aria-pressed={scrollMode} onClick={()=>setScrollMode(true)}>{t('Follow scroll', 'همراه اسکرول')}</button>}
+      <button type="button" aria-pressed={(reduced || manualPreview) && !exploded} onClick={()=>{setManualPreview(true);setExploded(false);}}>{t('Assembled','مونتاژشده')}</button>
+      <button type="button" aria-pressed={(reduced || manualPreview) && exploded} onClick={()=>{setManualPreview(true);setExploded(true);}}>{t('Exploded view','نمای انفجاری')}</button>
+      {!reduced && <button type="button" aria-pressed={scrollMode} onClick={()=>setManualPreview(false)}>{t('Follow scroll', 'همراه اسکرول')}</button>}
     </div>
     {!reduced && scrollMode && <div className="bearing-scroll-status"><span>{t('Scroll to explore', 'با اسکرول کاوش کنید')} <span aria-hidden="true">↓</span></span><strong>{phaseLabel}</strong><div className="bearing-scroll-track" aria-hidden="true"><i style={{ transform: `scaleX(${scrollProgress})` }} /></div></div>}
     <div className="hero-bearing-stage" ref={stage}
@@ -105,7 +114,7 @@ export default function HeroBearing() {
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
         <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-          <HeroBearingScene family={family} paused={stopped} exploded={exploded} scrollProgress={scrollMode && !reduced ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(scrollMode && !reduced ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
+          <HeroBearingScene family={family} paused={stopped} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
         </Suspense>
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
