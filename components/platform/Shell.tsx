@@ -1,3 +1,5 @@
+import {BearingJourneyProvider} from './BearingJourney';
+import ContinuousBearingBackground,{BackgroundPreviewSwitch} from './ContinuousBearingBackground';
 import ScrollReveal from './ScrollReveal';
 import { useEffect, useRef, useState } from 'react';
 import {
@@ -29,7 +31,8 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     return () => { document.removeEventListener('keydown', dismiss); document.removeEventListener('pointerdown', outside); desktop.removeEventListener('change', resized); };
   }, [menuOpen]);
   return (
-    <>
+    <BearingJourneyProvider>
+      <ContinuousBearingBackground/>
       <a className="skip-link" href="#main">
         {t('Skip to content', 'رفتن به محتوا')}
       </a>
@@ -97,6 +100,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <span>{t('POLAD CHARKHESH', 'پولاد چرخش')}</span>
         </a>
         <span>{content?.footer?.[fa ? 'descriptionFa' : 'descriptionEn']}</span>
+        <BackgroundPreviewSwitch/>
         <a href="/asset-credits.html">{t('Image credits', 'منابع تصاویر')}</a>
         <a href="/admin">
           {t('Administration', 'مدیریت')}
@@ -127,6 +131,6 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           </button>
         </div>
       )}
-    </>
+    </BearingJourneyProvider>
   );
 }

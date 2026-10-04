@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  continuousBearingState,
   bearingReturnProgress,
   bearingScrollProgress,
   bearingScrollState,
@@ -40,4 +41,14 @@ test('closing assembly finishes at the page end and reverses on upward scroll',(
  assert.equal(bearingReturnProgress(-50,480,1000),1);
  assert.equal(bearingReturnProgress(0,0,1000),0);
  assert.equal(bearingReturnProgress(0,480,0),0);
+});
+
+test('continuous background opens across the page and closes at both ends',()=>{
+ assert.equal(continuousBearingState(0).assembly,0);
+ assert.equal(continuousBearingState(.5).assembly,1);
+ assert.equal(continuousBearingState(1).assembly,0);
+ assert.equal(continuousBearingState(0).opacity,0);
+ assert.equal(continuousBearingState(1).opacity,0);
+ assert.equal(continuousBearingState(Number.NaN).opacity,0);
+ for(let i=0;i<=100;i++){const state=continuousBearingState(i/100);assert.ok(state.opacity>=0&&state.opacity<=.1);assert.ok(state.assembly>=0&&state.assembly<=1);}
 });

@@ -13,7 +13,7 @@ const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 export default function HeroBearing() {
   const { products, content, t } = usePlatform();
   const journey=useBearingJourney(),configure=journey?.configure;
-  const [family, setFamily] = useState<BearingFamily>('thrust');
+  const [family, setFamily] = useState<BearingFamily>(journey?.settings.family || 'thrust');
   const [exploded,setExploded] = useState(false);
   const [scrollMode, setScrollMode] = useState(true);
   const families: {id: BearingFamily; label: string; detail: string; caption: string}[] = [
@@ -123,7 +123,7 @@ export default function HeroBearing() {
       </div>
     </div>
   </div>
-    {scrollMode && !reduced && <BearingBackground family={family} recession={scrollState.recession*(1-(journey?.returnProgress||0))}/>}
+    {scrollMode && !reduced && !journey?.experiment && <BearingBackground family={family} recession={scrollState.recession*(1-(journey?.returnProgress||0))}/>}
 
   </>;
 }

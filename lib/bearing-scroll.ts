@@ -34,3 +34,11 @@ export function bearingScrollProgress(
 export function bearingReturnProgress(top:number,height:number,viewport:number){
  return height>0&&viewport>0?clamp((viewport-top)/Math.min(height,viewport*.8)):0;
 }
+
+/** Open early, travel behind content, then close at the page end. */
+export function continuousBearingState(value:number){
+ const progress=clamp(value);
+ const assembly=Math.min(clamp(progress/.18),clamp((1-progress)/.18));
+ const envelope=Math.min(clamp(progress/.06),clamp((1-progress)/.06));
+ return {assembly,opacity:envelope*.10,drift:Math.sin(progress*Math.PI*2)*12};
+}

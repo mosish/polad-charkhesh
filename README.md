@@ -42,7 +42,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **33 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
+The last full automated suite passed **34 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -204,3 +204,9 @@ The homepage defaults to a tapered roller thrust illustration. Its envelope prop
 Tall desktop screens briefly pin the introduction using normal document scrolling. Mobile avoids pinning and the persistent background. Reduced-motion preferences disable automatic scroll animation; manual assembled/exploded views remain available. Pause freezes scroll response. The existing renderer is reused, capped at 30 FPS for the hero and stopped offscreen or in hidden tabs. Targeted browser checks cover desktop reversal, pause/manual controls, Persian mobile and reduced motion.
 
 The closing homepage assembly now returns the selected family to an assembled 3D view while fading its background silhouettes. Scroll upward to separate it again. The finale loads its renderer only on approach and stops it offscreen; hero pause and reduced-motion settings apply to both ends. Photo-only hero mode omits the assembly finale.
+
+### Continuous background preview (2026-10-04)
+
+An optional experiment now carries the selected family through the background of every public route. The parts open during the first portion of page scrolling, drift behind the content and close near the page end. It uses a passive scroll listener, a reused canvas and rendering only while the view changes; the admin is excluded. Reduced-motion preferences suppress this layer. A footer **Background preview: On/Off** control switches between the experiment and the previous silhouettes; the choice and selected family stay in the current browser session. Direct preview URLs accept `?motion=background` or `?motion=classic`.
+
+The previous completed version is preserved at commit `9e46c318f7647cd907ecf7bd70cd282285c34589` and branch `preview-before-continuous-background`. No production deployment has occurred. Disable the preview to compare the prior presentation; source changes can also be reverted without restoring runtime data.

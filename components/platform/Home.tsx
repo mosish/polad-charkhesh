@@ -12,7 +12,6 @@ import { usePlatform } from './Context';
 import HomeSections from './HomeSections';
 import HeroBearing from './HeroBearing';
 import BearingReturn from './BearingReturn';
-import {BearingJourneyProvider} from './BearingJourney';
 import { publicHref } from '../../lib/public-links';
 import { useEffect } from 'react';
 export default function Home() {
@@ -24,7 +23,7 @@ export default function Home() {
     return () => window.clearTimeout(timer);
   }, [loading]);
   return (
-    <BearingJourneyProvider><main id="main" className="managed-home">
+    <main id="main" className="managed-home">
       <PageSection id="hero">
         <section className="hero-scroll">
         <section className="hero">
@@ -181,6 +180,6 @@ export default function Home() {
       <HomeSections />
       <CustomSections />
       {content?.media?.heroPresentation !== 'photo' && <BearingReturn/>}
-    </main></BearingJourneyProvider>
+    </main>
   );
 }

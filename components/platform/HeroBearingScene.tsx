@@ -169,7 +169,7 @@ function buildBearing(family: BearingFamily) {
   }};
 }
 
-export default function HeroBearingScene({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress}:{family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number}) {
+export default function HeroBearingScene({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false}:{family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean}) {
   const host=useRef<HTMLDivElement>(null);
   const controller=useRef<{play:(value:boolean)=>void}|null>(null);
   const pauseRef=useRef(paused);pauseRef.current=paused;
@@ -259,7 +259,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const lost=(event:Event)=>{event.preventDefault();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
     return()=>{cancelAnimationFrame(frame);controller.current=null;observer.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
   },[family,failed,product]);
-  useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,scrollProgress === undefined]);
+  useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,scrollProgress === undefined,ambient ? scrollProgress : undefined]);
   return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={product?playback:undefined}>
     {partLabels.map((name,i)=><span key={i} className="bearing-part-pin" data-part={i} aria-hidden="true" title={name}>{i+1}</span>)}
   </div>;
