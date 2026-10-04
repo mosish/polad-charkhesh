@@ -16,20 +16,28 @@ export default function BearingModel({ p, rpm, paused, playback, compact = false
   const g = bearingGeometry(p);
   useEffect(() => {
     if (paused || !g.supported || rpm <= 0) return;
-    let handle = 0, previous: number | undefined;
+    const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    const spins = model.current?.querySelectorAll('[data-spin]');
+    let handle = 0, previous: number | undefined, inView = false;
     const tick = (now: number) => {
-      const seconds = previous === undefined || document.hidden ? 0 : (now - previous) / 1000;
+      const seconds = previous === undefined ? 0 : (now - previous) / 1000;
       previous = now;
       angles.current.shaft = advanceRotation(angles.current.shaft, rpm, seconds, playback);
       angles.current.cage = advanceRotation(angles.current.cage, rpm * g.cageRatio, seconds, playback);
       angles.current.spin = advanceRotation(angles.current.spin, rpm * g.spinRatio, seconds, playback);
       inner.current?.setAttribute('transform', `rotate(${angles.current.shaft})`);
       cage.current?.setAttribute('transform', `rotate(${angles.current.cage})`);
-      model.current?.querySelectorAll('[data-spin]').forEach((element) => element.setAttribute('transform', `rotate(${-angles.current.spin})`));
+      spins?.forEach(element => element.setAttribute('transform', `rotate(${-angles.current.spin})`));
       handle = requestAnimationFrame(tick);
     };
-    handle = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(handle);
+    const sync = () => {
+      cancelAnimationFrame(handle); previous = undefined;
+      if (inView && !document.hidden && !preference.matches) handle = requestAnimationFrame(tick);
+    };
+    const observer = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; sync(); });
+    if (model.current) observer.observe(model.current);
+    document.addEventListener('visibilitychange', sync); preference.addEventListener('change', sync);
+    return () => { cancelAnimationFrame(handle); observer.disconnect(); document.removeEventListener('visibilitychange', sync); preference.removeEventListener('change', sync); };
   }, [rpm, paused, playback, p.id, g.cageRatio, g.spinRatio, g.supported]);
   const {outer: R, bore: r, gap, pitch, depth} = g;
   const outerTrack = R - gap * .24, innerTrack = r + gap * .24;

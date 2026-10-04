@@ -247,6 +247,38 @@ test('secure provisioning, session issuance, CRUD, archive, restore and role enf
     200,
   );
 });
+void test('catalog bulk edits and reviewed imports require auth and apply atomically', async () => {
+  const original = bearingProducts[0];
+  const rows = [{ code: original.code, nameEn: 'Import updated name' },
+    { ...original, code: 'IMPORT-TEST', slug: 'import-test' }];
+  assert.equal((await req('/products/import', 'POST', { products: rows, preview: true }, false)).r.status, 401);
+  assert.equal((await req('/products/bulk', 'POST', { ids: [original.id], action: 'archive' }, false)).r.status, 401);
+  assert.equal((await req('/products/bulk', 'POST', { ids: [original.id, 'missing'], action: 'archive' })).r.status, 404);
+  assert.equal(database.product(original.id).isArchived, original.isArchived);
+  const preview = await req('/products/import', 'POST', { products: rows, preview: true });
+  assert.equal(preview.r.status, 200);
+  assert.equal(preview.b.created, 1); assert.equal(preview.b.updated, 1);
+  assert.equal(database.allProducts().length, 110);
+  assert.equal((await req('/products/import', 'POST', { products: rows, confirm: 'IMPORT', revision: 'stale' })).r.status, 409);
+  assert.equal((await req('/products/import', 'POST', { products: rows, confirm: 'IMPORT', revision: preview.b.revision })).r.status, 200);
+  const imported = database.allProducts().find((p: any) => p.code === 'IMPORT-TEST');
+  try {
+    assert.equal(database.product(original.id).nameEn, 'Import updated name');
+    assert.equal((await req('/products/bulk', 'POST', { ids: [original.id, imported.id], action: 'brands', brands: [' NSK ', 'NSK'] })).r.status, 200);
+    assert.deepEqual(database.product(imported.id).brands, ['NSK']);
+    const latest = await req('/products/import', 'POST', { products: rows, preview: true });
+    await req('/products/bulk', 'POST', { ids: [imported.id], action: 'feature' });
+    assert.equal((await req('/products/import', 'POST', { products: rows, confirm: 'IMPORT', revision: latest.b.revision })).r.status, 409);
+    await req('/products/bulk', 'POST', { ids: [imported.id], action: 'archive' });
+    assert.equal((await req('/products/' + imported.id, 'GET', undefined, false)).r.status, 404);
+    await req('/products/bulk', 'POST', { ids: [imported.id], action: 'restore' });
+    assert.equal((await req('/products/' + imported.id, 'GET', undefined, false)).r.status, 200);
+    const invalid = await req('/products/import', 'POST', { products: [{ ...original, nameEn: 'Should not save' }, { ...imported, d: 999 }], preview: true });
+    assert.equal(invalid.r.status, 400); assert.equal(database.product(original.id).nameEn, 'Import updated name');
+  } finally {
+    database.putProduct(original); database.db.prepare('DELETE FROM products WHERE id=?').run(imported.id);
+  }
+});
 test('inquiry persistence, status changes and upload validation', async () => {
   const invalid = await req(
     '/inquiries',

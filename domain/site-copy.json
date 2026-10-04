@@ -2194,5 +2194,599 @@
     "en": "Catalog limiting speed",
     "fa": "سرعت حدی کاتالوگ",
     "group": "Experience"
+  },
+  "txt_c9bb706a": {
+    "original": "The file must be smaller than 2 MB.",
+    "en": "The file must be smaller than 2 MB.",
+    "fa": "حجم فایل باید کمتر از ۲ مگابایت باشد.",
+    "group": "Administration"
+  },
+  "txt_7bb63891": {
+    "original": "Provide a JSON array of 1–200 products.",
+    "en": "Provide a JSON array of 1–200 products.",
+    "fa": "آرایه JSON شامل ۱ تا ۲۰۰ محصول وارد کنید.",
+    "group": "Administration"
+  },
+  "txt_1bcaf3a1": {
+    "original": "Catalog content coverage",
+    "en": "Catalog content coverage",
+    "fa": "پوشش محتوای کاتالوگ",
+    "group": "Administration"
+  },
+  "txt_3459395": {
+    "original": "Counts cover active records. A recorded image or source link still needs manufacturer verification.",
+    "en": "Counts cover active records. A recorded image or source link still needs manufacturer verification.",
+    "fa": "آمار مربوط به رکوردهای فعال است. تصویر یا پیوند ثبت‌شده همچنان باید با سازنده تطبیق داده شود.",
+    "group": "Administration"
+  },
+  "txt_f15b50c3": {
+    "original": "Search products",
+    "en": "Search products",
+    "fa": "جستجوی محصولات",
+    "group": "Administration"
+  },
+  "txt_b2df6405": {
+    "original": "Code, name or manufacturer…",
+    "en": "Code, name or manufacturer…",
+    "fa": "کد، نام یا سازنده…",
+    "group": "Administration"
+  },
+  "txt_b701fc2e": {
+    "original": "Record status",
+    "en": "Record status",
+    "fa": "وضعیت رکورد",
+    "group": "Administration"
+  },
+  "txt_75afe364": {
+    "original": "All",
+    "en": "All",
+    "fa": "همه",
+    "group": "Administration"
+  },
+  "txt_1f89134f": {
+    "original": "Active",
+    "en": "Active",
+    "fa": "فعال",
+    "group": "Administration"
+  },
+  "txt_af5c5293": {
+    "original": "Archived",
+    "en": "Archived",
+    "fa": "بایگانی",
+    "group": "Administration"
+  },
+  "txt_b8d2b200": {
+    "original": "Missing content filter",
+    "en": "Missing content filter",
+    "fa": "فیلتر محتوای ناقص",
+    "group": "Administration"
+  },
+  "txt_11b6e039": {
+    "original": "All content",
+    "en": "All content",
+    "fa": "همه محتوا",
+    "group": "Administration"
+  },
+  "txt_f2b7713": {
+    "original": "Add product",
+    "en": "Add product",
+    "fa": "افزودن محصول",
+    "group": "Administration"
+  },
+  "txt_69a3ae2e": {
+    "original": "Export catalog JSON",
+    "en": "Export catalog JSON",
+    "fa": "دریافت JSON کاتالوگ",
+    "group": "Administration"
+  },
+  "txt_825ce4a1": {
+    "original": "Import JSON · preview first",
+    "en": "Import JSON · preview first",
+    "fa": "ورود JSON · پیش‌نمایش اولیه",
+    "group": "Administration"
+  },
+  "txt_24843718": {
+    "original": "Download import template",
+    "en": "Download import template",
+    "fa": "دریافت الگوی ورود",
+    "group": "Administration"
+  },
+  "txt_a8e66468": {
+    "original": "JSON imports match existing records by product code. New codes create records; matching codes update supplied fields. Up to 200 rows per file.",
+    "en": "JSON imports match existing records by product code. New codes create records; matching codes update supplied fields. Up to 200 rows per file.",
+    "fa": "ورود JSON بر اساس کد محصول تطبیق می‌دهد. کد جدید رکورد می‌سازد و کد موجود فقط فیلدهای ارائه‌شده را به‌روز می‌کند. حداکثر ۲۰۰ ردیف در هر فایل.",
+    "group": "Administration"
+  },
+  "txt_4e0a1774": {
+    "original": "selected",
+    "en": "selected",
+    "fa": "انتخاب‌شده",
+    "group": "Administration"
+  },
+  "txt_ce294716": {
+    "original": "shown",
+    "en": "shown",
+    "fa": "نمایش داده‌شده",
+    "group": "Administration"
+  },
+  "txt_25d14ed6": {
+    "original": "Select filtered results",
+    "en": "Select filtered results",
+    "fa": "انتخاب نتایج فیلتر",
+    "group": "Administration"
+  },
+  "txt_50a6b1e0": {
+    "original": "Clear selection",
+    "en": "Clear selection",
+    "fa": "پاک کردن انتخاب",
+    "group": "Administration"
+  },
+  "txt_b31af64d": {
+    "original": "Bulk action",
+    "en": "Bulk action",
+    "fa": "عملیات گروهی",
+    "group": "Administration"
+  },
+  "txt_9fb914fd": {
+    "original": "Manufacturers separated by commas",
+    "en": "Manufacturers separated by commas",
+    "fa": "سازندگان با کاما جدا شوند",
+    "group": "Administration"
+  },
+  "txt_4790fe69": {
+    "original": "Review bulk change",
+    "en": "Review bulk change",
+    "fa": "بررسی تغییر گروهی",
+    "group": "Administration"
+  },
+  "txt_3e892b4d": {
+    "original": "Select",
+    "en": "Select",
+    "fa": "انتخاب",
+    "group": "Administration"
+  },
+  "txt_d99a509e": {
+    "original": "Content to complete",
+    "en": "Content to complete",
+    "fa": "محتوای نیازمند تکمیل",
+    "group": "Administration"
+  },
+  "txt_e65fb504": {
+    "original": "Actions",
+    "en": "Actions",
+    "fa": "عملیات",
+    "group": "Administration"
+  },
+  "txt_7d51e1b2": {
+    "original": "Select component",
+    "en": "Select component",
+    "fa": "انتخاب قطعه",
+    "group": "Administration"
+  },
+  "txt_7747493b": {
+    "original": "Featured",
+    "en": "Featured",
+    "fa": "شاخص",
+    "group": "Administration"
+  },
+  "txt_8f40faa2": {
+    "original": "Content recorded",
+    "en": "Content recorded",
+    "fa": "محتوا ثبت شده",
+    "group": "Administration"
+  },
+  "txt_c2c76cb1": {
+    "original": "Edit",
+    "en": "Edit",
+    "fa": "ویرایش",
+    "group": "Administration"
+  },
+  "txt_fc330336": {
+    "original": "Duplicate",
+    "en": "Duplicate",
+    "fa": "رونوشت",
+    "group": "Administration"
+  },
+  "txt_ff87f71": {
+    "original": "Restore",
+    "en": "Restore",
+    "fa": "بازیابی",
+    "group": "Administration"
+  },
+  "txt_73690b65": {
+    "original": "Archive",
+    "en": "Archive",
+    "fa": "بایگانی",
+    "group": "Administration"
+  },
+  "txt_5797ea6a": {
+    "original": "Delete",
+    "en": "Delete",
+    "fa": "حذف",
+    "group": "Administration"
+  },
+  "txt_f05a9c87": {
+    "original": "No products match these filters.",
+    "en": "No products match these filters.",
+    "fa": "محصولی مطابق این فیلترها یافت نشد.",
+    "group": "Administration"
+  },
+  "txt_52c807be": {
+    "original": "This change applies to every selected record, including selections outside the current filter.",
+    "en": "This change applies to every selected record, including selections outside the current filter.",
+    "fa": "این تغییر روی همه رکوردهای انتخاب‌شده، حتی موارد خارج از فیلتر فعلی، اعمال می‌شود.",
+    "group": "Administration"
+  },
+  "txt_e0423ee3": {
+    "original": "Apply to selected products",
+    "en": "Apply to selected products",
+    "fa": "اعمال روی محصولات انتخاب‌شده",
+    "group": "Administration"
+  },
+  "txt_6ec7f938": {
+    "original": "Import preview",
+    "en": "Import preview",
+    "fa": "پیش‌نمایش ورود",
+    "group": "Administration"
+  },
+  "txt_22c805d3": {
+    "original": "new records",
+    "en": "new records",
+    "fa": "رکورد جدید",
+    "group": "Administration"
+  },
+  "txt_17860705": {
+    "original": "updates",
+    "en": "updates",
+    "fa": "به‌روزرسانی",
+    "group": "Administration"
+  },
+  "txt_990de47d": {
+    "original": "Create",
+    "en": "Create",
+    "fa": "ایجاد",
+    "group": "Administration"
+  },
+  "txt_6e230e94": {
+    "original": "Update",
+    "en": "Update",
+    "fa": "به‌روزرسانی",
+    "group": "Administration"
+  },
+  "txt_6b623ec8": {
+    "original": "I reviewed these records and their manufacturer data.",
+    "en": "I reviewed these records and their manufacturer data.",
+    "fa": "رکوردها و داده‌های سازنده را بررسی کردم.",
+    "group": "Administration"
+  },
+  "txt_2d46e2c6": {
+    "original": "Save imported records",
+    "en": "Save imported records",
+    "fa": "ذخیره رکوردهای واردشده",
+    "group": "Administration"
+  },
+  "txt_c63753be": {
+    "original": "Mark featured",
+    "en": "Mark featured",
+    "fa": "شاخص کردن",
+    "group": "Administration"
+  },
+  "txt_e49b2cad": {
+    "original": "Remove featured",
+    "en": "Remove featured",
+    "fa": "حذف شاخص",
+    "group": "Administration"
+  },
+  "txt_a59b5ced": {
+    "original": "Set manufacturers",
+    "en": "Set manufacturers",
+    "fa": "تعیین سازندگان",
+    "group": "Administration"
+  },
+  "txt_4e93547d": {
+    "original": "Call mobile",
+    "en": "Call mobile",
+    "fa": "تماس با موبایل",
+    "group": "Products"
+  },
+  "txt_4372a4cf": {
+    "original": "Call office",
+    "en": "Call office",
+    "fa": "تماس با دفتر",
+    "group": "Products"
+  },
+  "txt_f8311f93": {
+    "original": "Bearing family reference image",
+    "en": "Bearing family reference image",
+    "fa": "تصویر مرجع خانواده بیرینگ",
+    "group": "Products"
+  },
+  "txt_dd2c8715": {
+    "original": "View product details",
+    "en": "View product details",
+    "fa": "مشاهده جزئیات محصول",
+    "group": "Products"
+  },
+  "txt_f86e6ae7": {
+    "original": "No rolling-element 3D model is available for this component.",
+    "en": "No rolling-element 3D model is available for this component.",
+    "fa": "مدل سه‌بعدی اجزای غلتشی برای این قطعه موجود نیست.",
+    "group": "Products"
+  },
+  "txt_fc54a3fb": {
+    "original": "Bore diameter · d",
+    "en": "Bore diameter · d",
+    "fa": "قطر داخلی · d",
+    "group": "Products"
+  },
+  "txt_7894a6fa": {
+    "original": "Outside diameter · D",
+    "en": "Outside diameter · D",
+    "fa": "قطر خارجی · D",
+    "group": "Products"
+  },
+  "txt_84030978": {
+    "original": "Width · B",
+    "en": "Width · B",
+    "fa": "عرض · B",
+    "group": "Products"
+  },
+  "txt_21734394": {
+    "original": "Dynamic load · Cr",
+    "en": "Dynamic load · Cr",
+    "fa": "بار دینامیکی · Cr",
+    "group": "Products"
+  },
+  "txt_1817955b": {
+    "original": "Static load · C₀r",
+    "en": "Static load · C₀r",
+    "fa": "بار استاتیکی · C₀r",
+    "group": "Products"
+  },
+  "txt_c31b1c45": {
+    "original": "Grease speed",
+    "en": "Grease speed",
+    "fa": "سرعت گریس",
+    "group": "Products"
+  },
+  "txt_4237039c": {
+    "original": "Oil speed",
+    "en": "Oil speed",
+    "fa": "سرعت روغن",
+    "group": "Products"
+  },
+  "txt_491f8fe5": {
+    "original": "Minimum chamfer",
+    "en": "Minimum chamfer",
+    "fa": "حداقل پخ",
+    "group": "Products"
+  },
+  "txt_a7a00eb4": {
+    "original": "Contact angle",
+    "en": "Contact angle",
+    "fa": "زاویه تماس",
+    "group": "Products"
+  },
+  "txt_e635799e": {
+    "original": "Product specifications",
+    "en": "Product specifications",
+    "fa": "مشخصات فنی محصول",
+    "group": "Products"
+  },
+  "txt_82e20c5f": {
+    "original": "Preparing exploded view…",
+    "en": "Preparing exploded view…",
+    "fa": "آماده‌سازی نمای انفجاری…",
+    "group": "Products"
+  },
+  "txt_e6ce635f": {
+    "original": "Illustrative exploded view",
+    "en": "Illustrative exploded view",
+    "fa": "نمای انفجاری نمایشی",
+    "group": "Products"
+  },
+  "txt_db23216d": {
+    "original": "Family reference image",
+    "en": "Family reference image",
+    "fa": "تصویر مرجع خانواده",
+    "group": "Products"
+  },
+  "txt_c16590f": {
+    "original": "Product image gallery",
+    "en": "Product image gallery",
+    "fa": "گالری تصاویر محصول",
+    "group": "Products"
+  },
+  "txt_28e748f5": {
+    "original": "View image",
+    "en": "View image",
+    "fa": "نمایش تصویر",
+    "group": "Products"
+  },
+  "txt_75394665": {
+    "original": "Drawing",
+    "en": "Drawing",
+    "fa": "نقشه",
+    "group": "Products"
+  },
+  "txt_1c3bc86f": {
+    "original": "An exploded 3D model is not available for this component; use its drawing for dimensions.",
+    "en": "An exploded 3D model is not available for this component; use its drawing for dimensions.",
+    "fa": "مدل سه‌بعدی انفجاری برای این قطعه موجود نیست؛ برای ابعاد از نقشه استفاده کنید.",
+    "group": "Products"
+  },
+  "txt_22a8cfe0": {
+    "original": "Illustrative geometry based on catalog dimensions; internal parts are estimates, not manufacturer CAD.",
+    "en": "Illustrative geometry based on catalog dimensions; internal parts are estimates, not manufacturer CAD.",
+    "fa": "هندسه نمایشی بر اساس ابعاد کاتالوگ است؛ اجزای داخلی تخمینی‌اند و مدل CAD سازنده نیستند.",
+    "group": "Products"
+  },
+  "txt_906df480": {
+    "original": "Family illustration; confirm the exact product with its manufacturer.",
+    "en": "Family illustration; confirm the exact product with its manufacturer.",
+    "fa": "تصویر خانواده محصول است؛ کد دقیق را با سازنده بررسی کنید.",
+    "group": "Products"
+  },
+  "txt_21ba5b80": {
+    "original": "Image and dimensional drawing from the current catalog record.",
+    "en": "Image and dimensional drawing from the current catalog record.",
+    "fa": "تصویر و نقشه ابعادی از رکورد فعلی کاتالوگ.",
+    "group": "Products"
+  },
+  "txt_2f7f7f22": {
+    "original": "Applications",
+    "en": "Applications",
+    "fa": "کاربردها",
+    "group": "Products"
+  },
+  "txt_dc0b6beb": {
+    "original": "References",
+    "en": "References",
+    "fa": "مراجع",
+    "group": "Products"
+  },
+  "txt_c63b88e7": {
+    "original": "Documents & contact",
+    "en": "Documents & contact",
+    "fa": "اسناد و تماس",
+    "group": "Products"
+  },
+  "txt_43783821": {
+    "original": "Source document",
+    "en": "Source document",
+    "fa": "سند مرجع",
+    "group": "Products"
+  },
+  "txt_8f983008": {
+    "original": "Attached manufacturer PDF",
+    "en": "Attached manufacturer PDF",
+    "fa": "PDF پیوست سازنده",
+    "group": "Products"
+  },
+  "txt_40e21979": {
+    "original": "No manufacturer PDF attached yet.",
+    "en": "No manufacturer PDF attached yet.",
+    "fa": "هنوز PDF سازنده پیوست نشده است.",
+    "group": "Products"
+  },
+  "txt_756c919b": {
+    "original": "Similar catalog entries for discovery; verify suitability before substitution.",
+    "en": "Similar catalog entries for discovery; verify suitability before substitution.",
+    "fa": "رکوردهای مشابه برای بررسی؛ پیش از جایگزینی، تناسب فنی را بررسی کنید.",
+    "group": "Products"
+  },
+  "txt_2c2d3ccd": {
+    "original": "Close dialog",
+    "en": "Close dialog",
+    "fa": "بستن پنجره",
+    "group": "Navigation"
+  },
+  "txt_62857221": {
+    "original": "Product image missing",
+    "en": "Product image missing",
+    "fa": "تصویر محصول ثبت نشده",
+    "group": "Administration"
+  },
+  "txt_b5cbacf1": {
+    "original": "Specifications incomplete",
+    "en": "Specifications incomplete",
+    "fa": "مشخصات ناقص",
+    "group": "Administration"
+  },
+  "txt_8e403ccc": {
+    "original": "Document missing",
+    "en": "Document missing",
+    "fa": "سند ثبت نشده",
+    "group": "Administration"
+  },
+  "txt_30433ca": {
+    "original": "Language content incomplete",
+    "en": "Language content incomplete",
+    "fa": "محتوای زبان ناقص",
+    "group": "Administration"
+  },
+  "txt_feac2727": {
+    "original": "Close navigation",
+    "en": "Close navigation",
+    "fa": "بستن ناوبری",
+    "group": "Navigation"
+  },
+  "txt_b807c8dd": {
+    "original": "Open navigation",
+    "en": "Open navigation",
+    "fa": "باز کردن ناوبری",
+    "group": "Navigation"
+  },
+  "txt_5983af28": {
+    "original": "changed fields",
+    "en": "changed fields",
+    "fa": "فیلد تغییر یافته",
+    "group": "Administration"
+  },
+  "txt_15879543": {
+    "original": "Deep groove",
+    "en": "Deep groove",
+    "fa": "شیار عمیق",
+    "group": "Products"
+  },
+  "txt_d124326d": {
+    "original": "Angular contact",
+    "en": "Angular contact",
+    "fa": "تماس زاویه‌ای",
+    "group": "Products"
+  },
+  "txt_d5c3608e": {
+    "original": "Self-aligning ball",
+    "en": "Self-aligning ball",
+    "fa": "بلبرینگ خودتنظیم",
+    "group": "Products"
+  },
+  "txt_b21d5d91": {
+    "original": "Cylindrical roller",
+    "en": "Cylindrical roller",
+    "fa": "رولربیرینگ استوانه‌ای",
+    "group": "Products"
+  },
+  "txt_2b874202": {
+    "original": "Needle roller",
+    "en": "Needle roller",
+    "fa": "رولربیرینگ سوزنی",
+    "group": "Products"
+  },
+  "txt_c1a54899": {
+    "original": "Toroidal roller",
+    "en": "Toroidal roller",
+    "fa": "رولربیرینگ حلقوی",
+    "group": "Products"
+  },
+  "txt_2a4ce569": {
+    "original": "Thrust bearing",
+    "en": "Thrust bearing",
+    "fa": "بیرینگ کف‌گرد",
+    "group": "Products"
+  },
+  "txt_c6dbfd6a": {
+    "original": "Spherical roller thrust",
+    "en": "Spherical roller thrust",
+    "fa": "رولربیرینگ کف‌گرد بشکه‌ای",
+    "group": "Products"
+  },
+  "txt_41a30dfa": {
+    "original": "Bearing housing",
+    "en": "Bearing housing",
+    "fa": "محفظه بیرینگ",
+    "group": "Products"
+  },
+  "txt_1e09e378": {
+    "original": "Shaft seal",
+    "en": "Shaft seal",
+    "fa": "آب‌بند شفت",
+    "group": "Products"
+  },
+  "txt_8587a934": {
+    "original": "Password changed. Sign in again.",
+    "en": "Password changed. Sign in again.",
+    "fa": "رمز عبور تغییر کرد. دوباره وارد شوید.",
+    "group": "Products"
   }
 }

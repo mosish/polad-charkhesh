@@ -2,6 +2,7 @@ import ManufacturerLibrary from './ManufacturerLibrary';
 import { BearingViewer } from './Viewer';
 import Copy from './Copy';
 import { mediaFor } from '../../lib/media';
+import { relatedComponents } from '../../lib/catalog-quality';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { ArrowRight, Box, Download, ArrowUpRight, Phone } from 'lucide-react';
 import type { BearingProduct } from '../../domain/product';
@@ -11,6 +12,23 @@ import { usePlatform, DataState } from './Context';
 import Dialog from './Dialog';
 import { Schematic } from './Schematic';
 const BearingScene = lazy(() => import('./HeroBearingScene'));
+const schematicLabels: Record<string, readonly [string, string]> = {
+  'deep-groove': ['Deep groove', 'شیار عمیق'],
+  'angular-contact': ['Angular contact', 'تماس زاویه‌ای'],
+  'self-aligning-ball': ['Self-aligning ball', 'بلبرینگ خودتنظیم'],
+  tapered: ['Tapered roller', 'رولربیرینگ مخروطی'],
+  spherical: ['Spherical roller', 'رولربیرینگ بشکه‌ای'],
+  cylindrical: ['Cylindrical roller', 'رولربیرینگ استوانه‌ای'],
+  needle: ['Needle roller', 'رولربیرینگ سوزنی'],
+  carb: ['Toroidal roller', 'رولربیرینگ حلقوی'],
+  thrust: ['Thrust bearing', 'بیرینگ کف‌گرد'],
+  'spherical-thrust': ['Spherical roller thrust', 'رولربیرینگ کف‌گرد بشکه‌ای'],
+  'pillow-block': ['Bearing housing', 'محفظه بیرینگ'],
+  'oil-seal': ['Shaft seal', 'آب‌بند شفت'],
+};
+function typeLabel(type: string, t: (en: string, fa: string) => string) {
+  const names = schematicLabels[type]; return names ? t(names[0], names[1]) : type;
+}
 function ProductCallOptions({ p, company }: { p: BearingProduct; company: CompanyContactInfo }) {
   const { fa, t } = usePlatform();
   return <>
@@ -27,7 +45,7 @@ function ProductCallOptions({ p, company }: { p: BearingProduct; company: Compan
   </>;
 }
 export function ProductImage({ p }: { p: BearingProduct }) {
-  const { content } = usePlatform();
+  const { content, fa, t } = usePlatform();
   const [failed, setFailed] = useState(false);
   const media = mediaFor(p, content);
   useEffect(() => setFailed(false), [media.url]);
@@ -47,7 +65,7 @@ export function ProductImage({ p }: { p: BearingProduct }) {
     <>
       <img
         src={media.url}
-        alt={media.reference ? 'Bearing family reference image' : p.nameEn}
+        alt={media.reference ? t('Bearing family reference image', 'تصویر مرجع خانواده بیرینگ') : p[fa ? 'nameFa' : 'nameEn']}
         onError={() => setFailed(true)}
         loading="lazy"
         width={640}
@@ -78,7 +96,7 @@ export function ProductCard({
     >
       <div className="product-photo">
         <ProductImage p={p} />
-        <span>{p.schematicType.replaceAll('-', ' ')}</span>
+        <span>{typeLabel(p.schematicType, t)}</span>
         <ArrowUpRight size={18} />
       </div>
       <div className="product-info">
@@ -213,7 +231,7 @@ export function TechnicalContent({
           {mediaFor(p, content).url && <Schematic p={p} />}
         </div>
         <div>
-          <div className="section-label">{p.schematicType.toUpperCase()}</div>
+          <div className="section-label">{typeLabel(p.schematicType, t)}</div>
           {inline ? <h3 className="product-code" dir="ltr">{p.code}</h3> : <h1 className="product-code" dir="ltr">
             {p.code}
           </h1>}
@@ -310,18 +328,18 @@ export function QuickView({
   );
 }
 /** Compact, complete catalog view that stays over the showroom. */
-export function ShowroomProductPanel({
-  p,
-  onClose,
-}: {
-  p: BearingProduct;
-  onClose: () => void;
-}) {
-  const { fa, t, company, content } = usePlatform();
+export function ShowroomProductPanel({ p, onClose }: { p: BearingProduct; onClose: () => void }) {
+  const [selected, setSelected] = useState(p);
+  useEffect(() => setSelected(p), [p.id]);
+  return <ProductPanelBody key={selected.id} p={selected} onClose={onClose} onSelect={setSelected} />;
+}
+function ProductPanelBody({ p, onClose, onSelect }: { p: BearingProduct; onClose: () => void; onSelect: (p: BearingProduct) => void }) {
+  const { fa, t, company, content, products } = usePlatform();
+  const related = relatedComponents(p, products);
   const media = mediaFor(p, content);
-  const catalogSourceUrl = p.technicalSources?.find((source) => source.url)?.url;
+  const sources = p.technicalSources?.filter(source => source.url) || [];
   const uploadedImages = [p.imageUrl, ...(p.images || [])].filter(
-    (url): url is string => typeof url === 'string' && url.length > 0 && !url.startsWith('/assets/images/'),
+    (url): url is string => typeof url === 'string' && url.length > 0 && !url.startsWith('/assets/images/') && !url.startsWith('/reference-images/'),
   );
   const photos = [...new Set([...uploadedImages, ...(media.url ? [media.url] : [])])];
   const [activeImage, setActiveImage] = useState(photos[0] || '');
@@ -362,7 +380,7 @@ export function ShowroomProductPanel({
     ...(p.contactAngle ? [[t('Contact angle', 'زاویه تماس'), p.contactAngle]] : []),
   ];
   return (
-    <Dialog title={t('Product specifications', 'مشخصات فنی محصول') + ' · ' + p.code} onClose={onClose} className="product-float">
+    <Dialog title={t('Product specifications', 'مشخصات فنی محصول') + ' · \u2066' + p.code + '\u2069'} onClose={onClose} className="product-float">
       <div className="product-panel-layout">
         <div className="product-panel-gallery">
           <div className="product-panel-stage">
@@ -371,7 +389,7 @@ export function ShowroomProductPanel({
             {stageView === 'image' && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
           </div>
           <div className="product-panel-thumbnails" aria-label={t('Product image gallery', 'گالری تصاویر محصول')}>
-            {photos.map((url, index) => <button type="button" key={url} className={stageView === 'image' && activeImage === url ? 'active' : ''} aria-pressed={stageView === 'image' && activeImage === url} aria-label={t('View image', 'نمایش تصویر') + ' ' + (index + 1)} onClick={() => { setActiveImage(url); setStageView('image'); setImageFailed(false); }}><img src={url} alt="" /></button>)}
+            {photos.map((url, index) => <button type="button" key={url} className={stageView === 'image' && activeImage === url ? 'active' : ''} aria-pressed={stageView === 'image' && activeImage === url} aria-label={t('View image', 'نمایش تصویر') + ' ' + (index + 1)} onClick={() => { setActiveImage(url); setStageView('image'); setImageFailed(false); }}><img src={url} alt="" loading="lazy" decoding="async" /></button>)}
             <button type="button" className={stageView === 'drawing' ? 'active' : ''} aria-pressed={stageView === 'drawing'} onClick={() => setStageView('drawing')}>{t('Drawing', 'نقشه')}</button>
             <button type="button" className={'product-panel-exploded-control ' + (stageView === 'exploded' ? 'active' : '')} aria-pressed={stageView === 'exploded'} disabled={!canExplode} title={!canExplode ? t('No rolling-element 3D model is available for this component.', 'مدل سه‌بعدی اجزای غلتشی برای این قطعه موجود نیست.') : undefined} onClick={() => setStageView('exploded')}><Box size={16} />{t('Exploded view', 'نمای انفجاری')}</button>
           </div>
@@ -380,7 +398,7 @@ export function ShowroomProductPanel({
         </div>
         <div className="product-panel-details">
           <div className="product-panel-identity">
-            <span className="section-label">{p.schematicType.replaceAll('-', ' ').toUpperCase()}</span>
+            <span className="section-label">{typeLabel(p.schematicType, t)}</span>
             <h2 dir="ltr">{p.code}</h2>
             <h3>{p[fa ? 'nameFa' : 'nameEn']}</h3>
             <p>{p[fa ? 'descriptionFa' : 'descriptionEn']}</p>
@@ -394,13 +412,21 @@ export function ShowroomProductPanel({
           </div>
         </div>
       </div>
+      <div className="product-panel-resources">
+        <h3>{t('Documents & contact', 'اسناد و تماس')}</h3>
       <div className="product-panel-actions">
         <ProductCallOptions p={p} company={company} />
-        {catalogSourceUrl && <a className="button" href={catalogSourceUrl} target="_blank" rel="noreferrer">{t('Official SKF catalog', 'کاتالوگ رسمی SKF')} <ArrowUpRight size={16} /></a>}
+        {sources.map((source, index) => <a key={index} className="button" href={source.url} target="_blank" rel="noreferrer" title={source.reference}>{source.manufacturer} · {t('Source document', 'سند مرجع')} <ArrowUpRight size={16} /></a>)}
         <button className="button" disabled={downloading} onClick={async () => { setDownloading(true); setDownloadError(''); try { await datasheet(p, company, content); } catch (error) { setDownloadError(error instanceof Error ? error.message : String(error)); } finally { setDownloading(false); } }}><Download size={16} />{t(downloading ? 'Preparing PDF…' : 'Company datasheet', downloading ? 'آماده‌سازی PDF…' : 'دیتاشیت شرکت')}</button>
         {p.pdfUrl ? <a className="button" href={p.pdfUrl} target="_blank" rel="noreferrer">{t('Attached manufacturer PDF', 'PDF پیوست سازنده')} <ArrowUpRight size={16} /></a> : <span className="product-panel-document-note">{t('No manufacturer PDF attached yet.', 'هنوز PDF سازنده پیوست نشده است.')}</span>}
       </div>
       {downloadError && <p role="alert" className="error">{downloadError}</p>}
+      </div>
+      {!!related.length && <section className="product-panel-related">
+        <h3>{t('Related components', 'قطعات مرتبط')}</h3>
+        <p>{t('Similar catalog entries for discovery; verify suitability before substitution.', 'رکوردهای مشابه برای بررسی؛ پیش از جایگزینی، تناسب فنی را بررسی کنید.')}</p>
+        <div>{related.map(item => <button key={item.id} onClick={() => onSelect(item)}><code dir="ltr">{item.code}</code><span dir="ltr">{item.d} × {item.D} × {item.B} mm</span><ArrowRight size={14} /></button>)}</div>
+      </section>}
     </Dialog>
   );
 }
@@ -451,9 +477,7 @@ export default function ProductPage() {
       <TechnicalContent p={p} full />
       <h2>{t('Related components', 'قطعات مرتبط')}</h2>
       <div className="product-grid">
-        {products
-          .filter((x) => x.category === p.category && x.id !== p.id)
-          .slice(0, 3)
+        {relatedComponents(p, products)
           .map((x) => (
             <a className="related-link" key={x.id} href={'/product/' + x.slug}>
               <ProductImage p={x} />

@@ -26,7 +26,10 @@ export default function ScrollReveal() {
           }
         });
     scan();
-    const mutation = new MutationObserver(scan);
+    let scanFrame = 0;
+    const mutation = new MutationObserver(() => {
+      if (!scanFrame) scanFrame = requestAnimationFrame(() => { scanFrame = 0; scan(); });
+    });
     const root = document.querySelector('#root');
     if (root) mutation.observe(root, { childList: true, subtree: true });
     const reset = () => {
@@ -36,6 +39,7 @@ export default function ScrollReveal() {
     return () => {
       observer.disconnect();
       mutation.disconnect();
+      cancelAnimationFrame(scanFrame);
       media.removeEventListener('change', reset);
       elements.forEach((el) =>
         el.classList.remove('reveal-pending', 'revealed'),

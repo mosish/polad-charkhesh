@@ -1,15 +1,33 @@
 import ScrollReveal from './ScrollReveal';
+import { useEffect, useRef, useState } from 'react';
 import {
   Globe2,
   ArrowUpRight,
   Phone,
   ArrowUp,
   MessageCircle,
+  Menu,
+  X,
 } from 'lucide-react';
 import { usePlatform } from './Context';
 import { publicHref } from '../../lib/public-links';
 export default function Shell({ children }: { children: React.ReactNode }) {
   const { fa, t, toggle, company, content } = usePlatform();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const header = useRef<HTMLElement>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setMenuOpen(false); menuButton.current?.focus(); }
+    };
+    const outside = (event: PointerEvent) => { if (!header.current?.contains(event.target as Node)) setMenuOpen(false); };
+    const desktop = matchMedia('(min-width: 761px)');
+    const resized = () => { if (desktop.matches) setMenuOpen(false); };
+    document.addEventListener('keydown', dismiss); document.addEventListener('pointerdown', outside);
+    desktop.addEventListener('change', resized);
+    return () => { document.removeEventListener('keydown', dismiss); document.removeEventListener('pointerdown', outside); desktop.removeEventListener('change', resized); };
+  }, [menuOpen]);
   return (
     <>
       <a className="skip-link" href="#main">
@@ -24,7 +42,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         </span>
         <span>{company?.landlinePhoneDisplayEn || 'POLAD CHARKHESH'}</span>
       </div>
-      <header className="navigation">
+      <header ref={header} className={'navigation' + (menuOpen ? ' menu-open' : '')}>
         <a href="/" className="brand">
           <img
             className="brand-logo"
@@ -41,17 +59,18 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             <small>{t('INDUSTRIAL ENGINEERING', 'مهندسی و تأمین صنعتی')}</small>
           </span>
         </a>
-        <nav aria-label={t('Main navigation', 'ناوبری اصلی')}>
+        <button ref={menuButton} className="public-menu-toggle" aria-expanded={menuOpen} aria-controls="public-navigation" aria-label={t(menuOpen ? 'Close navigation' : 'Open navigation', menuOpen ? 'بستن ناوبری' : 'باز کردن ناوبری')} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
+        <nav id="public-navigation" className={menuOpen ? 'is-open' : ''} aria-label={t('Main navigation', 'ناوبری اصلی')}>
           {content?.navigation?.items?.map((item: any) => (
-            <a key={item.id} href={publicHref(item.href)}>
+            <a key={item.id} href={publicHref(item.href)} onClick={() => setMenuOpen(false)}>
               {item[fa ? 'labelFa' : 'labelEn']}
             </a>
           ))}
         </nav>
         <button
           className="language"
-          onClick={toggle}
-          aria-label={t('Switch to Persian', 'Switch to English')}
+          onClick={() => { setMenuOpen(false); toggle(); }}
+          aria-label={t('Switch to Persian', 'تغییر زبان به انگلیسی')}
         >
           <Globe2 size={16} />
           {fa ? 'EN' : 'فارسی'}

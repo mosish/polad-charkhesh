@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
   ArrowUpRight,
-  Plus,
-  Search,
   Package,
   Inbox,
   Settings,
@@ -17,8 +15,6 @@ import {
   Globe,
   PanelTop,
   ScrollText,
-  Copy,
-  Star,
 } from 'lucide-react';
 import { api } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
@@ -26,6 +22,7 @@ import Dialog from '../platform/Dialog';
 import ProductEditor from './ProductEditor';
 import SettingsEditor from './SettingsEditor';
 import WebsiteEditor from './WebsiteEditor';
+import CatalogWorkspace from './CatalogWorkspace';
 const tabs = [
   ['overview', 'Overview', 'نمای کلی', LayoutDashboard],
   ['products', 'Products', 'محصولات', Package],
@@ -95,7 +92,7 @@ export default function Admin() {
     setBusy(true);
     try {
       const r = await api(path, method, body);
-      setMessage(t('Saved successfully.', 'با موفقیت ذخیره شد.'));
+      setMessage('saved');
       setError('');
       load();
       reload();
@@ -315,7 +312,7 @@ export default function Admin() {
         )}
         {message && (
           <p className="success" role="status">
-            {message}
+            {message === 'saved' ? t('Saved successfully.', 'با موفقیت ذخیره شد.') : message === 'product-saved' ? t('Product saved.', 'محصول ذخیره شد.') : message === 'password-changed' ? t('Password changed. Sign in again.', 'رمز عبور تغییر کرد. دوباره وارد شوید.') : message}
           </p>
         )}
         {['content', 'header'].includes(tab) ? (
@@ -387,116 +384,14 @@ export default function Admin() {
             </div>
           </>
         ) : tab === 'products' ? (
-          <>
-            <div className="catalog-toolbar">
-              <div className="search-field">
-                <Search size={18} />
-                <input
-                  aria-label="Search products"
-                  value={q}
-                  onChange={(e) => setQ(e.target.value)}
-                  placeholder={t('Find a product…', 'جستجوی محصول…')}
-                />
-              </div>
-              <select
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-              >
-                <option value="all">{t('All', 'همه')}</option>
-                <option value="active">{t('Active', 'فعال')}</option>
-                <option value="archived">{t('Archived', 'بایگانی')}</option>
-              </select>
-              <button className="button primary" onClick={() => { setDuplicateSource(''); setEdit(null); }}>
-                <Plus size={17} />
-                {t('Add product', 'افزودن محصول')}
-              </button>
-            </div>
-            <div className="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>{t('Component', 'قطعه')}</th>
-                    <th>d / D / B</th>
-                    <th>{t('Status', 'وضعیت')}</th>
-                    <th>{t('Actions', 'عملیات')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.products
-                    .filter(
-                      (p: any) =>
-                        (p.code + ' ' + p.nameFa + ' ' + p.nameEn)
-                          .toLowerCase()
-                          .includes(q.toLowerCase()) &&
-                        (filter === 'all' ||
-                          (filter === 'archived'
-                            ? p.isArchived
-                            : !p.isArchived)),
-                    )
-                    .map((p: any) => (
-                      <tr key={p.id}>
-                        <td>
-                          <code>{p.code}</code>
-                          <small>{p[fa ? 'nameFa' : 'nameEn']}</small>
-                        </td>
-                        <td dir="ltr">
-                          {p.d} / {p.D} / {p.B}
-                        </td>
-                        <td>
-                          {p.isArchived
-                            ? t('Archived', 'بایگانی')
-                            : t('Active', 'فعال')}
-                        </td>
-                        <td>
-                          <div className="table-actions">
-                            <button onClick={() => { setDuplicateSource(''); setEdit(p); }}>
-                              {t('Edit', 'ویرایش')}
-                            </button>
-                            <button onClick={() => {
-                              const template = structuredClone(p);
-                              for (const key of ['id', 'code', 'slug', 'createdAt', 'updatedAt', 'updatedBy', 'isArchived']) delete template[key];
-                              setDuplicateSource(p.code);
-                              setEdit({ ...template, code: '', slug: '', featured: false });
-                            }} title={t('Copy details into a new product draft', 'کپی مشخصات به پیش‌نویس محصول جدید')}>
-                              <Copy size={14} aria-hidden="true"/>{t('Duplicate', 'رونوشت')}
-                            </button>
-                            {!p.isArchived && <button disabled={busy} aria-pressed={!!p.featured} onClick={() => act('/products/' + p.id, 'PUT', { featured: !p.featured }).catch(() => {})} title={t('Toggle featured product', 'تغییر محصول شاخص')}>
-                              <Star size={14} fill={p.featured ? 'currentColor' : 'none'} aria-hidden="true"/>{p.featured ? t('Featured', 'شاخص') : t('Feature', 'شاخص کردن')}
-                            </button>}
-                            <button
-                              disabled={busy}
-                              onClick={() =>
-                                act(
-                                  '/products/' + p.id + '/archive',
-                                  'PATCH',
-                                  {},
-                                ).catch(() => {})
-                              }
-                            >
-                              {p.isArchived
-                                ? t('Restore', 'بازیابی')
-                                : t('Archive', 'بایگانی')}
-                            </button>
-                            {p.isArchived &&
-                              status.user.role === 'superadmin' && (
-                                <button
-                                  className="danger"
-                                  onClick={() => {
-                                    setConfirm({ type: 'delete', p });
-                                    setTyped('');
-                                  }}
-                                >
-                                  {t('Delete', 'حذف')}
-                                </button>
-                              )}
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          </>
+          <CatalogWorkspace products={data.products} request={act} canDelete={status.user.role === 'superadmin'}
+            onEdit={p => { setDuplicateSource(''); setEdit(p); }}
+            onDelete={p => { setConfirm({ type: 'delete', p }); setTyped(''); }}
+            onDuplicate={p => {
+              const template: any = structuredClone(p);
+              for (const key of ['id', 'code', 'slug', 'createdAt', 'updatedAt', 'updatedBy', 'isArchived']) delete template[key];
+              setDuplicateSource(p.code); setEdit({ ...template, code: '', slug: '', featured: false });
+            }} />
         ) : tab === 'inquiries' ? (
           <>
             <div className="catalog-toolbar">
@@ -702,7 +597,7 @@ export default function Admin() {
                 const form = Object.fromEntries(new FormData(e.currentTarget));
                 try {
                   await api('/auth/change-password', 'POST', form);
-                  setMessage('Password changed. Sign in again.');
+                  setMessage('password-changed');
                   check();
                 } catch (e: any) {
                   setError(e.message);
@@ -752,7 +647,7 @@ export default function Admin() {
               setEdit(undefined);
               load();
               reload();
-              setMessage(t('Product saved.', 'محصول ذخیره شد.'));
+              setMessage('product-saved');
             }}
           />
         )}

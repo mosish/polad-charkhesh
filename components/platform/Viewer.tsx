@@ -39,7 +39,7 @@ export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: 
           </div>
           <div className="explorer-model-stage">
             <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-              <BearingScene key={p.id} family={g.roller?'roller':'ball'} product={p} rpm={safeRpm} playback={playback} paused={paused||exploded} exploded={exploded} reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${p.d} × ${p.D} × ${p.B} mm${exploded?' · '+t('Exploded view','نمای انفجاری'):''}`} fallback={exploded?<div className="hero-model-loading">{p.code}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>:<BearingModel p={p} rpm={safeRpm} paused={paused} playback={playback} compact/>}/>
+              <BearingScene key={p.id} family={g.roller?'roller':'ball'} product={p} rpm={safeRpm} playback={playback} paused={paused||exploded} exploded={exploded} reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${p.d} × ${p.D} × ${p.B} mm${exploded?' · '+t('Exploded view','نمای انفجاری'):''}`} fallback={exploded?<div className="hero-model-loading">{p.code}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>:<BearingModel p={p} rpm={safeRpm} paused={paused||reducedMotion} playback={playback} compact/>}/>
             </Suspense>
           </div>
           {exploded&&<div className="bearing-parts-key explorer-parts-key" aria-label={t('Bearing parts','اجزای بیرینگ')}>{partLabels.map((name,i)=><span key={name}><b>{i+1}</b>{name}</span>)}</div>}

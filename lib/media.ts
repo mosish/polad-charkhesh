@@ -1,7 +1,7 @@
 import type { BearingProduct } from '../domain/product';
 export function mediaFor(p: BearingProduct, content?: any) {
   if (p.imageUrl && !p.imageUrl.startsWith('/assets/images/'))
-    return { url: p.imageUrl, reference: false };
+    return { url: p.imageUrl, reference: p.imageUrl.startsWith('/reference-images/') };
   if(p.category==='seal')return {url:'/reference-images/shaft-seal.jpg',reference:true};
   if(p.schematicType==='spherical')return {url:'/reference-images/spherical-roller.png',reference:true};
   if(p.schematicType==='cylindrical')return {url:'/reference-images/cylindrical-roller.png',reference:true};

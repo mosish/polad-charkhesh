@@ -160,7 +160,9 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const target=host.current;if(!target || failed)return;
     let renderer:THREE.WebGLRenderer;
     try {renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});}catch{setFailed(true);return;}
-    renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.setClearColor(0x000000,0);
+    const compactScreen=matchMedia('(max-width: 760px)').matches;
+    const frameInterval=1000/(compactScreen || !product ? 30 : 60);
+    renderer.setPixelRatio(Math.min(devicePixelRatio,compactScreen?1.25:1.75));renderer.setClearColor(0x000000,0);
     renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
     target.appendChild(renderer.domElement);
     const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,40);camera.position.set(0,0,9.8);
@@ -175,7 +177,10 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     let frame=0,previous=0,elapsed=0,running=false,inView=true;
     let expansion=viewRef.current.exploded?1:0;
     let shaftAngle=0,cageAngle=0,spinAngle=0;
+    const pins=model.parts.map((_,i)=>target.querySelector<HTMLElement>(`[data-part="${i}"]`));
+    const projectedPoint=new THREE.Vector3();
     const draw=(now:number)=>{
+      if(previous && now-previous < frameInterval-.5){frame=requestAnimationFrame(draw);return;}
       const delta=previous?(now-previous)/1000:1/60;
       const seconds=previous&&running?delta:0;previous=now;
       const targetExpansion=viewRef.current.exploded?1:0;
@@ -210,8 +215,8 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
       }
       model.root.updateMatrixWorld(true);
       model.parts.forEach((part,i)=>{
-        const badge=target.querySelector<HTMLElement>(`[data-part="${i}"]`);if(!badge)return;
-        const point=part.getWorldPosition(new THREE.Vector3()).project(camera);
+        const badge=pins[i];if(!badge)return;
+        const point=part.getWorldPosition(projectedPoint).project(camera);
         badge.style.left=`${(point.x*.5+.5)*100}%`;badge.style.top=`${(-point.y*.5+.5)*100}%`;
         badge.style.opacity=String(expansion>.9?1:0);
       });
@@ -221,7 +226,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
       if(running||(inView&&!document.hidden&&expansion!==targetExpansion))frame=requestAnimationFrame(draw);
     };
     const resize=()=>{const {width,height}=target.getBoundingClientRect();if(!width||!height)return;camera.aspect=width/height;camera.position.z=Math.max(9.8,(viewRef.current.exploded?4.15:2.65)/(Math.tan(17*Math.PI/180)*camera.aspect),product?7.5+2.3*product.B/product.D:0);camera.updateProjectionMatrix();renderer.setSize(width,height);if(!running){cancelAnimationFrame(frame);draw(performance.now());}};
-    const sync=()=>{running=!pauseRef.current&&inView&&!document.hidden&&(!product||speedRef.current.rpm>0);cancelAnimationFrame(frame);previous=0;draw(performance.now());};
+    const sync=()=>{running=!pauseRef.current&&!viewRef.current.reducedMotion&&inView&&!document.hidden&&(!product||speedRef.current.rpm>0);cancelAnimationFrame(frame);previous=0;draw(performance.now());};
     const observer=new ResizeObserver(resize);observer.observe(target);resize();sync();
     const intersection=new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;sync();},{threshold:.05});intersection.observe(target);
     document.addEventListener('visibilitychange',sync);

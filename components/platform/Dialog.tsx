@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+import { usePlatform } from './Context';
 export default function Dialog({
   title,
   onClose,
@@ -11,6 +12,7 @@ export default function Dialog({
   children: React.ReactNode;
   className?: string;
 }) {
+  const { t } = usePlatform();
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const before = document.activeElement as HTMLElement,
@@ -38,7 +40,7 @@ export default function Dialog({
       <div className="dialog-inner">
         <div className="dialog-heading">
           <strong>{title}</strong>
-          <button onClick={onClose} aria-label="Close dialog">
+          <button onClick={onClose} aria-label={t('Close dialog', 'بستن پنجره')}>
             <X size={22} />
           </button>
         </div>

@@ -24,12 +24,12 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Persian/English experience | 🟢 Implemented | RTL/LTR and language switching exist; final copy parity needs review. |
 | Canonical product seed | ✅ Verified in tests | All 68 legacy identities are preserved, and 42 SKF sealed deep-groove designations bring the bundled catalog to 110 records. Current SKU verification remains a launch task. |
 | Catalog search and product comparison | ✅ Verified in tests | Horizontal family filters and code/dimension search are in the catalog; up to three-product comparison is in the engineering workspace. |
-| Product specifications and documents | 🟢 Implemented | A floating catalog panel presents the image gallery, specifications, available exploded 3D view, company-generated PDF, attached documents, and direct mobile/office call choices from saved company settings. Exact SKU media are incomplete. |
+| Product specifications and documents | 🟢 Implemented | A floating catalog panel groups images, specifications, exploded 3D, documents and contact actions. Related records open in the same panel and are ranked by family and dimensions. Exact SKU media are incomplete. |
 | Animated bearing visuals | 🟢 Implemented | Five homepage family illustrations and assembled/exploded views; the product-specific Explorer also separates its four main assemblies. Models are illustrative. |
 | Engineering workspace | 🟢 Implemented | Life and known-load estimates show example results immediately and recalculate as inputs change. Fit limits, comparison, and unit conversion remain on the homepage; application review remains essential. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
-| Admin content and product editing | 🟢 Implemented | All modules opened in an isolated production browser session. Product editing, website preview/save, inquiry review, and mobile navigation worked; full media, SEO, roles and restore UI review remains. |
+| Admin content and product editing | 🟢 Implemented | Product editing, missing-content filters, bulk actions and reviewed JSON import/export are implemented and tested. Full media, SEO, roles and restore UI review remains. |
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
@@ -41,7 +41,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **22 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
+The last full automated suite passed **26 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -127,6 +127,14 @@ Keep the public experience focused on company presentation, technical discovery,
 - **2026-09-29 — Live engineering tools:** Removed the redundant Bearing Explorer and Clearance guide from section 03. Life and known-load modes now start with labeled example inputs and recalculate immediately on edits; a reset control restores the example. Fit limits, comparison, and unit conversion remain.
 - **2026-09-29 — SKF catalog expansion:** Added 42 distinct SKF sealed deep-groove designations from an official SKF table, bringing the bundled catalog to 110. A one-time, conflict-safe migration adds them to existing admin databases; source links and separate reference/limiting speed fields keep provenance clear. Exact SKF SKU images remain pending a usable authorized asset source.
 - **2026-09-29 — Deployment preparation:** Added an isolated built-server smoke check, corrected trailing-slash production routes including `/admin/`, required stable production secrets and absolute data paths, and created verified SQLite/upload backup tools plus generic VPS templates. Hosting and business-data approval are still pending.
+
+### 2026-10-04 — Catalog workflow and experience
+
+- Product panels now group documents and contact actions and offer nearby catalog records without leaving the panel. Suggestions rank family and dimensions; they do not certify interchangeability.
+- Admin Products shows missing product images, incomplete specifications, missing source documents, and bilingual content gaps. Bulk feature/unfeature, archive/restore, and manufacturer assignment include a review step.
+- JSON import/export and a downloadable template support up to 200 records per file. Imports match by code, preview individual field changes, validate the entire batch, reject stale previews, and save in one transaction. Existing omitted fields are preserved.
+- Mobile navigation now opens as a compact menu, closes after selection or Escape, and supports both directions. 3D uses lower pixel density and 30 FPS on small screens, stops for reduced motion or hidden/offscreen views, and reuses per-frame objects. Product thumbnails load lazily.
+- Validation: 26 automated tests, TypeScript, production build and smoke checks pass. A separate browser session verified related-product browsing, exploded geometry, Persian mobile navigation, admin bulk editing, import preview/save and JSON export without modifying the live database. Repository-wide lint and the broader final launch audit remain open.
 
 ## Remaining roadmap
 

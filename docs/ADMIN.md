@@ -68,3 +68,14 @@ The floating product panel presents images, a dimensional drawing, available exp
 The 2026-09-29 SKF expansion adds 42 sealed deep-groove designations to an existing database once. It does not replace edited or archived products. Each new record has an official SKF catalog-table link, reference and limiting speeds, and no exact SKU image or attached PDF. Add an approved exact image in Products > Media and select it as the product image; the labeled family reference remains a fallback until then.
 
 Engineering provides live life and known-equivalent-load estimates, a fit-limit explorer with worst-case clearance/interference ranges in micrometres, technical comparison, and unit conversion. Example calculation results appear immediately and update as inputs change. New text is registered in All website text. Source links are curated in code. No commercial workflow is included.
+
+
+## Catalog maintenance (2026-10-04)
+
+Products provides coverage cards and filters for missing product images, incomplete specifications, missing documents and English/Persian content gaps. Counts cover active records; filtering can also include archived records. These indicators describe recorded content, not manufacturer approval. Family reference images do not count as product images. Rolling-bearing coverage includes load ratings, a speed rating, cage and clearance fields; non-bearing components are not expected to have bearing load ratings.
+
+Select individual rows or up to 200 filtered results, then choose feature/unfeature, archive/restore or set manufacturers. Review shows the selected codes, including selections outside the current filter. Manufacturer assignment replaces the selected records' brand lists. Archive removes records from public discovery; restore makes them visible again. Bulk operations never permanently delete records.
+
+Export catalog JSON to edit or retain the product records, or download the import template. Import accepts a JSON array or an object containing a `products` array, with 1–200 entries and a maximum 2 MB file in the browser. New records require unique codes, slugs, both names, category, schematic and numeric fields. Existing records match by code without regard to case; fields omitted from a matching record remain unchanged. Expand each preview row to review before/after field values. Review the manufacturer information, check the review box and save. Invalid rows or conflicting slugs stop the entire batch. If any matching record changes after preview, preview the file again. Successful imports and bulk edits are audited and saved atomically.
+
+Use exact code-matched photos when adding product media. The system cannot certify that an uploaded image is the exact manufacturer's product. Catalog JSON contains products only; use System backup for complete application-data backup, and the offline backup command for uploaded files.
