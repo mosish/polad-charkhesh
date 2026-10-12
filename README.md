@@ -4,7 +4,7 @@
 >
 > **Source of truth for code:** GitHub `main`
 >
-> **Last status review:** 2026-10-04
+> **Last status review:** 2026-10-12
 
 Polad Charkhesh is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
@@ -42,7 +42,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **34 tests**. TypeScript checking, a production build, and the isolated production smoke check pass. Targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. These checks do not replace final device and product-data review.
+The last full automated suite passed **35 tests**. TypeScript checking, a production build, and the isolated production smoke check were rerun successfully on 2026-10-12. Earlier targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. Those browser checks were not repeated during hosting preparation and do not replace final device and product-data review.
 
 ## Public site layout
 
@@ -220,3 +220,9 @@ The [current catalog checklist](docs/CATALOG_CONTENT_AUDIT.md) covers 110 publis
 Admin Products now separates missing PDFs from missing source links and offers **Export content checklist**. The read-only `npm run audit:catalog` command regenerates the report from the running local API; `--base`, `--out`, `--date` and `--media-results` customize its input/output. Browser media results are optional; absent probes mean media decoding has not been checked. The generated JSON evidence is in `docs/audit-evidence/catalog-content-audit-2026-10-04.json`. This checklist does not clear the launch gate; exact assets and independent specification review remain.
 
 The catalog category strip now follows the supplied icon-tile reference: compact horizontal tiles, individual category sketches, product counts and a blue selected-state underline. It supports keyboard focus and horizontal scrolling in both Persian and English. Sketches are decorative category symbols, not exact product images.
+
+### Hosting preparation (2026-10-12)
+
+VPS purchase and public deployment remain pending. A fresh GitHub checkout was recovered at the current workspace after the local machine migration; its tracked source matched the migrated copy after line-ending normalization. Existing runtime data remains in that migrated copy and was not imported, reset or published.
+
+The new standalone `node scripts/hosting-check.mjs /absolute/persistent/data/path` probe checks writable storage, actual WAL activation, committed WAL recovery after process exit, reader/writer behavior, SQLite backup integrity and uploaded-file preservation. It creates only a dedicated probe directory and prints a follow-up `--verify` command for use after a real host reboot or redeployment. It does not certify those external operations or clear the deployment gate. See [deployment instructions](docs/DEPLOYMENT.md) and the [Persian acceptance checklist](docs/HOSTING_CHECK_FA.md).

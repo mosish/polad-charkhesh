@@ -2,6 +2,18 @@
 
 The application is built for a Linux VPS with Node, Express and SQLite. Hosting has not been selected, and no public deployment has been performed. The checked-in files under `deploy/` are templates; update paths, domain names and certificate names before installing them.
 
+## Host compatibility probe
+
+Before using a purchased server for live data, run the standalone `scripts/hosting-check.mjs` with Node 22.16+ as the intended application service user against an existing absolute persistent directory:
+
+```bash
+node scripts/hosting-check.mjs /var/lib/polad-charkhesh
+```
+
+It creates a unique `polad-hosting-probe-*` subdirectory, exercises committed WAL recovery after abrupt process exit, concurrent reading during a write transaction, SQLite backup/integrity and an uploaded-file hash. No live application database or environment file is opened. The output gives a `nextCheck` argument array; run that `--verify` command after an actual reboot and again after a test deployment to check persistence. If uploads live on a separate mount, probe that location too. Probe files are retained for these checks; remove only the reported probe directory when finished.
+
+Known NFS/SMB/CIFS filesystem types are rejected; other results do not certify storage architecture. Provider confirmation and mount inspection are still needed. A pass does not establish service supervision, host reboot behavior, HTTPS, load capacity or provider-backup restorability. See the [Persian hosting checklist](HOSTING_CHECK_FA.md). No server has been purchased or validated as of 2026-10-12.
+
 ## Release checks before choosing a host
 
 From a clean checkout with Node 22.16+ (Node 24 is used for the current local verification) and pnpm:

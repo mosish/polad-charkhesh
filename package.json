@@ -18,7 +18,8 @@
     "audit:catalog": "tsx scripts/catalog-audit.ts",
     "smoke:production": "tsx scripts/production-smoke.ts",
     "backup:data": "tsx scripts/backup-data.ts",
-    "verify:backup": "tsx scripts/verify-backup.ts"
+    "verify:backup": "tsx scripts/verify-backup.ts",
+    "check:hosting": "node scripts/hosting-check.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
