@@ -6,5 +6,6 @@ import './platform.css';
 import './liquid-glass.css';
 import './seo.css';
 import './catalog-refinement.css';
+import './hero-banner.css';
 document.body.classList.add('liquid-glass');
 createRoot(document.getElementById('root')!).render(<Router />);

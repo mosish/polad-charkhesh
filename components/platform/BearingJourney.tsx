@@ -5,7 +5,7 @@ const Journey=createContext<null|{experiment:boolean;settings:Settings;configure
 export const useBearingJourney=()=>useContext(Journey);
 export function BearingJourneyProvider({children}:{children:ReactNode}){
  const [settings,configure]=useState<Settings>(()=>{
-  let family:BearingFamily='thrust';try{const saved=sessionStorage.getItem('pc-bearing-family');if(['thrust','ball','roller','accessories','engineered','track'].includes(saved||''))family=saved as BearingFamily;}catch{}
+  let family:BearingFamily='ball';try{const saved=sessionStorage.getItem('pc-bearing-family');if(['thrust','ball','roller','accessories','engineered','track'].includes(saved||''))family=saved as BearingFamily;}catch{}
   return {family,paused:false,automatic:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches};
  });
  const experiment=new URLSearchParams(location.search).get('motion')!=='classic';

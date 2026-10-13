@@ -1,5 +1,5 @@
 import { useEffect, useState, type RefObject } from 'react';
-import { bearingScrollProgress } from '../../lib/bearing-scroll';
+import { bearingScrollProgress, bearingBannerProgress } from '../../lib/bearing-scroll';
 /** One passive listener and one measurement per animation frame; no scroll lock. */
 export function useBearingScroll(
   stage: RefObject<HTMLDivElement | null>,
@@ -19,7 +19,9 @@ export function useBearingScroll(
       const rect = node.getBoundingClientRect();
       const pinned = hero && getComputedStyle(hero).position === 'sticky';
       const next =
-        pinned && wrapper
+        hero?.classList.contains('hero-cinematic') && wrapper
+          ? bearingBannerProgress(wrapper.getBoundingClientRect().top, wrapper.getBoundingClientRect().height)
+          : pinned && wrapper
           ? bearingScrollProgress(
               wrapper.getBoundingClientRect().top,
               wrapper.getBoundingClientRect().height,

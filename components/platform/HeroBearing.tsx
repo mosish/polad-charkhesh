@@ -13,14 +13,15 @@ const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 export default function HeroBearing() {
   const { products, content, t } = usePlatform();
   const journey=useBearingJourney(),configure=journey?.configure;
-  const [family, setFamily] = useState<BearingFamily>(journey?.settings.family || 'thrust');
+  const [family, setFamily] = useState<BearingFamily>(journey?.settings.family || 'ball');
+  const [playback, setPlayback] = useState(1);
   const [exploded,setExploded] = useState(false);
   const scrollMode = true;
   const [manualPreview, setManualPreview] = useState(false);
   const families: {id: BearingFamily; label: string; detail: string; caption: string}[] = [
-    {id:'thrust',label:t('Thrust bearings','رولبرینگ کف‌گرد'),detail:t('Tapered roller thrust bearing','رولبرینگ مخروطی کف‌گرد'),caption:t('T921-inspired proportions · illustrative construction','با الهام از T921 · مدل نمایشی')},
     {id:'ball',label:t('Ball bearings','بلبرینگ‌ها'),detail:t('Angular-contact ball bearing','بلبرینگ تماس زاویه‌ای'),caption:t('Precision balls for spindle applications','ساچمه‌های دقیق برای کاربردهای اسپیندل')},
     {id:'roller',label:t('Roller bearings','رولبرینگ‌ها'),detail:t('Double-row spherical roller bearing','رولبرینگ بشکه‌ای دو ردیفه'),caption:t('Two rows of barrel-shaped rollers','دو ردیف غلتک بشکه‌ای')},
+    {id:'thrust',label:t('Thrust bearings','رولبرینگ کف‌گرد'),detail:t('Tapered roller thrust bearing','رولبرینگ مخروطی کف‌گرد'),caption:t('T921-inspired proportions · illustrative construction','با الهام از T921 · مدل نمایشی')},
     {id:'accessories',label:t('Bearings accessories','متعلقات بیرینگ'),detail:t('Adapter sleeve, locknut and washer','بوش تبدیلی، مهره قفلی و واشر'),caption:t('Mounting components shown as an illustrative assembly','اجزای نصب به‌صورت مجموعه نمایشی')},
     {id:'engineered',label:t('Engineered products','محصولات مهندسی‌شده'),detail:t('Housed bearing unit','واحد بیرینگ محفظه‌دار'),caption:t('Bearing insert within a mounted housing','بیرینگ داخلی درون محفظه نصب‌شونده')},
     {id:'track',label:t('Track rollers','رولرهای مسیر'),detail:t('Stud-type track roller','رولر مسیر پایه‌دار'),caption:t('Cam follower with a fixed stud and rotating outer ring','رولر پیرو با پایه ثابت و رینگ بیرونی چرخان')},
@@ -66,7 +67,7 @@ export default function HeroBearing() {
     stage.current?.style.setProperty('--tilt-x', '0deg');
     stage.current?.style.setProperty('--tilt-y', '0deg');
   };
-  return <><div className={'hero-visual hero-bearing-showcase' + (stopped ? ' is-still' : '')} data-scroll-mode={scrollMode && !reduced ? 'auto' : 'manual'}>
+  return <><div className={'hero-visual hero-bearing-showcase hero-bearing-banner' + (stopped ? ' is-still' : '')} data-scroll-mode={scrollMode && !reduced ? 'auto' : 'manual'}>
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
       <span dir="ltr">{String(families.findIndex(f => f.id === family) + 1).padStart(2,'0')} / {String(families.length).padStart(2,'0')}</span>
@@ -118,7 +119,7 @@ export default function HeroBearing() {
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
         {sceneReady && <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-          <HeroBearingScene family={family} paused={stopped} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
+          <HeroBearingScene cinematic family={family} paused={stopped} playback={playback} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
         </Suspense>}
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
@@ -132,6 +133,9 @@ export default function HeroBearing() {
           onClick={() => { if (reduced) setReduced(false); setPaused(!stopped); resetTilt(); }}>
           {stopped ? <Play size={16}/> : <Pause size={16}/>}
         </button>
+        <select aria-label={t('Animation speed', 'سرعت انیمیشن')} value={playback} onChange={event => setPlayback(Number(event.target.value))}>
+          <option value={.5}>0.5×</option><option value={1}>1×</option><option value={1.5}>1.5×</option>
+        </select>
         <a href={publicHref(content?.links?.heroVisual || '/engineering')} aria-label={t('Explore bearing engineering', 'کاوش مهندسی بیرینگ')}><ArrowUpRight size={20}/></a>
       </div>
     </div>

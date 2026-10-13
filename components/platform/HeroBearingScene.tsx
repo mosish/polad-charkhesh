@@ -12,12 +12,25 @@ export type BearingFamily = 'thrust' | 'ball' | 'roller' | 'accessories' | 'engi
 function buildBearing(family: BearingFamily) {
   const root = new THREE.Group(), shell = new THREE.Group(), moving = new THREE.Group(), cage = new THREE.Group(), elements = new THREE.Group();
   const textures: THREE.Texture[] = [];
-  const steel = new THREE.MeshStandardMaterial({color: '#bcc5d0', metalness: 1, roughness: .22});
-  const polished = new THREE.MeshStandardMaterial({color: '#e2e6ed', metalness: 1, roughness: .13});
+  const spins: THREE.Mesh[] = [];
+  // Subtle turning marks and micro-roughness, generated locally without image downloads.
+  const grainData = new Uint8Array(256 * 256 * 4);
+  let seed = 19;
+  for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    const value = Math.round(190 + Math.sin(y * 2.7) * 13 + ((seed / 4294967296) - .5) * 16);
+    const offset = (y * 256 + x) * 4;
+    grainData[offset] = grainData[offset + 1] = grainData[offset + 2] = value; grainData[offset + 3] = 255;
+  }
+  const grain = new THREE.DataTexture(grainData, 256, 256);
+  grain.wrapS = grain.wrapT = THREE.RepeatWrapping; grain.repeat.set(3, 2);
+  grain.magFilter = THREE.LinearFilter; grain.minFilter = THREE.LinearMipmapLinearFilter;
+  grain.generateMipmaps = true; grain.needsUpdate = true; textures.push(grain);
+  const steel = new THREE.MeshStandardMaterial({color: '#bfc9d2', metalness: 1, roughness: .3, roughnessMap: grain, bumpMap: grain, bumpScale: .004});
+  const polished = new THREE.MeshStandardMaterial({color: '#e7ebee', metalness: 1, roughness: .16, roughnessMap: grain});
   const bronze = new THREE.MeshStandardMaterial({color: '#b78b45', metalness: .85, roughness: .3});
-  const polymer = new THREE.MeshStandardMaterial({color: '#806044', metalness: .12, roughness: .43});
   const dark = new THREE.MeshStandardMaterial({color: '#303c48', metalness: .65, roughness: .34});
-  const materials: THREE.Material[] = [steel, polished, bronze, polymer, dark];
+  const materials: THREE.Material[] = [steel, polished, bronze, dark];
   const mesh = (geometry: THREE.BufferGeometry, material: THREE.Material, group = shell) => {
     const m = new THREE.Mesh(geometry, material); group.add(m); return m;
   };
@@ -108,13 +121,20 @@ function buildBearing(family: BearingFamily) {
     torus(1.08,.013,half-.004,polished,moving);
     const profile=[new THREE.Vector2(0,-.32),...Array.from({length:17},(_,i)=>{const z=-.32+i*.04;return new THREE.Vector2(.28-.08*(z/.32)**2,z);}),new THREE.Vector2(0,.32)];
     const rollerGeometry=new THREE.LatheGeometry(profile,40);
+    const rollerEndGeometry = new THREE.CircleGeometry(.188, 32);
     for(const row of [-1,1]) {
       for(const z of [row*.09,row*.73])torus(1.69,.045,z,bronze,cage);
       for(let i=0;i<16;i++) {
         const a=i*Math.PI*2/16, pitch=1.69;
         const roller=mesh(rollerGeometry,polished,elements);
+        spins.push(roller);
         roller.position.set(Math.cos(a)*pitch,Math.sin(a)*pitch,row*.41);
         roller.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(-row*.2*Math.cos(a),-row*.2*Math.sin(a),1).normalize());
+        for (const sign of [-1, 1]) {
+          const endFace = new THREE.Mesh(rollerEndGeometry, steel);
+          endFace.rotation.x = -sign * Math.PI / 2; endFace.position.y = sign * .321;
+          roller.add(endFace);
+        }
         const between=a+Math.PI/16;
         const bridge=mesh(new THREE.BoxGeometry(.1,.065,.66),bronze,cage);
         bridge.position.set(Math.cos(between)*pitch,Math.sin(between)*pitch,row*.41);
@@ -134,15 +154,24 @@ function buildBearing(family: BearingFamily) {
       new THREE.Vector2(0,-.365),new THREE.Vector2(radius-.025,-.365),new THREE.Vector2(radius,-.34),new THREE.Vector2(radius,.34),new THREE.Vector2(radius-.025,.365),new THREE.Vector2(0,.365)
     ],48);
     if (!precision) elementGeometry.rotateX(Math.PI/2);
-    const cageMaterial = precision ? polymer : bronze;
+    const cageMaterial = precision ? steel : bronze;
     torus(1.46,.045,precision ? -.09 : .395,cageMaterial,cage);
     torus(1.955,.045,precision ? -.09 : .395,cageMaterial,cage);
     torus(1.71,.065,-.33,cageMaterial,cage);
     for(let i=0;i<count;i++) {
       const a=i*Math.PI*2/count, x=Math.cos(a)*pitch,y=Math.sin(a)*pitch;
       const element=mesh(elementGeometry,polished,elements);element.position.set(x,y,0);
+      spins.push(element);
       const bridge=mesh(new THREE.BoxGeometry(.53,.065,precision ? .15 : .8),cageMaterial,cage);
       const between=a+Math.PI/count;bridge.position.set(Math.cos(between)*pitch,Math.sin(between)*pitch,precision ? -.12 : 0);bridge.rotation.z=between;
+      if (precision) {
+        // Pressed-steel pockets and rivets make the cage readable at banner scale.
+        const pocket = mesh(new THREE.TorusGeometry(.286, .018, 8, 32), steel, cage);
+        pocket.position.set(x, y, .135);
+        const rivet = mesh(new THREE.SphereGeometry(.042, 12, 8), polished, cage);
+        rivet.scale.z = .45;
+        rivet.position.set(Math.cos(between) * pitch, Math.sin(between) * pitch, -.015);
+      }
       if(!precision) {
         const cap=mesh(new THREE.CircleGeometry(radius-.035,40),steel,elements);cap.position.set(x,y,.367);
         const dimple=mesh(new THREE.CircleGeometry(.037,20),dark,elements);dimple.position.set(x,y,.368);
@@ -161,7 +190,7 @@ function buildBearing(family: BearingFamily) {
     const ink=new THREE.MeshBasicMaterial({map:engraving,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1});materials.push(ink);
     mesh(new THREE.PlaneGeometry(4.6,4.6),ink).position.z=front+.002;
   }
-  return {root, moving, cage, elements, parts:[shell,elements,cage,moving], setExploded(amount:number){
+  return {root, moving, cage, elements, spins, parts:[shell,elements,cage,moving], setExploded(amount:number){
     [shell,elements,cage,moving].forEach((part,i)=>{part.position.z=(i-1.5)*2.7*amount;});
   }, dispose(){
     const geometries=new Set<THREE.BufferGeometry>();root.traverse(o=>{if(o instanceof THREE.Mesh)geometries.add(o.geometry);});
@@ -169,7 +198,7 @@ function buildBearing(family: BearingFamily) {
   }};
 }
 
-export default function HeroBearingScene({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false}:{family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean}) {
+export default function HeroBearingScene({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false,cinematic=false}:{family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean}) {
   const host=useRef<HTMLDivElement>(null);
   const controller=useRef<{play:(value:boolean)=>void}|null>(null);
   const pauseRef=useRef(paused);pauseRef.current=paused;
@@ -183,7 +212,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const compactScreen=matchMedia('(max-width: 760px)').matches;
     const frameInterval=1000/(compactScreen || !product ? 30 : 60);
     renderer.setPixelRatio(Math.min(devicePixelRatio,compactScreen?1.25:1.75));renderer.setClearColor(0x000000,0);
-    renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=cinematic?1.05:1.2;
     target.appendChild(renderer.domElement);
     const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,40);camera.position.set(0,0,9.8);
     const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment();
@@ -194,6 +223,33 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const productModel=product ? buildProductBearing3D(product) : undefined;
     const heroModel=product ? undefined : buildBearing(family);
     const model=productModel || heroModel!;scene.add(model.root);
+    const companionMaterials: THREE.Material[] = [];
+    const companions: THREE.Group[] = [];
+    if (cinematic && !product) {
+      // Reuse mesh geometry; omit these secondary bearings on narrow screens.
+      for (const side of [-1, 1]) {
+        const companion = model.root.clone(true);
+        const materialCopies = new Map<THREE.Material, THREE.Material>();
+        companion.traverse(object => {
+          if (!(object instanceof THREE.Mesh)) return;
+          const copy = (source: THREE.Material) => {
+            if (!materialCopies.has(source)) {
+              const material = source.clone(); material.transparent = true;
+              if (material instanceof THREE.MeshStandardMaterial) {
+                material.color.multiplyScalar(.5); material.envMapIntensity = .6;
+                material.roughness = Math.max(.28, material.roughness);
+              }
+              materialCopies.set(source, material); companionMaterials.push(material);
+            }
+            return materialCopies.get(source)!;
+          };
+          object.material = Array.isArray(object.material) ? object.material.map(copy) : copy(object.material);
+        });
+        companion.position.set(side * 3.25, -.6, -1.7);
+        companion.scale.setScalar(.86); companion.rotation.set(.22, -side * .24, side * .12);
+        companions.push(companion); scene.add(companion);
+      }
+    }
     let frame=0,previous=0,elapsed=0,running=false,inView=true;
     let expansion=viewRef.current.exploded?1:0;
     let shaftAngle=0,cageAngle=0,spinAngle=0;
@@ -207,7 +263,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
       const targetExpansion=scrollView ? scrollView.expansion : viewRef.current.exploded?1:0;
       expansion=viewRef.current.reducedMotion?targetExpansion:THREE.MathUtils.damp(expansion,targetExpansion,7,Math.min(delta,.05));
       if(Math.abs(expansion-targetExpansion)<.001)expansion=targetExpansion;
-      elapsed+=product ? seconds : Math.min(seconds,.05);
+      elapsed+=product ? seconds : Math.min(seconds,.05)*speedRef.current.playback;
       if(productModel){
         const {rpm:currentRpm,playback:rate}=speedRef.current;
         shaftAngle=advanceRotation(shaftAngle,currentRpm,seconds,rate);
@@ -221,11 +277,11 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
         productModel.spins.forEach(spin=>{if(productModel.geometry.roller)spin.rotation.z=-spinAngle*Math.PI/180;else spin.rotation.y=-spinAngle*Math.PI/180;});
         target.dataset.shaftAngle=shaftAngle.toFixed(3);target.dataset.cageAngle=cageAngle.toFixed(3);
       } else {
-        model.root.rotation.set(.56+(scrollView ? scrollView.progress*.16 : Math.sin(elapsed*.35)*.055),-.40+(scrollView ? -scrollView.turn*(family==='thrust'?.3:1) : Math.cos(elapsed*.25)*.07)-expansion*(family==='thrust'?.2:.62),-.22);
-        model.root.scale.setScalar((family==='thrust'?1.15:1)*(1-expansion*.23)*(1-(scrollView?.recession || 0)*.3));
+        model.root.rotation.set((cinematic ? .14 : .56)+(scrollView ? scrollView.progress*.16 : Math.sin(elapsed*.35)*.025), (cinematic?-.14:-.40)+(scrollView ? -scrollView.turn*(family==='thrust'?.3:1) : Math.cos(elapsed*.25)*.035)-expansion*(family==='thrust'?.2:.62),cinematic?-.08:-.22);
+        model.root.scale.setScalar((cinematic?1.28:family==='thrust'?1.15:1)*(1-expansion*.23)*(1-(scrollView?.recession || 0)*.3));
         model.root.position.z=-(scrollView?.recession || 0)*2.2;
         target.dataset.recession=String(scrollView?.recession || 0);
-        model.root.position.y=Math.sin(elapsed*.55)*.045;
+        model.root.position.y=(cinematic?-.48*(1-expansion):0)+Math.sin(elapsed*.55)*.02;
         if(family==='track'){
           heroModel!.parts[0].rotation.z=elapsed*.55;
           heroModel!.elements.rotation.z=elapsed*.4;
@@ -235,7 +291,17 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
           model.moving.rotation.z=elapsed*.65;model.cage.rotation.z=elapsed*.24;heroModel!.elements.rotation.z=elapsed*.24;
         }
         heroModel!.setExploded(expansion);
-        if(scrollView){camera.position.z=Math.max(9.8,(2.65+expansion*1.5)/(Math.tan(17*Math.PI/180)*camera.aspect));camera.updateProjectionMatrix();}
+        heroModel!.spins.forEach(spin => spin.rotateY(-Math.min(seconds,.05)*speedRef.current.playback*1.2));
+        companions.forEach((companion, index) => {
+          companion.visible = target.clientWidth > 760 && expansion < .65;
+          companion.position.x = (index === 0 ? -1 : 1) * (3.25 + expansion * 2);
+          companion.position.y = -.6 - expansion * 2;
+          companion.children[1].rotation.z = elapsed * .28;
+          companion.children[2].rotation.z = companion.children[3].rotation.z = elapsed * .12;
+        });
+        companionMaterials.forEach(material => { material.opacity = Math.max(0, 1 - expansion / .65); });
+        if(cinematic){camera.position.z=Math.max(8.8,(3.05+expansion*2.2)/(Math.tan(17*Math.PI/180)*Math.min(camera.aspect,1.5)));camera.updateProjectionMatrix();}
+        else if(scrollView){camera.position.z=Math.max(9.8,(2.65+expansion*1.5)/(Math.tan(17*Math.PI/180)*camera.aspect));camera.updateProjectionMatrix();}
       }
       model.root.updateMatrixWorld(true);
       model.parts.forEach((part,i)=>{
@@ -257,10 +323,10 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     document.addEventListener('visibilitychange',sync);
     controller.current={play(){resize();sync();}};
     const lost=(event:Event)=>{event.preventDefault();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
-    return()=>{cancelAnimationFrame(frame);controller.current=null;observer.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
-  },[family,failed,product]);
+    return()=>{cancelAnimationFrame(frame);controller.current=null;observer.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);companionMaterials.forEach(material=>material.dispose());model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
+  },[family,failed,product,cinematic]);
   useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,scrollProgress === undefined,ambient ? scrollProgress : undefined]);
-  return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={product?playback:undefined}>
+  return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={playback} data-presentation={cinematic?'cinematic':'standard'}>
     {partLabels.map((name,i)=><span key={i} className="bearing-part-pin" data-part={i} aria-hidden="true" title={name}>{i+1}</span>)}
   </div>;
 }

@@ -4,6 +4,7 @@ import {
   continuousBearingState,
   bearingReturnProgress,
   bearingScrollProgress,
+  bearingBannerProgress,
   bearingScrollState,
 } from '../lib/bearing-scroll';
 void test('scroll assembly opens progressively and reverses without exceeding model bounds', () => {
@@ -41,6 +42,17 @@ void test('closing assembly finishes at the page end and reverses on upward scro
  assert.equal(bearingReturnProgress(-50,480,1000),1);
  assert.equal(bearingReturnProgress(0,0,1000),0);
  assert.equal(bearingReturnProgress(0,480,0),0);
+});
+
+void test('cinematic banner starts assembled and reverses when scrolling back to the top', () => {
+  assert.equal(bearingBannerProgress(130, 1000), 0);
+  assert.equal(bearingBannerProgress(90, 1000), 0);
+  assert.equal(bearingBannerProgress(-235, 1000), .5);
+  assert.equal(bearingBannerProgress(-560, 1000), 1);
+  assert.equal(bearingBannerProgress(-900, 1000), 1);
+  assert.equal(bearingBannerProgress(130, 1000), 0);
+  assert.equal(bearingBannerProgress(0, 0), 0);
+  assert.equal(bearingBannerProgress(NaN, 1000), 0);
 });
 
 void test('continuous background opens across the page and closes at both ends',()=>{

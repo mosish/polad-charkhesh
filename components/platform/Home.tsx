@@ -27,7 +27,7 @@ export default function Home() {
       {content?.layout?.hidden?.includes('hero') && <h1 className="section">{company?.[fa ? 'nameFa' : 'nameEn'] || t('Polad Charkhesh', 'پولاد چرخش')}</h1>}
       <PageSection id="hero">
         <section className="hero-scroll">
-        <section className="hero">
+        <section className={'hero' + (content?.media?.heroPresentation !== 'photo' ? ' hero-cinematic' : '')}>
           <div className="hero-copy">
             <div className="eyebrow">
               <span />
@@ -78,14 +78,14 @@ export default function Home() {
             }}>
               <Search size={20} />
               <input
-                aria-label="Search catalog"
+                aria-label={t('Search catalog', 'جستجوی کاتالوگ')}
                 name="q"
                 placeholder={t(
                   'Search bearing code, dimensions or application…',
                   'کد بیرینگ، ابعاد یا کاربرد…',
                 )}
               />
-              <button aria-label="Search">
+              <button aria-label={t('Search', 'جستجو')}>
                 <ArrowRight size={19} />
               </button>
             </form>

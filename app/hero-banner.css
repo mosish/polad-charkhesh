@@ -1,0 +1,101 @@
+/* A full-width steel assembly, composed as a banner rather than a model card. */
+.liquid-glass .hero-scroll:has(.hero-cinematic) {
+  min-height: 0;
+  width: 100%;
+  background: radial-gradient(ellipse at 50% 24%, #1c2b3d 0%, #0a1421 55%, #0d1929 100%);
+  border-block-end: 1px solid #b9d5ef20;
+}
+.liquid-glass .hero-scroll > .hero.hero-cinematic {
+  position: relative;
+  top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  min-height: 0;
+  isolation: isolate;
+}
+.liquid-glass .hero-cinematic .hero-bearing-banner {
+  order: 0;
+  position: relative;
+  width: 100%;
+  padding: 24px 0 0;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  backdrop-filter: none;
+  overflow: visible;
+}
+.hero-bearing-banner .hero-bearing-heading { margin-inline: 5%; color: #b1c9df; font-size: 10px; letter-spacing: 1.8px; }
+.hero-bearing-banner .hero-bearing-heading > span:last-child { margin-inline-end: 124px; }
+.hero-bearing-banner .hero-bearing-selector { display: flex; justify-content: center; width: fit-content; max-width: 90%; margin: 18px auto 0; gap: 3px; border-radius: 30px; padding: 4px; background: #102033b3; border-color: #c0d9ee26; }
+.hero-bearing-banner .hero-bearing-selector button { min-height: 38px; padding: 8px 17px; border-radius: 24px; white-space: nowrap; font-size: 11px; }
+.hero-bearing-banner .hero-bearing-selector button[aria-pressed=true] { background: #bfd8eb; color: #101e30; border-color: #d7e9f8; box-shadow: 0 3px 20px #bddaff13; }
+.liquid-glass .hero-scroll .hero-bearing-banner .hero-bearing-stage { height: clamp(420px, 44vw, 590px); min-height: 0; flex: none; width: 100%; margin-top: 0; }
+.hero-cinematic .hero-bearing-model { position: absolute; inset: 0; height: 100%; width: 100%; min-height: 0; }
+.hero-bearing-banner .hero-bearing-stage::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent 40%, #0b152280 65%, #0c1726 90%), linear-gradient(90deg, #0b1522b0, transparent 20%, transparent 80%, #0b1522b0); }
+.hero-bearing-banner .hero-bearing-halo { inset: 0 10% 15%; background: radial-gradient(ellipse at 50% 30%, #cbeaff12, transparent 64%); }
+.hero-bearing-banner .hero-bearing-orbit { display: none; }
+.hero-bearing-banner .hero-bearing-caption { z-index: 2; bottom: 64px; color: #9cb5ca; font-size: 10px; letter-spacing: .4px; }
+.hero-bearing-banner .bearing-view-switch { position: absolute; z-index: 3; inset-inline: 0; bottom: 86px; margin: 0; gap: 4px; }
+.hero-bearing-banner .bearing-view-switch button { min-height: 36px; padding: 6px 13px; border-radius: 20px; font-size: 11px; background: #0a1728bd; border-color: #bcd9f321; }
+.hero-bearing-banner .bearing-view-switch button[aria-pressed=true] { background: #b7d5ef1f; border-color: #bfdbf347; }
+.hero-bearing-banner .bearing-scroll-status { position: absolute; top: 127px; inset-inline-start: 5%; z-index: 2; padding: 0; margin: 0; max-width: 165px; flex-wrap: wrap; gap: 8px; font-size: 10px; color: #aac5dc; }
+.hero-bearing-banner .bearing-scroll-track { width: 100%; }
+.hero-bearing-banner .bearing-parts-key { position: absolute; top: 170px; inset-inline-start: 5%; z-index: 2; grid-template-columns: 1fr; font-size: 10px; gap: 7px; pointer-events: none; }
+.hero-bearing-banner .hero-bearing-footer { border: 0; padding: 0; }
+.hero-bearing-banner .hero-bearing-footer > div:first-child { position: absolute; top: 127px; inset-inline-end: 5%; z-index: 2; max-width: 220px; text-align: end; }
+.hero-bearing-banner .hero-bearing-footer small { font-size: 10px; max-width: 210px; line-height: 1.6; }
+.hero-bearing-banner .hero-bearing-footer strong { font-size: 12px; line-height: 1.6; margin-top: 3px; color: #d5e4f1; }
+.hero-bearing-banner .hero-bearing-actions { position: absolute; top: 15px; inset-inline-end: 5%; z-index: 3; gap: 7px; }
+.hero-bearing-banner .hero-bearing-actions :is(button,a) { width: 34px; height: 34px; }
+.hero-bearing-banner .hero-bearing-actions > a { display: none; }
+.hero-bearing-banner .hero-bearing-actions select { direction: ltr; width: 67px; min-height: 34px; padding: 4px 8px; border: 1px solid #cce5fa30; border-radius: 20px; background: #142438; color: #c8def1; font: inherit; font-size: 11px; }
+.liquid-glass .hero-cinematic .hero-copy { position: relative; z-index: 2; order: 1; width: 100%; margin-top: -42px; padding: 0 5% 42px; text-align: center; background: linear-gradient(#0c1726, #0d1929); }
+.hero-cinematic .hero-copy .eyebrow { justify-content: center; font-size: 10px; letter-spacing: 1.4px; color: #a4bfd7; }
+.liquid-glass .hero-cinematic h1 { max-width: 1050px; margin: 12px auto 16px; font-size: clamp(34px, 4.1vw, 62px); line-height: 1.12; letter-spacing: -1.8px; text-wrap: balance; }
+.hero-cinematic h1 br { display: none; }
+.hero-cinematic h1 > span:not(:last-child)::after { content: ' '; }
+.hero-cinematic h1 .hero-last { color: #c1daed; }
+.liquid-glass .hero-cinematic .hero-copy > p { max-width: 710px; margin: 0 auto 18px; font-size: 14px; line-height: 1.8; color: #adbed0; }
+.hero-cinematic .hero-actions { justify-content: center; margin: 0 0 18px; gap: 22px; }
+.hero-cinematic .hero-actions .button { min-height: 44px; padding: 11px 20px; font-size: 12px; }
+.hero-cinematic .hero-actions .text-link { font-size: 12px; }
+.hero-cinematic .hero-search { max-width: 560px; margin: 0 auto; min-height: 46px; border-radius: 12px; background: #18293c; }
+.hero-cinematic .hero-search input { min-height: 44px; font-size: 13px; }
+.hero-cinematic .search-hints { justify-content: center; margin-top: 10px; font-size: 10px; }
+.hero-cinematic .hero-bearing-stage:focus-visible { outline: 2px solid #bedfff; outline-offset: -5px; }
+[dir=rtl] .hero-cinematic h1 { letter-spacing: 0; line-height: 1.45; }
+@media (min-width: 1600px) {
+  .liquid-glass .hero-scroll .hero-bearing-banner .hero-bearing-stage { height: 660px; }
+}
+@media (max-width: 760px) {
+  .liquid-glass .hero-cinematic .hero-bearing-banner { padding-top: 20px; }
+  .hero-bearing-banner .hero-bearing-heading { font-size: 9px; letter-spacing: .7px; }
+  .hero-bearing-banner .hero-bearing-heading > span:last-child { display: none; }
+  .hero-bearing-banner .hero-bearing-selector { max-width: 92%; justify-content: flex-start; margin-top: 16px; border-radius: 12px; overflow-x: auto; scrollbar-width: none; }
+  .hero-bearing-banner .hero-bearing-selector::-webkit-scrollbar { display: none; }
+  .hero-bearing-banner .hero-bearing-selector button { flex: 0 0 auto; min-height: 40px; padding: 7px 15px; font-size: 11px; border-radius: 9px; }
+  .liquid-glass .hero-scroll .hero-bearing-banner .hero-bearing-stage { height: clamp(330px, 92vw, 450px); min-height: 0; }
+  .hero-bearing-banner .hero-bearing-footer > div:first-child { top: 111px; inset-inline-end: 5%; max-width: 150px; }
+  .hero-bearing-banner .hero-bearing-footer small { display: none; }
+  .hero-bearing-banner .hero-bearing-footer strong { font-size: 10px; }
+  .hero-bearing-banner .bearing-scroll-status { top: 115px; font-size: 9px; max-width: 118px; }
+  .hero-bearing-banner .bearing-scroll-status > strong { display: none; }
+  .hero-bearing-banner .bearing-parts-key { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); top: 151px; inset-inline: 7%; font-size: 9px; gap: 5px 12px; }
+  .hero-bearing-banner .hero-bearing-caption { bottom: 35px; font-size: 9px; padding-inline: 5%; }
+  .hero-bearing-banner .bearing-view-switch { bottom: 57px; gap: 4px; }
+  .hero-bearing-banner .bearing-view-switch button { min-height: 40px; padding: 7px 12px; font-size: 10px; }
+  .liquid-glass .hero-cinematic .hero-copy { margin-top: -16px; padding: 0 6% 30px; }
+  .liquid-glass .hero-cinematic h1 { font-size: clamp(30px, 7.7vw, 44px); letter-spacing: -1px; margin: 10px auto 15px; }
+  [dir=rtl] .liquid-glass .hero-cinematic h1 { letter-spacing: 0; }
+  .liquid-glass .hero-cinematic .hero-copy > p { font-size: 12px; line-height: 1.9; }
+  .hero-cinematic .hero-actions { flex-wrap: wrap; gap: 14px; }
+  .hero-cinematic .hero-search { padding-inline: 12px; }
+  .hero-cinematic .hero-search input { font-size: 16px; width: 100%; min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cinematic .hero-bearing-tilt { transform: none; transition: none; }
+}
