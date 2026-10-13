@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { api } from '../../lib/api';
 import type { BearingProduct } from '../../domain/product';
+import { clientLanguage } from '../../lib/language';
 type State = {
   fa: boolean;
   t: (en: string, fa: string) => string;
@@ -29,14 +30,9 @@ export const usePlatform = () => useContext(Context);
 export function Provider({ children }: { children: ReactNode }) {
   const [fa, setFa] = useState(() => {
     const initial = publicSnapshot();
-    if (initial) return initial.fa;
-    const q = new URLSearchParams(location.search).get('lang');
-    const saved = localStorage.getItem('pc-language');
-    return q
-      ? q === 'fa'
-      : saved
-        ? saved === 'fa'
-        : location.hostname.endsWith('.ir');
+    let saved: string | null = null;
+    try { saved = localStorage.getItem('pc-language'); } catch { /* Storage can be disabled. */ }
+    return clientLanguage(location.hostname, location.search, saved, initial);
   });
   const [state, setState] = useState(() => publicSnapshot() ? { ...publicSnapshot(), loading: false, error: '' } : {
     products: [] as BearingProduct[],
@@ -104,8 +100,9 @@ export function Provider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = fa ? 'fa' : 'en';
     document.documentElement.dir = fa ? 'rtl' : 'ltr';
-    if (new URLSearchParams(location.search).get('preview') !== '1')
-      localStorage.setItem('pc-language', fa ? 'fa' : 'en');
+    if (new URLSearchParams(location.search).get('preview') !== '1') {
+      try { localStorage.setItem('pc-language', fa ? 'fa' : 'en'); } catch { /* Keep the current session usable. */ }
+    }
     if (state.seo && state.company) {
       let slug = '';
       try { slug = decodeURIComponent(location.pathname.replace(/\/+$/, '').split('/').pop() || ''); } catch {}

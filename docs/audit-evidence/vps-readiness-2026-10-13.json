@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-13",
+  "baseCommit": "dfc967b61a90995fd41d33939c05e60a17b2aa47",
+  "node": "24.21.0",
+  "ubuntu": "24.04",
+  "windowsTests": 57,
+  "ubuntuTests": 57,
+  "ubuntuCpuLimit": 1,
+  "ubuntuMemoryGiB": 2,
+  "ubuntuSwap": false,
+  "ubuntuBuildMaximumProcessRssKiB": 653772,
+  "ubuntuBuildSeconds": 2.91,
+  "productionSmoke": "passed",
+  "nginxTemplates": "syntax passed with temporary certificates",
+  "systemdTemplate": "syntax passed; real service supervision not tested",
+  "dependencyAudit": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "dependencies": 170,
+    "devDependencies": 153,
+    "optionalDependencies": 144,
+    "totalDependencies": 367
+  },
+  "lintFindings": 195,
+  "capacity1": {
+    "platform": "linux",
+    "node": "v24.21.0",
+    "requests": 50,
+    "concurrency": 5,
+    "elapsedMs": 584,
+    "p95Ms": 86,
+    "processRssKiB": 119052,
+    "scope": "Loopback HTTP, seeded disposable database, no TLS/browser rendering. Not a traffic capacity guarantee."
+  },
+  "capacity2": {
+    "platform": "linux",
+    "node": "v24.21.0",
+    "requests": 50,
+    "concurrency": 5,
+    "elapsedMs": 323,
+    "p95Ms": 42,
+    "processRssKiB": 132248,
+    "scope": "Loopback HTTP, seeded disposable database, no TLS/browser rendering. Not a traffic capacity guarantee."
+  },
+  "decision": "Staging preparation verified; public deployment not approved",
+  "limits": [
+    "Container is not the purchased VPS",
+    "No actual DNS/TLS/reboot/off-server restore verified",
+    "Full cross-browser/accessibility/security review and lint remain open",
+    "Manufacturer records and exact media remain unapproved"
+  ]
+}

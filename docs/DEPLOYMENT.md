@@ -4,6 +4,8 @@ The application is built for a Linux VPS with Node, Express and SQLite. Hosting 
 
 ## Host compatibility probe
 
+For Ubuntu 24.04, use the [step-by-step runbook](UBUNTU_24_RUNBOOK.md) and [current readiness review](VPS_READINESS_2026-10-13.md). Container verification is complete; real-host acceptance and public-launch gates remain open.
+
 Before using a purchased server for live data, run the standalone `scripts/hosting-check.mjs` with Node 22.16+ as the intended application service user against an existing absolute persistent directory:
 
 ```bash
@@ -20,11 +22,13 @@ From a clean checkout with Node 22.16+ (Node 24 is used for the current local ve
 
 ```bash
 pnpm install --frozen-lockfile
+pnpm audit --audit-level=moderate
 pnpm typecheck
 pnpm test
 pnpm build
 pnpm check:bundles
 pnpm smoke:production
+pnpm lint
 ```
 
 `smoke:production` starts the built server against a temporary SQLite database and temporary upload directory. It checks both language hosts, public and admin routes (including trailing slashes), product pages, assets, metadata, security headers, first-run admin setup, content/product edits, public inquiries, media uploads, backup access and logout. It does not touch the live database or prove that a real domain, TLS certificate or admin browser workflow works.
@@ -53,6 +57,8 @@ Production startup refuses short session/cookie secrets, relative or missing dat
 Build after installing locked dependencies. Install the edited systemd template, reload systemd, and start the service. Keep the app bound to `127.0.0.1:3001`. Confirm `curl http://127.0.0.1:3001/api/health` returns `{"status":"ok"}` before connecting the reverse proxy. Monitor service logs and disk space.
 
 ## HTTPS and domains
+
+Production refuses a missing or zero-byte database. Restore the verified owner database before starting. Only for a deliberately new installation, set `ALLOW_INITIALIZE_DATABASE=1`, complete setup, then remove that setting and restart. Do not leave it enabled as a workaround for a missing mount or incorrect path.
 
 Edit [nginx.conf.example](../deploy/nginx.conf.example) for the domain or domains you actually control and obtain certificates covering every listed name. Forward the original Host, the direct client address and HTTPS scheme. The app trusts loopback proxies only; do not expose port 3001 publicly. Enable the HTTPS configuration only after certificates exist. If one domain is used, configure both SEO canonical origins in the admin panel to valid origins you control and check the language/alternate-link behavior before launch.
 

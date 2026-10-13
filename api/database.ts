@@ -1,6 +1,6 @@
 import { seoDefaults, upgradeSeo, fillProductSeo } from '../domain/seo';
 import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, existsSync, statSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { bearingProducts } from '../domain/catalog';
@@ -15,8 +15,14 @@ if (
   throw new Error('DATABASE_PATH must be an absolute persistent path in production.');
 const filename =
   process.env.DATABASE_PATH || path.resolve('data/platform.sqlite');
+if (process.env.NODE_ENV === 'production' &&
+    (!existsSync(filename) || statSync(filename).size === 0) &&
+    process.env.ALLOW_INITIALIZE_DATABASE !== '1') {
+  throw new Error('Production database is missing or empty. Restore the verified database, or explicitly set ALLOW_INITIALIZE_DATABASE=1 for a new installation.');
+}
 mkdirSync(path.dirname(filename), { recursive: true });
 export const db = new DatabaseSync(filename);
+const newCatalog = !db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='products'").get();
 db.exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;
 CREATE TABLE IF NOT EXISTS products(id TEXT PRIMARY KEY,code TEXT COLLATE NOCASE UNIQUE NOT NULL,slug TEXT UNIQUE NOT NULL,category TEXT NOT NULL,archived INTEGER NOT NULL DEFAULT 0,data TEXT NOT NULL CHECK(json_valid(data)));
 CREATE INDEX IF NOT EXISTS product_discovery ON products(archived,category);
@@ -81,7 +87,7 @@ export function audit(actor: string, action: string, entity = '') {
     entity,
   );
 }
-if (!(db.prepare('SELECT count(*) n FROM products').get() as any).n) {
+if (newCatalog) {
   transaction(() => bearingProducts.forEach((p) => putProduct(p)));
 }
 // Add the new sourced designations once on existing installations. INSERT OR

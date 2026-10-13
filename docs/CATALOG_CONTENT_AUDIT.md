@@ -1,6 +1,6 @@
-# Catalog content audit — 2026-10-04
+# Catalog content audit — 2026-10-13
 
-Snapshot: 2026-10-04T13:00:43.581Z. Published local records only; no database changes.
+Snapshot: 2026-10-13T12:47:49.282Z. Published local records only; no database changes.
 
 ## Findings
 
@@ -21,7 +21,7 @@ Snapshot: 2026-10-04T13:00:43.581Z. Published local records only; no database ch
 
 ## Important distinctions
 
-- Presence and browser decoding checks do not establish exact manufacturer photo identity or image reuse rights.
+- Presence and asset decoding checks do not establish exact manufacturer photo identity or image reuse rights. The method is recorded with each media probe; zero probes means media was not checked.
 - Source references and verifiedAt metadata are recorded claims; numeric specifications were not independently reverified against every manufacturer in this audit.
 - Seed comparisons identify differences, not authority or errors. Archived records may not be included by the public endpoint.
 - Failed legacy image paths are not the images currently displayed. Reference replacements can render correctly while exact product photos remain missing.

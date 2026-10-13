@@ -531,6 +531,7 @@ void test('local preview forwards same-origin writes and rejects foreign origins
     const foreignOrigin = await probe('https://unrelated.example');
     assert.equal(foreignOrigin.status, 403);
     assert.equal((await foreignOrigin.json()).error, 'Cross-origin request rejected.');
+    assert.equal((await probe(origin.replace('http:', 'https:'))).status, 403, 'Same host with a different scheme is cross-origin');
   } finally {
     await preview.close();
   }

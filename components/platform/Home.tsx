@@ -4,9 +4,7 @@ import {
   ArrowUpRight,
   ArrowRight,
   Search,
-  ShieldCheck,
   Compass,
-  FileCheck2,
 } from 'lucide-react';
 import { usePlatform } from './Context';
 import HomeSections from './HomeSections';
@@ -19,7 +17,9 @@ export default function Home() {
   const { fa, t, content, loading, company } = usePlatform();
   useEffect(() => {
     if (loading || !location.hash) return;
-    const id = decodeURIComponent(location.hash.slice(1));
+    let id: string;
+    try { id = decodeURIComponent(location.hash.slice(1)); }
+    catch { return; }
     const timer = window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' }), 120);
     return () => window.clearTimeout(timer);
   }, [loading]);
@@ -48,7 +48,8 @@ export default function Home() {
             </div>
             <form className="hero-search" action="/" onSubmit={(event) => {
               event.preventDefault();
-              const query = String(new FormData(event.currentTarget).get('q') || '').trim();
+              const value = new FormData(event.currentTarget).get('q');
+              const query = typeof value === 'string' ? value.trim() : '';
               const params = new URLSearchParams();
               const language = new URLSearchParams(location.search).get('lang');
               if (language) params.set('lang', language);

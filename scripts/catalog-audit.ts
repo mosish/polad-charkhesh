@@ -122,7 +122,7 @@ const report = {
   generatedAt: new Date().toISOString(),
   scope: 'Published local catalog snapshot; owner data unchanged',
   limits: [
-    'Presence and browser decoding checks do not establish exact manufacturer photo identity or image reuse rights.',
+    'Presence and asset decoding checks do not establish exact manufacturer photo identity or image reuse rights. The method is recorded with each media probe; zero probes means media was not checked.',
     'Source references and verifiedAt metadata are recorded claims; numeric specifications were not independently reverified against every manufacturer in this audit.',
     'Seed comparisons identify differences, not authority or errors. Archived records may not be included by the public endpoint.',
   ],
@@ -156,7 +156,7 @@ const labels: Record<string, string> = {
   failedImageProbes: 'Total failed image probes',
 };
 const lines = [
-  '# Catalog content audit — 2026-10-04',
+  `# Catalog content audit — ${date}`,
   '',
   `Snapshot: ${report.generatedAt}. Published local records only; no database changes.`,
   '',

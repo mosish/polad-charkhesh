@@ -29,6 +29,7 @@ const child = spawn(process.execPath, [serverFile], {
   env: {
     ...process.env,
     NODE_ENV: 'production',
+    ALLOW_INITIALIZE_DATABASE: '1',
     TEST_IMPORT: '',
     HOST: '127.0.0.1',
     PORT: String(port),
@@ -55,6 +56,7 @@ function request(route: string, host = 'poladcharkhesh.com', options: { method?:
         hostname: '127.0.0.1', port, path: route, method: options.method || 'GET',
         headers: {
           Host: host,
+          'X-Forwarded-Proto': 'https',
           ...(body === undefined ? {} : { Origin: 'https://' + host, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }),
           ...(options.cookie ? { Cookie: options.cookie } : {}),
         },
@@ -97,10 +99,18 @@ try {
   });
   assert.notEqual(unsafeStartup.status, 0, 'Production should reject a relative database path.');
   assert.match(unsafeStartup.stderr, /DATABASE_PATH must be an absolute persistent path/);
+  const missingDatabaseStartup = spawnSync(process.execPath, [serverFile], {
+    cwd: root,
+    env: { ...process.env, NODE_ENV: 'production', ALLOW_INITIALIZE_DATABASE: '', DATABASE_PATH: path.join(tempRoot, 'missing.sqlite') },
+    encoding: 'utf8', timeout: 5000,
+  });
+  assert.notEqual(missingDatabaseStartup.status, 0, 'Production must not silently create a replacement catalog after a missing mount/path.');
+  assert.match(missingDatabaseStartup.stderr, /Production database is missing or empty/);
+  assert.ok(!existsSync(path.join(tempRoot, 'missing.sqlite')), 'Failed startup creates no replacement database');
   const shortSecretStartup = spawnSync(process.execPath, [serverFile], {
     cwd: root,
     env: {
-      ...process.env, NODE_ENV: 'production', DATABASE_PATH: path.join(tempRoot, 'weak.sqlite'),
+      ...process.env, NODE_ENV: 'production', ALLOW_INITIALIZE_DATABASE: '1', DATABASE_PATH: path.join(tempRoot, 'weak.sqlite'),
       UPLOAD_DIR: path.join(tempRoot, 'weak-uploads'), SESSION_SECRET: 'short', COOKIE_SECRET: 'short', SETUP_TOKEN: setupToken,
     },
     encoding: 'utf8', timeout: 5000,
@@ -110,7 +120,7 @@ try {
   const missingSetupStartup = spawnSync(process.execPath, [serverFile], {
     cwd: root,
     env: {
-      ...process.env, NODE_ENV: 'production', DATABASE_PATH: path.join(tempRoot, 'no-setup.sqlite'),
+      ...process.env, NODE_ENV: 'production', ALLOW_INITIALIZE_DATABASE: '1', DATABASE_PATH: path.join(tempRoot, 'no-setup.sqlite'),
       UPLOAD_DIR: path.join(tempRoot, 'no-setup-uploads'),
       SESSION_SECRET: randomBytes(32).toString('hex'), COOKIE_SECRET: randomBytes(32).toString('hex'), SETUP_TOKEN: '',
     },
@@ -125,6 +135,8 @@ try {
   assert.match(home.body, /rel="canonical" href="https:\/\/poladcharkhesh\.com\/"/);
   assert.ok(home.headers['strict-transport-security'], 'HSTS header');
   assert.ok(home.headers['content-security-policy'], 'Content security policy');
+  assert.match(String(home.headers['content-security-policy']), /script-src 'self';/);
+  assert.ok(!String(home.headers['content-security-policy']).includes(' ws:'), 'Production does not allow WebSocket connections to arbitrary hosts');
 
   const persian = await request('/', 'poladcharkhesh.ir');
   assert.equal(persian.status, 200, 'Persian homepage');
@@ -248,6 +260,14 @@ try {
   assert.equal((await request('/api/system/status', 'poladcharkhesh.com', { cookie: sessionCookie })).status, 401, 'Signed-out session is revoked');
   assert.match((await request('/robots.txt')).body, /Sitemap: https:\/\/poladcharkhesh\.com\/sitemap\.xml/);
   assert.match((await request('/sitemap.xml')).body, /https:\/\/poladcharkhesh\.com\/product\//);
+  if (process.platform !== 'win32') {
+    const stopped = new Promise<number | null>((resolve, reject) => {
+      const timeout = setTimeout(() => { child.kill('SIGKILL'); reject(new Error('Graceful shutdown timed out')); }, 12_000);
+      child.once('exit', (code) => { clearTimeout(timeout); resolve(code); });
+    });
+    child.kill('SIGTERM');
+    assert.equal(await stopped, 0, 'Linux SIGTERM drains HTTP and closes SQLite cleanly');
+  }
   console.log('Production smoke check passed: pages, assets, metadata, admin setup, product/content edits, inquiry, media, backup and logout.');
 } finally {
   if (child.exitCode === null && child.signalCode === null) {

@@ -16,7 +16,7 @@ concurrency:
 jobs:
   verify:
     name: Tests, types and isolated production smoke
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -31,6 +31,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: TypeScript
         run: pnpm typecheck
+      - name: Dependency security audit
+        run: pnpm audit --audit-level=moderate
       - name: Regression tests (disposable databases)
         run: pnpm test
       - name: Production build

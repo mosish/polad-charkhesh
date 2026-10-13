@@ -1,5 +1,5 @@
 [Unit]
-Description=Polad Charkhesh website and API
+Description=Polad Charkhesh Arian Tech website and API
 After=network-online.target
 Wants=network-online.target
 
@@ -12,6 +12,7 @@ EnvironmentFile=/etc/polad-charkhesh/env
 ExecStart=/usr/bin/node /opt/polad-charkhesh/current/dist/server/index.js
 Restart=on-failure
 RestartSec=5
+TimeoutStopSec=15
 UMask=0077
 StateDirectory=polad-charkhesh
 StateDirectoryMode=0700

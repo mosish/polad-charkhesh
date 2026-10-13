@@ -1,7 +1,7 @@
 import { metadataFor, metadataHead, pageUrl, languageFor, escapeHtml, jsonForHtml } from '../domain/seo';
 import { initialPublicHtml } from './seo-html';
 import { llmsText } from '../domain/llms';
-import express from 'express';
+import express, { type ErrorRequestHandler } from 'express';
 import cookieParser from 'cookie-parser';
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
@@ -12,7 +12,8 @@ import { system } from './system';
 import { media, uploadDir } from './media';
 import { cookieSecret, production, getUser } from './security';
 import { safeObject } from './validation';
-import { allProducts, setting, product } from './database';
+import { allProducts, setting, product, db } from './database';
+import { publicError } from './http-errors';
 export const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 'loopback');
@@ -22,7 +23,8 @@ app.use((req, res, next) => {
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Content-Security-Policy':
-      "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ws:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+      `default-src 'self'; script-src 'self'${production ? '' : " 'unsafe-inline'"}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'${production ? '' : ' ws:'}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'`,
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
   });
   if (production) res.set('Strict-Transport-Security', 'max-age=31536000');
   next();
@@ -50,13 +52,13 @@ app.use('/api', (req, res, next) => {
   if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
     const origin = req.get('origin');
     if (origin) {
-      let hostname;
+      let expectedOrigin;
       try {
-        hostname = new URL(origin).host;
+        expectedOrigin = new URL(origin).origin;
       } catch {
         return res.status(403).json({ error: 'Invalid origin.' });
       }
-      if (hostname !== req.get('host'))
+      if (expectedOrigin !== `${req.protocol}://${req.get('host')}`)
         return res
           .status(403)
           .json({ error: 'Cross-origin request rejected.' });
@@ -66,7 +68,14 @@ app.use('/api', (req, res, next) => {
   }
   next();
 });
-app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
+app.get('/api/health', (_req, res) => {
+  try {
+    db.prepare('SELECT id FROM products LIMIT 1').get();
+    res.json({ status: 'ok' });
+  } catch {
+    res.status(503).json({ status: 'unavailable' });
+  }
+});
 app.use('/api/auth', auth);
 app.use('/api/products', products);
 app.use('/api', content);
@@ -138,25 +147,16 @@ if (production) {
     res.status(data.missing ? 404 : 200).send(html);
   });
 }
-app.use((err: any, _req: any, res: any, _next: any) => {
-  if (
-    err?.code?.startsWith('ERR_SQLITE') ||
-    String(err.message).includes('UNIQUE constraint')
-  )
-    return res
-      .status(409)
-      .json({ error: 'A record with this code or URL already exists.' });
-  res.status(err.status === 413 ? 413 : err.status === 400 ? 400 : 500).json({
-    error:
-      err.status === 413
-        ? 'Request too large.'
-        : err.status === 400
-          ? 'Malformed JSON.'
-          : 'Unable to complete the request.',
-  });
-});
-if (!process.env.TEST_IMPORT)
-  app.listen(
+const handleError: ErrorRequestHandler = (err: unknown, _req, res, _next) => {
+  const result = publicError(err);
+  if (result.status === 503) res.set('Retry-After', '5');
+  // Do not log request bodies, passwords, cookies or database contents.
+  if (result.status >= 500) console.error('Request failed:', err instanceof Error ? err.name : 'UnknownError');
+  res.status(result.status).json({ error: result.error });
+};
+app.use(handleError);
+if (!process.env.TEST_IMPORT) {
+  const server = app.listen(
     Number(process.env.PORT) || 3001,
     process.env.HOST || '127.0.0.1',
     () =>
@@ -165,3 +165,18 @@ if (!process.env.TEST_IMPORT)
           (process.env.PORT || 3001),
       ),
   );
+  let stopping = false;
+  const shutdown = () => {
+    if (stopping) return;
+    stopping = true;
+    const deadline = setTimeout(() => process.exit(1), 10_000);
+    deadline.unref();
+    server.close((error) => {
+      clearTimeout(deadline);
+      db.close();
+      process.exit(error ? 1 : 0);
+    });
+  };
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
+}
