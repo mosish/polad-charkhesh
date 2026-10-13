@@ -8,6 +8,8 @@
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
+**Install from GitHub on Ubuntu 24.04:** [English instructions](docs/GITHUB_VPS_INSTALL.md) · [راهنمای کامل فارسی](docs/UBUNTU_24_GUIDE_FA.md). The repository includes the admin panel and API. The installer builds a pinned source revision and supports private owner-data restoration or an explicitly new database; initial HTTPS access is restricted staging. Credentials, databases and uploaded files must remain outside GitHub. Public deployment and remaining launch gates are still pending.
+
 This is **not an online shop**. There are no prices, carts, checkout, payments, or Buy Now flows. The intended visitor journey is:
 
 **Find a product → Review its specifications → Explore engineering guidance → Read its documents → Contact Polad Charkhesh Arian Tech**

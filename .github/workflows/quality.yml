@@ -14,6 +14,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  installer:
+    name: Ubuntu installer guards and HTTPS configuration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Test only inside a disposable Ubuntu container
+        run: |
+          docker run --rm \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/workspace,readonly" \
+            -e POLAD_INSTALLER_TEST=1 ubuntu:24.04 bash -ec '
+              apt-get update -qq
+              apt-get install -y -qq nginx openssl shellcheck >/dev/null
+              shellcheck /workspace/deploy/install-ubuntu.sh /workspace/deploy/test-installer.sh
+              bash /workspace/deploy/test-installer.sh
+            '
   verify:
     name: Tests, types and isolated production smoke
     runs-on: ubuntu-24.04

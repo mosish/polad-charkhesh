@@ -37,6 +37,24 @@ next-env.d.ts
 /outputs/
 /work/
 /data/
+/.local-data/
+/backups/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+*.db-wal
+*.db-shm
+*.zip
+*.rar
+*.tar
+*.tar.gz
+*.tar.xz
+*.key
+*.pfx
 *.log
 !.env.example
 

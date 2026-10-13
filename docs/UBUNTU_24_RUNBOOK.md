@@ -1,5 +1,9 @@
 # Ubuntu 24.04 VPS runbook
 
+[GitHub installer quick start](GITHUB_VPS_INSTALL.md) · [راهنمای گام‌به‌گام فارسی](UBUNTU_24_GUIDE_FA.md)
+
+The optional first-install script uses `/opt/polad-node-v24.21.0/bin/node` and patches the service template accordingly. Substitute that executable for `/usr/bin/node` in this manual runbook when maintaining an installation created by the script. Its HTTPS step initially restricts access to the operator's IPv4; see the linked guide for staging and public-release steps.
+
 Prepared 2026-10-13. **Staging preparation, not public-launch approval.** See [audit results and remaining gates](VPS_READINESS_2026-10-13.md). No server has been purchased or deployed by this workflow.
 
 ## Choose the host
