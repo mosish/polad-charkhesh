@@ -4,6 +4,7 @@ import type { PublishedSeoContent } from '../domain/seo';
 import { escapeHtml as e } from '../domain/seo';
 import { mediaFor } from '../lib/media';
 import { relatedComponents } from '../lib/catalog-quality';
+import { breadcrumbsFor } from '../domain/breadcrumbs';
 function publicUrl(value: unknown, image = false) {
   if (typeof value !== 'string') return '#';
   try {
@@ -51,7 +52,7 @@ export function initialPublicHtml(
   const contacts = `<section id="contact"><h2>${e(content.contact?.[fa ? 'titleFa' : 'titleEn'])}</h2><p>${e(company[fa ? 'addressFa' : 'addressEn'])}</p><a href="${publicUrl(company.primaryPhoneTel)}">${e(company[fa ? 'primaryPhoneDisplayFa' : 'primaryPhoneDisplayEn'])}</a> · <a href="mailto:${e(company.email)}">${e(company.email)}</a></section>`;
   let body = '';
   if (missing)
-    body = `<h1>${t('Page not found', 'صفحه یافت نشد')}</h1><a href="${href('/catalog')}">${t('Explore the catalog', 'مشاهده کاتالوگ')}</a>`;
+    body = `<div class="not-found-card"><p>404 / ${e(company[fa ? 'nameFa' : 'nameEn'])}</p><h1>${t('Page not found', 'صفحه یافت نشد')}</h1><p>${t('The link may have changed. Explore our components or return to the company website.', 'ممکن است نشانی صفحه تغییر کرده باشد. محصولات را بررسی کنید یا به صفحه اصلی شرکت برگردید.')}</p><a href="${href('/catalog')}">${t('Explore the catalog', 'مشاهده کاتالوگ')}</a> · <a href="${href('/')}">${t('Return home', 'بازگشت به خانه')}</a></div>`;
   else if (p) {
     const media = mediaFor(p, content);
     const fields: Array<[keyof BearingProduct, string, string]> = [
@@ -62,7 +63,7 @@ export function initialPublicHtml(
       ['corKn', t('Static load rating', 'ظرفیت بار استاتیکی'), 'kN'],
       ['weightKg', t('Weight', 'وزن'), 'kg'],
     ];
-    body = `<nav aria-label="${t('Breadcrumbs', 'مسیر صفحه')}"><a href="${href('/')}">${t('Home', 'خانه')}</a> / <a href="${href('/catalog')}">${t('Product catalog', 'کاتالوگ')}</a> / ${e(p.code)}</nav><h1>${e(p.code)} · ${e(p[fa ? 'nameFa' : 'nameEn'])}</h1><p>${e(p[fa ? 'descriptionFa' : 'descriptionEn'])}</p>`;
+    body = `<h1>${e(p.code)} · ${e(p[fa ? 'nameFa' : 'nameEn'])}</h1><p>${e(p[fa ? 'descriptionFa' : 'descriptionEn'])}</p>`;
     if (media.url)
       body += `<figure><img src="${publicUrl(media.url, true)}" alt="${e(media.reference ? t(p.category + ' bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p[fa ? 'nameFa' : 'nameEn'])}" width="400" height="400"/>${media.reference ? '<figcaption>' + t('Family reference · illustration only', 'تصویر مرجع خانواده · صرفاً نمایشی') + '</figcaption>' : ''}</figure>`;
     body +=
@@ -150,6 +151,10 @@ export function initialPublicHtml(
       )
       .map((id) => sections[id] || '')
       .join('');
+    if (content.layout?.hidden?.includes('hero'))
+      body = `<h1>${e(company[fa ? 'nameFa' : 'nameEn'])}</h1>` + body;
   }
+  const crumbs = missing ? [] : breadcrumbsFor(route, fa, p);
+  if (crumbs.length) body = `<nav class="breadcrumbs" aria-label="${t('Breadcrumbs', 'مسیر صفحه')}"><ol>${crumbs.map((item, index) => `<li>${index === crumbs.length - 1 ? `<span aria-current="page">${e(item.label)}</span>` : `<a href="${href(item.path)}">${e(item.label)}</a>`}</li>`).join('')}</ol></nav>` + body;
   return `<div class="seo-initial"><header><a href="${href('/')}">${e(company[fa ? 'nameFa' : 'nameEn'])}</a><nav><a href="${href('/catalog')}">${t('Products', 'محصولات')}</a> · <a href="${href('/engineering')}">${t('Engineering tools', 'ابزارهای مهندسی')}</a></nav></header><main id="main">${body}</main><footer>${e(content.footer?.[fa ? 'descriptionFa' : 'descriptionEn'])}</footer></div>`;
 }

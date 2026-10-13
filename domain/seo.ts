@@ -1,6 +1,7 @@
 import type { BearingProduct } from './product';
 import type { CompanyContactInfo } from './company';
 import { mediaFor } from '../lib/media';
+import { breadcrumbsFor } from './breadcrumbs';
 
 export const seoDefaults = {
   titleEn: 'Polad Charkhesh | Industrial Bearings & Engineering',
@@ -210,7 +211,7 @@ export function metadataFor(
     absoluteImage(seo.ogImage || content?.brand?.logoUrl || '/brand/logo.png');
   const orgId = pageUrl('/', seo, fa) + '#organization';
   const organization = {
-    '@type': 'Organization',
+    '@type': 'LocalBusiness',
     '@id': orgId,
     name: company[fa ? 'nameFa' : 'nameEn'],
     legalName: company[fa ? 'legalNameFa' : 'legalNameEn'],
@@ -298,30 +299,12 @@ export function metadataFor(
     if (route !== '/')
       graph.push({
         '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: fa ? 'خانه' : 'Home',
-            item: pageUrl('/', seo, fa),
-          },
-          ...(p
-            ? [
-                {
-                  '@type': 'ListItem',
-                  position: 2,
-                  name: fa ? 'کاتالوگ محصولات' : 'Product catalog',
-                  item: pageUrl('/catalog', seo, fa),
-                },
-              ]
-            : []),
-          {
-            '@type': 'ListItem',
-            position: p ? 3 : 2,
-            name: p ? p[fa ? 'nameFa' : 'nameEn'] : data.title,
-            item: canonical,
-          },
-        ],
+        itemListElement: breadcrumbsFor(route, fa, p).map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.label,
+          item: pageUrl(item.path, seo, fa),
+        })),
       });
   }
   return {

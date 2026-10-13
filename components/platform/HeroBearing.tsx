@@ -31,6 +31,7 @@ export default function HeroBearing() {
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [visible, setVisible] = useState(true);
+  const [sceneReady, setSceneReady] = useState(false);
   const [tabVisible, setTabVisible] = useState(!document.hidden);
   const stage = useRef<HTMLDivElement>(null);
   const p = products.find(p => p.schematicType === (family === 'roller' ? 'spherical' : family === 'track' ? 'needle' : 'angular-contact')) || products.find(p => p.schematicType === 'deep-groove');
@@ -45,7 +46,10 @@ export default function HeroBearing() {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const motion = () => setReduced(media.matches);
     const visibility = () => setTabVisible(!document.hidden);
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: .1 });
+    const observer = new IntersectionObserver(([entry]) => {
+      setVisible(entry.isIntersecting);
+      if (entry.isIntersecting) setSceneReady(true);
+    }, { rootMargin: '160px', threshold: 0 });
     if (stage.current) observer.observe(stage.current);
     media.addEventListener('change', motion);
     document.addEventListener('visibilitychange', visibility);
@@ -113,9 +117,9 @@ export default function HeroBearing() {
       <div className="hero-bearing-halo" aria-hidden="true" />
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
-        <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
+        {sceneReady && <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
           <HeroBearingScene family={family} paused={stopped} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
-        </Suspense>
+        </Suspense>}
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
     </div>

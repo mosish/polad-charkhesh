@@ -100,8 +100,6 @@ export function Provider({ children }: { children: ReactNode }) {
         '--' + (key === 'accent' ? 'blue' : key),
         brand[key],
       );
-    const icon = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
-    if (icon) icon.href = brand.logoUrl;
   }, [state.content]);
   useEffect(() => {
     document.documentElement.lang = fa ? 'fa' : 'en';

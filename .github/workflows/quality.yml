@@ -35,6 +35,8 @@ jobs:
         run: pnpm test
       - name: Production build
         run: pnpm build
+      - name: JavaScript bundle budgets
+        run: pnpm check:bundles
       - name: Production smoke (disposable database and uploads)
         run: pnpm smoke:production
       # Existing lint debt is reported explicitly, not declared a clean release gate.

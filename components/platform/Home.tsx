@@ -15,7 +15,7 @@ import BearingReturn from './BearingReturn';
 import { publicHref } from '../../lib/public-links';
 import { useEffect } from 'react';
 export default function Home() {
-  const { fa, t, content, loading } = usePlatform();
+  const { fa, t, content, loading, company } = usePlatform();
   useEffect(() => {
     if (loading || !location.hash) return;
     const id = decodeURIComponent(location.hash.slice(1));
@@ -24,6 +24,7 @@ export default function Home() {
   }, [loading]);
   return (
     <main id="main" className="managed-home">
+      {content?.layout?.hidden?.includes('hero') && <h1 className="section">{company?.[fa ? 'nameFa' : 'nameEn'] || t('Polad Charkhesh', 'پولاد چرخش')}</h1>}
       <PageSection id="hero">
         <section className="hero-scroll">
         <section className="hero">
@@ -109,7 +110,7 @@ export default function Home() {
             <div className="bearing-stage">
               {content?.media?.heroUrl&&<img
                 src={content?.media?.heroUrl}
-                alt={content?.media?.[fa ? 'heroAltFa' : 'heroAltEn']}
+                alt={content?.media?.[fa ? 'heroAltFa' : 'heroAltEn'] || t('Bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ')}
                 width={880}
                 height={620}
               />}

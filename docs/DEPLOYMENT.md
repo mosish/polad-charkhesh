@@ -23,6 +23,7 @@ pnpm install --frozen-lockfile
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm check:bundles
 pnpm smoke:production
 ```
 
@@ -56,6 +57,19 @@ Build after installing locked dependencies. Install the edited systemd template,
 Edit [nginx.conf.example](../deploy/nginx.conf.example) for the domain or domains you actually control and obtain certificates covering every listed name. Forward the original Host, the direct client address and HTTPS scheme. The app trusts loopback proxies only; do not expose port 3001 publicly. Enable the HTTPS configuration only after certificates exist. If one domain is used, configure both SEO canonical origins in the admin panel to valid origins you control and check the language/alternate-link behavior before launch.
 
 On the real domain, check `/`, `/admin/`, `/catalog`, `/engineering`, a product page, `/robots.txt`, `/sitemap.xml`, fonts, images, and one uploaded file. Verify that admin login uses Secure, HttpOnly and SameSite cookies, public inquiries save, content edits appear publicly, and unauthenticated backup access is denied. Confirm the `.ir` host defaults to Persian and the `.com` host to English only if both domains are configured. The smoke script's sample Host headers are not a replacement for these live checks.
+
+## Connect the two custom domains
+
+This step is pending the VPS purchase and DNS access; saving domain names in the SEO editor does not connect them.
+
+1. At each domain's DNS provider, point the root (`@`) A record to the VPS public IPv4 address. Publish AAAA only if the server actually has working public IPv6 and Nginx listens on it. Preserve existing MX/TXT mail records.
+2. If `www` will be used, add it as a CNAME to the matching root domain. Include all four names in certificate coverage before enabling HTTPS redirects. Otherwise omit `www` from the configuration entirely.
+3. Obtain a certificate covering `poladcharkhesh.com` and `poladcharkhesh.ir` (and the optional www names). Install the actual certificate paths in the Nginx template. Confirm renewal works.
+4. Redirect HTTP to HTTPS. Redirect `www.poladcharkhesh.com` to `https://poladcharkhesh.com$request_uri` and `www.poladcharkhesh.ir` to `https://poladcharkhesh.ir$request_uri` if enabled. Keep `.ir` and `.com` as separate language origins; do not redirect one root to the other.
+5. In Admin → SEO, retain the English `.com` and Persian `.ir` origins. From outside the VPS, check certificate validity, `/api/health`, both homepages, a product page, `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/favicon.svg` and an unknown URL returning HTTP 404. Verify each page has one canonical and the correct alternate-language links.
+6. Verify each domain in Search Console, add its provided verification value or DNS TXT record, and submit each domain's sitemap. Inspect representative published URLs. Check the published company address and phone before requesting indexing.
+
+The [SEO checklist](SEO_PREDEPLOY_CHECKLIST.md) separates completed local checks from these live launch checks. No DNS, certificate or server changes are performed by pushing this repository.
 
 ## Backup and restore drill
 

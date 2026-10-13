@@ -1,4 +1,5 @@
 import ManufacturerLibrary from './ManufacturerLibrary';
+import Breadcrumbs from './Breadcrumbs';
 import Comparison from './Comparison';
 import FitGuide from './FitGuide';
 import Copy from './Copy';
@@ -62,6 +63,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
   return (
     <Container id={embedded ? undefined : 'main'} className={embedded ? 'engineering-workspace embedded-workspace' : 'engineering-workspace'}>
       <section className={embedded ? 'section-heading engineering-intro' : 'page-heading'}>
+        {!embedded && <Breadcrumbs route="/engineering" />}
         <div className="section-label">
           {embedded ? '03 / ' : ''}{t('MECHANICAL ENGINEERING REFERENCE TOOLS', 'ابزارهای مرجع مهندسی مکانیک')}
         </div>

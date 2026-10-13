@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { randomBytes } from 'node:crypto';
 import net from 'node:net';
+import { auditPublishedSeo } from '../lib/seo-audit';
 
 const root = process.cwd();
 const serverFile = path.join(root, 'dist/server/index.js');
@@ -167,6 +168,35 @@ try {
   const sessionCookie = cookieHeader.split(';')[0];
   assert.equal((await request('/api/system/status', 'poladcharkhesh.com', { cookie: sessionCookie })).status, 200, 'Administrator can access protected status');
   const savedContent = JSON.parse((await request('/api/content')).body).data;
+  const publishedSeo = JSON.parse((await request('/api/seo')).body).data;
+  const publishedCompany = JSON.parse((await request('/api/company')).body).data;
+  const seoAudit = auditPublishedSeo({ products, content: savedContent, seo: publishedSeo, company: publishedCompany });
+  assert.deepEqual(seoAudit.issues, [], 'All published routes pass the bilingual SEO content audit');
+  for (const host of ['poladcharkhesh.com', 'poladcharkhesh.ir']) {
+    const guide = await request('/llms.txt', host);
+    assert.equal(guide.status, 200);
+    assert.match(String(guide.headers['content-type']), /text\/plain; charset=utf-8/);
+    assert.ok(guide.body.includes(`https://${host}/catalog`));
+    assert.ok(!guide.body.includes('/admin'));
+    const robots = await request('/robots.txt', host);
+    assert.ok(robots.body.includes(`Sitemap: https://${host}/sitemap.xml`));
+    assert.match(robots.body, /Disallow: \/api\//);
+    for (const route of ['/', '/catalog', '/engineering', ...products.map((item: { slug: string }) => '/product/' + encodeURIComponent(item.slug))]) {
+      const response = await request(route, host);
+      assert.equal(response.status, 200, `${host}${route}`);
+      assert.equal((response.body.match(/<h1\b/g) || []).length, 1, `${route}: one initial heading`);
+      assert.equal((response.body.match(/<title>/g) || []).length, 1, `${route}: one title`);
+      assert.match(response.body, /"@type":"LocalBusiness"/);
+      assert.ok(response.body.includes(`rel="canonical" href="https://${host}${route}"`));
+    }
+  }
+  const favicon = await request('/favicon.svg');
+  assert.equal(favicon.status, 200);
+  assert.match(String(favicon.headers['content-type']), /image\/svg\+xml/);
+  assert.match(favicon.body, /viewBox="0 0 640 640"/);
+  assert.match(home.body, /href="\/favicon.svg"/);
+  assert.match(home.body, /rel="describedby" href="\/llms.txt"/);
+  assert.match((await request('/', 'unknown-host.invalid')).body, /rel="canonical" href="https:\/\/poladcharkhesh\.com\/"/);
   const editedContent = { ...savedContent, hero: { ...savedContent.hero, titleEn: 'Production smoke title' } };
   assert.equal((await request('/api/content', 'poladcharkhesh.com', { method: 'PUT', body: editedContent, cookie: sessionCookie })).status, 200, 'Administrator can save website content');
   assert.equal(JSON.parse((await request('/api/content')).body).data.hero.titleEn, 'Production smoke title', 'Saved content is public');

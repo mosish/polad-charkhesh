@@ -13,11 +13,15 @@ import { initialPublicHtml } from '../api/seo-html';
 import { bearingProducts } from '../domain/catalog';
 import { COMPANY_INFO } from '../domain/company';
 import { siteExtras } from '../domain/site-content';
+import { breadcrumbsFor } from '../domain/breadcrumbs';
+import { llmsText } from '../domain/llms';
+import { auditPublishedSeo } from '../lib/seo-audit';
 const p = bearingProducts[0];
 const content = {
   ...siteExtras,
   hero: {
     titleEn: 'Published hero title',
+    titleFa: 'عنوان منتشرشده صفحه اصلی',
     descriptionEn: 'Published hero description',
   },
   engineering: { titleEn: 'Make the numbers work' },
@@ -78,6 +82,53 @@ void test('bilingual canonicals, page overrides and robots remain consistent', (
   assert.equal(languageFor('poladcharkhesh.ir'), true);
   assert.equal(languageFor('poladcharkhesh.com', 'lang=fa'), true);
   assert.equal(languageFor('poladcharkhesh.ir', 'lang=en'), false);
+});
+
+void test('local business and breadcrumbs use published identity with no invented claims', () => {
+  for (const fa of [false, true]) {
+    for (const route of ['/catalog', '/engineering', '/product/' + p.slug]) {
+      const product = route.startsWith('/product/') ? p : undefined;
+      const metadata = metadataFor(route, fa, seoDefaults, COMPANY_INFO, product);
+      const business = metadata.structuredData['@graph'].find(item => item['@type'] === 'LocalBusiness');
+      assert.ok(business);
+      assert.equal(business.name, COMPANY_INFO[fa ? 'nameFa' : 'nameEn']);
+      assert.equal((business.address as { streetAddress: string }).streetAddress, COMPANY_INFO[fa ? 'addressFa' : 'addressEn']);
+      for (const key of ['geo', 'aggregateRating', 'review', 'priceRange']) assert.equal(business[key], undefined);
+      const crumb = metadata.structuredData['@graph'].find(item => item['@type'] === 'BreadcrumbList');
+      assert.ok(crumb);
+      const expected = breadcrumbsFor(route, fa, product);
+      assert.deepEqual((crumb.itemListElement as Array<{ name: string }>).map(item => item.name), expected.map(item => item.label));
+      const html = initialPublicHtml(route, fa, { company: COMPANY_INFO, content, products: [p] }, false, product);
+      assert.match(html, /<nav class="breadcrumbs"/);
+      assert.match(html, /aria-current="page"/);
+    }
+  }
+});
+
+void test('llms guide follows configured domains and published contact edits', () => {
+  const company = { ...COMPANY_INFO, nameEn: '[Owner]\n# injection', email: 'updated@company.test' };
+  const result = llmsText({ ...seoDefaults, domainEn: 'https://company.test', domainFa: 'https://company.ir' }, company, false);
+  assert.ok(result.startsWith('# \\[Owner\\] \\# injection\n'));
+  assert.ok(result.includes('https://company.test/catalog'));
+  assert.ok(result.includes('https://company.ir/'));
+  assert.ok(result.includes(company.email));
+  assert.ok(!result.includes('/admin'));
+  assert.match(result, /not an online shop/);
+  assert.match(llmsText(seoDefaults, COMPANY_INFO, true), /کاتالوگ محصولات/);
+});
+
+void test('published SEO audit catches duplicate metadata and unfinished copy without writing records', () => {
+  const snapshot = { company: COMPANY_INFO, seo: seoDefaults, content, products: [p] };
+  const before = JSON.stringify(snapshot);
+  assert.equal(auditPublishedSeo(snapshot).issues.length, 0);
+  assert.equal(JSON.stringify(snapshot), before);
+  const duplicate = { ...p, id: 'duplicate', slug: 'duplicate', descriptionEn: 'Lorem ipsum' };
+  const findings = auditPublishedSeo({ ...snapshot, products: [p, duplicate] }).issues;
+  assert.ok(findings.some(item => item.issue.startsWith('Duplicate title')));
+  assert.ok(findings.some(item => item.issue === 'Unfinished public copy'));
+  const hiddenHero = initialPublicHtml('/', false, { ...snapshot, content: { ...content, layout: { hidden: ['hero'] } } }, false);
+  assert.equal((hiddenHero.match(/<h1>/g) || []).length, 1);
+  assert.ok(!hiddenHero.includes(content.hero.titleEn));
 });
 
 void test('SEO defaults preserve owner edits and technical values without inventing commerce', () => {

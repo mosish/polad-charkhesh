@@ -1,5 +1,6 @@
 import { metadataFor, metadataHead, pageUrl, languageFor, escapeHtml, jsonForHtml } from '../domain/seo';
 import { initialPublicHtml } from './seo-html';
+import { llmsText } from '../domain/llms';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import path from 'node:path';
@@ -84,6 +85,11 @@ app.use(
     },
   }),
 );
+app.get('/llms.txt', (req, res) => {
+  res.set('Cache-Control', 'no-cache').type('text/plain').send(
+    llmsText(setting('seo'), setting('company'), languageFor(req.hostname, req.url.split('?')[1] || '')),
+  );
+});
 app.get('/robots.txt', (req, res) => {
   const seo = setting('seo');
   res.type('text/plain').send('User-agent: *\nDisallow: /api/\nSitemap: ' + pageUrl('/sitemap.xml', seo, languageFor(req.hostname)) + '\n');

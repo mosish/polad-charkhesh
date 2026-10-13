@@ -1,4 +1,5 @@
 import CategoryIcon from './CategoryIcon';
+import Breadcrumbs from './Breadcrumbs';
 import ManufacturerLibrary from './ManufacturerLibrary';
 import { searchProducts } from '../../lib/showroom';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -111,6 +112,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   return (
     <Container id={embedded ? undefined : 'main'} className={embedded ? 'catalog-workspace embedded-workspace' : 'catalog-workspace'}>
       <section className={embedded ? 'section-heading catalog-intro' : 'page-heading'}>
+        {!embedded && <Breadcrumbs route="/catalog" />}
         <div className="section-label">
           {embedded ? '02 / ' : ''}{t(
             'PRODUCT SHOWROOM / TECHNICAL DISCOVERY',
@@ -118,8 +120,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
           )}
         </div>
         {embedded ? <h2>{t('Explore every component.', 'همه قطعات را بررسی کنید.')}</h2> : <h1>
-          {t('The right part.', 'قطعه درست.')}{' '}
-          <em>{t('Precisely.', 'با دقت.')}</em>
+          {t('Industrial bearing catalog', 'کاتالوگ بیرینگ صنعتی')}
         </h1>}
         <p>
           {t(

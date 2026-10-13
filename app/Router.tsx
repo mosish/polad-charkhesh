@@ -2,6 +2,7 @@ import { Fragment, lazy, Suspense } from 'react';
 import { Provider } from '../components/platform/Context';
 import Shell from '../components/platform/Shell';
 import Home from '../components/platform/Home';
+import NotFound from '../components/platform/NotFound';
 const Catalog = lazy(() => import('../components/platform/Catalog')),
   Product = lazy(() => import('../components/platform/Product')),
   Engineering = lazy(() => import('../components/platform/Engineering')),
@@ -30,12 +31,7 @@ export default function Router() {
           ) : path === '/admin' ? (
             <Admin />
           ) : (
-            <main id="main" className="state">
-              <h1>Page not found / صفحه یافت نشد</h1>
-              <a className="button primary" href="/catalog">
-                Explore the catalog / کاتالوگ محصولات
-              </a>
-            </main>
+            <NotFound />
           )}
         </Suspense>
       </Layout>

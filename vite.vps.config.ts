@@ -12,10 +12,22 @@ export default defineConfig({
     proxy: {
       // Preserve the browser's host so API same-origin checks work through Vite.
       '/robots.txt': { target: 'http://127.0.0.1:3001', changeOrigin: false },
+      '/llms.txt': { target: 'http://127.0.0.1:3001', changeOrigin: false },
       '/sitemap.xml': { target: 'http://127.0.0.1:3001', changeOrigin: false },
       '/api': { target: 'http://127.0.0.1:3001', changeOrigin: false },
       '/uploads': { target: 'http://127.0.0.1:3001', changeOrigin: false },
     },
   },
-  build: { outDir: 'dist/client' },
+  build: {
+    outDir: 'dist/client',
+    manifest: true,
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          // Split the official core/renderer modules, retaining their initialization order.
+          groups: [{ name: 'three', test: /node_modules[\\/]three[\\/]/, maxSize: 600_000 }],
+        },
+      },
+    },
+  },
 });

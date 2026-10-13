@@ -1,4 +1,6 @@
 import ManufacturerLibrary from './ManufacturerLibrary';
+import Breadcrumbs from './Breadcrumbs';
+import NotFound from './NotFound';
 import { BearingViewer } from './Viewer';
 import Copy from './Copy';
 import { mediaFor } from '../../lib/media';
@@ -385,7 +387,7 @@ function ProductPanelBody({ p, onClose, onSelect }: { p: BearingProduct; onClose
       <div className="product-panel-layout">
         <div className="product-panel-gallery">
           <div className="product-panel-stage">
-            {stageView === 'exploded' ? <Suspense fallback={<div className="hero-model-loading">{t('Preparing exploded view…', 'آماده‌سازی نمای انفجاری…')}</div>}><BearingScene family={geometry.roller ? 'roller' : 'ball'} product={p} paused exploded reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${t('Illustrative exploded view', 'نمای انفجاری نمایشی')}`} fallback={<div className="hero-model-loading">{t('3D view unavailable on this device', 'نمای سه‌بعدی در این دستگاه در دسترس نیست')}</div>} /></Suspense> : stageView === 'drawing' || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
+            {stageView === 'exploded' ? <Suspense fallback={<div className="hero-model-loading">{t('Preparing exploded view…', 'آماده‌سازی نمای انفجاری…')}</div>}><BearingScene family={geometry.roller ? 'roller' : 'ball'} product={p} paused exploded reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${t('Illustrative exploded view', 'نمای انفجاری نمایشی')}`} fallback={<div className="hero-model-loading">{t('3D view unavailable on this device', 'نمای سه‌بعدی در این دستگاه در دسترس نیست')}</div>} /></Suspense> : stageView === 'drawing' || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={referenceImage ? t('Bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
             {stageView === 'exploded' && <div className="product-panel-parts-key" aria-label={t('Bearing parts', 'اجزای بیرینگ')}>{partLabels.map((name, index) => <span key={name}><b>{index + 1}</b>{name}</span>)}</div>}
             {stageView === 'image' && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
           </div>
@@ -448,28 +450,10 @@ export default function ProductPage() {
         <DataState />
       </main>
     );
-  if (!p)
-    return (
-      <main id="main" className="section state">
-        <h1>{t('Product not found', 'محصول یافت نشد')}</h1>
-        <p>{slug}</p>
-        <a
-          className="button primary"
-          href={'/catalog?q=' + encodeURIComponent(slug)}
-        >
-          {t('Search the catalog', 'جستجوی کاتالوگ')}
-        </a>
-        <a className="button" href="/#contact">
-          {t('Ask the engineering team', 'ارتباط با تیم فنی')}
-        </a>
-      </main>
-    );
+  if (!p) return <NotFound productCode={slug} />;
   return (
     <main id="main" className="section">
-      <div className="breadcrumbs">
-        <a href="/">{t('Home', 'خانه')}</a> /{' '}
-        <a href="/catalog">{t('Catalog', 'کاتالوگ')}</a> / {p.code}
-      </div>
+      <Breadcrumbs route={'/product/' + p.slug} product={p} />
       <TechnicalContent p={p} full />
       <h2>{t('Related components', 'قطعات مرتبط')}</h2>
       <div className="product-grid">

@@ -33,7 +33,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
-| Technical SEO | ✅ Verified locally | English/Persian metadata for 110 products and three public pages, server-delivered content, canonical/hreflang, sitemap, structured data, sharing previews and admin editing pass targeted checks. Live Search Console and indexing remain post-launch tasks. |
+| Technical SEO | ✅ Verified locally | 113 indexable routes pass bilingual content and production HTTP checks. Shared breadcrumbs, LocalBusiness/Product schema, canonical/hreflang, robots, sitemap, llms.txt, branded 404, favicon and alt-text improvements are implemented. [Checklist and evidence](docs/SEO_PREDEPLOY_CHECKLIST.md). Actual domain connection and live indexing remain pending. |
 | Exact product photos and manufacturer PDFs | 🟡 Pending content | Exact SKU photos are still missing. SKF's public product/image hosts blocked reliable access, so the 42 new records use clearly labeled family-reference visuals and link to SKF's official catalog. Admin uploads can replace each image later. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | 🟡 In progress | Tooling now uses the platform TypeScript configuration and Vite-appropriate rules. Findings reduced from 351 to 210 through configuration corrections, type declarations and fixes; repository lint still fails and remains a launch blocker. |
@@ -42,7 +42,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **44 tests**. TypeScript checking, a production build, and the isolated production smoke check were rerun successfully on 2026-10-13. Targeted browser checks in a disposable database verified admin sign-in/media navigation, visible sign-out connection errors, recovery from an expired session, English/Persian catalog table labels, product panels, phone-width RTL layout and Escape/focus restoration. Earlier checks cover additional editor and inquiry flows. These checks do not replace the final browser, accessibility, security or product-data review. See the [quality phase report](docs/QUALITY_PHASE_2026-10-13.md) for exact scope and remaining findings.
+The last full automated suite passed **47 tests**. TypeScript, production build, JavaScript size budgets and the isolated production smoke check passed on 2026-10-13. The published-content SEO audit covers **110 products, 113 routes and 226 language variants** with zero automated findings. Targeted browser checks verified the new breadcrumbs, branded 404, preserved bearing animation and mobile Persian exploded product view, in addition to the earlier admin failure/recovery and catalog tests. These checks do not replace the final browser, accessibility, security or product-data review. See the [quality phase report](docs/QUALITY_PHASE_2026-10-13.md) and [SEO checklist](docs/SEO_PREDEPLOY_CHECKLIST.md) for scope and remaining gates.
 
 ## Public site layout
 
@@ -226,6 +226,16 @@ The catalog category strip now follows the supplied icon-tile reference: compact
 VPS purchase and public deployment remain pending. A fresh GitHub checkout was recovered at the current workspace after the local machine migration; its tracked source matched the migrated copy after line-ending normalization. Existing runtime data remains in that migrated copy and was not imported, reset or published.
 
 ## Reliability and source quality phase — 2026-10-13
+
+### Pre-deployment SEO checklist — 2026-10-13
+
+All requested source-side checklist items are implemented or verified: semantic breadcrumbs, published LocalBusiness details, bilingual metadata and canonicals, robots/sitemaps, a custom 404 with real production status, original-logo favicon, public internal links, title/H1 uniqueness checks, image descriptions and unfinished-copy checks. `/llms.txt` is generated from current public company settings and uses the configured language origins.
+
+`pnpm audit:seo` checks the running public records without writing them. `pnpm check:bundles` enforces 450 KB per JavaScript chunk and 100 KB gzip for the initial static module graph; GitHub Actions runs this after building. The largest chunk is now **403.2 KB**, versus **546.9 KB** before this phase. Three.js's core and renderer remain lazy chunks (largest **343.8 KB**); splitting does not remove the engine's total download cost. Initial JavaScript is **81.8 KB gzip**, and the hero waits until near the viewport before loading its scene. Animation, selected families and Follow scroll remain intact.
+
+Custom-domain configuration is ready; DNS and HTTPS are **not connected or verified** until hosting is provisioned. [Launch instructions](docs/DEPLOYMENT.md#connect-the-two-custom-domains) preserve `.com` for English and `.ir` for Persian. No deployment occurred. Repository lint still has **210 existing findings**, and exact manufacturer assets/data and the full release audit remain open.
+
+### Reliability improvements
 
 - API calls reject malformed success responses instead of treating them as saved data, retain useful server errors/status codes, and reject request bodies on GET/HEAD.
 - Admin sign-out surfaces connection failures and recovers expired sessions. Failed delete/restore actions show their error inside the confirmation dialog. Media uploads handle unreadable/cancelled files and allow selecting the same file again for retry.
