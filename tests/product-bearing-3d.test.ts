@@ -5,7 +5,7 @@ import { buildProductBearing3D } from '../lib/product-bearing-3d';
 import { bearingGeometry } from '../lib/bearing-motion';
 import { bearingProducts } from '../domain/catalog';
 
-test('3D catalog models preserve outside diameter, bore and width with one uniform scale',()=>{
+void test('3D catalog models preserve outside diameter, bore and width with one uniform scale',()=>{
   for(const p of bearingProducts.filter(p=>bearingGeometry(p).supported)){
     const model=buildProductBearing3D(p),scale=4.6/p.D;
     const box=new Box3().setFromObject(model.root);
@@ -21,7 +21,7 @@ test('3D catalog models preserve outside diameter, bore and width with one unifo
   }
 });
 
-test('3D explorer changes rolling-element geometry and rows with the selected product',()=>{
+void test('3D explorer changes rolling-element geometry and rows with the selected product',()=>{
   for(const type of ['deep-groove','tapered','spherical','cylindrical','needle','self-aligning-ball'] as const){
     const p=bearingProducts.find(p=>p.schematicType===type);if(!p)continue;
     const model=buildProductBearing3D(p);
@@ -35,7 +35,7 @@ test('3D explorer changes rolling-element geometry and rows with the selected pr
   }
 });
 
-test('exploded product view separates four assemblies and restores catalog dimensions',()=>{
+void test('exploded product view separates four assemblies and restores catalog dimensions',()=>{
   const p=bearingProducts.find(p=>p.schematicType==='spherical')!;
   const model=buildProductBearing3D(p);
   const assembled=new Box3().setFromObject(model.root);

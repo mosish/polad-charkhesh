@@ -1,5 +1,6 @@
 import { useId, useState } from 'react';
 import { api } from '../../lib/api';
+import { readMediaUpload } from '../../lib/media-upload';
 import { usePlatform } from '../platform/Context';
 export default function MediaPicker({
   value,
@@ -13,8 +14,8 @@ export default function MediaPicker({
   pdf?: boolean;
 }) {
   const { t } = usePlatform();
-  const [id] = useState(() => Math.random().toString(36).slice(2)),
-    [library, setLibrary] = useState<any[] | null>(null),
+  const id = useId();
+  const [library, setLibrary] = useState<{ id: string; name: string; mime: string; url: string }[] | null>(null),
     [busy, setBusy] = useState(false),
     [error, setError] = useState('');
   const upload = async (file?: File) => {
@@ -26,21 +27,11 @@ export default function MediaPicker({
     setBusy(true);
     setError('');
     try {
-      const base64 = await new Promise<string>((resolve, reject) => {
-        const r = new FileReader();
-        r.onload = () => resolve(String(r.result).split(',')[1]);
-        r.onerror = () => reject(new Error('File could not be read.'));
-        r.readAsDataURL(file);
-      });
-      const result = await api('/media', 'POST', {
-        name: file.name,
-        mime: file.type,
-        base64,
-      });
+      const result = await api<{ media: { url: string } }>('/media', 'POST', await readMediaUpload(file));
       onChange(result.media.url);
       setLibrary(null);
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Upload failed. Please retry.');
     } finally {
       setBusy(false);
     }
@@ -69,7 +60,7 @@ export default function MediaPicker({
             disabled={busy}
             accept={pdf ? 'application/pdf' : 'image/png,image/jpeg,image/webp'}
             onChange={(e) => {
-              upload(e.target.files?.[0]);
+              void upload(e.target.files?.[0]);
               e.target.value = '';
             }}
           />
@@ -79,16 +70,17 @@ export default function MediaPicker({
           className="button"
           onClick={async () => {
             try {
-              const r = await api('/media');
+              setError('');
+              const r = await api<{ media: { id: string; name: string; mime: string; url: string }[] }>('/media');
               setLibrary(
-                r.media.filter((m: any) =>
+                r.media.filter((m) =>
                   pdf
                     ? m.mime === 'application/pdf'
                     : m.mime.startsWith('image/'),
                 ),
               );
-            } catch (e: any) {
-              setError(e.message);
+            } catch (e: unknown) {
+              setError(e instanceof Error ? e.message : 'Media library unavailable. Please retry.');
             }
           }}
         >

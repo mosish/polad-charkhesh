@@ -16,7 +16,8 @@ import {
   PanelTop,
   ScrollText,
 } from 'lucide-react';
-import { api } from '../../lib/api';
+import { api, ApiError } from '../../lib/api';
+import { readMediaUpload } from '../../lib/media-upload';
 import { usePlatform } from '../platform/Context';
 import Dialog from '../platform/Dialog';
 import ProductEditor from './ProductEditor';
@@ -64,7 +65,7 @@ export default function Admin() {
       .then(setStatus)
       .catch((e) => setError(e.message));
   useEffect(() => {
-    check();
+    void check();
   }, []);
   // Associate each response with its tab; never render another tab's payload.
   const data = loaded?.tab === tab ? loaded.value : null;
@@ -84,7 +85,7 @@ export default function Admin() {
     }).catch((e) => {
       if (cancelled) return;
       setError(e.message);
-      if (e.message.includes('session')) check();
+      if (e.message.includes('session')) void check();
     });
     return () => { cancelled = true; };
   }, [tab, status?.user, loadVersion]);
@@ -270,6 +271,7 @@ export default function Admin() {
           </div>)}
         </nav>
         <button
+          disabled={busy}
           onClick={async () => {
             if (
               settingsDirty &&
@@ -281,8 +283,20 @@ export default function Admin() {
               )
             )
               return;
-            await api('/auth/logout', 'POST', {});
-            check();
+            setBusy(true);
+            setError('');
+            try {
+              await api('/auth/logout', 'POST', {});
+              setLoaded(null);
+              setStatus(null);
+              setSettingsDirty(false);
+              await check();
+            } catch (e: unknown) {
+              if (e instanceof ApiError && e.status === 401) await check();
+              else setError(e instanceof Error ? e.message : t('Sign out failed. Please retry.', 'خروج انجام نشد. دوباره تلاش کنید.'));
+            } finally {
+              setBusy(false);
+            }
           }}
         >
           <LogOut size={17} />
@@ -464,25 +478,25 @@ export default function Admin() {
                 )}
               </p>
               <input
-                aria-label="Upload media"
+                aria-label={t('Upload media', 'بارگذاری رسانه')}
                 type="file"
                 accept="image/png,image/jpeg,image/webp,application/pdf"
                 disabled={busy}
                 onChange={async (e) => {
-                  const file = e.target.files?.[0];
+                  const input = e.currentTarget;
+                  const file = input.files?.[0];
                   if (!file) return;
-                  if (file.size > 5 * 1024 * 1024) {
-                    setError('Maximum 5 MB.');
-                    return;
+                  setBusy(true);
+                  setError('');
+                  setMessage('');
+                  try {
+                    await act('/media', 'POST', await readMediaUpload(file));
+                  } catch (error: unknown) {
+                    setError(error instanceof Error ? error.message : t('Upload failed. Please retry.', 'بارگذاری انجام نشد. دوباره تلاش کنید.'));
+                  } finally {
+                    input.value = '';
+                    setBusy(false);
                   }
-                  const reader = new FileReader();
-                  reader.onload = () =>
-                    act('/media', 'POST', {
-                      name: file.name,
-                      mime: file.type,
-                      base64: String(reader.result).split(',')[1],
-                    }).catch(() => {});
-                  reader.readAsDataURL(file);
                 }}
               />
             </div>
@@ -598,7 +612,7 @@ export default function Admin() {
                 try {
                   await api('/auth/change-password', 'POST', form);
                   setMessage('password-changed');
-                  check();
+                  await check();
                 } catch (e: any) {
                   setError(e.message);
                 }
@@ -672,6 +686,7 @@ export default function Admin() {
               {t('Confirmation', 'تأیید')}
               <input value={typed} onChange={(e) => setTyped(e.target.value)} />
             </label>
+            {error && <p role="alert" className="error">{error}</p>}
             <button
               className="button danger"
               disabled={

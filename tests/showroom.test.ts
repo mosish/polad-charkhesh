@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { bearingProducts } from '../domain/catalog';
 import { searchProducts, fitRange } from '../lib/showroom';
 import { basicLife } from '../lib/engineering';
-test('showroom supports Persian digits, dimension triplets, combined filters and archived exclusions', () => {
+void test('showroom supports Persian digits, dimension triplets, combined filters and archived exclusions', () => {
   const p = bearingProducts[0];
   assert.ok(searchProducts(bearingProducts, '۶۲۰۴').some((x) => x.id === p.id));
   assert.ok(
@@ -27,7 +27,7 @@ test('showroom supports Persian digits, dimension triplets, combined filters and
     0,
   );
 });
-test('fit ranges use worst-case mating limits and reject invalid intervals', () => {
+void test('fit ranges use worst-case mating limits and reject invalid intervals', () => {
   assert.equal(fitRange(20, 20.01, 19.98, 19.99).kind, 'clearance');
   assert.equal(fitRange(20, 20.01, 20.02, 20.03).kind, 'interference');
   const r = fitRange(20, 20.01, 20.005, 20.015);
@@ -37,5 +37,5 @@ test('fit ranges use worst-case mating limits and reject invalid intervals', () 
   assert.throws(() => fitRange(21, 20, 20, 21));
   assert.throws(() => fitRange(NaN, 20, 20, 21));
 });
-test('known-load life rejects overflow instead of displaying infinity', () =>
+void test('known-load life rejects overflow instead of displaying infinity', () =>
   assert.throws(() => basicLife(1e300, 1e-300, 1, false)));

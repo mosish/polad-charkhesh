@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 
-test('offline backup contains a consistent SQLite snapshot and uploaded files', () => {
+void test('offline backup contains a consistent SQLite snapshot and uploaded files', () => {
   const sourceRoot = mkdtempSync(path.join(tmpdir(), 'polad-backup-source-'));
   const backupRoot = mkdtempSync(path.join(tmpdir(), 'polad-backup-target-'));
   try {

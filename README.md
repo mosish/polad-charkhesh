@@ -4,7 +4,7 @@
 >
 > **Source of truth for code:** GitHub `main`
 >
-> **Last status review:** 2026-10-12
+> **Last status review:** 2026-10-13
 
 Polad Charkhesh is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
@@ -36,13 +36,13 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Technical SEO | ✅ Verified locally | English/Persian metadata for 110 products and three public pages, server-delivered content, canonical/hreflang, sitemap, structured data, sharing previews and admin editing pass targeted checks. Live Search Console and indexing remain post-launch tasks. |
 | Exact product photos and manufacturer PDFs | 🟡 Pending content | Exact SKU photos are still missing. SKF's public product/image hosts blocked reliable access, so the 42 new records use clearly labeled family-reference visuals and link to SKF's official catalog. Admin uploads can replace each image later. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
-| Repository lint | 🟡 Pending | TypeScript, tests, and production build pass; the repository-wide lint command still reports rule violations across application and test files. |
-| Multi-contributor coordination | 🟢 Documented | The GitHub workflow guide covers branch checks and synchronization; no automated enforcement is configured. |
+| Repository lint | 🟡 In progress | Tooling now uses the platform TypeScript configuration and Vite-appropriate rules. Findings reduced from 351 to 210 through configuration corrections, type declarations and fixes; repository lint still fails and remains a launch blocker. |
+| Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
 | VPS deployment and production smoke test | 🟡 Preparation | The built Node server passes an isolated production smoke check, and systemd/Nginx templates are available. Hosting, TLS, content approval and live verification remain. |
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **35 tests**. TypeScript checking, a production build, and the isolated production smoke check were rerun successfully on 2026-10-12. Earlier targeted browser checks cover the public showroom and mobile layout; an isolated built-site session also verified admin setup, module navigation, product editing, unsaved website preview and save, inquiry review, and the phone-width module menu. Those browser checks were not repeated during hosting preparation and do not replace final device and product-data review.
+The last full automated suite passed **44 tests**. TypeScript checking, a production build, and the isolated production smoke check were rerun successfully on 2026-10-13. Targeted browser checks in a disposable database verified admin sign-in/media navigation, visible sign-out connection errors, recovery from an expired session, English/Persian catalog table labels, product panels, phone-width RTL layout and Escape/focus restoration. Earlier checks cover additional editor and inquiry flows. These checks do not replace the final browser, accessibility, security or product-data review. See the [quality phase report](docs/QUALITY_PHASE_2026-10-13.md) for exact scope and remaining findings.
 
 ## Public site layout
 
@@ -224,5 +224,14 @@ The catalog category strip now follows the supplied icon-tile reference: compact
 ### Hosting preparation (2026-10-12)
 
 VPS purchase and public deployment remain pending. A fresh GitHub checkout was recovered at the current workspace after the local machine migration; its tracked source matched the migrated copy after line-ending normalization. Existing runtime data remains in that migrated copy and was not imported, reset or published.
+
+## Reliability and source quality phase — 2026-10-13
+
+- API calls reject malformed success responses instead of treating them as saved data, retain useful server errors/status codes, and reject request bodies on GET/HEAD.
+- Admin sign-out surfaces connection failures and recovers expired sessions. Failed delete/restore actions show their error inside the confirmation dialog. Media uploads handle unreadable/cancelled files and allow selecting the same file again for retry.
+- Catalog table headings and detail controls have explicit bilingual labels.
+- Nine new regression tests cover API failure/retry and media-read success/error/cancellation paths. Existing tests explicitly register asynchronous Node test results; Express and cookie-parser declarations improve backend type coverage.
+- A GitHub Actions workflow runs the existing source checks without deployment credentials or runtime data. Its lint step is visibly advisory; a green core-check run is not release approval.
+- Local preview uses a verified copy of the previous local database (110 products); original data is preserved. Browser QA used a separate disposable database. Databases, uploads, credentials, dependencies and builds remain excluded from GitHub.
 
 The new standalone `node scripts/hosting-check.mjs /absolute/persistent/data/path` probe checks writable storage, actual WAL activation, committed WAL recovery after process exit, reader/writer behavior, SQLite backup integrity and uploaded-file preservation. It creates only a dedicated probe directory and prints a follow-up `--verify` command for use after a real host reboot or redeployment. It does not certify those external operations or clear the deployment gate. See [deployment instructions](docs/DEPLOYMENT.md) and the [Persian acceptance checklist](docs/HOSTING_CHECK_FA.md).

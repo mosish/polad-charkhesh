@@ -24,7 +24,7 @@ const content = {
   contact: { titleEn: 'Contact the team' },
 };
 
-test('bilingual canonicals, page overrides and robots remain consistent', () => {
+void test('bilingual canonicals, page overrides and robots remain consistent', () => {
   const en = metadataFor(
     '/catalog/?q=6204#catalog',
     false,
@@ -80,7 +80,7 @@ test('bilingual canonicals, page overrides and robots remain consistent', () => 
   assert.equal(languageFor('poladcharkhesh.ir', 'lang=en'), false);
 });
 
-test('SEO defaults preserve owner edits and technical values without inventing commerce', () => {
+void test('SEO defaults preserve owner edits and technical values without inventing commerce', () => {
   const custom = {
     ...p,
     metaTitleEn: 'Owner title',
@@ -134,7 +134,7 @@ test('SEO defaults preserve owner edits and technical values without inventing c
   );
 });
 
-test('initial HTML exposes published product links and specs safely without hidden sections', () => {
+void test('initial HTML exposes published product links and specs safely without hidden sections', () => {
   const hidden = {
     ...content,
     layout: { ...content.layout, hidden: ['hero'] },

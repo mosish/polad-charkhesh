@@ -212,9 +212,9 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                 <table>
                   <thead>
                     <tr>
-                      {['Code', 'Family', 'd', 'D', 'B', 'Cr kN', ''].map(
+                      {[t('Code', 'کد'), t('Family', 'خانواده'), 'd', 'D', 'B', 'Cr kN', t('Details', 'جزئیات')].map(
                         (h, i) => (
-                          <th key={i}>{h}</th>
+                          <th key={i} scope="col">{h}</th>
                         ),
                       )}
                     </tr>
@@ -240,7 +240,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                         <td>
                           <button
                             onClick={() => chooseProduct(p)}
-                            aria-label={'View ' + p.code}
+                            aria-label={t('View ', 'مشاهده ') + p.code}
                           >
                             <ArrowUpRight size={17} />
                           </button>

@@ -48,5 +48,4 @@ next-env.d.ts
 /components/ui/
 /components.json
 /next.config.ts
-/tsconfig.json
 /vite.config.ts

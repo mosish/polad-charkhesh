@@ -1,22 +1,41 @@
+export class ApiError extends Error {
+  constructor(message: string, readonly status: number) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
 export async function api<T = any>(
   path: string,
   method = 'GET',
   data?: unknown,
 ): Promise<T> {
+  const verb = method.toUpperCase();
+  if ((verb === 'GET' || verb === 'HEAD') && data !== undefined)
+    throw new Error('Read requests cannot contain a body.');
+  const options: RequestInit = {
+    method: verb,
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+  };
+  if (data !== undefined) options.body = JSON.stringify(data);
   let r: Response;
   try {
-    r = await fetch('/api' + path, {
-      method,
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: data === undefined ? undefined : JSON.stringify(data),
-    });
+    r = await fetch('/api' + path, options);
   } catch {
     throw new Error('Connection unavailable. Please retry.');
   }
-  const body = await r
-    .json()
-    .catch(() => ({ error: 'Unexpected server response.' }));
-  if (!r.ok) throw new Error(body.error || 'Request failed.');
-  return body;
+  let body: unknown;
+  try {
+    body = await r.json();
+  } catch {
+    throw new Error('Unexpected server response. Please retry.');
+  }
+  if (!r.ok) {
+    const message = body && typeof body === 'object' && 'error' in body
+      && typeof body.error === 'string' && body.error.trim()
+      ? body.error : 'Request failed. Please retry.';
+    throw new ApiError(message, r.status);
+  }
+  return body as T;
 }

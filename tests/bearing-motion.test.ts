@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { advanceRotation, bearingGeometry } from '../lib/bearing-motion';
 import { bearingProducts } from '../domain/catalog';
 
-test('RPM integrates elapsed seconds and playback rate without a fixed animation speed', () => {
+void test('RPM integrates elapsed seconds and playback rate without a fixed animation speed', () => {
   assert.equal(advanceRotation(0, 60, .25), 90);
   assert.equal(advanceRotation(0, 120, .25), 180);
   assert.equal(advanceRotation(0, 6000, .25, .02), 180);
@@ -12,7 +12,7 @@ test('RPM integrates elapsed seconds and playback rate without a fixed animation
   assert.equal(advanceRotation(350, 60, .1), 26);
   assert.equal(advanceRotation(12, NaN, 1), 12);
 });
-test('model scales to selected product dimensions and estimates slower cage rotation', () => {
+void test('model scales to selected product dimensions and estimates slower cage rotation', () => {
   const ball = bearingProducts.find(p => p.schematicType === 'deep-groove')!;
   const g = bearingGeometry(ball);
   assert.equal(g.bore/g.outer, ball.d/ball.D);

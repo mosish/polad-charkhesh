@@ -24,8 +24,8 @@ let server: any,
 before(async () => {
   const { app } = await import('../api/index');
   database = await import('../api/database');
-  await new Promise<void>((resolve) => {
-    server = app.listen(0, '127.0.0.1', resolve);
+  await new Promise<void>((resolve, reject) => {
+    server = app.listen(0, '127.0.0.1', (error?: Error) => error ? reject(error) : resolve());
   });
   base = 'http://127.0.0.1:' + server.address().port;
 });
@@ -51,7 +51,7 @@ async function req(
   });
   return { r, b: await r.json() };
 }
-test('catalog preserves 68 legacy identities and adds sourced SKF designations', async () => {
+void test('catalog preserves 68 legacy identities and adds sourced SKF designations', async () => {
   assert.equal(bearingProducts.length, 110);
   assert.equal(skfCatalogAdditions.length, 42);
   const { b } = await req('/products');
@@ -65,7 +65,7 @@ test('catalog preserves 68 legacy identities and adds sourced SKF designations',
   assert.ok(skfCatalogAdditions.every((p) => p.technicalSources?.[0]?.url?.startsWith('https://cdn.skfmediahub.skf.com/')));
   assert.ok(skfCatalogAdditions.every((p) => !p.imageUrl && p.speedLimitingRpm && !validateProduct(p).length));
 });
-test('server rejects invalid dimensions, incomplete numbers and unsafe fields', () => {
+void test('server rejects invalid dimensions, incomplete numbers and unsafe fields', () => {
   const p = bearingProducts[0];
   assert.ok(validateProduct({ ...p, d: 50, D: 20 }).length);
   assert.ok(validateProduct({ ...p, d: undefined }).length);
@@ -76,7 +76,7 @@ test('server rejects invalid dimensions, incomplete numbers and unsafe fields', 
   assert.ok(validateProduct({ ...p, imageUrl: 'javascript:alert(1)' }).length);
   assert.ok(validateProduct({ ...p, password_hash: 'x' }).length);
 });
-test('production canonical settings reject localhost and non-HTTPS', () => {
+void test('production canonical settings reject localhost and non-HTTPS', () => {
   assert.ok(
     validateSettings('seo', {
       domainEn: 'http://localhost',
@@ -92,7 +92,7 @@ test('production canonical settings reject localhost and non-HTTPS', () => {
     [],
   );
 });
-test('basic ball and roller life regression; invalid input rejected', () => {
+void test('basic ball and roller life regression; invalid input rejected', () => {
   assert.equal(basicLife(10, 1, 1000, false).L10, 1000);
   assert.ok(
     Math.abs(basicLife(10, 1, 1000, false).hours - 16666.6666667) < 0.001,
@@ -101,7 +101,7 @@ test('basic ball and roller life regression; invalid input rejected', () => {
   assert.throws(() => basicLife(10, 0, 1000, false));
   assert.throws(() => basicLife(10, 1, 0, false));
 });
-test('family restrictions prevent misleading outputs', () => {
+void test('family restrictions prevent misleading outputs', () => {
   const nu = bearingProducts.find((p) => p.schematicType === 'cylindrical')!;
   assert.throws(() => calculate(nu, 2, 1, 1500));
   const thrust = bearingProducts.find((p) => p.schematicType === 'thrust')!;
@@ -123,7 +123,7 @@ test('family restrictions prevent misleading outputs', () => {
   assert.equal(calculate(skf, 2, 0, 14000).overspeed, false);
   assert.equal(calculate(skf, 2, 0, 14001).overspeed, true);
 });
-test('unauthorized API, CSRF and malformed payload defenses', async () => {
+void test('unauthorized API, CSRF and malformed payload defenses', async () => {
   assert.equal(
     (await req('/products', 'POST', bearingProducts[0], false)).r.status,
     401,
@@ -151,7 +151,7 @@ test('unauthorized API, CSRF and malformed payload defenses', async () => {
     400,
   );
 });
-test('secure provisioning, session issuance, CRUD, archive, restore and role enforcement', async () => {
+void test('secure provisioning, session issuance, CRUD, archive, restore and role enforcement', async () => {
   const setup = await req(
     '/auth/setup',
     'POST',
@@ -282,7 +282,7 @@ void test('catalog bulk edits and reviewed imports require auth and apply atomic
     database.putProduct(original); database.db.prepare('DELETE FROM products WHERE id=?').run(imported.id);
   }
 });
-test('inquiry persistence, status changes and upload validation', async () => {
+void test('inquiry persistence, status changes and upload validation', async () => {
   const invalid = await req(
     '/inquiries',
     'POST',
@@ -325,7 +325,7 @@ test('inquiry persistence, status changes and upload validation', async () => {
     400,
   );
 });
-test('backup omits secrets, validates restore, snapshots and transactions roll back', async () => {
+void test('backup omits secrets, validates restore, snapshots and transactions roll back', async () => {
   const backup = (await req('/system/backup')).b;
   assert.equal(backup.products.length, 110);
   const text = JSON.stringify(backup);
@@ -361,7 +361,7 @@ test('backup omits secrets, validates restore, snapshots and transactions roll b
   );
   assert.equal(database.allProducts().length, 110);
 });
-test('SEO admin settings preserve overrides, validate fields and enrich new product metadata', async () => {
+void test('SEO admin settings preserve overrides, validate fields and enrich new product metadata', async () => {
   const original = (await req('/seo')).b.data;
   const edited = structuredClone(original);
   edited.pages.catalog.titleEn = 'Owner catalog SEO title';
@@ -383,7 +383,7 @@ test('SEO admin settings preserve overrides, validate fields and enrich new prod
   database.putProduct(product);
 });
 
-test('password change revokes all sessions, login and logout revoke cookies', async () => {
+void test('password change revokes all sessions, login and logout revoke cookies', async () => {
   const changed = await req('/auth/change-password', 'POST', {
     currentPassword: 'test-only-strong-passphrase',
     newPassword: 'second-test-only-strong-passphrase',
@@ -409,7 +409,7 @@ test('password change revokes all sessions, login and logout revoke cookies', as
   assert.equal((await req('/system/backup')).r.status, 401);
 });
 
-test('website editor persists content, rejects unsafe layout/media and preserves legacy backups', async () => {
+void test('website editor persists content, rejects unsafe layout/media and preserves legacy backups', async () => {
   const login = await req(
     '/auth/login',
     'POST',
@@ -510,7 +510,7 @@ test('website editor persists content, rejects unsafe layout/media and preserves
   await req('/content', 'PUT', original);
 });
 
-test('local preview forwards same-origin writes and rejects foreign origins', async () => {
+void test('local preview forwards same-origin writes and rejects foreign origins', async () => {
   const { createServer } = await import('vite');
   const preview = await createServer({
     configFile: path.resolve('vite.vps.config.ts'),

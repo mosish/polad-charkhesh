@@ -6,7 +6,7 @@ import {
   bearingScrollProgress,
   bearingScrollState,
 } from '../lib/bearing-scroll';
-test('scroll assembly opens progressively and reverses without exceeding model bounds', () => {
+void test('scroll assembly opens progressively and reverses without exceeding model bounds', () => {
   assert.equal(bearingScrollState(0).phase, 'assembled');
   assert.equal(bearingScrollState(0.5).phase, 'opening');
   assert.equal(bearingScrollState(1).phase, 'components');
@@ -25,7 +25,7 @@ test('scroll assembly opens progressively and reverses without exceeding model b
   assert.equal(bearingScrollState(1).recession, 1);
   assert.equal(bearingScrollState(Number.NaN).recession, 0);
 });
-test('pinned progress follows available document travel, never viewport scroll locking', () => {
+void test('pinned progress follows available document travel, never viewport scroll locking', () => {
   assert.equal(bearingScrollProgress(90, 1400, 750), 0);
   assert.equal(bearingScrollProgress(-235, 1400, 750), 0.5);
   assert.equal(bearingScrollProgress(-560, 1400, 750), 1);
@@ -34,7 +34,7 @@ test('pinned progress follows available document travel, never viewport scroll l
   assert.equal(bearingScrollProgress(0, 700, 750), 0);
 });
 
-test('closing assembly finishes at the page end and reverses on upward scroll',()=>{
+void test('closing assembly finishes at the page end and reverses on upward scroll',()=>{
  assert.equal(bearingReturnProgress(1000,480,1000),0);
  assert.equal(bearingReturnProgress(760,480,1000),.5);
  assert.equal(bearingReturnProgress(520,480,1000),1);
@@ -43,7 +43,7 @@ test('closing assembly finishes at the page end and reverses on upward scroll',(
  assert.equal(bearingReturnProgress(0,480,0),0);
 });
 
-test('continuous background opens across the page and closes at both ends',()=>{
+void test('continuous background opens across the page and closes at both ends',()=>{
  assert.equal(continuousBearingState(0).assembly,0);
  assert.equal(continuousBearingState(.5).assembly,1);
  assert.equal(continuousBearingState(1).assembly,0);

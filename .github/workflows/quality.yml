@@ -1,0 +1,58 @@
+name: Source quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Tests, types and isolated production smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.21.0'
+      - name: Install package manager
+        run: npm install --global pnpm@11.25.0
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript
+        run: pnpm typecheck
+      - name: Regression tests (disposable databases)
+        run: pnpm test
+      - name: Production build
+        run: pnpm build
+      - name: Production smoke (disposable database and uploads)
+        run: pnpm smoke:production
+      # Existing lint debt is reported explicitly, not declared a clean release gate.
+      # Remove continue-on-error once the documented backlog reaches zero.
+      - name: Repository lint inventory (advisory)
+        id: lint
+        if: always()
+        continue-on-error: true
+        run: pnpm lint
+      - name: Explain outstanding release gates
+        if: always()
+        env:
+          LINT_OUTCOME: ${{ steps.lint.outcome }}
+        run: |
+          echo '## Release readiness' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This workflow tests source code; it does not deploy or approve a release.' >> "$GITHUB_STEP_SUMMARY"
+          echo "Repository lint outcome: $LINT_OUTCOME. Lint is advisory until the documented backlog is cleared." >> "$GITHUB_STEP_SUMMARY"
+          echo 'Manufacturer data/media review, full browser/accessibility/security audit, and host/domain/backup verification remain separate launch gates.' >> "$GITHUB_STEP_SUMMARY"
+          if [ "$LINT_OUTCOME" != 'success' ]; then
+            echo '::warning::Repository lint is not clean. See the lint step and docs/QUALITY_PHASE_2026-10-13.md; launch remains blocked.'
+          fi

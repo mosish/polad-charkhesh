@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
-test('hosting probe recovers committed WAL, rechecks persistence and detects modified uploads without touching existing data', () => {
+void test('hosting probe recovers committed WAL, rechecks persistence and detects modified uploads without touching existing data', () => {
   const root = mkdtempSync(path.join(tmpdir(), 'polad-hosting-test-'));
   const run = (...args: string[]) => spawnSync(process.execPath, ['scripts/hosting-check.mjs', ...args], { encoding: 'utf8', timeout: 30000 });
   try {

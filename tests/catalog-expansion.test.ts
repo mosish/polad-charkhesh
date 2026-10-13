@@ -7,7 +7,7 @@ import path from 'node:path';
 import { bearingProducts } from '../domain/catalog';
 import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
 
-test('SKF expansion preserves an existing admin-edited catalog and runs once', async () => {
+void test('SKF expansion preserves an existing admin-edited catalog and runs once', async () => {
   const filename = path.join(mkdtempSync(path.join(tmpdir(), 'polad-skf-')), 'catalog.sqlite');
   const original = { ...bearingProducts[0], descriptionEn: 'Admin-edited description' };
   const prior = new DatabaseSync(filename);
