@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { bearingProducts } from '../domain/catalog';
-import { searchProducts, fitRange } from '../lib/showroom';
+import { searchProducts, fitRange, dimensionOptions, emptyDimensions } from '../lib/showroom';
 import { basicLife } from '../lib/engineering';
 void test('showroom supports Persian digits, dimension triplets, combined filters and archived exclusions', () => {
   const p = bearingProducts[0];
@@ -26,6 +26,34 @@ void test('showroom supports Persian digits, dimension triplets, combined filter
     searchProducts([p], '', 'all', '', '', String(p.B + 1)).length,
     0,
   );
+});
+void test('dimension choices retain sibling sizes and respect the other filters', () => {
+  const base = bearingProducts[0];
+  const records = [
+    { ...base, id: 'a', code: 'TEST-1', d: 20, D: 47, B: 14 },
+    { ...base, id: 'b', code: 'TEST-2', d: 25, D: 47, B: 14 },
+    { ...base, id: 'c', code: 'TEST-3', d: 20, D: 52, B: 14 },
+    { ...base, id: 'd', code: 'TEST-4', d: 20, D: 47, B: 16 },
+    { ...base, id: 'archive', code: 'TEST-5', d: 30, D: 47, B: 14, isArchived: true },
+    { ...base, id: 'other', code: 'OTHER', d: 10, D: 47, B: 14 },
+    { ...base, id: 'family', code: 'TEST-6', category: 'roller' as const, d: 15, D: 47, B: 14 },
+  ];
+  const before = JSON.stringify(records);
+  assert.deepEqual(dimensionOptions(records, 'TEST', base.category, { d: '20', D: '47', B: '14' }), {
+    d: [20, 25], D: [47, 52], B: [14, 16],
+  });
+  assert.deepEqual(searchProducts(records, 'TEST', base.category, '۲۰', '۴۷', '۱۴').map(p => p.id), ['a']);
+  assert.equal(JSON.stringify(records), before, 'facets must not rewrite catalog values');
+});
+void test('size choices omit unknown values, deduplicate, sort numerically and recover from no matches', () => {
+  const base = bearingProducts[0];
+  const records = [20, 5, 20, 100, 0].map((d, i) => ({ ...base, id: String(i), d }));
+  assert.deepEqual(dimensionOptions(records, '', 'all', emptyDimensions()).d, [5, 20, 100]);
+  const impossible = { d: '999', D: '', B: '' };
+  assert.equal(searchProducts(records, '', 'all', impossible.d).length, 0);
+  const choices = dimensionOptions(records, '', 'all', impossible);
+  assert.deepEqual(choices.d, [5, 20, 100], 'the selected dimension still offers alternatives');
+  assert.deepEqual(choices.D, [], 'other dimensions obey the conflicting selection');
 });
 void test('fit ranges use worst-case mating limits and reject invalid intervals', () => {
   assert.equal(fitRange(20, 20.01, 19.98, 19.99).kind, 'clearance');

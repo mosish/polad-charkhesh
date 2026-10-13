@@ -5,7 +5,7 @@ import { BearingViewer } from './Viewer';
 import Copy from './Copy';
 import { mediaFor } from '../../lib/media';
 import { relatedComponents } from '../../lib/catalog-quality';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { ArrowRight, Box, Download, ArrowUpRight, Phone } from 'lucide-react';
 import type { BearingProduct } from '../../domain/product';
 import type { CompanyContactInfo } from '../../domain/company';
@@ -76,7 +76,7 @@ export function ProductImage({ p, priority = false }: { p: BearingProduct; prior
       />
       {media.reference && (
         <small className="reference-label">
-          <Copy text="Family reference · illustration only" />
+          {t('Family reference · illustration only', 'مرجع خانواده · تصویر نمایشی')}
         </small>
       )}
     </>
@@ -99,29 +99,29 @@ export function ProductCard({
     >
       <div className="product-photo">
         <ProductImage p={p} />
-        <span>{typeLabel(p.schematicType, t)}</span>
         <ArrowUpRight size={18} />
       </div>
       <div className="product-info">
+        <span className="product-card-family">{typeLabel(p.schematicType, t)}</span>
         <code dir="ltr">{p.code}</code>
         <h3>{p[fa ? 'nameFa' : 'nameEn']}</h3>
-        <p className="dimension-row" dir="ltr">
+        {p.category === 'lubricant' ? <p className="dimension-row"><span>{t('Weight', 'وزن')} <b dir="ltr">{p.weightKg} kg</b></span></p> : <p className="dimension-row" dir="ltr">
           <span>
             <Copy text="d" />
-            <b>{p.d}</b>
+            <b>{p.d > 0 ? p.d : '—'}</b>
           </span>
           <span>
             <Copy text="D" />
-            <b>{p.D}</b>
+            <b>{p.D > 0 ? p.D : '—'}</b>
           </span>
           <span>
             <Copy text="B" />
-            <b>{p.B}</b>
+            <b>{p.B > 0 ? p.B : '—'}</b>
           </span>
           <small>
             <Copy text="mm" />
           </small>
-        </p>
+        </p>}
         <span className="card-cta">
           {t('View technical specifications', 'مشاهده مشخصات فنی')}
           <ArrowRight size={16} />
@@ -331,13 +331,20 @@ export function QuickView({
   );
 }
 /** Compact, complete catalog view that stays over the showroom. */
-export function ShowroomProductPanel({ p, onClose }: { p: BearingProduct; onClose: () => void }) {
-  const [selected, setSelected] = useState(p);
-  useEffect(() => setSelected(p), [p.id]);
-  return <ProductPanelBody key={selected.id} p={selected} onClose={onClose} onSelect={setSelected} />;
+export function ShowroomProductPanel({ p, onClose, onSelect }: { p: BearingProduct; onClose: () => void; onSelect: (p: BearingProduct) => void }) {
+  const { t } = usePlatform();
+  return <Dialog title={t('Product specifications', 'مشخصات فنی محصول') + ' · \u2066' + p.code + '\u2069'} onClose={onClose} className="product-float">
+    <ProductPanelBody key={p.id} p={p} onSelect={onSelect} />
+  </Dialog>;
 }
-function ProductPanelBody({ p, onClose, onSelect }: { p: BearingProduct; onClose: () => void; onSelect: (p: BearingProduct) => void }) {
+function ProductPanelBody({ p, onSelect }: { p: BearingProduct; onSelect: (p: BearingProduct) => void }) {
   const { fa, t, company, content, products } = usePlatform();
+  const [section, setSection] = useState<'specifications' | 'documents' | 'related'>('specifications');
+  const identity = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    // Keep the dialog and its original return-focus target while changing products.
+    if (identity.current?.closest('dialog')?.open) identity.current.focus({ preventScroll: true });
+  }, []);
   const related = relatedComponents(p, products);
   const media = mediaFor(p, content);
   const sources = p.technicalSources?.filter(source => source.url) || [];
@@ -383,54 +390,66 @@ function ProductPanelBody({ p, onClose, onSelect }: { p: BearingProduct; onClose
     ...(p.contactAngle ? [[t('Contact angle', 'زاویه تماس'), p.contactAngle]] : []),
   ];
   return (
-    <Dialog title={t('Product specifications', 'مشخصات فنی محصول') + ' · \u2066' + p.code + '\u2069'} onClose={onClose} className="product-float">
+    <>
       <div className="product-panel-layout">
         <div className="product-panel-gallery">
+          <fieldset className="product-panel-view-switch" aria-label={t('Product visualization', 'نمای محصول')}>
+            <button type="button" aria-pressed={stageView === 'image'} disabled={!photos.length} onClick={() => setStageView('image')}>{t('Image', 'تصویر')}</button>
+            <button type="button" aria-pressed={stageView === 'drawing'} onClick={() => setStageView('drawing')}>{t('Drawing', 'نقشه')}</button>
+            <button type="button" aria-pressed={stageView === 'exploded'} disabled={!canExplode} title={!canExplode ? t('No 3D model available for this component.', 'مدل سه‌بعدی برای این قطعه موجود نیست.') : undefined} onClick={() => setStageView('exploded')}><Box size={15} />{t('Exploded view', 'نمای انفجاری')}</button>
+          </fieldset>
           <div className="product-panel-stage">
             {stageView === 'exploded' ? <Suspense fallback={<div className="hero-model-loading">{t('Preparing exploded view…', 'آماده‌سازی نمای انفجاری…')}</div>}><BearingScene family={geometry.roller ? 'roller' : 'ball'} product={p} paused exploded reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${t('Illustrative exploded view', 'نمای انفجاری نمایشی')}`} fallback={<div className="hero-model-loading">{t('3D view unavailable on this device', 'نمای سه‌بعدی در این دستگاه در دسترس نیست')}</div>} /></Suspense> : stageView === 'drawing' || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={referenceImage ? t('Bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
             {stageView === 'exploded' && <div className="product-panel-parts-key" aria-label={t('Bearing parts', 'اجزای بیرینگ')}>{partLabels.map((name, index) => <span key={name}><b>{index + 1}</b>{name}</span>)}</div>}
             {stageView === 'image' && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
           </div>
-          <div className="product-panel-thumbnails" aria-label={t('Product image gallery', 'گالری تصاویر محصول')}>
+          {photos.length > 1 && <div className="product-panel-thumbnails" aria-label={t('Product image gallery', 'گالری تصاویر محصول')}>
             {photos.map((url, index) => <button type="button" key={url} className={stageView === 'image' && activeImage === url ? 'active' : ''} aria-pressed={stageView === 'image' && activeImage === url} aria-label={t('View image', 'نمایش تصویر') + ' ' + (index + 1)} onClick={() => { setActiveImage(url); setStageView('image'); setImageFailed(false); }}><img src={url} alt="" loading="lazy" decoding="async" /></button>)}
-            <button type="button" className={stageView === 'drawing' ? 'active' : ''} aria-pressed={stageView === 'drawing'} onClick={() => setStageView('drawing')}>{t('Drawing', 'نقشه')}</button>
-            <button type="button" className={'product-panel-exploded-control ' + (stageView === 'exploded' ? 'active' : '')} aria-pressed={stageView === 'exploded'} disabled={!canExplode} title={!canExplode ? t('No rolling-element 3D model is available for this component.', 'مدل سه‌بعدی اجزای غلتشی برای این قطعه موجود نیست.') : undefined} onClick={() => setStageView('exploded')}><Box size={16} />{t('Exploded view', 'نمای انفجاری')}</button>
-          </div>
+          </div>}
           {!canExplode && <small className="product-panel-media-note">{t('An exploded 3D model is not available for this component; use its drawing for dimensions.', 'مدل سه‌بعدی انفجاری برای این قطعه موجود نیست؛ برای ابعاد از نقشه استفاده کنید.')}</small>}
           <small className="product-panel-media-note">{stageView === 'exploded' ? t('Illustrative geometry based on catalog dimensions; internal parts are estimates, not manufacturer CAD.', 'هندسه نمایشی بر اساس ابعاد کاتالوگ است؛ اجزای داخلی تخمینی‌اند و مدل CAD سازنده نیستند.') : stageView === 'image' && !imageFailed && referenceImage ? t('Family illustration; confirm the exact product with its manufacturer.', 'تصویر خانواده محصول است؛ کد دقیق را با سازنده بررسی کنید.') : t('Image and dimensional drawing from the current catalog record.', 'تصویر و نقشه ابعادی از رکورد فعلی کاتالوگ.')}</small>
+          <div className="product-panel-contact"><ProductCallOptions p={p} company={company} /></div>
         </div>
         <div className="product-panel-details">
           <div className="product-panel-identity">
             <span className="section-label">{typeLabel(p.schematicType, t)}</span>
-            <h2 dir="ltr">{p.code}</h2>
+            <h2 ref={identity} tabIndex={-1} dir="ltr">{p.code}</h2>
             <h3>{p[fa ? 'nameFa' : 'nameEn']}</h3>
             <p>{p[fa ? 'descriptionFa' : 'descriptionEn']}</p>
           </div>
+          <dl className="product-panel-dimensions">
+            {(p.category === 'lubricant' ? [[t('Weight', 'وزن'), `${p.weightKg} kg`]] : specifications.slice(0, 3)).map(([name, value]) => <div key={name}><dt>{name}</dt><dd dir="ltr">{value}</dd></div>)}
+          </dl>
+          <fieldset className="product-panel-section-switch" aria-label={t('Product information', 'اطلاعات محصول')}>
+            {(['specifications', 'documents', 'related'] as const).map((key, index) => <button type="button" key={key} aria-pressed={section === key} onClick={() => setSection(key)}>{[t('Specifications', 'مشخصات'), t('Documents', 'اسناد'), t('Related', 'مرتبط')][index]}{key === 'related' && <small>{related.length}</small>}</button>)}
+          </fieldset>
+          {section === 'specifications' && <section className="product-panel-section" aria-label={t('Technical specifications', 'مشخصات فنی')}>
           <dl className="product-panel-specs">
-            {specifications.map(([name, value]) => <div key={name}><dt>{name}</dt><dd dir="auto">{value}</dd></div>)}
+            {specifications.slice(3).map(([name, value]) => <div key={name}><dt>{name}</dt><dd dir="auto">{value}</dd></div>)}
           </dl>
           <div className="product-panel-context">
             <span><b>{t('Applications', 'کاربردها')}</b> {p[fa ? 'applicationsFa' : 'applicationsEn'].slice(0, 3).join(' · ') || '—'}</span>
             <span><b>{t('References', 'مراجع')}</b> {p.brands.join(' · ') || '—'}</span>
           </div>
-        </div>
-      </div>
-      <div className="product-panel-resources">
-        <h3>{t('Documents & contact', 'اسناد و تماس')}</h3>
+          </section>}
+      {section === 'documents' && <section className="product-panel-section product-panel-resources">
+        <h3>{t('Documents & sources', 'اسناد و منابع')}</h3>
+        <p>{t('The company datasheet summarizes this catalog record. Original manufacturer documents are identified separately.', 'دیتاشیت شرکت خلاصه اطلاعات این رکورد است. اسناد اصلی سازنده به‌صورت جداگانه مشخص شده‌اند.')}</p>
       <div className="product-panel-actions">
-        <ProductCallOptions p={p} company={company} />
         {sources.map((source, index) => <a key={index} className="button" href={source.url} target="_blank" rel="noreferrer" title={source.reference}>{source.manufacturer} · {t('Source document', 'سند مرجع')} <ArrowUpRight size={16} /></a>)}
         <button className="button" disabled={downloading} onClick={async () => { setDownloading(true); setDownloadError(''); try { await datasheet(p, company, content); } catch (error) { setDownloadError(error instanceof Error ? error.message : String(error)); } finally { setDownloading(false); } }}><Download size={16} />{t(downloading ? 'Preparing PDF…' : 'Company datasheet', downloading ? 'آماده‌سازی PDF…' : 'دیتاشیت شرکت')}</button>
         {p.pdfUrl ? <a className="button" href={p.pdfUrl} target="_blank" rel="noreferrer">{t('Attached manufacturer PDF', 'PDF پیوست سازنده')} <ArrowUpRight size={16} /></a> : <span className="product-panel-document-note">{t('No manufacturer PDF attached yet.', 'هنوز PDF سازنده پیوست نشده است.')}</span>}
       </div>
       {downloadError && <p role="alert" className="error">{downloadError}</p>}
-      </div>
-      {!!related.length && <section className="product-panel-related">
+      </section>}
+      {section === 'related' && <section className="product-panel-section product-panel-related">
         <h3>{t('Related components', 'قطعات مرتبط')}</h3>
         <p>{t('Similar catalog entries for discovery; verify suitability before substitution.', 'رکوردهای مشابه برای بررسی؛ پیش از جایگزینی، تناسب فنی را بررسی کنید.')}</p>
-        <div>{related.map(item => <button key={item.id} onClick={() => onSelect(item)}><code dir="ltr">{item.code}</code><span dir="ltr">{item.d} × {item.D} × {item.B} mm</span><ArrowRight size={14} /></button>)}</div>
+        {related.length ? <div>{related.map(item => <button key={item.id} onClick={() => onSelect(item)}><code dir="ltr">{item.code}</code><span>{item[fa ? 'nameFa' : 'nameEn']}</span><span dir="ltr">{item.d} × {item.D} × {item.B} mm</span><ArrowRight size={14} /></button>)}</div> : <p>{t('No related components in this catalog yet.', 'هنوز قطعه مرتبطی در کاتالوگ ثبت نشده است.')}</p>}
       </section>}
-    </Dialog>
+        </div>
+      </div>
+    </>
   );
 }
 export default function ProductPage() {

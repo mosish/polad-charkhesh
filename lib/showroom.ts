@@ -6,7 +6,23 @@ export const normalizeSearch = (value: string) =>
     .replace(/[٠-٩]/g, (c) => String(c.charCodeAt(0) - 1632))
     .toLowerCase()
     .replace(/[×*]/g, 'x')
-    .replace(/[\s/\-]/g, '');
+    .replace(/[\s/-]/g, '');
+export type DimensionKey = 'd' | 'D' | 'B';
+export type DimensionFilters = Record<DimensionKey, string>;
+export const emptyDimensions = (): DimensionFilters => ({ d: '', D: '', B: '' });
+
+/** Each dimension offers alternatives compatible with the other active filters. */
+export function dimensionOptions(
+  products: BearingProduct[], q: string, category: string, dimensions: DimensionFilters,
+): Record<DimensionKey, number[]> {
+  const options = (key: DimensionKey) => {
+    const values = { ...dimensions, [key]: '' };
+    return [...new Set(searchProducts(products, q, category, values.d, values.D, values.B)
+      .map(product => product[key]).filter(value => Number.isFinite(value) && value > 0))]
+      .sort((a, b) => a - b);
+  };
+  return { d: options('d'), D: options('D'), B: options('B') };
+}
 export function searchProducts(
   products: BearingProduct[],
   q: string,

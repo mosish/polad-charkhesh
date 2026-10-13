@@ -5,5 +5,6 @@ import './globals.css';
 import './platform.css';
 import './liquid-glass.css';
 import './seo.css';
+import './catalog-refinement.css';
 document.body.classList.add('liquid-glass');
 createRoot(document.getElementById('root')!).render(<Router />);

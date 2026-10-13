@@ -1,8 +1,8 @@
 import CategoryIcon from './CategoryIcon';
 import Breadcrumbs from './Breadcrumbs';
 import ManufacturerLibrary from './ManufacturerLibrary';
-import { searchProducts } from '../../lib/showroom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { searchProducts, dimensionOptions, emptyDimensions, normalizeSearch, type DimensionKey, type DimensionFilters } from '../../lib/showroom';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import {
   Search,
   Grid2X2,
@@ -10,11 +10,13 @@ import {
   ArrowUpRight,
   ChevronLeft,
   ChevronRight,
+  SlidersHorizontal,
+  X,
 } from 'lucide-react';
 import { usePlatform, DataState } from './Context';
 import { ProductCard, ShowroomProductPanel } from './Product';
 import type { BearingProduct } from '../../domain/product';
-export const categoryNames: any = {
+export const categoryNames: Record<string, readonly [string, string]> = {
   ball: ['Ball bearings', 'بلبرینگ'],
   roller: ['Tapered roller', 'رولبرینگ مخروطی'],
   spherical: ['Spherical roller', 'رولبرینگ بشکه‌ای'],
@@ -33,18 +35,30 @@ function columnsForViewport() {
 export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   const { products, t, loading, error } = usePlatform();
   const familyScroll = useRef<HTMLDivElement>(null);
+  const searchInput = useRef<HTMLInputElement>(null);
+  const sizeId = useId();
   const params = new URLSearchParams(location.search);
   const [q, setQ] = useState(params.get('q') || '');
   const [cat, setCat] = useState(params.get('category') || 'all');
+  const [dimensions, setDimensions] = useState<DimensionFilters>(() => ({
+    d: normalizeSearch(params.get('d') || ''), D: normalizeSearch(params.get('D') || ''), B: normalizeSearch(params.get('B') || ''),
+  }));
+  const [sizesOpen, setSizesOpen] = useState(() => ['d', 'D', 'B'].some(key => params.has(key)));
   const [columns, setColumns] = useState(columnsForViewport);
   const [table, setTable] = useState(false),
     [selected, setSelected] = useState(params.get('item') || ''),
     [visibleCount, setVisibleCount] = useState(columns * 6),
     [expanded, setExpanded] = useState(false);
   const results = useMemo(
-    () => searchProducts(products, q, cat),
-    [products, q, cat],
+    () => searchProducts(products, q, cat, dimensions.d, dimensions.D, dimensions.B),
+    [products, q, cat, dimensions],
   );
+  const sizes = useMemo(() => dimensionOptions(products, q, cat, dimensions), [products, q, cat, dimensions]);
+  const familyMatches = useMemo(() => searchProducts(products, q, 'all', dimensions.d, dimensions.D, dimensions.B), [products, q, dimensions]);
+  const activeSizes = (Object.keys(dimensions) as DimensionKey[]).filter(key => dimensions[key]);
+  const hasFilters = !!q || cat !== 'all' || activeSizes.length > 0;
+  const clearFilters = () => { setQ(''); setCat('all'); setDimensions(emptyDimensions()); };
+  const scrollFamilies = (left: number) => familyScroll.current?.scrollBy({ left, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   useEffect(() => {
     const update = () => setColumns(columnsForViewport());
     window.addEventListener('resize', update);
@@ -72,6 +86,8 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
               throw new Error('Query must be a short string.');
             setQ(input.query);
             setCat('all');
+            setDimensions(emptyDimensions());
+            setSelected('');
             return {
               products: searchProducts(products, input.query).map((p) => ({
                 code: p.code,
@@ -91,16 +107,16 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   useEffect(() => {
     const next = new URLSearchParams(location.search);
     for (const key of ['q', 'category', 'd', 'D', 'B', 'item']) next.delete(key);
-    for (const [key, value] of Object.entries({ q, category: cat === 'all' ? '' : cat, item: selected })) {
+    for (const [key, value] of Object.entries({ q, category: cat === 'all' ? '' : cat, ...dimensions, item: selected })) {
       if (value) next.set(key, value);
     }
     history.replaceState(null, '', location.pathname + (next.size ? '?' + next.toString() : '') + location.hash);
-  }, [q, cat, selected]);
-  useEffect(() => { setExpanded(false); setVisibleCount(columns * 6); }, [q, cat, columns]);
+  }, [q, cat, dimensions, selected]);
+  useEffect(() => { setExpanded(false); setVisibleCount(columns * 6); }, [q, cat, dimensions, columns]);
   const chooseProduct = (product: BearingProduct) => {
     setSelected(product.slug || product.id);
   };
-  const currentProduct = products.find((product) => product.slug === selected || product.id === selected);
+  const currentProduct = products.find((product) => !product.isArchived && (product.slug === selected || product.id === selected));
   const preview = !table && !expanded && results.length > columns * 2;
   const renderCount = table ? Math.max(12, expanded ? visibleCount : 12) : expanded ? visibleCount : columns * 3;
   const moreAvailable = preview || results.length > renderCount;
@@ -129,71 +145,52 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
           )}
         </p>
       </section>
-      <div className="section"><ManufacturerLibrary/></div>
+      <section className="catalog-finder" aria-label={t('Find a component', 'یافتن قطعه')}>
+        <label htmlFor={sizeId + '-search'}>{t('Search the catalog', 'جستجوی کاتالوگ')}</label>
+        <div className="catalog-finder-row">
+          <div className="search-field">
+            <Search size={20} aria-hidden="true" />
+            <input ref={searchInput} id={sizeId + '-search'} type="search" maxLength={200} value={q} onChange={event => setQ(event.target.value)} placeholder={t('Part code, dimensions or application', 'کد قطعه، ابعاد یا کاربرد')} />
+            {!!q && <button type="button" aria-label={t('Clear search', 'پاک کردن جستجو')} onClick={() => { setQ(''); searchInput.current?.focus(); }}><X size={16} /></button>}
+          </div>
+          <button type="button" className="catalog-size-toggle" aria-expanded={sizesOpen} aria-controls={sizeId} onClick={() => setSizesOpen(!sizesOpen)}><SlidersHorizontal size={17} />{t('Filter by size', 'فیلتر ابعاد')}{activeSizes.length > 0 && <span>{activeSizes.length}</span>}</button>
+        </div>
+        <div id={sizeId} className="catalog-sizes" hidden={!sizesOpen}>
+          {(['d', 'D', 'B'] as DimensionKey[]).map((key, index) => <label key={key}><span>{[t('Bore diameter', 'قطر داخلی'), t('Outside diameter', 'قطر خارجی'), t('Width', 'عرض')][index]} <b dir="ltr">{key} / mm</b></span>
+            <select value={dimensions[key]} onChange={event => setDimensions({ ...dimensions, [key]: event.target.value })}>
+              <option value="">{t('Any size', 'همه ابعاد')}</option>
+              {dimensions[key] && !sizes[key].includes(Number(dimensions[key])) && <option value={dimensions[key]}>{dimensions[key]} mm · {t('no matches', 'بدون نتیجه')}</option>}
+              {sizes[key].map(value => <option key={value} value={value}>{value} mm</option>)}
+            </select>
+          </label>)}
+          <p>{t('Available sizes follow your search and other filters.', 'ابعاد موجود بر اساس جستجو و سایر فیلترها نمایش داده می‌شوند.')}</p>
+        </div>
+        <div className="catalog-filter-summary">
+          {hasFilters ? <><div className="catalog-active-filters" aria-label={t('Active filters', 'فیلترهای فعال')}>
+            {!!q && <button type="button" onClick={() => setQ('')} aria-label={t('Remove search filter: ', 'حذف فیلتر جستجو: ') + q}><span>{q}</span><X size={13} /></button>}
+            {cat !== 'all' && <button type="button" onClick={() => setCat('all')} aria-label={t('Remove family filter', 'حذف فیلتر خانواده')}><span>{t(...(categoryNames[cat] || [cat, cat]))}</span><X size={13} /></button>}
+            {activeSizes.map(key => <button type="button" key={key} aria-label={t('Remove dimension filter: ', 'حذف فیلتر ابعاد: ') + key} onClick={() => setDimensions({ ...dimensions, [key]: '' })}><span dir="ltr">{key} {dimensions[key]} mm</span><X size={13} /></button>)}
+          </div><button type="button" className="catalog-clear" onClick={clearFilters}>{t('Clear all', 'پاک کردن همه')}</button></> : <p>{t('Start with a code, such as 6204, or dimensions: 20 × 47 × 14.', 'با کدی مثل 6204 یا ابعادی مانند 20 × 47 × 14 شروع کنید.')}</p>}
+        </div>
+      </section>
       <div className="family-bar">
-        <div className="family-bar-heading"><span className="section-label">{t('BEARING FAMILIES', 'خانواده بیرینگ')}</span><div className="family-bar-arrows"><button type="button" aria-label={t('Scroll families left', 'پیمایش خانواده‌ها به چپ')} onClick={() => familyScroll.current?.scrollBy({ left: -320, behavior: 'smooth' })}><ChevronLeft size={17} /></button><button type="button" aria-label={t('Scroll families right', 'پیمایش خانواده‌ها به راست')} onClick={() => familyScroll.current?.scrollBy({ left: 320, behavior: 'smooth' })}><ChevronRight size={17} /></button></div></div>
+        <div className="family-bar-heading"><span className="section-label">{t('BEARING FAMILIES', 'خانواده بیرینگ')}</span><div className="family-bar-arrows"><button type="button" aria-label={t('Scroll families left', 'پیمایش خانواده‌ها به چپ')} onClick={() => scrollFamilies(-320)}><ChevronLeft size={17} /></button><button type="button" aria-label={t('Scroll families right', 'پیمایش خانواده‌ها به راست')} onClick={() => scrollFamilies(320)}><ChevronRight size={17} /></button></div></div>
         <div ref={familyScroll} className="family-options" role="group" aria-label={t('Bearing families', 'خانواده‌های بیرینگ')}>
-          <button type="button" aria-pressed={cat === 'all'} className={cat === 'all' ? 'active' : ''} onClick={() => setCat('all')}><span className="category-tile-label">{t('All components', 'همه قطعات')}</span><small>{products.filter(p=>!p.isArchived).length}</small><CategoryIcon category="all"/></button>
-          {Object.entries(categoryNames).map(([key, names]: any) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}><span className="category-tile-label">{t(names[0], names[1])}</span><small>{products.filter((product) => !product.isArchived && product.category === key).length}</small><CategoryIcon category={key}/></button>)}
+          <button type="button" aria-pressed={cat === 'all'} className={cat === 'all' ? 'active' : ''} onClick={() => setCat('all')}><span className="category-tile-label">{t('All components', 'همه قطعات')}</span><small>{familyMatches.length}</small><CategoryIcon category="all"/></button>
+          {Object.entries(categoryNames).map(([key, names]) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}><span className="category-tile-label">{t(...names)}</span><small>{familyMatches.filter(product => product.category === key).length}</small><CategoryIcon category={key}/></button>)}
         </div>
       </div>
       <div className="catalog-layout">
         <div className="catalog-results">
-          <div className="catalog-toolbar">
-            <div className="search-field">
-              <Search size={20} />
-              <input
-                aria-label={t('Search catalog', 'جستجوی کاتالوگ')}
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder={t(
-                  'Code, dimensions or application',
-                  'کد، ابعاد یا کاربرد',
-                )}
-              />
-            </div>
-            <button
-              className={'icon-button ' + (!table ? 'active' : '')}
-              onClick={() => setTable(false)}
-              aria-label="Grid view"
-              aria-pressed={!table}
-            >
-              <Grid2X2 size={19} />
-            </button>
-            <button
-              className={'icon-button ' + (table ? 'active' : '')}
-              onClick={() => setTable(true)}
-              aria-label="Table view"
-              aria-pressed={table}
-            >
-              <List size={20} />
-            </button>
-          </div>
-          <div className="presets">
-            {t('APPLICATION', 'کاربرد')}{' '}
-            {['Pumps', 'Motors', 'Gearboxes'].map((x) => (
-              <button onClick={() => setQ(x)} key={x}>
-                {t(
-                  x,
-                  (
-                    {
-                      Pumps: 'پمپ',
-                      Motors: 'الکتروموتور',
-                      Gearboxes: 'گیربکس',
-                    } as any
-                  )[x],
-                )}
-              </button>
-            ))}
-          </div>
-          <div className="result-count" role="status">
-            {results.length} {t('components', 'قطعه')}
-            <span>
-              {t(
-                'Specifications before selection.',
-                'مشخصات فنی، پیش از انتخاب.',
-              )}
-            </span>
+          <div className="catalog-results-heading">
+            <output className="result-count" aria-live="polite">
+              <strong>{results.length} {t('components', 'قطعه')}</strong>
+              <span>{t('Showing', 'نمایش')} {Math.min(results.length, preview ? columns * 2 : renderCount)} {t('of', 'از')} {results.length}</span>
+            </output>
+            <fieldset className="catalog-view-controls" aria-label={t('Catalog display', 'نمایش کاتالوگ')}>
+              <button type="button" className={'icon-button ' + (!table ? 'active' : '')} onClick={() => setTable(false)} aria-label={t('Grid view', 'نمای شبکه‌ای')} aria-pressed={!table}><Grid2X2 size={18} /></button>
+              <button type="button" className={'icon-button ' + (table ? 'active' : '')} onClick={() => setTable(true)} aria-label={t('Table view', 'نمای جدولی')} aria-pressed={table}><List size={18} /></button>
+            </fieldset>
           </div>
           <DataState />
           {!loading &&
@@ -203,17 +200,18 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                 <h2>{t('No matching components', 'قطعه‌ای یافت نشد')}</h2>
                 <p>
                   {t(
-                    'Try a shorter code or another bearing family.',
-                    'کد کوتاه‌تر یا خانواده بیرینگ دیگری را امتحان کنید.',
+                    'Try a shorter code or clear the filters to explore other components.',
+                    'کد کوتاه‌تری وارد کنید یا برای بررسی سایر قطعات، فیلترها را پاک کنید.',
                   )}
                 </p>
+                <button type="button" className="button" onClick={clearFilters}>{t('Reset search & filters', 'بازنشانی جستجو و فیلترها')}</button>
               </div>
             ) : table ? (
               <div className="table-scroll">
                 <table>
                   <thead>
                     <tr>
-                      {[t('Code', 'کد'), t('Family', 'خانواده'), 'd', 'D', 'B', 'Cr kN', t('Details', 'جزئیات')].map(
+                      {[t('Code', 'کد'), t('Family', 'خانواده'), 'd / mm', 'D / mm', 'B / mm', 'Cr / kN', t('Details', 'جزئیات')].map(
                         (h, i) => (
                           <th key={i} scope="col">{h}</th>
                         ),
@@ -234,10 +232,10 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                             categoryNames[p.category]?.[1] || p.category,
                           )}
                         </td>
-                        <td>{p.d}</td>
-                        <td>{p.D}</td>
-                        <td>{p.B}</td>
-                        <td>{p.crKn}</td>
+                        <td>{p.d > 0 ? p.d : '—'}</td>
+                        <td>{p.D > 0 ? p.D : '—'}</td>
+                        <td>{p.B > 0 ? p.B : '—'}</td>
+                        <td>{p.crKn > 0 ? p.crKn : '—'}</td>
                         <td>
                           <button
                             onClick={() => chooseProduct(p)}
@@ -254,8 +252,8 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
             ) : (
               <div className={preview ? 'catalog-grid-preview' : ''}>
                 <div className="product-grid">
-                  {results.slice(0, renderCount).map((p) => (
-                    <div className="showroom-card" key={p.id}><ProductCard p={p} onSelect={chooseProduct} /></div>
+                  {results.slice(0, renderCount).map((p, index) => (
+                    <div className="showroom-card" key={p.id} inert={preview && index >= columns * 2} aria-hidden={preview && index >= columns * 2 ? true : undefined}><ProductCard p={p} onSelect={chooseProduct} /></div>
                   ))}
                 </div>
               </div>
@@ -263,7 +261,8 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
           {moreAvailable && <button className="button catalog-more" onClick={showMore}>{t('Show more components', 'نمایش قطعات بیشتر')} <span>↓</span></button>}
         </div>
       </div>
-      {currentProduct && <ShowroomProductPanel key={currentProduct.id} p={currentProduct} onClose={() => setSelected('')} />}
+      <div className="section catalog-library"><ManufacturerLibrary /></div>
+      {currentProduct && <ShowroomProductPanel p={currentProduct} onSelect={chooseProduct} onClose={() => setSelected('')} />}
     </Container>
   );
 }
