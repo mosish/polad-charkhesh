@@ -11,6 +11,7 @@ import {
 import { usePlatform } from './Context';
 import HomeSections from './HomeSections';
 import HeroBearing from './HeroBearing';
+import TypingHeadline from './TypingHeadline';
 import BearingReturn from './BearingReturn';
 import { publicHref } from '../../lib/public-links';
 import { useEffect } from 'react';
@@ -33,29 +34,7 @@ export default function Home() {
               <span />
               {content?.hero?.[fa ? 'badgeFa' : 'badgeEn']}
             </div>
-            <h1>
-              {content?.hero?.[fa ? 'titleFa' : 'titleEn']
-                ?.split('\n')
-                .map((line: string, i: number, lines: string[]) => (
-                  <span
-                    className={i === lines.length - 1 ? 'hero-last' : ''}
-                    key={i}
-                  >
-                    {line}
-                    <br />
-                  </span>
-                )) || (
-                <>
-                  <Copy text="Engineered for" />
-                  <br />
-                  <Copy text="what keeps" />
-                  <br />
-                  <em>
-                    <Copy text="industry moving." />
-                  </em>
-                </>
-              )}
-            </h1>
+            <TypingHeadline />
             <p>{content?.hero?.[fa ? 'descriptionFa' : 'descriptionEn']}</p>
             <div className="hero-actions">
               <a className="button primary" href={publicHref(content?.links?.heroPrimary)}>

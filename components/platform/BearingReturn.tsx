@@ -18,7 +18,7 @@ export default function BearingReturn(){
   return()=>{cancelAnimationFrame(frame);observer.disconnect();resize.disconnect();window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);document.removeEventListener('visibilitychange',schedule);};
  },[settings?.paused,setProgress]);
  if(!journey)return null;
- const progress=settings!.reduced?1:journey.returnProgress;
+ const progress=settings!.reduced||!settings!.automatic?1:journey.returnProgress;
  return <section ref={section} className="bearing-return" data-return-family={settings!.family} aria-label={t('Bearing assembly finale','پایان مسیر مونتاژ بیرینگ')}>
   <div><span className="section-label">{t('EVERY PART. ONE PURPOSE.','هر جزء، یک هدف.')}</span><h2>{t('Precision comes together.','دقت، یکپارچه می‌شود.')}</h2><p>{t('From individual components to one complete assembly.','از اجزای جداگانه تا یک مجموعه کامل.')}</p><small>{progress>.95?t('Assembly complete','مونتاژ کامل'):t('Scroll to bring the parts together','برای کنار هم آوردن اجزا اسکرول کنید')}</small></div>
   <div className="bearing-return-model">{loaded&&<Suspense fallback={null}><Scene family={settings!.family} paused={settings!.paused||!visible||!settings!.automatic} reducedMotion={settings!.reduced} scrollProgress={settings!.reduced||!settings!.automatic?undefined:1-progress} label={t('Selected bearing reassembly · illustrative model','مونتاژ دوباره بیرینگ انتخاب‌شده · مدل نمایشی')} fallback={<span>{t('Assembly illustration unavailable','مدل نمایشی در دسترس نیست')}</span>}/></Suspense>}</div>

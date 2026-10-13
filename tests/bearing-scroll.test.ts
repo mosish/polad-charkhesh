@@ -1,7 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  continuousBearingState,
   bearingReturnProgress,
   bearingScrollProgress,
   bearingBannerProgress,
@@ -53,14 +52,4 @@ void test('cinematic banner starts assembled and reverses when scrolling back to
   assert.equal(bearingBannerProgress(130, 1000), 0);
   assert.equal(bearingBannerProgress(0, 0), 0);
   assert.equal(bearingBannerProgress(NaN, 1000), 0);
-});
-
-void test('continuous background opens across the page and closes at both ends',()=>{
- assert.equal(continuousBearingState(0).assembly,0);
- assert.equal(continuousBearingState(.5).assembly,1);
- assert.equal(continuousBearingState(1).assembly,0);
- assert.equal(continuousBearingState(0).opacity,0);
- assert.equal(continuousBearingState(1).opacity,0);
- assert.equal(continuousBearingState(Number.NaN).opacity,0);
- for(let i=0;i<=100;i++){const state=continuousBearingState(i/100);assert.ok(state.opacity>=0&&state.opacity<=.1);assert.ok(state.assembly>=0&&state.assembly<=1);}
 });

@@ -331,10 +331,14 @@ export default function WebsiteEditor({
                   </summary>
                   <div className="editor-detail">
                     {Object.keys(value[section])
-                      .filter((k) => k.endsWith('En'))
+                      .filter((k) => k.endsWith('En') && k !== 'typingPhrasesEn')
                       .map((k) =>
                         pair([section], k.slice(0, -2), ({badge:t('Small heading','عنوان کوتاه'),title:t('Title','عنوان'),description:t('Description','توضیحات')} as any)[k.slice(0,-2)]||k.slice(0,-2), true),
                       )}
+                    {section === 'hero' && <>
+                      {pair(['hero'], 'typingPhrases', t('Additional typing phrases (one per line)', 'عبارت‌های تایپ‌شونده بیشتر (هر سطر یک عبارت)'), true)}
+                      <p>{t('The main title stays in the rotation. Add up to six phrases per language, or leave blank to use the default engineering phrases. Phrases appear in a shuffled order, with a 3.2-second reading pause.', 'عنوان اصلی در چرخه باقی می‌ماند. حداکثر شش عبارت برای هر زبان اضافه کنید؛ اگر خالی باشد، عبارت‌های پیش‌فرض مهندسی نمایش داده می‌شود. ترتیب عبارت‌ها تصادفی است و هر عبارت ۳٫۲ ثانیه برای خواندن مکث می‌کند.')}</p>
+                    </>}
                   </div>
                 </details>
               ))}

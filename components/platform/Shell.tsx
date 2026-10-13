@@ -1,5 +1,4 @@
 import {BearingJourneyProvider} from './BearingJourney';
-import ContinuousBearingBackground from './ContinuousBearingBackground';
 import ScrollReveal from './ScrollReveal';
 import { useEffect, useRef, useState } from 'react';
 import {
@@ -32,7 +31,6 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   }, [menuOpen]);
   return (
     <BearingJourneyProvider>
-      <ContinuousBearingBackground/>
       <a className="skip-link" href="#main">
         {t('Skip to content', 'رفتن به محتوا')}
       </a>
