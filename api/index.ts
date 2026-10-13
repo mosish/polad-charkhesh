@@ -161,7 +161,7 @@ if (!process.env.TEST_IMPORT)
     process.env.HOST || '127.0.0.1',
     () =>
       console.log(
-        'Polad Charkhesh API ready on http://127.0.0.1:' +
+        'Polad Charkhesh Arian Tech API ready on http://127.0.0.1:' +
           (process.env.PORT || 3001),
       ),
   );

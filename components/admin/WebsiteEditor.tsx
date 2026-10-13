@@ -235,7 +235,7 @@ export default function WebsiteEditor({
               {pair(['brand'], 'logoAlt', t('Logo description', 'توضیح نشان'))}
               {[
                 ['BEARINGS. ENGINEERING. CONTINUITY.', 'Top strip text', 'متن نوار بالا'],
-                ['POLAD CHARKHESH', 'Company name', 'نام شرکت'],
+                ['POLAD CHARKHESH ARIAN TECH', 'Company name', 'نام شرکت'],
                 ['INDUSTRIAL ENGINEERING', 'Company subtitle', 'زیرعنوان شرکت'],
                 ['Let’s talk engineering', 'Contact button label', 'عنوان دکمه تماس'],
               ].map(([original, en, f]) => (

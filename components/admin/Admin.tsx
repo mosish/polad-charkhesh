@@ -142,9 +142,9 @@ export default function Admin() {
             src={content?.brand?.logoUrl || '/brand/logo.png'}
             width={560}
             height={575}
-            alt={t('Polad Charkhesh company logo', 'نشان شرکت پولاد چرخش')}
+            alt={t('Polad Charkhesh Arian Tech company logo', 'نشان شرکت پولاد چرخش آرین تک')}
           />
-          <div className="section-label">POLAD CHARKHESH / ADMINISTRATION</div>
+          <div className="section-label">POLAD CHARKHESH ARIAN TECH / ADMINISTRATION</div>
           <h1>
             {t('Precision behind\nthe platform.', 'مدیریت دقیق\nسامانه صنعتی.')}
           </h1>

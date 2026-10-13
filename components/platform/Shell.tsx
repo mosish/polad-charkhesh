@@ -41,7 +41,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             'تأمین تخصصی بیرینگ و قطعات صنعتی',
           )}
         </span>
-        <span>{company?.landlinePhoneDisplayEn || 'POLAD CHARKHESH'}</span>
+        <span>{company?.landlinePhoneDisplayEn || 'POLAD CHARKHESH ARIAN TECH'}</span>
       </div>
       <header ref={header} className={'navigation' + (menuOpen ? ' menu-open' : '')}>
         <a href="/" className="brand">
@@ -52,11 +52,11 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             height={575}
             alt={
               content?.brand?.[fa ? 'logoAltFa' : 'logoAltEn'] ||
-              t('Polad Charkhesh company logo', 'نشان شرکت پولاد چرخش')
+              t('Polad Charkhesh Arian Tech company logo', 'نشان شرکت پولاد چرخش آرین تک')
             }
           />
           <span>
-            {t('POLAD CHARKHESH', 'پولاد چرخش')}
+            {t('POLAD CHARKHESH ARIAN TECH', 'پولاد چرخش آرین تک')}
             <small>{t('INDUSTRIAL ENGINEERING', 'مهندسی و تأمین صنعتی')}</small>
           </span>
         </a>
@@ -92,10 +92,10 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             height={575}
             alt={
               content?.brand?.[fa ? 'logoAltFa' : 'logoAltEn'] ||
-              t('Polad Charkhesh company logo', 'نشان شرکت پولاد چرخش')
+              t('Polad Charkhesh Arian Tech company logo', 'نشان شرکت پولاد چرخش آرین تک')
             }
           />
-          <span>{t('POLAD CHARKHESH', 'پولاد چرخش')}</span>
+          <span>{t('POLAD CHARKHESH ARIAN TECH', 'پولاد چرخش آرین تک')}</span>
         </a>
         <span>{content?.footer?.[fa ? 'descriptionFa' : 'descriptionEn']}</span>
         <a href="/asset-credits.html">{t('Image credits', 'منابع تصاویر')}</a>

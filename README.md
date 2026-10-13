@@ -1,4 +1,4 @@
-# Polad Charkhesh — پولاد چرخش
+# Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
 > **Project status:** Integration and launch preparation; not yet production ready
 >
@@ -6,11 +6,11 @@
 >
 > **Last status review:** 2026-10-13
 
-Polad Charkhesh is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
+Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
 This is **not an online shop**. There are no prices, carts, checkout, payments, or Buy Now flows. The intended visitor journey is:
 
-**Find a product → Review its specifications → Explore engineering guidance → Read its documents → Contact Polad Charkhesh**
+**Find a product → Review its specifications → Explore engineering guidance → Read its documents → Contact Polad Charkhesh Arian Tech**
 
 ---
 
@@ -42,7 +42,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **51 tests**. TypeScript, production build, JavaScript size budgets and the isolated production smoke check passed on 2026-10-13. The published-content SEO audit covers **110 products, 113 routes and 226 language variants** with zero automated findings. Targeted browser checks verified the new breadcrumbs, branded 404, preserved bearing animation and mobile Persian exploded product view, in addition to the earlier admin failure/recovery and catalog tests. These checks do not replace the final browser, accessibility, security or product-data review. See the [quality phase report](docs/QUALITY_PHASE_2026-10-13.md) and [SEO checklist](docs/SEO_PREDEPLOY_CHECKLIST.md) for scope and remaining gates.
+The last full automated suite passed **53 tests**. TypeScript, production build, JavaScript size budgets and the isolated production smoke check passed on 2026-10-13. The published-content SEO audit covers **110 products, 113 routes and 226 language variants** with zero automated findings. Targeted browser checks verified the new breadcrumbs, branded 404, preserved bearing animation and mobile Persian exploded product view, in addition to the earlier admin failure/recovery and catalog tests. These checks do not replace the final browser, accessibility, security or product-data review. See the [quality phase report](docs/QUALITY_PHASE_2026-10-13.md) and [SEO checklist](docs/SEO_PREDEPLOY_CHECKLIST.md) for scope and remaining gates.
 
 ## Public site layout
 
@@ -97,9 +97,9 @@ The current Node/SQLite application is prepared for a VPS. It is not a Cloudflar
 
 Products are engineering catalog entries, not retail merchandise. A product may include designation, family, manufacturer reference, dimensions, load/speed ratings, applications, source notes, gallery images, and documents.
 
-The 3D views use catalog dimensions and vary rolling-element types, but raceways, cages, and internal details are illustrative estimates rather than manufacturer CAD. The generated PDFs are Polad Charkhesh summaries of imported records, **not manufacturer-issued documents**. Family reference images are labeled and are not exact-SKU photographs. Basic bearing-life and fit results are guidance, not a substitute for manufacturer selection or review of operating conditions. See [engineering calculations](docs/ENGINEERING_CALCULATIONS.md).
+The 3D views use catalog dimensions and vary rolling-element types, but raceways, cages, and internal details are illustrative estimates rather than manufacturer CAD. The generated PDFs are Polad Charkhesh Arian Tech summaries of imported records, **not manufacturer-issued documents**. Family reference images are labeled and are not exact-SKU photographs. Basic bearing-life and fit results are guidance, not a substitute for manufacturer selection or review of operating conditions. See [engineering calculations](docs/ENGINEERING_CALCULATIONS.md).
 
-The 42 new SKF entries are transcribed from the [official SKF sealed single-row deep-groove table, section 1.2](https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf). The table reports **reference** and **limiting** speed, which the site displays under those names rather than treating them as grease/oil-specific ratings. Blank cage, clearance, and application fields remain blank where this source did not identify them. These records are catalog references, not a claim that Polad Charkhesh stocks each variant.
+The 42 new SKF entries are transcribed from the [official SKF sealed single-row deep-groove table, section 1.2](https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf). The table reports **reference** and **limiting** speed, which the site displays under those names rather than treating them as grease/oil-specific ratings. Blank cage, clearance, and application fields remain blank where this source did not identify them. These records are catalog references, not a claim that Polad Charkhesh Arian Tech stocks each variant.
 
 ## Design and language direction
 
@@ -263,3 +263,9 @@ The existing company headline, search, CMS photo option and bilingual content ar
 The follow-up replaces the previous banner controls: the Follow scroll button and family picker are removed. Assembled mode follows page scrolling automatically; Exploded view remains open until Assembled is selected. Both global bearing-background implementations are removed. Each page load randomly chooses a ball, roller, thrust, housed or track bearing, avoiding an immediate repeat when session storage is available.
 
 The main headline now types through a shuffled set of English or Persian engineering phrases with a 3.2-second reading pause. Admin → Website → Sections → Hero exposes additional phrases, one per line. The CMS main title remains the stable accessible/SEO heading. Reserved text space prevents typing layout shifts; a separate pause control, reduced-motion fallback and offscreen suspension are included. The latest checks passed 51 tests, typecheck, build, bundle budgets and production smoke. See the [behavior revision and checks](docs/HERO_INTERACTION_2026-10-13.md).
+
+### Company identity and engineering-note contrast — 2026-10-13
+
+The site now uses **Polad Charkhesh Arian Tech / پولاد چرخش آرین تک** in both languages, including public navigation, administration, generated datasheets, metadata and company schema. A one-time identity migration updates saved company/content/SEO records and product metadata while preserving technical data, contact details, URLs and owner-written content outside the old name. A verified private local backup was made before starting the updated preview.
+
+Dark-theme notes now explicitly pair light text with a dark navy background instead of inheriting the light-theme fill. The engineering disclaimer has a measured contrast above 11:1, clear padding, rounded corners and a direction-aware accent border. Browser checks covered English and Persian; 53 tests, typecheck, build, bundle budgets, production smoke and the 110-product SEO audit passed. No deployment was performed.

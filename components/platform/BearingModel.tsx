@@ -90,7 +90,7 @@ export default function BearingModel({ p, rpm, paused, playback, compact = false
         {[0,90,180,270].map(a=><g key={a} transform={`rotate(${a})`}><path d={`M${r+5} 0h${Math.max(2,innerTrack-r-10)}`} stroke="#344760" strokeWidth="1"/></g>)}
       </g>
       <text x="0" y={-R+gap*.12+3} textAnchor="middle" fill="#25354b" fontSize="7" letterSpacing="1">{p.code}</text>
-      <text x="0" y={R-gap*.1} textAnchor="middle" fill="#344860" fontSize="6" letterSpacing="2">POLAD CHARKHESH</text>
+      <text x="0" y={R-gap*.1} textAnchor="middle" fill="#344860" fontSize="6" letterSpacing="2">POLAD CHARKHESH ARIAN TECH</text>
     </g>
     {!compact && <text x="26" y="410" className="model-eyebrow">{p.d} × {p.D} × {p.B} mm · {p.schematicType}</text>}
   </svg>;

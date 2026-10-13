@@ -6,7 +6,8 @@ import crypto from 'node:crypto';
 import { bearingProducts } from '../domain/catalog';
 import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
 import { COMPANY_INFO } from '../domain/company';
-import { upgradeContent } from '../domain/site-content';
+import { upgradeContent, textKey } from '../domain/site-content';
+import { correctCompanyCopy, correctCompanyName } from '../domain/company-identity';
 if (
   process.env.NODE_ENV === 'production' &&
   (!process.env.DATABASE_PATH || !path.isAbsolute(process.env.DATABASE_PATH))
@@ -151,6 +152,35 @@ for (const [k, v] of Object.entries(defaults))
 const upgradedContent = upgradeContent(setting('content'));
 if (JSON.stringify(upgradedContent) !== JSON.stringify(setting('content')))
   putSetting('content', upgradedContent);
+
+// Owner-requested identity correction, once per database. Keep all unrelated data.
+if (!setting('company.identity-arian-tech-2026-10')) {
+  transaction(() => {
+    for (const kind of ['company', 'content', 'seo']) {
+      const value = correctCompanyCopy(setting(kind));
+      if (kind === 'company') {
+        value.nameEn = value.legalNameEn = COMPANY_INFO.nameEn;
+        value.nameFa = value.legalNameFa = COMPANY_INFO.nameFa;
+      }
+      if (kind === 'content' && value.copy) {
+        value.copy = Object.fromEntries(Object.values(value.copy).map((entry: any) => [textKey(entry.original), entry]));
+      }
+      putSetting(kind, value);
+    }
+    // Existing generated metadata carries the old brand; technical records stay intact.
+    for (const p of allProducts(true)) {
+      let changed = false;
+      for (const field of ['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa']) {
+        if (typeof p[field] !== 'string') continue;
+        const next = correctCompanyName(p[field]);
+        if (next !== p[field]) { p[field] = next; changed = true; }
+      }
+      if (changed) db.prepare('UPDATE products SET data=? WHERE id=?').run(JSON.stringify(p), p.id);
+    }
+    putSetting('company.identity-arian-tech-2026-10', { appliedAt: new Date().toISOString() });
+    audit('system', 'company.identity.corrected', COMPANY_INFO.nameEn);
+  });
+}
 
 // SEO-only enrichment: preserve every technical field and nonblank custom override.
 const upgradedSeo = upgradeSeo(setting('seo'));

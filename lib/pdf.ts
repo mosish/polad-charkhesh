@@ -20,7 +20,7 @@ export function buildDatasheet(
   pdf.setFont(brandFont);
   pdf.setProperties({
     title: p.code + ' | Technical datasheet',
-    author: 'Polad Charkhesh',
+    author: 'Polad Charkhesh Arian Tech',
     subject: 'Imported engineering catalog specifications',
   });
   const header = () => {
@@ -29,7 +29,7 @@ export function buildDatasheet(
     pdf.setTextColor(255);
     pdf.setFont(brandFont);
     pdf.setFontSize(18);
-    pdf.text('POLAD CHARKHESH', 16, 16);
+    pdf.text('POLAD CHARKHESH ARIAN TECH', 16, 16);
     if (options.logo) {
       pdf.setFillColor(255, 255, 255);
       pdf.rect(169, 3, 28, 29, 'F');
@@ -120,7 +120,7 @@ export function buildDatasheet(
     y += lines.length * 4.5 + 7;
   };
   y += 7;
-  paragraph('POLAD CHARKHESH TECHNICAL SUMMARY - not a manufacturer-issued datasheet.');
+  paragraph('POLAD CHARKHESH ARIAN TECH TECHNICAL SUMMARY - not a manufacturer-issued datasheet.');
   paragraph('TECHNICAL SOURCES (INHERITED RECORDS)');
   for (const s of p.technicalSources || [])
     paragraph(

@@ -1,5 +1,5 @@
 /**
- * Polad Charkhesh Centralized Company Data & Contact Information
+ * Polad Charkhesh Arian Tech Centralized Company Data & Contact Information
  *
  * Single source of truth for company contact details, address,
  * working hours, and digital communication channels.
@@ -58,17 +58,17 @@ export interface CompanyContactInfo {
 }
 
 export const COMPANY_INFO: CompanyContactInfo = {
-  nameFa: 'پولاد چرخِش',
-  nameEn: 'PoladCharkhesh',
-  legalNameFa: 'بازرگانی صنعتی پولاد چرخِش',
-  legalNameEn: 'Polad Charkhesh Industrial Trading Co.',
+  nameFa: 'پولاد چرخش آرین تک',
+  nameEn: 'Polad Charkhesh Arian Tech',
+  legalNameFa: 'پولاد چرخش آرین تک',
+  legalNameEn: 'Polad Charkhesh Arian Tech',
   sloganFa: 'تأمین و توزیع تخصصی انواع بیرینگ‌های صنایع نفت، معدن و فولاد',
   sloganEn:
     'Supply and distribution of all types of oil, mining and steel bearings',
   website: 'https://poladcharkhesh.ir',
   email: 'info@poladcharkhesh.ir',
 
-  // Primary phone number as designated for Polad Charkhesh
+  // Primary phone number as designated for Polad Charkhesh Arian Tech
   primaryPhone: '09127195313',
   primaryPhoneDisplayFa: '۰۹۱۲-۷۱۹۵۳۱۳',
   primaryPhoneDisplayEn: '0912-7195313',
@@ -134,7 +134,7 @@ export function createWhatsAppInquiryUrl(params?: {
 
   let text = '';
   if (isFa) {
-    text = `سلام و احترام، استعلام مشخصات و موجودی قطعه زیر را از پولاد چرخِش دارم:\n`;
+    text = `سلام و احترام، استعلام مشخصات و موجودی قطعه زیر را از پولاد چرخش آرین تک دارم:\n`;
     if (params.productCode) text += `▫️ کد کالا: ${params.productCode}\n`;
     if (params.productName) text += `▫️ نام: ${params.productName}\n`;
     if (params.dimensions) text += `▫️ ابعاد: ${params.dimensions}\n`;

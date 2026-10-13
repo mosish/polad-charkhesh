@@ -20,8 +20,8 @@ export const sectionIds = [
 export const siteExtras: any = {
   brand: {
     logoUrl: '/brand/logo.png',
-    logoAltEn: 'Polad Charkhesh company logo',
-    logoAltFa: 'نشان شرکت پولاد چرخش',
+    logoAltEn: 'Polad Charkhesh Arian Tech company logo',
+    logoAltFa: 'نشان شرکت پولاد چرخش آرین تک',
     navy: '#152443',
     accent: '#2454bf',
     ink: '#17243b',

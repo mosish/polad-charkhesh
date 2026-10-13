@@ -125,6 +125,17 @@ body.liquid-glass {
 .liquid-glass :is(.motion-toggle,.speed-reference button) { border-radius: 12px; }
 .liquid-glass .speed-reference { border-color: var(--glass-line); }
 .liquid-glass .calculation-result { background: #a4d1fa0a; }
+.liquid-glass .note {
+  color: #dbe8f8;
+  background: #172b43;
+  border: 1px solid #37536d;
+  border-inline-start: 3px solid #88bce8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
 .liquid-glass .result-metrics>div { border-color: var(--glass-line); }
 .liquid-glass :is(.result-metrics strong,.formula-board strong) { color: #e8f3ff; }
 .liquid-glass .floating { padding: 6px; background: #6d8eae17; border: 1px solid #d1e7ff26; border-radius: 999px; backdrop-filter: blur(18px); box-shadow: 0 10px 30px #0003; }

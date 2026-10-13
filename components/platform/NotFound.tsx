@@ -7,7 +7,7 @@ export default function NotFound({ productCode }: { productCode?: string }) {
   return (
     <main id="main" className="section not-found">
       <div className="not-found-card">
-        <span className="section-label">404 / {t('POLAD CHARKHESH', 'پولاد چرخش')}</span>
+        <span className="section-label">404 / {t('POLAD CHARKHESH ARIAN TECH', 'پولاد چرخش آرین تک')}</span>
         <div className="not-found-mark" aria-hidden="true">404</div>
         <h1>{productCode ? t('Product not found', 'محصول یافت نشد') : t('This page is out of reach.', 'این صفحه پیدا نشد.')}</h1>
         <p>{t('The link may have changed. Explore our components or return to the company website.', 'ممکن است نشانی صفحه تغییر کرده باشد. محصولات را بررسی کنید یا به صفحه اصلی شرکت برگردید.')}</p>

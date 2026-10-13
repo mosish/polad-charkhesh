@@ -25,7 +25,7 @@ export default function Home() {
   }, [loading]);
   return (
     <main id="main" className="managed-home">
-      {content?.layout?.hidden?.includes('hero') && <h1 className="section">{company?.[fa ? 'nameFa' : 'nameEn'] || t('Polad Charkhesh', 'پولاد چرخش')}</h1>}
+      {content?.layout?.hidden?.includes('hero') && <h1 className="section">{company?.[fa ? 'nameFa' : 'nameEn'] || t('Polad Charkhesh Arian Tech', 'پولاد چرخش آرین تک')}</h1>}
       <PageSection id="hero">
         <section className="hero-scroll">
         <section className={'hero' + (content?.media?.heroPresentation !== 'photo' ? ' hero-cinematic' : '')}>

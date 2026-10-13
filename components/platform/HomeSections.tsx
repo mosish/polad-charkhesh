@@ -93,7 +93,7 @@ export default function HomeSections() {
         <section className="section why-section">
           <div>
             <div className="section-label">
-              05 / {t('WHY POLAD CHARKHESH', 'چرا پولاد چرخش')}
+              05 / {t('WHY POLAD CHARKHESH ARIAN TECH', 'چرا پولاد چرخش آرین تک')}
             </div>
             <h2>{content.why[fa ? 'titleFa' : 'titleEn']}</h2>
             <p>{content.why[fa ? 'descriptionFa' : 'descriptionEn']}</p>
