@@ -42,7 +42,10 @@
 .catalog-results { --catalog-row: 420px; }
 .catalog-results .product-card { border-radius: 15px; background: linear-gradient(155deg, #21354bee, #122338f2); backdrop-filter: none; }
 .catalog-results .product-photo { height: 178px; min-height: 178px; margin: 10px 10px 0; width: calc(100% - 20px); border-radius: 9px; }
-.catalog-results .product-photo > img { width: 92%; height: 88%; }
+.catalog-results .product-photo > img,.catalog-results .product-photo > .reference-picture { width: 92%; height: 88%; }
+.reference-picture { display: block; width: 100%; height: 100%; }
+.reference-picture img { display:block; width:100%; height:100%; object-fit:contain; }
+.product-panel-stage > .reference-picture { width:100%; height:100%; }
 .catalog-results .product-info { padding: 14px 18px 16px; min-height: 0; }
 .product-card-family { color: #b0c9df; font-size: 10px; line-height: 1.4; margin-bottom: 5px; }
 .catalog-results .product-info code { font-size: 18px; line-height: 1.4; font-weight: 600; letter-spacing: .2px; }

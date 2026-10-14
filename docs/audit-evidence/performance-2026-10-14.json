@@ -1,0 +1,35 @@
+{
+  "reviewDate": "2026-10-14",
+  "baselineSourceRevision": "aac7b756d6b96fa02481007064996597c8327372",
+  "units": "bytes; gzip only where specified",
+  "before": {
+    "initialJsGzip": 84039,
+    "webgl2Gzip": 194255,
+    "webgl1Gzip": 320962,
+    "fontBytes": 595476,
+    "referenceOriginalBytes": 3439046,
+    "startupRefreshRequests": 4
+  },
+  "after": {
+    "initialJsGzip": 84203,
+    "webgl2Gzip": 141282,
+    "webgl1Gzip": 134679,
+    "fontWoff2Bytes": 272688,
+    "referenceWebp480Bytes": 102666,
+    "referenceFallback480Bytes": 225075,
+    "startupRefreshRequests": 0
+  },
+  "scope": "GPU dependency graphs; all six fonts; seven existing family reference images. Not whole-page load time.",
+  "localChecks": {
+    "typecheck": "passed",
+    "tests": 64,
+    "buildAndBudgets": "passed",
+    "productionHttpSmoke": "passed",
+    "controlledWebgl1": "passed",
+    "controlledWebgl2": "passed",
+    "publicStartupApiRefreshesObserved": 0,
+    "horizontalOverflowCssPixels": 0,
+    "repositoryLintFindings": 197
+  },
+  "publication": "pending"
+}

@@ -111,6 +111,13 @@ app.get('/sitemap.xml', (req, res) => {
       + [['en', false], ['fa', true], ['x-default', false]].map(([lang, persian]) => '<xhtml:link rel="alternate" hreflang="' + lang + '" href="' + escapeHtml(pageUrl(route, seo, Boolean(persian))) + '"/>').join('') + '</url>').join('') + '</urlset>');
 });
 if (production) {
+  for(const folder of ['fonts','reference-images/optimized']){
+    app.use('/'+folder,express.static(path.resolve('dist/client',folder),{
+      setHeaders(res,file){
+        if(/-[a-f0-9]{12}(?:-\d+)?\.(woff2|webp|jpg|png)$/.test(file))res.setHeader('Cache-Control','public, max-age=31536000, immutable');
+      },
+    }));
+  }
   app.use(
     '/assets',
     express.static(path.resolve('dist/client/assets'), {

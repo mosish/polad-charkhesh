@@ -20,7 +20,7 @@ Three.js's current [WebGLRenderer documentation](https://threejs.org/docs/pages/
 - The footer projection resumed on entering the viewport and completed reassembly (`expansion=0.000`). The product panel kept `6204-2RSH / 2RS1`, all dimensions/specifications and four separated parts without WebGL.
 - Reduced-motion simulation started stationary at zero degrees; explicit Play changed it to playing. Ball, roller, thrust and housed projections displayed; a deliberately rejected scene module retained the track projection. Document width matched scroll width.
 
-These are controlled Chrome failure-path checks, not a physical Safari certification. The owner still needs to confirm animation on the phone after publication. Private fixture code/screenshots are excluded from source and deployment.
+These are controlled Chrome failure-path checks, not a physical Safari certification. The owner subsequently confirmed animation on the phone after publication. Private fixture code/screenshots are excluded from source and deployment.
 
 ## Intermediate fallback publication
 
@@ -40,4 +40,4 @@ Revision `aac7b756d6b96fa02481007064996597c8327372` is installed at its immutabl
 
 A verified database/uploads backup preceded the atomic switch. The previous release and hashed assets were retained. SQLite integrity and product/admin/settings/media row hashes matched before and after; counts remain **110 products / one administrator / zero registered uploads**. The application, Nginx and certificate timer are active. Domain/TLS settings, credentials and noindex acceptance gate are unchanged.
 
-The trusted-TLS external check passed **226 page variants / 110 products / five initial assets** at `2026-10-14T16:12:15.660Z`. Live Chrome at 375 CSS pixels loads `/assets/index-CiHA2qr6.js`, renders a real WebGL 2 canvas and has zero horizontal overflow. This is separate from the controlled WebGL 1 browser tests. The physical Safari result is still required for this latest appearance change; the owner's earlier confirmation applies to the intermediate moving SVG fallback.
+The trusted-TLS external check passed **226 page variants / 110 products / five initial assets** at `2026-10-14T16:12:15.660Z`. Live Chrome at 375 CSS pixels loads `/assets/index-CiHA2qr6.js`, renders a real WebGL 2 canvas and has zero horizontal overflow. This is separate from the controlled WebGL 1 browser tests. The owner subsequently opened the fresh-query link in Safari and confirmed the same real 3D model is displayed and moving. This is targeted owner acceptance; the device/iOS version and a full accessibility audit remain unverified.

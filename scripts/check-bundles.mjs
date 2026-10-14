@@ -6,10 +6,10 @@ import path from 'node:path';
 const root = path.resolve('dist/client');
 const manifest = JSON.parse(readFileSync(path.join(root, '.vite/manifest.json'), 'utf8'));
 const initial = new Set();
-function visit(key) {
-  if (initial.has(key)) return;
-  initial.add(key);
-  for (const dependency of manifest[key].imports || []) visit(dependency);
+function visit(key, seen=initial) {
+  if (seen.has(key)) return;
+  seen.add(key);
+  for (const dependency of manifest[key].imports || []) visit(dependency,seen);
 }
 visit('index.html');
 let initialGzip = 0;
@@ -19,5 +19,13 @@ for (const item of sizes) assert.ok(item.bytes <= 450_000, `${item.file} exceeds
 for (const key of initial) initialGzip += gzipSync(readFileSync(path.join(root, manifest[key].file))).length;
 assert.ok(initialGzip <= 100_000, `Initial JS exceeds the 100 KB gzip budget (${initialGzip} bytes)`);
 for (const key of initial) assert.ok(!/three|HeroBearingScene|Admin\.tsx|pdf\.ts/.test(key), `${key} must remain outside the initial static module graph`);
+// An older Safari must not download the modern engine before its compatible engine.
+for(const [entry,forbidden] of [
+  ['components/platform/LegacyBearingScene.tsx',/ModernBearingScene|\/three-(?!compat)/],
+  ['components/platform/ModernBearingScene.tsx',/LegacyBearingScene|\/three-compat/],
+]){
+  const graph=new Set();visit(entry,graph);
+  for(const key of graph)assert.ok(!forbidden.test(manifest[key].file),`${entry} eagerly imports the other GPU engine: ${manifest[key].file}`);
+}
 const largest = sizes.sort((a, b) => b.bytes - a.bytes)[0];
 console.log(`Bundle budgets passed: initial JS ${(initialGzip / 1000).toFixed(1)} KB gzip; largest chunk ${(largest.bytes / 1000).toFixed(1)} KB; ${files.length} JS chunks. Lazy features download when used.`);

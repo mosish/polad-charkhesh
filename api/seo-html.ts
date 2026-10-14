@@ -5,6 +5,7 @@ import { escapeHtml as e } from '../domain/seo';
 import { mediaFor } from '../lib/media';
 import { relatedComponents } from '../lib/catalog-quality';
 import { breadcrumbsFor } from '../domain/breadcrumbs';
+import {referenceMedia} from '../lib/reference-media';
 function publicUrl(value: unknown, image = false) {
   if (typeof value !== 'string') return '#';
   try {
@@ -64,8 +65,11 @@ export function initialPublicHtml(
       ['weightKg', t('Weight', 'وزن'), 'kg'],
     ];
     body = `<h1>${e(p.code)} · ${e(p[fa ? 'nameFa' : 'nameEn'])}</h1><p>${e(p[fa ? 'descriptionFa' : 'descriptionEn'])}</p>`;
-    if (media.url)
-      body += `<figure><img src="${publicUrl(media.url, true)}" alt="${e(media.reference ? t(p.category + ' bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p[fa ? 'nameFa' : 'nameEn'])}" width="400" height="400"/>${media.reference ? '<figcaption>' + t('Family reference · illustration only', 'تصویر مرجع خانواده · صرفاً نمایشی') + '</figcaption>' : ''}</figure>`;
+    if (media.url){
+      const resized=referenceMedia(media.url);
+      const image=`<img src="${publicUrl(resized?.src||media.url,true)}" ${resized?`srcset="${e(resized.srcSet)}" sizes="(max-width: 760px) 90vw, 640px"`:''} alt="${e(media.reference ? t(p.category + ' bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p[fa ? 'nameFa' : 'nameEn'])}" width="400" height="400" decoding="async"/>`;
+      body+=`<figure>${resized?`<picture><source type="image/webp" srcset="${e(resized.webpSrcSet)}" sizes="(max-width: 760px) 90vw, 640px"/>${image}</picture>`:image}${media.reference?'<figcaption>'+t('Family reference · illustration only','تصویر مرجع خانواده · صرفاً نمایشی')+'</figcaption>':''}</figure>`;
+    }
     body +=
       `<h2>${t('Technical specifications', 'مشخصات فنی')}</h2><dl>` +
       fields

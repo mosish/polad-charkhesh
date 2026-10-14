@@ -10,7 +10,7 @@ import {buildBearingRoom} from '../lib/bearing-room';
 
 void test('3D catalog models preserve outside diameter, bore and width with one uniform scale',()=>{
   for(const p of bearingProducts.filter(p=>bearingGeometry(p).supported)){
-    const model=buildProductBearing3D(p),scale=4.6/p.D;
+    const model=buildProductBearing3D(p,ModernThree),scale=4.6/p.D;
     const box=new Box3().setFromObject(model.root);
     assert.ok(Math.abs(box.max.x-box.min.x-4.6)<.025,`${p.code}: outside diameter`);
     assert.ok(Math.abs(box.max.z-box.min.z-p.B*scale)<.025,`${p.code}: width`);
@@ -27,7 +27,7 @@ void test('3D catalog models preserve outside diameter, bore and width with one 
 void test('3D explorer changes rolling-element geometry and rows with the selected product',()=>{
   for(const type of ['deep-groove','tapered','spherical','cylindrical','needle','self-aligning-ball'] as const){
     const p=bearingProducts.find(p=>p.schematicType===type);if(!p)continue;
-    const model=buildProductBearing3D(p);
+    const model=buildProductBearing3D(p,ModernThree);
     const element=model.spins[0].children[0] as Mesh;
     assert.equal(element.geometry.type,model.geometry.roller?'LatheGeometry':'SphereGeometry');
     assert.equal(model.geometry.rows,['spherical','self-aligning-ball'].includes(type)?2:1);
@@ -40,7 +40,7 @@ void test('3D explorer changes rolling-element geometry and rows with the select
 
 void test('exploded product view separates four assemblies and restores catalog dimensions',()=>{
   const p=bearingProducts.find(p=>p.schematicType==='spherical')!;
-  const model=buildProductBearing3D(p);
+  const model=buildProductBearing3D(p,ModernThree);
   const assembled=new Box3().setFromObject(model.root);
   assert.equal(model.parts.length,4);
   assert.ok(model.parts.every(part=>part.children.length>0));
@@ -57,7 +57,7 @@ void test('exploded product view separates four assemblies and restores catalog 
 
 void test('WebGL 1 uses the same selected-product dimensions, parts and exploded travel',()=>{
   for(const p of bearingProducts.filter(product=>bearingGeometry(product).supported)){
-    const modern=buildProductBearing3D(p),legacy=buildProductBearing3D(p,LegacyThree as unknown as typeof ModernThree);
+    const modern=buildProductBearing3D(p,ModernThree),legacy=buildProductBearing3D(p,LegacyThree as unknown as typeof ModernThree);
     assert.ok(legacy.root instanceof LegacyThree.Group);
     assert.ok(!(legacy.root instanceof ModernThree.Group));
     assert.deepEqual(legacy.geometry,modern.geometry);

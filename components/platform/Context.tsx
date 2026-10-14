@@ -5,11 +5,13 @@ import {
   useContext,
   useState,
   useEffect,
+  useCallback,
   ReactNode,
 } from 'react';
 import { api } from '../../lib/api';
 import type { BearingProduct } from '../../domain/product';
 import { clientLanguage } from '../../lib/language';
+import {parsePublicSnapshot} from '../../lib/public-snapshot';
 type State = {
   fa: boolean;
   t: (en: string, fa: string) => string;
@@ -24,17 +26,18 @@ type State = {
 };
 const Context = createContext<State>(null!);
 function publicSnapshot() {
-  try { return JSON.parse(document.getElementById('public-data')?.textContent || 'null'); } catch { return null; }
+  return parsePublicSnapshot(document.getElementById('public-data')?.textContent||null);
 }
 export const usePlatform = () => useContext(Context);
 export function Provider({ children }: { children: ReactNode }) {
+  const [snapshot]=useState(publicSnapshot);
   const [fa, setFa] = useState(() => {
-    const initial = publicSnapshot();
+    const initial = snapshot||undefined;
     let saved: string | null = null;
     try { saved = localStorage.getItem('pc-language'); } catch { /* Storage can be disabled. */ }
     return clientLanguage(location.hostname, location.search, saved, initial);
   });
-  const [state, setState] = useState(() => publicSnapshot() ? { ...publicSnapshot(), loading: false, error: '' } : {
+  const [state, setState] = useState(() => snapshot ? { ...snapshot, loading: false, error: '' } : {
     products: [] as BearingProduct[],
     company: null as any,
     content: null as any,
@@ -42,7 +45,7 @@ export function Provider({ children }: { children: ReactNode }) {
     loading: true,
     error: '',
   });
-  const reload = () => {
+  const reload = useCallback(() => {
     setState((s) => ({ ...s, loading: !s.company, error: '' }));
     Promise.all([
       api('/products'),
@@ -63,8 +66,9 @@ export function Provider({ children }: { children: ReactNode }) {
       .catch((e) =>
         setState((s) => ({ ...s, loading: false, error: e.message })),
       );
-  };
-  useEffect(reload, []);
+  },[]);
+  // Production HTML is fresh on every visit. Dev/admin routes still fetch; Retry remains explicit.
+  useEffect(()=>{if(!snapshot)reload();},[snapshot,reload]);
   useEffect(() => {
     let alive = true;
     const receive = async (event: MessageEvent) => {

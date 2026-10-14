@@ -7,6 +7,7 @@ import path from 'node:path';
 import { randomBytes } from 'node:crypto';
 import net from 'node:net';
 import { auditPublishedSeo } from '../lib/seo-audit';
+import {referenceMedia} from '../lib/reference-media';
 
 const root = process.cwd();
 const serverFile = path.join(root, 'dist/server/index.js');
@@ -155,6 +156,16 @@ try {
   assert.match(String(builtAsset.headers['cache-control']), /immutable/);
   assert.equal((await request('/brand/logo.png')).status, 200, 'Company logo is served');
   assert.equal((await request('/fonts/IRANSans.ttf')).status, 200, 'Company typeface is served');
+  const font=home.body.match(/href="(\/fonts\/IRANSans-[a-f0-9]{12}\.woff2)"/);
+  assert.ok(font,'Regular compressed font is preloaded');
+  const compressedFont=await request(font[1]);
+  assert.equal(compressedFont.status,200);assert.match(String(compressedFont.headers['content-type']),/font\/woff2/);
+  assert.match(String(compressedFont.headers['cache-control']),/max-age=31536000, immutable/);
+  const displayImage=referenceMedia('/reference-images/ball-bearing.jpg')!;
+  for(const src of [displayImage.src,displayImage.webpSrcSet.split(', ')[0].split(' ')[0]]){
+    const image=await request(src);assert.equal(image.status,200);assert.match(String(image.headers['content-type']),/image\/(jpeg|webp)/);
+    assert.match(String(image.headers['cache-control']),/max-age=31536000, immutable/);
+  }
 
   const catalog = await request('/api/products');
   assert.equal(catalog.status, 200, 'Public product API');

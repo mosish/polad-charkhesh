@@ -6,7 +6,7 @@ import {
   Vector2, Vector3, WebGLRenderer, BackSide, InstancedMesh, MeshLambertMaterial, PointLight, Object3D,
 } from 'three-webgl1/src/Three.js';
 import type * as Three from 'three';
-import {BearingSceneRenderer, type SceneProps} from './HeroBearingScene';
+import {BearingSceneRenderer, type SceneProps} from './BearingSceneRenderer';
 
 // Only the common constructors/constants used by our scene are provided.
 // r162 supports WebGL 1; it receives the same model builders and motion code.
@@ -19,5 +19,5 @@ const runtime = {
 } as unknown as typeof Three;
 
 export default function LegacyBearingScene(props: SceneProps) {
-  return <BearingSceneRenderer {...props} runtime={runtime}/>;
+  return <BearingSceneRenderer {...props} runtime={runtime} rendererKind="webgl1"/>;
 }
