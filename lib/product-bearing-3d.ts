@@ -3,7 +3,9 @@ import type { BearingProduct } from '../domain/product';
 import { bearingGeometry } from './bearing-motion';
 
 // All external dimensions use one uniform scale. Internal profiles are estimates.
-export function buildProductBearing3D(p: BearingProduct) {
+export function buildProductBearing3D(p: BearingProduct, runtime: typeof THREE = THREE) {
+  // Both GPU paths use the same catalog geometry and their own constructors.
+  const THREE = runtime;
   const g=bearingGeometry(p), scale=2.3/g.outer;
   const R=2.3, bore=g.bore*scale, half=R*p.B/p.D, gap=R-bore;
   const pitch=g.pitch*scale, radius=g.elementDiameter*scale/2;

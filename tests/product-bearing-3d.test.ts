@@ -4,6 +4,9 @@ import { Box3, Mesh } from 'three';
 import { buildProductBearing3D } from '../lib/product-bearing-3d';
 import { bearingGeometry } from '../lib/bearing-motion';
 import { bearingProducts } from '../domain/catalog';
+import * as ModernThree from 'three';
+import * as LegacyThree from 'three-webgl1/src/Three.js';
+import {buildBearingRoom} from '../lib/bearing-room';
 
 void test('3D catalog models preserve outside diameter, bore and width with one uniform scale',()=>{
   for(const p of bearingProducts.filter(p=>bearingGeometry(p).supported)){
@@ -50,4 +53,35 @@ void test('exploded product view separates four assemblies and restores catalog 
   assert.ok(Math.abs(restored.max.z-assembled.max.z)<.001);
   assert.ok(Math.abs(restored.min.z-assembled.min.z)<.001);
   model.dispose();
+});
+
+void test('WebGL 1 uses the same selected-product dimensions, parts and exploded travel',()=>{
+  for(const p of bearingProducts.filter(product=>bearingGeometry(product).supported)){
+    const modern=buildProductBearing3D(p),legacy=buildProductBearing3D(p,LegacyThree as unknown as typeof ModernThree);
+    assert.ok(legacy.root instanceof LegacyThree.Group);
+    assert.ok(!(legacy.root instanceof ModernThree.Group));
+    assert.deepEqual(legacy.geometry,modern.geometry);
+    assert.equal(legacy.spins.length,modern.spins.length);
+    for(const expansion of [0,.5,1,0]){
+      modern.setExploded(expansion);legacy.setExploded(expansion);
+      const expected=new Box3().setFromObject(modern.root),actual=new Box3().setFromObject(legacy.root);
+      assert.ok(expected.min.distanceTo(actual.min)<.001,p.code);
+      assert.ok(expected.max.distanceTo(actual.max)<.001,p.code);
+    }
+    modern.dispose();legacy.dispose();
+  }
+});
+
+void test('studio scene never mixes materials or meshes from different Three.js versions',()=>{
+  for(const engine of [ModernThree,LegacyThree]){
+    const room=buildBearingRoom(engine as unknown as typeof ModernThree);
+    room.scene.traverse(object=>{
+      if(object instanceof engine.Mesh){
+        assert.ok(object.geometry instanceof engine.BufferGeometry);
+        const materials=Array.isArray(object.material)?object.material:[object.material];
+        materials.forEach(material=>assert.ok(material instanceof engine.Material));
+      }
+    });
+    room.dispose();
+  }
 });

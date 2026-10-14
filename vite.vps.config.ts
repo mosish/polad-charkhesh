@@ -19,13 +19,20 @@ export default defineConfig({
     },
   },
   build: {
+    target: ['es2020','safari13'],
     outDir: 'dist/client',
     manifest: true,
     rolldownOptions: {
       output: {
         codeSplitting: {
           // Split the official core/renderer modules, retaining their initialization order.
-          groups: [{ name: 'three', test: /node_modules[\\/]three[\\/]/, maxSize: 600_000 }],
+          groups: [
+            // GLSL strings have no class initialization dependencies; split them safely.
+            { name: 'three-compat-shaders', test: /(?:three-webgl1|three@0\.162\.0).*[/\\]shaders[/\\]ShaderChunk[/\\]/, priority: 40 },
+            { name: 'three-compat-renderer', test: /(?:three-webgl1|three@0\.162\.0).*[/\\]src[/\\](?:renderers[/\\](?:WebGLRenderer\.js|webgl[/\\]|shaders[/\\])|extras[/\\]PMREMGenerator\.js)/, priority: 30 },
+            { name: 'three-compat-core', test: /three-webgl1|three@0\.162\.0/, priority: 20 },
+            { name: 'three', test: /node_modules[\\/]three[\\/]/, maxSize: 600_000 },
+          ],
         },
       },
     },

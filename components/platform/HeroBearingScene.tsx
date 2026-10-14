@@ -1,7 +1,7 @@
 import { bearingScrollState } from '../../lib/bearing-scroll';
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { buildBearingRoom } from '../../lib/bearing-room';
 import type { BearingProduct } from '../../domain/product';
 import { buildProductBearing3D } from '../../lib/product-bearing-3d';
 import { advanceRotation } from '../../lib/bearing-motion';
@@ -9,7 +9,8 @@ import { advanceRotation } from '../../lib/bearing-motion';
 export type BearingFamily = 'thrust' | 'ball' | 'roller' | 'accessories' | 'engineered' | 'track';
 
 // Illustrative family geometry, not manufacturer CAD or a rated operating simulation.
-function buildBearing(family: BearingFamily) {
+function buildBearing(family: BearingFamily, runtime: typeof THREE = THREE) {
+  const THREE = runtime;
   const root = new THREE.Group(), shell = new THREE.Group(), moving = new THREE.Group(), cage = new THREE.Group(), elements = new THREE.Group();
   const textures: THREE.Texture[] = [];
   const spins: THREE.Mesh[] = [];
@@ -198,15 +199,24 @@ function buildBearing(family: BearingFamily) {
   }};
 }
 
-export default function HeroBearingScene({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false,cinematic=false}:{family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean}) {
+export type SceneProps={family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean};
+const LegacyBearingScene=lazy(()=>import('./LegacyBearingScene'));
+export default function HeroBearingScene(props:SceneProps){
+  const [compatibility,setCompatibility]=useState(false);
+  return compatibility?<Suspense fallback={props.fallback}><LegacyBearingScene {...props}/></Suspense>:<BearingSceneRenderer {...props} onFailure={()=>setCompatibility(true)}/>;
+}
+
+export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false,cinematic=false,runtime=THREE,onFailure}:SceneProps&{runtime?:typeof THREE;onFailure?:()=>void}) {
   const host=useRef<HTMLDivElement>(null);
   const controller=useRef<{play:(value:boolean)=>void}|null>(null);
   const pauseRef=useRef(paused);pauseRef.current=paused;
   const speedRef=useRef({rpm,playback});speedRef.current={rpm,playback};
   const viewRef=useRef({exploded,reducedMotion,scrollProgress});viewRef.current={exploded,reducedMotion,scrollProgress};
   const [failed,setFailed]=useState(false);
+  useEffect(()=>{if(failed)onFailure?.();},[failed,onFailure]);
   useEffect(()=>{
     const target=host.current;if(!target || failed)return;
+    const THREE=runtime;
     const compactScreen=matchMedia('(max-width: 760px)').matches;
     let renderer:THREE.WebGLRenderer;
     try {renderer=new THREE.WebGLRenderer({alpha:true,antialias:!compactScreen,powerPreference:'low-power'});}catch{setFailed(true);return;}
@@ -218,15 +228,15 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=cinematic?1.05:1.2;
     target.appendChild(renderer.domElement);
     const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,40);camera.position.set(0,0,9.8);
-    const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment();
+    const pmrem=new THREE.PMREMGenerator(renderer),room=buildBearingRoom(THREE);
     let environment:THREE.WebGLRenderTarget;
-    try {environment=pmrem.fromScene(room,.035);scene.environment=environment.texture;}
+    try {environment=pmrem.fromScene(room.scene,.035);scene.environment=environment.texture;}
     catch {renderer.dispose();renderer.domElement.remove();setFailed(true);return;}
     finally {room.dispose();pmrem.dispose();}
     const light=new THREE.DirectionalLight('#e4f1ff',3);light.position.set(-3,4,5);scene.add(light);
     const edge=new THREE.DirectionalLight('#a9c8ff',2);edge.position.set(4,-2,1);scene.add(edge);
-    const productModel=product ? buildProductBearing3D(product) : undefined;
-    const heroModel=product ? undefined : buildBearing(family);
+    const productModel=product ? buildProductBearing3D(product,THREE) : undefined;
+    const heroModel=product ? undefined : buildBearing(family,THREE);
     const model=productModel || heroModel!;scene.add(model.root);
     const companionMaterials: THREE.Material[] = [];
     const companions: THREE.Group[] = [];
@@ -331,9 +341,9 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     controller.current={play(){resize();sync();}};
     const lost=(event:Event)=>{event.preventDefault();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
     return()=>{cancelAnimationFrame(frame);controller.current=null;observer?.disconnect();intersection?.disconnect();window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);companionMaterials.forEach(material=>material.dispose());model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
-  },[family,failed,product,cinematic]);
+  },[family,failed,product,cinematic,runtime]);
   useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,scrollProgress === undefined,ambient ? scrollProgress : undefined]);
-  return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={playback} data-presentation={cinematic?'cinematic':'standard'}>
+  return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-renderer={runtime===THREE?'webgl2':'webgl1'} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={playback} data-presentation={cinematic?'cinematic':'standard'}>
     {partLabels.map((name,i)=><span key={i} className="bearing-part-pin" data-part={i} aria-hidden="true" title={name}>{i+1}</span>)}
   </div>;
 }

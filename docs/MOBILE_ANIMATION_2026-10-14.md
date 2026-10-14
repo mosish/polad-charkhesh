@@ -22,4 +22,16 @@ Three.js's current [WebGLRenderer documentation](https://threejs.org/docs/pages/
 
 These are controlled Chrome failure-path checks, not a physical Safari certification. The owner still needs to confirm animation on the phone after publication. Private fixture code/screenshots are excluded from source and deployment.
 
-Publication evidence will be added after the pinned revision passes checks on the existing VPS. The previous working release, private owner database, uploaded files and HTTPS/domain configuration must be retained during rollout.
+## Intermediate fallback publication
+
+Revision `b1bbec1d27ac7afd1a06df9911cd0a1fd3b4f42b` passed the same 59 checks on Ubuntu, was backed up and activated atomically. Product/admin/settings/media hashes matched before and after (110/1/0 counts). The external trusted-TLS check passed 226 page variants at `2026-10-14T15:21:01.736Z`. The owner confirmed the phone animation now moves, then requested the same 3D appearance as Windows rather than the SVG projection.
+
+## Same 3D model on older Safari
+
+- Added official Three.js `0.162.0` under a separate, pinned `three-webgl1` alias. Its renderer supports WebGL 1. Current Three.js remains the preferred WebGL 2 path; compatibility code is lazy-loaded only after that path fails. The SVG is the final recovery path if no usable GPU context remains.
+- Both engines call the same family/catalog model builders, assembly/scroll logic, RPM formulas and studio environment. Geometry is not replaced with a different mobile illustration. Every scene's meshes/materials belong to its own engine; mixed-version materials were found to fail during environment generation and are now prevented.
+- Build output targets Safari 13 syntax. Compatibility shaders are separated as plain GLSL strings; class initialization dependencies stay together. An initial arbitrary size split caused an undefined superclass and was corrected before publication. Every chunk remains inside the existing budget: **84.0 KB gzip initial JS / 403.5 KB largest chunk**.
+- TypeScript, **61 tests**, production build/budgets and isolated production smoke pass on Windows. Added regressions verify equal assembled/exploded bounds for every supported catalog record across engines and prevent mixed-engine studio meshes/materials. Production and full dependency audits report zero known vulnerabilities; full repository lint remains at 197 findings.
+- Controlled 390px tests with WebGL 2 denied, WebGL 1 available, legacy media listeners and no ResizeObserver render real canvases for ball, roller, thrust, housed and track families. Roller motion advances, pause holds at `633.188`, and explosion reaches `1.000` in manual mode. The `6204-2RSH / 2RS1` product panel renders four separated parts using WebGL 1. The normal WebGL 2 path still renders its canvas.
+
+The compatible 3D revision is prepared for pinned VPS verification/publication. The physical Safari result is still required for this latest appearance change; the owner confirmation above applies to the intermediate moving SVG fallback. Existing owner data, earlier assets, domain/TLS settings and noindex acceptance gate must be retained.
