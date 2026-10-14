@@ -27,4 +27,14 @@ Windows TypeScript, **64 tests**, production build, module graph/bundle budgets 
 
 A controlled 390px Chrome fixture denied WebGL 2, modern GPU downloads, newer media listeners and ResizeObserver. The real WebGL 1 model rendered, moved and paused; startup made zero duplicate public API requests, loaded WOFF2 instead of TTF and used a 480px WebP catalog picture. The product panel retained dimensions/load/speed fields and rendered its exploded model with WebGL 1. The normal path rendered a real WebGL 2 canvas with zero horizontal overflow. These controlled checks are distinct from a new physical Safari performance benchmark.
 
-Production publication and external verification are recorded below after activation. Private test fixtures, dependency encoders, request logs and databases remain excluded from Git.
+Private test fixtures, dependency encoders, request logs and databases remain excluded from Git.
+
+## Publication
+
+Revision `640b590a37aab56f4241d73565895f5ff6c9d74a` is active at the immutable VPS release directory. The transferred source archive SHA-256 is `466fa8c4205519d50195d492e87bedc8fe0574ac3773babc663b874edd38d46e`; checksum and safe archive paths passed. Package/lock inputs matched the previous release, so its installed Linux dependencies were reused. TypeScript, all **64 tests**, build, budgets and isolated smoke passed using the installed tools on Ubuntu.
+
+A verified database/uploads backup preceded activation. The first attempt failed the health gate because root ownership made newly built private-mode output unreadable to the service account; the rollback restored the previous release. Read/execute access was corrected, checked as the service account and activation retried successfully. Published server/client entry files are root-owned mode 0644, with traversable directories. The previous release, hashed JavaScript and font assets are retained.
+
+SQLite integrity and product/admin/settings/media row hashes matched before and after the successful switch. Counts remain **110 products / one administrator / zero registered uploads**. Application, Nginx and the certificate timer are active; domain/TLS, credentials and indexing settings remain unchanged.
+
+External trusted-TLS verification passed **226 page/language variants, 110 products and six initial assets** at `2026-10-14T17:19:32.698Z`. Compressed font and both WebP/JPEG display copies return HTTP 200 with the correct MIME and one-year immutable headers. Live Chrome at **375 CSS pixels** renders a real moving WebGL 2 model, loads `/assets/index-Ddx4P9-B.js` and has zero horizontal overflow; the normal 1649px viewport also has zero overflow. A new physical Safari load-time benchmark was not performed.

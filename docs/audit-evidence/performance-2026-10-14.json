@@ -31,5 +31,30 @@
     "horizontalOverflowCssPixels": 0,
     "repositoryLintFindings": 197
   },
-  "publication": "pending"
+  "publication": {
+    "revision": "640b590a37aab56f4241d73565895f5ff6c9d74a",
+    "sourceArchiveSha256": "466fa8c4205519d50195d492e87bedc8fe0574ac3773babc663b874edd38d46e",
+    "ubuntuChecks": "TypeScript, 64 tests, build, budgets and isolated smoke passed",
+    "backup": "verified before activation",
+    "firstActivation": "Health gate rolled back unreadable build output; service-account read permissions corrected before successful retry",
+    "ownerData": "SQLite integrity and product/admin/settings/media hashes identical; counts 110/1/0",
+    "services": "application, Nginx and certificate timer active",
+    "liveCheck": {
+      "status": "passed",
+      "origin": "https://poladcharkhesh.ir",
+      "products": 110,
+      "pages": 226,
+      "assets": 6,
+      "checkedAt": "2026-10-14T17:19:32.698Z"
+    },
+    "liveChrome": {
+      "width": 375,
+      "overflow": 0,
+      "renderer": "webgl2",
+      "bundle": "/assets/index-Ddx4P9-B.js",
+      "fonts": "loaded"
+    },
+    "assetHeaders": "WOFF2, WebP, JPEG: HTTP 200, correct MIME, public max-age=31536000 immutable",
+    "physicalSafariPerformanceBenchmark": "not performed"
+  }
 }

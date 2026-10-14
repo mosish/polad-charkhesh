@@ -1,7 +1,7 @@
 {
   "sourceCommit": "52243edd9f677267eeb5767f26c61fe774f5b2a3",
   "installedFollowupCommit": "174a233291ccd9ca81de25a3c669568e3d61548a",
-  "currentInstalledCommit": "aac7b756d6b96fa02481007064996597c8327372",
+  "currentInstalledCommit": "640b590a37aab56f4241d73565895f5ff6c9d74a",
   "mobileRecoveryHotfix": {
     "revision": "ece390686c8a5d2f30eea94fc2d0f6e862cc46be",
     "windowsAndUbuntuChecks": "TypeScript, 59 tests, build, bundle budgets and isolated production smoke passed",
@@ -176,5 +176,18 @@
     },
     "physicalSafari3dConfirmation": "Owner confirmed the same real 3D model is displayed and moving in Safari after opening the fresh-query link",
     "domainTlsCredentialsAndIndexingSettings": "retained"
+  },
+  "performanceRelease": {
+    "revision": "640b590a37aab56f4241d73565895f5ff6c9d74a",
+    "liveCheck": {
+      "status": "passed",
+      "origin": "https://poladcharkhesh.ir",
+      "products": 110,
+      "pages": 226,
+      "assets": 6,
+      "checkedAt": "2026-10-14T17:19:32.698Z"
+    },
+    "evidence": "performance-2026-10-14.json",
+    "ownerData": "integrity and product/admin/settings/media hashes identical"
   }
 }
