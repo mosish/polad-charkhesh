@@ -1,7 +1,7 @@
 {
   "sourceCommit": "52243edd9f677267eeb5767f26c61fe774f5b2a3",
   "installedFollowupCommit": "174a233291ccd9ca81de25a3c669568e3d61548a",
-  "currentInstalledCommit": "ece390686c8a5d2f30eea94fc2d0f6e862cc46be",
+  "currentInstalledCommit": "aac7b756d6b96fa02481007064996597c8327372",
   "mobileRecoveryHotfix": {
     "revision": "ece390686c8a5d2f30eea94fc2d0f6e862cc46be",
     "windowsAndUbuntuChecks": "TypeScript, 59 tests, build, bundle budgets and isolated production smoke passed",
@@ -9,13 +9,37 @@
     "ownerData": "SQLite integrity and product/admin/settings/media row hashes match before and after; 110/1/0 counts preserved",
     "verifiedPrePublicationBackup": "completed; private database/uploads snapshot excluded from GitHub",
     "previousHashedAssets": "retained to support already-open tabs",
-    "isolatedBrowserScenarios": ["legacy media listeners and missing ResizeObserver", "failed scene import", "failed catalog import preserves 110 links", "startup failure preserves readable public HTML", "WebGL unavailable", "mobile menu/search/product/exploded"],
-    "liveCheck": {"status": "passed", "products": 110, "pages": 226, "assets": 5, "checkedAt": "2026-10-14T14:37:36.396Z"},
-    "liveChromePreview": {"width": 375, "horizontalOverflow": 0, "visibleHeroCanvas": 1, "recoveryAlerts": 0, "bundle": "/assets/index-B44LGZDC.js"},
-    "physicalSafariConfirmation": "owner opened fresh-query production link in Safari and confirmed the issue is fixed",
+    "isolatedBrowserScenarios": [
+      "legacy media listeners and missing ResizeObserver",
+      "failed scene import",
+      "failed catalog import preserves 110 links",
+      "startup failure preserves readable public HTML",
+      "WebGL unavailable",
+      "mobile menu/search/product/exploded"
+    ],
+    "liveCheck": {
+      "status": "passed",
+      "products": 110,
+      "pages": 226,
+      "assets": 5,
+      "checkedAt": "2026-10-14T14:37:36.396Z"
+    },
+    "liveChromePreview": {
+      "width": 375,
+      "horizontalOverflow": 0,
+      "visibleHeroCanvas": 1,
+      "recoveryAlerts": 0,
+      "bundle": "/assets/index-B44LGZDC.js"
+    },
+    "physicalSafariConfirmation": "Owner confirmed content remains; later confirmed animated SVG movement, then requested the same Windows 3D model",
     "domainAndIndexingSettings": "retained"
   },
-  "followupSourceChecks": ["TypeScript", "production build", "bundle budgets", "isolated production smoke on Windows and VPS"],
+  "followupSourceChecks": [
+    "TypeScript",
+    "production build",
+    "bundle budgets",
+    "isolated production smoke on Windows and VPS"
+  ],
   "liveCheck": {
     "status": "passed",
     "origin": "https://213.176.28.119",
@@ -35,26 +59,65 @@
     ],
     "checkedAt": "2026-10-14T11:14:11.200Z"
   },
-  "sourceTests": {"passed": 57, "failed": 0},
-  "preservedOwnerData": {"products": 110, "admins": 1, "registeredUploads": 0},
+  "sourceTests": {
+    "passed": 57,
+    "failed": 0
+  },
+  "preservedOwnerData": {
+    "products": 110,
+    "admins": 1,
+    "registeredUploads": 0
+  },
   "tlsRenewalDryRun": "passed",
   "restoreDrill": "passed",
   "postRecoveryOffServerBackup": "verified; administrator rows match production; credentials excluded from repository",
   "actualServiceCrashRecovery": "passed",
   "ownerAuthenticatedBrowserCheck": "passed using existing owner account after explicitly authorized password reset; no new administrator",
   "fullHostReboot": "not performed",
-  "mobileBrowserPreview": {"status": "passed", "source": "live admin public-site iframe", "viewportWidth": 389, "language": "fa", "direction": "rtl", "documentClientWidth": 373, "documentScrollWidth": 373, "brokenVisibleImages": 0, "physicalDeviceAudit": "not performed"},
+  "mobileBrowserPreview": {
+    "status": "passed",
+    "source": "live admin public-site iframe",
+    "viewportWidth": 389,
+    "language": "fa",
+    "direction": "rtl",
+    "documentClientWidth": 373,
+    "documentScrollWidth": 373,
+    "brokenVisibleImages": 0,
+    "physicalDeviceAudit": "not performed"
+  },
   "publicDomainConnection": {
     "persian": {
       "origin": "https://poladcharkhesh.ir",
       "status": "live",
-      "nameservers": ["andy.ns.cloudflare.com", "mckinley.ns.cloudflare.com"],
-      "cloudflare": {"zone": "active", "apexAndWww": "proxied", "sslMode": "Full (strict)", "sanitizedClientIp": "official Cloudflare ranges only"},
+      "nameservers": [
+        "andy.ns.cloudflare.com",
+        "mckinley.ns.cloudflare.com"
+      ],
+      "cloudflare": {
+        "zone": "active",
+        "apexAndWww": "proxied",
+        "sslMode": "Full (strict)",
+        "sanitizedClientIp": "official Cloudflare ranges only"
+      },
       "certificateLineage": "polad-ir",
       "certificateExpires": "2027-01-12",
       "renewalDryRunWithDeployHook": "passed",
-      "liveCheck": {"status": "passed", "products": 110, "pages": 226, "assets": 5, "checkedAt": "2026-10-14T13:04:53.224Z", "path": "workstation DNS cached origin IPv4; trusted Persian-domain origin TLS"},
-      "separateCloudflareChecks": {"freshAuthoritativeAddress": "188.114.98.0", "trustedTlsHealth": 200, "wwwRedirect": 301, "normalChromeWwwVisit": "passed; redirected and rendered Persian homepage", "fullNodeSuiteThroughCloudflare": "not passed; connection closed before page checks", "networkLimit": "some other Cloudflare-address requests timed out or received empty replies from this network"},
+      "liveCheck": {
+        "status": "passed",
+        "products": 110,
+        "pages": 226,
+        "assets": 5,
+        "checkedAt": "2026-10-14T13:04:53.224Z",
+        "path": "workstation DNS cached origin IPv4; trusted Persian-domain origin TLS"
+      },
+      "separateCloudflareChecks": {
+        "freshAuthoritativeAddress": "188.114.98.0",
+        "trustedTlsHealth": 200,
+        "wwwRedirect": 301,
+        "normalChromeWwwVisit": "passed; redirected and rendered Persian homepage",
+        "fullNodeSuiteThroughCloudflare": "not passed; connection closed before page checks",
+        "networkLimit": "some other Cloudflare-address requests timed out or received empty replies from this network"
+      },
       "ownerLoginAndUnchangedSettingsSave": "passed on domain; no cross-origin rejection; no new administrator",
       "wwwRedirect": "301 to Persian apex preserving product path and lang query"
     },
@@ -62,12 +125,56 @@
       "origin": "https://poladcharkhesh.com",
       "status": "blocked by registrar",
       "registrarNsChangeError": "updateDomainNameServers : Domain is suspended. Nameserver update is not allowed.",
-      "parentNameservers": ["ns1.nonverifieddomain.com", "ns2.nonverifieddomain.com"],
+      "parentNameservers": [
+        "ns1.nonverifieddomain.com",
+        "ns2.nonverifieddomain.com"
+      ],
       "cloudflareApexAndWww": "A records prepared; DNS only",
       "ownerSupportTicket": "already sent by owner; agent did not send duplicate",
       "independentActivation": "prepared; current execution stops at DNS gate without changing HTTPS"
     }
   },
   "temporaryOriginIndexing": "noindex, nofollow",
-  "contentAndFullAuditAcceptance": "open; see readiness report"
+  "contentAndFullAuditAcceptance": "open; see readiness report",
+  "mobile3dCompatibilityHotfix": {
+    "revision": "aac7b756d6b96fa02481007064996597c8327372",
+    "sourceArchiveSha256": "8c268b0ed0940f54d5ef1045a721b78ab1143b7782f5c6fccd8db3ad394aeb9e",
+    "windowsAndUbuntuChecks": "TypeScript, 61 tests, production build, bundle budgets and isolated smoke passed",
+    "dependencyAudit": "production and full audit: zero known vulnerabilities",
+    "initialJsGzipKb": 84,
+    "largestChunkKb": 403.5,
+    "ownerData": "integrity and product/admin/settings/media hashes identical; 110/1/0 counts preserved",
+    "backup": "verified before atomic switch; old release and hashed assets retained",
+    "liveCheck": {
+      "status": "passed",
+      "origin": "https://poladcharkhesh.ir",
+      "products": 110,
+      "pages": 226,
+      "assets": 5,
+      "checkedAt": "2026-10-14T16:12:15.660Z"
+    },
+    "webgl1BrowserCheck": {
+      "status": "passed in controlled Chrome fixture",
+      "webgl2": "denied",
+      "legacyMediaListeners": true,
+      "resizeObserver": false,
+      "families": [
+        "ball",
+        "roller",
+        "thrust",
+        "engineered",
+        "track"
+      ],
+      "productExploded": "6204-2RSH / 2RS1: four parts; real WebGL 1 canvas",
+      "footerReassembly": "real WebGL 1 canvas; expansion 0.000"
+    },
+    "liveChrome": {
+      "width": 375,
+      "horizontalOverflow": 0,
+      "renderer": "webgl2",
+      "bundle": "/assets/index-CiHA2qr6.js"
+    },
+    "physicalSafari3dConfirmation": "pending",
+    "domainTlsCredentialsAndIndexingSettings": "retained"
+  }
 }

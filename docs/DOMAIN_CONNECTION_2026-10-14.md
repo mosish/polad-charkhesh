@@ -1,6 +1,6 @@
 # Company domain connection — 2026-10-14
 
-**Current status: Persian domain live; English domain blocked by the registrar.** [Persian website](https://poladcharkhesh.ir/) · [Admin panel](https://poladcharkhesh.ir/admin/). `.ir` defaults to Persian; `.com` remains the intended English origin. Do not redirect one language apex to the other. The [temporary IP website](https://213.176.28.119/) remains available. Domain activation used application revision `174a233291ccd9ca81de25a3c669568e3d61548a` without rebuilding/resetting data. The later [Safari recovery release](MOBILE_RECOVERY_2026-10-14.md), `ece390686c8a5d2f30eea94fc2d0f6e862cc46be`, is now installed with unchanged domain routing and owner rows.
+**Current status: Persian domain live; English domain blocked by the registrar.** [Persian website](https://poladcharkhesh.ir/) · [Admin panel](https://poladcharkhesh.ir/admin/). `.ir` defaults to Persian; `.com` remains the intended English origin. Do not redirect one language apex to the other. The [temporary IP website](https://213.176.28.119/) remains available. Domain activation used application revision `174a233291ccd9ca81de25a3c669568e3d61548a` without rebuilding/resetting data. The later [mobile 3D compatibility release](MOBILE_ANIMATION_2026-10-14.md), `aac7b756d6b96fa02481007064996597c8327372`, is now installed with unchanged domain routing and owner rows.
 
 ## Cloudflare activation and current blocker
 
