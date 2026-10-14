@@ -2,6 +2,8 @@
 
 **Published at the owner's request on the temporary HTTPS origin:** [https://213.176.28.119/](https://213.176.28.119/). [Admin login](https://213.176.28.119/admin/).
 
+**Later domain update:** The owner has configured DNS and registrar nameservers. Public registry delegation still blocks domain HTTPS; domain vhosts and safe activation are prepared. See [the domain connection record](DOMAIN_CONNECTION_2026-10-14.md) for current evidence.
+
 The owner selected a temporary address because DNS access is currently unavailable. The original English `.com` and Persian `.ir` SEO origins remain configured. Nginx adds `X-Robots-Tag: noindex, nofollow` to the temporary origin. Domain connection, indexing and the previously documented catalog/lint/accessibility acceptance work remain separate from this operational publication.
 
 ## Release and preserved data
@@ -50,7 +52,7 @@ The follow-up release passed TypeScript, production build, bundle budgets and th
 - Exact SKU photos, original manufacturer PDFs, technical-data approval, the lint backlog and legacy-reference reconciliation remain as described in [the earlier readiness report](VPS_READINESS_2026-10-13.md). Publication does not certify manufacturer data.
 - Daily backups currently stay on the VPS. One verified off-server copy exists in the ignored local workspace; recurring off-server storage/retention still needs a destination and policy. Backups and private logs are excluded from GitHub.
 - Full-host reboot was not performed because the provider's initial contextualization service and duplicate-address/default-route observations remain unresolved. Service crash recovery was tested separately. Confirm provider networking before the reboot-persistence acceptance check.
-- Both intended domains still need DNS access, valid A/AAAA configuration, certificates and external verification. Keep the temporary noindex header until the real domains and public content are approved for indexing.
+- Both intended domains still need effective public registry delegation, certificates and external verification. HostIran zone records and saved registrar nameservers are now verified; see the later domain record. Keep noindex until the real domains and public content are approved for indexing.
 - The root password shared in chat remains unchanged; the owner should rotate it and establish a tested personal SSH-key/sudo login.
 
 The private original/migrated snapshots and operational logs remain available for recovery. No runtime data, account credentials, certificate keys or uploaded bytes were committed. GitHub synchronization is source/documentation synchronization, not an automatic deployment watcher.

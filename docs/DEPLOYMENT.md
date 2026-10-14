@@ -66,7 +66,7 @@ On the real domain, check `/`, `/admin/`, `/catalog`, `/engineering`, a product 
 
 ## Connect the two custom domains
 
-The VPS is purchased and the temporary IP origin is published. This step is pending DNS access; saving domain names in the SEO editor does not connect them.
+The VPS is purchased and the temporary IP origin is published. HostIran DNS records and saved registrar nameservers are now configured, but public registry delegation remains unresolved. See [current domain evidence and prepared activation](DOMAIN_CONNECTION_2026-10-14.md). Saving domain names in the SEO editor does not connect them.
 
 1. At each domain's DNS provider, point the root (`@`) A record to the VPS public IPv4 address. Publish AAAA only if the server actually has working public IPv6 and Nginx listens on it. Preserve existing MX/TXT mail records.
 2. If `www` will be used, add it as a CNAME to the matching root domain. Include all four names in certificate coverage before enabling HTTPS redirects. Otherwise omit `www` from the configuration entirely.

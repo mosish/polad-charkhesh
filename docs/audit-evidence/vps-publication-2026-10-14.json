@@ -30,7 +30,7 @@
   "ownerAuthenticatedBrowserCheck": "passed using existing owner account after explicitly authorized password reset; no new administrator",
   "fullHostReboot": "not performed",
   "mobileBrowserPreview": {"status": "passed", "source": "live admin public-site iframe", "viewportWidth": 389, "language": "fa", "direction": "rtl", "documentClientWidth": 373, "documentScrollWidth": 373, "brokenVisibleImages": 0, "physicalDeviceAudit": "not performed"},
-  "publicDomainConnection": "pending DNS access",
+  "publicDomainConnection": "pending public registry delegation; HostIran zone records and saved registrar nameservers verified; domain challenge routes prepared and externally tested; HTTPS activation remains gated",
   "temporaryOriginIndexing": "noindex, nofollow",
   "contentAndFullAuditAcceptance": "open; see readiness report"
 }

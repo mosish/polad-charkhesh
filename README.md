@@ -8,7 +8,9 @@
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
-**Live temporary website:** [https://213.176.28.119/](https://213.176.28.119/) · [Admin login](https://213.176.28.119/admin/). The existing 110-product catalog and owner account were preserved. Trusted HTTPS, service recovery and verified backups are configured. The temporary origin is excluded from indexing while the original domains await DNS access. [Deployment evidence and remaining checks](docs/VPS_DEPLOYMENT_2026-10-14.md).
+**Live temporary website:** [https://213.176.28.119/](https://213.176.28.119/) · [Admin login](https://213.176.28.119/admin/). The existing 110-product catalog and owner account were preserved. Trusted HTTPS, service recovery and verified backups are configured. The temporary origin is excluded from indexing while the original domains await effective public DNS delegation. [Deployment evidence and remaining checks](docs/VPS_DEPLOYMENT_2026-10-14.md).
+
+**Domain connection update:** The owner has configured HostIran DNS and registrar nameservers. Both zones have the correct server IP; public registry delegation still differs from the saved registrar settings. Domain vhosts, challenge routes and a DNS-gated HTTPS activation helper are prepared on the VPS. Domain HTTPS is not yet active. [Observed evidence and next step](docs/DOMAIN_CONNECTION_2026-10-14.md).
 
 **Install from GitHub on Ubuntu 24.04:** [English instructions](docs/GITHUB_VPS_INSTALL.md) · [راهنمای کامل فارسی](docs/UBUNTU_24_GUIDE_FA.md). The repository includes the admin panel and API. The first-install helper builds a pinned source revision and supports private owner-data restoration or an explicitly new database; its default HTTPS workflow is restricted staging. Credentials, databases and uploaded files must remain outside GitHub. The existing VPS has now been published using the separate deployment recorded above; do not rerun the first-install helper on it.
 
@@ -278,4 +280,8 @@ Dark-theme notes now explicitly pair light text with a dark navy background inst
 
 At the owner's request, the application and existing 110-product owner database were published on Ubuntu 24.04 at [the temporary HTTPS address](https://213.176.28.119/). Trusted IP TLS with automatic renewal, private SQLite/uploads storage, systemd supervision, daily verified backups, an isolated restore drill and real service crash recovery passed. Live verification covers 226 English/Persian page variants. Authenticated owner administration, isolated product/media edits and the live Persian mobile preview passed; the admin preview description now accurately refers to the published website.
 
-The main domains await DNS access. The temporary origin remains noindex, and manufacturer-content, lint, complete accessibility/browser auditing and provider-networking/reboot acceptance remain open. [Deployment evidence and limits](docs/VPS_DEPLOYMENT_2026-10-14.md). Runtime data and credentials are excluded from GitHub.
+The main domains await effective public DNS delegation. The temporary origin remains noindex, and manufacturer-content, lint, complete accessibility/browser auditing and provider-networking/reboot acceptance remain open. [Deployment evidence and limits](docs/VPS_DEPLOYMENT_2026-10-14.md). Runtime data and credentials are excluded from GitHub.
+
+### Domain connection preparation — 2026-10-14
+
+HostIran zone records and the owner's saved registrar nameservers were verified. The remaining blocker is public registry delegation, not the application. All four domain HTTP challenge routes passed, the IP website stayed healthy, and the existing renewal timer now covers all certificate lineages. Prepared HTTPS configuration passed syntax validation; the activation helper correctly refused unresolved DNS without changing HTTPS. Domain SSL issuance, external domain tests and indexing remain pending. [Domain connection record](docs/DOMAIN_CONNECTION_2026-10-14.md).
