@@ -1,10 +1,10 @@
 # VPS deployment preparation
 
-The application is built for a Linux VPS with Node, Express and SQLite. Hosting has not been selected, and no public deployment has been performed. The checked-in files under `deploy/` are templates; update paths, domain names and certificate names before installing them.
+The application is built for a Linux VPS with Node, Express and SQLite. The owner requested publication on the purchased Ubuntu 24.04 VPS, and the website is now available at a temporary HTTPS address. See [the deployment record](VPS_DEPLOYMENT_2026-10-14.md) for the exact installed revision, data migration, live checks and remaining acceptance work. The checked-in first-install files under `deploy/` are templates for a fresh installation; do not rerun them on the existing service.
 
 ## Host compatibility probe
 
-For Ubuntu 24.04, use the [step-by-step runbook](UBUNTU_24_RUNBOOK.md) and [current readiness review](VPS_READINESS_2026-10-13.md). Container verification is complete; real-host acceptance and public-launch gates remain open.
+For Ubuntu 24.04, use the [step-by-step runbook](UBUNTU_24_RUNBOOK.md), [readiness review](VPS_READINESS_2026-10-13.md) and [actual deployment record](VPS_DEPLOYMENT_2026-10-14.md). Runtime, storage, HTTPS renewal, restore and service crash recovery passed on the real VPS; domain connection and the remaining content/audit acceptance gates are still open.
 
 Before using a purchased server for live data, run the standalone `scripts/hosting-check.mjs` with Node 22.16+ as the intended application service user against an existing absolute persistent directory:
 
@@ -66,7 +66,7 @@ On the real domain, check `/`, `/admin/`, `/catalog`, `/engineering`, a product 
 
 ## Connect the two custom domains
 
-This step is pending the VPS purchase and DNS access; saving domain names in the SEO editor does not connect them.
+The VPS is purchased and the temporary IP origin is published. This step is pending DNS access; saving domain names in the SEO editor does not connect them.
 
 1. At each domain's DNS provider, point the root (`@`) A record to the VPS public IPv4 address. Publish AAAA only if the server actually has working public IPv6 and Nginx listens on it. Preserve existing MX/TXT mail records.
 2. If `www` will be used, add it as a CNAME to the matching root domain. Include all four names in certificate coverage before enabling HTTPS redirects. Otherwise omit `www` from the configuration entirely.

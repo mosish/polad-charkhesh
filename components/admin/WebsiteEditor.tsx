@@ -713,8 +713,8 @@ export default function WebsiteEditor({
           />
           <small>
             {t(
-              'Preview only. Changes go live on this local website after Save website.',
-              'فقط پیش‌نمایش است. تغییرات پس از ذخیره روی همین سایت محلی اعمال می‌شود.',
+              'Preview only. Changes go live on the website after Save website.',
+              'فقط پیش‌نمایش است. تغییرات پس از ذخیره روی وب‌سایت منتشر می‌شود.',
             )}
           </small>
         </aside>

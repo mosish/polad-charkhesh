@@ -1,0 +1,33 @@
+{
+  "sourceCommit": "52243edd9f677267eeb5767f26c61fe774f5b2a3",
+  "liveCheck": {
+    "status": "passed",
+    "origin": "https://213.176.28.119",
+    "products": 110,
+    "pages": 226,
+    "assets": 5,
+    "checks": [
+      "trusted TLS",
+      "health",
+      "both languages and all product pages",
+      "unique titles and canonical/hreflang",
+      "admin routes",
+      "SEO files and custom 404",
+      "unauthenticated private-API denial",
+      "security headers",
+      "referenced local assets"
+    ],
+    "checkedAt": "2026-10-14T09:49:30.461Z"
+  },
+  "sourceTests": {"passed": 57, "failed": 0},
+  "preservedOwnerData": {"products": 110, "admins": 1, "registeredUploads": 0},
+  "tlsRenewalDryRun": "passed",
+  "restoreDrill": "passed",
+  "actualServiceCrashRecovery": "passed",
+  "ownerAuthenticatedBrowserCheck": "passed using existing owner account after explicitly authorized password reset; no new administrator",
+  "fullHostReboot": "not performed",
+  "mobileBrowserPreview": {"status": "passed", "source": "live admin public-site iframe", "viewportWidth": 389, "language": "fa", "direction": "rtl", "documentClientWidth": 373, "documentScrollWidth": 373, "brokenVisibleImages": 0, "physicalDeviceAudit": "not performed"},
+  "publicDomainConnection": "pending DNS access",
+  "temporaryOriginIndexing": "noindex, nofollow",
+  "contentAndFullAuditAcceptance": "open; see readiness report"
+}
