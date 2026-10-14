@@ -4,6 +4,8 @@
 
 **Later domain update:** [Persian `.ir`](https://poladcharkhesh.ir/) is now live through Cloudflare with trusted apex/www origin HTTPS, Full (strict) and automatic renewal. External checks of 226 page/language variants, existing-owner login, unchanged-company-settings saving and certificate renewal dry-run passed. `.com` remains blocked by HostIran's explicit NS-change suspension error; independent English activation is prepared. See [the domain connection record](DOMAIN_CONNECTION_2026-10-14.md).
 
+**Later mobile hotfix:** Revision `ece390686c8a5d2f30eea94fc2d0f6e862cc46be` is now installed. Safari-compatible listeners, observer guards and section/startup recovery prevent the reproduced empty-screen paths. All 59 tests and production checks passed on Windows and Ubuntu; the 226-page live check passed again. Owner row hashes and counts matched before/after, and previous client assets were retained. Live 375px Chrome checks passed; the owner confirmed Safari works on the phone. [Recovery report](MOBILE_RECOVERY_2026-10-14.md).
+
 The owner initially selected a temporary address because DNS access was then unavailable. The original English `.com` and Persian `.ir` SEO origins remain configured. Nginx retains `X-Robots-Tag: noindex, nofollow` pending acceptance. The later Persian-domain activation does not close English connection, indexing or the previously documented catalog/lint/accessibility work.
 
 ## Release and preserved data

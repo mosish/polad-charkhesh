@@ -3,6 +3,7 @@ import {useBearingJourney} from './BearingJourney';
 import {usePlatform} from './Context';
 import {bearingReturnProgress} from '../../lib/bearing-scroll';
 import RecoveryBoundary from './RecoveryBoundary';
+import PortableBearing from './PortableBearing';
 const Scene=lazy(()=>import('./HeroBearingScene'));
 export default function BearingReturn(){
  const journey=useBearingJourney(),{t}=usePlatform();
@@ -21,8 +22,9 @@ export default function BearingReturn(){
  },[settings?.paused,setProgress]);
  if(!journey)return null;
  const progress=settings!.reduced||!settings!.automatic?1:journey.returnProgress;
+ const fallback=<PortableBearing family={settings!.family} paused={settings!.paused||!visible||!settings!.automatic} reducedMotion={settings!.reduced} scrollProgress={settings!.reduced||!settings!.automatic?undefined:1-progress} label={t('Bearing reassembly · illustrative model','مونتاژ دوباره بیرینگ · مدل نمایشی')}/>;
  return <section ref={section} className="bearing-return" data-return-family={settings!.family} aria-label={t('Bearing assembly finale','پایان مسیر مونتاژ بیرینگ')}>
   <div><span className="section-label">{t('EVERY PART. ONE PURPOSE.','هر جزء، یک هدف.')}</span><h2>{t('Precision comes together.','دقت، یکپارچه می‌شود.')}</h2><p>{t('From individual components to one complete assembly.','از اجزای جداگانه تا یک مجموعه کامل.')}</p><small>{progress>.95?t('Assembly complete','مونتاژ کامل'):t('Scroll to bring the parts together','برای کنار هم آوردن اجزا اسکرول کنید')}</small></div>
-  <div className="bearing-return-model">{loaded&&<RecoveryBoundary fallback={<div className="hero-model-loading">{t('Assembly illustration unavailable','مدل نمایشی در دسترس نیست')}</div>}><Suspense fallback={null}><Scene family={settings!.family} paused={settings!.paused||!visible||!settings!.automatic} reducedMotion={settings!.reduced} scrollProgress={settings!.reduced||!settings!.automatic?undefined:1-progress} label={t('Selected bearing reassembly · illustrative model','مونتاژ دوباره بیرینگ انتخاب‌شده · مدل نمایشی')} fallback={<span>{t('Assembly illustration unavailable','مدل نمایشی در دسترس نیست')}</span>}/></Suspense></RecoveryBoundary>}</div>
+  <div className="bearing-return-model">{loaded?<RecoveryBoundary fallback={fallback}><Suspense fallback={fallback}><Scene family={settings!.family} paused={settings!.paused||!visible||!settings!.automatic} reducedMotion={settings!.reduced} scrollProgress={settings!.reduced||!settings!.automatic?undefined:1-progress} label={t('Selected bearing reassembly · illustrative model','مونتاژ دوباره بیرینگ انتخاب‌شده · مدل نمایشی')} fallback={fallback}/></Suspense></RecoveryBoundary>:fallback}</div>
  </section>;
 }

@@ -4,9 +4,11 @@ export function subscribeMediaQuery(media: MediaQueryList, listener: () => void)
     media.addEventListener('change', listener);
     return () => media.removeEventListener('change', listener);
   }
+  /* oxlint-disable typescript/no-deprecated -- Required only when older Safari lacks EventTarget methods. */
   if (typeof media.addListener === 'function') {
     media.addListener(listener);
     return () => media.removeListener(listener);
   }
+  /* oxlint-enable typescript/no-deprecated */
   return () => {};
 }

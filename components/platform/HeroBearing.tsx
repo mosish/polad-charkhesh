@@ -2,7 +2,7 @@ import { bearingScrollState } from '../../lib/bearing-scroll';
 import { useBearingScroll } from './useBearingScroll';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
-import BearingModel from './BearingModel';
+import PortableBearing from './PortableBearing';
 import { usePlatform } from './Context';
 import type { BearingFamily } from './HeroBearingScene';
 import {useBearingJourney} from './BearingJourney';
@@ -12,7 +12,7 @@ import RecoveryBoundary from './RecoveryBoundary';
 const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
 export default function HeroBearing() {
-  const { products, t } = usePlatform();
+  const { t } = usePlatform();
   const journey=useBearingJourney(),configure=journey?.configure;
   const [family] = useState<BearingFamily>(() => journey?.settings.family || chooseHeroFamily(null));
   const [playback, setPlayback] = useState(1);
@@ -35,7 +35,6 @@ export default function HeroBearing() {
   const [sceneReady, setSceneReady] = useState(false);
   const [tabVisible, setTabVisible] = useState(!document.hidden);
   const stage = useRef<HTMLDivElement>(null);
-  const p = products.find(p => p.schematicType === (family === 'roller' ? 'spherical' : family === 'track' ? 'needle' : 'angular-contact')) || products.find(p => p.schematicType === 'deep-groove');
   useEffect(()=>configure?.({family,paused,automatic:scrollMode,reduced}),[configure,family,paused,scrollMode,reduced]);
   const stopped = paused || reduced || !visible || !tabVisible;
   const scrollProgress = useBearingScroll(stage, scrollMode && !paused && !reduced);
@@ -61,7 +60,7 @@ export default function HeroBearing() {
     stage.current?.style.setProperty('--tilt-x', '0deg');
     stage.current?.style.setProperty('--tilt-y', '0deg');
   };
-  const sceneFallback = !exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>;
+  const sceneFallback = <PortableBearing family={family} label={selected.detail+' · '+t('Illustrative model','مدل نمایشی')} paused={stopped} reducedMotion={reduced} exploded={exploded} playback={playback} scrollProgress={followView?scrollProgress:undefined}/>;
   return <div className={'hero-visual hero-bearing-showcase hero-bearing-banner' + (stopped ? ' is-still' : '')} data-scroll-mode={followView ? 'auto' : 'manual'}>
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
@@ -108,9 +107,9 @@ export default function HeroBearing() {
       <div className="hero-bearing-halo" aria-hidden="true" />
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
-        {sceneReady && <RecoveryBoundary fallback={<div className="hero-model-fallback">{sceneFallback}</div>}><Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
+        {sceneReady ? <RecoveryBoundary fallback={<div className="hero-model-fallback">{sceneFallback}</div>}><Suspense fallback={sceneFallback}>
           <HeroBearingScene cinematic family={family} paused={stopped} playback={playback} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={sceneFallback}/>
-        </Suspense></RecoveryBoundary>}
+        </Suspense></RecoveryBoundary> : sceneFallback}
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
     </div>

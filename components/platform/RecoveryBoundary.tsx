@@ -18,6 +18,7 @@ export default class RecoveryBoundary extends Component<{
   static getDerivedStateFromError() { return { failed: true }; }
   componentDidCatch(error: Error) { console.error('Website section could not start:', error); }
   componentDidUpdate(previous: Readonly<typeof this.props>) {
+    // oxlint-disable-next-line react/no-did-update-set-state -- One bounded reset when a failed product view receives a new identity.
     if (this.state.failed && !Object.is(previous.resetKey, this.props.resetKey)) this.setState({ failed: false });
   }
   render() { return this.state.failed ? this.props.fallback : this.props.children; }

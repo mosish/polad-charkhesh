@@ -3,7 +3,7 @@ import { Pause, Play } from 'lucide-react';
 import type { BearingProduct } from '../../domain/product';
 import { usePlatform } from './Context';
 import { Schematic } from './Schematic';
-import BearingModel from './BearingModel';
+import PortableBearing from './PortableBearing';
 import { bearingGeometry } from '../../lib/bearing-motion';
 import {subscribeMediaQuery} from '../../lib/browser-compat';
 import RecoveryBoundary from './RecoveryBoundary';
@@ -24,6 +24,7 @@ export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: 
   useEffect(() => { setExploded(initialExploded && g.supported); if (!g.supported) setMode('section'); }, [p.id, g.supported, initialExploded]);
   useEffect(() => { const media=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setReducedMotion(media.matches);return subscribeMediaQuery(media,update); }, []);
   const partLabels=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
+  const sceneFallback=<PortableBearing family={g.roller?'roller':'ball'} product={p} rpm={safeRpm} playback={playback} paused={paused||exploded} reducedMotion={reducedMotion} exploded={exploded} label={`${p.code} · ${t('Illustrative bearing model','مدل نمایشی بیرینگ')}`}/>;
   return <div className="viewer">
     <div className="viewer-toolbar">
       <div><span className="section-label">{t('BEARING EXPLORER', 'کاوش بیرینگ')}</span><strong>{p.code}</strong></div>
@@ -40,15 +41,15 @@ export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: 
             <button type="button" aria-pressed={exploded} onClick={()=>setExploded(true)}>{t('Exploded view','نمای انفجاری')}</button>
           </div>
           <div className="explorer-model-stage">
-            <RecoveryBoundary resetKey={p.id} fallback={<Schematic p={p}/>}><Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-              <BearingScene key={p.id} family={g.roller?'roller':'ball'} product={p} rpm={safeRpm} playback={playback} paused={paused||exploded} exploded={exploded} reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${p.d} × ${p.D} × ${p.B} mm${exploded?' · '+t('Exploded view','نمای انفجاری'):''}`} fallback={exploded?<div className="hero-model-loading">{p.code}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>:<BearingModel p={p} rpm={safeRpm} paused={paused||reducedMotion} playback={playback} compact/>}/>
+            <RecoveryBoundary resetKey={p.id} fallback={sceneFallback}><Suspense fallback={sceneFallback}>
+              <BearingScene key={p.id} family={g.roller?'roller':'ball'} product={p} rpm={safeRpm} playback={playback} paused={paused||exploded} exploded={exploded} reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${p.d} × ${p.D} × ${p.B} mm${exploded?' · '+t('Exploded view','نمای انفجاری'):''}`} fallback={sceneFallback}/>
             </Suspense></RecoveryBoundary>
           </div>
           {exploded&&<div className="bearing-parts-key explorer-parts-key" aria-label={t('Bearing parts','اجزای بیرینگ')}>{partLabels.map((name,i)=><span key={name}><b>{i+1}</b>{name}</span>)}</div>}
           <div className="explorer-model-dimensions"><span>{p.d} × {p.D} × {p.B} mm</span><span>{p.schematicType}</span></div>
         </div>}
         {g.supported && mode!=='section' && <div className="motion-controls">
-          <button className="motion-toggle" disabled={exploded} aria-label={t(paused?'Play rotation':'Pause rotation',paused?'شروع دوران':'توقف دوران')} title={t(paused?'Play rotation':'Pause rotation',paused?'شروع دوران':'توقف دوران')} onClick={()=>setPaused(!paused)}>{paused||exploded?<Play size={14}/>:<Pause size={14}/>}</button>
+          <button className="motion-toggle" disabled={exploded} aria-label={t(paused?'Play rotation':'Pause rotation',paused?'شروع دوران':'توقف دوران')} title={t(paused?'Play rotation':'Pause rotation',paused?'شروع دوران':'توقف دوران')} onClick={()=>{if(paused)setReducedMotion(false);setPaused(!paused);}}>{paused||exploded?<Play size={14}/>:<Pause size={14}/>}</button>
           <label>{t('Speed','سرعت')}<span className="rpm-input"><input aria-label={t('Shaft speed in RPM','سرعت شفت بر حسب دور در دقیقه')} type="number" min="0" max="200000" step="100" value={safeRpm} onChange={e=>onRpmChange(Math.min(200000,Math.max(0,Number(e.target.value))))}/><span>RPM</span></span></label>
           <label>{t('Playback','نمایش')}<select value={playback} onChange={e=>setPlayback(Number(e.target.value))}><option value="1">{t('1× · Real time','۱× · زمان واقعی')}</option><option value="0.1">{t('0.1× · Slow motion','۰٫۱× · حرکت آهسته')}</option><option value="0.02">{t('0.02× · Inspection','۰٫۰۲× · بررسی جزئیات')}</option></select></label>
         </div>}

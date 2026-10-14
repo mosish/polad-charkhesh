@@ -210,6 +210,9 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const compactScreen=matchMedia('(max-width: 760px)').matches;
     let renderer:THREE.WebGLRenderer;
     try {renderer=new THREE.WebGLRenderer({alpha:true,antialias:!compactScreen,powerPreference:'low-power'});}catch{setFailed(true);return;}
+    // Some Safari drivers report shader failure without throwing from render().
+    let shaderFailed=false;
+    renderer.debug.onShaderError=()=>{shaderFailed=true;};
     const frameInterval=1000/(compactScreen || !product ? 30 : 60);
     renderer.setPixelRatio(Math.min(devicePixelRatio,compactScreen?1.25:1.75));renderer.setClearColor(0x000000,0);
     renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=cinematic?1.05:1.2;
@@ -315,6 +318,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
       target.dataset.expansion=expansion.toFixed(3);
       target.dataset.scrollProgress=viewRef.current.scrollProgress?.toFixed(3) || 'manual';
       try {renderer.render(scene,camera);}catch{running=false;setFailed(true);return;}
+      if(shaderFailed){running=false;setFailed(true);return;}
       target.dataset.motionTime=elapsed.toFixed(3);
       if(running||(inView&&!document.hidden&&expansion!==targetExpansion))frame=requestAnimationFrame(draw);
     };

@@ -1,6 +1,20 @@
 {
   "sourceCommit": "52243edd9f677267eeb5767f26c61fe774f5b2a3",
   "installedFollowupCommit": "174a233291ccd9ca81de25a3c669568e3d61548a",
+  "currentInstalledCommit": "ece390686c8a5d2f30eea94fc2d0f6e862cc46be",
+  "mobileRecoveryHotfix": {
+    "revision": "ece390686c8a5d2f30eea94fc2d0f6e862cc46be",
+    "windowsAndUbuntuChecks": "TypeScript, 59 tests, build, bundle budgets and isolated production smoke passed",
+    "sourceArchiveSha256": "521a00cfa1a2e72ef0d6e6084fcb89e988bfe9071e9754dd73e42a20195dbadf",
+    "ownerData": "SQLite integrity and product/admin/settings/media row hashes match before and after; 110/1/0 counts preserved",
+    "verifiedPrePublicationBackup": "completed; private database/uploads snapshot excluded from GitHub",
+    "previousHashedAssets": "retained to support already-open tabs",
+    "isolatedBrowserScenarios": ["legacy media listeners and missing ResizeObserver", "failed scene import", "failed catalog import preserves 110 links", "startup failure preserves readable public HTML", "WebGL unavailable", "mobile menu/search/product/exploded"],
+    "liveCheck": {"status": "passed", "products": 110, "pages": 226, "assets": 5, "checkedAt": "2026-10-14T14:37:36.396Z"},
+    "liveChromePreview": {"width": 375, "horizontalOverflow": 0, "visibleHeroCanvas": 1, "recoveryAlerts": 0, "bundle": "/assets/index-B44LGZDC.js"},
+    "physicalSafariConfirmation": "owner opened fresh-query production link in Safari and confirmed the issue is fixed",
+    "domainAndIndexingSettings": "retained"
+  },
   "followupSourceChecks": ["TypeScript", "production build", "bundle budgets", "isolated production smoke on Windows and VPS"],
   "liveCheck": {
     "status": "passed",
