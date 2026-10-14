@@ -39,7 +39,8 @@
       "certificateLineage": "polad-ir",
       "certificateExpires": "2027-01-12",
       "renewalDryRunWithDeployHook": "passed",
-      "liveCheck": {"status": "passed", "products": 110, "pages": 226, "assets": 5, "checkedAt": "2026-10-14T13:04:53.224Z"},
+      "liveCheck": {"status": "passed", "products": 110, "pages": 226, "assets": 5, "checkedAt": "2026-10-14T13:04:53.224Z", "path": "workstation DNS cached origin IPv4; trusted Persian-domain origin TLS"},
+      "separateCloudflareChecks": {"freshAuthoritativeAddress": "188.114.98.0", "trustedTlsHealth": 200, "wwwRedirect": 301, "normalChromeWwwVisit": "passed; redirected and rendered Persian homepage", "fullNodeSuiteThroughCloudflare": "not passed; connection closed before page checks", "networkLimit": "some other Cloudflare-address requests timed out or received empty replies from this network"},
       "ownerLoginAndUnchangedSettingsSave": "passed on domain; no cross-origin rejection; no new administrator",
       "wwwRedirect": "301 to Persian apex preserving product path and lang query"
     },

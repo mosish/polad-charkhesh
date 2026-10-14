@@ -28,7 +28,13 @@ The panel labels that domain active, but the registrar rejects its NS change. Th
 - External `node deploy/check-live.mjs https://poladcharkhesh.ir` passed **after proxy activation at 2026-10-14T13:04:53.224Z**: 110 products, 226 language/page variants and five assets; trusted TLS, metadata, SEO files/custom 404, admin routes, security headers and unauthenticated private-API denial.
 - Chrome rendered the default Persian homepage. Existing-owner login succeeded on `/admin/` and saving unchanged company settings returned the success message, with no cross-origin rejection. No new administrator or role was created.
 - The Products workspace loaded the preserved 110-record catalog. Bash syntax checks for both helpers passed; the English Nginx example passed a separate syntax-only check with the existing Persian certificate path substituted **only for that isolated check**, not activated for English. Both helper refusals were tested; live vhost checksums stayed unchanged and Nginx, application and renewal timer remained active.
-- A Cloudflare-served www request returned 301 to `https://poladcharkhesh.ir/product/6204-2rs?lang=fa`, preserving the path/query. One forced-IP VPS-to-Cloudflare request timed out; the external route suite and normal browser succeeded. This is not a global connectivity or load benchmark.
+- A Cloudflare-served www request returned 301 to `https://poladcharkhesh.ir/product/6204-2rs?lang=fa`, preserving the path/query. Chrome's normal `https://www.poladcharkhesh.ir/` visit also redirected and rendered the Persian homepage successfully.
+
+### Network verification scope
+
+The workstation's default DNS still cached the previous apex origin IP `213.176.28.119` during the final check. Thus the 226-page suite verifies the public Persian domain with trusted origin TLS; it is **not** a claim that every page was tested through Cloudflare. Separate curl requests using the freshly observed authoritative Cloudflare address `188.114.98.0` retained normal certificate validation and returned `Server: cloudflare`, health 200 and the expected www 301. Chrome's normal www navigation succeeded too.
+
+Some other Cloudflare-address requests from this network timed out or received an empty response. A subsequent Node-based attempt to run the full suite through the fresh Cloudflare address ended with a closed connection before page checks began; it is not counted as a pass. No workstation DNS settings or certificate-validation protections were changed. These observations do not prove global connectivity or load capacity; investigate resolver/network paths if a particular visitor still cannot connect.
 
 Noindex remains while manufacturer-content, lint and full-audit acceptance are open. Domain connectivity does not close those separate gates. Operational screenshots, private configuration backups and keys are excluded from GitHub.
 
