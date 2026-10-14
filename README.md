@@ -4,7 +4,7 @@
 >
 > **Source of truth for code:** GitHub `main`
 >
-> **Last status review:** 2026-10-13
+> **Last status review:** 2026-10-14
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
@@ -40,7 +40,7 @@ The main local feature set is implemented. The current work is to **stabilize, v
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | 🟡 In progress | Tooling now uses the platform TypeScript configuration and Vite-appropriate rules. Current count is 195 findings, down from 203 before the Ubuntu readiness review; repository lint still fails and remains a launch blocker. |
 | Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
-| VPS deployment and production smoke test | 🟡 Preparation | Ubuntu 24.04 passed tests, build, production smoke and config parsing under a 1 CPU / 2 GiB limit. Dependency audit: zero known advisories. Real hosting, TLS, reboot/restore, lint and content approval remain open. [Readiness review](docs/VPS_READINESS_2026-10-13.md), [Ubuntu runbook](docs/UBUNTU_24_RUNBOOK.md). |
+| VPS deployment and production smoke test | 🟡 Server prepared | Purchased Ubuntu 24.04 VPS prepared with Node, Nginx, firewall and SSH protection. All 57 tests, build, isolated production smoke and SQLite/WAL probe passed on the actual host. Owner-data deployment, DNS/TLS, reboot/restore, lint and content approval remain open. [Server preparation](docs/VPS_PREPARATION_2026-10-14.md), [Ubuntu runbook](docs/UBUNTU_24_RUNBOOK.md). |
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
