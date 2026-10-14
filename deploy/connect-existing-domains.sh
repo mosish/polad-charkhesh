@@ -2,6 +2,14 @@
 # For the already-published 213.176.28.119 VPS only. Does not change DNS or data.
 set -euo pipefail
 test "$(id -u)" -eq 0 || { echo 'Run as root on the existing VPS.' >&2; exit 1; }
+# Individual language domains now use separate certificate lineages/vhosts.
+# Never reintroduce a combined vhost over an already activated language origin.
+for pc_domain in ir com; do
+    if [ -e "/etc/nginx/sites-enabled/polad-$pc_domain" ] || [ -L "/etc/nginx/sites-enabled/polad-$pc_domain" ]; then
+        echo 'Independent domain activation detected. Do not use this legacy combined helper; see docs/DOMAIN_CONNECTION_2026-10-14.md.' >&2
+        exit 1
+    fi
+done
 pc_ip=213.176.28.119
 pc_names=(poladcharkhesh.ir www.poladcharkhesh.ir poladcharkhesh.com www.poladcharkhesh.com)
 pc_config=/etc/nginx/sites-available/polad-domains

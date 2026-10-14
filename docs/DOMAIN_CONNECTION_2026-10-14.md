@@ -1,6 +1,61 @@
 # Company domain connection — 2026-10-14
 
-**Status: server prepared; public DNS delegation blocks domain HTTPS activation.** The existing [temporary HTTPS website](https://213.176.28.119/) remains healthy. Application revision `174a233291ccd9ca81de25a3c669568e3d61548a`, owner data and credentials were not changed by this work.
+**Current status: Persian domain live; English domain blocked by the registrar.** [Persian website](https://poladcharkhesh.ir/) · [Admin panel](https://poladcharkhesh.ir/admin/). `.ir` defaults to Persian; `.com` remains the intended English origin. Do not redirect one language apex to the other. The [temporary IP website](https://213.176.28.119/) remains available. Application revision is still `174a233291ccd9ca81de25a3c669568e3d61548a`; no application rebuild, account reset or product/media replacement occurred during domain activation.
+
+## Cloudflare activation and current blocker
+
+Both owner-created Cloudflare zones lacked an apex A record. Added `A @ → 213.176.28.119` to each, retaining the existing www records. Assigned nameservers for both zones are `andy.ns.cloudflare.com` and `mckinley.ns.cloudflare.com`.
+
+| Domain | Current registry evidence | Cloudflare configuration | HTTPS |
+| --- | --- | --- | --- |
+| `.ir` and `www` | Direct parent query at `a.nic.ir` now returns the assigned Cloudflare NS pair | Active; apex/www A records point to the VPS and are Proxied; **Full (strict)** saved | Valid origin certificate covers both names; public homepage/admin work |
+| `.com` and `www` | Direct parent query at `a.gtld-servers.net` still returns `ns1.nonverifieddomain.com` and `ns2.nonverifieddomain.com` | Apex/www point to the VPS, **DNS only**; activation awaits delegation | Certificate and final English vhost remain gated |
+
+Submitting the assigned Cloudflare NS pair on the actual `.com` HostIran record produced:
+
+> updateDomainNameServers : Domain is suspended. Nameserver update is not allowed.
+
+The panel labels that domain active, but the registrar rejects its NS change. The underlying suspension reason is not established. Do not assume an email-verification cause, unlock transfer or change ownership. The owner confirmed that a support ticket was already sent; the agent did not send a duplicate.
+
+## Persian HTTPS and checks completed
+
+- Issued Let's Encrypt lineage `polad-ir` for the Persian apex and www, expiring **2027-01-12**. Keys remain private under `/etc/letsencrypt/`.
+- Activated `/etc/nginx/sites-available/polad-ir` and its enabled symlink. [Reviewed configuration](../deploy/nginx-ir.conf.example). HTTP-01 paths remain reachable; other HTTP requests redirect to HTTPS. The www HTTPS host redirects to the Persian apex with path/query preserved.
+- Narrowed the earlier pending `polad-domains` vhost to `.com` and its www. The existing IP/default vhost stays enabled.
+- Installed [Cloudflare client-IP handling](../deploy/cloudflare-realip.conf.example) using the official [IPv4](https://www.cloudflare.com/ips-v4) and [IPv6](https://www.cloudflare.com/ips-v6) lists. Only those networks may supply `CF-Connecting-IP`; the loopback application receives the sanitized address. Refresh those ranges if Cloudflare changes them; never trust every source address.
+- Saved **Full (strict)** after the valid origin certificate was installed. This satisfies [Cloudflare's matching-origin-certificate requirements](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).
+- Nginx validation/reload passed. `certbot renew --cert-name polad-ir --dry-run --run-deploy-hooks` passed, including the reload hook; the existing timer renews all lineages.
+- External `node deploy/check-live.mjs https://poladcharkhesh.ir` passed **after proxy activation at 2026-10-14T13:04:53.224Z**: 110 products, 226 language/page variants and five assets; trusted TLS, metadata, SEO files/custom 404, admin routes, security headers and unauthenticated private-API denial.
+- Chrome rendered the default Persian homepage. Existing-owner login succeeded on `/admin/` and saving unchanged company settings returned the success message, with no cross-origin rejection. No new administrator or role was created.
+- The Products workspace loaded the preserved 110-record catalog. Bash syntax checks for both helpers passed; the English Nginx example passed a separate syntax-only check with the existing Persian certificate path substituted **only for that isolated check**, not activated for English. Both helper refusals were tested; live vhost checksums stayed unchanged and Nginx, application and renewal timer remained active.
+- A Cloudflare-served www request returned 301 to `https://poladcharkhesh.ir/product/6204-2rs?lang=fa`, preserving the path/query. One forced-IP VPS-to-Cloudflare request timed out; the external route suite and normal browser succeeded. This is not a global connectivity or load benchmark.
+
+Noindex remains while manufacturer-content, lint and full-audit acceptance are open. Domain connectivity does not close those separate gates. Operational screenshots, private configuration backups and keys are excluded from GitHub.
+
+## Complete the English origin after registrar recovery
+
+Keep both `.com` records DNS only until trusted origin HTTPS is installed. The prepared [English configuration](../deploy/nginx-com.conf.example) uses a separate `polad-com` certificate. The root-only [English activation helper](../deploy/connect-english-domain.sh) is installed as `/usr/local/sbin/polad-connect-com` for this existing VPS only:
+
+```bash
+sudo /usr/local/sbin/polad-connect-com
+```
+
+It requires both public resolvers to return only the VPS IPv4 for the English apex/www with no unverified AAAA route. It checks the existing renewal/Persian setup before requesting a certificate, activates only English, removes the pending English symlink and checks both origins locally. Routing failures restore the previous configuration. Its actual current run stopped at the DNS gate; English activation has **not** passed.
+
+After successful activation, run external checks and the new lineage's renewal dry-run:
+
+```bash
+node /opt/polad-charkhesh/current/deploy/check-live.mjs https://poladcharkhesh.com
+sudo /opt/polad-certbot/bin/certbot renew --cert-name polad-com --dry-run --run-deploy-hooks
+```
+
+Check English default language, www path/query preservation, owner login and protected unchanged-settings saving. Then set that zone to **Full (strict)** before enabling its proxy. Preserve unrelated mail records. No automatic watcher or later deployment is configured.
+
+The legacy combined helper now refuses to run when an independent language vhost exists. **Do not run `/usr/local/sbin/polad-connect-domains` on this VPS:** its combined layout would conflict with live Persian routing.
+
+## Earlier preparation evidence — superseded for `.ir`
+
+The sections below preserve the state before Cloudflare/registry activation. Their original all-domain pending status and combined-helper workflow are historical; use the independent English workflow above now.
 
 ## Verified DNS evidence
 
@@ -31,9 +86,9 @@ The direct parent-registry queries still returned the same results at **2026-10-
 
 No domain certificate has been issued yet. [HTTP-01 validation](https://letsencrypt.org/docs/challenge-types/) requires the certificate authority to reach the domain's validation URL. Public DNS must lead to this VPS first. Existing temporary IP TLS, private data, backups and application supervision remain in service.
 
-## Finish after registry publication
+## Historical combined workflow — no longer applicable to this VPS
 
-This helper is for the existing VPS layout only, not a first-install script. It is not scheduled or a background watcher. After both public resolvers return the expected IPv4 for all four names and no unverified AAAA records, run on the VPS:
+This was the prepared workflow before independent Persian activation. It is not a first-install script or background watcher. The command below is retained as historical evidence only and is now guarded against the active independent vhost:
 
 ```bash
 sudo /usr/local/sbin/polad-connect-domains

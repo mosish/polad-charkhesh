@@ -30,7 +30,29 @@
   "ownerAuthenticatedBrowserCheck": "passed using existing owner account after explicitly authorized password reset; no new administrator",
   "fullHostReboot": "not performed",
   "mobileBrowserPreview": {"status": "passed", "source": "live admin public-site iframe", "viewportWidth": 389, "language": "fa", "direction": "rtl", "documentClientWidth": 373, "documentScrollWidth": 373, "brokenVisibleImages": 0, "physicalDeviceAudit": "not performed"},
-  "publicDomainConnection": "pending public registry delegation; HostIran zone records and saved registrar nameservers verified; domain challenge routes prepared and externally tested; HTTPS activation remains gated",
+  "publicDomainConnection": {
+    "persian": {
+      "origin": "https://poladcharkhesh.ir",
+      "status": "live",
+      "nameservers": ["andy.ns.cloudflare.com", "mckinley.ns.cloudflare.com"],
+      "cloudflare": {"zone": "active", "apexAndWww": "proxied", "sslMode": "Full (strict)", "sanitizedClientIp": "official Cloudflare ranges only"},
+      "certificateLineage": "polad-ir",
+      "certificateExpires": "2027-01-12",
+      "renewalDryRunWithDeployHook": "passed",
+      "liveCheck": {"status": "passed", "products": 110, "pages": 226, "assets": 5, "checkedAt": "2026-10-14T13:04:53.224Z"},
+      "ownerLoginAndUnchangedSettingsSave": "passed on domain; no cross-origin rejection; no new administrator",
+      "wwwRedirect": "301 to Persian apex preserving product path and lang query"
+    },
+    "english": {
+      "origin": "https://poladcharkhesh.com",
+      "status": "blocked by registrar",
+      "registrarNsChangeError": "updateDomainNameServers : Domain is suspended. Nameserver update is not allowed.",
+      "parentNameservers": ["ns1.nonverifieddomain.com", "ns2.nonverifieddomain.com"],
+      "cloudflareApexAndWww": "A records prepared; DNS only",
+      "ownerSupportTicket": "already sent by owner; agent did not send duplicate",
+      "independentActivation": "prepared; current execution stops at DNS gate without changing HTTPS"
+    }
+  },
   "temporaryOriginIndexing": "noindex, nofollow",
   "contentAndFullAuditAcceptance": "open; see readiness report"
 }

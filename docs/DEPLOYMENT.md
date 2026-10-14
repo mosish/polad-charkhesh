@@ -1,6 +1,6 @@
 # VPS deployment preparation
 
-The application is built for a Linux VPS with Node, Express and SQLite. The owner requested publication on the purchased Ubuntu 24.04 VPS, and the website is now available at a temporary HTTPS address. See [the deployment record](VPS_DEPLOYMENT_2026-10-14.md) for the exact installed revision, data migration, live checks and remaining acceptance work. The checked-in first-install files under `deploy/` are templates for a fresh installation; do not rerun them on the existing service.
+The application is built for a Linux VPS with Node, Express and SQLite. It is now published on the purchased Ubuntu 24.04 VPS at [the Persian domain](https://poladcharkhesh.ir/) and the temporary HTTPS IP. See [the deployment record](VPS_DEPLOYMENT_2026-10-14.md) for the installed revision, data migration, live checks and remaining acceptance work. The first-install files under `deploy/` are templates for a fresh installation; do not rerun them on the existing service.
 
 ## Host compatibility probe
 
@@ -66,7 +66,7 @@ On the real domain, check `/`, `/admin/`, `/catalog`, `/engineering`, a product 
 
 ## Connect the two custom domains
 
-The VPS is purchased and the temporary IP origin is published. HostIran DNS records and saved registrar nameservers are now configured, but public registry delegation remains unresolved. See [current domain evidence and prepared activation](DOMAIN_CONNECTION_2026-10-14.md). Saving domain names in the SEO editor does not connect them.
+The Persian origin is connected through Cloudflare with Full (strict), a valid `polad-ir` apex/www certificate, trusted Cloudflare client-IP ranges and verified automatic renewal. `.com` has prepared Cloudflare records but the registrar rejects its NS change as suspended. The owner has already contacted support. See [current domain evidence and the independent English activation helper](DOMAIN_CONNECTION_2026-10-14.md). Do not use the legacy combined-domain helper on this now-separated setup. Saving domain names in the SEO editor does not connect them.
 
 1. At each domain's DNS provider, point the root (`@`) A record to the VPS public IPv4 address. Publish AAAA only if the server actually has working public IPv6 and Nginx listens on it. Preserve existing MX/TXT mail records.
 2. If `www` will be used, add it as a CNAME to the matching root domain. Include all four names in certificate coverage before enabling HTTPS redirects. Otherwise omit `www` from the configuration entirely.

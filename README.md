@@ -1,6 +1,6 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
-> **Project status:** Published on a temporary VPS HTTPS address; domain connection and final acceptance remain open
+> **Project status:** Persian domain live with Cloudflare and trusted HTTPS; English registrar recovery and final acceptance remain open
 >
 > **Source of truth for code:** GitHub `main`
 >
@@ -8,9 +8,9 @@
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
-**Live temporary website:** [https://213.176.28.119/](https://213.176.28.119/) · [Admin login](https://213.176.28.119/admin/). The existing 110-product catalog and owner account were preserved. Trusted HTTPS, service recovery and verified backups are configured. The temporary origin is excluded from indexing while the original domains await effective public DNS delegation. [Deployment evidence and remaining checks](docs/VPS_DEPLOYMENT_2026-10-14.md).
+**Live Persian website:** [poladcharkhesh.ir](https://poladcharkhesh.ir/) · [Admin login](https://poladcharkhesh.ir/admin/). Cloudflare proxying, Full (strict), a valid origin certificate and automatic renewal are active. The existing 110-product catalog and owner account were preserved. The [temporary IP origin](https://213.176.28.119/) remains available. Indexing remains gated by final content/audit acceptance. [Deployment evidence and remaining checks](docs/VPS_DEPLOYMENT_2026-10-14.md).
 
-**Domain connection update:** The owner has configured HostIran DNS and registrar nameservers. Both zones have the correct server IP; public registry delegation still differs from the saved registrar settings. Domain vhosts, challenge routes and a DNS-gated HTTPS activation helper are prepared on the VPS. Domain HTTPS is not yet active. [Observed evidence and next step](docs/DOMAIN_CONNECTION_2026-10-14.md).
+**English domain update:** Cloudflare apex/www records are ready, but HostIran rejects changing `.com` nameservers with “Domain is suspended. Nameserver update is not allowed.” The parent registry still returns the nonverified nameservers. The owner has already contacted support. Independent English HTTPS activation is prepared without affecting the live Persian origin. [Current evidence and next step](docs/DOMAIN_CONNECTION_2026-10-14.md).
 
 **Install from GitHub on Ubuntu 24.04:** [English instructions](docs/GITHUB_VPS_INSTALL.md) · [راهنمای کامل فارسی](docs/UBUNTU_24_GUIDE_FA.md). The repository includes the admin panel and API. The first-install helper builds a pinned source revision and supports private owner-data restoration or an explicitly new database; its default HTTPS workflow is restricted staging. Credentials, databases and uploaded files must remain outside GitHub. The existing VPS has now been published using the separate deployment recorded above; do not rerun the first-install helper on it.
 
@@ -22,7 +22,7 @@ This is **not an online shop**. There are no prices, carts, checkout, payments, 
 
 ## Current project status
 
-The main feature set is implemented and published at the temporary VPS address. Owner-authenticated administration and targeted Persian mobile preview checks passed. The current work is to **verify manufacturer data and content, complete final audits, and connect the company domains**. Successful deployment checks do not mean manufacturer data and every browser workflow have been approved.
+The main feature set is published on the Persian domain and temporary VPS address. Owner-authenticated administration, an unchanged-settings save on the real Persian origin and targeted Persian mobile preview checks passed. The current work is to **verify manufacturer data and content, complete final audits, and resolve English-domain registrar suspension**. Successful deployment checks do not mean manufacturer data and every browser workflow have been approved.
 
 | Area | Status | What this means now |
 | --- | --- | --- |
@@ -39,12 +39,12 @@ The main feature set is implemented and published at the temporary VPS address. 
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
-| Technical SEO | ✅ Verified locally | 113 indexable routes pass bilingual content and production HTTP checks. Shared breadcrumbs, LocalBusiness/Product schema, canonical/hreflang, robots, sitemap, llms.txt, branded 404, favicon and alt-text improvements are implemented. [Checklist and evidence](docs/SEO_PREDEPLOY_CHECKLIST.md). Actual domain connection and live indexing remain pending. |
+| Technical SEO | ✅ Verified locally and on `.ir` | 113 routes pass bilingual content and production HTTP checks. Shared breadcrumbs, LocalBusiness/Product schema, canonical/hreflang, robots, sitemap, llms.txt, branded 404, favicon and alt-text improvements are implemented. [Checklist and evidence](docs/SEO_PREDEPLOY_CHECKLIST.md). English-domain connection and indexing approval remain pending. |
 | Exact product photos and manufacturer PDFs | 🟡 Pending content | Exact SKU photos are still missing. SKF's public product/image hosts blocked reliable access, so the 42 new records use clearly labeled family-reference visuals and link to SKF's official catalog. Admin uploads can replace each image later. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | 🟡 In progress | Tooling now uses the platform TypeScript configuration and Vite-appropriate rules. Current count is 195 findings, down from 203 before the Ubuntu readiness review; repository lint still fails and remains a launch blocker. |
 | Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
-| VPS deployment and production smoke test | 🟡 Published; final acceptance open | Existing owner data deployed on temporary IP HTTPS. All 57 source tests, 226 live language/page checks, owner-authenticated admin workflows, Persian mobile preview, certificate renewal, restore drill and real service crash recovery passed. Domain DNS, host reboot, lint/content and full audit remain open. [Deployment evidence](docs/VPS_DEPLOYMENT_2026-10-14.md). |
+| VPS deployment and production smoke test | 🟡 Persian domain live; final acceptance open | Existing owner data published on `.ir` HTTPS and the temporary IP. All 57 source tests, 226 live language/page checks, owner-authenticated admin workflows, Persian mobile preview, certificate renewal, restore drill and real service crash recovery passed. `.com` registrar recovery, host reboot, lint/content and full audit remain open. [Deployment evidence](docs/VPS_DEPLOYMENT_2026-10-14.md). |
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
@@ -239,7 +239,7 @@ All requested source-side checklist items are implemented or verified: semantic 
 
 `pnpm audit:seo` checks the running public records without writing them. `pnpm check:bundles` enforces 450 KB per JavaScript chunk and 100 KB gzip for the initial static module graph; GitHub Actions runs this after building. The largest chunk is now **403.2 KB**, versus **546.9 KB** before this phase. Three.js's core and renderer remain lazy chunks (largest **343.8 KB**); splitting does not remove the engine's total download cost. Initial JavaScript is **81.8 KB gzip**, and the hero waits until near the viewport before loading its scene. Animation, selected families and Follow scroll remain intact.
 
-Custom-domain configuration is ready; DNS and HTTPS are **not connected or verified** until hosting is provisioned. [Launch instructions](docs/DEPLOYMENT.md#connect-the-two-custom-domains) preserve `.com` for English and `.ir` for Persian. No deployment occurred. The SEO phase ended with **210 lint findings**; the current total is tracked in the status table above. Exact manufacturer assets/data and the full release audit remain open.
+At completion of this SEO phase, custom-domain configuration was ready but DNS/HTTPS and deployment had not yet been performed. Later VPS publication and Persian-domain activation are recorded below. [Launch instructions](docs/DEPLOYMENT.md#connect-the-two-custom-domains) preserve `.com` for English and `.ir` for Persian. The SEO phase ended with **210 lint findings**; the current total is tracked in the status table above. Exact manufacturer assets/data and the full release audit remain open.
 
 ### Reliability improvements
 
@@ -280,8 +280,8 @@ Dark-theme notes now explicitly pair light text with a dark navy background inst
 
 At the owner's request, the application and existing 110-product owner database were published on Ubuntu 24.04 at [the temporary HTTPS address](https://213.176.28.119/). Trusted IP TLS with automatic renewal, private SQLite/uploads storage, systemd supervision, daily verified backups, an isolated restore drill and real service crash recovery passed. Live verification covers 226 English/Persian page variants. Authenticated owner administration, isolated product/media edits and the live Persian mobile preview passed; the admin preview description now accurately refers to the published website.
 
-The main domains await effective public DNS delegation. The temporary origin remains noindex, and manufacturer-content, lint, complete accessibility/browser auditing and provider-networking/reboot acceptance remain open. [Deployment evidence and limits](docs/VPS_DEPLOYMENT_2026-10-14.md). Runtime data and credentials are excluded from GitHub.
+At initial IP publication, both company domains awaited public DNS delegation. Persian-domain activation subsequently passed as recorded below; English registrar recovery, manufacturer-content, lint, complete accessibility/browser auditing and provider-networking/reboot acceptance remain open. Indexing remains gated. [Deployment evidence and limits](docs/VPS_DEPLOYMENT_2026-10-14.md). Runtime data and credentials are excluded from GitHub.
 
 ### Domain connection preparation — 2026-10-14
 
-HostIran zone records and the owner's saved registrar nameservers were verified. The remaining blocker is public registry delegation, not the application. All four domain HTTP challenge routes passed, the IP website stayed healthy, and the existing renewal timer now covers all certificate lineages. Prepared HTTPS configuration passed syntax validation; the activation helper correctly refused unresolved DNS without changing HTTPS. Domain SSL issuance, external domain tests and indexing remain pending. [Domain connection record](docs/DOMAIN_CONNECTION_2026-10-14.md).
+Initial HostIran zone/registrar inspection and all four HTTP challenge checks passed; the existing renewal timer now covers every lineage. Later, `.ir` delegated to Cloudflare and went live with trusted apex/www HTTPS, Full (strict), proxying and sanitized client-IP forwarding. All 226 external page checks, existing-owner login, unchanged-settings saving and certificate renewal dry-run passed on Persian. `.com` NS updates are blocked by the registrar's suspension error; its independent activation helper refuses unresolved DNS without changing Persian routing. [Domain connection record](docs/DOMAIN_CONNECTION_2026-10-14.md).

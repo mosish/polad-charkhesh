@@ -1,3 +1,5 @@
+# Legacy combined layout: do not install alongside independent polad-ir/polad-com.
+# The existing VPS now uses nginx-ir.conf.example and a prepared nginx-com example.
 # Add alongside the existing IP/default vhost only AFTER polad-domains is issued
 # with all four names below. This file does not replace the default vhost.
 server {
