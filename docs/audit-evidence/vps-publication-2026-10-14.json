@@ -1,5 +1,7 @@
 {
   "sourceCommit": "52243edd9f677267eeb5767f26c61fe774f5b2a3",
+  "installedFollowupCommit": "174a233291ccd9ca81de25a3c669568e3d61548a",
+  "followupSourceChecks": ["TypeScript", "production build", "bundle budgets", "isolated production smoke on Windows and VPS"],
   "liveCheck": {
     "status": "passed",
     "origin": "https://213.176.28.119",
@@ -17,12 +19,13 @@
       "security headers",
       "referenced local assets"
     ],
-    "checkedAt": "2026-10-14T09:49:30.461Z"
+    "checkedAt": "2026-10-14T11:14:11.200Z"
   },
   "sourceTests": {"passed": 57, "failed": 0},
   "preservedOwnerData": {"products": 110, "admins": 1, "registeredUploads": 0},
   "tlsRenewalDryRun": "passed",
   "restoreDrill": "passed",
+  "postRecoveryOffServerBackup": "verified; administrator rows match production; credentials excluded from repository",
   "actualServiceCrashRecovery": "passed",
   "ownerAuthenticatedBrowserCheck": "passed using existing owner account after explicitly authorized password reset; no new administrator",
   "fullHostReboot": "not performed",

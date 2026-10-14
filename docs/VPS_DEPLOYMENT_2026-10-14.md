@@ -6,7 +6,7 @@ The owner selected a temporary address because DNS access is currently unavailab
 
 ## Release and preserved data
 
-- Initial application source revision: `52243edd9f677267eeb5767f26c61fe774f5b2a3`, built and tested on the actual Ubuntu 24.04 VPS as the unprivileged preflight account. A subsequent source update corrects the admin preview's local-only wording; the `current` symlink identifies the installed revision.
+- Initial application source revision: `52243edd9f677267eeb5767f26c61fe774f5b2a3`. The installed follow-up revision is `174a233291ccd9ca81de25a3c669568e3d61548a`, which corrects the admin preview's local-only wording. Both were built and checked as the unprivileged preflight account on the actual Ubuntu 24.04 VPS. Subsequent evidence-only documentation commits do not change the running application.
 - Immutable root-owned release at `/opt/polad-charkhesh/releases/<commit>`; `current` is a symlink to it. The running service uses `/usr/local/bin/node` (Node 24.21.0).
 - Existing local owner database was backed up and verified, transferred privately over SSH, verified again on Linux, and restored into `/var/lib/polad-charkhesh/`.
 - **110 products, one existing administrator and zero registered uploaded-media files** were preserved. The absence of uploads reflects the owner's snapshot; public branding/family illustrations are source assets. No replacement seed database or default administrator was used.
@@ -40,6 +40,8 @@ Certbot 5.8.0 is isolated in `/opt/polad-certbot/`. The VPS could not reliably a
 | Backups | Daily full database/uploads backup service enabled and manually executed; snapshots verified; a private off-server copy downloaded and reverified |
 | Restore drill | Backup restored into a separate private data directory; a loopback-only isolated server became healthy; product/admin/settings/media rows matched production; drill service stopped |
 | Actual website supervision | A controlled SIGKILL caused systemd to restart the real website after five seconds; HTTPS health returned OK and a subsequent complete live route check passed |
+
+The follow-up release passed TypeScript, production build, bundle budgets and the isolated production smoke check on Windows and on the actual VPS. The external live check passed again at **2026-10-14T11:14:11.200Z** with all 226 page variants. A verified snapshot made after owner-account recovery was copied off-server and checked again locally; its administrator rows match production exactly. Product/admin/media counts remain 110/1/0.
 
 ## Verification limits and next work
 
