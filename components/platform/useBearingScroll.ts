@@ -1,5 +1,6 @@
 import { useEffect, useState, type RefObject } from 'react';
 import { bearingScrollProgress, bearingBannerProgress } from '../../lib/bearing-scroll';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
 /** One passive listener and one measurement per animation frame; no scroll lock. */
 export function useBearingScroll(
   stage: RefObject<HTMLDivElement | null>,
@@ -41,21 +42,21 @@ export function useBearingScroll(
     const schedule = () => {
       if (!frame && !document.hidden) frame = requestAnimationFrame(measure);
     };
-    const observer = new ResizeObserver(schedule);
-    observer.observe(node);
-    if (wrapper) observer.observe(wrapper);
+    const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(schedule) : null;
+    observer?.observe(node);
+    if (wrapper) observer?.observe(wrapper);
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
     document.addEventListener('visibilitychange', schedule);
-    media.addEventListener('change', schedule);
+    const unsubscribe = subscribeMediaQuery(media, schedule);
     schedule();
     return () => {
       cancelAnimationFrame(frame);
-      observer.disconnect();
+      observer?.disconnect();
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', schedule);
       document.removeEventListener('visibilitychange', schedule);
-      media.removeEventListener('change', schedule);
+      unsubscribe();
     };
   }, [active, stage]);
   return progress;

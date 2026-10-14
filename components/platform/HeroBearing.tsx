@@ -7,6 +7,8 @@ import { usePlatform } from './Context';
 import type { BearingFamily } from './HeroBearingScene';
 import {useBearingJourney} from './BearingJourney';
 import { chooseHeroFamily } from '../../lib/hero-presentation';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
+import RecoveryBoundary from './RecoveryBoundary';
 const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
 export default function HeroBearing() {
@@ -45,19 +47,21 @@ export default function HeroBearing() {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const motion = () => setReduced(media.matches);
     const visibility = () => setTabVisible(!document.hidden);
-    const observer = new IntersectionObserver(([entry]) => {
+    const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(([entry]) => {
       setVisible(entry.isIntersecting);
       if (entry.isIntersecting) setSceneReady(true);
-    }, { rootMargin: '160px', threshold: 0 });
-    if (stage.current) observer.observe(stage.current);
-    media.addEventListener('change', motion);
+    }, { rootMargin: '160px', threshold: 0 }) : null;
+    if (stage.current) observer?.observe(stage.current);
+    if (!observer) setSceneReady(true);
+    const unsubscribe = subscribeMediaQuery(media, motion);
     document.addEventListener('visibilitychange', visibility);
-    return () => { observer.disconnect(); media.removeEventListener('change', motion); document.removeEventListener('visibilitychange', visibility); };
+    return () => { observer?.disconnect(); unsubscribe(); document.removeEventListener('visibilitychange', visibility); };
   }, []);
   const resetTilt = () => {
     stage.current?.style.setProperty('--tilt-x', '0deg');
     stage.current?.style.setProperty('--tilt-y', '0deg');
   };
+  const sceneFallback = !exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>;
   return <div className={'hero-visual hero-bearing-showcase hero-bearing-banner' + (stopped ? ' is-still' : '')} data-scroll-mode={followView ? 'auto' : 'manual'}>
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
@@ -104,9 +108,9 @@ export default function HeroBearing() {
       <div className="hero-bearing-halo" aria-hidden="true" />
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
-        {sceneReady && <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
-          <HeroBearingScene cinematic family={family} paused={stopped} playback={playback} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={!exploded && (family==='ball'||family==='roller') && p ? <BearingModel p={p} rpm={0} playback={1} paused compact/> : <div className="hero-model-loading">{selected.detail}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>}/>
-        </Suspense>}
+        {sceneReady && <RecoveryBoundary fallback={<div className="hero-model-fallback">{sceneFallback}</div>}><Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
+          <HeroBearingScene cinematic family={family} paused={stopped} playback={playback} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={sceneFallback}/>
+        </Suspense></RecoveryBoundary>}
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
     </div>

@@ -6,6 +6,8 @@ import Copy from './Copy';
 import { mediaFor } from '../../lib/media';
 import { relatedComponents } from '../../lib/catalog-quality';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
+import RecoveryBoundary from './RecoveryBoundary';
 import { ArrowRight, Box, Download, ArrowUpRight, Phone } from 'lucide-react';
 import type { BearingProduct } from '../../domain/product';
 import type { CompanyContactInfo } from '../../domain/company';
@@ -362,8 +364,7 @@ function ProductPanelBody({ p, onSelect }: { p: BearingProduct; onSelect: (p: Be
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setReducedMotion(preference.matches);
     update();
-    preference.addEventListener('change', update);
-    return () => preference.removeEventListener('change', update);
+    return subscribeMediaQuery(preference, update);
   }, []);
   const partLabels = [t('Outer ring', 'رینگ خارجی'), t('Rolling elements', 'اجزای غلتشی'), t('Cage', 'قفسه'), t('Inner ring', 'رینگ داخلی')];
   const [downloading, setDownloading] = useState(false);
@@ -399,7 +400,7 @@ function ProductPanelBody({ p, onSelect }: { p: BearingProduct; onSelect: (p: Be
             <button type="button" aria-pressed={stageView === 'exploded'} disabled={!canExplode} title={!canExplode ? t('No 3D model available for this component.', 'مدل سه‌بعدی برای این قطعه موجود نیست.') : undefined} onClick={() => setStageView('exploded')}><Box size={15} />{t('Exploded view', 'نمای انفجاری')}</button>
           </fieldset>
           <div className="product-panel-stage">
-            {stageView === 'exploded' ? <Suspense fallback={<div className="hero-model-loading">{t('Preparing exploded view…', 'آماده‌سازی نمای انفجاری…')}</div>}><BearingScene family={geometry.roller ? 'roller' : 'ball'} product={p} paused exploded reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${t('Illustrative exploded view', 'نمای انفجاری نمایشی')}`} fallback={<div className="hero-model-loading">{t('3D view unavailable on this device', 'نمای سه‌بعدی در این دستگاه در دسترس نیست')}</div>} /></Suspense> : stageView === 'drawing' || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={referenceImage ? t('Bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
+            {stageView === 'exploded' ? <RecoveryBoundary resetKey={p.id} fallback={<Schematic p={p} />}><Suspense fallback={<div className="hero-model-loading">{t('Preparing exploded view…', 'آماده‌سازی نمای انفجاری…')}</div>}><BearingScene family={geometry.roller ? 'roller' : 'ball'} product={p} paused exploded reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${t('Illustrative exploded view', 'نمای انفجاری نمایشی')}`} fallback={<div className="hero-model-loading">{t('3D view unavailable on this device', 'نمای سه‌بعدی در این دستگاه در دسترس نیست')}</div>} /></Suspense></RecoveryBoundary> : stageView === 'drawing' || imageFailed || !activeImage ? <Schematic p={p} /> : <img src={activeImage} alt={referenceImage ? t('Bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
             {stageView === 'exploded' && <div className="product-panel-parts-key" aria-label={t('Bearing parts', 'اجزای بیرینگ')}>{partLabels.map((name, index) => <span key={name}><b>{index + 1}</b>{name}</span>)}</div>}
             {stageView === 'image' && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
           </div>

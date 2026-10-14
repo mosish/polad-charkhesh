@@ -3,6 +3,7 @@ import { Provider } from '../components/platform/Context';
 import Shell from '../components/platform/Shell';
 import Home from '../components/platform/Home';
 import NotFound from '../components/platform/NotFound';
+import RecoveryBoundary, { WorkspaceRecovery } from '../components/platform/RecoveryBoundary';
 const Catalog = lazy(() => import('../components/platform/Catalog')),
   Product = lazy(() => import('../components/platform/Product')),
   Engineering = lazy(() => import('../components/platform/Engineering')),
@@ -13,6 +14,7 @@ export default function Router() {
   return (
     <Provider>
       <Layout>
+        <RecoveryBoundary fallback={<WorkspaceRecovery />}>
         <Suspense
           fallback={
             <main id="main" className="state" role="status">
@@ -34,6 +36,7 @@ export default function Router() {
             <NotFound />
           )}
         </Suspense>
+        </RecoveryBoundary>
       </Layout>
     </Provider>
   );

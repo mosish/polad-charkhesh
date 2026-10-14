@@ -10,3 +10,11 @@
 .not-found p { max-width: 55ch; color: #c2cedd; line-height: 1.8; margin-block: 20px; }
 .not-found-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 28px; }
 .not-found-actions > a:last-child { text-decoration: underline; text-underline-offset: .25em; }
+.site-recovery { margin: 20px auto; max-width: 1100px; padding: 20px; border: 1px solid #b3d4ef40; border-radius: 16px; background: #14253a; color: #e9f2fc; line-height: 1.8; }
+.site-recovery p { margin: 8px 0 16px; }
+.public-recovery-snapshot { max-width: 1100px; margin: auto; padding: 20px; color: #d8e7f5; line-height: 1.9; overflow-wrap: anywhere; }
+.public-recovery-snapshot :is(h1,h2,h3) { color: #edf5ff; margin-block: 24px 12px; }
+.public-recovery-snapshot h1 { font-size: clamp(25px,5vw,42px); }
+.public-recovery-snapshot ul { padding-inline-start: 24px; }
+.public-recovery-snapshot a { text-decoration: underline; text-underline-offset: .2em; }
+.public-recovery-snapshot img { max-width: 100%; height: auto; }

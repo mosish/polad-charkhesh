@@ -48,7 +48,7 @@ The main feature set is published on the Persian domain and temporary VPS addres
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
-The last full automated suite passed **57 tests** on Windows and Ubuntu 24.04. TypeScript, production build, JavaScript size budgets and the isolated production smoke check passed on 2026-10-13. The published-content SEO audit covers **110 products, 113 routes and 226 language variants** with zero automated findings. Targeted browser checks verified the new breadcrumbs, branded 404, preserved bearing animation and mobile Persian exploded product view, in addition to the earlier admin failure/recovery and catalog tests. These checks do not replace the final browser, accessibility, security or product-data review. See the [quality phase report](docs/QUALITY_PHASE_2026-10-13.md) and [SEO checklist](docs/SEO_PREDEPLOY_CHECKLIST.md) for scope and remaining gates.
+The Safari recovery update passed **59 tests** on Windows; the preceding 57-test suite also passed on Ubuntu 24.04. TypeScript, production build, JavaScript size budgets and isolated production smoke passed for the recovery update. The published-content SEO audit covers **110 products, 113 routes and 226 language variants** with zero automated findings. Targeted checks cover breadcrumbs, 404, preserved animation, Persian mobile product/exploded views, legacy browser capabilities and section failure recovery. These do not replace physical Safari confirmation or the final accessibility, security and product-data review. See [mobile recovery evidence](docs/MOBILE_RECOVERY_2026-10-14.md), the [quality report](docs/QUALITY_PHASE_2026-10-13.md) and [SEO checklist](docs/SEO_PREDEPLOY_CHECKLIST.md).
 
 ## Public site layout
 
@@ -285,3 +285,7 @@ At initial IP publication, both company domains awaited public DNS delegation. P
 ### Domain connection preparation — 2026-10-14
 
 Initial HostIran zone/registrar inspection and all four HTTP challenge checks passed; the existing renewal timer now covers every lineage. Later, `.ir` delegated to Cloudflare and went live with trusted apex/www HTTPS, Full (strict), proxying and sanitized client-IP forwarding. All 226 external page checks, existing-owner login, unchanged-settings saving and certificate renewal dry-run passed on Persian. `.com` NS updates are blocked by the registrar's suspension error; its independent activation helper refuses unresolved DNS without changing Persian routing. [Domain connection record](docs/DOMAIN_CONNECTION_2026-10-14.md).
+
+### Safari startup recovery — 2026-10-14
+
+Reproduced the reported blue-only screen with missing browser capability methods. Added legacy media-query subscriptions, observer fallbacks, local recovery for failed 3D/lazy sections and preservation of readable server HTML after unexpected startup errors. Mobile models omit desktop companions. All 59 tests and local production checks passed; the isolated 390px preview retained navigation, catalog search and exploded product panels, including deliberate module and WebGL failures. VPS publication and physical Safari confirmation are tracked in the [recovery report](docs/MOBILE_RECOVERY_2026-10-14.md).

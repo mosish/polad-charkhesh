@@ -5,6 +5,8 @@ import { usePlatform } from './Context';
 import { Schematic } from './Schematic';
 import BearingModel from './BearingModel';
 import { bearingGeometry } from '../../lib/bearing-motion';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
+import RecoveryBoundary from './RecoveryBoundary';
 const BearingScene = lazy(() => import('./HeroBearingScene'));
 
 export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: { p: BearingProduct; rpm: number; onRpmChange: (rpm: number) => void; initialExploded?: boolean }) {
@@ -20,7 +22,7 @@ export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: 
   const hasLimit = Number.isFinite(limit) && limit > 0;
   const safeRpm = Number.isFinite(rpm) ? Math.max(0, rpm) : 0;
   useEffect(() => { setExploded(initialExploded && g.supported); if (!g.supported) setMode('section'); }, [p.id, g.supported, initialExploded]);
-  useEffect(() => { const media=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setReducedMotion(media.matches);media.addEventListener('change',update);return()=>media.removeEventListener('change',update); }, []);
+  useEffect(() => { const media=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>setReducedMotion(media.matches);return subscribeMediaQuery(media,update); }, []);
   const partLabels=[t('Outer ring','رینگ خارجی'),t('Rolling elements','اجزای غلتشی'),t('Cage','قفسه'),t('Inner ring','رینگ داخلی')];
   return <div className="viewer">
     <div className="viewer-toolbar">
@@ -38,9 +40,9 @@ export function BearingViewer({ p, rpm, onRpmChange, initialExploded = false }: 
             <button type="button" aria-pressed={exploded} onClick={()=>setExploded(true)}>{t('Exploded view','نمای انفجاری')}</button>
           </div>
           <div className="explorer-model-stage">
-            <Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
+            <RecoveryBoundary resetKey={p.id} fallback={<Schematic p={p}/>}><Suspense fallback={<div className="hero-model-loading">{t('Preparing bearing view…','آماده‌سازی نمای بیرینگ…')}</div>}>
               <BearingScene key={p.id} family={g.roller?'roller':'ball'} product={p} rpm={safeRpm} playback={playback} paused={paused||exploded} exploded={exploded} reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${p.d} × ${p.D} × ${p.B} mm${exploded?' · '+t('Exploded view','نمای انفجاری'):''}`} fallback={exploded?<div className="hero-model-loading">{p.code}<small>{t('3D view unavailable on this device','نمای سه‌بعدی در این دستگاه در دسترس نیست')}</small></div>:<BearingModel p={p} rpm={safeRpm} paused={paused||reducedMotion} playback={playback} compact/>}/>
-            </Suspense>
+            </Suspense></RecoveryBoundary>
           </div>
           {exploded&&<div className="bearing-parts-key explorer-parts-key" aria-label={t('Bearing parts','اجزای بیرینگ')}>{partLabels.map((name,i)=><span key={name}><b>{i+1}</b>{name}</span>)}</div>}
           <div className="explorer-model-dimensions"><span>{p.d} × {p.D} × {p.B} mm</span><span>{p.schematicType}</span></div>

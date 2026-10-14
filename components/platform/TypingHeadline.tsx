@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 import { heroHeadlines } from '../../lib/hero-presentation';
 import { usePlatform } from './Context';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
 
 export default function TypingHeadline() {
   const { fa, content } = usePlatform();
@@ -31,11 +32,12 @@ function HeadlineSequence({ phrases, fa }: { phrases: string[]; fa: boolean }) {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const motion = () => setReduced(media.matches);
     const visibility = () => setTabVisible(!document.hidden);
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
-    if (root.current) observer.observe(root.current);
-    media.addEventListener('change', motion);
+    const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting)) : null;
+    if (root.current) observer?.observe(root.current);
+    if (!observer) setVisible(true);
+    const unsubscribe = subscribeMediaQuery(media, motion);
     document.addEventListener('visibilitychange', visibility);
-    return () => { observer.disconnect(); media.removeEventListener('change', motion); document.removeEventListener('visibilitychange', visibility); };
+    return () => { observer?.disconnect(); unsubscribe(); document.removeEventListener('visibilitychange', visibility); };
   }, []);
   useEffect(() => {
     if (stopped || order.length < 2) return;

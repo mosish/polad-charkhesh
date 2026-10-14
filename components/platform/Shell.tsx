@@ -1,4 +1,5 @@
 import {BearingJourneyProvider} from './BearingJourney';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
 import ScrollReveal from './ScrollReveal';
 import { useEffect, useRef, useState } from 'react';
 import {
@@ -26,8 +27,8 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     const desktop = matchMedia('(min-width: 761px)');
     const resized = () => { if (desktop.matches) setMenuOpen(false); };
     document.addEventListener('keydown', dismiss); document.addEventListener('pointerdown', outside);
-    desktop.addEventListener('change', resized);
-    return () => { document.removeEventListener('keydown', dismiss); document.removeEventListener('pointerdown', outside); desktop.removeEventListener('change', resized); };
+    const unsubscribe = subscribeMediaQuery(desktop, resized);
+    return () => { document.removeEventListener('keydown', dismiss); document.removeEventListener('pointerdown', outside); unsubscribe(); };
   }, [menuOpen]);
   return (
     <BearingJourneyProvider>

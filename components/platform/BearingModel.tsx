@@ -2,6 +2,7 @@ import { useEffect, useId, useRef } from 'react';
 import type { BearingProduct } from '../../domain/product';
 import { advanceRotation, bearingGeometry } from '../../lib/bearing-motion';
 import { usePlatform } from './Context';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
 
 function annulus(outer: number, inner: number) {
   return `M${outer} 0A${outer} ${outer} 0 1 0 ${-outer} 0A${outer} ${outer} 0 1 0 ${outer} 0M${inner} 0A${inner} ${inner} 0 1 1 ${-inner} 0A${inner} ${inner} 0 1 1 ${inner} 0`;
@@ -34,10 +35,11 @@ export default function BearingModel({ p, rpm, paused, playback, compact = false
       cancelAnimationFrame(handle); previous = undefined;
       if (inView && !document.hidden && !preference.matches) handle = requestAnimationFrame(tick);
     };
-    const observer = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; sync(); });
-    if (model.current) observer.observe(model.current);
-    document.addEventListener('visibilitychange', sync); preference.addEventListener('change', sync);
-    return () => { cancelAnimationFrame(handle); observer.disconnect(); document.removeEventListener('visibilitychange', sync); preference.removeEventListener('change', sync); };
+    const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; sync(); }) : null;
+    if (model.current) observer?.observe(model.current);
+    if (!observer) { inView = true; sync(); }
+    document.addEventListener('visibilitychange', sync); const unsubscribe = subscribeMediaQuery(preference, sync);
+    return () => { cancelAnimationFrame(handle); observer?.disconnect(); document.removeEventListener('visibilitychange', sync); unsubscribe(); };
   }, [rpm, paused, playback, p.id, g.cageRatio, g.spinRatio, g.supported]);
   const {outer: R, bore: r, gap, pitch, depth} = g;
   const outerTrack = R - gap * .24, innerTrack = r + gap * .24;

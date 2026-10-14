@@ -207,17 +207,19 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
   const [failed,setFailed]=useState(false);
   useEffect(()=>{
     const target=host.current;if(!target || failed)return;
-    let renderer:THREE.WebGLRenderer;
-    try {renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});}catch{setFailed(true);return;}
     const compactScreen=matchMedia('(max-width: 760px)').matches;
+    let renderer:THREE.WebGLRenderer;
+    try {renderer=new THREE.WebGLRenderer({alpha:true,antialias:!compactScreen,powerPreference:'low-power'});}catch{setFailed(true);return;}
     const frameInterval=1000/(compactScreen || !product ? 30 : 60);
     renderer.setPixelRatio(Math.min(devicePixelRatio,compactScreen?1.25:1.75));renderer.setClearColor(0x000000,0);
     renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=cinematic?1.05:1.2;
     target.appendChild(renderer.domElement);
     const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,40);camera.position.set(0,0,9.8);
     const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment();
-    const environment=pmrem.fromScene(room,.035);scene.environment=environment.texture;
-    room.dispose();pmrem.dispose();
+    let environment:THREE.WebGLRenderTarget;
+    try {environment=pmrem.fromScene(room,.035);scene.environment=environment.texture;}
+    catch {renderer.dispose();renderer.domElement.remove();setFailed(true);return;}
+    finally {room.dispose();pmrem.dispose();}
     const light=new THREE.DirectionalLight('#e4f1ff',3);light.position.set(-3,4,5);scene.add(light);
     const edge=new THREE.DirectionalLight('#a9c8ff',2);edge.position.set(4,-2,1);scene.add(edge);
     const productModel=product ? buildProductBearing3D(product) : undefined;
@@ -225,7 +227,7 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
     const model=productModel || heroModel!;scene.add(model.root);
     const companionMaterials: THREE.Material[] = [];
     const companions: THREE.Group[] = [];
-    if (cinematic && !product) {
+    if (cinematic && !product && !compactScreen) {
       // Reuse mesh geometry; omit these secondary bearings on narrow screens.
       for (const side of [-1, 1]) {
         const companion = model.root.clone(true);
@@ -312,18 +314,19 @@ export default function HeroBearingScene({family,paused,label,fallback,product,r
       });
       target.dataset.expansion=expansion.toFixed(3);
       target.dataset.scrollProgress=viewRef.current.scrollProgress?.toFixed(3) || 'manual';
-      renderer.render(scene,camera);
+      try {renderer.render(scene,camera);}catch{running=false;setFailed(true);return;}
       target.dataset.motionTime=elapsed.toFixed(3);
       if(running||(inView&&!document.hidden&&expansion!==targetExpansion))frame=requestAnimationFrame(draw);
     };
     const resize=()=>{const {width,height}=target.getBoundingClientRect();if(!width||!height)return;camera.aspect=width/height;camera.position.z=Math.max(9.8,(viewRef.current.exploded || viewRef.current.scrollProgress !== undefined ?4.15:2.65)/(Math.tan(17*Math.PI/180)*camera.aspect),product?7.5+2.3*product.B/product.D:0);camera.updateProjectionMatrix();renderer.setSize(width,height);if(!running){cancelAnimationFrame(frame);draw(performance.now());}};
     const sync=()=>{running=!pauseRef.current&&!viewRef.current.reducedMotion&&inView&&!document.hidden&&(!product||speedRef.current.rpm>0);cancelAnimationFrame(frame);previous=0;draw(performance.now());};
-    const observer=new ResizeObserver(resize);observer.observe(target);resize();sync();
-    const intersection=new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;sync();},{threshold:.05});intersection.observe(target);
+    const observer=typeof ResizeObserver==='function'?new ResizeObserver(resize):null;observer?.observe(target);resize();sync();
+    window.addEventListener('resize',resize);
+    const intersection=typeof IntersectionObserver==='function'?new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;sync();},{threshold:.05}):null;intersection?.observe(target);
     document.addEventListener('visibilitychange',sync);
     controller.current={play(){resize();sync();}};
     const lost=(event:Event)=>{event.preventDefault();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
-    return()=>{cancelAnimationFrame(frame);controller.current=null;observer.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);companionMaterials.forEach(material=>material.dispose());model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
+    return()=>{cancelAnimationFrame(frame);controller.current=null;observer?.disconnect();intersection?.disconnect();window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);companionMaterials.forEach(material=>material.dispose());model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
   },[family,failed,product,cinematic]);
   useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,scrollProgress === undefined,ambient ? scrollProgress : undefined]);
   return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={playback} data-presentation={cinematic?'cinematic':'standard'}>

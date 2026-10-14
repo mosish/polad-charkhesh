@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import {subscribeMediaQuery} from '../../lib/browser-compat';
 export default function ScrollReveal() {
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
@@ -35,12 +36,12 @@ export default function ScrollReveal() {
     const reset = () => {
       if (media.matches) elements.forEach((el) => el.classList.add('revealed'));
     };
-    media.addEventListener('change', reset);
+    const unsubscribe = subscribeMediaQuery(media, reset);
     return () => {
       observer.disconnect();
       mutation.disconnect();
       cancelAnimationFrame(scanFrame);
-      media.removeEventListener('change', reset);
+      unsubscribe();
       elements.forEach((el) =>
         el.classList.remove('reveal-pending', 'revealed'),
       );

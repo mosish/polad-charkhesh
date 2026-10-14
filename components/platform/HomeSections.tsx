@@ -1,4 +1,5 @@
 import PageSection from './PageSection';
+import RecoveryBoundary, { WorkspaceRecovery } from './RecoveryBoundary';
 import { lazy, Suspense, useState } from 'react';
 import {
   ArrowUpRight,
@@ -37,12 +38,12 @@ export default function HomeSections() {
     <>
       <PageSection id="featured">
         <section className="one-page-workspace" id="catalog">
-          <Suspense fallback={<div className="state" role="status">{t('Loading catalog…', 'در حال بارگذاری کاتالوگ…')}</div>}><Catalog embedded /></Suspense>
+          <RecoveryBoundary fallback={<WorkspaceRecovery section="catalog" />}><Suspense fallback={<div className="state" role="status">{t('Loading catalog…', 'در حال بارگذاری کاتالوگ…')}</div>}><Catalog embedded /></Suspense></RecoveryBoundary>
         </section>
       </PageSection>
       <PageSection id="engineering">
         <section className="one-page-workspace" id="engineering">
-          <Suspense fallback={<div className="state" role="status">{t('Loading engineering tools…', 'در حال بارگذاری ابزارهای مهندسی…')}</div>}><Engineering embedded /></Suspense>
+          <RecoveryBoundary fallback={<WorkspaceRecovery section="engineering" />}><Suspense fallback={<div className="state" role="status">{t('Loading engineering tools…', 'در حال بارگذاری ابزارهای مهندسی…')}</div>}><Engineering embedded /></Suspense></RecoveryBoundary>
         </section>
       </PageSection>
       <PageSection id="industries">
