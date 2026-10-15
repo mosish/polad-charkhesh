@@ -1,0 +1,1399 @@
+{
+  "accessDate": "2026-10-15",
+  "scope": "12 NSK/NTN/KOYO-JTEKT/NACHI public baseline records",
+  "method": "Opened official pages/PDFs; cached search summaries excluded as proof; NSK and NTN source bytes retrieved directly. No source media copied for publication.",
+  "products": [
+    {
+      "id": "pc-nsk-6206-ddu-cm",
+      "slug": "nsk-6206-ddu-cm",
+      "baselineDesignation": "NSK 6206 DDU CM Japan",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "nsk-6206cm",
+          "url": "https://www.nsk.com/jp-ja/engineering/6206dducm-apn.html",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "revision": null,
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "958977bbf056480e228f83b8d5cb3753eeb45ff8265fe4fc69d0a5910eb92124"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 30,
+          "sourceRef": "nsk-6206cm"
+        },
+        "D": {
+          "value": 62,
+          "sourceRef": "nsk-6206cm"
+        },
+        "B": {
+          "value": 16,
+          "sourceRef": "nsk-6206cm"
+        },
+        "rMin": {
+          "value": 1,
+          "sourceRef": "nsk-6206cm"
+        },
+        "crKn": {
+          "value": 21.4,
+          "sourceRef": "nsk-6206cm"
+        },
+        "corKn": {
+          "value": 11.3,
+          "sourceRef": "nsk-6206cm"
+        },
+        "weightKg": {
+          "value": 0.199,
+          "sourceRef": "nsk-6206cm"
+        },
+        "speedGreaseRpm": {
+          "value": 7500,
+          "sourceRef": "nsk-6206cm"
+        },
+        "calculationFactorF0": {
+          "value": 13.8,
+          "sourceRef": "nsk-6206cm"
+        },
+        "cageMaterialEn": {
+          "value": "Pressed sheet steel",
+          "sourceRef": "nsk-6206cm"
+        },
+        "sealingEn": {
+          "value": "Two contact rubber seals (DDU)",
+          "sourceRef": "nsk-6206cm"
+        },
+        "clearanceOptions": {
+          "value": [
+            "CM (Electric Motor)"
+          ],
+          "sourceRef": "nsk-6206cm"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "crKn",
+          "old": 19.5,
+          "proposed": 21.4,
+          "sourceRef": "nsk-6206cm",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "weightKg",
+          "old": 0.2,
+          "proposed": 0.199,
+          "sourceRef": "nsk-6206cm",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedGreaseRpm",
+          "old": 10000,
+          "proposed": 7500,
+          "sourceRef": "nsk-6206cm",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "cageMaterialEn",
+          "old": "Pressed steel cage",
+          "proposed": "Pressed sheet steel",
+          "sourceRef": "nsk-6206cm",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "sealingEn",
+          "old": "Dual contact synthetic rubber seals (DDU)",
+          "proposed": "Two contact rubber seals (DDU)",
+          "sourceRef": "nsk-6206cm",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "clearanceOptions",
+          "old": [
+            "CM (Electric Motor)",
+            "C3",
+            "CN"
+          ],
+          "proposed": [
+            "CM (Electric Motor)"
+          ],
+          "sourceRef": "nsk-6206cm",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Oil speed and thermal speed not published for this sealed designation; existing 10000 oil and 15000 thermal lack support.",
+        "Japan origin and waterproof/super-quiet marketing require owner stock/manufacturer evidence."
+      ],
+      "notes": [],
+      "media": {
+        "status": "family_reference_only",
+        "sourceUrl": "https://www.nsk.com/engineering/media/catalog/product/d/g/dgbb_sr_pressed-steel-cage_ddu.jpg",
+        "classification": "manufacturer family representation",
+        "exactSkuImageVerified": false,
+        "identityNote": "Product page explicitly states images are representations; shared DDU family filename.",
+        "attribution": "NSK Ltd.",
+        "reuseTerms": "Copyright NSK; no unrestricted reuse grant verified.",
+        "action": "retain_existing_labeled_reference"
+      }
+    },
+    {
+      "id": "pc-nsk-nu-2214-et",
+      "slug": "nsk-nu-2214-et",
+      "baselineDesignation": "NSK NU 2214 ET Cylindrical",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "nsk-nu2214",
+          "url": "https://www.nsk.com/jp-ja/engineering/products/bearings/roller-bearings/cylindrical-roller-bearings/single-row-cylindrical-roller-bearings/nu2214et-crb-sr.html",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "revision": null,
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "b47f2b9e9df7bdb6d3693165c0fddca6b7c1f88641651ec90e5ceba791a25ec7"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 70,
+          "sourceRef": "nsk-nu2214"
+        },
+        "D": {
+          "value": 125,
+          "sourceRef": "nsk-nu2214"
+        },
+        "B": {
+          "value": 31,
+          "sourceRef": "nsk-nu2214"
+        },
+        "rMin": {
+          "value": 1.5,
+          "sourceRef": "nsk-nu2214"
+        },
+        "crKn": {
+          "value": 191,
+          "sourceRef": "nsk-nu2214"
+        },
+        "corKn": {
+          "value": 194,
+          "sourceRef": "nsk-nu2214"
+        },
+        "weightKg": {
+          "value": 1.49,
+          "sourceRef": "nsk-nu2214"
+        },
+        "speedGreaseRpm": {
+          "value": 4500,
+          "sourceRef": "nsk-nu2214"
+        },
+        "speedOilRpm": {
+          "value": 5600,
+          "sourceRef": "nsk-nu2214"
+        },
+        "thermalSpeedRatingRpm": {
+          "value": 5600,
+          "sourceRef": "nsk-nu2214"
+        },
+        "cageMaterialEn": {
+          "value": "Polyamide resin (nylon 66)",
+          "sourceRef": "nsk-nu2214"
+        },
+        "clearanceOptions": {
+          "value": [
+            "CN"
+          ],
+          "sourceRef": "nsk-nu2214"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "crKn",
+          "old": 164,
+          "proposed": 191,
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "corKn",
+          "old": 188,
+          "proposed": 194,
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "weightKg",
+          "old": 1.45,
+          "proposed": 1.49,
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedGreaseRpm",
+          "old": 5300,
+          "proposed": 4500,
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedOilRpm",
+          "old": 6700,
+          "proposed": 5600,
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "thermalSpeedRatingRpm",
+          "old": 6300,
+          "proposed": 5600,
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "cageMaterialEn",
+          "old": "Polyamide 66 reinforced cage (ET)",
+          "proposed": "Polyamide resin (nylon 66)",
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "clearanceOptions",
+          "old": [
+            "C3",
+            "CN",
+            "C4"
+          ],
+          "proposed": [
+            "CN"
+          ],
+          "sourceRef": "nsk-nu2214",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "The 6700 rpm value is mechanical limiting speed under forced circulating oil, not ordinary oil-bath speed. Preserve as separately named evidence; do not conflate.",
+        "Stock clearance variants C3/C4 exist but this exact unsuffixed item is CN.",
+        "Japan origin and application claims not confirmed."
+      ],
+      "notes": [
+        "Additional official values: Fw 83.5 mm, r1 minimum 1.5 mm; mechanical limiting speed forced circulating oil 6700 rpm; oil-bath thermal speed ISO15312/JIS B1550 5600 rpm."
+      ],
+      "media": {
+        "status": "family_reference_only",
+        "sourceUrl": "https://www.nsk.com/engineering/media/catalog/product/c/r/crb_sr_nu_polyamide-66-resin-cage_et.jpg",
+        "classification": "manufacturer family representation",
+        "exactSkuImageVerified": false,
+        "attribution": "NSK Ltd.",
+        "reuseTerms": "Copyright NSK; no unrestricted reuse grant verified.",
+        "action": "retain_existing_labeled_reference"
+      }
+    },
+    {
+      "id": "pc-nsk-7010-ctyndblp4",
+      "slug": "nsk-7010-ctyndblp4",
+      "baselineDesignation": "NSK 7010 CTYNDBLP4 Super Precision",
+      "status": "ambiguous_identity",
+      "sources": [
+        {
+          "id": "nsk-7010-series",
+          "url": "https://www.nsk.com/eu-en/engineering/7010c-sp-acbb-st-c.html",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "revision": null,
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "12f5ff6ed1a9d5c239f48bfc885cbf98ad1d95e36147b0610996af4b4f77a627"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 50,
+          "sourceRef": "nsk-7010-series"
+        },
+        "D": {
+          "value": 80,
+          "sourceRef": "nsk-7010-series"
+        },
+        "B": {
+          "value": 16,
+          "sourceRef": "nsk-7010-series"
+        },
+        "rMin": {
+          "value": 1,
+          "sourceRef": "nsk-7010-series"
+        },
+        "contactAngle": {
+          "value": "15°",
+          "sourceRef": "nsk-7010-series"
+        },
+        "cageMaterialEn": {
+          "value": "Polyamide resin (TYN)",
+          "sourceRef": "nsk-7010-series"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "cageMaterialEn",
+          "old": "Engineered high-speed polyamide cage (TYN)",
+          "proposed": "Polyamide resin (TYN)",
+          "sourceRef": "nsk-7010-series",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Exact CTYNDBLP4 matched-pair product was not located in the opened series listings. Do not transfer single-bearing load ratings or speeds to an unspecified pair.",
+        "Baseline pair name conflicts with single-bearing B=16 and mass .26. Pair assembly mass/overall width and preload must be explicitly represented.",
+        "Single 7010C source reports Cr32.5/C0r21.9 kN, mass .259kg, grease17700/oil-air27000 rpm; these are comparison evidence only, NOT proposed pair ratings.",
+        "Existing 35000 thermal rating, engineering factors, P4 class and DBL arrangement need exact catalog suffix confirmation."
+      ],
+      "notes": [
+        "7010C page gives L preload for DB/DF 152N, rigidity63N/um and measured axial clearance -8um; not adopted until exact pair is resolved."
+      ],
+      "media": {
+        "status": "family_reference_only",
+        "sourceUrl": "https://www.nsk.com/engineering/media/catalog/product/s/p/sp_acbb_sr_steel-ball_open_tyn-cage.png",
+        "classification": "manufacturer family representation of single bearing",
+        "exactSkuImageVerified": false,
+        "attribution": "NSK Ltd.",
+        "reuseTerms": "Copyright NSK; no unrestricted reuse grant verified.",
+        "action": "retain_existing_labeled_reference"
+      }
+    },
+    {
+      "id": "pc-ntn-6204-llu-c3",
+      "slug": "ntn-6204-llu-c3",
+      "baselineDesignation": "NTN 6204 LLU / C3 Japan",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "ntn-deep-groove",
+          "url": "https://www.ntnglobal.com/en/products/catalog/pdf/2203E_b02.pdf",
+          "accessDate": "2026-10-15",
+          "page": "PDF 1-2,4; printed B-17 to B-19, B-22/B-23",
+          "revision": null,
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "3252b19d458db91a5e02dbdb2f6d8abd6a0aac22eb17daa1119b429b672c93c3"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 20,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "D": {
+          "value": 47,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "B": {
+          "value": 14,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "rMin": {
+          "value": 1,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "crKn": {
+          "value": 14.2,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "corKn": {
+          "value": 6.65,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "speedGreaseRpm": {
+          "value": 10000,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "calculationFactorF0": {
+          "value": 13.2,
+          "sourceRef": "ntn-deep-groove"
+        },
+        "cageMaterialEn": {
+          "value": "Pressed cage",
+          "sourceRef": "ntn-deep-groove"
+        },
+        "sealingEn": {
+          "value": "Two contact seals (LLU)",
+          "sourceRef": "ntn-deep-groove"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "crKn",
+          "old": 12.8,
+          "proposed": 14.2,
+          "sourceRef": "ntn-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedGreaseRpm",
+          "old": 12000,
+          "proposed": 10000,
+          "sourceRef": "ntn-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorF0",
+          "old": 13.1,
+          "proposed": 13.2,
+          "sourceRef": "ntn-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "cageMaterialEn",
+          "old": "Pressed steel cage",
+          "proposed": "Pressed cage",
+          "sourceRef": "ntn-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "sealingEn",
+          "old": "Dual synthetic contact rubber seals (LLU)",
+          "proposed": "Two contact seals (LLU)",
+          "sourceRef": "ntn-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "C3 suffix numerical clearance range not verified; slash is treated as formatting within an intended LLU/C3 designation, not proof of alternative product.",
+        "Mass .106kg in table is approximate open-type mass; do not apply as exact sealed-bearing mass.",
+        "Oil column applies open/Z/LB/LF, not LLU; baseline 12000 oil is unsupported. Thermal rating not published.",
+        "Manufacturer origin/stock claims require separate proof."
+      ],
+      "notes": [
+        "LLU limit 10000 rpm is distinct from LLH12000, open/ZZ/LLB16000 and open/Z/LB18000 oil."
+      ],
+      "media": {
+        "status": "missing_exact_media",
+        "action": "retain_existing_labeled_reference",
+        "exactSkuImageVerified": false,
+        "reuseTerms": "No reuse permission established."
+      }
+    },
+    {
+      "id": "pc-ntn-22214-eakd1",
+      "slug": "ntn-22214-eakd1",
+      "baselineDesignation": "NTN 22214 EAKD1 ULTAGE®",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "ntn-general",
+          "url": "https://www.ntnglobal.com/en/products/catalog/pdf/2203E.pdf",
+          "accessDate": "2026-10-15",
+          "page": "PDF 208; printed B-220/B-221",
+          "revision": "Current official download; cover revision not independently identified",
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "8dc75d50b4b252d96635aacf3e17a7ea6d65859f9b8be62dfc42e1f2259bcbca"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 70,
+          "sourceRef": "ntn-general"
+        },
+        "D": {
+          "value": 125,
+          "sourceRef": "ntn-general"
+        },
+        "B": {
+          "value": 31,
+          "sourceRef": "ntn-general"
+        },
+        "rMin": {
+          "value": 1.5,
+          "sourceRef": "ntn-general"
+        },
+        "crKn": {
+          "value": 235,
+          "sourceRef": "ntn-general"
+        },
+        "corKn": {
+          "value": 240,
+          "sourceRef": "ntn-general"
+        },
+        "weightKg": {
+          "value": 1.58,
+          "sourceRef": "ntn-general"
+        },
+        "speedGreaseRpm": {
+          "value": 4100,
+          "sourceRef": "ntn-general"
+        },
+        "speedOilRpm": {
+          "value": 5200,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorE": {
+          "value": 0.22,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorY1": {
+          "value": 3.01,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorY2": {
+          "value": 4.48,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorY0": {
+          "value": 2.94,
+          "sourceRef": "ntn-general"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "crKn",
+          "old": 212,
+          "proposed": 235,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "corKn",
+          "old": 236,
+          "proposed": 240,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "weightKg",
+          "old": 1.55,
+          "proposed": 1.58,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedGreaseRpm",
+          "old": 4500,
+          "proposed": 4100,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedOilRpm",
+          "old": 5800,
+          "proposed": 5200,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorE",
+          "old": 0.23,
+          "proposed": 0.22,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY1",
+          "old": 2.9,
+          "proposed": 3.01,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY2",
+          "old": 4.4,
+          "proposed": 4.48,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY0",
+          "old": 2.9,
+          "proposed": 2.94,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Baseline thermal5400 is not a published thermal rating in this table.",
+        "Baseline generic calculationFactorY=2.9 is not a valid substitute for the piecewise Y1/Y2 factors.",
+        "Cage, exact clearance, origin and unsupported two-times shock-load claim require additional exact evidence."
+      ],
+      "notes": [
+        "K explicitly indicates tapered bore 1:12; ULTAGE marked row has outer ring lubricant holes/groove standard. Tapered mass1.58 is different from cylindrical mass1.61. Source Cu20.1kN, groove width7mm and hole diameter3.5mm."
+      ],
+      "media": {
+        "status": "missing_exact_media",
+        "action": "retain_existing_labeled_reference",
+        "exactSkuImageVerified": false,
+        "reuseTerms": "No reuse permission established."
+      }
+    },
+    {
+      "id": "pc-ntn-5206-s",
+      "slug": "ntn-5206-s",
+      "baselineDesignation": "NTN 5206 S Double Row",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "ntn-general",
+          "url": "https://www.ntnglobal.com/en/products/catalog/pdf/2203E.pdf",
+          "accessDate": "2026-10-15",
+          "page": "PDF135; printed B-74/B-75; visually rendered table checked",
+          "revision": "Current official download; cover revision not independently identified",
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "8dc75d50b4b252d96635aacf3e17a7ea6d65859f9b8be62dfc42e1f2259bcbca"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 30,
+          "sourceRef": "ntn-general"
+        },
+        "D": {
+          "value": 62,
+          "sourceRef": "ntn-general"
+        },
+        "B": {
+          "value": 23.8,
+          "sourceRef": "ntn-general"
+        },
+        "rMin": {
+          "value": 1,
+          "sourceRef": "ntn-general"
+        },
+        "crKn": {
+          "value": 29.6,
+          "sourceRef": "ntn-general"
+        },
+        "corKn": {
+          "value": 21.1,
+          "sourceRef": "ntn-general"
+        },
+        "weightKg": {
+          "value": 0.3,
+          "sourceRef": "ntn-general"
+        },
+        "speedGreaseRpm": {
+          "value": 7100,
+          "sourceRef": "ntn-general"
+        },
+        "speedOilRpm": {
+          "value": 9500,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorE": {
+          "value": 0.68,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorY1": {
+          "value": 0.92,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorY2": {
+          "value": 1.41,
+          "sourceRef": "ntn-general"
+        },
+        "calculationFactorY0": {
+          "value": 0.76,
+          "sourceRef": "ntn-general"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "rMin",
+          "old": 1.1,
+          "proposed": 1,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "crKn",
+          "old": 30.5,
+          "proposed": 29.6,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "corKn",
+          "old": 21,
+          "proposed": 21.1,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedGreaseRpm",
+          "old": 8500,
+          "proposed": 7100,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedOilRpm",
+          "old": 12000,
+          "proposed": 9500,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorE",
+          "old": 0.8,
+          "proposed": 0.68,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY1",
+          "old": 0.78,
+          "proposed": 0.92,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY2",
+          "old": 1.24,
+          "proposed": 1.41,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY0",
+          "old": 0.66,
+          "proposed": 0.76,
+          "sourceRef": "ntn-general",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Contact angle, cage and clearance need exact-design verification.",
+        "Thermal rating in baseline unsupported by this allowable-speed table.",
+        "X is piecewise:1 below e and .67 above e; do not treat a single universal X as both regimes."
+      ],
+      "notes": [
+        "Open 5206S row is distinct from 5206SCZZ/LLM/LLD. Load center a31.6mm and Cu1.30kN."
+      ],
+      "media": {
+        "status": "missing_exact_media",
+        "action": "retain_existing_labeled_reference",
+        "exactSkuImageVerified": false,
+        "reuseTerms": "No reuse permission established."
+      }
+    },
+    {
+      "id": "pc-koyo-6207-2rs",
+      "slug": "koyo-6207-2rs",
+      "baselineDesignation": "KOYO 6207-2RS (JTEKT Japan)",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "koyo-6207",
+          "url": "https://koyo.jtekt.co.jp/en/products/detail/?pno=6207+2RS",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "revision": null,
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "2337bbdbad37f23451377ae6f10a91d7233679dd29ea229aa55243e2ed95cdba"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 35,
+          "sourceRef": "koyo-6207"
+        },
+        "D": {
+          "value": 72,
+          "sourceRef": "koyo-6207"
+        },
+        "B": {
+          "value": 17,
+          "sourceRef": "koyo-6207"
+        },
+        "rMin": {
+          "value": 1.1,
+          "sourceRef": "koyo-6207"
+        },
+        "crKn": {
+          "value": 32.1,
+          "sourceRef": "koyo-6207"
+        },
+        "corKn": {
+          "value": 15.4,
+          "sourceRef": "koyo-6207"
+        },
+        "weightKg": {
+          "value": 0.288,
+          "sourceRef": "koyo-6207"
+        },
+        "speedGreaseRpm": {
+          "value": 6000,
+          "sourceRef": "koyo-6207"
+        },
+        "calculationFactorF0": {
+          "value": 13.9,
+          "sourceRef": "koyo-6207"
+        },
+        "sealingEn": {
+          "value": "Two contact seals (2RS)",
+          "sourceRef": "koyo-6207"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "crKn",
+          "old": 25.7,
+          "proposed": 32.1,
+          "sourceRef": "koyo-6207",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "corKn",
+          "old": 15.3,
+          "proposed": 15.4,
+          "sourceRef": "koyo-6207",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "weightKg",
+          "old": 0.29,
+          "proposed": 0.288,
+          "sourceRef": "koyo-6207",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedGreaseRpm",
+          "old": 8500,
+          "proposed": 6000,
+          "sourceRef": "koyo-6207",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorF0",
+          "old": 13.8,
+          "proposed": 13.9,
+          "sourceRef": "koyo-6207",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "sealingEn",
+          "old": "Dual rubber contact seals (2RS)",
+          "proposed": "Two contact seals (2RS)",
+          "sourceRef": "koyo-6207",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Oil and thermal ratings absent for this sealed product. Existing oil11000 belongs other configurations, not verified 2RS.",
+        "Exact cage/clearance and stock origin not established."
+      ],
+      "notes": [
+        "Cu1.10kN; page mass explicitly reference."
+      ],
+      "media": {
+        "status": "family_reference_only",
+        "sourceUrl": "https://koyo.jtekt.co.jp/en/assets/images/calculation/products/010-010-020-040_1.jpg",
+        "classification": "manufacturer reference drawing",
+        "exactSkuImageVerified": false,
+        "attribution": "JTEKT Corporation",
+        "reuseTerms": "Page copyright all rights reserved; no reuse license found.",
+        "action": "retain_existing_labeled_reference"
+      }
+    },
+    {
+      "id": "pc-koyo-30212-jr",
+      "slug": "koyo-30212-jr",
+      "baselineDesignation": "KOYO 30212 JR Tapered Roller",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "koyo-30212",
+          "url": "https://koyo.jtekt.co.jp/en/products/detail/?pno=30212JR",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "revision": null,
+          "evidenceType": "opened_manufacturer_source",
+          "retrievedSourceSha256": "b5627c00c913caebefd5f471c0a7a6f6774ee2d9bf03071cc6e80cd6de452b2e"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 60,
+          "sourceRef": "koyo-30212"
+        },
+        "D": {
+          "value": 110,
+          "sourceRef": "koyo-30212"
+        },
+        "rMin": {
+          "value": 2,
+          "sourceRef": "koyo-30212"
+        },
+        "crKn": {
+          "value": 133,
+          "sourceRef": "koyo-30212"
+        },
+        "corKn": {
+          "value": 127,
+          "sourceRef": "koyo-30212"
+        },
+        "weightKg": {
+          "value": 0.945,
+          "sourceRef": "koyo-30212"
+        },
+        "speedGreaseRpm": {
+          "value": 3500,
+          "sourceRef": "koyo-30212"
+        },
+        "speedOilRpm": {
+          "value": 4700,
+          "sourceRef": "koyo-30212"
+        },
+        "calculationFactorE": {
+          "value": 0.4,
+          "sourceRef": "koyo-30212"
+        },
+        "calculationFactorY": {
+          "value": 1.48,
+          "sourceRef": "koyo-30212"
+        },
+        "calculationFactorY0": {
+          "value": 0.81,
+          "sourceRef": "koyo-30212"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "rMin",
+          "old": 1.5,
+          "proposed": 2,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "crKn",
+          "old": 104,
+          "proposed": 133,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "corKn",
+          "old": 122,
+          "proposed": 127,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "weightKg",
+          "old": 0.89,
+          "proposed": 0.945,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedGreaseRpm",
+          "old": 3800,
+          "proposed": 3500,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedOilRpm",
+          "old": 5300,
+          "proposed": 4700,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY",
+          "old": 1.5,
+          "proposed": 1.48,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY0",
+          "old": 0.8,
+          "proposed": 0.81,
+          "sourceRef": "koyo-30212",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Width field semantic conflict: manufacturer total T23.75, cone B22 and cup C19 mm. Existing app B23.75 appears overall width; do not change geometry to22 without field mapping.",
+        "rMin2 is main r; manufacturer r1 minimum1.5 is separate.",
+        "Cage, installed clearance, origin and thermal5600 unverified."
+      ],
+      "notes": [
+        "Manufacturer labels axial factor Y1=1.48; app tapered calculationFactorY mapping requires review. Additional dimensions T23.75/B22/C19, a21.9; Cu19.7kN."
+      ],
+      "media": {
+        "status": "family_reference_only",
+        "sourceUrl": "https://koyo.jtekt.co.jp/en/assets/images/calculation/products/050-010-010-010_1.jpg",
+        "classification": "manufacturer reference drawing",
+        "exactSkuImageVerified": false,
+        "attribution": "JTEKT Corporation",
+        "reuseTerms": "Page copyright all rights reserved; no reuse license found.",
+        "action": "retain_existing_labeled_reference"
+      }
+    },
+    {
+      "id": "pc-koyo-22218-rhr",
+      "slug": "koyo-22218-rhr",
+      "baselineDesignation": "KOYO 22218 RHR Spherical Roller",
+      "status": "blocked_evidence",
+      "sources": [
+        {
+          "id": "koyo-22218-attempt",
+          "url": "https://koyo.jtekt.co.jp/en/products/detail/?pno=22218RHR",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "revision": null,
+          "evidenceType": "opened_page_without_product_specifications",
+          "retrievedSourceSha256": "8df7bb0b819b25a6b928daa0488775dad64c62fcc8bacca8cad4f6d88dcbd853"
+        }
+      ],
+      "verifiedFields": {},
+      "proposedCorrections": [],
+      "unresolved": [
+        "Exact RHR designation absent from returned official product detail. Current official catalog search found no 22218RHR entry; do not substitute RH or another generation.",
+        "All engineering values, suffix-specific construction and primary media remain unverified."
+      ],
+      "notes": [],
+      "media": {
+        "status": "missing_exact_media",
+        "action": "retain_existing_labeled_reference",
+        "exactSkuImageVerified": false,
+        "reuseTerms": "No reuse permission established."
+      }
+    },
+    {
+      "id": "pc-nachi-6008-2nse9",
+      "slug": "nachi-6008-2nse9",
+      "baselineDesignation": "NACHI 6008-2NSE9 Quest® Japan",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "nachi-deep-groove",
+          "url": "https://www.nachi-fujikoshi.co.jp/dcms_media/other/B3402E-2.pdf",
+          "accessDate": "2026-10-15",
+          "page": "PDF3-5 table and numbering; PDF6 copyright/revision",
+          "revision": "B3402E-2; 2026.7.X-MD-MIZUNO",
+          "evidenceType": "opened_manufacturer_source"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 40,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "D": {
+          "value": 68,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "B": {
+          "value": 15,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "rMin": {
+          "value": 1,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "crKn": {
+          "value": 16.8,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "corKn": {
+          "value": 11.5,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "speedGreaseRpm": {
+          "value": 6100,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "calculationFactorF0": {
+          "value": 15.3,
+          "sourceRef": "nachi-deep-groove"
+        },
+        "cageMaterialEn": {
+          "value": "Pressed steel cage",
+          "sourceRef": "nachi-deep-groove"
+        },
+        "sealingEn": {
+          "value": "Two contact seals (2NSE9)",
+          "sourceRef": "nachi-deep-groove"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "speedGreaseRpm",
+          "old": 11000,
+          "proposed": 6100,
+          "sourceRef": "nachi-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "cageMaterialEn",
+          "old": "Precision pressed steel cage",
+          "proposed": "Pressed steel cage",
+          "sourceRef": "nachi-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "sealingEn",
+          "old": "Dual low-torque contact rubber seals (2NSE9)",
+          "proposed": "Two contact seals (2NSE9)",
+          "sourceRef": "nachi-deep-groove",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "descriptionFa",
+          "old": "بلبرینگ ژاپنی ناچی سری Quest با فولاد فوق‌العاده تمیز خلاء و آب‌بند غیرتماسی/تماسی بهینه 2NSE9 جهت کاهش اتلاف توان و نویز در الکتروموتورها.",
+          "proposed": "بلبرینگ ژاپنی ناچی سری Quest با فولاد فوق‌العاده تمیز خلاء و آب‌بند تماسی 2NSE9 جهت کاهش اتلاف توان و نویز در الکتروموتورها.",
+          "sourceRef": "nachi-deep-groove",
+          "reason": "Keep Persian prose consistent with verified 2NSE9 contact seal construction; other source text is preserved."
+        }
+      ],
+      "unresolved": [
+        "Mass .194kg in catalog is base 6008 reference; do not claim exact 2NSE9 mass without qualification.",
+        "Oil12000 applies open/ZE, not dual sealed 2NSE9. Existing oil11000 and thermal16000 unsupported.",
+        "Exact clearance and stock origin still need proof; 2NSE9 is contact, not non-contact.",
+        "Manufacturer PDF obtainable via web reader; local fetch returned CloudFront403, so no bypass/download attempted afterward."
+      ],
+      "notes": [],
+      "media": {
+        "status": "missing_exact_media",
+        "classification": "catalog family references only",
+        "exactSkuImageVerified": false,
+        "attribution": "NACHI-FUJIKOSHI CORP.",
+        "sourceUrl": "https://www.nachi-fujikoshi.co.jp/dcms_media/other/B3402E-2.pdf",
+        "reuseTerms": "PDF6 explicitly prohibits copying/reprinting/reproducing without NACHI permission.",
+        "action": "retain_existing_labeled_reference"
+      }
+    },
+    {
+      "id": "pc-nachi-22222-ex",
+      "slug": "nachi-22222-ex",
+      "baselineDesignation": "NACHI 22222 EX Quest Spherical",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "nachi-spherical",
+          "url": "https://www.nachi-fujikoshi.co.jp/dcms_media/other/B1032E-5.pdf",
+          "accessDate": "2026-10-15",
+          "page": "PDF3-4 design; PDF16-17 / printed14-15 exact 22222EX row",
+          "revision": "B1032E-5; printing date not verified",
+          "evidenceType": "opened_manufacturer_source"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 110,
+          "sourceRef": "nachi-spherical"
+        },
+        "D": {
+          "value": 200,
+          "sourceRef": "nachi-spherical"
+        },
+        "B": {
+          "value": 53,
+          "sourceRef": "nachi-spherical"
+        },
+        "rMin": {
+          "value": 2.1,
+          "sourceRef": "nachi-spherical"
+        },
+        "crKn": {
+          "value": 680,
+          "sourceRef": "nachi-spherical"
+        },
+        "corKn": {
+          "value": 640,
+          "sourceRef": "nachi-spherical"
+        },
+        "weightKg": {
+          "value": 7.36,
+          "sourceRef": "nachi-spherical"
+        },
+        "speedGreaseRpm": {
+          "value": 2600,
+          "sourceRef": "nachi-spherical"
+        },
+        "speedOilRpm": {
+          "value": 3200,
+          "sourceRef": "nachi-spherical"
+        },
+        "calculationFactorE": {
+          "value": 0.26,
+          "sourceRef": "nachi-spherical"
+        },
+        "calculationFactorY1": {
+          "value": 2.64,
+          "sourceRef": "nachi-spherical"
+        },
+        "calculationFactorY2": {
+          "value": 3.93,
+          "sourceRef": "nachi-spherical"
+        },
+        "calculationFactorY0": {
+          "value": 2.58,
+          "sourceRef": "nachi-spherical"
+        },
+        "cageMaterialEn": {
+          "value": "Pressed steel cage with floating guide ring",
+          "sourceRef": "nachi-spherical"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "crKn",
+          "old": 560,
+          "proposed": 680,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "corKn",
+          "old": 690,
+          "proposed": 640,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "weightKg",
+          "old": 6.95,
+          "proposed": 7.36,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "speedOilRpm",
+          "old": 3400,
+          "proposed": 3200,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorE",
+          "old": 0.23,
+          "proposed": 0.26,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY1",
+          "old": 2.9,
+          "proposed": 2.64,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY2",
+          "old": 4.4,
+          "proposed": 3.93,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "calculationFactorY0",
+          "old": 2.9,
+          "proposed": 2.58,
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "cageMaterialEn",
+          "old": "Heavy duty pressed steel cage with guide ring",
+          "proposed": "Pressed steel cage with floating guide ring",
+          "sourceRef": "nachi-spherical",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Catalog specifies lubricant features via W33/W20; baseline unsuffixed EX does not establish W33 stock identity.",
+        "Existing three-hole claim conflicts with exact table: hole count6, hole diameter5mm, groove width10mm. Confirm actual supplied suffix before changing description.",
+        "Thermal3200 unverified;3200 is oil limiting speed. Generic Y2.9 not applicable to piecewise factors.",
+        "Exact clearance and origin not established; local source download blocked403, text source opened in web reader."
+      ],
+      "notes": [],
+      "media": {
+        "status": "missing_exact_media",
+        "action": "retain_existing_labeled_reference",
+        "exactSkuImageVerified": false,
+        "reuseTerms": "No reuse permission established."
+      }
+    },
+    {
+      "id": "pc-nachi-nup-310-eg",
+      "slug": "nachi-nup-310-eg",
+      "baselineDesignation": "NACHI NUP 310 EG Cylindrical",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "nachi-eg",
+          "url": "https://www.nachi-fujikoshi.co.jp/dcms_media/other/B1040E-4.pdf",
+          "accessDate": "2026-10-15",
+          "page": "PDF2 table 310EG, NU/NJ/NUP heading and design; PDF3 revision",
+          "revision": "B1040E-4;2006.02.X-ABE-ABE",
+          "evidenceType": "opened_manufacturer_source"
+        }
+      ],
+      "verifiedFields": {
+        "d": {
+          "value": 50,
+          "sourceRef": "nachi-eg"
+        },
+        "D": {
+          "value": 110,
+          "sourceRef": "nachi-eg"
+        },
+        "B": {
+          "value": 27,
+          "sourceRef": "nachi-eg"
+        },
+        "rMin": {
+          "value": 2,
+          "sourceRef": "nachi-eg"
+        },
+        "crKn": {
+          "value": 110,
+          "sourceRef": "nachi-eg"
+        },
+        "corKn": {
+          "value": 113,
+          "sourceRef": "nachi-eg"
+        },
+        "cageMaterialEn": {
+          "value": "Glass-reinforced nylon cage",
+          "sourceRef": "nachi-eg"
+        }
+      },
+      "proposedCorrections": [
+        {
+          "field": "crKn",
+          "old": 112,
+          "proposed": 110,
+          "sourceRef": "nachi-eg",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "corKn",
+          "old": 108,
+          "proposed": 113,
+          "sourceRef": "nachi-eg",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        },
+        {
+          "field": "cageMaterialEn",
+          "old": "Engineered high strength polyamide cage (EG)",
+          "proposed": "Glass-reinforced nylon cage",
+          "sourceRef": "nachi-eg",
+          "reason": "Exact designation manufacturer evidence; retain named units and speed scope."
+        }
+      ],
+      "unresolved": [
+        "Speed row5400 grease/6500 oil has a contradictory footnote about machined/pressed cages while EG design is nylon; keep as conditional observation, do not automatically patch speeds.",
+        "Reference weight1.170kg column explicitly NU, not NUP. Baseline NUP mass1.15 unresolved.",
+        "Clearance, origin and thermal7200 not established.",
+        "Old official brochure remains listed on current official catalog page; newer exact revision not located. Local PDF request blocked403; no bypass."
+      ],
+      "notes": [
+        "Exact suffix EG confirmed by official table covering NU,NJ,NUP; r1 minimum2mm and Fw65mm."
+      ],
+      "media": {
+        "status": "missing_exact_media",
+        "action": "retain_existing_labeled_reference",
+        "exactSkuImageVerified": false,
+        "reuseTerms": "No reuse permission established."
+      }
+    }
+  ]
+}

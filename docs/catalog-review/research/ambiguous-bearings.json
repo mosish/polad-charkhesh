@@ -1,0 +1,2433 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-15",
+  "scope": "25 ambiguous mixed-brand legacy bearing records; bounded identity-first research",
+  "method": "Only opened official manufacturer content or locally rendered original SKF PDF pages support conditional facts. Search results are leads only. Unavailable sources are recorded distinctly and supply no verified numerical facts.",
+  "summary": {
+    "records": 25,
+    "ambiguousIdentity": 25,
+    "recordsWithVerifiedConditionalManufacturerCandidate": 14,
+    "recordsWithUnverifiedSourceLeadsOnly": 11,
+    "safeChanges": 0,
+    "exactMediaApproved": 0
+  },
+  "sources": {
+    "skf-dgbb-jp": {
+      "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+      "title": "SKF Japanese deep groove ball bearings catalog excerpt",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "localFile": "work/sources/skf-ball-bearings.pdf",
+      "revisionNote": "No publication/revision identifier established from this excerpt; PDF creation metadata is not a publication revision.",
+      "reviewedPrintedPages": [
+        326,
+        356,
+        358,
+        360,
+        362
+      ],
+      "reviewedPdfPagesOneBased": [
+        33,
+        63,
+        65,
+        67,
+        69
+      ],
+      "visualInspection": true
+    },
+    "skf-full-en-attempt": {
+      "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf",
+      "title": "SKF rolling bearings catalog lead",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "usableEvidence": false
+    },
+    "skf-full-pt-attempt": {
+      "url": "https://cdn.skfmediahub.skf.com/api/public/0901d19680416a2b/pdf_preview_medium/0901d19680416a2b_pdf_preview_medium.pdf",
+      "title": "SKF rolling bearings catalog lead",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_content_too_large",
+      "error": "Content length too large: 20869015 bytes",
+      "usableEvidence": false
+    },
+    "skf-us-2018-attempt": {
+      "url": "https://www.skf.com/binaries/pub12/Images/0901d196807026e8-100-700_SKF_bearings_and_mounted_products_2018_tcm_12-314117.pdf",
+      "title": "SKF bearings and mounted products 2018 lead",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_content_too_large",
+      "error": "Content length too large: 15942061 bytes",
+      "usableEvidence": false
+    },
+    "skf-needle-attempt": {
+      "url": "https://vehicleaftermarket.skf.com/binaries/pub12/Images/0901d196803e7d9e-Catalogue---Needle-roller-bearings-06003-EN_tcm_12-271146.pdf",
+      "title": "SKF Needle roller bearings 06003 EN catalog lead",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "redirected_to_unrelated_homepage",
+      "redirectedUrl": "https://automotive.skf.com/global/en",
+      "usableEvidence": false
+    },
+    "skf-hot-article-attempt": {
+      "url": "https://evolution.skf.com/even-hotter/",
+      "title": "SKF Evolution Even hotter article lead",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_cache_miss",
+      "usableEvidence": false
+    },
+    "skf-6308-2z": {
+      "url": "https://www.emarketplace.in.skf.com/deep-groove-ball-bearing/6308-2z",
+      "title": "SKF India 6308-2z",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "skf-6206-2rs1": {
+      "url": "https://www.emarketplace.in.skf.com/deep-groove-ball-bearing/6206-2rs1",
+      "title": "SKF India 6206-2rs1",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "skf-6310-2z": {
+      "url": "https://www.emarketplace.in.skf.com/deep-groove-ball-bearing/6310-2z",
+      "title": "SKF India 6310-2z",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "skf-30206-j2-q": {
+      "url": "https://www.emarketplace.in.skf.com/tapered-roller-bearings/30206-j2-q",
+      "title": "SKF India 30206-j2-q",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "skf-30208-j2-q": {
+      "url": "https://www.emarketplace.in.skf.com/tapered-roller-bearings/30208-j2-q",
+      "title": "SKF India 30208-j2-q",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "skf-32210-j2-q": {
+      "url": "https://www.emarketplace.in.skf.com/tapered-roller-bearings/32210-j2-q",
+      "title": "SKF India 32210-j2-q",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "attempt-skf-32014-x-q": {
+      "url": "https://www.emarketplace.in.skf.com/tapered-roller-bearings/32014-x-q",
+      "title": "SKF India 32014-x-q",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "attempt-skf-32218-j2-q": {
+      "url": "https://www.emarketplace.in.skf.com/tapered-roller-bearings/32218-j2-q",
+      "title": "SKF India 32218-j2-q",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "attempt-skf-32314-j2-q": {
+      "url": "https://www.emarketplace.in.skf.com/tapered-roller-bearings/32314-j2-q",
+      "title": "SKF India 32314-j2-q",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "skf-nu208": {
+      "url": "https://www.emarketplace.in.skf.com/cylindrical-roller-bearing/nu-208-ecp",
+      "title": "SKF India nu-208-ecp",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "attempt-skf-nj-212-ecp": {
+      "url": "https://www.emarketplace.in.skf.com/cylindrical-roller-bearing/nj-212-ecp",
+      "title": "SKF India nj-212-ecp",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "attempt-skf-nup-310-ecp": {
+      "url": "https://www.emarketplace.in.skf.com/cylindrical-roller-bearing/nup-310-ecp",
+      "title": "SKF India nup-310-ecp",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "attempt-skf-nu-2224-ecp": {
+      "url": "https://www.emarketplace.in.skf.com/cylindrical-roller-bearing/nu-2224-ecp",
+      "title": "SKF India nu-2224-ecp",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "nsk-51106": {
+      "url": "https://www.nsk.com/engineering/51106-apn.html",
+      "title": "NSK 51106",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "sections": [
+        "Boundary Dimensions",
+        "Basic Load Ratings",
+        "Speeds",
+        "Properties",
+        "Mass"
+      ]
+    },
+    "nsk-51108": {
+      "url": "https://www.nsk.com/engineering/51108-apn.html",
+      "title": "NSK 51108",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "sections": [
+        "Boundary Dimensions",
+        "Basic Load Ratings",
+        "Speeds",
+        "Properties",
+        "Mass"
+      ]
+    },
+    "nsk-51210": {
+      "url": "https://www.nsk.com/engineering/51210-apn.html",
+      "title": "NSK 51210",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "sections": [
+        "Boundary Dimensions",
+        "Basic Load Ratings",
+        "Speeds",
+        "Properties",
+        "Mass"
+      ]
+    },
+    "skf-7312-becbm": {
+      "url": "https://www.emarketplace.in.skf.com/angular-contact-ball-bearing/7312-becbm",
+      "title": "SKF India 7312-becbm",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    },
+    "attempt-skf-7210-becbp": {
+      "url": "https://www.emarketplace.in.skf.com/angular-contact-ball-bearing/7210-becbp",
+      "title": "SKF India 7210-becbp",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "attempt-skf-3308-a-2z": {
+      "url": "https://www.emarketplace.in.skf.com/angular-contact-ball-bearing/3308-a-2z",
+      "title": "SKF India 3308-a-2z",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "unavailable_tool_internal_error",
+      "section": null,
+      "usableEvidence": false
+    },
+    "skf-1309-ektn9": {
+      "url": "https://www.emarketplace.in.skf.com/self-aligning-ball-bearing/1309-ektn9",
+      "title": "SKF India 1309-ektn9",
+      "accessDate": "2026-10-15",
+      "revision": null,
+      "status": "opened_content_reviewed",
+      "section": "Technical specification",
+      "usableEvidence": true
+    }
+  },
+  "records": [
+    {
+      "id": "pc-6204-2rs",
+      "slug": "6204-2rs",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "6204-2RSH / 2RS1",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK",
+          "KOYO",
+          "NACHI"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3",
+          "C4"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Dual Contact Rubber Seal (NBR)",
+        "cageMaterialEn": "Pressed sheet steel"
+      },
+      "candidateDesignation": "SKF 6204-2RSH",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-dgbb-jp"
+      ],
+      "identityIssues": [
+        "2RSH / 2RS1 are alternative seal designations in the existing record; do not collapse them to one exact SKU. CN/C3/C4 are alternatives, not one clearance.",
+        "SKF reference and limiting speed columns are not grease and oil speed columns. A dash in the reference-speed column is unavailable, not zero."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            20,
+            47,
+            14
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p356, PDF p63, exact 6204-2RSH row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicRadialRating_C",
+          "value": 13.5,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p356, PDF p63, exact 6204-2RSH row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticRadialRating_C0",
+          "value": 6.55,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p356, PDF p63, exact 6204-2RSH row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "referenceSpeed",
+          "value": null,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p356, PDF p63, exact 6204-2RSH row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "limitingSpeed",
+          "value": 10000,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p356, PDF p63, exact 6204-2RSH row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.11,
+          "unit": "kg",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p356, PDF p63, exact 6204-2RSH row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_6204_2rs_1787678583210.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-6308-2z",
+      "slug": "6308-2z",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "6308-2Z / ZZ C3",
+        "brands": [
+          "SKF",
+          "FAG",
+          "Timken",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Dual Non-contact Metal Shield (ZZ)",
+        "cageMaterialEn": "Sheet steel cage"
+      },
+      "candidateDesignation": "SKF 6308-2Z",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-dgbb-jp",
+        "skf-6308-2z"
+      ],
+      "identityIssues": [
+        "Existing code combines 2Z / ZZ and C3. The base SKF 6308-2Z catalog row does not independently verify the C3 variant or other manufacturers.",
+        "SKF reference and limiting speed columns are not grease and oil speed columns. A dash in the reference-speed column is unavailable, not zero.",
+        "Catalog mass0.65kg vs current India page0.635kg; preserve source/revision context rather than averaging."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            40,
+            90,
+            23
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p360, PDF p67, exact 6308-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicRadialRating_C",
+          "value": 42.3,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p360, PDF p67, exact 6308-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticRadialRating_C0",
+          "value": 24,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p360, PDF p67, exact 6308-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "referenceSpeed",
+          "value": 17000,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p360, PDF p67, exact 6308-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "limitingSpeed",
+          "value": 8500,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p360, PDF p67, exact 6308-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.65,
+          "unit": "kg",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p360, PDF p67, exact 6308-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.635,
+          "unit": "kg",
+          "sourceRef": "skf-6308-2z",
+          "locator": "Technical specification / Weight kg",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_6308_2z_1787678597854.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-6005-open",
+      "slug": "6005-open",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "6005 Open / C3",
+        "brands": [
+          "NSK",
+          "SKF",
+          "KOYO",
+          "NACHI"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Oil Bath Lubricated)",
+        "cageMaterialEn": "Pressed steel cage"
+      },
+      "candidateDesignation": "SKF 6005",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-dgbb-jp"
+      ],
+      "identityIssues": [
+        "Open / C3 is ambiguous punctuation: seal state and clearance are different attributes; select the actual clearance. The SKF row is the unsuffixed open candidate.",
+        "SKF reference and limiting speed columns are not grease and oil speed columns. A dash in the reference-speed column is unavailable, not zero."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            25,
+            47,
+            12
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p326, PDF p33, exact 6005 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicRadialRating_C",
+          "value": 11.9,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p326, PDF p33, exact 6005 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticRadialRating_C0",
+          "value": 6.55,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p326, PDF p33, exact 6005 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "referenceSpeed",
+          "value": 32000,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p326, PDF p33, exact 6005 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "limitingSpeed",
+          "value": 20000,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p326, PDF p33, exact 6005 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.078,
+          "unit": "kg",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p326, PDF p33, exact 6005 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_6005_open_1787678608569.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-6206-c3",
+      "slug": "6206-c3",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "6206-2RS1 C3",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NTN",
+          "NSK"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3",
+          "C4"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Dual Contact NBR Rubber Seals",
+        "cageMaterialEn": "Pressed sheet steel"
+      },
+      "candidateDesignation": "SKF 6206-2RS1",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-dgbb-jp",
+        "skf-6206-2rs1"
+      ],
+      "identityIssues": [
+        "Existing code explicitly says C3 but options include CN/C3/C4. Opened SKF base product page is CN; it cannot establish the C3 product.",
+        "SKF reference and limiting speed columns are not grease and oil speed columns. A dash in the reference-speed column is unavailable, not zero."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            30,
+            62,
+            16
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p358, PDF p65, exact 6206-2RS1 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicRadialRating_C",
+          "value": 20.3,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p358, PDF p65, exact 6206-2RS1 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticRadialRating_C0",
+          "value": 11.2,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p358, PDF p65, exact 6206-2RS1 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "referenceSpeed",
+          "value": null,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p358, PDF p65, exact 6206-2RS1 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "limitingSpeed",
+          "value": 7500,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p358, PDF p65, exact 6206-2RS1 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.2,
+          "unit": "kg",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p358, PDF p65, exact 6206-2RS1 row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "clearance",
+          "value": "CN",
+          "unit": null,
+          "sourceRef": "skf-6206-2rs1",
+          "locator": "Technical specification / Radial internal clearance preload group",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "cage",
+          "value": "Sheet metal",
+          "unit": null,
+          "sourceRef": "skf-6206-2rs1",
+          "locator": "Technical specification / Cage design",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/ball_bearing_photo_1787677355061.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-6310-2z",
+      "slug": "6310-2z",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "6310-2Z / C3",
+        "brands": [
+          "SKF",
+          "FAG",
+          "Timken",
+          "NACHI"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Dual Metal Shields (ZZ)",
+        "cageMaterialEn": "Sheet steel cage"
+      },
+      "candidateDesignation": "SKF 6310-2Z",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-dgbb-jp",
+        "skf-6310-2z"
+      ],
+      "identityIssues": [
+        "Existing code says 2Z / C3 and options include CN/C3. Opened SKF base product page is CN; complete suffix is required for the C3 product.",
+        "SKF reference and limiting speed columns are not grease and oil speed columns. A dash in the reference-speed column is unavailable, not zero.",
+        "Catalog mass1.1kg vs current India page1.085kg; no automatic mass replacement."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            50,
+            110,
+            27
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p362, PDF p69, exact 6310-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicRadialRating_C",
+          "value": 65,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p362, PDF p69, exact 6310-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticRadialRating_C0",
+          "value": 38,
+          "unit": "kN",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p362, PDF p69, exact 6310-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "referenceSpeed",
+          "value": 13000,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p362, PDF p69, exact 6310-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "limitingSpeed",
+          "value": 6700,
+          "unit": "r/min",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p362, PDF p69, exact 6310-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 1.1,
+          "unit": "kg",
+          "sourceRef": "skf-dgbb-jp",
+          "locator": "Printed p362, PDF p69, exact 6310-2Z row; table headings visually inspected",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "clearance",
+          "value": "CN",
+          "unit": null,
+          "sourceRef": "skf-6310-2z",
+          "locator": "Technical specification / Radial internal clearance preload group",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "cage",
+          "value": "Sheet metal",
+          "unit": null,
+          "sourceRef": "skf-6310-2z",
+          "locator": "Technical specification / Cage design",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 1.085,
+          "unit": "kg",
+          "sourceRef": "skf-6310-2z",
+          "locator": "Technical specification / Net weight",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_6308_2z_1787678597854.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-30206",
+      "slug": "30206",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "30206 J2/Q",
+        "brands": [
+          "Timken",
+          "SKF",
+          "FAG",
+          "KOYO",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "Standard Preset"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open design (Lubrication required)",
+        "cageMaterialEn": "Pressed sheet steel cage"
+      },
+      "candidateDesignation": "SKF 30206 J2/Q",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-30206-j2-q"
+      ],
+      "identityIssues": [
+        "J2/Q candidate is SKF-specific in the opened manufacturer source; the listed Timken/FAG/KOYO/NSK/NTN brands are not established as this same full designation. Confirm whether supplied item is a complete single-row assembly."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_Width",
+          "value": [
+            30,
+            62,
+            17.25
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-30206-j2-q",
+          "locator": "Technical specification / Bore diameter, Outside diameter, Width",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.228,
+          "unit": "kg",
+          "sourceRef": "skf-30206-j2-q",
+          "locator": "Technical specification / Net weight",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "seals",
+          "value": "Without",
+          "unit": null,
+          "sourceRef": "skf-30206-j2-q",
+          "locator": "Technical specification / Sealing",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_30208_tapered_1787678619565.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-30208",
+      "slug": "30208",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "30208 J2/Q",
+        "brands": [
+          "Timken",
+          "SKF",
+          "FAG",
+          "KOYO",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "Standard Preset"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open design (Lubrication required)",
+        "cageMaterialEn": "Pressed sheet steel window cage"
+      },
+      "candidateDesignation": "SKF 30208 J2/Q",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-30208-j2-q"
+      ],
+      "identityIssues": [
+        "J2/Q candidate is SKF-specific in the opened manufacturer source; the listed Timken/FAG/KOYO/NSK/NTN brands are not established as this same full designation. Confirm whether supplied item is a complete single-row assembly.",
+        "Official India page Width 20.38mm conflicts with baseline B 19.75mm. Do not correct automatically: obtain exact manufacturer drawing and distinguish overall T from cone B and cup C."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_Width",
+          "value": [
+            40,
+            80,
+            20.38
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-30208-j2-q",
+          "locator": "Technical specification / Bore diameter, Outside diameter, Width",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.418,
+          "unit": "kg",
+          "sourceRef": "skf-30208-j2-q",
+          "locator": "Technical specification / Net weight",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "seals",
+          "value": "Without",
+          "unit": null,
+          "sourceRef": "skf-30208-j2-q",
+          "locator": "Technical specification / Sealing",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_30208_tapered_1787678619565.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-32210",
+      "slug": "32210",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "32210 J2/Q",
+        "brands": [
+          "Timken",
+          "FAG",
+          "SKF",
+          "NSK"
+        ],
+        "clearanceOptions": [
+          "Standard"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Oil/Grease Bath)",
+        "cageMaterialEn": "Treated pressed steel"
+      },
+      "candidateDesignation": "SKF 32210 J2/Q",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-32210-j2-q"
+      ],
+      "identityIssues": [
+        "J2/Q candidate is SKF-specific in the opened manufacturer source; the listed Timken/FAG/KOYO/NSK/NTN brands are not established as this same full designation. Confirm whether supplied item is a complete single-row assembly.",
+        "Official India page Width 25.86mm conflicts with baseline B 24.75mm. Do not correct automatically: obtain exact manufacturer drawing and distinguish overall T from cone B and cup C."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_Width",
+          "value": [
+            50,
+            90,
+            25.86
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-32210-j2-q",
+          "locator": "Technical specification / Bore diameter, Outside diameter, Width",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.617,
+          "unit": "kg",
+          "sourceRef": "skf-32210-j2-q",
+          "locator": "Technical specification / Net weight",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "seals",
+          "value": "Without",
+          "unit": null,
+          "sourceRef": "skf-32210-j2-q",
+          "locator": "Technical specification / Sealing",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_32210_tapered_1787678639800.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-32014-x",
+      "slug": "32014-x",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "32014 X / Q",
+        "brands": [
+          "SKF",
+          "Timken",
+          "KOYO",
+          "FAG"
+        ],
+        "clearanceOptions": [
+          "Standard"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Requires Lubrication)",
+        "cageMaterialEn": "Pressed steel cage"
+      },
+      "candidateDesignation": "SKF 32014 X/Q (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-32014-x-q",
+        "skf-full-en-attempt"
+      ],
+      "identityIssues": [
+        "Existing record lists several manufacturers; complete brand-specific designation must be confirmed. X / Q or J2/Q must not be transferred to another manufacturer.",
+        "Complete assembly and overall T versus cone B/cup C require a dimensional drawing.",
+        "Attempted product URL returned no usable page; this is not proof the SKU does not exist. Search snippets were not accepted as evidence."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_30208_tapered_1787678619565.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-nu-208-ecp",
+      "slug": "nu-208-ecp",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "NU 208 ECP / C3",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Oil / Grease Lubed)",
+        "cageMaterialEn": "Glass fiber reinforced Polyamide (PA66)"
+      },
+      "candidateDesignation": "SKF NU 208 ECP",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-nu208"
+      ],
+      "identityIssues": [
+        "Base SKF NU208 ECP page specifies CN while existing code/options mention C3. The C3 variant is not independently verified.",
+        "NU, NJ and NUP designs must not be substituted merely because boundary dimensions match; confirm rib/locating arrangement and full cage suffix."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            40,
+            80,
+            18
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-nu208",
+          "locator": "Technical specification",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "clearance",
+          "value": "CN",
+          "unit": null,
+          "sourceRef": "skf-nu208",
+          "locator": "Radial internal clearance preload group",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.367,
+          "unit": "kg",
+          "sourceRef": "skf-nu208",
+          "locator": "Net weight",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "seals",
+          "value": "Without",
+          "unit": null,
+          "sourceRef": "skf-nu208",
+          "locator": "Sealing",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_nu208_cylindrical_1787678672477.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-nj-212-ecp",
+      "slug": "nj-212-ecp",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "NJ 212 ECP",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open type",
+        "cageMaterialEn": "Reinforced Polyamide 66"
+      },
+      "candidateDesignation": "SKF NJ 212 ECP (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-nj-212-ecp",
+        "skf-full-en-attempt",
+        "skf-full-pt-attempt"
+      ],
+      "identityIssues": [
+        "ECP and optional C3 in a multibrand record do not identify one supplied bearing. Confirm manufacturer, cage and clearance.",
+        "NU/NJ/NUP locating function and ring/rib arrangement must be preserved. Do not substitute another prefix with similar dimensions.",
+        "Official catalog search leads found, but full-source retrieval was unavailable; no numeric facts were taken from search snippets."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/cylindrical_bearing_photo_1787677431892.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-nup-310-ecp",
+      "slug": "nup-310-ecp",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "NUP 310 ECP / C3",
+        "brands": [
+          "SKF",
+          "FAG",
+          "Timken"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open",
+        "cageMaterialEn": "Engineering Polyamide"
+      },
+      "candidateDesignation": "SKF NUP 310 ECP (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-nup-310-ecp",
+        "skf-full-en-attempt",
+        "skf-full-pt-attempt"
+      ],
+      "identityIssues": [
+        "ECP and optional C3 in a multibrand record do not identify one supplied bearing. Confirm manufacturer, cage and clearance.",
+        "NU/NJ/NUP locating function and ring/rib arrangement must be preserved. Do not substitute another prefix with similar dimensions.",
+        "Official catalog search leads found, but full-source retrieval was unavailable; no numeric facts were taken from search snippets."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/cylindrical_bearing_photo_1787677431892.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-51106",
+      "slug": "51106",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "51106 Single Direction",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "Standard ISO"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Continuous lubrication required)",
+        "cageMaterialEn": "Pressed sheet steel cage"
+      },
+      "candidateDesignation": "NSK 51106",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "nsk-51106"
+      ],
+      "identityIssues": [
+        "Single-direction thrust assembly has shaft washer, housing washer and rolling-element/cage assembly; resolve exact manufacturer before transferring ratings.",
+        "Manufacturer rates Ca/C0a in the axial direction. Do not label these radial Cr/Cor; NSK explicitly states thrust ball bearings cannot take radial loads.",
+        "High Capacity and Single Direction are descriptions, not substitutes for a complete manufacturer designation."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_T",
+          "value": [
+            30,
+            47,
+            11
+          ],
+          "unit": "mm",
+          "sourceRef": "nsk-51106",
+          "locator": "Boundary Dimensions",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicAxialRating_Ca",
+          "value": 20.6,
+          "unit": "kN",
+          "sourceRef": "nsk-51106",
+          "locator": "Basic Load Ratings",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticAxialRating_C0a",
+          "value": 42,
+          "unit": "kN",
+          "sourceRef": "nsk-51106",
+          "locator": "Basic Load Ratings",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "greaseSpeed",
+          "value": 4300,
+          "unit": "min^-1",
+          "sourceRef": "nsk-51106",
+          "locator": "Speeds / Grease",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "oilBathSpeed",
+          "value": 6700,
+          "unit": "min^-1",
+          "sourceRef": "nsk-51106",
+          "locator": "Speeds / Oil (Oil-bath)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.064,
+          "unit": "kg",
+          "sourceRef": "nsk-51106",
+          "locator": "Mass (approx.)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "rMin",
+          "value": 0.6,
+          "unit": "mm",
+          "sourceRef": "nsk-51106",
+          "locator": "Boundary Dimensions / r (min.)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "cage",
+          "value": "Pressed steel",
+          "unit": null,
+          "sourceRef": "nsk-51106",
+          "locator": "Properties",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_51108_thrust_1787678727693.webp",
+        "primaryImageUrl": null,
+        "classification": "manufacturer_representative_not_exact_photo",
+        "reuse": "No reuse permission established",
+        "manufacturerDisclaimer": "NSK page explicitly says images shown are representations; designs and specifications may differ from actual products.",
+        "localReplacement": null
+      }
+    },
+    {
+      "id": "pc-51108",
+      "slug": "51108",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "51108 Single Direction",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK",
+          "NACHI"
+        ],
+        "clearanceOptions": [
+          "Standard ISO"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Continuous lubrication required)",
+        "cageMaterialEn": "Pressed steel cage"
+      },
+      "candidateDesignation": "NSK 51108",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "nsk-51108"
+      ],
+      "identityIssues": [
+        "Single-direction thrust assembly has shaft washer, housing washer and rolling-element/cage assembly; resolve exact manufacturer before transferring ratings.",
+        "Manufacturer rates Ca/C0a in the axial direction. Do not label these radial Cr/Cor; NSK explicitly states thrust ball bearings cannot take radial loads.",
+        "High Capacity and Single Direction are descriptions, not substitutes for a complete manufacturer designation."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_T",
+          "value": [
+            40,
+            60,
+            13
+          ],
+          "unit": "mm",
+          "sourceRef": "nsk-51108",
+          "locator": "Boundary Dimensions",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicAxialRating_Ca",
+          "value": 27.1,
+          "unit": "kN",
+          "sourceRef": "nsk-51108",
+          "locator": "Basic Load Ratings",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticAxialRating_C0a",
+          "value": 63,
+          "unit": "kN",
+          "sourceRef": "nsk-51108",
+          "locator": "Basic Load Ratings",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "greaseSpeed",
+          "value": 3600,
+          "unit": "min^-1",
+          "sourceRef": "nsk-51108",
+          "locator": "Speeds / Grease",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "oilBathSpeed",
+          "value": 5300,
+          "unit": "min^-1",
+          "sourceRef": "nsk-51108",
+          "locator": "Speeds / Oil (Oil-bath)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.12,
+          "unit": "kg",
+          "sourceRef": "nsk-51108",
+          "locator": "Mass (approx.)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "rMin",
+          "value": 0.6,
+          "unit": "mm",
+          "sourceRef": "nsk-51108",
+          "locator": "Boundary Dimensions / r (min.)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "cage",
+          "value": "Pressed steel",
+          "unit": null,
+          "sourceRef": "nsk-51108",
+          "locator": "Properties",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_51108_thrust_1787678727693.webp",
+        "primaryImageUrl": null,
+        "classification": "manufacturer_representative_not_exact_photo",
+        "reuse": "No reuse permission established",
+        "manufacturerDisclaimer": "NSK page explicitly says images shown are representations; designs and specifications may differ from actual products.",
+        "localReplacement": null
+      }
+    },
+    {
+      "id": "pc-51210",
+      "slug": "51210",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "51210 High Capacity",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK"
+        ],
+        "clearanceOptions": [
+          "Standard"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open",
+        "cageMaterialEn": "Sheet steel cage"
+      },
+      "candidateDesignation": "NSK 51210",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "nsk-51210"
+      ],
+      "identityIssues": [
+        "Single-direction thrust assembly has shaft washer, housing washer and rolling-element/cage assembly; resolve exact manufacturer before transferring ratings.",
+        "Manufacturer rates Ca/C0a in the axial direction. Do not label these radial Cr/Cor; NSK explicitly states thrust ball bearings cannot take radial loads.",
+        "High Capacity and Single Direction are descriptions, not substitutes for a complete manufacturer designation."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_T",
+          "value": [
+            50,
+            78,
+            22
+          ],
+          "unit": "mm",
+          "sourceRef": "nsk-51210",
+          "locator": "Boundary Dimensions",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "dynamicAxialRating_Ca",
+          "value": 49,
+          "unit": "kN",
+          "sourceRef": "nsk-51210",
+          "locator": "Basic Load Ratings",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "staticAxialRating_C0a",
+          "value": 111,
+          "unit": "kN",
+          "sourceRef": "nsk-51210",
+          "locator": "Basic Load Ratings",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "greaseSpeed",
+          "value": 2400,
+          "unit": "min^-1",
+          "sourceRef": "nsk-51210",
+          "locator": "Speeds / Grease",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "oilBathSpeed",
+          "value": 3600,
+          "unit": "min^-1",
+          "sourceRef": "nsk-51210",
+          "locator": "Speeds / Oil (Oil-bath)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.378,
+          "unit": "kg",
+          "sourceRef": "nsk-51210",
+          "locator": "Mass (approx.)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "rMin",
+          "value": 1,
+          "unit": "mm",
+          "sourceRef": "nsk-51210",
+          "locator": "Boundary Dimensions / r (min.)",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "cage",
+          "value": "Pressed steel",
+          "unit": null,
+          "sourceRef": "nsk-51210",
+          "locator": "Properties",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_51108_thrust_1787678727693.webp",
+        "primaryImageUrl": null,
+        "classification": "manufacturer_representative_not_exact_photo",
+        "reuse": "No reuse permission established",
+        "manufacturerDisclaimer": "NSK page explicitly says images shown are representations; designs and specifications may differ from actual products.",
+        "localReplacement": null
+      }
+    },
+    {
+      "id": "pc-32218-j2-q",
+      "slug": "32218-j2-q",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "32218 J2/Q (Heavy Steel Mill & Axle)",
+        "brands": [
+          "Timken",
+          "SKF",
+          "FAG"
+        ],
+        "clearanceOptions": [
+          "Standard Preset"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Circulating Oil Bath)",
+        "cageMaterialEn": "Heat-treated alloy steel window cage"
+      },
+      "candidateDesignation": "SKF 32218 J2/Q (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-32218-j2-q",
+        "skf-full-en-attempt"
+      ],
+      "identityIssues": [
+        "Existing record lists several manufacturers; complete brand-specific designation must be confirmed. X / Q or J2/Q must not be transferred to another manufacturer.",
+        "Complete assembly and overall T versus cone B/cup C require a dimensional drawing.",
+        "Attempted product URL returned no usable page; this is not proof the SKU does not exist. Search snippets were not accepted as evidence."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/tapered_bearing_photo_1787677370531.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-29420-e",
+      "slug": "29420-e",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "29420 E (Spherical Roller Thrust Bearing)",
+        "brands": [
+          "SKF",
+          "FAG",
+          "Timken"
+        ],
+        "clearanceOptions": [
+          "ISO 104 Standard"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Oil bath / circulating oil forced lubrication",
+        "cageMaterialEn": "Machined brass cage guided by shaft washer"
+      },
+      "candidateDesignation": "SKF 29420 E (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "skf-us-2018-attempt",
+        "skf-full-en-attempt"
+      ],
+      "identityIssues": [
+        "Record lists SKF/FAG/Timken; E suffix does not establish equivalence across manufacturers.",
+        "Axial/thrust ratings and load-case calculation factors require appropriate field semantics; do not relabel them as radial.",
+        "SKF USA catalog lead could not be opened because of tool size limit; no search-result values used."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_29420_thrust_1787678796134.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-nu-2224-ecp",
+      "slug": "nu-2224-ecp",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "NU 2224 ECP / C3 (Heavy Refinery Pump)",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "C3",
+          "C4"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Submerged Oil Bath)",
+        "cageMaterialEn": "Reinforced Polyamide PA66 with fiber glass"
+      },
+      "candidateDesignation": "SKF NU 2224 ECP (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-nu-2224-ecp",
+        "skf-full-en-attempt",
+        "skf-full-pt-attempt"
+      ],
+      "identityIssues": [
+        "ECP and optional C3 in a multibrand record do not identify one supplied bearing. Confirm manufacturer, cage and clearance.",
+        "NU/NJ/NUP locating function and ring/rib arrangement must be preserved. Do not substitute another prefix with similar dimensions.",
+        "Official catalog search leads found, but full-source retrieval was unavailable; no numeric facts were taken from search snippets."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_nu208_cylindrical_1787678672477.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-6210-2z-va208",
+      "slug": "6210-2z-va208",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "6210-2Z/VA208 (High-Temp 350°C Kiln Bearing)",
+        "brands": [
+          "SKF High-Temp",
+          "FAG High-Temp"
+        ],
+        "clearanceOptions": [
+          "Multiplied C5 Radial Play"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Dual Metal Shields with manganese phosphated rings",
+        "cageMaterialEn": "Segmented solid graphite lubricating crown (VA208)"
+      },
+      "candidateDesignation": "SKF 6210-2Z/VA208 (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "skf-hot-article-attempt",
+        "skf-full-pt-attempt"
+      ],
+      "identityIssues": [
+        "SKF High-Temp and FAG High-Temp are marketing/manufacturer alternatives, not one product identity.",
+        "VA208 must be retained exactly. Ordinary6210, VA201 and VA228 data or media cannot verify VA208.",
+        "350C claim, multiplied C5 clearance, temperature-dependent ratings, graphite lubrication and speed limits remain unverified in a fully opened exact source. An application story cannot establish an unrestricted operating limit."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_6210_kiln_1787678818521.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-7312-becbm",
+      "slug": "7312-becbm",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "7312 BECBM (40° Brass Cage)",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "CB (Standard)",
+          "CC (Increased)",
+          "CA (Light)"
+        ],
+        "contactAngle": "40°",
+        "sealingEn": "Open (Oil Bath Lubrication)",
+        "cageMaterialEn": "Machined solid brass cage (M)"
+      },
+      "candidateDesignation": "SKF 7312 BECBM",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-7312-becbm"
+      ],
+      "identityIssues": [
+        "Existing code names one SKF candidate but brands list several manufacturers; CB/CC/CA are alternatives, not simultaneously present.",
+        "Opened page describes axial clearance/preload in matched condition as Medium clearance, not a generic radial-clearance option. Confirm whether supplied product is a single bearing or a paired set and the arrangement.",
+        "Machined metal on opened page is insufficient by itself to certify brass alloy; complete cage/nomenclature evidence remains required."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            60,
+            130,
+            31
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-7312-becbm",
+          "locator": "Technical specification",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "contactAngle",
+          "value": 40,
+          "unit": "degrees",
+          "sourceRef": "skf-7312-becbm",
+          "locator": "Nominal contact angledeg",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "matchedCondition",
+          "value": "Medium clearance",
+          "unit": null,
+          "sourceRef": "skf-7312-becbm",
+          "locator": "Axial clearanceor preload in matched condition",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "cage",
+          "value": "Machined metal",
+          "unit": null,
+          "sourceRef": "skf-7312-becbm",
+          "locator": "Cage design",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 1.88,
+          "unit": "kg",
+          "sourceRef": "skf-7312-becbm",
+          "locator": "Net weight",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "tolerances",
+          "value": "P5 running accuracy, P6 dimensional",
+          "unit": null,
+          "sourceRef": "skf-7312-becbm",
+          "locator": "Tolerance group",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_7312_brass_1787678774838.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-7210-becbp",
+      "slug": "7210-becbp",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "7210 BECBP / P6",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NACHI",
+          "KOYO"
+        ],
+        "clearanceOptions": [
+          "CB Universal Pairing",
+          "GA Light Preload"
+        ],
+        "contactAngle": "40°",
+        "sealingEn": "Open (Oil Bath)",
+        "cageMaterialEn": "Glass fiber reinforced PA66 cage"
+      },
+      "candidateDesignation": "SKF 7210 BECBP / P6 (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-7210-becbp",
+        "skf-full-en-attempt"
+      ],
+      "identityIssues": [
+        "The slash and optional P6 suffix do not uniquely identify the supplied variant.",
+        "CB universal-pairing clearance, GA light preload and P6 tolerance must be treated as different attributes; obtain exact suffix and whether item is single or a matched set.",
+        "No verified manufacturer equivalence for listed FAG/NACHI/KOYO candidates."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_7312_brass_1787678774838.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-3308-a-2z",
+      "slug": "3308-a-2z",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "3308 A-2Z/C3 (Double Row)",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NTN",
+          "NSK"
+        ],
+        "clearanceOptions": [
+          "CN",
+          "C3"
+        ],
+        "contactAngle": "30°",
+        "sealingEn": "Dual non-contact metal shields (2Z)",
+        "cageMaterialEn": "Pressed sheet steel cage"
+      },
+      "candidateDesignation": "SKF 3308 A-2Z/C3 (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-3308-a-2z",
+        "skf-full-en-attempt"
+      ],
+      "identityIssues": [
+        "Preserve double-row arrangement, A design, both shields2Z and C3 suffix. A base3308 or a pair of single-row bearings is not this identity.",
+        "Exact contact angle and row arrangement are not verified here; do not validate the baseline30degree value from general family knowledge."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_3308_doublerow_1787678851991.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-1309-ektn9",
+      "slug": "1309-ektn9",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "1309 EKTN9 (Self-Aligning Tapered Bore)",
+        "brands": [
+          "SKF",
+          "FAG",
+          "NSK"
+        ],
+        "clearanceOptions": [
+          "C3 Radial Internal Play"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Adapter sleeve mountable)",
+        "cageMaterialEn": "Moulded glass fibre reinforced PA66 (TN9)"
+      },
+      "candidateDesignation": "SKF 1309 EKTN9",
+      "candidateEvidenceStatus": "conditional_manufacturer_candidate_verified",
+      "sourceRefs": [
+        "skf-1309-ektn9"
+      ],
+      "identityIssues": [
+        "Opened SKF EKTN9 page specifies CN while baseline claims C3. Need exact C3 suffix evidence before selecting clearance.",
+        "Tapered bore means bearing bore differs from adapter-sleeve shaft diameter; sleeve/accessories are not proven included.",
+        "Do not treat EKTN9 as a common full designation across SKF/FAG/NSK."
+      ],
+      "conditionalFacts": [
+        {
+          "field": "dimensions_d_D_B",
+          "value": [
+            45,
+            100,
+            25
+          ],
+          "unit": "mm",
+          "sourceRef": "skf-1309-ektn9",
+          "locator": "Technical specification",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "clearance",
+          "value": "CN",
+          "unit": null,
+          "sourceRef": "skf-1309-ektn9",
+          "locator": "Radial internal clearance preload group",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "bore",
+          "value": "Tapered",
+          "unit": null,
+          "sourceRef": "skf-1309-ektn9",
+          "locator": "Bore type",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "rows",
+          "value": 2,
+          "unit": null,
+          "sourceRef": "skf-1309-ektn9",
+          "locator": "Number of rows",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        },
+        {
+          "field": "mass",
+          "value": 0.898,
+          "unit": "kg",
+          "sourceRef": "skf-1309-ektn9",
+          "locator": "Net weight",
+          "apply": false,
+          "scope": "Manufacturer candidate only; not transferable across brands or unverified suffixes",
+          "baselineField": null
+        }
+      ],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_1309_align_1787678841334.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-na-4910",
+      "slug": "na-4910",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "NA 4910 (Machined Needle Roller)",
+        "brands": [
+          "INA Germany",
+          "SKF",
+          "IKO Japan",
+          "NTN"
+        ],
+        "clearanceOptions": [
+          "CN Standard"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Outer ring lubrication groove & hole",
+        "cageMaterialEn": "Hardened pressed steel needle guide cage"
+      },
+      "candidateDesignation": "SKF NA 4910 (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "skf-needle-attempt",
+        "skf-full-en-attempt"
+      ],
+      "identityIssues": [
+        "INA/ SKF/ IKO/ NTN identity unresolved; country labels do not verify the actual supplied manufacturer.",
+        "Verify whether supplied assembly includes inner ring and whether it is open versus RS/.2RS. Do not substitute NK or RNA variants.",
+        "Official SKF needle catalog URL redirected to automotive homepage. Exact rating or image cannot be accepted from search snippet."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_na4910_needle_1787678806671.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    },
+    {
+      "id": "pc-32314-j2-q",
+      "slug": "32314-j2-q",
+      "status": "ambiguous_identity",
+      "identityStatus": "multi_brand_not_resolved",
+      "existingIdentity": {
+        "code": "32314 J2/Q (Heavy Crusher & Crane Wheel)",
+        "brands": [
+          "Timken",
+          "SKF",
+          "FAG",
+          "NSK"
+        ],
+        "clearanceOptions": [
+          "Standard Preset"
+        ],
+        "contactAngle": null,
+        "sealingEn": "Open (Heavy duty grease/oil)",
+        "cageMaterialEn": "Pressed steel window cage"
+      },
+      "candidateDesignation": "SKF 32314 J2/Q (lead only)",
+      "candidateEvidenceStatus": "unverified_lead_only",
+      "sourceRefs": [
+        "attempt-skf-32314-j2-q",
+        "skf-full-en-attempt"
+      ],
+      "identityIssues": [
+        "Existing record lists several manufacturers; complete brand-specific designation must be confirmed. X / Q or J2/Q must not be transferred to another manufacturer.",
+        "Complete assembly and overall T versus cone B/cup C require a dimensional drawing.",
+        "Attempted product URL returned no usable page; this is not proof the SKU does not exist. Search snippets were not accepted as evidence."
+      ],
+      "conditionalFacts": [],
+      "safeChanges": [],
+      "numericAutoCorrectionAllowed": false,
+      "resolutionAction": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand.",
+      "unresolved": [
+        "Exact supplied manufacturer/designation and variant remain unresolved.",
+        "Other listed manufacturers have not been verified as identical products or ratings.",
+        "Full field-level verification, including ratings, speed semantics, cage, clearance, chamfers and applicable calculation factors, requires resolved identity.",
+        "Exact product media and publication reuse permission remain unresolved."
+      ],
+      "media": {
+        "existingImageUrl": "/assets/images/bearing_32210_tapered_1787678639800.webp",
+        "primaryImageUrl": null,
+        "localReplacement": null,
+        "classification": "unresolved_identity",
+        "reuse": "No published reuse permission established; no replacement authorized by this evidence.",
+        "action": "Retain existing labeled reference; do not present manufacturer family illustration as an exact-SKU photograph."
+      }
+    }
+  ]
+}

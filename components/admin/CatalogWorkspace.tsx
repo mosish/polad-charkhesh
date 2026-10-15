@@ -21,7 +21,7 @@ export default function CatalogWorkspace({ products, onEdit, onDuplicate, onDele
   const [selected, setSelected] = useState<string[]>([]), [action, setAction] = useState('feature');
   const [brands, setBrands] = useState(''), [busy, setBusy] = useState(false), [error, setError] = useState('');
   const [pendingBulk, setPendingBulk] = useState(false);
-  const [importRows, setImportRows] = useState<unknown[]>([]), [preview, setPreview] = useState<Preview | null>(null);
+  const [importPayload, setImportPayload] = useState<Record<string, unknown>>({}), [preview, setPreview] = useState<Preview | null>(null);
   const [filename, setFilename] = useState(''), [reviewed, setReviewed] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   const visible = products.filter(p => (p.code + ' ' + p.nameEn + ' ' + p.nameFa + ' ' + p.brands.join(' ')).toLowerCase().includes(query.toLowerCase()) &&
@@ -48,10 +48,12 @@ export default function CatalogWorkspace({ products, onEdit, onDuplicate, onDele
     try {
       if (file.size > 2_000_000) throw new Error(t('The file must be smaller than 2 MB.', 'حجم فایل باید کمتر از ۲ مگابایت باشد.'));
       const parsed = JSON.parse(await file.text());
-      const rows = Array.isArray(parsed) ? parsed : parsed.products;
-      if (!Array.isArray(rows) || !rows.length || rows.length > 200) throw new Error(t('Provide a JSON array of 1–200 products.', 'آرایه JSON شامل ۱ تا ۲۰۰ محصول وارد کنید.'));
-      const result = await api<Preview>('/products/import', 'POST', { products: rows, preview: true });
-      setImportRows(rows); setPreview(result);
+      const rows = Array.isArray(parsed) ? parsed : parsed?.products;
+      const payload = parsed?.schemaVersion === 1 && Array.isArray(parsed?.rows)
+        ? { reviewPatch: parsed } : { products: rows };
+      if ('products' in payload && (!Array.isArray(rows) || !rows.length || rows.length > 200)) throw new Error(t('Provide 1–200 products or a manufacturer review patch.', '۱ تا ۲۰۰ محصول یا فایل اصلاحات بررسی سازنده وارد کنید.'));
+      const result = await api<Preview>('/products/import', 'POST', { ...payload, preview: true });
+      setImportPayload(payload); setPreview(result);
     } catch (e) { setError(e instanceof Error ? e.message : String(e)); }
     finally { setBusy(false); if (input.current) input.current.value = ''; }
   };
@@ -86,6 +88,7 @@ export default function CatalogWorkspace({ products, onEdit, onDuplicate, onDele
       }])}>{t('Download import template', 'دریافت الگوی ورود')}</button>
     </div>
     <p className="admin-metric-note">{t('JSON imports match existing records by product code. New codes create records; matching codes update supplied fields. Up to 200 rows per file.', 'ورود JSON بر اساس کد محصول تطبیق می‌دهد. کد جدید رکورد می‌سازد و کد موجود فقط فیلدهای ارائه‌شده را به‌روز می‌کند. حداکثر ۲۰۰ ردیف در هر فایل.')}</p>
+    <p className="admin-metric-note">{t('Manufacturer review patches preserve product identities and stop if reviewed specifications have changed since the review.', 'فایل اصلاحات بررسی سازنده هویت محصولات را حفظ می‌کند و در صورت تغییر مشخصات بررسی‌شده پس از بازبینی، اعمال نمی‌شود.')}</p>
     {error && <p className="error import-errors" role="alert">{error}</p>}
     <div className="catalog-bulk-bar">
       <span>{selected.length} {t('selected', 'انتخاب‌شده')} · {visible.length} {t('shown', 'نمایش داده‌شده')}</span>
@@ -114,7 +117,7 @@ export default function CatalogWorkspace({ products, onEdit, onDuplicate, onDele
       <p dir="auto">{filename}</p><p>{preview.created} {t('new records', 'رکورد جدید')} · {preview.updated} {t('updates', 'به‌روزرسانی')}</p>
       <div className="import-preview-list">{preview.rows.map((row, i) => <details key={i}><summary><code>{row.code}</code> · {row.action === 'create' ? t('Create', 'ایجاد') : t('Update', 'به‌روزرسانی')} · {row.changes.length} {t('changed fields', 'فیلد تغییر یافته')}</summary><dl>{row.changes.map(change => <div key={change.field}><dt>{change.field}</dt><dd><del>{JSON.stringify(change.before)?.slice(0, 300)}</del><span> → {JSON.stringify(change.after)?.slice(0, 300)}</span></dd></div>)}</dl></details>)}</div>
       <label className="import-review"><input type="checkbox" checked={reviewed} onChange={e => setReviewed(e.target.checked)} />{t('I reviewed these records and their manufacturer data.', 'رکوردها و داده‌های سازنده را بررسی کردم.')}</label>
-      <button className="button primary" disabled={busy || !reviewed} onClick={() => { void execute('/products/import', { products: importRows, confirm: 'IMPORT', revision: preview.revision }); }}>{t('Save imported records', 'ذخیره رکوردهای واردشده')}</button>
+      <button className="button primary" disabled={busy || !reviewed} onClick={() => { void execute('/products/import', { ...importPayload, confirm: 'IMPORT', revision: preview.revision }); }}>{t('Save imported records', 'ذخیره رکوردهای واردشده')}</button>
       {error && <p className="error import-errors" role="alert">{error}</p>}
     </Dialog>}
   </>;

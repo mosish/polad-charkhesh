@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-15",
+  "baselineCommit": "e39488ef917b907801e8be3ac17d5caeeba44004",
+  "method": {
+    "baseline": "git archive of exact commit extracted under ignored work/lint-baseline; all archived files verified byte-identical after lint. Existing node_modules linked by directory junction.",
+    "command": "node_modules/.bin/oxlint.cmd --tsconfig tsconfig.platform.json --format=json",
+    "equivalence": "Same underlying command as pnpm lint with JSON formatting only. The package runner attempted automatic installation/registration for the isolated copy and hit sandbox EPERM before lint; direct existing binary avoided package-manager mutation.",
+    "comparison": "Diagnostic multisets compared by relative filename, rule code, full message and severity, and separately with offending source-line text; line-number changes ignored.",
+    "oxlintVersion": "1.76.0"
+  },
+  "baseline": {
+    "exitCode": 1,
+    "filesChecked": 120,
+    "rulesEnabled": 187,
+    "totalDiagnostics": 197,
+    "bySeverity": {
+      "error": 197
+    },
+    "byRule": {
+      "eslint(no-unused-vars)": 3,
+      "jsx-a11y(click-events-have-key-events)": 1,
+      "jsx-a11y(control-has-associated-label)": 1,
+      "jsx-a11y(no-noninteractive-element-interactions)": 2,
+      "jsx-a11y(no-noninteractive-tabindex)": 1,
+      "jsx-a11y(prefer-tag-over-role)": 21,
+      "react(react-compiler)": 11,
+      "react-hooks(exhaustive-deps)": 4,
+      "typescript(TS2882)": 1,
+      "typescript(no-deprecated)": 3,
+      "typescript(no-explicit-any)": 146,
+      "typescript(require-array-sort-compare)": 1,
+      "unicorn(no-invalid-fetch-options)": 1,
+      "unicorn(prefer-string-starts-ends-with)": 1
+    }
+  },
+  "current": {
+    "exitCode": 1,
+    "filesChecked": 126,
+    "rulesEnabled": 187,
+    "totalDiagnostics": 197,
+    "bySeverity": {
+      "error": 197
+    },
+    "byRule": {
+      "eslint(no-unused-vars)": 3,
+      "jsx-a11y(click-events-have-key-events)": 1,
+      "jsx-a11y(control-has-associated-label)": 1,
+      "jsx-a11y(no-noninteractive-element-interactions)": 2,
+      "jsx-a11y(no-noninteractive-tabindex)": 1,
+      "jsx-a11y(prefer-tag-over-role)": 21,
+      "react(react-compiler)": 11,
+      "react-hooks(exhaustive-deps)": 4,
+      "typescript(TS2882)": 1,
+      "typescript(no-deprecated)": 3,
+      "typescript(no-explicit-any)": 146,
+      "typescript(require-array-sort-compare)": 1,
+      "unicorn(no-invalid-fetch-options)": 1,
+      "unicorn(prefer-string-starts-ends-with)": 1
+    }
+  },
+  "comparison": {
+    "introducedDiagnostics": 0,
+    "resolvedDiagnostics": 0,
+    "offendingSourceLineComparison": "identical",
+    "existingIssuesInModifiedFiles": {
+      "api/products.ts": 6
+    },
+    "result": "Repository-wide lint fails identically on exact baseline and current checkout; no introduced diagnostics found."
+  },
+  "rawEvidence": {
+    "baseline": {
+      "path": "work/lint-baseline-results.json",
+      "sha256": "d461bc1eb367daef72563edaa9fa4fb9c180f5e9e168f0b86b28c4d2c6c212e2"
+    },
+    "current": {
+      "path": "work/lint-current-results.json",
+      "sha256": "3ce91b6d5d109d2f9277dea0a7bdd426a6756af9e7e863e663811f94e39f61a8"
+    }
+  },
+  "limitations": [
+    "This comparison establishes lint regression status only; it does not waive existing lint errors or establish deployment readiness.",
+    "Raw diagnostics and source archive remain in ignored work/; no source files were modified."
+  ]
+}

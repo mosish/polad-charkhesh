@@ -1,0 +1,1068 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-15",
+  "scope": "7 assigned FAG/INA/Corteco public records; manufacturer-only evidence",
+  "method": "Opened official documents or visible official catalog UI; search snippets excluded from verified data. No application or baseline changes.",
+  "records": [
+    {
+      "id": "pc-fag-6312-tb-p6",
+      "slug": "fag-6312-tb-p6",
+      "existingDesignation": "FAG 6312-TB-P6 Schaeffler",
+      "reviewedAt": "2026-10-15",
+      "status": "partial",
+      "identityAssessment": "FAG and Schaeffler are brand/group aliases. Exact 6312-TB-P6 current product sheet remains unavailable; suffix definitions are independently confirmed.",
+      "sources": [
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/tpi/downloads_8/TI_WL_95-4_de_en.pdf",
+          "title": "FAG Rolling Bearing Cages",
+          "revision": "TI WL 95-4 E; 8/00; copyright 1997",
+          "accessDate": "2026-10-15",
+          "page": "printed 4, PDF 4; copyright PDF 19",
+          "access": "Full PDF text opened; page screenshot requested",
+          "reuseTerms": "Reproduction including extracts requires manufacturer permission, PDF p19.",
+          "ref": "cages"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/tpi/downloads_8/tpi_270_de_en.pdf",
+          "title": "Schaeffler Solutions for Fluid Pumps",
+          "revision": "TPI 270 / 03 / en-GB / 2026-07",
+          "accessDate": "2026-10-15",
+          "page": "printed 38, 44 and 47; PDF 38, 44 and 47",
+          "access": "Full PDF text opened, relevant page screenshot requested",
+          "reuseTerms": "Printing including excerpts requires approval; last PDF page.",
+          "ref": "pumps"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/hr1_de_en.pdf",
+          "title": "HR1 Rolling Bearings",
+          "revision": "2025-02-15 per official media library",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Web reader 400 content length 68450618 too large; normal direct download returned Access Denied (Akamai reference 18.b6257e68.1792056579.5cf8bc4). No bypass attempted.",
+          "ref": "hr1"
+        },
+        {
+          "url": "https://medias.schaeffler.com/",
+          "title": "Schaeffler medias",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Official product detail web read Internal Error; browser navigation to catalog timed out with ERR_CONNECTION_TIMED_OUT. No exact current product sheet or primary image obtained.",
+          "ref": "medias"
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "cageMaterialEn",
+          "oldValue": "Laminated textile phenolic resin cage (TB)",
+          "proposedValue": "Machined textile-laminated phenolic cage, inner-ring guided (TB)",
+          "sourceRefs": [
+            "cages"
+          ],
+          "locator": "printed p4",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "cageMaterialFa",
+          "oldValue": "رزین فنولیک الیاف‌دار تکستولیت سبک (TB)",
+          "proposedValue": "قفسه رزین فنولیک لایه‌ای تقویت‌شده با پارچه، ماشین‌کاری‌شده و هدایت‌شونده با رینگ داخلی (TB)",
+          "sourceRefs": [
+            "cages"
+          ],
+          "locator": "printed p4",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "clearanceOptions",
+          "oldValue": [
+            "P6",
+            "C3",
+            "CN"
+          ],
+          "proposedValue": [
+            "C3",
+            "CN"
+          ],
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p38: P6 is a tolerance class",
+          "evidenceScope": "suffix_classification",
+          "implementationEligible": true,
+          "reason": "Remove P6 from clearance list. This does not certify availability of the retained CN/C3 variants."
+        }
+      ],
+      "supportedChanges": [
+        {
+          "field": "cageMaterialEn",
+          "oldValue": "Laminated textile phenolic resin cage (TB)",
+          "proposedValue": "Machined textile-laminated phenolic cage, inner-ring guided (TB)",
+          "sourceRefs": [
+            "cages"
+          ],
+          "locator": "printed p4",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "cageMaterialFa",
+          "oldValue": "رزین فنولیک الیاف‌دار تکستولیت سبک (TB)",
+          "proposedValue": "قفسه رزین فنولیک لایه‌ای تقویت‌شده با پارچه، ماشین‌کاری‌شده و هدایت‌شونده با رینگ داخلی (TB)",
+          "sourceRefs": [
+            "cages"
+          ],
+          "locator": "printed p4",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "clearanceOptions",
+          "oldValue": [
+            "P6",
+            "C3",
+            "CN"
+          ],
+          "proposedValue": [
+            "C3",
+            "CN"
+          ],
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p38: P6 is a tolerance class",
+          "evidenceScope": "suffix_classification",
+          "implementationEligible": true,
+          "reason": "Remove P6 from clearance list. This does not certify availability of the retained CN/C3 variants."
+        }
+      ],
+      "conditionalChanges": [],
+      "unresolved": [
+        "Exact dimensions, mass, Cr/C0r, F0, chamfer and speed values not validated; do not relabel current grease/oil numbers as reference/limiting without numeric evidence.",
+        "Country of manufacture, high-speed/spindle claims and variant availability need product-specific evidence.",
+        "Current exact SKU existence and clearance need manufacturer product sheet or stock marking."
+      ],
+      "media": {
+        "status": "missing_exact_official_media",
+        "existingUrl": "/assets/images/ball_bearing_photo_1787677355061.webp",
+        "action": "Retain existing labeled reference; no replacement",
+        "candidateUrl": null,
+        "classification": null,
+        "attribution": null,
+        "reuseTerms": "Not established for an exact product image",
+        "decodeCheck": "Not applicable; no replacement downloaded",
+        "altTextEn": "Reference illustration; exact product appearance not verified",
+        "altTextFa": "تصویر مرجع؛ ظاهر دقیق محصول تأیید نشده است"
+      }
+    },
+    {
+      "id": "pc-fag-22216-e1-xl-k",
+      "slug": "fag-22216-e1-xl-k",
+      "existingDesignation": "FAG 22216-E1-XL-K X-Life",
+      "reviewedAt": "2026-10-15",
+      "status": "partial",
+      "identityAssessment": "FAG/Schaeffler aliases; E1, XL and K semantics confirmed, current exact numeric row unavailable.",
+      "sources": [
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/tpi/downloads_8/tpi_270_de_en.pdf",
+          "title": "Schaeffler Solutions for Fluid Pumps",
+          "revision": "TPI 270 / 03 / en-GB / 2026-07",
+          "accessDate": "2026-10-15",
+          "page": "printed 38, 44 and 47; PDF 38, 44 and 47",
+          "access": "Full PDF text opened, relevant page screenshot requested",
+          "reuseTerms": "Printing including excerpts requires approval; last PDF page.",
+          "ref": "pumps"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/hr1_de_en.pdf",
+          "title": "HR1 Rolling Bearings",
+          "revision": "2025-02-15 per official media library",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Web reader 400 content length 68450618 too large; normal direct download returned Access Denied (Akamai reference 18.b6257e68.1792056579.5cf8bc4). No bypass attempted.",
+          "ref": "hr1"
+        },
+        {
+          "url": "https://medias.schaeffler.com/",
+          "title": "Schaeffler medias",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Official product detail web read Internal Error; browser navigation to catalog timed out with ERR_CONNECTION_TIMED_OUT. No exact current product sheet or primary image obtained.",
+          "ref": "medias"
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "cageMaterialEn",
+          "oldValue": "Window-type sheet steel cage",
+          "proposedValue": "Two-piece sheet steel cage guided on the outer ring (E1)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p47, E1 standard cage",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "cageMaterialFa",
+          "oldValue": "ورق فولادی دو تکه بهبودیافته با پوشش فسفاته",
+          "proposedValue": "قفسه ورق فولادی دو تکه، هدایت‌شونده با رینگ بیرونی (E1)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p47, E1 standard cage",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true,
+          "reason": "Current Persian claim of phosphate coating has no support in this source; replace with confirmed cage description."
+        },
+        {
+          "field": "boreTaper",
+          "oldValue": null,
+          "proposedValue": "1:12",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p47, K suffix",
+          "implementationEligible": false,
+          "evidenceScope": "suffix_semantics"
+        },
+        {
+          "field": "defaultClearance",
+          "oldValue": null,
+          "proposedValue": "CN (no clearance suffix)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p47",
+          "implementationEligible": false,
+          "evidenceScope": "suffix_semantics"
+        }
+      ],
+      "supportedChanges": [
+        {
+          "field": "cageMaterialEn",
+          "oldValue": "Window-type sheet steel cage",
+          "proposedValue": "Two-piece sheet steel cage guided on the outer ring (E1)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p47, E1 standard cage",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "cageMaterialFa",
+          "oldValue": "ورق فولادی دو تکه بهبودیافته با پوشش فسفاته",
+          "proposedValue": "قفسه ورق فولادی دو تکه، هدایت‌شونده با رینگ بیرونی (E1)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p47, E1 standard cage",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true,
+          "reason": "Current Persian claim of phosphate coating has no support in this source; replace with confirmed cage description."
+        }
+      ],
+      "conditionalChanges": [],
+      "unresolved": [
+        "Current exact d/D/B, mass, ratings, all Y/e factors and rMin not verified from opened exact table.",
+        "70% longer operating-life claim is not substantiated for this exact product/application.",
+        "H316 adapter claim and lubrication-hole details require exact table.",
+        "Current grease/oil and thermal speed values unverified; no automatic substitution."
+      ],
+      "media": {
+        "status": "missing_exact_official_media",
+        "existingUrl": "/assets/images/spherical_bearing_photo_1787677386106.webp",
+        "action": "Retain existing labeled reference; no replacement",
+        "candidateUrl": null,
+        "classification": null,
+        "attribution": null,
+        "reuseTerms": "Not established for an exact product image",
+        "decodeCheck": "Not applicable; no replacement downloaded",
+        "altTextEn": "Reference illustration; exact product appearance not verified",
+        "altTextFa": "تصویر مرجع؛ ظاهر دقیق محصول تأیید نشده است"
+      }
+    },
+    {
+      "id": "pc-fag-nj-2312-e-m1a",
+      "slug": "fag-nj-2312-e-m1a",
+      "existingDesignation": "FAG NJ2312-E-XL-M1A Cylindrical",
+      "reviewedAt": "2026-10-15",
+      "status": "partial",
+      "identityAssessment": "FAG/Schaeffler aliases. Full designated SKU is NJ2312-E-XL-M1A; suffix M1A contradicts existing one-piece/inner-ring-guided prose.",
+      "sources": [
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/tpi/downloads_8/tpi_270_de_en.pdf",
+          "title": "Schaeffler Solutions for Fluid Pumps",
+          "revision": "TPI 270 / 03 / en-GB / 2026-07",
+          "accessDate": "2026-10-15",
+          "page": "printed 38, 44 and 47; PDF 38, 44 and 47",
+          "access": "Full PDF text opened, relevant page screenshot requested",
+          "reuseTerms": "Printing including excerpts requires approval; last PDF page.",
+          "ref": "pumps"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/tpi/downloads_8/TI_WL_95-4_de_en.pdf",
+          "title": "FAG Rolling Bearing Cages",
+          "revision": "TI WL 95-4 E; 8/00; copyright 1997",
+          "accessDate": "2026-10-15",
+          "page": "printed 4, PDF 4; copyright PDF 19",
+          "access": "Full PDF text opened; page screenshot requested",
+          "reuseTerms": "Reproduction including extracts requires manufacturer permission, PDF p19.",
+          "ref": "cages"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/hr1_de_en.pdf",
+          "title": "HR1 Rolling Bearings",
+          "revision": "2025-02-15 per official media library",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Web reader 400 content length 68450618 too large; normal direct download returned Access Denied (Akamai reference 18.b6257e68.1792056579.5cf8bc4). No bypass attempted.",
+          "ref": "hr1"
+        },
+        {
+          "url": "https://medias.schaeffler.com/",
+          "title": "Schaeffler medias",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Official product detail web read Internal Error; browser navigation to catalog timed out with ERR_CONNECTION_TIMED_OUT. No exact current product sheet or primary image obtained.",
+          "ref": "medias"
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "cageMaterialEn",
+          "oldValue": "Machined solid brass cage (M1A)",
+          "proposedValue": "Two-piece machined brass cage, rib-guided on the outer ring (M1A)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "cageMaterialFa",
+          "oldValue": "برنج آلیاژی یکپارچه ماشین‌کاری شده (M1A)",
+          "proposedValue": "قفسه برنجی ماشین‌کاری‌شده دو تکه، هدایت‌شونده توسط لبه رینگ بیرونی (M1A)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "descriptionEn",
+          "oldValue": "Single row cylindrical roller bearing with one-piece machined brass cage guided on inner ring, providing high radial load carrying capacity.",
+          "proposedValue": "Single row cylindrical roller bearing with a two-piece machined brass cage, rib-guided on the outer ring (M1A).",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true,
+          "reason": "Corrects inner-ring guidance and one-piece cage assertions; no new shock-load or lubricant claim."
+        },
+        {
+          "field": "descriptionFa",
+          "oldValue": "رولبرینگ استوانه‌ای یک‌طرف تثبیت‌کننده با قفسه برنجی ماشین‌کاری شده یکپارچه، مناسب برای مقاومت در برابر تکانه‌های ضربه‌ای شدید در گیبرکس‌های سنگین.",
+          "proposedValue": "رولبرینگ استوانه‌ای تک‌ردیفه با قفسه برنجی ماشین‌کاری‌شده دو تکه، هدایت‌شونده توسط لبه رینگ بیرونی (M1A).",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        }
+      ],
+      "supportedChanges": [
+        {
+          "field": "cageMaterialEn",
+          "oldValue": "Machined solid brass cage (M1A)",
+          "proposedValue": "Two-piece machined brass cage, rib-guided on the outer ring (M1A)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "cageMaterialFa",
+          "oldValue": "برنج آلیاژی یکپارچه ماشین‌کاری شده (M1A)",
+          "proposedValue": "قفسه برنجی ماشین‌کاری‌شده دو تکه، هدایت‌شونده توسط لبه رینگ بیرونی (M1A)",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        },
+        {
+          "field": "descriptionEn",
+          "oldValue": "Single row cylindrical roller bearing with one-piece machined brass cage guided on inner ring, providing high radial load carrying capacity.",
+          "proposedValue": "Single row cylindrical roller bearing with a two-piece machined brass cage, rib-guided on the outer ring (M1A).",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true,
+          "reason": "Corrects inner-ring guidance and one-piece cage assertions; no new shock-load or lubricant claim."
+        },
+        {
+          "field": "descriptionFa",
+          "oldValue": "رولبرینگ استوانه‌ای یک‌طرف تثبیت‌کننده با قفسه برنجی ماشین‌کاری شده یکپارچه، مناسب برای مقاومت در برابر تکانه‌های ضربه‌ای شدید در گیبرکس‌های سنگین.",
+          "proposedValue": "رولبرینگ استوانه‌ای تک‌ردیفه با قفسه برنجی ماشین‌کاری‌شده دو تکه، هدایت‌شونده توسط لبه رینگ بیرونی (M1A).",
+          "sourceRefs": [
+            "pumps"
+          ],
+          "locator": "printed p44, designation diagram",
+          "evidenceScope": "exact_suffix_semantics",
+          "implementationEligible": true
+        }
+      ],
+      "conditionalChanges": [],
+      "unresolved": [
+        "Exact M1A numerical table (dimensions/mass/ratings/speeds/chamfers) unavailable. Do not transfer TVP2 or M1 values.",
+        "Clearance options and specific lubricant/high-shock claims lack exact evidence.",
+        "Engineering factors X/Y require applicable loading conditions; no blanket verification."
+      ],
+      "media": {
+        "status": "missing_exact_official_media",
+        "existingUrl": "/assets/images/cylindrical_bearing_photo_1787677431892.webp",
+        "action": "Retain existing labeled reference; no replacement",
+        "candidateUrl": null,
+        "classification": null,
+        "attribution": null,
+        "reuseTerms": "Not established for an exact product image",
+        "decodeCheck": "Not applicable; no replacement downloaded",
+        "altTextEn": "Reference illustration; exact product appearance not verified",
+        "altTextFa": "تصویر مرجع؛ ظاهر دقیق محصول تأیید نشده است"
+      }
+    },
+    {
+      "id": "pc-ina-nk-25-20",
+      "slug": "ina-nk-25-20",
+      "existingDesignation": "INA NK 25/20 Heavy Needle Roller",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Official opened table is NK25/20-XL, while current code omits XL and gives D35. Exact legacy/non-XL versus XL identity must be resolved before changing geometry or ratings.",
+      "sources": [
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/tpi/downloads_8/tpi117_de_de.pdf",
+          "title": "Nadellager massiv",
+          "revision": "TPI 117 D-D 04051.5, April 2005",
+          "accessDate": "2026-10-15",
+          "page": "printed 6,8,13; PDF 8,10,15",
+          "access": "Full PDF text opened; screenshot failed Cache miss",
+          "reuseTerms": "Reproduction including extracts requires permission, PDF 63.",
+          "ref": "needle"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/hr1_de_en.pdf",
+          "title": "HR1 Rolling Bearings",
+          "revision": "2025-02-15 per official media library",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Web reader 400 content length 68450618 too large; normal direct download returned Access Denied (Akamai reference 18.b6257e68.1792056579.5cf8bc4). No bypass attempted.",
+          "ref": "hr1"
+        },
+        {
+          "url": "https://medias.schaeffler.com/",
+          "title": "Schaeffler medias",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Official product detail web read Internal Error; browser navigation to catalog timed out with ERR_CONNECTION_TIMED_OUT. No exact current product sheet or primary image obtained.",
+          "ref": "medias"
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "d",
+          "oldValue": 25,
+          "proposedValue": 25,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "D",
+          "oldValue": 35,
+          "proposedValue": 33,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "B",
+          "oldValue": 20,
+          "proposedValue": 20,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "weightKg",
+          "oldValue": 0.058,
+          "proposedValue": 0.042,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "crKn",
+          "oldValue": 24.5,
+          "proposedValue": 21.3,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "corKn",
+          "oldValue": 34,
+          "proposedValue": 30.5,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "rMin",
+          "oldValue": 0.3,
+          "proposedValue": 0.3,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "limitingSpeedRpm",
+          "oldValue": null,
+          "proposedValue": 17000,
+          "unit": "rpm",
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13 nG",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false
+        },
+        {
+          "field": "referenceSpeedRpm",
+          "oldValue": null,
+          "proposedValue": 12000,
+          "unit": "rpm",
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13 nB",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false
+        },
+        {
+          "field": "dimensionMeaning",
+          "proposedValue": "d field here is Fw, the inscribed roller diameter; width in manufacturer table is C",
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13",
+          "implementationEligible": false
+        }
+      ],
+      "supportedChanges": [],
+      "conditionalChanges": [
+        {
+          "field": "D",
+          "oldValue": 35,
+          "proposedValue": 33,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "weightKg",
+          "oldValue": 0.058,
+          "proposedValue": 0.042,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "crKn",
+          "oldValue": 24.5,
+          "proposedValue": 21.3,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        },
+        {
+          "field": "corKn",
+          "oldValue": 34,
+          "proposedValue": 30.5,
+          "sourceRefs": [
+            "needle"
+          ],
+          "locator": "printed p13, NK25/20-XL row",
+          "evidenceScope": "different_suffix_candidate",
+          "implementationEligible": false,
+          "reason": "Conditional on owner/manufacturer confirmation that this record represents NK25/20-XL; 2005 revision must also be reconciled with current catalog."
+        }
+      ],
+      "unresolved": [
+        "Do not automatically append XL or change D35 to D33 until intended stock identity is established.",
+        "Hardening claim 60 HRC must be reviewed: official source specifies shaft raceway surface hardness 670 HV +170 HV, adequate depth (printed p8).",
+        "Cage/no-seal family evidence exists (p6/p8); exact current part and geometry model remain unverified."
+      ],
+      "media": {
+        "status": "missing_exact_official_media",
+        "existingUrl": "/assets/images/cylindrical_bearing_photo_1787677431892.webp",
+        "action": "Retain existing labeled reference; no replacement",
+        "candidateUrl": null,
+        "classification": null,
+        "attribution": null,
+        "reuseTerms": "Not established for an exact product image",
+        "decodeCheck": "Not applicable; no replacement downloaded",
+        "altTextEn": "Reference illustration; exact product appearance not verified",
+        "altTextFa": "تصویر مرجع؛ ظاهر دقیق محصول تأیید نشده است"
+      }
+    },
+    {
+      "id": "pc-ina-kr-35-pp",
+      "slug": "ina-kr-35-pp",
+      "existingDesignation": "INA KR 35 PP Cam Follower",
+      "reviewedAt": "2026-10-15",
+      "status": "blocked_evidence",
+      "identityAssessment": "Exact designation KR35-PP exists in opened official 2014 price list; current technical datasheet unavailable. d is stud diameter d1 and B is overall length, not ordinary bearing bore/width.",
+      "sources": [
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/prs.pdf",
+          "title": "Schaeffler Price List 2014-07",
+          "revision": "July 2014",
+          "accessDate": "2026-10-15",
+          "page": "printed 110; PDF 112; disclaimer printed 2",
+          "access": "Full PDF text opened",
+          "limitation": "Explicitly unsuitable for technical design: identity/dimension corroboration only, no engineering release.",
+          "reuseTerms": "Reproduction including extracts requires permission, PDF 2.",
+          "ref": "price2014"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/ac1_de_en.pdf",
+          "title": "Schaeffler Aerospace Standard Products",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": "Search result points to printed 64, but not validated in opened document",
+          "access": "BLOCKED",
+          "blocker": "Repeated web open Internal Error; normal direct download Access Denied (reference 18.b6257e68.1792056830.5d8b7a5). Search-result table excluded as verification.",
+          "ref": "ac1"
+        },
+        {
+          "url": "https://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/hr1_de_en.pdf",
+          "title": "HR1 Rolling Bearings",
+          "revision": "2025-02-15 per official media library",
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Web reader 400 content length 68450618 too large; normal direct download returned Access Denied (Akamai reference 18.b6257e68.1792056579.5cf8bc4). No bypass attempted.",
+          "ref": "hr1"
+        },
+        {
+          "url": "https://medias.schaeffler.com/",
+          "title": "Schaeffler medias",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "BLOCKED",
+          "blocker": "Official product detail web read Internal Error; browser navigation to catalog timed out with ERR_CONNECTION_TIMED_OUT. No exact current product sheet or primary image obtained.",
+          "ref": "medias"
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "d",
+          "oldValue": 16,
+          "proposedValue": 16,
+          "sourceRefs": [
+            "price2014"
+          ],
+          "locator": "printed p110, KR35-PP row",
+          "evidenceScope": "historical_non_design_corroboration",
+          "implementationEligible": false,
+          "reason": "Manufacturer explicitly says this price list is unsuitable for technical design; retain as corroboration only."
+        },
+        {
+          "field": "D",
+          "oldValue": 35,
+          "proposedValue": 35,
+          "sourceRefs": [
+            "price2014"
+          ],
+          "locator": "printed p110, KR35-PP row",
+          "evidenceScope": "historical_non_design_corroboration",
+          "implementationEligible": false,
+          "reason": "Manufacturer explicitly says this price list is unsuitable for technical design; retain as corroboration only."
+        },
+        {
+          "field": "B",
+          "oldValue": 52,
+          "proposedValue": 52,
+          "sourceRefs": [
+            "price2014"
+          ],
+          "locator": "printed p110, KR35-PP row",
+          "evidenceScope": "historical_non_design_corroboration",
+          "implementationEligible": false,
+          "reason": "Manufacturer explicitly says this price list is unsuitable for technical design; retain as corroboration only."
+        },
+        {
+          "field": "weightKg",
+          "oldValue": 0.17,
+          "proposedValue": 0.164,
+          "sourceRefs": [
+            "price2014"
+          ],
+          "locator": "printed p110, KR35-PP row",
+          "evidenceScope": "historical_non_design_corroboration",
+          "implementationEligible": false,
+          "reason": "Manufacturer explicitly says this price list is unsuitable for technical design; retain as corroboration only."
+        }
+      ],
+      "supportedChanges": [],
+      "conditionalChanges": [
+        {
+          "field": "weightKg",
+          "oldValue": 0.17,
+          "proposedValue": 0.164,
+          "sourceRefs": [
+            "price2014"
+          ],
+          "locator": "printed p110, KR35-PP row",
+          "evidenceScope": "historical_non_design_corroboration",
+          "implementationEligible": false,
+          "reason": "Manufacturer explicitly says this price list is unsuitable for technical design; retain as corroboration only."
+        }
+      ],
+      "unresolved": [
+        "Current Cr/C0r and speed6500 not validated. AC1 search table suggests materially different track-roller ratings/speed, but search snippets are excluded as proof.",
+        "Effective track-roller load ratings Crw/C0rw are not interchangeable with plain bearing Cr/C0r.",
+        "Cage material, PP seals, drive-socket details, chamfers and track permissible loads require exact technical source.",
+        "Existing cylindrical-bearing photograph and cylindrical schematic are not established as cam-follower identity; retain as labeled reference, no geometry replacement in this research task."
+      ],
+      "media": {
+        "status": "missing_exact_official_media",
+        "existingUrl": "/assets/images/cylindrical_bearing_photo_1787677431892.webp",
+        "action": "Retain existing labeled reference; no replacement",
+        "candidateUrl": null,
+        "classification": null,
+        "attribution": null,
+        "reuseTerms": "Not established for an exact product image",
+        "decodeCheck": "Not applicable; no replacement downloaded",
+        "altTextEn": "Reference illustration; exact product appearance not verified",
+        "altTextFa": "تصویر مرجع؛ ظاهر دقیق محصول تأیید نشده است"
+      }
+    },
+    {
+      "id": "pc-corteco-12011153b",
+      "slug": "corteco-12011153b",
+      "existingDesignation": "CORTECO 12011153B Simmerring® TC 35x52x7",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Official Corteco finder identifies 12011153B as BASLSF NBR 40x52/58x7.5, conflicting with current TC35x52x7. Owner must confirm whether part number or physical dimensions define intended stock.",
+      "sources": [
+        {
+          "url": "https://www.corteco.com/products/sealing/",
+          "title": "Corteco Sealing",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": "Find the right part / Go find your seal",
+          "access": "Full page opened",
+          "scope": "Establishes findyourseal.com and web.tecalliance.net/ecatcorteco as official Corteco catalog services.",
+          "ref": "corteco-sealing"
+        },
+        {
+          "url": "https://www.findyourseal.com/",
+          "title": "Corteco Find your Seal",
+          "revision": "Live database; revision not displayed",
+          "accessDate": "2026-10-15",
+          "page": "Interactive results table; reproduction steps per product",
+          "access": "Browser-visible results and DOM inspected",
+          "reuseTerms": "No explicit reuse permission observed; no product photograph downloaded.",
+          "ref": "seal-finder",
+          "reproduction": "Enter inner40, outer52, height7.5, tolerance0; click START SEARCH; NBR result row 12011153B displays 40 / 52-58 / 7.5 / BASLSF / NBR."
+        },
+        {
+          "url": "https://web.tecalliance.net/ecatcorteco",
+          "title": "Corteco e-catalog",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "Catalog homepage loaded; exact product search not completed",
+          "blocker": "After navigation to unavailable Schaeffler catalog the browser session could not navigate away from its generated error document (URL-policy error). Do not treat this as manufacturer denial or as proof a Corteco part does not exist.",
+          "ref": "ecat"
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "d",
+          "oldValue": 35,
+          "proposedValue": 40,
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "D",
+          "oldValue": 52,
+          "proposedValue": 52,
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "B",
+          "oldValue": 7,
+          "proposedValue": 7.5,
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "sealingEn",
+          "oldValue": "70 Shore A Nitrile (NBR) with tension garter spring",
+          "proposedValue": "NBR, BASLSF design",
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "sealingFa",
+          "oldValue": "لاستیک نیتریل NBR درجه یک با لبه محافظ گردگیر",
+          "proposedValue": "لاستیک نیتریل NBR، طرح BASLSF",
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "secondaryOuterDiameterMm",
+          "oldValue": null,
+          "proposedValue": 58,
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "row12011153B",
+          "implementationEligible": false
+        }
+      ],
+      "supportedChanges": [],
+      "conditionalChanges": [
+        {
+          "field": "d",
+          "oldValue": 35,
+          "proposedValue": 40,
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "B",
+          "oldValue": 7,
+          "proposedValue": 7.5,
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "sealingEn",
+          "oldValue": "70 Shore A Nitrile (NBR) with tension garter spring",
+          "proposedValue": "NBR, BASLSF design",
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        },
+        {
+          "field": "sealingFa",
+          "oldValue": "لاستیک نیتریل NBR درجه یک با لبه محافظ گردگیر",
+          "proposedValue": "لاستیک نیتریل NBR، طرح BASLSF",
+          "sourceRefs": [
+            "seal-finder"
+          ],
+          "locator": "result row 12011153B",
+          "evidenceScope": "exact_part_number_but_conflicting_record_identity",
+          "implementationEligible": false,
+          "reason": "Numeric changes must wait for intended stock identity resolution. Outer diameter also has a 58mm feature requiring a second dimension field."
+        }
+      ],
+      "unresolved": [
+        "TC35x52x7 versus exact part number conflict must be resolved before application/import patch.",
+        "Mass, speed limits, Shore hardness, spring material and Italy origin are not confirmed.",
+        "crKn/corKn 0.05 are bearing-type capacity placeholders inappropriate to interpret as seal load capacity; recommend explicit not-applicable handling rather than invented replacement.",
+        "Clearance field DIN3760 AS is a design/standard claim, not bearing clearance."
+      ],
+      "media": {
+        "status": "missing_exact_official_media",
+        "existingUrl": "/assets/images/oil_seal_photo_1787677410030.webp",
+        "action": "Retain existing labeled reference; no replacement",
+        "candidateUrl": null,
+        "classification": "Official finder provides design drawings rather than exact product photographs; exact primary photo not obtained.",
+        "attribution": null,
+        "reuseTerms": "Not established for an exact product image",
+        "decodeCheck": "Not applicable; no replacement downloaded",
+        "altTextEn": "Reference illustration; exact product appearance not verified",
+        "altTextFa": "تصویر مرجع؛ ظاهر دقیق محصول تأیید نشده است"
+      }
+    },
+    {
+      "id": "pc-corteco-12012014b",
+      "slug": "corteco-12012014b",
+      "existingDesignation": "CORTECO 12012014B Viton® TC 50x72x8",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Exact 12012014B not established. Official finder at50x72x8 returns FPM12016201B BAUMSLX7 and NBR12010970B/12011177B; no equivalence or substitution inferred.",
+      "sources": [
+        {
+          "url": "https://www.corteco.com/products/sealing/",
+          "title": "Corteco Sealing",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": "Find the right part / Go find your seal",
+          "access": "Full page opened",
+          "scope": "Establishes findyourseal.com and web.tecalliance.net/ecatcorteco as official Corteco catalog services.",
+          "ref": "corteco-sealing"
+        },
+        {
+          "url": "https://www.findyourseal.com/",
+          "title": "Corteco Find your Seal",
+          "revision": "Live database; revision not displayed",
+          "accessDate": "2026-10-15",
+          "page": "Interactive results table; reproduction steps per product",
+          "access": "Browser-visible results and DOM inspected",
+          "reuseTerms": "No explicit reuse permission observed; no product photograph downloaded.",
+          "ref": "seal-finder",
+          "reproduction": "Enter inner50, outer72, height8, tolerance0; click START SEARCH; enable FPM material. Result12016201B is 50/72/8 BAUMSLX7 FPM. Other listed NBR parts are12010970B and12011177B. This dimension search does not prove nonexistence of12012014B."
+        },
+        {
+          "url": "https://web.tecalliance.net/ecatcorteco",
+          "title": "Corteco e-catalog",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "page": null,
+          "access": "Catalog homepage loaded; exact product search not completed",
+          "blocker": "After navigation to unavailable Schaeffler catalog the browser session could not navigate away from its generated error document (URL-policy error). Do not treat this as manufacturer denial or as proof a Corteco part does not exist.",
+          "ref": "ecat"
+        }
+      ],
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "unresolved": [
+        "Obtain exact stock marking or official article reference for12012014B; do not silently replace with12016201B.",
+        "FKM/Viton grade, 200C suitability, SUS304 spring, mass, seal design and all numeric ratings remain unverified.",
+        "crKn/corKn0.05 and grease/oil rpm placeholders require not-applicable/unverified display semantics.",
+        "Current DIN standard in clearanceOptions is not clearance evidence."
+      ],
+      "media": {
+        "status": "missing_exact_official_media",
+        "existingUrl": "/assets/images/oil_seal_photo_1787677410030.webp",
+        "action": "Retain existing labeled reference; no replacement",
+        "candidateUrl": "https://www.findyourseal.com/imageCache/drawings/66x63/BAUMSLX7.png",
+        "classification": "Manufacturer design drawing for a different candidate designation; rejected as exact-SKU replacement.",
+        "attribution": "Corteco / Freudenberg",
+        "reuseTerms": "Not established for an exact product image",
+        "decodeCheck": "Not applicable; no replacement downloaded",
+        "altTextEn": "Reference illustration; exact product appearance not verified",
+        "altTextFa": "تصویر مرجع؛ ظاهر دقیق محصول تأیید نشده است"
+      }
+    }
+  ],
+  "counts": {
+    "reviewed": 7,
+    "fullyVerified": 0,
+    "partial": 3,
+    "ambiguousIdentity": 3,
+    "blockedEvidence": 1,
+    "missingExactMedia": 7
+  }
+}

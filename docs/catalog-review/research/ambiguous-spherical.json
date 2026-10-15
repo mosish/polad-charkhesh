@@ -1,0 +1,520 @@
+{
+  "records": [
+    {
+      "id": "pc-22212-ek",
+      "slug": "22212-ek",
+      "status": "ambiguous_identity",
+      "identityAssessment": "One stored specification record lists SKF, FAG, Timken, NTN, URB. 22212 EK is the bearing; H312 is a compatible adapter sleeve, not an alternative suffix. PDF53 lists assembled shaft diameter d1=55 mm and combined mass1.45 kg. Baseline d60 and mass1.15 describe bearing alone. Confirm supplied assembly and manufacturer; C3 is also a separate clearance specification.",
+      "sources": [
+        {
+          "id": "skf-srb-18406",
+          "url": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+          "title": "SKF Spherical roller bearings",
+          "revision": "PUB BU/P2 18406 EN, April 2019",
+          "accessDate": "2026-10-15",
+          "access": "Complete official PDF text opened; table screenshots not available in this review",
+          "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established."
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "d",
+          "oldValue": 60,
+          "proposedValue": 60,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "D",
+          "oldValue": 110,
+          "proposedValue": 110,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "B",
+          "oldValue": 28,
+          "proposedValue": 28,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "crKn",
+          "oldValue": 159,
+          "proposedValue": 159,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "corKn",
+          "oldValue": 166,
+          "proposedValue": 166,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "weightKg",
+          "oldValue": 1.15,
+          "proposedValue": 1.15,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedReferenceRpm",
+          "oldValue": null,
+          "proposedValue": 5600,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedLimitingRpm",
+          "oldValue": null,
+          "proposedValue": 7500,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 23, printed 24, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        }
+      ],
+      "supportedChanges": [],
+      "unresolved": [
+        "22212 EK is the bearing; H312 is a compatible adapter sleeve, not an alternative suffix. PDF53 lists assembled shaft diameter d1=55 mm and combined mass1.45 kg. Baseline d60 and mass1.15 describe bearing alone. Confirm supplied assembly and manufacturer; C3 is also a separate clearance specification.",
+        "Owner must identify manufacturer and supplied full designation/accessories. No brand selected by this review.",
+        "Remaining cage, seal, clearance, chamfers, contact angle and factors are unverified for the multibrand record."
+      ],
+      "media": {
+        "status": "identity_blocked",
+        "candidateUrl": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+        "classification": "catalog family drawings",
+        "attribution": "SKF Group",
+        "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established.",
+        "action": "Retain existing labeled family reference; no exact asset approved."
+      }
+    },
+    {
+      "id": "pc-22316-cc-w33",
+      "slug": "22316-cc-w33",
+      "status": "ambiguous_identity",
+      "identityAssessment": "One stored specification record lists SKF, FAG, Timken, NSK. Opened catalog lists 22316 E/EK, not the baseline CC/W33. Do not substitute the newer design or its 516/530kN ratings for a legacy CC/W33. Obtain the exact legacy manufacturer table after identity decision.",
+      "sources": [
+        {
+          "id": "skf-srb-18406",
+          "url": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+          "title": "SKF Spherical roller bearings",
+          "revision": "PUB BU/P2 18406 EN, April 2019",
+          "accessDate": "2026-10-15",
+          "access": "Complete official PDF text opened; table screenshots not available in this review",
+          "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established."
+        }
+      ],
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "unresolved": [
+        "Opened catalog lists 22316 E/EK, not the baseline CC/W33. Do not substitute the newer design or its 516/530kN ratings for a legacy CC/W33. Obtain the exact legacy manufacturer table after identity decision.",
+        "Owner must identify manufacturer and supplied full designation/accessories. No brand selected by this review.",
+        "Remaining cage, seal, clearance, chamfers, contact angle and factors are unverified for the multibrand record."
+      ],
+      "media": {
+        "status": "identity_blocked",
+        "candidateUrl": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+        "classification": "catalog family drawings",
+        "attribution": "SKF Group",
+        "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established.",
+        "action": "Retain existing labeled family reference; no exact asset approved."
+      }
+    },
+    {
+      "id": "pc-22220-ek",
+      "slug": "22220-ek",
+      "status": "ambiguous_identity",
+      "identityAssessment": "One stored specification record lists SKF, FAG, Timken. SKF EK base-row values differ from stored C425/mass4.85. C3 must be separately confirmed. Other listed manufacturers are not evidence of identical ratings.",
+      "sources": [
+        {
+          "id": "skf-srb-18406",
+          "url": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+          "title": "SKF Spherical roller bearings",
+          "revision": "PUB BU/P2 18406 EN, April 2019",
+          "accessDate": "2026-10-15",
+          "access": "Complete official PDF text opened; table screenshots not available in this review",
+          "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established."
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "d",
+          "oldValue": 100,
+          "proposedValue": 100,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "D",
+          "oldValue": 180,
+          "proposedValue": 180,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "B",
+          "oldValue": 46,
+          "proposedValue": 46,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "crKn",
+          "oldValue": 425,
+          "proposedValue": 433,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "corKn",
+          "oldValue": 490,
+          "proposedValue": 490,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "weightKg",
+          "oldValue": 4.85,
+          "proposedValue": 4.9,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedReferenceRpm",
+          "oldValue": null,
+          "proposedValue": 3400,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedLimitingRpm",
+          "oldValue": null,
+          "proposedValue": 4500,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 25, printed 26, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        }
+      ],
+      "supportedChanges": [],
+      "unresolved": [
+        "SKF EK base-row values differ from stored C425/mass4.85. C3 must be separately confirmed. Other listed manufacturers are not evidence of identical ratings.",
+        "Owner must identify manufacturer and supplied full designation/accessories. No brand selected by this review.",
+        "Remaining cage, seal, clearance, chamfers, contact angle and factors are unverified for the multibrand record."
+      ],
+      "media": {
+        "status": "identity_blocked",
+        "candidateUrl": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+        "classification": "catalog family drawings",
+        "attribution": "SKF Group",
+        "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established.",
+        "action": "Retain existing labeled family reference; no exact asset approved."
+      }
+    },
+    {
+      "id": "pc-22324-ccja-w33va405",
+      "slug": "22324-ccja-w33va405",
+      "status": "ambiguous_identity",
+      "identityAssessment": "One stored specification record lists SKF, FAG, Timken. Exact SKF CCJA/W33VA405 row exists, but generic record also lists FAG/Timken. Baseline1040/1200kN and22kg conflict with this edition. CC/VA405 cage construction and C4 require suffix-specific reconciliation; do not retain brass-cage assertion as verified.",
+      "sources": [
+        {
+          "id": "skf-srb-18406",
+          "url": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+          "title": "SKF Spherical roller bearings",
+          "revision": "PUB BU/P2 18406 EN, April 2019",
+          "accessDate": "2026-10-15",
+          "access": "Complete official PDF text opened; table screenshots not available in this review",
+          "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established."
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "d",
+          "oldValue": 120,
+          "proposedValue": 120,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "D",
+          "oldValue": 260,
+          "proposedValue": 260,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "B",
+          "oldValue": 86,
+          "proposedValue": 86,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "crKn",
+          "oldValue": 1040,
+          "proposedValue": 1019,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "corKn",
+          "oldValue": 1200,
+          "proposedValue": 1120,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "weightKg",
+          "oldValue": 22,
+          "proposedValue": 23,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedReferenceRpm",
+          "oldValue": null,
+          "proposedValue": 2000,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedLimitingRpm",
+          "oldValue": null,
+          "proposedValue": 2600,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 27, printed 28, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        }
+      ],
+      "supportedChanges": [],
+      "unresolved": [
+        "Exact SKF CCJA/W33VA405 row exists, but generic record also lists FAG/Timken. Baseline1040/1200kN and22kg conflict with this edition. CC/VA405 cage construction and C4 require suffix-specific reconciliation; do not retain brass-cage assertion as verified.",
+        "Owner must identify manufacturer and supplied full designation/accessories. No brand selected by this review.",
+        "Remaining cage, seal, clearance, chamfers, contact angle and factors are unverified for the multibrand record."
+      ],
+      "media": {
+        "status": "identity_blocked",
+        "candidateUrl": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+        "classification": "catalog family drawings",
+        "attribution": "SKF Group",
+        "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established.",
+        "action": "Retain existing labeled family reference; no exact asset approved."
+      }
+    },
+    {
+      "id": "pc-23228-cc-w33",
+      "slug": "23228-cc-w33",
+      "status": "ambiguous_identity",
+      "identityAssessment": "One stored specification record lists SKF, FAG, Timken, NTN. Exact SKF CC/W33 row differs from baseline1020/1370kN and18kg. A manufacturer choice is required before applying SKF-specific values.",
+      "sources": [
+        {
+          "id": "skf-srb-18406",
+          "url": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+          "title": "SKF Spherical roller bearings",
+          "revision": "PUB BU/P2 18406 EN, April 2019",
+          "accessDate": "2026-10-15",
+          "access": "Complete official PDF text opened; table screenshots not available in this review",
+          "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established."
+        }
+      ],
+      "fieldEvidence": [
+        {
+          "field": "d",
+          "oldValue": 140,
+          "proposedValue": 140,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "D",
+          "oldValue": 250,
+          "proposedValue": 250,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "B",
+          "oldValue": 88,
+          "proposedValue": 88,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "crKn",
+          "oldValue": 1020,
+          "proposedValue": 962,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "corKn",
+          "oldValue": 1370,
+          "proposedValue": 1250,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "weightKg",
+          "oldValue": 18,
+          "proposedValue": 19,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedReferenceRpm",
+          "oldValue": null,
+          "proposedValue": 1700,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        },
+        {
+          "field": "speedLimitingRpm",
+          "oldValue": null,
+          "proposedValue": 2400,
+          "sourceRefs": [
+            "skf-srb-18406"
+          ],
+          "locator": "PDF 29, printed 30, exact SKF row",
+          "implementationEligible": false,
+          "evidenceScope": "conditional_manufacturer_only"
+        }
+      ],
+      "supportedChanges": [],
+      "unresolved": [
+        "Exact SKF CC/W33 row differs from baseline1020/1370kN and18kg. A manufacturer choice is required before applying SKF-specific values.",
+        "Owner must identify manufacturer and supplied full designation/accessories. No brand selected by this review.",
+        "Remaining cage, seal, clearance, chamfers, contact angle and factors are unverified for the multibrand record."
+      ],
+      "media": {
+        "status": "identity_blocked",
+        "candidateUrl": "https://www.skf.com/binaries/pub12/Images/0901d196808a4ad1-Spherical-roller-bearings_18406-EN_tcm_12-480491.pdf",
+        "classification": "catalog family drawings",
+        "attribution": "SKF Group",
+        "reuseTerms": "PDF68: reproduction including extracts requires prior written permission; no image publishing grant established.",
+        "action": "Retain existing labeled family reference; no exact asset approved."
+      }
+    }
+  ]
+}

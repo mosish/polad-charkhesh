@@ -1,0 +1,1437 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-15",
+  "scope": "13 assigned manufacturer-ambiguous mounted units, housings, seals and lubricants",
+  "method": "Bounded official-source candidate research. No competing brand selected; no numerical corrections applied. Source pages were opened rather than relying on search snippets.",
+  "sharedSealLegend": {
+    "sourceRef": "skf-seals",
+    "page": "PDF page 68 and pages 42–43",
+    "note": "RG is NBR; V is FKM. HMSA10 includes an auxiliary lip. These definitions describe SKF candidates, not a universal TC equivalence."
+  },
+  "records": [
+    {
+      "id": "pc-ucp-205",
+      "slug": "ucp-205",
+      "existingDesignation": "UCP 205 (Cast Iron Pillow Block)",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "The generic designation lists competing manufacturers. The ASAHI candidate does not establish which manufacturer is stocked or whether the item is a complete unit or bare housing.",
+      "existingBrands": [
+        "FYH Japan",
+        "ASAHI",
+        "SKF",
+        "KG"
+      ],
+      "sources": [
+        {
+          "ref": "asahi-ucp",
+          "url": "https://www.asahiseiko.co.jp/product/bearings/index/ucp.html",
+          "title": "ASAHI UCP selection table",
+          "page": "UCP205 and UCP210 rows",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        },
+        {
+          "ref": "asahi-manual",
+          "url": "https://www.asahiseiko.co.jp/system/download/technote/bearings/manual_uc_e_pdf.pdf",
+          "title": "ASAHI Insert Bearing Units, set-screws locking type",
+          "page": "PDF page 3, table 1.1; general assembly guidance",
+          "revision": "HE13E-002F",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        }
+      ],
+      "existingFields": {
+        "d": 25,
+        "D": 71,
+        "B": 34.1,
+        "weightKg": 0.79,
+        "crKn": 14,
+        "corKn": 7.85,
+        "speedGreaseRpm": 5600,
+        "speedOilRpm": 5600,
+        "cageMaterialEn": "Insert ball bearing steel cage",
+        "cageMaterialFa": "بلبرینگ داخلی با قفسه فولادی",
+        "sealingEn": "Dual seal with steel slinger",
+        "sealingFa": "آب‌بند سه‌لایه پلاستیکی-فلزی (Flingers)",
+        "clearanceOptions": [
+          "Standard UC"
+        ],
+        "schematicType": "pillow-block"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "d",
+            "D",
+            "B"
+          ],
+          "risk": "Complete mounted-unit and insert-bearing dimensions must be distinguished; generic bearing D/B cannot silently represent housing height, flange width or insert ring width."
+        },
+        {
+          "fields": [
+            "crKn",
+            "corKn",
+            "speedGreaseRpm",
+            "speedOilRpm",
+            "weightKg"
+          ],
+          "risk": "Need exact manufacturer unit/insert and published speed conditions. A mounted assembly limit is not established by borrowing insert ratings or treating grease/oil as interchangeable speed labels."
+        },
+        {
+          "fields": [
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "clearanceOptions"
+          ],
+          "risk": "Housing material, insert cage, shaft locking, internal clearance and protective covers are different properties. Set-screw locking does not establish an eccentric locking collar."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "asahi-ucp"
+          ],
+          "fact": "ASAHI lists UCP205 for a 25 mm shaft, with covered variants separately designated.",
+          "applicability": "Candidate identity only; not a verified value for this multibrand record."
+        },
+        {
+          "sourceRefs": [
+            "asahi-manual"
+          ],
+          "fact": "Manual table includes this designation within the set-screw insert-bearing-unit family.",
+          "applicability": "If ASAHI exact unit is selected."
+        }
+      ],
+      "unresolved": [
+        "Select exact manufacturer and full unit SKU; identify included insert, housing and covers.",
+        "Reconcile cast-iron versus ductile-iron language and translate both languages from the same approved evidence.",
+        "Verify exact geometry, assembly mass, load ratings, speed conditions, seal construction, insert cage and clearance."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/unit_ucp205_pillow_1787678692893.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer family drawings/illustrations; no exact stocked-product photograph verified.",
+        "candidateSourceRefs": [
+          "asahi-ucp",
+          "asahi-manual"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography."
+      }
+    },
+    {
+      "id": "pc-ucp-210",
+      "slug": "ucp-210",
+      "existingDesignation": "UCP 210 (50mm Heavy Duty Pillow Block)",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "The generic designation lists competing manufacturers. The ASAHI candidate does not establish which manufacturer is stocked or whether the item is a complete unit or bare housing.",
+      "existingBrands": [
+        "FYH Japan",
+        "ASAHI",
+        "SKF",
+        "NTN"
+      ],
+      "sources": [
+        {
+          "ref": "asahi-ucp",
+          "url": "https://www.asahiseiko.co.jp/product/bearings/index/ucp.html",
+          "title": "ASAHI UCP selection table",
+          "page": "UCP205 and UCP210 rows",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        },
+        {
+          "ref": "asahi-manual",
+          "url": "https://www.asahiseiko.co.jp/system/download/technote/bearings/manual_uc_e_pdf.pdf",
+          "title": "ASAHI Insert Bearing Units, set-screws locking type",
+          "page": "PDF page 3, table 1.1; general assembly guidance",
+          "revision": "HE13E-002F",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        }
+      ],
+      "existingFields": {
+        "d": 50,
+        "D": 114,
+        "B": 51.6,
+        "weightKg": 2.75,
+        "crKn": 35.1,
+        "corKn": 23.2,
+        "speedGreaseRpm": 3400,
+        "speedOilRpm": 3400,
+        "cageMaterialEn": "Insert ball bearing steel cage",
+        "cageMaterialFa": "بلبرینگ داخلی با قفسه فولادی",
+        "sealingEn": "Contact rubber seal with metallic slinger",
+        "sealingFa": "آب‌بند چندلایه فلزی با فلینگر گردگیر",
+        "clearanceOptions": [
+          "Standard UC Fit"
+        ],
+        "schematicType": "pillow-block"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "d",
+            "D",
+            "B"
+          ],
+          "risk": "Complete mounted-unit and insert-bearing dimensions must be distinguished; generic bearing D/B cannot silently represent housing height, flange width or insert ring width."
+        },
+        {
+          "fields": [
+            "crKn",
+            "corKn",
+            "speedGreaseRpm",
+            "speedOilRpm",
+            "weightKg"
+          ],
+          "risk": "Need exact manufacturer unit/insert and published speed conditions. A mounted assembly limit is not established by borrowing insert ratings or treating grease/oil as interchangeable speed labels."
+        },
+        {
+          "fields": [
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "clearanceOptions"
+          ],
+          "risk": "Housing material, insert cage, shaft locking, internal clearance and protective covers are different properties. Set-screw locking does not establish an eccentric locking collar."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "asahi-ucp"
+          ],
+          "fact": "ASAHI lists UCP210 for a 50 mm shaft, with covered variants separately designated.",
+          "applicability": "Candidate identity only; not a verified value for this multibrand record."
+        },
+        {
+          "sourceRefs": [
+            "asahi-manual"
+          ],
+          "fact": "Manual table includes this designation within the set-screw insert-bearing-unit family.",
+          "applicability": "If ASAHI exact unit is selected."
+        }
+      ],
+      "unresolved": [
+        "Select exact manufacturer and full unit SKU; identify included insert, housing and covers.",
+        "Reconcile cast-iron versus ductile-iron language and translate both languages from the same approved evidence.",
+        "Verify exact geometry, assembly mass, load ratings, speed conditions, seal construction, insert cage and clearance."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/pillow_block_photo_1787677398497.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer family drawings/illustrations; no exact stocked-product photograph verified.",
+        "candidateSourceRefs": [
+          "asahi-ucp",
+          "asahi-manual"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography."
+      }
+    },
+    {
+      "id": "pc-ucf-208",
+      "slug": "ucf-208",
+      "existingDesignation": "UCF 208 (4-Bolt Flange Housing)",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "The generic designation lists competing manufacturers. The ASAHI candidate does not establish which manufacturer is stocked or whether the item is a complete unit or bare housing.",
+      "existingBrands": [
+        "ASAHI Japan",
+        "FYH",
+        "SKF",
+        "INA"
+      ],
+      "sources": [
+        {
+          "ref": "asahi-ucf",
+          "url": "https://www.asahiseiko.co.jp/product/bearings/index/ucf.html",
+          "title": "ASAHI UCF selection table",
+          "page": "UCF208 row",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        },
+        {
+          "ref": "asahi-ucf-table",
+          "url": "https://www.asahiseiko.co.jp/system/download/datasheet/bearings/B01_32_052_053.pdf",
+          "title": "ASAHI UCF dimensional table",
+          "page": "PDF page 1, printed spread 52–53",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        },
+        {
+          "ref": "asahi-manual",
+          "url": "https://www.asahiseiko.co.jp/system/download/technote/bearings/manual_uc_e_pdf.pdf",
+          "title": "ASAHI Insert Bearing Units, set-screws locking type",
+          "page": "PDF page 3, table 1.1; general assembly guidance",
+          "revision": "HE13E-002F",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        }
+      ],
+      "existingFields": {
+        "d": 40,
+        "D": 130,
+        "B": 51.2,
+        "weightKg": 1.9,
+        "crKn": 29.6,
+        "corKn": 18.2,
+        "speedGreaseRpm": 4000,
+        "speedOilRpm": 4000,
+        "cageMaterialEn": "Pressed steel cage",
+        "cageMaterialFa": "فولاد پرسکاری شده",
+        "sealingEn": "Contact rubber seal with metal shield",
+        "sealingFa": "آب‌بند لاستیکی تماسی محافظ‌دار",
+        "clearanceOptions": [
+          "Standard"
+        ],
+        "schematicType": "pillow-block"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "d",
+            "D",
+            "B"
+          ],
+          "risk": "Complete mounted-unit and insert-bearing dimensions must be distinguished; generic bearing D/B cannot silently represent housing height, flange width or insert ring width."
+        },
+        {
+          "fields": [
+            "crKn",
+            "corKn",
+            "speedGreaseRpm",
+            "speedOilRpm",
+            "weightKg"
+          ],
+          "risk": "Need exact manufacturer unit/insert and published speed conditions. A mounted assembly limit is not established by borrowing insert ratings or treating grease/oil as interchangeable speed labels."
+        },
+        {
+          "fields": [
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "clearanceOptions"
+          ],
+          "risk": "Housing material, insert cage, shaft locking, internal clearance and protective covers are different properties. Set-screw locking does not establish an eccentric locking collar."
+        },
+        {
+          "fields": [
+            "schematicType"
+          ],
+          "risk": "Existing pillow-block schematic is the wrong mounting geometry for a four-bolt flange unit."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "asahi-ucf"
+          ],
+          "fact": "ASAHI lists UCF208 for a 40 mm shaft, with covered variants separately designated.",
+          "applicability": "Candidate identity only; not a verified value for this multibrand record."
+        },
+        {
+          "sourceRefs": [
+            "asahi-manual"
+          ],
+          "fact": "Manual table includes this designation within the set-screw insert-bearing-unit family.",
+          "applicability": "If ASAHI exact unit is selected."
+        }
+      ],
+      "unresolved": [
+        "Select exact manufacturer and full unit SKU; identify included insert, housing and covers.",
+        "Reconcile cast-iron versus ductile-iron language and translate both languages from the same approved evidence.",
+        "Verify exact geometry, assembly mass, load ratings, speed conditions, seal construction, insert cage and clearance."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/unit_ucf208_flange_1787678704716.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer family drawings/illustrations; no exact stocked-product photograph verified.",
+        "candidateSourceRefs": [
+          "asahi-ucf",
+          "asahi-ucf-table",
+          "asahi-manual"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography."
+      },
+      "accessBlockers": [
+        "The official UCF208 detail link returned Internal Error in the web reader. Official family selection and dimensional PDF remained accessible."
+      ]
+    },
+    {
+      "id": "pc-snl-511-609",
+      "slug": "snl-511-609",
+      "existingDesignation": "SNL 511-609 (Split Plummer Block)",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "SKF SNL designation is mixed with FAG as an alternative brand. Bare housing versus supplied bearing/seal assembly is undefined.",
+      "existingBrands": [
+        "SKF",
+        "FAG"
+      ],
+      "sources": [
+        {
+          "ref": "skf-snl",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196801105d3/pdf_preview_medium/0901d196801105d3_pdf_preview_medium.pdf",
+          "title": "SKF SNL split housings, French catalogue",
+          "page": "PDF page 58, designation SNL 511-609; PDF pages 33–34 special variants",
+          "revision": "Publication 6112 FR; December 2008; replaces 4403 F",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 108 requires prior written permission for reproduction, including extracts."
+        }
+      ],
+      "existingFields": {
+        "d": 50,
+        "D": 130,
+        "B": 95,
+        "weightKg": 4.7,
+        "crKn": 190,
+        "corKn": 160,
+        "speedGreaseRpm": 3200,
+        "speedOilRpm": 4500,
+        "cageMaterialEn": "Cast grey iron GG25 housing",
+        "cageMaterialFa": "هوزینگ چدن خاکستری GG25",
+        "sealingEn": "Labyrinth / Taconite heavy seals",
+        "sealingFa": "آب‌بند لابیرنت فلزی / نمدی استاندارد",
+        "clearanceOptions": [
+          "C3 / C4 for Bearings"
+        ],
+        "schematicType": "pillow-block"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn",
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Bearing dynamic/static ratings and grease/oil speed limits are not intrinsic ratings of a bare housing. Requires defined bearing, adapter, seals and service conditions."
+        },
+        {
+          "fields": [
+            "d",
+            "D",
+            "B",
+            "weightKg"
+          ],
+          "risk": "Housing catalog uses named mounting/envelope dimensions and configuration-specific shaft arrangements, not a universal bearing d/D/B tuple. Mass scope is bare housing versus assembly."
+        },
+        {
+          "fields": [
+            "cageMaterialEn",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "Sealing descriptions disagree between the two languages; labyrinth, felt and taconite must not be combined as one supplied arrangement. Housing material is not cage material; listed bearing clearance/fit is not a housing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-snl"
+          ],
+          "fact": "The official catalogue contains the exact housing designation and separate bearing/seal combinations.",
+          "applicability": "Conditional SKF candidate only; legacy edition is not proof of present stock."
+        }
+      ],
+      "unresolved": [
+        "Choose SKF exact housing or identify the actual FAG alternative SKU.",
+        "Specify housing-only versus assembly, bearing, adapter, end cover and seal kit.",
+        "Obtain current exact manufacturer sheet before numerical correction."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/housing_snl511_split_1787678749335.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Catalog family/installation drawings, not exact assembled-stock photography.",
+        "candidateSourceRefs": [
+          "skf-snl"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography."
+      }
+    },
+    {
+      "id": "pc-snl-518-615",
+      "slug": "snl-518-615",
+      "existingDesignation": "SNL 518-615 (Heavy Mining Split Housing)",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "SKF SNL designation is mixed with FAG as an alternative brand. Bare housing versus supplied bearing/seal assembly is undefined.",
+      "existingBrands": [
+        "SKF",
+        "FAG"
+      ],
+      "sources": [
+        {
+          "ref": "skf-snl",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196801105d3/pdf_preview_medium/0901d196801105d3_pdf_preview_medium.pdf",
+          "title": "SKF SNL split housings, French catalogue",
+          "page": "PDF pages 62 and 88, designation SNL 518-615; PDF pages 33–34 special variants",
+          "revision": "Publication 6112 FR; December 2008; replaces 4403 F",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 108 requires prior written permission for reproduction, including extracts."
+        }
+      ],
+      "existingFields": {
+        "d": 75,
+        "D": 192,
+        "B": 125,
+        "weightKg": 12.5,
+        "crKn": 420,
+        "corKn": 345,
+        "speedGreaseRpm": 2400,
+        "speedOilRpm": 3200,
+        "cageMaterialEn": "Ductile spheroidal graphite iron housing",
+        "cageMaterialFa": "چدن نشکن داکتیل spheroidal graphite iron",
+        "sealingEn": "Heavy Taconite Labyrinth multi-barrier seal",
+        "sealingFa": "آب‌بند لابیرنت فولادی سنگین Taconite ضد گردوغبار معدنی",
+        "clearanceOptions": [
+          "Fits 22218 EK / 23218 CCK"
+        ],
+        "schematicType": "pillow-block"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn",
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Bearing dynamic/static ratings and grease/oil speed limits are not intrinsic ratings of a bare housing. Requires defined bearing, adapter, seals and service conditions."
+        },
+        {
+          "fields": [
+            "d",
+            "D",
+            "B",
+            "weightKg"
+          ],
+          "risk": "Housing catalog uses named mounting/envelope dimensions and configuration-specific shaft arrangements, not a universal bearing d/D/B tuple. Mass scope is bare housing versus assembly."
+        },
+        {
+          "fields": [
+            "cageMaterialEn",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "Shaft, bearing/adapter and taconite options are unresolved. Ductile-iron variants have distinct designations; ordinary SNL must not silently become SNLD. Housing material is not cage material; listed bearing clearance/fit is not a housing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-snl"
+          ],
+          "fact": "The official catalogue contains the exact housing designation and separate bearing/seal combinations.",
+          "applicability": "Conditional SKF candidate only; legacy edition is not proof of present stock."
+        }
+      ],
+      "unresolved": [
+        "Choose SKF exact housing or identify the actual FAG alternative SKU.",
+        "Specify housing-only versus assembly, bearing, adapter, end cover and seal kit.",
+        "Obtain current exact manufacturer sheet before numerical correction."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/housing_snl511_split_1787678749335.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Catalog family/installation drawings, not exact assembled-stock photography.",
+        "candidateSourceRefs": [
+          "skf-snl"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography."
+      }
+    },
+    {
+      "id": "pc-tc-35-52-10",
+      "slug": "tc-35-52-10",
+      "existingDesignation": "TC 35-52-10 NBR (Dual Lip)",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Dimensions plus generic TC/material wording do not uniquely identify a manufacturer, exact article number or compound. Named brands are unresolved alternatives.",
+      "existingBrands": [
+        "Corteco Italy",
+        "CFW Simrit",
+        "SKF CR",
+        "TTO Taiwan"
+      ],
+      "sources": [
+        {
+          "ref": "skf-seals",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196807662c1/pdf_preview_medium/810-701_CRSeals_Handbook_Nov_2024_pdf_preview_medium.pdf",
+          "title": "SKF CR Seals Handbook",
+          "page": "PDF page 84, exact size row; PDF page 68 legend; PDF page 227 rights",
+          "revision": "PUB 810-701; 3M/CW November 2024; copyright SKF USA 2024",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 227 requires prior written permission to reproduce even extracts. Some images are licensed from Shutterstock; no website image permission granted."
+        }
+      ],
+      "existingFields": {
+        "d": 35,
+        "D": 52,
+        "B": 10,
+        "weightKg": 0.024,
+        "crKn": 0.05,
+        "corKn": 0.05,
+        "speedGreaseRpm": 6000,
+        "speedOilRpm": 9000,
+        "cageMaterialEn": "Carbon steel internal case with NBR elastomer",
+        "cageMaterialFa": "اسکلت فلزی فولاد کربنی روکش لاستیک",
+        "sealingEn": "Nitrile (NBR) synthetic rubber (-30°C to +120°C)",
+        "sealingFa": "الاستومر NBR ضد روغن (-30°C تا +120°C)",
+        "clearanceOptions": [
+          "ISO 6194 / DIN 3760"
+        ],
+        "schematicType": "oil-seal"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn"
+          ],
+          "risk": "The repeated 0.05 kN values are unsupported bearing load-rating fields on a shaft seal; they must not be treated as verified seal capacity."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Separate bearing-style grease/oil rpm labels are not established seal operating limits. Seal speed depends on lip design, shaft diameter, lubrication, temperature and pressure."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "Stainless spring and temperature claims are not established for an unnamed TC NBR compound. Case/spring construction is not a bearing cage; ISO/DIN design references are not bearing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-seals"
+          ],
+          "fact": "SKF lists 35X52X10 HMSA10 RG.",
+          "applicability": "Candidate for owner identification only; not automatic TC equivalence or a replacement part selection."
+        }
+      ],
+      "unresolved": [
+        "Obtain exact manufacturer article number and full lip/material/case/spring specification.",
+        "Confirm dimensions, mass and operating envelope against that exact item.",
+        "Treat all current numeric values as unverified until manufacturer identity is resolved."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/seal_tc35_nbr_1787678715667.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer seal-type drawings; no exact TC-stock photograph verified.",
+        "candidateSourceRefs": [
+          "skf-seals"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography.",
+        "attempt": "Opened manufacturer handbook exact-size table and design context. Corteco finder followup browser attempt returned Browser is not available: iab; no bypass attempted."
+      }
+    },
+    {
+      "id": "pc-tc-50-72-8-viton",
+      "slug": "tc-50-72-8-viton",
+      "existingDesignation": "TC 50-72-8 Viton / FKM High-Temp",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Dimensions plus generic TC/material wording do not uniquely identify a manufacturer, exact article number or compound. Named brands are unresolved alternatives.",
+      "existingBrands": [
+        "Corteco",
+        "CFW Freudenberg",
+        "SKF",
+        "Dichtomatik"
+      ],
+      "sources": [
+        {
+          "ref": "skf-seals",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196807662c1/pdf_preview_medium/810-701_CRSeals_Handbook_Nov_2024_pdf_preview_medium.pdf",
+          "title": "SKF CR Seals Handbook",
+          "page": "PDF page 94, exact size row; PDF page 68 legend; PDF page 227 rights",
+          "revision": "PUB 810-701; 3M/CW November 2024; copyright SKF USA 2024",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 227 requires prior written permission to reproduce even extracts. Some images are licensed from Shutterstock; no website image permission granted."
+        },
+        {
+          "ref": "corteco-finder",
+          "url": "https://www.findyourseal.com/",
+          "title": "Corteco official Find Your Seal",
+          "page": "Visible finder query 50 / 72 / 8; tolerance 0; FPM filter",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial image reuse authorization established."
+        }
+      ],
+      "existingFields": {
+        "d": 50,
+        "D": 72,
+        "B": 8,
+        "weightKg": 0.038,
+        "crKn": 0.05,
+        "corKn": 0.05,
+        "speedGreaseRpm": 8000,
+        "speedOilRpm": 12000,
+        "cageMaterialEn": "Stainless steel case with SUS304 garter spring",
+        "cageMaterialFa": "اسکلت استیل با فنر ضدزنگ استنلس ۳۰۴",
+        "sealingEn": "Viton/FKM Fluoroelastomer (-20°C to +200°C)",
+        "sealingFa": "الاستومر خالص Viton FKM قهوه‌ای/سبز",
+        "clearanceOptions": [
+          "DIN 3760 Form AS"
+        ],
+        "schematicType": "oil-seal"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn"
+          ],
+          "risk": "The repeated 0.05 kN values are unsupported bearing load-rating fields on a shaft seal; they must not be treated as verified seal capacity."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Separate bearing-style grease/oil rpm labels are not established seal operating limits. Seal speed depends on lip design, shaft diameter, lubrication, temperature and pressure."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "FKM does not establish a Viton trademark compound, stainless case or SUS304 spring grade. Case/spring construction is not a bearing cage; ISO/DIN design references are not bearing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-seals"
+          ],
+          "fact": "SKF lists 50X72X8 HMSA10 V.",
+          "applicability": "Candidate for owner identification only; not automatic TC equivalence or a replacement part selection."
+        },
+        {
+          "sourceRefs": [
+            "corteco-finder"
+          ],
+          "fact": "Earlier official finder inspection returned article 12016201B, type BAUMSLX7, FPM.",
+          "applicability": "Size/material candidate only; the design must not be silently renamed TC. See schaeffler-corteco.json for the exact query evidence."
+        }
+      ],
+      "unresolved": [
+        "Obtain exact manufacturer article number and full lip/material/case/spring specification.",
+        "Confirm dimensions, mass and operating envelope against that exact item.",
+        "Treat all current numeric values as unverified until manufacturer identity is resolved."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/seal_tc50_viton_1787678737812.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer seal-type drawings; no exact TC-stock photograph verified.",
+        "candidateSourceRefs": [
+          "skf-seals"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography.",
+        "attempt": "Opened manufacturer handbook exact-size table and design context. Corteco finder followup browser attempt returned Browser is not available: iab; no bypass attempted."
+      }
+    },
+    {
+      "id": "pc-tc-75-100-12",
+      "slug": "tc-75-100-12",
+      "existingDesignation": "TC 75-100-12 NBR Heavy Duty",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Dimensions plus generic TC/material wording do not uniquely identify a manufacturer, exact article number or compound. Named brands are unresolved alternatives.",
+      "existingBrands": [
+        "Corteco",
+        "TTO",
+        "CFW",
+        "SKF"
+      ],
+      "sources": [
+        {
+          "ref": "skf-seals",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196807662c1/pdf_preview_medium/810-701_CRSeals_Handbook_Nov_2024_pdf_preview_medium.pdf",
+          "title": "SKF CR Seals Handbook",
+          "page": "PDF page 104, exact size row; PDF page 68 legend; PDF page 227 rights",
+          "revision": "PUB 810-701; 3M/CW November 2024; copyright SKF USA 2024",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 227 requires prior written permission to reproduce even extracts. Some images are licensed from Shutterstock; no website image permission granted."
+        }
+      ],
+      "existingFields": {
+        "d": 75,
+        "D": 100,
+        "B": 12,
+        "weightKg": 0.065,
+        "crKn": 0.05,
+        "corKn": 0.05,
+        "speedGreaseRpm": 4500,
+        "speedOilRpm": 6500,
+        "cageMaterialEn": "Pressed steel case",
+        "cageMaterialFa": "ورق فولادی سخت‌کاری شده",
+        "sealingEn": "70 Shore A NBR with garter spring",
+        "sealingFa": "NBR ۷۰ شور با فنر پیوسته",
+        "clearanceOptions": [
+          "ISO 6194"
+        ],
+        "schematicType": "oil-seal"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn"
+          ],
+          "risk": "The repeated 0.05 kN values are unsupported bearing load-rating fields on a shaft seal; they must not be treated as verified seal capacity."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Separate bearing-style grease/oil rpm labels are not established seal operating limits. Seal speed depends on lip design, shaft diameter, lubrication, temperature and pressure."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "Heavy-duty and 70-Shore claims need an exact compound/design specification. Case/spring construction is not a bearing cage; ISO/DIN design references are not bearing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-seals"
+          ],
+          "fact": "SKF lists 75X100X12 HMSA10 RG.",
+          "applicability": "Candidate for owner identification only; not automatic TC equivalence or a replacement part selection."
+        }
+      ],
+      "unresolved": [
+        "Obtain exact manufacturer article number and full lip/material/case/spring specification.",
+        "Confirm dimensions, mass and operating envelope against that exact item.",
+        "Treat all current numeric values as unverified until manufacturer identity is resolved."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/seal_tc35_nbr_1787678715667.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer seal-type drawings; no exact TC-stock photograph verified.",
+        "candidateSourceRefs": [
+          "skf-seals"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography.",
+        "attempt": "Opened manufacturer handbook exact-size table and design context. Corteco finder followup browser attempt returned Browser is not available: iab; no bypass attempted."
+      }
+    },
+    {
+      "id": "pc-fkm-tc-80-100-12",
+      "slug": "fkm-tc-80-100-12",
+      "existingDesignation": "TC 80-100-12 Viton / FKM Petrochemical",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Dimensions plus generic TC/material wording do not uniquely identify a manufacturer, exact article number or compound. Named brands are unresolved alternatives.",
+      "existingBrands": [
+        "CFW Simrit Germany",
+        "Corteco Italy",
+        "SKF CR Seals",
+        "Dichtomatik"
+      ],
+      "sources": [
+        {
+          "ref": "skf-seals",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196807662c1/pdf_preview_medium/810-701_CRSeals_Handbook_Nov_2024_pdf_preview_medium.pdf",
+          "title": "SKF CR Seals Handbook",
+          "page": "PDF page 105, exact size row; PDF page 68 legend; PDF page 227 rights",
+          "revision": "PUB 810-701; 3M/CW November 2024; copyright SKF USA 2024",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 227 requires prior written permission to reproduce even extracts. Some images are licensed from Shutterstock; no website image permission granted."
+        }
+      ],
+      "existingFields": {
+        "d": 80,
+        "D": 100,
+        "B": 12,
+        "weightKg": 0.082,
+        "crKn": 0.05,
+        "corKn": 0.05,
+        "speedGreaseRpm": 5000,
+        "speedOilRpm": 8000,
+        "cageMaterialEn": "Fully encapsulated steel insert with FKM Viton",
+        "cageMaterialFa": "بدنه فولادی اینکپسوله شده با وایتون نسوز",
+        "sealingEn": "Bi-rotational hydrodynamic wave lip with 316SS spring",
+        "sealingFa": "لبه آب‌بند هیدرو دینامیک با فنر استیل ۳۱۶",
+        "clearanceOptions": [
+          "DIN 3760 AS/TC"
+        ],
+        "schematicType": "oil-seal"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn"
+          ],
+          "risk": "The repeated 0.05 kN values are unsupported bearing load-rating fields on a shaft seal; they must not be treated as verified seal capacity."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Separate bearing-style grease/oil rpm labels are not established seal operating limits. Seal speed depends on lip design, shaft diameter, lubrication, temperature and pressure."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "SUS316 spring, wave lip, acid resistance and 220 °C service claims need individual proof; size/FKM alone does not establish them. Case/spring construction is not a bearing cage; ISO/DIN design references are not bearing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-seals"
+          ],
+          "fact": "SKF lists 80X100X12 HMSA10 V.",
+          "applicability": "Candidate for owner identification only; not automatic TC equivalence or a replacement part selection."
+        }
+      ],
+      "unresolved": [
+        "Obtain exact manufacturer article number and full lip/material/case/spring specification.",
+        "Confirm dimensions, mass and operating envelope against that exact item.",
+        "Treat all current numeric values as unverified until manufacturer identity is resolved."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/seal_tc50_viton_1787678737812.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer seal-type drawings; no exact TC-stock photograph verified.",
+        "candidateSourceRefs": [
+          "skf-seals"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography.",
+        "attempt": "Opened manufacturer handbook exact-size table and design context. Corteco finder followup browser attempt returned Browser is not available: iab; no bypass attempted."
+      }
+    },
+    {
+      "id": "pc-tc-100-125-13-viton",
+      "slug": "tc-100-125-13-viton",
+      "existingDesignation": "TC 100-125-13 Viton / FKM Heavy Refractory",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Dimensions plus generic TC/material wording do not uniquely identify a manufacturer, exact article number or compound. Named brands are unresolved alternatives.",
+      "existingBrands": [
+        "CFW Simrit",
+        "Corteco",
+        "SKF CR",
+        "Dichtomatik"
+      ],
+      "sources": [
+        {
+          "ref": "skf-seals",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196807662c1/pdf_preview_medium/810-701_CRSeals_Handbook_Nov_2024_pdf_preview_medium.pdf",
+          "title": "SKF CR Seals Handbook",
+          "page": "PDF page 109, exact size row; PDF page 68 legend; PDF page 227 rights",
+          "revision": "PUB 810-701; 3M/CW November 2024; copyright SKF USA 2024",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 227 requires prior written permission to reproduce even extracts. Some images are licensed from Shutterstock; no website image permission granted."
+        }
+      ],
+      "existingFields": {
+        "d": 100,
+        "D": 125,
+        "B": 13,
+        "weightKg": 0.12,
+        "crKn": 0.05,
+        "corKn": 0.05,
+        "speedGreaseRpm": 4000,
+        "speedOilRpm": 6000,
+        "cageMaterialEn": "Internal steel case fully vulcanized with Viton",
+        "cageMaterialFa": "اسکلت فلزی یکپارچه اینکپسوله شده",
+        "sealingEn": "100% Pure Fluorocarbon (FKM) with SUS316 Spring",
+        "sealingFa": "الاستومر خالص Viton FKM مقاوم در برابر اسید و حرارت",
+        "clearanceOptions": [
+          "DIN 3760 AS"
+        ],
+        "schematicType": "oil-seal"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn"
+          ],
+          "risk": "The repeated 0.05 kN values are unsupported bearing load-rating fields on a shaft seal; they must not be treated as verified seal capacity."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Separate bearing-style grease/oil rpm labels are not established seal operating limits. Seal speed depends on lip design, shaft diameter, lubrication, temperature and pressure."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "Opened SKF row at this size is HMS4 R; it does not establish the requested FKM dual-lip construction. Do not substitute 100X125X12. Case/spring construction is not a bearing cage; ISO/DIN design references are not bearing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-seals"
+          ],
+          "fact": "SKF lists 100X125X13 HMS4 R, not the requested FKM dual-lip variant in this opened row.",
+          "applicability": "Candidate for owner identification only; not automatic TC equivalence or a replacement part selection."
+        }
+      ],
+      "unresolved": [
+        "Obtain exact manufacturer article number and full lip/material/case/spring specification.",
+        "Confirm dimensions, mass and operating envelope against that exact item.",
+        "Treat all current numeric values as unverified until manufacturer identity is resolved."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/seal_tc50_viton_1787678737812.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer seal-type drawings; no exact TC-stock photograph verified.",
+        "candidateSourceRefs": [
+          "skf-seals"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography.",
+        "attempt": "Opened manufacturer handbook exact-size table and design context. Corteco finder followup browser attempt returned Browser is not available: iab; no bypass attempted."
+      }
+    },
+    {
+      "id": "pc-tc-60-85-10",
+      "slug": "tc-60-85-10",
+      "existingDesignation": "TC 60-85-10 NBR (Dual Lip)",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "Dimensions plus generic TC/material wording do not uniquely identify a manufacturer, exact article number or compound. Named brands are unresolved alternatives.",
+      "existingBrands": [
+        "Corteco Italy",
+        "TTO Taiwan",
+        "CFW Simrit",
+        "SKF"
+      ],
+      "sources": [
+        {
+          "ref": "skf-seals",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196807662c1/pdf_preview_medium/810-701_CRSeals_Handbook_Nov_2024_pdf_preview_medium.pdf",
+          "title": "SKF CR Seals Handbook",
+          "page": "PDF page 99, exact size row; PDF page 68 legend; PDF page 227 rights",
+          "revision": "PUB 810-701; 3M/CW November 2024; copyright SKF USA 2024",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "PDF page 227 requires prior written permission to reproduce even extracts. Some images are licensed from Shutterstock; no website image permission granted."
+        }
+      ],
+      "existingFields": {
+        "d": 60,
+        "D": 85,
+        "B": 10,
+        "weightKg": 0.05,
+        "crKn": 0.05,
+        "corKn": 0.05,
+        "speedGreaseRpm": 5500,
+        "speedOilRpm": 8000,
+        "cageMaterialEn": "Steel inner case with bonded NBR rubber",
+        "cageMaterialFa": "اسکلت فلزی فولادی با روکش NBR",
+        "sealingEn": "70 Shore A Nitrile Rubber with tension spring",
+        "sealingFa": "لاستیک نیتریل NBR با فنر کششی",
+        "clearanceOptions": [
+          "ISO 6194"
+        ],
+        "schematicType": "oil-seal"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "crKn",
+            "corKn"
+          ],
+          "risk": "The repeated 0.05 kN values are unsupported bearing load-rating fields on a shaft seal; they must not be treated as verified seal capacity."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "Separate bearing-style grease/oil rpm labels are not established seal operating limits. Seal speed depends on lip design, shaft diameter, lubrication, temperature and pressure."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "sealingFa",
+            "clearanceOptions"
+          ],
+          "risk": "70-Shore hardness and carbon-steel spring claims need exact manufacturer/compound evidence. Case/spring construction is not a bearing cage; ISO/DIN design references are not bearing clearance."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-seals"
+          ],
+          "fact": "SKF lists 60X85X10 HMSA10 RG.",
+          "applicability": "Candidate for owner identification only; not automatic TC equivalence or a replacement part selection."
+        }
+      ],
+      "unresolved": [
+        "Obtain exact manufacturer article number and full lip/material/case/spring specification.",
+        "Confirm dimensions, mass and operating envelope against that exact item.",
+        "Treat all current numeric values as unverified until manufacturer identity is resolved."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/oil_seal_photo_1787677410030.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Manufacturer seal-type drawings; no exact TC-stock photograph verified.",
+        "candidateSourceRefs": [
+          "skf-seals"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography.",
+        "attempt": "Opened manufacturer handbook exact-size table and design context. Corteco finder followup browser attempt returned Browser is not available: iab; no bypass attempted."
+      }
+    },
+    {
+      "id": "pc-skf-lgmt-2",
+      "slug": "skf-lgmt-2",
+      "existingDesignation": "SKF LGMT 2 / 1kg",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "The code names SKF LGMT 2 / 1kg but the brand list also offers Total and Mobil without exact alternative product designations.",
+      "existingBrands": [
+        "SKF Sweden",
+        "Total",
+        "Mobil"
+      ],
+      "sources": [
+        {
+          "ref": "skf-lubricants",
+          "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196802103bc/pdf_preview_medium/0901d196802103bc_pdf_preview_medium.pdf",
+          "title": "SKF Lubricants",
+          "page": "PDF pages 4–5; LGMT 2 column",
+          "revision": "PUB MP/P8 13238/8 EN; May 2025",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "No commercial website image reuse permission established from the opened source."
+        }
+      ],
+      "existingFields": {
+        "d": 0,
+        "D": 0,
+        "B": 0,
+        "weightKg": 1,
+        "crKn": 0,
+        "corKn": 0,
+        "speedGreaseRpm": 12000,
+        "speedOilRpm": 12000,
+        "cageMaterialEn": "Lithium soap / Mineral base oil NLGI 2",
+        "cageMaterialFa": "پایه صابون لیتیوم / روغن معدنی تغلیظ‌شده",
+        "sealingEn": "Water resistant & anti-corrosion ISO L-XCCEA 2",
+        "sealingFa": "مقاوم در برابر شستشو با آب و زنگ‌زدگی",
+        "clearanceOptions": [
+          "NLGI 2 Standard"
+        ],
+        "schematicType": "deep-groove"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "d",
+            "D",
+            "B",
+            "crKn",
+            "corKn"
+          ],
+          "risk": "Zero-valued bearing dimensions and capacities are nonapplicable lubricant fields, not verified measurements."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "A universal bearing rpm rating is not established for a grease. Selection needs bearing geometry and operating conditions."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "clearanceOptions",
+            "schematicType"
+          ],
+          "risk": "Confirm exact LGMT 2 package/order code and whether 1 kg is net contents. The grease standard designation belongs in lubricant specifications, not seal/clearance fields. Thickener, NLGI grade and lubricant classifications require their own fields. A bearing schematic does not depict grease."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "skf-lubricants"
+          ],
+          "fact": "SKF LGMT 2 column identifies lithium thickener, mineral base oil and NLGI 2.",
+          "applicability": "Only if owner selects this exact named manufacturer formulation; no numeric change authorized by multibrand identity."
+        }
+      ],
+      "unresolved": [
+        "Choose one exact grease formulation or split alternatives into separate records.",
+        "Verify regional product sheet, net package size and order code.",
+        "Use lubricant-appropriate fields and approved package photography."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/grease_skf_lgmt2_1787678760211.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Product-family/package imagery, not verified exact package variant.",
+        "candidateSourceRefs": [
+          "skf-lubricants"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography."
+      }
+    },
+    {
+      "id": "pc-mobilith-shc-220",
+      "slug": "mobilith-shc-220",
+      "existingDesignation": "Mobilith SHC 220 Synthetic",
+      "reviewedAt": "2026-10-15",
+      "status": "ambiguous_identity",
+      "identityAssessment": "The code names Mobilith SHC 220 while Shell Gadus and Klüber alternatives lack grades/formulations. These cannot be treated as the same product.",
+      "existingBrands": [
+        "Mobil",
+        "Shell Gadus",
+        "Klüber"
+      ],
+      "sources": [
+        {
+          "ref": "mobil-pds",
+          "url": "https://www.mobil.ca/en-ca/lubricants/for-personal-vehicles/personal-vehicle-lubricants/products/mobilith-shc-220",
+          "title": "Mobilith SHC 220 official product data",
+          "page": "Properties and Specifications; grade 220 column",
+          "revision": null,
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "All Rights Reserved footer; linked Imperial terms require prior written permission for uses beyond permitted personal/noncommercial copies and prohibit copying documents to a website."
+        },
+        {
+          "ref": "mobil-terms",
+          "url": "https://www.imperialoil.ca/en-CA/Legal-pages/Terms-and-conditions",
+          "title": "Imperial Terms and Conditions",
+          "page": "Sections 2(H) and 3",
+          "revision": "Last updated July 2016",
+          "accessDate": "2026-10-15",
+          "access": "Opened official page or full PDF text; candidate evidence only",
+          "reuseTerms": "Website redistribution is not authorized by the personal/noncommercial-use permission."
+        }
+      ],
+      "existingFields": {
+        "d": 0,
+        "D": 0,
+        "B": 0,
+        "weightKg": 0.38,
+        "crKn": 0,
+        "corKn": 0,
+        "speedGreaseRpm": 10000,
+        "speedOilRpm": 10000,
+        "cageMaterialEn": "Synthetic Lithium Complex NLGI 2",
+        "cageMaterialFa": "کمپلکس لیتیوم سنتتیک NLGI 2",
+        "sealingEn": "Extreme Pressure (EP) with water resistance",
+        "sealingFa": "پایداری مکانیکی در برابر لرزش‌های شدید",
+        "clearanceOptions": [
+          "DIN 51825 - KPHC 2N-40"
+        ],
+        "schematicType": "spherical"
+      },
+      "fieldEvidence": [],
+      "supportedChanges": [],
+      "conditionalChanges": [],
+      "fieldModelRisks": [
+        {
+          "fields": [
+            "d",
+            "D",
+            "B",
+            "crKn",
+            "corKn"
+          ],
+          "risk": "Zero-valued bearing dimensions and capacities are nonapplicable lubricant fields, not verified measurements."
+        },
+        {
+          "fields": [
+            "speedGreaseRpm",
+            "speedOilRpm"
+          ],
+          "risk": "A universal bearing rpm rating is not established for a grease. Selection needs bearing geometry and operating conditions."
+        },
+        {
+          "fields": [
+            "weightKg",
+            "cageMaterialEn",
+            "cageMaterialFa",
+            "sealingEn",
+            "clearanceOptions",
+            "schematicType"
+          ],
+          "risk": "Confirm exact Mobil regional product and package. Existing 0.38 kg may be a package quantity but no exact pack has been identified; do not treat it as generic grease mass. Thickener, NLGI grade and lubricant classifications require their own fields. A bearing schematic does not depict grease."
+        }
+      ],
+      "conditionalCandidateFacts": [
+        {
+          "sourceRefs": [
+            "mobil-pds"
+          ],
+          "fact": "Mobil grade 220 is NLGI 2 lithium-complex grease. Its DIN row is KP HC 2 N -30, not the record’s -40 designation.",
+          "applicability": "Only if owner selects this exact named manufacturer formulation; no numeric change authorized by multibrand identity."
+        }
+      ],
+      "unresolved": [
+        "Choose one exact grease formulation or split alternatives into separate records.",
+        "Verify regional product sheet, net package size and order code.",
+        "Use lubricant-appropriate fields and approved package photography."
+      ],
+      "media": {
+        "status": "missing_exact_verified_media",
+        "existingImageUrl": "/assets/images/grease_mobilith_red_1787678829445.webp",
+        "existingImageProvenance": "No manufacturer provenance established for existing local asset.",
+        "candidateClassification": "Product-family/package imagery, not verified exact package variant.",
+        "candidateSourceRefs": [
+          "mobil-pds"
+        ],
+        "exactIdentityConfirmed": false,
+        "reuseAuthorized": false,
+        "action": "No image replacement. Resolve manufacturer/configuration and obtain suitable reuse permission or owner-authorized product photography."
+      }
+    }
+  ],
+  "counts": {
+    "reviewed": 13,
+    "ambiguous_identity": 13,
+    "fully_verified": 0,
+    "supported_numeric_changes": 0,
+    "exact_media_verified": 0
+  }
+}

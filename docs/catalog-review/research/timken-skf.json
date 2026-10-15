@@ -1,0 +1,1738 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-15",
+  "scope": "Three Timken and three SKF single-brand legacy records",
+  "sources": {
+    "timken-lm11749": {
+      "url": "https://cad.timken.com/item/tapered-roller-bearings-ts-tapered-single-/tapered-roller-bearings-ts-tapered-single-imperi-2/lm11749-lm11710",
+      "title": "Timken LM11749 / LM11710",
+      "type": "official_product_table",
+      "sections": [
+        "Key Dimensions",
+        "Other Dimensions",
+        "Ratings",
+        "Factors"
+      ],
+      "revision": null,
+      "accessedAt": "2026-10-15"
+    },
+    "timken-lm67048": {
+      "url": "https://cad.timken.com/item/tapered-roller-bearings-ts-tapered-single-/tapered-roller-bearings-ts-tapered-single-imperi-2/lm67048-lm67010",
+      "title": "Timken LM67048 / LM67010",
+      "type": "official_product_table",
+      "sections": [
+        "Key Dimensions",
+        "Other Dimensions",
+        "Ratings",
+        "Factors"
+      ],
+      "revision": null,
+      "accessedAt": "2026-10-15"
+    },
+    "timken-22220": {
+      "url": "https://cad.timken.com/item/spherical-roller-bearings/spherical-roller-bearings-brass-cage/22220emw33c3",
+      "title": "Timken 22220EMW33C3",
+      "type": "official_product_table",
+      "sections": [
+        "Key Dimensions",
+        "Other Dimensions",
+        "Ratings",
+        "Factors"
+      ],
+      "revision": null,
+      "accessedAt": "2026-10-15"
+    },
+    "timken-terms": {
+      "url": "https://www.timken.com/terms-of-use/",
+      "title": "Timken Terms of Use",
+      "revision": "June 2024",
+      "sections": [
+        "Copyrights",
+        "No License Granted",
+        "Use of CAD and Other Drawings"
+      ],
+      "accessedAt": "2026-10-15"
+    },
+    "timken-metals": {
+      "url": "https://www.timken.com/wp-content/uploads/2018/02/Timken-Metals-Catalog_10675.pdf",
+      "title": "Timken Metals Product Catalog 10675",
+      "type": "official_catalog",
+      "revision": null,
+      "printedPages": [
+        45,
+        52,
+        53
+      ],
+      "pdfPagesOneBased": [
+        47,
+        54,
+        55
+      ],
+      "sections": [
+        "Spherical roller clearance",
+        "Spherical roller nomenclature",
+        "Table42 modification codes",
+        "Spherical roller table headers"
+      ],
+      "visualReview": false,
+      "accessNote": "Complete relevant page text read through web; local download timed out.",
+      "accessedAt": "2026-10-15"
+    },
+    "skf-6311-india": {
+      "url": "https://www.emarketplace.in.skf.com/deep-groove-ball-bearing/6311-c3",
+      "title": "SKF India 6311/C3",
+      "type": "official_product_table",
+      "sections": [
+        "Technical specification"
+      ],
+      "revision": null,
+      "accessedAt": "2026-10-15"
+    },
+    "skf-ball-catalog": {
+      "url": "https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf",
+      "title": "SKF rolling bearings Japanese deep-groove section",
+      "type": "official_catalog",
+      "revision": null,
+      "revisionNote": "Revision not visible in excerpt; PDF metadata date is not a catalog revision.",
+      "printedPages": [
+        328,
+        329
+      ],
+      "pdfPagesOneBased": [
+        35,
+        36
+      ],
+      "visualReview": true,
+      "accessedAt": "2026-10-15"
+    },
+    "skf-carb-catalog": {
+      "url": "https://cdn.skfmediahub.skf.com/api/public/094bdeafb6b4ce5c/pdf_preview_medium/094bdeafb6b4ce5c_pdf_preview_medium.pdf",
+      "title": "SKF CARB toroidal roller bearings",
+      "type": "official_catalog",
+      "revision": null,
+      "printedPages": [
+        7,
+        8,
+        11,
+        12,
+        17,
+        20,
+        21
+      ],
+      "pdfPagesOneBased": [
+        7,
+        8,
+        11,
+        12,
+        17,
+        20,
+        21
+      ],
+      "visualReview": false,
+      "accessNote": "Complete PDF text read through web. Local download returned Access Denied; web screenshot response contained no rendered image.",
+      "accessedAt": "2026-10-15"
+    },
+    "skf-y-catalog": {
+      "url": "https://cdn.skfmediahub.skf.com/api/public/0901d196802a2b8f/pdf_preview_medium/0901d196802a2b8f_pdf_preview_medium.pdf",
+      "title": "SKF Y-bearings and Y-bearing units (6001)",
+      "type": "official_catalog",
+      "revision": null,
+      "printedPages": [
+        76,
+        87,
+        91,
+        117,
+        122,
+        123
+      ],
+      "pdfPagesOneBased": [
+        78,
+        89,
+        93,
+        119,
+        124,
+        125
+      ],
+      "visualReview": false,
+      "accessNote": "Complete PDF text read through web. Local download returned Access Denied; web screenshot response contained no rendered image.",
+      "accessedAt": "2026-10-15"
+    }
+  },
+  "records": [
+    {
+      "id": "pc-timken-lm11749-10",
+      "slug": "timken-lm11749-10",
+      "baselineCode": "TIMKEN LM11749 / LM11710 (SET1)",
+      "manufacturer": "TIMKEN",
+      "exactDesignation": "LM11749 / LM11710",
+      "identityStatus": "resolved",
+      "identityNote": "Official product page expressly identifies cone and cup. Slash denotes assembly components, not alternative suffixes. SET1/SET6 packaging alias not independently verified here.",
+      "reviewStatus": "partial",
+      "fields": [
+        {
+          "field": "d",
+          "old": 17.462,
+          "proposed": 17.463,
+          "unit": "mm",
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "D",
+          "old": 39.878,
+          "proposed": 39.878,
+          "unit": "mm",
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "B",
+          "old": 13.843,
+          "proposed": 13.843,
+          "unit": "mm",
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "Application B holds assembly width T; do not replace it with manufacturer inner-ring B.",
+          "apply": true
+        },
+        {
+          "field": "weightKg",
+          "old": 0.086,
+          "proposed": 0.1,
+          "unit": "kg",
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "crKn",
+          "old": 24.8,
+          "proposed": 29.4,
+          "unit": "kN",
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "Dynamic C1 is the 1-million-revolution ISO rating, not C90.",
+          "apply": true
+        },
+        {
+          "field": "corKn",
+          "old": 23.3,
+          "proposed": 23.4,
+          "unit": "kN",
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "calculationFactorE",
+          "old": 0.33,
+          "proposed": 0.29,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "calculationFactorY",
+          "old": 1.82,
+          "proposed": 2.1,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "coneWidthB",
+          "old": null,
+          "proposed": 14.605,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "cupWidthC",
+          "old": null,
+          "proposed": 10.668,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "maxShaftFilletRadius",
+          "old": null,
+          "proposed": 1.27,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "maxHousingFilletRadius",
+          "old": null,
+          "proposed": 1.27,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "C90kN",
+          "old": null,
+          "proposed": 7.61,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "Ca90kN",
+          "old": null,
+          "proposed": 3.73,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "K",
+          "old": null,
+          "proposed": 2.04,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "G1",
+          "old": null,
+          "proposed": 4.8,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "G2",
+          "old": null,
+          "proposed": 4.74,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "Cg",
+          "old": null,
+          "proposed": 0.0392,
+          "unit": null,
+          "sourceId": "timken-lm11749",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        }
+      ],
+      "safeChanges": {
+        "d": 17.463,
+        "weightKg": 0.1,
+        "crKn": 29.4,
+        "corKn": 23.4,
+        "calculationFactorE": 0.29,
+        "calculationFactorY": 2.1
+      },
+      "unresolved": [
+        "Exact cage material and treatment not specified on product table.",
+        "Grease/oil limiting and thermal speeds in baseline lack evidence; no replacement numerical speed inferred.",
+        "Y0 and minimum bearing chamfer not established. Maximum shaft/housing fillet is not the minimum bearing chamfer.",
+        "Contact angle is not listed. Do not derive it from e/Y.",
+        "Preload/endplay is installation-dependent; baseline preload wording is not a clearance specification.",
+        "Application recommendations and country-of-manufacture/authenticity claims require owner/manufacturer confirmation.",
+        "SET1/SET6 labels require separate official packaging cross-reference."
+      ],
+      "media": {
+        "primaryOfficialImageUrl": "https://cad.timken.com/Asset/Timken_TRB_1ROWASSY_TS_32005X-90KA1-A.jpg",
+        "sourceId": "timken-lm11749",
+        "identityClass": "manufacturer_family_reference",
+        "replacementSupported": false,
+        "reason": "Primary asset filename identifies 32005X, not this cone/cup assembly. Timken terms do not grant public image reuse.",
+        "attribution": "The Timken Company",
+        "reuseStatus": "not_granted",
+        "termsSourceId": "timken-terms",
+        "currentReferenceRetained": true,
+        "decodeStatus": "not_downloaded",
+        "dimensions": null,
+        "optimizedAsset": null,
+        "altEn": "Reference illustration; exact product photograph not verified",
+        "altFa": "تصویر مرجع؛ عکس دقیق این محصول تأیید نشده است"
+      },
+      "allFieldsVerified": false
+    },
+    {
+      "id": "pc-timken-lm67048-10",
+      "slug": "timken-lm67048-10",
+      "baselineCode": "TIMKEN LM67048 / LM67010 (SET6)",
+      "manufacturer": "TIMKEN",
+      "exactDesignation": "LM67048 / LM67010",
+      "identityStatus": "resolved",
+      "identityNote": "Official product page expressly identifies cone and cup. Slash denotes assembly components, not alternative suffixes. SET1/SET6 packaging alias not independently verified here.",
+      "reviewStatus": "partial",
+      "fields": [
+        {
+          "field": "d",
+          "old": 31.75,
+          "proposed": 31.75,
+          "unit": "mm",
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "D",
+          "old": 59.131,
+          "proposed": 59.131,
+          "unit": "mm",
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "B",
+          "old": 15.875,
+          "proposed": 15.875,
+          "unit": "mm",
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "Application B holds assembly width T; do not replace it with manufacturer inner-ring B.",
+          "apply": true
+        },
+        {
+          "field": "weightKg",
+          "old": 0.18,
+          "proposed": 0.2,
+          "unit": "kg",
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "crKn",
+          "old": 41.5,
+          "proposed": 46.7,
+          "unit": "kN",
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "Dynamic C1 is the 1-million-revolution ISO rating, not C90.",
+          "apply": true
+        },
+        {
+          "field": "corKn",
+          "old": 43.8,
+          "proposed": 44.6,
+          "unit": "kN",
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "calculationFactorE",
+          "old": 0.44,
+          "proposed": 0.41,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "calculationFactorY",
+          "old": 1.36,
+          "proposed": 1.46,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "coneWidthB",
+          "old": null,
+          "proposed": 16.764,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "cupWidthC",
+          "old": null,
+          "proposed": 11.811,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "maxShaftFilletRadius",
+          "old": null,
+          "proposed": 3.6,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "maxHousingFilletRadius",
+          "old": null,
+          "proposed": 1.27,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "C90kN",
+          "old": null,
+          "proposed": 12.1,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "Ca90kN",
+          "old": null,
+          "proposed": 8.55,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "K",
+          "old": null,
+          "proposed": 1.42,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "G1",
+          "old": null,
+          "proposed": 12.8,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "G2",
+          "old": null,
+          "proposed": 9.93,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "Cg",
+          "old": null,
+          "proposed": 0.0612,
+          "unit": null,
+          "sourceId": "timken-lm67048",
+          "locator": "Other Dimensions / Ratings / Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        }
+      ],
+      "safeChanges": {
+        "weightKg": 0.2,
+        "crKn": 46.7,
+        "corKn": 44.6,
+        "calculationFactorE": 0.41,
+        "calculationFactorY": 1.46
+      },
+      "unresolved": [
+        "Exact cage material and treatment not specified on product table.",
+        "Grease/oil limiting and thermal speeds in baseline lack evidence; no replacement numerical speed inferred.",
+        "Y0 and minimum bearing chamfer not established. Maximum shaft/housing fillet is not the minimum bearing chamfer.",
+        "Contact angle is not listed. Do not derive it from e/Y.",
+        "Preload/endplay is installation-dependent; baseline preload wording is not a clearance specification.",
+        "Application recommendations and country-of-manufacture/authenticity claims require owner/manufacturer confirmation.",
+        "SET1/SET6 labels require separate official packaging cross-reference."
+      ],
+      "media": {
+        "primaryOfficialImageUrl": "https://cad.timken.com/Asset/Timken_TRB_1ROWASSY_TS_32005X-90KA1-A.jpg",
+        "sourceId": "timken-lm67048",
+        "identityClass": "manufacturer_family_reference",
+        "replacementSupported": false,
+        "reason": "Primary asset filename identifies 32005X, not this cone/cup assembly. Timken terms do not grant public image reuse.",
+        "attribution": "The Timken Company",
+        "reuseStatus": "not_granted",
+        "termsSourceId": "timken-terms",
+        "currentReferenceRetained": true,
+        "decodeStatus": "not_downloaded",
+        "dimensions": null,
+        "optimizedAsset": null,
+        "altEn": "Reference illustration; exact product photograph not verified",
+        "altFa": "تصویر مرجع؛ عکس دقیق این محصول تأیید نشده است"
+      },
+      "allFieldsVerified": false
+    },
+    {
+      "id": "pc-timken-22220-emw33c3",
+      "slug": "timken-22220-emw33c3",
+      "baselineCode": "TIMKEN 22220EMW33C3 Solid Brass",
+      "manufacturer": "TIMKEN",
+      "exactDesignation": "22220EMW33C3",
+      "identityStatus": "resolved",
+      "identityNote": "Exact full designation found on Timken official product page; no NTN-equivalent substitution used.",
+      "reviewStatus": "partial",
+      "fields": [
+        {
+          "field": "d",
+          "old": 100,
+          "proposed": 100,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "D",
+          "old": 180,
+          "proposed": 180,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "B",
+          "old": 46,
+          "proposed": 46,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "weightKg",
+          "old": 4.85,
+          "proposed": 5,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "crKn",
+          "old": 435,
+          "proposed": 435,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "corKn",
+          "old": 540,
+          "proposed": 502,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "calculationFactorE",
+          "old": 0.24,
+          "proposed": 0.24,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "calculationFactorY0",
+          "old": 2.8,
+          "proposed": 2.78,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Key Dimensions / Other Dimensions / Ratings / Factors",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "thermalReferenceSpeedOilRpm",
+          "old": null,
+          "proposed": 3800,
+          "unit": "r/min",
+          "sourceId": "timken-22220",
+          "locator": "Ratings",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "thermalReferenceSpeedGreaseRpm",
+          "old": null,
+          "proposed": 3100,
+          "unit": "r/min",
+          "sourceId": "timken-22220",
+          "locator": "Ratings",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "Y_when_FaFr_lte_e",
+          "old": null,
+          "proposed": 2.85,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Factors",
+          "status": "verified_source_fact",
+          "reason": "Source explicitly pairs this with X=0.67. Do not change application formula or assume generic spherical Y1 mapping.",
+          "apply": false
+        },
+        {
+          "field": "Y_when_FaFr_gt_e",
+          "old": null,
+          "proposed": 4.24,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Factors",
+          "status": "verified_source_fact",
+          "reason": "Source explicitly pairs this with X=1. Do not change application formula or assume generic spherical Y2 mapping.",
+          "apply": false
+        },
+        {
+          "field": "maxShaftFilletRadius",
+          "old": null,
+          "proposed": 2,
+          "unit": "mm",
+          "sourceId": "timken-22220",
+          "locator": "Other Dimensions",
+          "status": "verified_source_fact",
+          "reason": "Page heading says shaft, footnote says housing. Not a bearing rMin value.",
+          "apply": false
+        },
+        {
+          "field": "Cg",
+          "old": null,
+          "proposed": 0.0694,
+          "unit": null,
+          "sourceId": "timken-22220",
+          "locator": "Factors",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "clearanceOptions",
+          "old": [
+            "C3",
+            "CN",
+            "C4"
+          ],
+          "proposed": [
+            "C3"
+          ],
+          "unit": null,
+          "sourceId": "timken-metals",
+          "locator": "Printed p52 / PDF p54; nomenclature; combined with exact product designation",
+          "status": "correction_supported",
+          "reason": "C3 denotes a specific clearance, CN and C4 are different designations.",
+          "apply": true
+        },
+        {
+          "field": "cageConstruction",
+          "old": null,
+          "proposed": "One-piece brass cage, roller-riding",
+          "unit": null,
+          "sourceId": "timken-metals",
+          "locator": "Printed p52 / PDF p54; EM nomenclature",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "W33",
+          "old": null,
+          "proposed": "Outer-ring lubrication groove and holes",
+          "unit": null,
+          "sourceId": "timken-metals",
+          "locator": "Printed p52 / PDF p54; Table42",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        }
+      ],
+      "safeChanges": {
+        "weightKg": 5,
+        "corKn": 502,
+        "calculationFactorY0": 2.78,
+        "clearanceOptions": [
+          "C3"
+        ]
+      },
+      "unresolved": [
+        "Thermal oil/grease speeds must not be stored/displayed as limiting speeds. Existing single thermalSpeedRatingRpm cannot express both conditions.",
+        "Official product-page X coefficients conflict with Timken Metals catalog p53 table headers (X1 below e, X.67 above e). Withhold Y1/Y2 mapping until source conflict adjudicated; formulas unchanged.",
+        "Minimum chamfer rMin remains unverified; source fillet heading/footnote inconsistent.",
+        "Exact W33 hole count and precision-machined cage wording require further evidence; EM one-piece brass is supported.",
+        "Application-specific vibrating-screen suitability remains unverified."
+      ],
+      "media": {
+        "primaryOfficialImageUrl": "https://cad.timken.com/Asset/Timken_SRB_Brass_EMW33_22208YMW33C3-T.jpg",
+        "sourceId": "timken-22220",
+        "identityClass": "manufacturer_family_reference",
+        "replacementSupported": false,
+        "reason": "Primary asset filename identifies 22208YMW33C3, not 22220EMW33C3. Reuse not granted by published terms.",
+        "attribution": "The Timken Company",
+        "reuseStatus": "not_granted",
+        "termsSourceId": "timken-terms",
+        "currentReferenceRetained": true,
+        "decodeStatus": "not_downloaded",
+        "dimensions": null,
+        "optimizedAsset": null,
+        "altEn": "Reference illustration; exact product photograph not verified",
+        "altFa": "تصویر مرجع؛ عکس دقیق این محصول تأیید نشده است"
+      },
+      "allFieldsVerified": false
+    },
+    {
+      "id": "pc-skf-6311-c3",
+      "slug": "skf-6311-c3",
+      "baselineCode": "SKF 6311 / C3 Explorer",
+      "manufacturer": "SKF",
+      "exactDesignation": "6311/C3",
+      "identityStatus": "resolved",
+      "identityNote": "Exact SKF India product page establishes C3, open execution and sheet-metal cage. Catalog base row 6311 is corroborative for dimensions/rating, not proof of every suffix-specific property.",
+      "reviewStatus": "partial",
+      "fields": [
+        {
+          "field": "d",
+          "old": 55,
+          "proposed": 55,
+          "unit": null,
+          "sourceId": "skf-6311-india",
+          "locator": "Technical specification",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "D",
+          "old": 120,
+          "proposed": 120,
+          "unit": null,
+          "sourceId": "skf-6311-india",
+          "locator": "Technical specification",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "B",
+          "old": 29,
+          "proposed": 29,
+          "unit": null,
+          "sourceId": "skf-6311-india",
+          "locator": "Technical specification",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "weightKg",
+          "old": 1.35,
+          "proposed": 1.337,
+          "unit": null,
+          "sourceId": "skf-6311-india",
+          "locator": "Technical specification",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "clearanceOptions",
+          "old": [
+            "C3",
+            "CN",
+            "C4"
+          ],
+          "proposed": [
+            "C3"
+          ],
+          "unit": null,
+          "sourceId": "skf-6311-india",
+          "locator": "Technical specification",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "rMin",
+          "old": 2.1,
+          "proposed": 2,
+          "unit": null,
+          "sourceId": "skf-ball-catalog",
+          "locator": "Printed p329; PDF p36; row paired with 6311 on p328",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "calculationFactorF0",
+          "old": 13.1,
+          "proposed": 13,
+          "unit": null,
+          "sourceId": "skf-ball-catalog",
+          "locator": "Printed p329; PDF p36; row paired with 6311 on p328",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "crKn",
+          "old": 75,
+          "proposed": 74.1,
+          "unit": null,
+          "sourceId": "skf-ball-catalog",
+          "locator": "Printed p328; PDF p35; 6311 row",
+          "status": "correction_supported",
+          "reason": "Base 6311 catalog rating. Catalog revision not identifiable; exact C3 page omits rating.",
+          "apply": false
+        },
+        {
+          "field": "corKn",
+          "old": 45,
+          "proposed": 45,
+          "unit": null,
+          "sourceId": "skf-ball-catalog",
+          "locator": "Printed p328; PDF p35; 6311 row",
+          "status": "confirmed",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "referenceSpeedRpm",
+          "old": null,
+          "proposed": 12000,
+          "unit": "r/min",
+          "sourceId": "skf-ball-catalog",
+          "locator": "Printed p328 / PDF p35; 6311 row",
+          "status": "verified_source_fact",
+          "reason": "Base row. Not grease speed; verify C3 operating-clearance applicability before final engineering approval.",
+          "apply": false
+        },
+        {
+          "field": "limitingSpeedRpm",
+          "old": null,
+          "proposed": 8000,
+          "unit": "r/min",
+          "sourceId": "skf-ball-catalog",
+          "locator": "Printed p328 / PDF p35; 6311 row",
+          "status": "verified_source_fact",
+          "reason": "Not oil speed.",
+          "apply": false
+        },
+        {
+          "field": "cageDesign",
+          "old": null,
+          "proposed": "Sheet metal",
+          "unit": null,
+          "sourceId": "skf-6311-india",
+          "locator": "Technical specification",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "sealing",
+          "old": null,
+          "proposed": "Without seals",
+          "unit": null,
+          "sourceId": "skf-6311-india",
+          "locator": "Technical specification",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        }
+      ],
+      "safeChanges": {
+        "weightKg": 1.337,
+        "clearanceOptions": [
+          "C3"
+        ],
+        "rMin": 2,
+        "calculationFactorF0": 13
+      },
+      "unresolved": [
+        "Catalog mass1.35 is rounded/base-row; exact SKF India C3 page net mass1.337 selected.",
+        "Base catalog C74.1 differs from baseline75; exact C3 product-page rating not available. Record as source-backed proposal pending current exact-suffix approval.",
+        "Reference/limiting speed labels differ from existing grease/oil fields.",
+        "Exact image CDN returned HTTP403; filename describes deep-groove with filling slots, so identity is not proven.",
+        "Heavy motor power-range and oil/gas application claims not established.",
+        "Catalog revision unavailable; do not copy baseline verifiedAt/catalog-code assertions."
+      ],
+      "media": {
+        "primaryOfficialImageUrl": "https://d1lq520449p9gg.cloudfront.net/public/assets/product-images/SKF-deep-groove-ball-bearing-with-filling-slots-open-steel-cage.webp",
+        "sourceId": "skf-6311-india",
+        "identityClass": "manufacturer_family_reference_unverified",
+        "replacementSupported": false,
+        "reason": "Product-page image is generic by filename and returned HTTP403. No bypass attempted.",
+        "attribution": "SKF",
+        "reuseStatus": "not_established",
+        "termsSourceId": null,
+        "currentReferenceRetained": true,
+        "decodeStatus": "not_downloaded",
+        "dimensions": null,
+        "optimizedAsset": null,
+        "altEn": "Reference illustration; exact product photograph not verified",
+        "altFa": "تصویر مرجع؛ عکس دقیق این محصول تأیید نشده است"
+      },
+      "allFieldsVerified": false
+    },
+    {
+      "id": "pc-skf-c-2215-k",
+      "slug": "skf-c-2215-k",
+      "baselineCode": "SKF C 2215 K CARB® Toroidal",
+      "manufacturer": "SKF",
+      "exactDesignation": "C 2215 K",
+      "identityStatus": "resolved",
+      "identityNote": "Exact tapered-bore designation appears in SKF CARB table. K=1:12 tapered bore. No C3 suffix; Normal clearance. C08 is P5 geometrical tolerance, not C3 clearance.",
+      "reviewStatus": "partial",
+      "fields": [
+        {
+          "field": "d",
+          "old": 75,
+          "proposed": 75,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "D",
+          "old": 130,
+          "proposed": 130,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "B",
+          "old": 31,
+          "proposed": 31,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "weightKg",
+          "old": 1.6,
+          "proposed": 1.6,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "crKn",
+          "old": 198,
+          "proposed": 196,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "corKn",
+          "old": 240,
+          "proposed": 208,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "rMin",
+          "old": 1.5,
+          "proposed": 1.5,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "clearanceOptions",
+          "old": [
+            "C3 (C08)",
+            "CN"
+          ],
+          "proposed": [
+            "CN"
+          ],
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "Printed/PDF p20-21 exact row; p8 clearance; p17 designation system",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "referenceSpeedRpm",
+          "old": null,
+          "proposed": 4800,
+          "unit": "r/min",
+          "sourceId": "skf-carb-catalog",
+          "locator": "p20 exact C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "limitingSpeedRpm",
+          "old": null,
+          "proposed": 6700,
+          "unit": "r/min",
+          "sourceId": "skf-carb-catalog",
+          "locator": "p20 exact C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "fatigueLoadLimitKn",
+          "old": null,
+          "proposed": 24,
+          "unit": "kN",
+          "sourceId": "skf-carb-catalog",
+          "locator": "p20 exact C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "d2",
+          "old": null,
+          "proposed": 88.5,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "D1",
+          "old": null,
+          "proposed": 116,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "s1Max",
+          "old": null,
+          "proposed": 9.6,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "daMin",
+          "old": null,
+          "proposed": 84,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "daMax",
+          "old": null,
+          "proposed": 98.3,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "DaMin",
+          "old": null,
+          "proposed": 106,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "DaMax",
+          "old": null,
+          "proposed": 121,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "CaMin",
+          "old": null,
+          "proposed": 1.2,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "raMax",
+          "old": null,
+          "proposed": 1.5,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "k1",
+          "old": null,
+          "proposed": 0.099,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "k2",
+          "old": null,
+          "proposed": 0.127,
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p21 corresponding C2215/C2215K row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "cageDesign",
+          "old": null,
+          "proposed": "Stamped steel, roller-centred",
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p7 Cages; p17 absence of cage suffix",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "equivalentDynamicLoad",
+          "old": null,
+          "proposed": "P=Fr",
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p11 Loads",
+          "status": "verified_source_fact",
+          "reason": "Consistent with baseline X1/Y0 for radial loading; does not authorize axial loading.",
+          "apply": false
+        },
+        {
+          "field": "descriptionFa",
+          "old": "تکنولوژی انحصاری CARB سوئد ترکیب‌کننده ویژگی‌های خودتنظیمی رولبرینگ بشکه‌ای و جابجایی محوری نامحدود رولبرینگ استوانه‌ای در یک قطعه.",
+          "proposed": "رولبرینگ توریدال CARB شرکت SKF با قابلیت خودتنظیمی و جابجایی محوری داخلی؛ مقدار مجاز جابجایی به لقی داخلی و ناهمراستایی بستگی دارد.",
+          "unit": null,
+          "sourceId": "skf-carb-catalog",
+          "locator": "p8 and p12-13 axial displacement limits",
+          "status": "correction_supported",
+          "reason": "Removes unsupported unlimited-axial-displacement claim.",
+          "apply": true
+        }
+      ],
+      "safeChanges": {
+        "crKn": 196,
+        "corKn": 208,
+        "clearanceOptions": [
+          "CN"
+        ],
+        "descriptionFa": "رولبرینگ توریدال CARB شرکت SKF با قابلیت خودتنظیمی و جابجایی محوری داخلی؛ مقدار مجاز جابجایی به لقی داخلی و ناهمراستایی بستگی دارد."
+      },
+      "unresolved": [
+        "Existing grease3800/oil5000/thermal5300 values conflict with reference4800/limiting6700; correct labels and schema before applying speeds.",
+        "Exact primary product-page text/media unavailable (empty web extraction).",
+        "Local official PDF download blocked; text extraction supports table but visual QA remains incomplete.",
+        "Catalog mass1.6 retained; current product-page net mass could differ, and third-party mirrored data not accepted.",
+        "C08/C3 conflation corrected to CN for exact unsuffixed designation.",
+        "Application suitability and schematic cylindrical geometry remain owner/manufacturer review items; no geometry changed."
+      ],
+      "media": {
+        "primaryOfficialImageUrl": null,
+        "sourceId": "skf-carb-catalog",
+        "identityClass": "missing_exact_media",
+        "replacementSupported": false,
+        "reason": "Exact official product URL returned no extractable content: https://www.skf.com/group/products/rolling-bearings/roller-bearings/carb-toroidal-roller-bearings/productid-C%202215%20K . Catalog sketches are family references, not exact photos.",
+        "attribution": "SKF",
+        "reuseStatus": "not_established",
+        "termsSourceId": null,
+        "currentReferenceRetained": true,
+        "decodeStatus": "not_downloaded",
+        "dimensions": null,
+        "optimizedAsset": null,
+        "altEn": "Reference illustration; exact product photograph not verified",
+        "altFa": "تصویر مرجع؛ عکس دقیق این محصول تأیید نشده است"
+      },
+      "allFieldsVerified": false
+    },
+    {
+      "id": "pc-skf-sy-50-tf",
+      "slug": "skf-sy-50-tf",
+      "baselineCode": "SKF SY 50 TF (Y-Bearing Unit)",
+      "manufacturer": "SKF",
+      "exactDesignation": "SY 50 TF",
+      "identityStatus": "resolved",
+      "identityNote": "Official catalog exact assembly: SY510M housing plus YAR210-2F insert. It is a complete unit, not a bare bearing.",
+      "reviewStatus": "partial",
+      "fields": [
+        {
+          "field": "d",
+          "old": 50,
+          "proposed": 50,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122-123; PDF p124-125; SY50TF row",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "B",
+          "old": 51.6,
+          "proposed": 51.6,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122-123; PDF p124-125; SY50TF row",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "crKn",
+          "old": 35.1,
+          "proposed": 35.1,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122-123; PDF p124-125; SY50TF row",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "corKn",
+          "old": 23.2,
+          "proposed": 23.2,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122-123; PDF p124-125; SY50TF row",
+          "status": "confirmed",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "weightKg",
+          "old": 2.85,
+          "proposed": 2.7,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122-123; PDF p124-125; SY50TF row",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "A",
+          "old": null,
+          "proposed": 54,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "A1",
+          "old": null,
+          "proposed": 34,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "H",
+          "old": null,
+          "proposed": 114.5,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "H1",
+          "old": null,
+          "proposed": 57.2,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "H2",
+          "old": null,
+          "proposed": 22,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "J",
+          "old": null,
+          "proposed": 157,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "L",
+          "old": null,
+          "proposed": 203,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "N",
+          "old": null,
+          "proposed": 26,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "N1",
+          "old": null,
+          "proposed": 18,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "G",
+          "old": null,
+          "proposed": 16,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "s1",
+          "old": null,
+          "proposed": 32.6,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "fatigueLoadLimitKn",
+          "old": null,
+          "proposed": 0.98,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "limitingSpeedRpm",
+          "old": null,
+          "proposed": 4000,
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p122; PDF p124; SY50TF row",
+          "status": "verified_source_fact",
+          "reason": "Limiting speed stated for shaft tolerance h6.",
+          "apply": false
+        },
+        {
+          "field": "housingDesignation",
+          "old": null,
+          "proposed": "SY 510 M",
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p123 / PDF p125",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "insertDesignation",
+          "old": null,
+          "proposed": "YAR 210-2F",
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p123 / PDF p125",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "cageMaterial",
+          "old": null,
+          "proposed": "Glass fibre reinforced PA66",
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p91 / PDF p93; standard Y bearings",
+          "status": "verified_source_fact",
+          "reason": "",
+          "apply": false
+        },
+        {
+          "field": "sealingEn",
+          "old": "Multi-stage contact seal with galvanized slinger",
+          "proposed": "Contact seals with additional plain sheet-steel flingers on both sides (2F)",
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p76 and p87 / PDF p78 and p89",
+          "status": "correction_supported",
+          "reason": "2F is not the rubberized-flinger 2RF multiple seal.",
+          "apply": true
+        },
+        {
+          "field": "sealingFa",
+          "old": "آب‌بند تماسی دوگانه با حلقه فولادی محافظ فلینگر",
+          "proposed": "آب‌بند تماسی به‌همراه فلینگر ساده ورق فولادی در دو طرف (2F)",
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p76 and p87 / PDF p78 and p89",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "descriptionEn",
+          "old": "Complete SKF ball bearing unit with cast iron housing and insert bearing with grub screws and multi-stage labyrinth seals.",
+          "proposed": "SKF plummer block unit with a cast iron SY 510 M housing and YAR 210-2F insert bearing, grub-screw locking, contact seals and additional plain flingers.",
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p117,p122-123,p87",
+          "status": "correction_supported",
+          "reason": "",
+          "apply": true
+        },
+        {
+          "field": "descriptionFa",
+          "old": "واحد یاتاقان کامل ساخت شرکت SKF شامل پوسته چدن خاکستری صلب و بلبرینگ YAR 210-2F با قفل‌شو پیچ آلن و آب‌بندی مطمئن ۵ لبه.",
+          "proposed": "واحد یاتاقان پایه‌دار SKF شامل پوسته چدنی SY 510 M و بلبرینگ YAR 210-2F با تثبیت پیچ مغزی، آب‌بند تماسی و فلینگر ساده اضافی.",
+          "unit": null,
+          "sourceId": "skf-y-catalog",
+          "locator": "Printed p117,p122-123,p87",
+          "status": "correction_supported",
+          "reason": "Removes unsupported five-lip claim.",
+          "apply": true
+        }
+      ],
+      "safeChanges": {
+        "weightKg": 2.7,
+        "sealingEn": "Contact seals with additional plain sheet-steel flingers on both sides (2F)",
+        "sealingFa": "آب‌بند تماسی به‌همراه فلینگر ساده ورق فولادی در دو طرف (2F)",
+        "descriptionEn": "SKF plummer block unit with a cast iron SY 510 M housing and YAR 210-2F insert bearing, grub-screw locking, contact seals and additional plain flingers.",
+        "descriptionFa": "واحد یاتاقان پایه‌دار SKF شامل پوسته چدنی SY 510 M و بلبرینگ YAR 210-2F با تثبیت پیچ مغزی، آب‌بند تماسی و فلینگر ساده اضافی."
+      },
+      "unresolved": [
+        "Existing D114 is not a manufacturer outside diameter; H114.5 is housing total height. Do not overwrite D with H or change geometry. A dedicated unit-dimension mapping is required.",
+        "4000rpm is limiting speed for shaft h6, not independent grease and oil ratings.",
+        "Exact product media unavailable: official product page returned empty extraction.",
+        "Official PDF local download blocked, so table visual review incomplete.",
+        "Standard Y-fit is not a quantified clearance grade; verify assembly internal clearance separately.",
+        "No contact angle or bearing chamfer evidence for this complete unit."
+      ],
+      "media": {
+        "primaryOfficialImageUrl": null,
+        "sourceId": "skf-y-catalog",
+        "identityClass": "missing_exact_media",
+        "replacementSupported": false,
+        "reason": "Official exact product URL empty in web extraction: https://www.skf.com/group/products/mounted-bearings/ball-bearing-units/pillow-block-ball-bearing-units/productid-SY%2050%20TF . No exact primary photograph verified.",
+        "attribution": "SKF",
+        "reuseStatus": "not_established",
+        "termsSourceId": null,
+        "currentReferenceRetained": true,
+        "decodeStatus": "not_downloaded",
+        "dimensions": null,
+        "optimizedAsset": null,
+        "altEn": "Reference illustration; exact product photograph not verified",
+        "altFa": "تصویر مرجع؛ عکس دقیق این محصول تأیید نشده است"
+      },
+      "allFieldsVerified": false
+    }
+  ],
+  "counts": {
+    "records": 6,
+    "fullyVerified": 0,
+    "partial": 6,
+    "ambiguousIdentity": 0,
+    "missingExactMedia": 6,
+    "supportedReplacementMedia": 0
+  },
+  "notes": [
+    "Factual source observations only; application changes are for parent review/import integration.",
+    "Safe changes intentionally exclude speed values whose source semantics conflict with current schema.",
+    "Existing claims not individually supported here remain unverified; nonempty source metadata is not proof."
+  ]
+}

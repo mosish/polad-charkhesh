@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-15",
+  "baseCommit": "e39488ef917b907801e8be3ac17d5caeeba44004",
+  "branch": "codex/manufacturer-catalog-review",
+  "artifacts": {
+    "baselineSha256": "72ba3c451a7e4eb3badc3b53e5841b680499e8dddbdf1e3afbe82c6bb4d5bf59",
+    "patchSha256": "bf3726d6d01213098cb364d2aa0dc2d819b7575783f65ee5d5eb304d6d2dc364",
+    "ledgerSha256": "f768512c4c5ada4557510ab124fb8df7fbf9d6cd7fb7980aedca56961aa5a2e3"
+  },
+  "counts": {
+    "total": 110,
+    "fullyVerified": 0,
+    "partial": 61,
+    "ambiguousIdentity": 47,
+    "blockedEvidence": 2,
+    "implementedInReviewPatch": 61,
+    "sourceBackedFieldChanges": 412,
+    "exactMediaMissing": 110,
+    "mediaReplacements": 0
+  },
+  "fieldEvidenceMapping": {
+    "passed": true,
+    "linkedTechnicalChanges": 412,
+    "ambiguousOrBlockedRowsPatched": 0
+  },
+  "checks": [
+    {
+      "command": "pnpm typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm test",
+      "result": "passed",
+      "tests": 68,
+      "failed": 0,
+      "note": "Sandbox localhost connections initially returned EACCES; rerun with localhost networking allowed passed."
+    },
+    {
+      "command": "pnpm exec tsx --test tests/catalog-review-integration.test.ts tests/catalog-review-patch.test.ts",
+      "result": "passed",
+      "tests": 4,
+      "failed": 0,
+      "note": "Final 412-field patch rechecked after bilingual prose follow-ups."
+    },
+    {
+      "command": "pnpm build",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm check:bundles",
+      "result": "passed",
+      "initialJsGzipKb": 84.2,
+      "largestChunkKb": 403.5
+    },
+    {
+      "command": "pnpm lint",
+      "result": "failed_existing_baseline",
+      "baselineErrors": 197,
+      "currentErrors": 197,
+      "newDiagnostics": 0,
+      "details": "lint-validation.json"
+    },
+    {
+      "command": "Targeted oxlint of all new TypeScript/MJS review scripts, planner and tests",
+      "result": "passed"
+    },
+    {
+      "command": "python scripts/verify-review-media.py",
+      "result": "passed",
+      "decodedAssets": 35,
+      "newExactImages": 0
+    }
+  ],
+  "browser": {
+    "environment": "Loopback-only disposable SQLite on port 3017; public baseline only; no owner database or credentials",
+    "results": [
+      "English admin file picker accepted review patch: zero new records, 61 updates; save disabled until checkbox reviewed",
+      "Confirmed local save displayed Saved successfully; catalog remained 110 products",
+      "NACHI6008 product page showed grease6100 rpm and translated cage/seals in English and Persian",
+      "Exact6305-2RZ catalog filter returned one item; English and Persian Quick View showed d25 D62 B17, C23.4 C0 11.6, reference24000, limiting13000, CN and non-contact NBR seals",
+      "All rendered reference images loaded; family-reference labels remained visible; no console errors"
+    ],
+    "scopeNote": "Browser workflow used the 397-field patch; later15 prose-only corrections were validated with final API integration tests. Screenshot6305-2RZ is identical in the final patch."
+  },
+  "releaseGate": "NOT READY: identity, unsupported technical fields and exact media remain unresolved. No live writes, deployment or company datasheet production."
+}

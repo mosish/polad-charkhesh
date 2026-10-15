@@ -50,6 +50,6 @@ export function catalogReview(p:BearingProduct){
  const exactPhotoCandidates=photos.filter(url=>!url.startsWith('/assets/images/')&&!url.startsWith('/reference-images/'));
  return {id:p.id,code:p.code,category:p.category,archived:Boolean(p.isArchived),gaps:productGaps(p),missingFields,photos,exactPhotoCandidates,pdfUrl:p.pdfUrl||null,
   sources:(p.technicalSources||[]).map(source=>({...source})),
-  reviewReasons:[...(p.brands.length>1?['Multiple manufacturers share one specification record']:[]),...(/\//.test(p.code)?['Designation contains alternative suffixes']:[])],
+  reviewReasons:[...(p.brands.length>1?['Multiple brand labels: confirm group aliases or competing manufacturers']:[]),...(/\//.test(p.code)?['Slash in designation: confirm suffix or component-pair meaning']:[])],
   manufacturerVerification:'Pending independent check; recorded source metadata is not proof of current accuracy'};
 }
