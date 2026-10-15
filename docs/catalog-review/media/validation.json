@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-15",
+  "scope": "SKF 6305-2RZ supplier-image follow-up only",
+  "checks": {
+    "typecheck": "passed",
+    "productionBuild": "passed; repeated after Quick View fitting correction",
+    "bundleBudgets": "passed",
+    "existingGuardedImportTests": "4 passed",
+    "mediaPatch": "one imageUrl change valid before and after technical review; owner imageUrl/gallery conflicts rejected; all other fields preserved",
+    "browser": "English and Persian product page and Persian Quick View verified; JPEG decoded at 1000 x 1000; full photo fits after intrinsic grid sizing correction",
+    "diffWhitespace": "passed"
+  },
+  "assetBytes": 45604,
+  "liveCatalogModified": false,
+  "deployed": false,
+  "screenshots": [
+    "skf-6305-2rz-updated-en.jpg",
+    "skf-6305-2rz-updated-fa.jpg",
+    "skf-6305-2rz-quick-view-fa.jpg"
+  ]
+}

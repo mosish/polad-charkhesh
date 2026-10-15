@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-15",
+  "productId": "skf-6305-2rz",
+  "designation": "6305-2RZ",
+  "sourceType": "supplier_listing_image",
+  "supplier": "Quality Bearings Online",
+  "sourceUrl": "https://www.qualitybearingsonline.com/6305-2rz-skf-deep-groove-bearing-25-x-62-x-17mm/",
+  "assetUrl": "https://cdn11.bigcommerce.com/s-03842/images/stencil/1280x1280/products/42257/409725/PR11638BI11609_6305_2rz_skf_6305_2RZ_SKF_Deep_Groove_Bearing_25_x_62_x_17mm_SZ4__19466.1750702232.jpg?c=2",
+  "localUrl": "/product-images/skf-6305-2rz-qbo.jpg",
+  "sha256": "a4d1e3a7acc65e00e45841bbc59a521f6a7f3de857131617690cd89e56fb99eb",
+  "bytes": 45604,
+  "width": 1000,
+  "height": 1000,
+  "transformation": "None; original downloaded JPEG retained",
+  "selection": "User supplied this exact product listing and requested replacement",
+  "listingIdentity": {
+    "brand": "SKF",
+    "designation": "6305-2RZ",
+    "dimensionsMm": [
+      25,
+      62,
+      17
+    ]
+  },
+  "listingAssociationVerified": true,
+  "exactPhotographedUnitVerified": false,
+  "reason": "The listing title and linked image identify the SKU; the photographed part marking is not legible enough for independent verification.",
+  "reuseTerms": "User-selected supplier source. No separate redistribution license established.",
+  "scope": "One image-only guarded patch. Technical fields and all other product images unchanged.",
+  "before": {
+    "present": false
+  },
+  "after": {
+    "present": true,
+    "value": "/product-images/skf-6305-2rz-qbo.jpg"
+  },
+  "altEn": "SKF 6305-2RZ supplier listing photograph: sealed bearing on an SKF box",
+  "altFa": "عکس فهرست فروشنده برای SKF 6305-2RZ: بیرینگ آب‌بندی‌شده روی جعبه SKF"
+}

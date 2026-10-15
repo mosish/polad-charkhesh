@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "baselineSha256": "72ba3c451a7e4eb3badc3b53e5841b680499e8dddbdf1e3afbe82c6bb4d5bf59",
+  "rows": [
+    {
+      "id": "skf-6305-2rz",
+      "identity": {
+        "code": "6305-2RZ",
+        "slug": "skf-6305-2rz",
+        "brands": [
+          "SKF"
+        ],
+        "category": "ball",
+        "schematicType": "deep-groove"
+      },
+      "guards": {
+        "images": {
+          "present": false
+        },
+        "isArchived": {
+          "present": false
+        }
+      },
+      "changes": [
+        {
+          "field": "imageUrl",
+          "before": {
+            "present": false
+          },
+          "after": {
+            "present": true,
+            "value": "/product-images/skf-6305-2rz-qbo.jpg"
+          },
+          "evidence": [
+            "https://www.qualitybearingsonline.com/6305-2rz-skf-deep-groove-bearing-25-x-62-x-17mm/",
+            "media/skf-6305-2rz.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

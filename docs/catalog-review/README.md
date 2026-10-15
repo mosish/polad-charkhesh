@@ -2,7 +2,7 @@
 
 Start with [REPORT.md](REPORT.md), then [BLOCKERS.md](BLOCKERS.md). The machine-readable [ledger](ledger.json) covers all 110 public products and includes old values, source observations, unresolved fields, media status and proposed changes. Source research is under `research/`.
 
-**This is a partial review, not verification sign-off. No deployment or live data import was performed.** The 61-row patch contains only accepted corrections; 49 records are held. Exact product media remains unresolved for all 110 records. Existing family-reference imagery stays labeled and unchanged.
+**This is a partial review, not verification sign-off. No deployment or live data import was performed.** The 61-row patch contains only accepted corrections; 49 records are held. Independent exact product media verification remains unresolved for all 110 records. A subsequent user-selected supplier image replaces the SKF 6305-2RZ family illustration in the isolated preview; see the [image follow-up](media/README.md) and separate [image-only patch](media.patch.json). Other family-reference imagery remains unchanged.
 
 ## Apply only through the reviewed import workflow
 
