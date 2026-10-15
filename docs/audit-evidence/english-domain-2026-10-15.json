@@ -1,0 +1,18 @@
+{
+  "reviewDate": "2026-10-15",
+  "applicationRevision": "640b590a37aab56f4241d73565895f5ff6c9d74a",
+  "englishOrigin": "https://poladcharkhesh.com",
+  "persianOrigin": "https://poladcharkhesh.ir",
+  "publicNameservers": ["andy.ns.cloudflare.com", "mckinley.ns.cloudflare.com"],
+  "apexAndWwwA": "213.176.28.119",
+  "registrarBlocker": "resolved in public DNS",
+  "activationHelperSha256": "6204e753d7e751b2a61818e768889902d18216b0196a58579527ee1da27ffab2",
+  "tls": {"lineage": "polad-com", "hosts": ["poladcharkhesh.com", "www.poladcharkhesh.com"], "expires": "2027-01-13", "renewalDryRun": "passed including deployment hooks"},
+  "ownerData": "SQLite integrity and product/admin/settings/media hashes identical; counts 110/1/0",
+  "persianNginxConfig": "checksum unchanged",
+  "vpsPublicHostnameSuite": {"status": "passed", "products": 110, "pages": 226, "assets": 6, "checkedAt": "2026-10-15T09:01:32.672Z"},
+  "independentExternalChecks": {"windowsNodeFullSuite": "two attempts timed out; no pass claimed", "curlPowerShell": "trusted HTTPS 200; English default and canonical; Persian 200; English www redirect preserves path/query", "chrome": "English/LTR, real WebGL 2 canvas, zero overflow; language switch navigates to Persian/RTL on .ir and back"},
+  "cloudflare": {"encryption": "Full (strict), saved and confirmed", "zone": "pending", "edgeCertificate": "Pending Validation (TXT)", "apexAndWww": "DNS only until zone and edge certificate are active"},
+  "newAuthenticatedEnglishAdminWorkflow": "not performed",
+  "applicationDataCredentialsAndIndexingSettings": "retained"
+}

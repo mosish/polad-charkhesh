@@ -1,5 +1,7 @@
 # VPS publication and verification — 2026-10-14
 
+> **2026-10-15 update:** The English registrar blocker is resolved and both language domains now serve trusted HTTPS. English origin activation, renewal and preserved-data checks passed. English Cloudflare remains DNS only pending zone/edge-certificate validation. [Current evidence](ENGLISH_DOMAIN_2026-10-15.md). Earlier blocked-domain statements below record the previous state.
+
 **Published at the owner's request on the temporary HTTPS origin:** [https://213.176.28.119/](https://213.176.28.119/). [Admin login](https://213.176.28.119/admin/).
 
 **Later domain update:** [Persian `.ir`](https://poladcharkhesh.ir/) is now live through Cloudflare with trusted apex/www origin HTTPS, Full (strict) and automatic renewal. External checks of 226 page/language variants, existing-owner login, unchanged-company-settings saving and certificate renewal dry-run passed. `.com` remains blocked by HostIran's explicit NS-change suspension error; independent English activation is prepared. See [the domain connection record](DOMAIN_CONNECTION_2026-10-14.md).

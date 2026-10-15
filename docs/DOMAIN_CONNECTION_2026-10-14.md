@@ -1,5 +1,7 @@
 # Company domain connection — 2026-10-14
 
+> **2026-10-15 update:** The English registrar blocker is resolved and both language domains now serve trusted HTTPS. English origin activation, renewal and preserved-data checks passed. English Cloudflare remains DNS only pending zone/edge-certificate validation. [Current evidence](ENGLISH_DOMAIN_2026-10-15.md). Earlier blocked-domain statements below record the previous state.
+
 **Current status: Persian domain live; English domain blocked by the registrar.** [Persian website](https://poladcharkhesh.ir/) · [Admin panel](https://poladcharkhesh.ir/admin/). `.ir` defaults to Persian; `.com` remains the intended English origin. Do not redirect one language apex to the other. The [temporary IP website](https://213.176.28.119/) remains available. Domain activation used application revision `174a233291ccd9ca81de25a3c669568e3d61548a` without rebuilding/resetting data. The later [mobile 3D compatibility release](MOBILE_ANIMATION_2026-10-14.md), `aac7b756d6b96fa02481007064996597c8327372`, is now installed with unchanged domain routing and owner rows.
 
 ## Cloudflare activation and current blocker

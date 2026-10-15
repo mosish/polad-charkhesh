@@ -1,16 +1,16 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
-> **Project status:** Persian domain live with Cloudflare and trusted HTTPS; English registrar recovery and final acceptance remain open
+> **Project status:** Both language domains live with trusted HTTPS; English Cloudflare proxy activation and final acceptance remain open
 >
 > **Source of truth for code:** GitHub `main`
 >
-> **Last status review:** 2026-10-14
+> **Last status review:** 2026-10-15
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
 **Live Persian website:** [poladcharkhesh.ir](https://poladcharkhesh.ir/) · [Admin login](https://poladcharkhesh.ir/admin/). Cloudflare proxying, Full (strict), a valid origin certificate and automatic renewal are active. The existing 110-product catalog and owner account were preserved. The [temporary IP origin](https://213.176.28.119/) remains available. Indexing remains gated by final content/audit acceptance. [Deployment evidence and remaining checks](docs/VPS_DEPLOYMENT_2026-10-14.md).
 
-**English domain update:** Cloudflare apex/www records are ready, but HostIran rejects changing `.com` nameservers with “Domain is suspended. Nameserver update is not allowed.” The parent registry still returns the nonverified nameservers. The owner has already contacted support. Independent English HTTPS activation is prepared without affecting the live Persian origin. [Current evidence and next step](docs/DOMAIN_CONNECTION_2026-10-14.md).
+**Live English website:** [poladcharkhesh.com](https://poladcharkhesh.com/) · [Admin login](https://poladcharkhesh.com/admin/). The registrar NS blocker is resolved. Independent apex/www HTTPS and its renewal dry-run passed; `.com` defaults to English and `.ir` to Persian. English Cloudflare Full (strict) is saved; records remain DNS only while its zone and edge certificate finish validation. [Activation evidence](docs/ENGLISH_DOMAIN_2026-10-15.md).
 
 **Install from GitHub on Ubuntu 24.04:** [English instructions](docs/GITHUB_VPS_INSTALL.md) · [راهنمای کامل فارسی](docs/UBUNTU_24_GUIDE_FA.md). The repository includes the admin panel and API. The first-install helper builds a pinned source revision and supports private owner-data restoration or an explicitly new database; its default HTTPS workflow is restricted staging. Credentials, databases and uploaded files must remain outside GitHub. The existing VPS has now been published using the separate deployment recorded above; do not rerun the first-install helper on it.
 
@@ -22,7 +22,7 @@ This is **not an online shop**. There are no prices, carts, checkout, payments, 
 
 ## Current project status
 
-The main feature set is published on the Persian domain and temporary VPS address. Owner-authenticated administration, an unchanged-settings save on the real Persian origin and targeted Persian mobile preview checks passed. The current work is to **verify manufacturer data and content, complete final audits, and resolve English-domain registrar suspension**. Successful deployment checks do not mean manufacturer data and every browser workflow have been approved.
+The main feature set is published on both language domains and the temporary VPS address. Owner-authenticated administration, an unchanged-settings save on the real Persian origin and targeted Persian mobile preview checks passed. The current work is to **verify manufacturer data and content, complete final audits, and complete English Cloudflare edge activation**. Successful deployment checks do not mean manufacturer data and every browser workflow have been approved.
 
 | Area | Status | What this means now |
 | --- | --- | --- |
@@ -40,12 +40,12 @@ The main feature set is published on the Persian domain and temporary VPS addres
 | Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
-| Technical SEO | ✅ Verified locally and on `.ir` | 113 routes pass bilingual content and production HTTP checks. Shared breadcrumbs, LocalBusiness/Product schema, canonical/hreflang, robots, sitemap, llms.txt, branded 404, favicon and alt-text improvements are implemented. [Checklist and evidence](docs/SEO_PREDEPLOY_CHECKLIST.md). English-domain connection and indexing approval remain pending. |
+| Technical SEO | ✅ Verified locally and on `.ir` | 113 routes pass bilingual content and production HTTP checks. Shared breadcrumbs, LocalBusiness/Product schema, canonical/hreflang, robots, sitemap, llms.txt, branded 404, favicon and alt-text improvements are implemented. [Checklist and evidence](docs/SEO_PREDEPLOY_CHECKLIST.md). English Cloudflare edge activation and indexing approval remain pending. |
 | Exact product photos and manufacturer PDFs | 🟡 Pending content | Exact SKU photos are still missing. SKF's public product/image hosts blocked reliable access, so the 42 new records use clearly labeled family-reference visuals and link to SKF's official catalog. Admin uploads can replace each image later. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | 🟡 In progress | Tooling now uses the platform TypeScript configuration and Vite-appropriate rules. Current count is 197 findings; new compatibility/fallback files pass targeted lint, but repository lint still fails and remains a launch blocker. |
 | Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
-| VPS deployment and production smoke test | 🟡 Persian domain live; final acceptance open | Existing owner data published on `.ir` HTTPS and the temporary IP. All 64 source tests, 226 live language/page checks, owner-authenticated admin workflows, Persian mobile preview, certificate renewal, restore drill and real service crash recovery passed. The owner confirmed Safari content and intermediate animation recovery; the owner also confirmed the published 3D model appears and moves on Safari. `.com` registrar recovery, host reboot, lint/content and full audit remain open. [Deployment evidence](docs/VPS_DEPLOYMENT_2026-10-14.md). |
+| VPS deployment and production smoke test | 🟡 Both domains live; final acceptance open | Existing owner data published on both language-domain HTTPS origins and the temporary IP. All 64 source tests, 226 live language/page checks, owner-authenticated admin workflows, Persian mobile preview, certificate renewal, restore drill and real service crash recovery passed. The owner confirmed Safari content and intermediate animation recovery; the owner also confirmed the published 3D model appears and moves on Safari. English Cloudflare edge activation, host reboot, lint/content and full audit remain open. [Deployment evidence](docs/VPS_DEPLOYMENT_2026-10-14.md). |
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
