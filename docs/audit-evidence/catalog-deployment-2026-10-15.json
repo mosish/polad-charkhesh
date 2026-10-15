@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-15T13:26:09.204Z",
+  "release": "ef783bc4d4583e3bfbe61e57bcfba18986c81f3e",
+  "domains": [
+    {
+      "origin": "https://poladcharkhesh.ir",
+      "defaultLanguage": "fa",
+      "products": 110,
+      "technicalRows": 61,
+      "imageRows": 100,
+      "verifiedChangedFields": 573,
+      "imagesFetchedAndHashMatched": 100,
+      "unresolvedImagesPreserved": 10
+    },
+    {
+      "origin": "https://poladcharkhesh.com",
+      "defaultLanguage": "en",
+      "products": 110,
+      "technicalRows": 61,
+      "imageRows": 100,
+      "verifiedChangedFields": 573,
+      "imagesFetchedAndHashMatched": 100,
+      "unresolvedImagesPreserved": 10
+    }
+  ]
+}

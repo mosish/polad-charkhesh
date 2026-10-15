@@ -8,7 +8,7 @@
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
-**Next phase — manufacturer catalog verification:** The owner requested a separate review project covering all 110 published products, official product images and field-level specification evidence before company datasheet PDFs. A verified local source/history/data checkpoint preserves the current website. [Scope, evidence requirements and delivery brief](docs/CATALOG_VERIFICATION_BRIEF.md). This is a new work phase, not a claim that every record has already been verified or replaced.
+**Catalog update published — 2026-10-15:** The owner-authorized update applied 61 technical-record patches and 100 product-image replacements across the existing 110-product catalog. Images include 57 supplier-listing matches and 43 clearly labeled examples; ten unresolved images remain unchanged. [Deployment and verification record](docs/CATALOG_DEPLOYMENT_2026-10-15.md). Manufacturer evidence gaps and final engineering acceptance remain open before company datasheet PDFs; publication does not establish exact photographed-unit verification.
 
 **Live Persian website:** [poladcharkhesh.ir](https://poladcharkhesh.ir/) · [Admin login](https://poladcharkhesh.ir/admin/). Cloudflare proxying, Full (strict), a valid origin certificate and automatic renewal are active. The existing 110-product catalog and owner account were preserved. The [temporary IP origin](https://213.176.28.119/) remains available. Indexing remains gated by final content/audit acceptance. [Deployment evidence and remaining checks](docs/VPS_DEPLOYMENT_2026-10-14.md).
 
