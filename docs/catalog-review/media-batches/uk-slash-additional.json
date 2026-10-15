@@ -1,0 +1,257 @@
+{
+  "checkedAt": "2026-10-15",
+  "records": [
+    {
+      "productId": "pc-22212-ek",
+      "query": "22212",
+      "brand": "SKF",
+      "target": "22212 EK C3",
+      "example": true,
+      "original": "22212 EK / C3 + H312",
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/22212-ek-c3-skf-spherical-roller-bearing-60x110x28",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2255BI2250_22212ek_c3_skf_22212_EK_C3_SKF_Spherical_Roller_Bearing_60x110x28_SZ4__63744.1730290298.860.860.jpg?v=1752066435&width=620",
+      "originalAssetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2255BI2250_22212ek_c3_skf_22212_EK_C3_SKF_Spherical_Roller_Bearing_60x110x28_SZ4__63744.1730290298.860.860.jpg?v=1752066435",
+      "localUrl": "/product-images/pc-22212-ek-supplier-uk.jpg",
+      "pageTitle": "22212 EK/C3 SKF Spherical Roller - Quality Bearings Online",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "checkedAt": "2026-10-15",
+      "bytes": 49963,
+      "sha256": "aed11b7d6b5f4e16024b945db398e0d8c0a9876caf45e4e87c5ea5b457888e79",
+      "width": 620,
+      "height": 624,
+      "imageFormat": "JPEG",
+      "mediaType": "supplier_listing_image",
+      "sourcePageSha256": "08467dbcc646c0a59685341218b4d7d758fe237d3c39e4de0490deb199a24c88",
+      "sourcePageCapture": "Title and OpenGraph metadata retained; fullbody transfer timed out after15seconds.",
+      "reuseTerms": "Not established; source attribution retained.",
+      "altEn": "SKF 22212 EK C3 — listed-brand example",
+      "altFa": "SKF 22212 EK C3 — نمونه از برندهای فهرست‌شده",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/22212-ek-c3-skf-spherical-roller-bearing-60x110x28",
+          "result": "Exact target designation found through web/public storefront search and confirmed in title+OpenGraph image metadata. Downloaded620pixel rendition and fully decoded."
+        }
+      ],
+      "visualInspection": "Visually inspected supplier photograph. SKF box and relevant bearing family visible. Supplier reuses the spherical-bearing composition across several size/variant listings; exact photographed unit and markings are not verified. Treat as a labeled listed-brand example.",
+      "listingIdentity": {
+        "brand": "SKF",
+        "designation": "22212 EK C3",
+        "title": "22212 EK/C3 SKF Spherical Roller - Quality Bearings Online"
+      }
+    },
+    {
+      "productId": "pc-22220-ek",
+      "query": "22220",
+      "brand": "SKF",
+      "target": "22220 EK C3",
+      "example": true,
+      "original": "22220 EK / C3",
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/22220-ek-c3-skf-spherical-roller-bearing-100x180x46",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2308BI2303_22220ek_c3_skf_22220_EK_C3_SKF_Spherical_Roller_Bearing_100x180x46_SZ4__87475.1730290719.860.860.jpg?v=1752066446&width=620",
+      "originalAssetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2308BI2303_22220ek_c3_skf_22220_EK_C3_SKF_Spherical_Roller_Bearing_100x180x46_SZ4__87475.1730290719.860.860.jpg?v=1752066446",
+      "localUrl": "/product-images/pc-22220-ek-supplier-uk.jpg",
+      "pageTitle": "22220 EK/C3 SKF Spherical Roller - Quality Bearings Online",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "checkedAt": "2026-10-15",
+      "bytes": 49963,
+      "sha256": "aed11b7d6b5f4e16024b945db398e0d8c0a9876caf45e4e87c5ea5b457888e79",
+      "width": 620,
+      "height": 624,
+      "imageFormat": "JPEG",
+      "mediaType": "supplier_listing_image",
+      "sourcePageSha256": "7cf5151a014e544979972940c87a00cad29489514743d1d1a209175ba83d870d",
+      "sourcePageCapture": "Title and OpenGraph metadata retained; fullbody transfer timed out after15seconds.",
+      "reuseTerms": "Not established; source attribution retained.",
+      "altEn": "SKF 22220 EK C3 — listed-brand example",
+      "altFa": "SKF 22220 EK C3 — نمونه از برندهای فهرست‌شده",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/22220-ek-c3-skf-spherical-roller-bearing-100x180x46",
+          "result": "Exact target designation found through web/public storefront search and confirmed in title+OpenGraph image metadata. Downloaded620pixel rendition and fully decoded."
+        }
+      ],
+      "visualInspection": "Visually inspected supplier photograph. SKF box and relevant bearing family visible. Supplier reuses the spherical-bearing composition across several size/variant listings; exact photographed unit and markings are not verified. Treat as a labeled listed-brand example.",
+      "listingIdentity": {
+        "brand": "SKF",
+        "designation": "22220 EK C3",
+        "title": "22220 EK/C3 SKF Spherical Roller - Quality Bearings Online"
+      }
+    },
+    {
+      "productId": "pc-22316-cc-w33",
+      "query": "22316",
+      "brand": "SKF",
+      "target": "22316 E/C3",
+      "example": true,
+      "original": "22316 CC/W33 / C3",
+      "supplier": "Quality Bearings Online",
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/22316-e-c3-skf-spherical-roller-bearing-80x170x58",
+      "status": "downloaded",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2436BI2431_22316e_c3_skf_22316_E_C3_SKF_Spherical_Roller_Bearing_80x170x58_SZ4__31378.1730292235.860.860.jpg?v=1752066472&width=620",
+      "originalAssetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2436BI2431_22316e_c3_skf_22316_E_C3_SKF_Spherical_Roller_Bearing_80x170x58_SZ4__31378.1730292235.860.860.jpg?v=1752066472",
+      "localUrl": "/product-images/pc-22316-cc-w33-supplier-uk.jpg",
+      "pageTitle": "22316 E/C3 SKF Spherical Roller - Quality Bearings Online",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "checkedAt": "2026-10-15",
+      "bytes": 49963,
+      "sha256": "aed11b7d6b5f4e16024b945db398e0d8c0a9876caf45e4e87c5ea5b457888e79",
+      "width": 620,
+      "height": 624,
+      "imageFormat": "JPEG",
+      "mediaType": "supplier_listing_image",
+      "sourcePageSha256": "c2f01f023c6a1ef6b3f9579c1c194db29239aa2d28d64b3d4be128420d82b691",
+      "sourcePageCapture": "Title and OpenGraph metadata retained; fullbody transfer timed out after15seconds.",
+      "reuseTerms": "Not established; source attribution retained.",
+      "altEn": "SKF 22316 E/C3 — listed-brand example",
+      "altFa": "SKF 22316 E/C3 — نمونه از برندهای فهرست‌شده",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/22316-e-c3-skf-spherical-roller-bearing-80x170x58",
+          "result": "Exact target designation found through web/public storefront search and confirmed in title+OpenGraph image metadata. Downloaded620pixel rendition and fully decoded."
+        }
+      ],
+      "visualInspection": "Visually inspected supplier photograph. SKF box and relevant bearing family visible. Supplier reuses the spherical-bearing composition across several size/variant listings; exact photographed unit and markings are not verified. Treat as a labeled listed-brand example.",
+      "listingIdentity": {
+        "brand": "SKF",
+        "designation": "22316 E/C3",
+        "title": "22316 E/C3 SKF Spherical Roller - Quality Bearings Online"
+      }
+    },
+    {
+      "productId": "pc-22324-ccja-w33va405",
+      "query": "22324",
+      "brand": "SKF",
+      "target": "22324 CCJA/W33VA405",
+      "example": true,
+      "original": "22324 CCJA/W33VA405 (Vibrating Screen Special)",
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/22324-ccja-w33va405-skf-spherical-roller-bearing-120x260x86",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2485BI2480_22324ccja_w33va405_skf_22324_CCJA_W33VA405_SKF_Spherical_Roller_Beari_SZ4__72073.1730292624.860.860.jpg?v=1752153396&width=620",
+      "originalAssetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2485BI2480_22324ccja_w33va405_skf_22324_CCJA_W33VA405_SKF_Spherical_Roller_Beari_SZ4__72073.1730292624.860.860.jpg?v=1752153396",
+      "localUrl": "/product-images/pc-22324-ccja-w33va405-supplier-uk.jpg",
+      "pageTitle": "22324 CCJA/W33VA405 SKF Spherical Roller - Quality Bearings",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "checkedAt": "2026-10-15",
+      "bytes": 49963,
+      "sha256": "aed11b7d6b5f4e16024b945db398e0d8c0a9876caf45e4e87c5ea5b457888e79",
+      "width": 620,
+      "height": 624,
+      "imageFormat": "JPEG",
+      "mediaType": "supplier_listing_image",
+      "sourcePageSha256": "a08ce6616acb8610e27e9c09253638e3d6e82a8965450388426a914dd45e8ff5",
+      "sourcePageCapture": "Title and OpenGraph metadata retained; fullbody transfer timed out after15seconds.",
+      "reuseTerms": "Not established; source attribution retained.",
+      "altEn": "SKF 22324 CCJA/W33VA405 — listed-brand example",
+      "altFa": "SKF 22324 CCJA/W33VA405 — نمونه از برندهای فهرست‌شده",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/22324-ccja-w33va405-skf-spherical-roller-bearing-120x260x86",
+          "result": "Exact target designation found through web/public storefront search and confirmed in title+OpenGraph image metadata. Downloaded620pixel rendition and fully decoded."
+        }
+      ],
+      "visualInspection": "Visually inspected supplier photograph. SKF box and relevant bearing family visible. Supplier reuses the spherical-bearing composition across several size/variant listings; exact photographed unit and markings are not verified. Treat as a labeled listed-brand example.",
+      "listingIdentity": {
+        "brand": "SKF",
+        "designation": "22324 CCJA/W33VA405",
+        "title": "22324 CCJA/W33VA405 SKF Spherical Roller - Quality Bearings"
+      }
+    },
+    {
+      "productId": "pc-3308-a-2z",
+      "query": "3308",
+      "brand": "SKF",
+      "target": "3308 A-2Z/C3MT33",
+      "example": true,
+      "original": "3308 A-2Z/C3 (Double Row)",
+      "supplier": "Quality Bearings Online",
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/3308a-2z-c3mt33-skf-double-row-self-aligning-ball-bearings-40x90x36-5mm",
+      "status": "downloaded",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR6600BI6575_3308a_2z_c3mt33_skf_3308A_2Z_C3MT33_SKF_Double_Row_Angular_Contact_Be_SZ4__46240.1730810526.860.860.jpg?v=1751966193&width=620",
+      "originalAssetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR6600BI6575_3308a_2z_c3mt33_skf_3308A_2Z_C3MT33_SKF_Double_Row_Angular_Contact_Be_SZ4__46240.1730810526.860.860.jpg?v=1751966193",
+      "localUrl": "/product-images/pc-3308-a-2z-supplier-uk.jpg",
+      "pageTitle": "3308A 2Z/C3MT33 - SKF Angular Contact Bearing - Quality Bearings",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "checkedAt": "2026-10-15",
+      "bytes": 46191,
+      "sha256": "f065325a42c3a9e2d3b0a52d42a84033b85659eed0c376975670785bf7b11f2d",
+      "width": 620,
+      "height": 620,
+      "imageFormat": "JPEG",
+      "mediaType": "supplier_listing_image",
+      "sourcePageSha256": "e4d006b51229b0ee94b6fc0013e2ef1a727e4e2f8a2e1259a8b983bb1a49973f",
+      "sourcePageCapture": "Title and OpenGraph metadata retained; fullbody transfer timed out after15seconds.",
+      "reuseTerms": "Not established; source attribution retained.",
+      "altEn": "SKF 3308 A-2Z/C3MT33 — listed-brand example",
+      "altFa": "SKF 3308 A-2Z/C3MT33 — نمونه از برندهای فهرست‌شده",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/3308a-2z-c3mt33-skf-double-row-self-aligning-ball-bearings-40x90x36-5mm",
+          "result": "Exact target designation found through web/public storefront search and confirmed in title+OpenGraph image metadata. Downloaded620pixel rendition and fully decoded."
+        }
+      ],
+      "visualInspection": "Visually inspected photograph of a shielded bearing on an SKF box from3308 A-2Z/C3MT33 listing. Exact pictured unit marking not independently verified. Treat as a labeled listed-brand example.",
+      "listingIdentity": {
+        "brand": "SKF",
+        "designation": "3308 A-2Z/C3MT33",
+        "title": "3308A 2Z/C3MT33 - SKF Angular Contact Bearing - Quality Bearings"
+      }
+    },
+    {
+      "productId": "pc-23228-cc-w33",
+      "query": "23228",
+      "brand": "SKF",
+      "target": "23228 CC/W33",
+      "example": true,
+      "original": "23228 CC/W33 (Heavy Mining SAG Mill)",
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/23228-cc-w33-skf-spherical-roller-bearing-140x250x88",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2694BI2687_23228cc_w33_skf_23228_CC_W33_SKF_Spherical_Roller_Bearing_140x250x88_SZ4__98900.1730294630.860.860.jpg?v=1752153442&width=620",
+      "originalAssetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR2694BI2687_23228cc_w33_skf_23228_CC_W33_SKF_Spherical_Roller_Bearing_140x250x88_SZ4__98900.1730294630.860.860.jpg?v=1752153442",
+      "localUrl": "/product-images/pc-23228-cc-w33-supplier-uk.jpg",
+      "pageTitle": "23228 CC/W33 SKF Spherical Roller - Quality Bearings Online",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "checkedAt": "2026-10-15",
+      "bytes": 49963,
+      "sha256": "aed11b7d6b5f4e16024b945db398e0d8c0a9876caf45e4e87c5ea5b457888e79",
+      "width": 620,
+      "height": 624,
+      "imageFormat": "JPEG",
+      "mediaType": "supplier_listing_image",
+      "sourcePageSha256": "caa47aef870a5c865be709c6e92a82fae03ec1cbcc7d22eac7fe57af01b07567",
+      "sourcePageCapture": "Title and OpenGraph metadata retained; fullbody transfer timed out after15seconds.",
+      "reuseTerms": "Not established; source attribution retained.",
+      "altEn": "SKF 23228 CC/W33 — listed-brand example",
+      "altFa": "SKF 23228 CC/W33 — نمونه از برندهای فهرست‌شده",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/23228-cc-w33-skf-spherical-roller-bearing-140x250x88",
+          "result": "Exact target designation found through web/public storefront search and confirmed in title+OpenGraph image metadata. Downloaded620pixel rendition and fully decoded."
+        }
+      ],
+      "visualInspection": "Visually inspected supplier photograph. SKF box and relevant bearing family visible. Supplier reuses the spherical-bearing composition across several size/variant listings; exact photographed unit and markings are not verified. Treat as a labeled listed-brand example.",
+      "listingIdentity": {
+        "brand": "SKF",
+        "designation": "23228 CC/W33",
+        "title": "23228 CC/W33 SKF Spherical Roller - Quality Bearings Online"
+      }
+    }
+  ]
+}

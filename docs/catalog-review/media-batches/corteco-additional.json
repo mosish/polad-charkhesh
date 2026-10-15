@@ -1,0 +1,112 @@
+{
+  "checkedAt": "2026-10-15",
+  "scope": "Two exact Corteco/Freudenberg partnumber records; examples not authorized for these records",
+  "records": [
+    {
+      "productId": "pc-corteco-12011153b",
+      "example": false,
+      "brand": "Corteco",
+      "target": "12011153B",
+      "status": "blocked",
+      "supplier": null,
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "exactPhotographedUnitVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "Corteco 12011153B: exact product image unresolved",
+      "altFa": "Corteco 12011153B: تصویر دقیق محصول تأیید نشده",
+      "blockers": [
+        "Exact Corteco12011153B supplier listings identify a40mm bore,52/58mm outer diameter and7.5mm nominal height (some rounded to8mm), BASLSF NBR. Current record claims TC35x52x7, so the exact partnumber photograph would contradict current stock identity.",
+        "No replacement applied. Owner must resolve whether stock is12011153B BASLSF40x52/58x7.5 or a different35x52x7 TC seal. No different partnumber substituted."
+      ],
+      "checkedSources": [
+        "https://www.findyourseal.com/",
+        "https://www.oscaro.com/bague-detancheite-moyeu-de-roue-corteco-12011153b-2498071-656-p",
+        "https://www.trodo.com/shaft-seal-manual-transmission-corteco-12011153b",
+        "https://www.autodoc.parts/corteco/381445",
+        "https://www.automag.ro/simering-butuc-roata/corteco/td12011153b"
+      ],
+      "checkedQueries": [
+        "Corteco \"12011153B\"",
+        "\"12011153B\" \"seal\"",
+        "\"12011153\" \"Corteco\""
+      ],
+      "exactPartnumberListingFound": true,
+      "currentCatalogIdentity": {
+        "d": 35,
+        "D": 52,
+        "B": 7,
+        "design": "TC",
+        "material": "NBR"
+      },
+      "sourceIdentity": {
+        "d": 40,
+        "D": 52,
+        "secondaryOuterDiameterMm": 58,
+        "B": 7.5,
+        "design": "BASLSF",
+        "material": "NBR"
+      },
+      "technicalEvidenceFile": "docs/catalog-review/research/schaeffler-corteco.json",
+      "replacementImplemented": false,
+      "notes": [
+        "Current supplier search corroborates or retains previous identity blocker. No technical changes or product image replacement made."
+      ]
+    },
+    {
+      "productId": "pc-corteco-12012014b",
+      "example": false,
+      "brand": "Corteco",
+      "target": "12012014B",
+      "status": "blocked",
+      "supplier": null,
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "exactPhotographedUnitVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "Corteco 12012014B: exact product image unresolved",
+      "altFa": "Corteco 12012014B: تصویر دقیق محصول تأیید نشده",
+      "blockers": [
+        "No exact Corteco12012014B supplier or manufacturer listing established in current exact-partnumber searches. Search absence does not prove the part does not exist.",
+        "Existing official finder review at50x72x8 returned FPM12016201B and NBR12010970B/12011177B; these are different references and rejected as image substitutes.",
+        "Stock partnumber/marking must be resolved before assigning an image. No unsupported brand example or alternate partnumber used."
+      ],
+      "checkedSources": [
+        "https://www.findyourseal.com/",
+        "https://web.tecalliance.net/ecatcorteco",
+        "https://www.corteco.com/products/sealing/"
+      ],
+      "checkedQueries": [
+        "Corteco \"12012014B\"",
+        "\"12012014B\" \"seal\"",
+        "\"12012014\" \"Corteco\""
+      ],
+      "exactPartnumberListingFound": false,
+      "currentCatalogIdentity": {
+        "d": 50,
+        "D": 72,
+        "B": 8,
+        "design": "TC",
+        "material": "FKM"
+      },
+      "sourceIdentity": null,
+      "technicalEvidenceFile": "docs/catalog-review/research/schaeffler-corteco.json",
+      "replacementImplemented": false,
+      "notes": [
+        "Current supplier search corroborates or retains previous identity blocker. No technical changes or product image replacement made."
+      ]
+    }
+  ]
+}

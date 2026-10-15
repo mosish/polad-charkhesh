@@ -1,0 +1,268 @@
+{
+  "checkedAt": "2026-10-15",
+  "records": [
+    {
+      "productId": "pc-fag-6312-tb-p6",
+      "example": false,
+      "brand": "FAG",
+      "target": "6312-TB-P6",
+      "status": "blocked",
+      "supplier": null,
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "exactPhotographedUnitVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "FAG 6312-TB-P6: supplier listing image",
+      "altFa": "FAG 6312-TB-P6: تصویر فهرست تأمین‌کننده",
+      "blockers": [
+        "Only 6312-TB-P6-C3 listings found; C3 is an unapproved additional suffix."
+      ],
+      "checkedSources": [
+        "https://www.abf.store/s/en/bearings/6312-TB-P6-C3-FAG/416094",
+        "https://motionparts.de/products/6312-tb-p6-c3-fag"
+      ]
+    },
+    {
+      "productId": "pc-fag-22216-e1-xl-k",
+      "example": false,
+      "brand": "FAG",
+      "target": "22216-E1-XL-K",
+      "status": "downloaded",
+      "supplier": "Moglix",
+      "sourceUrl": "https://www.moglix.com/fag-22216-e1-xl-k-spherical-roller-bearing-80x140x33-mm/mp/msn2vhrmxq0ukx",
+      "assetUrl": "https://cdn.moglix.com/p/J/H/H/d/MINJHH3FILKU3-xxlarge.jpg",
+      "localUrl": "/product-images/pc-fag-22216-e1-xl-k-supplier.jpg",
+      "pageTitle": "FAG 22216-E1-XL-K Spherical Roller Bearing 80x140x33 mm",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "2fb7b023df69b9caacda759226c94d04341e719ca0d35da9fbe1d151679e744f",
+      "bytes": 22728,
+      "width": 800,
+      "height": 800,
+      "altEn": "FAG 22216-E1-XL-K: supplier cutaway illustration",
+      "altFa": "FAG 22216-E1-XL-K: تصویر برشی تأمین‌کننده",
+      "blockers": [],
+      "checkedSources": [
+        "https://www.moglix.com/fag-22216-e1-xl-k-spherical-roller-bearing-80x140x33-mm/mp/msn2vhrmxq0ukx"
+      ],
+      "imageKind": "supplier_cutaway_illustration",
+      "notes": [
+        "Exact designation and brand listing association confirmed. Linked image is a cutaway illustration, not a photograph of the physical unit. No technical values imported."
+      ],
+      "supplierReuseTerms": "unknown"
+    },
+    {
+      "productId": "pc-fag-nj-2312-e-m1a",
+      "example": false,
+      "brand": "FAG",
+      "target": "NJ2312-E-XL-M1A",
+      "status": "downloaded",
+      "supplier": "Moglix",
+      "sourceUrl": "https://www.moglix.com/fag-nj2312-e-xl-m1a-cylindrical-roller-bearing-60x130x46-mm/mp/msn2vl4v6on6ux",
+      "assetUrl": "https://cdn.moglix.com/p/J/8/H/d/MINJ8H28IL2R1-xxlarge.jpg",
+      "localUrl": "/product-images/pc-fag-nj-2312-e-m1a-supplier.jpg",
+      "pageTitle": "FAG NJ2312-E-XL-M1A Cylindrical Roller Bearing 60x130x46 mm",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "252800be1b8731a373a7226168c2d60e026a3d3e69942a9e7c7336b51ec8e94f",
+      "bytes": 21018,
+      "width": 800,
+      "height": 800,
+      "altEn": "FAG NJ2312-E-XL-M1A: supplier cutaway illustration",
+      "altFa": "FAG NJ2312-E-XL-M1A: تصویر برشی تأمین‌کننده",
+      "blockers": [],
+      "checkedSources": [
+        "https://www.moglix.com/fag-nj2312-e-xl-m1a-cylindrical-roller-bearing-60x130x46-mm/mp/msn2vl4v6on6ux"
+      ],
+      "imageKind": "supplier_cutaway_illustration",
+      "notes": [
+        "Exact designation and brand listing association confirmed. Linked image is a cutaway illustration, not a photograph of the physical unit. No technical values imported."
+      ],
+      "supplierReuseTerms": "unknown"
+    },
+    {
+      "productId": "pc-ina-nk-25-20",
+      "example": false,
+      "brand": "INA",
+      "target": "NK25/20",
+      "status": "blocked",
+      "supplier": null,
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "exactPhotographedUnitVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "INA NK25/20: supplier listing image",
+      "altFa": "INA NK25/20: تصویر فهرست تأمین‌کننده",
+      "blockers": [
+        "Supplier current listings resolve NK25/20-XL; catalog says 25x35x20 but official NK25/20-XL is 25x33x20. Owner identity resolution required."
+      ],
+      "checkedSources": [
+        "https://www.123bearing.eu/bearing-housing/needle-roller-bearing/needle/nk25-20-ina",
+        "https://www.tristate-bearing.com/ina-nk25-20-xl-inank25-20"
+      ]
+    },
+    {
+      "productId": "pc-ina-kr-35-pp",
+      "example": false,
+      "brand": "INA",
+      "target": "KR35PP",
+      "status": "downloaded",
+      "supplier": "Bearing King",
+      "sourceUrl": "https://bearing-king.co.uk/products/kr35-pp-ina-cam-follower-35x18x16mm-m16-thread",
+      "assetUrl": "https://bearing-king.co.uk/cdn/shop/files/ina_cam_follower.png?v=1779094518",
+      "localUrl": "/product-images/pc-ina-kr-35-pp-supplier.png",
+      "pageTitle": "KR35-PP INA Cam Follower 35x18x16mm M16 Thread",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "1a3ca6bbfe2803a11c70b032da7eb9f9c491b1de0683e60433a5044548d4cfc2",
+      "bytes": 768934,
+      "width": 829,
+      "height": 653,
+      "altEn": "INA KR35PP: supplier listing image",
+      "altFa": "INA KR35PP: تصویر فهرست تأمین‌کننده",
+      "blockers": [],
+      "checkedSources": [
+        "https://www.mrosupply.com/bearings/2166104_kr35pp_ina-bearing/",
+        "https://ie.rubix.com/en/schaeffler-stud-type-track-rollers/p-G1520005137",
+        "https://www.radwell.com/Buy/SCHAEFFLER%20GROUP/INA/KR-35PP",
+        "https://bearing-king.co.uk/products/kr35-pp-ina-cam-follower-35x18x16mm-m16-thread"
+      ],
+      "imageKind": "supplier_listing_image",
+      "supplierReuseTerms": "unknown",
+      "notes": [
+        "Exact designation and brand listing association confirmed. Photograph lacks readable full part marking; physical unit not independently certified."
+      ]
+    },
+    {
+      "productId": "skf-6302-2rsl",
+      "example": false,
+      "brand": "SKF",
+      "target": "6302-2RSL",
+      "status": "blocked",
+      "supplier": null,
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "exactPhotographedUnitVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "SKF 6302-2RSL: supplier listing image",
+      "altFa": "SKF 6302-2RSL: تصویر فهرست تأمین‌کننده",
+      "blockers": [
+        "Exact Detmeh listing only technical drawing; Bao An listing links a montage covering several bearing types, not target-specific imagery.",
+        "Additional Vietnam catalog source timed out; no target-consistent supplier photograph found."
+      ],
+      "checkedSources": [
+        "https://detmeh.ru/121791-6302-2rsl.html",
+        "https://baoanjsc.com.vn/san-pham/vong-bi-cau-ranh-sau-don-day-d15-17mm-skf-type-6-6302-2RSL_477174_vn.aspx",
+        "https://vongbicongnghiep.vn/vong-bi-cau-skf-2/"
+      ]
+    },
+    {
+      "productId": "skf-6303-2rsl",
+      "example": false,
+      "brand": "SKF",
+      "target": "6303-2RSL",
+      "status": "blocked",
+      "supplier": null,
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "exactPhotographedUnitVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "SKF 6303-2RSL: supplier listing image",
+      "altFa": "SKF 6303-2RSL: تصویر فهرست تأمین‌کننده",
+      "blockers": [
+        "Exact Tri Tin supplier page timed out twice. Podsnab exact listing supplies only a small technical drawing. Other listings have C3 suffix or other brands.",
+        "TST exact listing retrieved, but primary image visibly shows boxed6212/6213/6220/6224 bearings, not6303; rejected despite page association."
+      ],
+      "checkedSources": [
+        "https://tritin.vn/vong-bi-skf/vong-bi-cau-1-day/vong-bi-skf-6303-2rsl/",
+        "https://www.prombearing.ru/catalog/odnoryadnye-radialnye/6303-2rsl-c3/",
+        "https://podsnab.ru/radialnye-sharikovye-podshipniki/391819-6303-2rsl.html",
+        "https://tstvietnam.vn/San-pham/1218/24826/Vong-Bi-SKF-6303-2RSL.html"
+      ]
+    },
+    {
+      "productId": "skf-6304-2rsl",
+      "example": false,
+      "brand": "SKF",
+      "target": "6304-2RSL",
+      "status": "downloaded",
+      "supplier": "G. A. Papadopoulos",
+      "sourceUrl": "https://eshop.papadopoulos-sa.com/deep-groove-ball-bearings/17023-skf-6304-2rsl-deep-groove-ball-bearings.html",
+      "assetUrl": "https://eshop.papadopoulos-sa.com/80049-large_default/skf-6304-2rsl-deep-groove-ball-bearings.jpg",
+      "localUrl": "/product-images/skf-6304-2rsl-supplier.jpg",
+      "pageTitle": "SKF 6304-2RSL Deep groove ball bearings",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "29f0484467cf2921d4f050913640108183ebfc20eb5e4a75ffea6a73afcddd4b",
+      "bytes": 53139,
+      "width": 1000,
+      "height": 1000,
+      "altEn": "SKF 6304-2RSL: supplier cutaway illustration",
+      "altFa": "SKF 6304-2RSL: تصویر برشی تأمین‌کننده",
+      "blockers": [],
+      "checkedSources": [
+        "https://eshop.papadopoulos-sa.com/deep-groove-ball-bearings/17023-skf-6304-2rsl-deep-groove-ball-bearings.html"
+      ],
+      "imageKind": "supplier_cutaway_illustration",
+      "notes": [
+        "Exact designation and brand listing association confirmed. Linked image is a cutaway illustration, not a photograph of the physical unit. No technical values imported."
+      ],
+      "supplierReuseTerms": "unknown"
+    },
+    {
+      "productId": "skf-6306-2rz",
+      "example": false,
+      "brand": "SKF",
+      "target": "6306-2RZ",
+      "status": "downloaded",
+      "supplier": "Remlagret",
+      "sourceUrl": "https://www.remlagret.se/en/products/6306-2rz-skf-kullager-30x72x19",
+      "assetUrl": "https://www.remlagret.se/cdn/shop/products/Kullager_2RZ_SKF_Sparkullager_9728015e-bd4e-4408-87fc-06a0cae9ad08.jpg?v=1639683859",
+      "localUrl": "/product-images/skf-6306-2rz-supplier.jpg",
+      "pageTitle": "6306-2rz SKF Ball Bearing 30x72x19",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "5b31dadf35d60b1e26b33f0beb8eda6035b3fa412b0f52ab78be5fa3446c64df",
+      "bytes": 20445,
+      "width": 500,
+      "height": 500,
+      "altEn": "SKF 6306-2RZ: supplier listing image",
+      "altFa": "SKF 6306-2RZ: تصویر فهرست تأمین‌کننده",
+      "blockers": [],
+      "checkedSources": [
+        "https://www.2rs.bg/en-gb/6306-2rz-skf.html",
+        "https://www.remlagret.se/en/products/6306-2rz-skf-kullager-30x72x19",
+        "https://www.remlagret.se/en/products/6306-2rz-skf-kullager-30x72x19"
+      ],
+      "imageKind": "supplier_listing_image",
+      "supplierReuseTerms": "unknown",
+      "notes": [
+        "Exact designation and brand listing association confirmed. Photograph lacks readable full part marking; physical unit not independently certified."
+      ]
+    }
+  ]
+}

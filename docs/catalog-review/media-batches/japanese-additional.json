@@ -1,0 +1,417 @@
+{
+  "checkedAt": "2026-10-15",
+  "records": [
+    {
+      "productId": "pc-nsk-6206-ddu-cm",
+      "query": "6206",
+      "brand": "NSK",
+      "target": "6206 DDU CM",
+      "example": false,
+      "original": "NSK 6206 DDU CM Japan",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://www.nsk.com/am-en/engineering/products/bearings/ball-bearings/deep-groove-ball-bearings/single-row-deep-groove-ball-bearings/6206dducm-apn.html",
+          "result": "Exact designation and associated product image inspected; downloaded and decoded."
+        }
+      ],
+      "status": "downloaded",
+      "supplier": "NSK",
+      "sourceUrl": "https://www.nsk.com/am-en/engineering/products/bearings/ball-bearings/deep-groove-ball-bearings/single-row-deep-groove-ball-bearings/6206dducm-apn.html",
+      "assetUrl": "https://www.nsk.com/engineering/media/catalog/product/d/g/dgbb_sr_pressed-steel-cage_ddu.jpg",
+      "localUrl": "/product-images/pc-nsk-6206-ddu-cm-supplier.jpg",
+      "pageTitle": "6206DDUCM | NSK",
+      "listingAssociationVerified": true,
+      "bytes": 30201,
+      "sha256": "7e9d400ae5e96696c59ddb8c8f34c88c234c8cb90b88061037d1835f51c23219",
+      "width": 710,
+      "height": 710,
+      "mediaType": "manufacturer_listing_illustration",
+      "visualInspection": "Manufacturer cutaway rendering from exact listing. NSK states images are representations; specifications may differ.",
+      "altEn": "NSK 6206 DDU CM - manufacturer listing illustration",
+      "altFa": "NSK 6206 DDU CM — تصویر نمایشی سازنده"
+    },
+    {
+      "productId": "pc-nsk-7010-ctyndblp4",
+      "query": "7010",
+      "brand": "NSK",
+      "target": "7010 CTYNDBLP4",
+      "example": false,
+      "original": "NSK 7010 CTYNDBLP4 Super Precision",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://www.hensenbearing.com/nsk_bearing/21949.html",
+          "result": "Exact designation and associated product image inspected; downloaded and decoded."
+        }
+      ],
+      "status": "downloaded",
+      "supplier": "Hensen Bearing",
+      "sourceUrl": "https://www.hensenbearing.com/nsk_bearing/21949.html",
+      "assetUrl": "https://www.hensenbearing.com/uploads/20250429/bac395c1fc855d7c6e9ae0ddb67ceca0.png",
+      "localUrl": "/product-images/pc-nsk-7010-ctyndblp4-supplier.png",
+      "pageTitle": "7010CTYNDBLP4 NSK Bearing - 50x80x16mm - Hensen Bearing",
+      "listingAssociationVerified": true,
+      "bytes": 695942,
+      "sha256": "3c20f591bd7c2f6247e3f0f3ab9199aa26941b3fedf6d3eca4dbebfd038ada4a",
+      "width": 1000,
+      "height": 1000,
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "NSK bearing and branded box; designation is associated by listing, marking not independently readable.",
+      "altEn": "NSK 7010 CTYNDBLP4 - supplier listing image",
+      "altFa": "NSK 7010 CTYNDBLP4 — تصویر صفحه تأمین‌کننده"
+    },
+    {
+      "productId": "pc-nsk-nu-2214-et",
+      "query": "NU2214",
+      "brand": "NSK",
+      "target": "NU2214 ET",
+      "example": false,
+      "original": "NSK NU 2214 ET Cylindrical",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/nu2214et-nsk-cylindrical-roller-bearing-70x125x31mm",
+          "result": "Exact designation and associated product image inspected; downloaded and decoded."
+        }
+      ],
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/nu2214et-nsk-cylindrical-roller-bearing-70x125x31mm",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR34897BI34840_nu2214et_nsk_NU2214ET_NSK_Cylindrical_Roller_Bearing_70x125x31mm_SZ4__05865.1750726748.860.860.jpg?v=1751971635&width=620",
+      "localUrl": "/product-images/pc-nsk-nu-2214-et-supplier.jpg",
+      "pageTitle": "NU2214ET - NSK Cylindrical Roller - Quality Bearings Online",
+      "listingAssociationVerified": true,
+      "bytes": 48476,
+      "sha256": "672e75387d3df6b44c76fc71f6f3ed4d9cafb77b4328c09305df39e930cc4923",
+      "width": 620,
+      "height": 620,
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "Downloaded observed620pixel srcset rendition after original rendition transfer stalled.",
+      "altEn": "NSK NU2214 ET - supplier listing image",
+      "altFa": "NSK NU2214 ET — تصویر صفحه تأمین‌کننده"
+    },
+    {
+      "productId": "pc-ntn-6204-llu-c3",
+      "query": "6204",
+      "brand": "NTN",
+      "target": "6204 LLU C3",
+      "example": false,
+      "original": "NTN 6204 LLU / C3 Japan",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://bearingfinder.ntnamericas.com/item/deep-groove-ball-bearings/single-row-radial-ball-bearings/6204lluc3",
+          "result": "Exact designation and associated product image inspected; downloaded and decoded."
+        }
+      ],
+      "status": "downloaded",
+      "supplier": "NTN Bearing Corp. of America",
+      "sourceUrl": "https://bearingfinder.ntnamericas.com/item/deep-groove-ball-bearings/single-row-radial-ball-bearings/6204lluc3",
+      "assetUrl": "https://bearingfinder.ntnamericas.com/ImgMedium/Single-Row-Radial-Ball-Bearing-Double-Sealed-(Contact Rubber Seal).png",
+      "localUrl": "/product-images/pc-ntn-6204-llu-c3-supplier.png",
+      "pageTitle": "Item # 6204LLUC3 On NTN Bearing Corp. of America",
+      "listingAssociationVerified": true,
+      "bytes": 38796,
+      "sha256": "3cd1099236ef9832b1f1ecd20f325f3e429c1061fba37fd761ae135e3187de12",
+      "width": 200,
+      "height": 175,
+      "mediaType": "manufacturer_listing_illustration",
+      "visualInspection": "Manufacturer sealed-bearing rendering from exact designation page; generic render, not independently verified unit photograph.",
+      "altEn": "NTN 6204 LLU C3 - manufacturer listing illustration",
+      "altFa": "NTN 6204 LLU C3 — تصویر نمایشی سازنده"
+    },
+    {
+      "productId": "pc-ntn-22214-eakd1",
+      "query": "22214",
+      "brand": "NTN",
+      "target": "22214 EAKD1",
+      "example": false,
+      "original": "NTN 22214 EAKD1 ULTAGE®",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://www.nodeshk.com/ntn/roller-bearings/srb/tapered/22214eakd1.html",
+          "result": "Exact designation and associated product image inspected; downloaded and decoded."
+        }
+      ],
+      "status": "downloaded",
+      "supplier": "Nodes Bearing",
+      "sourceUrl": "https://www.nodeshk.com/ntn/roller-bearings/srb/tapered/22214eakd1.html",
+      "assetUrl": "https://www.nodeshk.com/img/ntn/srb/ty.jpg",
+      "localUrl": "/product-images/pc-ntn-22214-eakd1-supplier.jpg",
+      "pageTitle": "NTN 22214EAKD1 bearings | 70x125x31mm - Nodes bearing",
+      "listingAssociationVerified": true,
+      "bytes": 33480,
+      "sha256": "3090ceb9074f30e1f7b7640f290bc1a64e02bbafb801a8aadba27bd8f3ec1f16",
+      "width": 400,
+      "height": 280,
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "NTN bearing and box with supplier watermark; asset shared across bearing family, exact listing association only.",
+      "altEn": "NTN 22214 EAKD1 - supplier listing image",
+      "altFa": "NTN 22214 EAKD1 — تصویر صفحه تأمین‌کننده"
+    },
+    {
+      "productId": "pc-ntn-5206-s",
+      "query": "5206",
+      "brand": "NTN",
+      "target": "5206 S",
+      "example": false,
+      "original": "NTN 5206 S Double Row",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact listings found; NTN page unavailable and alternate pages403. RS Saudi page retrieved but its referenced image returned404.",
+        "Additional exact supplier alternatives checked; no usable product photograph acquired. See checkedSources."
+      ],
+      "checkedSources": [
+        {
+          "url": "https://eshop.ntn-snr.com/en/product/5206S-NTN/5206S",
+          "result": "Exact listings found; NTN page unavailable and alternate pages403. RS Saudi page retrieved but its referenced image returned404."
+        },
+        {
+          "url": "https://jp.misumi-ec.com/vona2/detail/221000068616/?HissuCode=5206S",
+          "result": "Exact listings found; NTN page unavailable and alternate pages403. RS Saudi page retrieved but its referenced image returned404."
+        },
+        {
+          "url": "https://uk.rs-online.com/web/p/ball-bearings/0705722",
+          "result": "Exact listings found; NTN page unavailable and alternate pages403. RS Saudi page retrieved but its referenced image returned404."
+        },
+        {
+          "url": "https://www.imssupply.com/catalog/ntn-bearing/5206s.html",
+          "result": "Exact listings found; NTN page unavailable and alternate pages403. RS Saudi page retrieved but its referenced image returned404."
+        },
+        {
+          "url": "https://sa.rsdelivers.com/product/ntn/5206s/ntn-5206s-2-row-ball-bearing-30-mm-id-62-mm-od-238/0705722",
+          "result": "Exact listings found; NTN page unavailable and alternate pages403. RS Saudi page retrieved but its referenced image returned404."
+        },
+        {
+          "url": "https://www.ebay.com/itm/353438471813",
+          "result": "Mara Industrial Supply exact5206S listing inspected via web; all observedimage URLs returned403. Could not acquire image."
+        },
+        {
+          "url": "https://media.rs-online.com/t_medium/EXA_af8daa.jpg",
+          "result": "Observed RS listing thumbnail also404; mainimage variants404."
+        }
+      ],
+      "status": "blocked",
+      "listingAssociationVerified": false
+    },
+    {
+      "productId": "pc-koyo-6207-2rs",
+      "query": "6207",
+      "brand": "KOYO",
+      "target": "6207 2RS",
+      "example": false,
+      "original": "KOYO 6207-2RS (JTEKT Japan)",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact supplier listing found. AlliedAuto product image URL returned403; 2rs supplier403. Do not substitute C3/FG/NR versions."
+      ],
+      "checkedSources": [
+        {
+          "url": "https://alliedautoonline.com.au/products/koyo-bearing-6207-2rs-35x72x17-made-in-japan",
+          "result": "Exact supplier listing found. AlliedAuto product image URL returned403; 2rs supplier403. Do not substitute C3/FG/NR versions."
+        },
+        {
+          "url": "https://www.2rs.bg/en-gb/6207-2rs-koyo.html",
+          "result": "Exact supplier listing found. AlliedAuto product image URL returned403; 2rs supplier403. Do not substitute C3/FG/NR versions."
+        },
+        {
+          "url": "https://koyo.jtekt.co.jp/en/products/detail/?pno=6207+2RS",
+          "result": "Exact supplier listing found. AlliedAuto product image URL returned403; 2rs supplier403. Do not substitute C3/FG/NR versions."
+        }
+      ],
+      "status": "blocked",
+      "listingAssociationVerified": false
+    },
+    {
+      "productId": "pc-koyo-30212-jr",
+      "query": "30212",
+      "brand": "KOYO",
+      "target": "30212 JR",
+      "example": false,
+      "original": "KOYO 30212 JR Tapered Roller",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://www.bearingsrus.com/30212jr-jtekt",
+          "result": "Exact designation and associated product image inspected; downloaded and decoded."
+        }
+      ],
+      "status": "downloaded",
+      "supplier": "Bearings R Us",
+      "sourceUrl": "https://www.bearingsrus.com/30212jr-jtekt",
+      "assetUrl": "https://www.bearingsrus.com/media/catalog/product/cache/9291e38f5e4d5715183435e5bd5d6ccf/k/o/koyo_jtekt_tapered_roller_bearing_1.jpg",
+      "localUrl": "/product-images/pc-koyo-30212-jr-supplier.jpg",
+      "pageTitle": "30212JR Koyo (JTEKT) | Metric Tapered Roller Bearing | 60mm X 110mm X 23.75mm | Bearings R Us",
+      "listingAssociationVerified": true,
+      "bytes": 147658,
+      "sha256": "ba13db06a256918c50c6d72a71b83216d4a9184e894e70ed525df6385ed813ac",
+      "width": 600,
+      "height": 600,
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "Product illustration with Koyo JTEKT logo and supplier watermark; exact listing association only.",
+      "altEn": "KOYO 30212 JR - supplier listing image",
+      "altFa": "KOYO 30212 JR — تصویر صفحه تأمین‌کننده"
+    },
+    {
+      "productId": "pc-koyo-22218-rhr",
+      "query": "22218",
+      "brand": "KOYO",
+      "target": "22218 RHR",
+      "example": false,
+      "original": "KOYO 22218 RHR Spherical Roller",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact supplier page image inspected: dimensional drawing only, not product photograph. ABF result adds W33 C3 and is not exact suffix match."
+      ],
+      "checkedSources": [
+        {
+          "url": "https://penza.podshipnikru.com/product/podshipnik-rolikovyy-radialnyy-samotsentriruyushchiysya-22218rhr-90x160x40-koyo/",
+          "result": "Exact supplier page image inspected: dimensional drawing only, not product photograph. ABF result adds W33 C3 and is not exact suffix match."
+        },
+        {
+          "url": "https://www.abf.store/s/pl/lozyska/22218RHR-W33-C3-KOYO--JTEKT-/569939",
+          "result": "Exact supplier page image inspected: dimensional drawing only, not product photograph. ABF result adds W33 C3 and is not exact suffix match."
+        }
+      ],
+      "status": "blocked",
+      "listingAssociationVerified": false
+    },
+    {
+      "productId": "pc-nachi-6008-2nse9",
+      "query": "6008",
+      "brand": "NACHI",
+      "target": "6008 2NSE9",
+      "example": false,
+      "original": "NACHI 6008-2NSE9 Quest® Japan",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact listings found; MRO-PT403, LocateBallBearings and Monotaro transfer timeout. PPDistributors adds C3, not exact suffix match. No acceptable decoded exact-listing photograph yet.",
+        "Additional exact supplier alternatives checked; no usable product photograph acquired. See checkedSources."
+      ],
+      "checkedSources": [
+        {
+          "url": "https://mro-pt.com/products/nachi-6008-2nse9",
+          "result": "Exact listings found; MRO-PT403, LocateBallBearings and Monotaro transfer timeout. PPDistributors adds C3, not exact suffix match. No acceptable decoded exact-listing photograph yet."
+        },
+        {
+          "url": "https://www.locateballbearings.com/nachi-6008-2nse9-single-row-ball-bearing/",
+          "result": "Exact listings found; MRO-PT403, LocateBallBearings and Monotaro transfer timeout. PPDistributors adds C3, not exact suffix match. No acceptable decoded exact-listing photograph yet."
+        },
+        {
+          "url": "https://www.monotaro.id/s024627030.html",
+          "result": "Exact listings found; MRO-PT403, LocateBallBearings and Monotaro transfer timeout. PPDistributors adds C3, not exact suffix match. No acceptable decoded exact-listing photograph yet."
+        },
+        {
+          "url": "https://www.ppdistributors.com/products/6008-2nse9-c3-nachi-ball-bearing",
+          "result": "Exact listings found; MRO-PT403, LocateBallBearings and Monotaro transfer timeout. PPDistributors adds C3, not exact suffix match. No acceptable decoded exact-listing photograph yet."
+        },
+        {
+          "url": "https://www.motion.com/products/sku/02139664",
+          "result": "Exact NACHI6008-2NSE9 Motion listing found; page403 prevents observed usable asset acquisition."
+        },
+        {
+          "url": "https://cdn11.bigcommerce.com/s-iq7rkrc32l/images/stencil/1280x1280/products/228011/373177/singlerowballbearing__04631.1638835201.jpg?c=2",
+          "result": "Observed LocateBallBearings listing image download timedout; no decoded image acquired."
+        }
+      ],
+      "status": "blocked",
+      "listingAssociationVerified": false
+    },
+    {
+      "productId": "pc-nachi-22222-ex",
+      "query": "22222",
+      "brand": "NACHI",
+      "target": "22222 EX",
+      "example": false,
+      "original": "NACHI 22222 EX Quest Spherical",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://es.okmarts.com/nachi-bearing-22222ex.html",
+          "result": "Exact designation and associated product image inspected; downloaded and decoded."
+        }
+      ],
+      "status": "downloaded",
+      "supplier": "OKmarts",
+      "sourceUrl": "https://es.okmarts.com/nachi-bearing-22222ex.html",
+      "assetUrl": "https://okmarts.com/cdn-cgi/image/fit=contain,format=auto,metadata=none,onerror=redirect,quality=90,width=1000,height=1000/https://okmarts.com/jeecg-boot/sys/common/view/product/Bearing/NACHI/2024/NACHI-Bearing-22222EX/NACHI-Bearing-22222EX.png",
+      "localUrl": "/product-images/pc-nachi-22222-ex-supplier.png",
+      "pageTitle": "Nuevo en stock, NACHI Bearing 22222EX - NACHI - Bearing",
+      "listingAssociationVerified": true,
+      "bytes": 58230,
+      "sha256": "9cb1c73af79d282ead06ab05c9b53e73c4908f11c885be158a64b5ccce77c800",
+      "width": 1000,
+      "height": 1000,
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "Nachi Quest branded box and spherical bearing; exact designation page association only.",
+      "altEn": "NACHI 22222 EX - supplier listing image",
+      "altFa": "NACHI 22222 EX — تصویر صفحه تأمین‌کننده"
+    },
+    {
+      "productId": "pc-nachi-nup-310-eg",
+      "query": "NUP310",
+      "brand": "NACHI",
+      "target": "NUP310 EG",
+      "example": false,
+      "original": "NACHI NUP 310 EG Cylindrical",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact designation confirmed on supplier pages. Sfera product page has no product photo; social image is site logo. Partao access403. No product image URL verified.",
+        "Additional exact supplier alternatives checked; no usable product photograph acquired. See checkedSources."
+      ],
+      "checkedSources": [
+        {
+          "url": "https://sf2v.ru/spravochnik-podshipnikov/nachi/50700/",
+          "result": "Exact designation confirmed on supplier pages. Sfera product page has no product photo; social image is site logo. Partao access403. No product image URL verified."
+        },
+        {
+          "url": "https://partao.com/brands/n/nachi.html",
+          "result": "Exact designation confirmed on supplier pages. Sfera product page has no product photo; social image is site logo. Partao access403. No product image URL verified."
+        },
+        {
+          "url": "https://www.tymoty.cz/nachi-nup-310-eg-valeckove-lozisko/",
+          "result": "Exact NACHI NUP310EG page and image inspected. Image287073 is a cross-section/technical drawing with dimensions, not product photograph; excluded."
+        },
+        {
+          "url": "https://www.tymoty.cz/content/images/product/default/287073.jpg",
+          "result": "Downloaded and visually inspected as dimensioned technical illustration; excluded from photo replacement."
+        }
+      ],
+      "status": "blocked",
+      "listingAssociationVerified": false
+    }
+  ]
+}

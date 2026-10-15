@@ -1,0 +1,125 @@
+{
+  "checkedAt": "2026-10-15",
+  "records": [
+    {
+      "productId": "pc-snl-511-609",
+      "example": true,
+      "brand": "SKF",
+      "target": "SNL 511-609",
+      "status": "downloaded",
+      "supplier": "Moglix UAE",
+      "sourceUrl": "https://www.moglix.ae/skf-snl-511-609-split-plummer-block-housing/mp/msno5wnd63lw51",
+      "assetUrl": "https://cdn.moglix.com/p/8auHtjPOD38ZA-xxlarge.png",
+      "localUrl": "/product-images/pc-snl-511-609-supplier.png",
+      "pageTitle": "SKF SNL 511-609 Split Plummer Block Housing",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "f160831338148eafc16517f9fca62aba7180bf968731f4fdd685013edda3c65f",
+      "bytes": 168678,
+      "width": 800,
+      "height": 800,
+      "altEn": "SKF SNL 511-609: supplier example image; listed brand and variant",
+      "altFa": "SKF SNL 511-609: تصویر نمونه تأمین‌کننده از برند و مدل درج‌شده",
+      "blockers": [],
+      "checkedSources": [
+        "https://www.moglix.ae/skf-snl-511-609-split-plummer-block-housing/mp/msno5wnd63lw51"
+      ],
+      "imageKind": "supplier_listing_image",
+      "notes": [
+        "SKU marking is not readable; example image of SKF split housing from exact listing."
+      ],
+      "supplierReuseTerms": "unknown"
+    },
+    {
+      "productId": "pc-mobilith-shc-220",
+      "example": true,
+      "brand": "Mobil",
+      "target": "Mobilith SHC 220",
+      "status": "downloaded",
+      "supplier": "Lubweb",
+      "sourceUrl": "https://lubweb.fr/graisses/1003-graisse-mobilith-shc-220.html",
+      "assetUrl": "https://lubweb.fr/1573-large_default/graisse-mobilith-shc-220.jpg",
+      "localUrl": "/product-images/pc-mobilith-shc-220-supplier.jpg",
+      "pageTitle": "GRAISSE MOBILITH SHC 220",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "ae139eb9d15a368c834fee0af49382f3975b7f150b0d91fc0e8c80a8ebf6dcee",
+      "bytes": 10946,
+      "width": 458,
+      "height": 458,
+      "altEn": "Mobil Mobilith SHC 220: supplier example image; listed brand and variant",
+      "altFa": "Mobil Mobilith SHC 220: تصویر نمونه تأمین‌کننده از برند و مدل درج‌شده",
+      "blockers": [],
+      "checkedSources": [
+        "https://lubweb.fr/graisses/1003-graisse-mobilith-shc-220.html",
+        "https://www.silmid.com/us/lubricants/greases/mobilith-shc220-grease-380gm-cartridges/",
+        "https://mckupler.com/products/mobilith-shc-220",
+        "https://euro-industry.com/main.php?cat=1682&index=details&lang=de&prod=23210553",
+        "https://www.gz-supplies.com/mobilith-shc-220-grease/"
+      ],
+      "imageKind": "supplier_packaging_example",
+      "notes": [
+        "Exact Mobilith SHC220 listing links Mobil cartridge photograph; full grade label not readable. Packaging example only."
+      ],
+      "supplierReuseTerms": "unknown"
+    },
+    {
+      "productId": "pc-tc-100-125-13-viton",
+      "example": true,
+      "brand": "Corteco",
+      "target": "S 100X125X13 B1BASLRSX2 FPM",
+      "status": "downloaded",
+      "supplier": "Curea.ro",
+      "sourceUrl": "https://curea.ro/varianta/s-100x125x13-b1baslrsx2-fpmcor",
+      "assetUrl": "https://curea.ro/storage/userfiles/products/images/a7aaeabffc83f69f431e3ec16b131c05.png",
+      "localUrl": "/product-images/pc-tc-100-125-13-viton-supplier.png",
+      "pageTitle": "S 100X125X13 B1BASLRSX2 FPM#COR",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "ee5529dcb324ab423c29e671c1a3dd8a345508c4002b861336de00459d3c1650",
+      "bytes": 255614,
+      "width": 600,
+      "height": 600,
+      "altEn": "Corteco S 100X125X13 B1BASLRSX2 FPM: supplier example image; listed brand and variant",
+      "altFa": "Corteco S 100X125X13 B1BASLRSX2 FPM: تصویر نمونه تأمین‌کننده از برند و مدل درج‌شده",
+      "blockers": [],
+      "checkedSources": [
+        "https://curea.ro/varianta/s-100x125x13-b1baslrsx2-fpmcor"
+      ],
+      "imageKind": "supplier_brand_example",
+      "notes": [
+        "Exact Corteco FPM dimensions listing links a branded montage of several seals. Example only: does not prove exact TC profile or physical stock."
+      ],
+      "supplierReuseTerms": "unknown"
+    },
+    {
+      "productId": "pc-6210-2z-va208",
+      "example": true,
+      "brand": "SKF",
+      "target": "6210-2Z/VA208",
+      "status": "downloaded",
+      "supplier": "TST Vietnam",
+      "sourceUrl": "https://tstvietnam.vn/San-pham/1218/37813/Vong-bi-SKF-6210-2Z-VA208.html",
+      "assetUrl": "https://tstvietnam.vn/ductst/anh/anh-shopee-fn/62xx/6210-2zva208.png",
+      "localUrl": "/product-images/pc-6210-2z-va208-supplier.png",
+      "pageTitle": "Vòng bi SKF 6210-2Z/VA208",
+      "listingAssociationVerified": true,
+      "exactPhotographedUnitVerified": false,
+      "sha256": "ee4e5ff13fc4cde1fabf136e76db1f77e2cf33f62acb74c8de2d0eff6aa8b4b1",
+      "bytes": 676946,
+      "width": 1024,
+      "height": 1024,
+      "altEn": "SKF 6210-2Z/VA208: supplier example image; listed brand and variant",
+      "altFa": "SKF 6210-2Z/VA208: تصویر نمونه تأمین‌کننده از برند و مدل درج‌شده",
+      "blockers": [],
+      "checkedSources": [
+        "https://tstvietnam.vn/San-pham/1218/37813/Vong-bi-SKF-6210-2Z-VA208.html"
+      ],
+      "imageKind": "supplier_packaging_example",
+      "notes": [
+        "Supplier packaging image visibly marked6210-2Z/VA208. Bearing itself not shown, authenticity of packaging not independently certified."
+      ],
+      "supplierReuseTerms": "unknown"
+    }
+  ]
+}

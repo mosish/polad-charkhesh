@@ -86,7 +86,7 @@ export function ProductImage({ p, priority = false }: { p: BearingProduct; prior
           {t('Family reference · illustration only', 'مرجع خانواده · تصویر نمایشی')}
         </small>
       )}
-      {supplier && <small className="reference-label">{t('Supplier product image', 'تصویر محصول از فروشنده')}</small>}
+      {supplier && <small className="reference-label">{t(supplier.labelEn, supplier.labelFa)}</small>}
     </>
   );
 }
@@ -411,13 +411,13 @@ function ProductPanelBody({ p, onSelect }: { p: BearingProduct; onSelect: (p: Be
             {stageView === 'exploded' ? <RecoveryBoundary resetKey={p.id} fallback={explodedFallback}><Suspense fallback={explodedFallback}><BearingScene family={geometry.roller ? 'roller' : 'ball'} product={p} paused exploded reducedMotion={reducedMotion} partLabels={partLabels} label={`${p.code} · ${t('Illustrative exploded view', 'نمای انفجاری نمایشی')}`} fallback={explodedFallback} /></Suspense></RecoveryBoundary> : stageView === 'drawing' || imageFailed || !activeImage ? <Schematic p={p} /> : <ReferenceImage src={activeImage} alt={supplier ? t(supplier.altEn, supplier.altFa) : referenceImage ? t('Bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']} onError={() => setImageFailed(true)} />}
             {stageView === 'exploded' && <div className="product-panel-parts-key" aria-label={t('Bearing parts', 'اجزای بیرینگ')}>{partLabels.map((name, index) => <span key={name}><b>{index + 1}</b>{name}</span>)}</div>}
             {stageView === 'image' && !imageFailed && referenceImage && <span className="product-panel-reference">{t('Family reference image', 'تصویر مرجع خانواده')}</span>}
-            {stageView === 'image' && !imageFailed && supplier && <span className="product-panel-reference">{t('Supplier product image', 'تصویر محصول از فروشنده')}</span>}
+            {stageView === 'image' && !imageFailed && supplier && <span className="product-panel-reference">{t(supplier.labelEn, supplier.labelFa)}</span>}
           </div>
           {photos.length > 1 && <div className="product-panel-thumbnails" aria-label={t('Product image gallery', 'گالری تصاویر محصول')}>
             {photos.map((url, index) => <button type="button" key={url} className={stageView === 'image' && activeImage === url ? 'active' : ''} aria-pressed={stageView === 'image' && activeImage === url} aria-label={t('View image', 'نمایش تصویر') + ' ' + (index + 1)} onClick={() => { setActiveImage(url); setStageView('image'); setImageFailed(false); }}><ReferenceImage src={url} alt="" loading="lazy" sizes="80px" /></button>)}
           </div>}
           {!canExplode && <small className="product-panel-media-note">{t('An exploded 3D model is not available for this component; use its drawing for dimensions.', 'مدل سه‌بعدی انفجاری برای این قطعه موجود نیست؛ برای ابعاد از نقشه استفاده کنید.')}</small>}
-          <small className="product-panel-media-note">{stageView === 'exploded' ? t('Illustrative geometry based on catalog dimensions; internal parts are estimates, not manufacturer CAD.', 'هندسه نمایشی بر اساس ابعاد کاتالوگ است؛ اجزای داخلی تخمینی‌اند و مدل CAD سازنده نیستند.') : stageView === 'image' && !imageFailed && referenceImage ? t('Family illustration; confirm the exact product with its manufacturer.', 'تصویر خانواده محصول است؛ کد دقیق را با سازنده بررسی کنید.') : t('Image and dimensional drawing from the current catalog record.', 'تصویر و نقشه ابعادی از رکورد فعلی کاتالوگ.')}</small>
+          <small className="product-panel-media-note">{stageView === 'exploded' ? t('Illustrative geometry based on catalog dimensions; internal parts are estimates, not manufacturer CAD.', 'هندسه نمایشی بر اساس ابعاد کاتالوگ است؛ اجزای داخلی تخمینی‌اند و مدل CAD سازنده نیستند.') : stageView === 'image' && !imageFailed && supplier ? t(supplier.noteEn, supplier.noteFa) : stageView === 'image' && !imageFailed && referenceImage ? t('Family illustration; confirm the exact product with its manufacturer.', 'تصویر خانواده محصول است؛ کد دقیق را با سازنده بررسی کنید.') : t('Image and dimensional drawing from the current catalog record.', 'تصویر و نقشه ابعادی از رکورد فعلی کاتالوگ.')}</small>
           {stageView === 'image' && !imageFailed && supplier && <small className="product-panel-media-note">{t('Image source: ', 'منبع تصویر: ')}<a href={supplier.sourceUrl} target="_blank" rel="noreferrer">{supplier.name}</a></small>}
           <div className="product-panel-contact"><ProductCallOptions p={p} company={company} /></div>
         </div>

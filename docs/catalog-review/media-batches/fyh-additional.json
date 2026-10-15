@@ -1,0 +1,173 @@
+{
+  "checkedAt": "2026-10-15",
+  "records": [
+    {
+      "productId": "pc-ucp-205",
+      "query": "UCP205",
+      "brand": "FYH",
+      "target": "UCP205",
+      "example": true,
+      "original": "UCP 205 (Cast Iron Pillow Block)",
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://www.qualitybearingsonline.com/search.php?search_query=UCP205",
+          "result": "Supplier catalog search examined"
+        },
+        {
+          "url": "https://www.qualitybearingsonline.com/ucp205-fyh-cast-iron-pillow-block-25-inside-diameter/",
+          "result": "Opened full page and matched Product brand and full designation."
+        },
+        {
+          "url": "https://www.qualitybearingsonline.com/ucp205-fyh-cast-iron-pillow-block-25-inside-diameter/",
+          "result": "Verified full Product listing; UK OpenGraph image matches the full product-specific filename prefix of the verified listing; supplier image revision identifiers and timestamp may differ; the product ID and full designation filename match. Downloaded Shopify width620 derivative and fully decoded."
+        },
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/ucp205-fyh-cast-iron-pillow-block-25-inside-diameter.js",
+          "result": "Exact-title product JSON provided complete gallery. Selected second860px image, downloaded620px derivative through storefront CDN alias, fully decoded and visually verified as product photograph."
+        }
+      ],
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/ucp205-fyh-cast-iron-pillow-block-25-inside-diameter",
+      "sourcePageSha256": "38426c6d8522ec851ba50c4947d7b5465ae2f610170a4a63a3b71e401be20280",
+      "pageTitle": "UCP205 - FYH Cast Iron Pillow Block - 25mm Inside Diameter",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR444252BI59724_ucp205_fyh_UCP205_FYH_Cast_Iron_Pillow_Block_25mm_Inside_Diameter_SZ4__12359.1731022336.860.860.jpg?v=1751975624&width=620",
+      "listingAssociationVerified": true,
+      "listingIdentity": {
+        "brand": "FYH",
+        "designation": "UCP205",
+        "sku": "ucp205-fyh",
+        "description": "The UCP205 FYH Cast Iron Pillow Block is the ideal solution for your bearing and housing assembly needs. This sturdy Pillow Block comes equipped with a fully sealed Bearing Insert already fitted within the housing, ensuring optimal performance and durability. Crafted from high-quality cast iron, this Pillow Block boasts exceptional strength and reliability, making it suitable for a wide range of applications. This two-bolt unit has hexagon socket set screws and a 25mm shaft diameter.Key FeaturesReplaceable InsertsThe Bearing Insert in the UCP205 can be easily removed from the P205 housing, allowing for future replacements as needed.Self-Aligning AbilityThe convex shape of the Bearing Inserts outer ring along with the concave sphered shape inside the housing gives this UCP205 Pillow Block Unit the ability to self-align, adjust for shaft deviation, and reduce abnormal load.Set Screw FixingEquipped with two hexagon socket set screws, the Bearing Insert securely tightens against the shaft once fitted, ensuring stability, and reducing the risk of slippage or misalignment.Re-lubrication CapabilityThe UCP205 allows for effortless re-lubrication via the grease hole and a grease fitting, promoting smooth operation and prolonging the lifespan of the bearing assembly.Versatile Industry ApplicationsThese Pillow Block Bearing Units are relied upon in many industries, including mining, agriculture, manufacturing and production, and industrial engineering."
+      },
+      "altEn": "FYH UCP205 — listed-brand example",
+      "altFa": "FYH UCP205 — نمونه از برندهای فهرست‌شده",
+      "localUrl": "/product-images/pc-ucp-205-photo.jpg",
+      "sha256": "eb5f083cfbd60a4a4b56257c5c399f34a7386429bf95db29cf4dcdbbfbc5c057",
+      "bytes": 52600,
+      "width": 620,
+      "height": 620,
+      "imageFormat": "JPEG",
+      "originalAssetUrl": "https://cdn.shopify.com/s/files/1/0948/3753/9147/files/PR444252BI59724_ucp205_fyh_UCP205_FYH_Cast_Iron_Pillow_Block_25mm_Inside_Diameter_SZ4__12359.1731022336.860.860.jpg?v=1751975624",
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "Actual bearing-unit photograph with FYH box, visually inspected. Gallery second image selected instead of first dimensional drawing. UCP205 and UCP210 share supplier family photograph; exact pictured size not independently verified.",
+      "sourceGalleryUrl": "https://qualitybearingsonline.co.uk/products/ucp205-fyh-cast-iron-pillow-block-25-inside-diameter.js",
+      "sourceGallerySha256": "1c5b624aa2fd1232ad98268ad4d3b056f706316aa62f42f8ebbc6b21bd9d163f"
+    },
+    {
+      "productId": "pc-ucf-208",
+      "query": "UCF208",
+      "brand": "FYH",
+      "target": "UCF208",
+      "example": true,
+      "original": "UCF 208 (4-Bolt Flange Housing)",
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://www.qualitybearingsonline.com/search.php?search_query=UCF208",
+          "result": "Supplier catalog search examined"
+        },
+        {
+          "url": "https://www.qualitybearingsonline.com/ucf208-fyh-square-flanged-bearing-unit-40-inside-diameter/",
+          "result": "Opened full page and matched Product brand and full designation."
+        },
+        {
+          "url": "https://www.qualitybearingsonline.com/ucf208-fyh-square-flanged-bearing-unit-40-inside-diameter/",
+          "result": "Verified full Product listing; UK OpenGraph image matches the full product-specific filename prefix of the verified listing; supplier image revision identifiers and timestamp may differ; the product ID and full designation filename match. Downloaded Shopify width620 derivative and fully decoded."
+        },
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/ucf208-fyh-square-flanged-bearing-unit-40-inside-diameter.js",
+          "result": "Exact-title product JSON provided complete gallery. Selected second860px image, downloaded620px derivative through storefront CDN alias, fully decoded and visually verified as product photograph."
+        }
+      ],
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/ucf208-fyh-square-flanged-bearing-unit-40-inside-diameter",
+      "sourcePageSha256": "582de5bf58414b4dd10cf7a1029d13ecf7686afab1aca1459c56f31091d57901",
+      "pageTitle": "UCF208 - FYH Square Flanged Bearing Unit - 40mm Inside Diameter",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR444475BI59731_ucf208_fyh_UCF208_FYH_Square_Flanged_Bearing_Unit_40mm_Inside_Diam_SZ4__37400.1731023699.860.860.jpg?v=1751975658&width=620",
+      "listingAssociationVerified": true,
+      "listingIdentity": {
+        "brand": "FYH",
+        "designation": "UCF208",
+        "sku": "ucf208-fyh",
+        "description": "Discover the UCF208 from FYH, the perfect solution for your flanged assembly requirements. This Square Flanged Bearing Unit comes pre-lubricated and fitted with a sealed Bearing Insert for the highest durability and longevity. Crafted from high-quality cast iron, the UCF208 Unit boasts exceptional strength and reliability, making it suitable for a wide range of applications. This four-bolt flanged unit has hexagon socket set screws and a 40mm shaft diameter.Key FeaturesSelf-Aligning AbilityThe convex shape of the Bearing Inserts outer ring along with the concave sphered shape inside the housing gives this UCF208 Square Flanged Unit the ability to self-align, adjust for shaft deviation, and reduce abnormal load.Replaceable InsertsThe UCF208 Bearing Unit has a UC208 Bearing Insert which can be easily removed from the F208 housing and replaced. Other compatible inserts can be used in the same housing.Smooth OperationFitted with a new sealed Bearing Insert and housing, the UCF208 ensures smooth operation, easy mounting, and high reliability, guaranteeing optimal performance in diverse environments.Re-lubrication CapabilityThe UCF208 allows for effortless re-lubrication via the grease hole and a grease fitting, promoting smooth operation and prolonging the lifespan of the bearing assembly.Versatile Industry ApplicationsThese Flanged Housing Units are relied upon in many industries, including mining, agriculture, manufacturing and production, and industrial engineering.Corrosion ProtectionConstructed with a single cast housing piece, the UCF208 offers basic protection against corrosion, enhancing durability and longevity."
+      },
+      "altEn": "FYH UCF208 — listed-brand example",
+      "altFa": "FYH UCF208 — نمونه از برندهای فهرست‌شده",
+      "localUrl": "/product-images/pc-ucf-208-photo.jpg",
+      "sha256": "e9abb520e2cff8448cba4ab33144f8e368b6088ec97eac4d7a406f68152fd71f",
+      "bytes": 48185,
+      "width": 620,
+      "height": 620,
+      "imageFormat": "JPEG",
+      "originalAssetUrl": "https://cdn.shopify.com/s/files/1/0948/3753/9147/files/PR444475BI59731_ucf208_fyh_UCF208_FYH_Square_Flanged_Bearing_Unit_40mm_Inside_Diam_SZ4__37400.1731023699.860.860.jpg?v=1751975658",
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "Actual bearing-unit photograph with FYH box, visually inspected. Gallery second image selected instead of first dimensional drawing. UCP205 and UCP210 share supplier family photograph; exact pictured size not independently verified.",
+      "sourceGalleryUrl": "https://qualitybearingsonline.co.uk/products/ucf208-fyh-square-flanged-bearing-unit-40-inside-diameter.js",
+      "sourceGallerySha256": "efceca3e8033b39d0bc834fa780c20e575e1bbf710f1d54dcd959c30a4fc0415"
+    },
+    {
+      "productId": "pc-ucp-210",
+      "query": "UCP210",
+      "brand": "FYH",
+      "target": "UCP210",
+      "example": true,
+      "original": "UCP 210 (50mm Heavy Duty Pillow Block)",
+      "status": "downloaded",
+      "supplier": "Quality Bearings Online",
+      "checkedAt": "2026-10-15",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [],
+      "checkedSources": [
+        {
+          "url": "https://www.qualitybearingsonline.com/search.php?search_query=UCP210",
+          "result": "Supplier catalog search examined"
+        },
+        {
+          "url": "https://www.qualitybearingsonline.com/ucp210-fyh-cast-iron-pillow-block-50-inside-diameter/",
+          "result": "Opened full page and matched Product brand and full designation."
+        },
+        {
+          "url": "https://www.qualitybearingsonline.com/ucp210-fyh-cast-iron-pillow-block-50-inside-diameter/",
+          "result": "Verified full Product listing; UK OpenGraph image matches the full product-specific filename prefix of the verified listing; supplier image revision identifiers and timestamp may differ; the product ID and full designation filename match. Downloaded Shopify width620 derivative and fully decoded."
+        },
+        {
+          "url": "https://qualitybearingsonline.co.uk/products/ucp210-fyh-cast-iron-pillow-block-50-inside-diameter.js",
+          "result": "Exact-title product JSON provided complete gallery. Selected second860px image, downloaded620px derivative through storefront CDN alias, fully decoded and visually verified as product photograph."
+        }
+      ],
+      "sourceUrl": "https://qualitybearingsonline.co.uk/products/ucp210-fyh-cast-iron-pillow-block-50-inside-diameter",
+      "sourcePageSha256": "b91c21131e4b415f8513c103a0b6f6d27bd998a051c8491698cb0acc23414f08",
+      "pageTitle": "UCP210 - FYH Cast Iron Pillow Block - 50mm Inside Diameter",
+      "assetUrl": "https://qualitybearingsonline.co.uk/cdn/shop/files/PR444293BI59724_ucp210_fyh_UCP210_FYH_Cast_Iron_Pillow_Block_50mm_Inside_Diameter_SZ4__43357.1731022530.860.860.jpg?v=1751975635&width=620",
+      "listingAssociationVerified": true,
+      "listingIdentity": {
+        "brand": "FYH",
+        "designation": "UCP210",
+        "sku": "ucp210-fyh",
+        "description": "The UCP210 FYH Cast Iron Pillow Block is the ideal solution for your bearing and housing assembly needs. This sturdy Pillow Block comes equipped with a fully sealed Bearing Insert already fitted within the housing, ensuring optimal performance and durability. Crafted from high-quality cast iron, this Pillow Block boasts exceptional strength and reliability, making it suitable for a wide range of applications. This two-bolt unit has hexagon socket set screws and a 50mm shaft diameter.Key FeaturesReplaceable InsertsThe Bearing Insert in the UCP210 can be easily removed from the P210 housing, allowing for future replacements as needed.Self-Aligning AbilityThe convex shape of the Bearing Inserts outer ring along with the concave sphered shape inside the housing gives this UCP210 Pillow Block Unit the ability to self-align, adjust for shaft deviation, and reduce abnormal load.Set Screw FixingEquipped with two hexagon socket set screws, the Bearing Insert securely tightens against the shaft once fitted, ensuring stability, and reducing the risk of slippage or misalignment.Re-lubrication CapabilityThe UCP210 allows for effortless re-lubrication via the grease hole and a grease fitting, promoting smooth operation and prolonging the lifespan of the bearing assembly.Versatile Industry ApplicationsThese Pillow Block Bearing Units are relied upon in many industries, including mining, agriculture, manufacturing and production, and industrial engineering."
+      },
+      "altEn": "FYH UCP210 — listed-brand example",
+      "altFa": "FYH UCP210 — نمونه از برندهای فهرست‌شده",
+      "localUrl": "/product-images/pc-ucp-210-photo.jpg",
+      "sha256": "eb5f083cfbd60a4a4b56257c5c399f34a7386429bf95db29cf4dcdbbfbc5c057",
+      "bytes": 52600,
+      "width": 620,
+      "height": 620,
+      "imageFormat": "JPEG",
+      "originalAssetUrl": "https://cdn.shopify.com/s/files/1/0948/3753/9147/files/PR444293BI59724_ucp210_fyh_UCP210_FYH_Cast_Iron_Pillow_Block_50mm_Inside_Diameter_SZ4__43357.1731022530.860.860.jpg?v=1751975635",
+      "mediaType": "supplier_listing_image",
+      "visualInspection": "Actual bearing-unit photograph with FYH box, visually inspected. Gallery second image selected instead of first dimensional drawing. UCP205 and UCP210 share supplier family photograph; exact pictured size not independently verified.",
+      "sourceGalleryUrl": "https://qualitybearingsonline.co.uk/products/ucp210-fyh-cast-iron-pillow-block-50-inside-diameter.js",
+      "sourceGallerySha256": "38be44ed23200f3ee066b6e75f11260bfbb87793cbcf1699d2d9df5a29bad8a4"
+    }
+  ]
+}

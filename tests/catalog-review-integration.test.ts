@@ -80,6 +80,17 @@ void test('110-product review: authenticated preview, conflict rollback, owner e
     const removed=await post('/products/import',{reviewPatch:deletion,confirm:'IMPORT',revision:deletionPreview.data.revision});
     assert.equal(removed.response.status,200,removed.data.error);
     assert.equal(Object.hasOwn(product(id),'speedReferenceRpm'),false,'ordinary import merge must not restore omitted optional field');
+    const mediaPatch: CatalogReviewPatch = JSON.parse(readFileSync('docs/catalog-review/media.patch.json', 'utf8'));
+    const beforeMedia = allProducts(true);
+    const mediaPreview = await post('/products/import', { reviewPatch: mediaPatch, preview: true });
+    assert.equal(mediaPreview.response.status, 200, mediaPreview.data.error);
+    assert.equal(mediaPreview.data.updated, mediaPatch.rows.length);
+    assert.deepEqual(allProducts(true), beforeMedia, 'media preview must not persist changes');
+    const mediaSaved = await post('/products/import', { reviewPatch: mediaPatch, confirm: 'IMPORT', revision: mediaPreview.data.revision });
+    assert.equal(mediaSaved.response.status, 200, mediaSaved.data.error);
+    for (const row of mediaPatch.rows) assert.deepEqual(fieldValue(product(row.id), 'imageUrl'), row.changes[0].after);
+    assert.equal(allProducts(true).length, baseline.length);
+    assert.equal(product(id).featured, edited.featured, 'media import preserves unrelated owner edits');
   } finally {
     await new Promise<void>((resolve,reject)=>server.close(error=>error?reject(error):resolve()));
     db.close();

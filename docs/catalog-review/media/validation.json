@@ -1,21 +1,41 @@
 {
   "date": "2026-10-15",
-  "scope": "SKF 6305-2RZ supplier-image follow-up only",
-  "checks": {
-    "typecheck": "passed",
-    "productionBuild": "passed; repeated after Quick View fitting correction",
-    "bundleBudgets": "passed",
-    "existingGuardedImportTests": "4 passed",
-    "mediaPatch": "one imageUrl change valid before and after technical review; owner imageUrl/gallery conflicts rejected; all other fields preserved",
-    "browser": "English and Persian product page and Persian Quick View verified; JPEG decoded at 1000 x 1000; full photo fits after intrinsic grid sizing correction",
-    "diffWhitespace": "passed"
+  "total": 110,
+  "replacements": 100,
+  "supplierListingMatches": 57,
+  "labeledExamples": 43,
+  "unresolved": 10,
+  "independentlyVerifiedPhotographedUnits": 0,
+  "localAssetsDecodedAndHashed": 100,
+  "uniqueImageHashes": 46,
+  "localApiProducts": 110,
+  "localImageResponses200": 100,
+  "typecheck": "passed",
+  "targetedTests": {
+    "passed": 7,
+    "description": "Media integrity, owner conflict guards, technical/media patch order and authenticated SQLite import of all100images"
   },
-  "assetBytes": 45604,
-  "liveCatalogModified": false,
-  "deployed": false,
-  "screenshots": [
-    "skf-6305-2rz-updated-en.jpg",
-    "skf-6305-2rz-updated-fa.jpg",
-    "skf-6305-2rz-quick-view-fa.jpg"
+  "productionBuild": "passed",
+  "bundleBudgets": "passed",
+  "visualReview": [
+    "All46uniqueimagecompositions inspected using browser contact sheets or original images, including agent checks.",
+    "FYH drawings rejected and replaced with gallery photographs.",
+    "English and Persian Quick View checked: exampledesignation, source link, completeimage.",
+    "Standalone product page checked with replacementimage and examplelabel.",
+    "Manufacturer/supplier illustrations and packaging/brand references explicitly labeled."
+  ],
+  "liveImport": false,
+  "deployment": false,
+  "unresolvedIds": [
+    "pc-fag-6312-tb-p6",
+    "pc-ina-nk-25-20",
+    "pc-ntn-5206-s",
+    "pc-koyo-22218-rhr",
+    "pc-nachi-6008-2nse9",
+    "pc-nachi-nup-310-eg",
+    "pc-corteco-12011153b",
+    "pc-corteco-12012014b",
+    "skf-6302-2rsl",
+    "skf-6303-2rsl"
   ]
 }
