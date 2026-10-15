@@ -25,6 +25,6 @@ Two attempts to run the entire Node-based suite from Windows timed out; they are
 
 ## Cloudflare completion still pending
 
-Cloudflare still displayed the zone as **pending** and its Universal edge certificate as **Pending Validation (TXT)** during this check. Both English records remain **DNS only**. The site is already usable with trusted HTTPS directly from the VPS; enabling the proxy before the edge certificate is ready could interrupt visitors.
+Cloudflare confirmed the zone as active during the final overview check. Its Universal edge certificate still displayed **Pending Validation (TXT)**. Both English records remain **DNS only**. The site is already usable with trusted HTTPS directly from the VPS; enabling the proxy before the edge certificate is ready could interrupt visitors.
 
-After Cloudflare confirms the zone and edge certificate as active, enable the proxy for the existing apex/www records and verify trusted HTTPS, redirects and public/private cache behavior again. No background watcher or scheduled change was created. Noindex remains until the separate content/audit acceptance gate is approved.
+After Cloudflare confirms the edge certificate as active, enable the proxy for the existing apex/www records and verify trusted HTTPS, redirects and public/private cache behavior again. No background watcher or scheduled change was created. Noindex remains until the separate content/audit acceptance gate is approved.

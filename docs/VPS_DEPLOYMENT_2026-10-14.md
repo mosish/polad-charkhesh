@@ -1,6 +1,6 @@
 # VPS publication and verification — 2026-10-14
 
-> **2026-10-15 update:** The English registrar blocker is resolved and both language domains now serve trusted HTTPS. English origin activation, renewal and preserved-data checks passed. English Cloudflare remains DNS only pending zone/edge-certificate validation. [Current evidence](ENGLISH_DOMAIN_2026-10-15.md). Earlier blocked-domain statements below record the previous state.
+> **2026-10-15 update:** The English registrar blocker is resolved and both language domains now serve trusted HTTPS. English origin activation, renewal and preserved-data checks passed. English Cloudflare remains DNS only pending edge-certificate validation; the zone is active. [Current evidence](ENGLISH_DOMAIN_2026-10-15.md). Earlier blocked-domain statements below record the previous state.
 
 **Published at the owner's request on the temporary HTTPS origin:** [https://213.176.28.119/](https://213.176.28.119/). [Admin login](https://213.176.28.119/admin/).
 

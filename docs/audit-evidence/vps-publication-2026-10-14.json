@@ -194,6 +194,6 @@
     "reviewDate": "2026-10-15",
     "status": "trusted HTTPS live; registrar blocker resolved",
     "evidence": "english-domain-2026-10-15.json",
-    "cloudflare": "Full (strict) saved; DNS only pending zone and edge certificate validation"
+    "cloudflare": "Full (strict) saved; DNS only pending edge certificate validation; the zone is active"
   }
 }
