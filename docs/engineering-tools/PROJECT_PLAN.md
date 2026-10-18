@@ -3,7 +3,7 @@
 **Project:** Polad Charkhesh Engineering Toolbox · توسعه جعبه‌ابزار مهندسی پولاد چرخش  
 **Project ID:** ENG-TOOLS-01  
 **Defined:** 2026-10-18  
-**Status:** Phase 0 in progress; audit, initial benchmarks, numeric validation, explicit eligibility controls and independent manual mode are implemented in source. Method approval, new toolbox modules and publication remain pending.
+**Status:** Phase 0 in progress; audit, initial benchmarks, numeric validation, explicit eligibility controls and independent manual mode are implemented and published. Method approval and new toolbox modules remain pending.
 **Owner preference:** A balanced toolbox covering selection, calculations, lubrication and maintenance.  
 **Baseline:** Source reviewed through `d264db29ed29e798f80147ca3a0949a8d3303f3d`. This is a source assessment, not a fresh audit of every live engineering workflow.
 
@@ -12,6 +12,8 @@
 **C0-B update:** [Eligibility and validation delivery](foundation/C0B_C1A_DELIVERY.md) separates methods from illustration metadata, requires current reviewed profiles and keeps manual mode independent. The approval registry remains empty. Historical observations below describe the planning baseline; this update supersedes the old runtime behavior.
 
 ## 1. Purpose and intended users
+
+**Publication update — 2026-10-18:** Foundation controls and C1-A/B/C admin/API contracts are live on both domains at `d41f111bf48a570cd89930c1f16271140047d67b`. Manual calculation works; the approval registry remains empty and catalog calculations require review. [Release checks and preserved owner-data evidence](../C1C_ADMIN_CLIENT_RELEASE.md).
 
 Expand `/engineering` into a practical workspace where a visitor can choose a component, describe operating conditions, perform supported calculations, compare alternatives, and prepare a useful technical inquiry. Serve design engineers, maintenance technicians and technical purchasing staff without adding commerce features.
 
