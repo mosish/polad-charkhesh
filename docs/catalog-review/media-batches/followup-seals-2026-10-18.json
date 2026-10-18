@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-18",
+  "scope": "Exact-match follow-up; unresolved identities retained without replacements.",
+  "records": [
+    {
+      "productId": "pc-corteco-12011153b",
+      "query": "12011153B",
+      "brand": "Corteco",
+      "target": "12011153B",
+      "example": false,
+      "original": "CORTECO 12011153B Simmerring® TC 35x52x7",
+      "status": "blocked",
+      "supplier": null,
+      "checkedAt": "2026-10-18",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact 12011153B listing photo confirmed, but its identity is BASLSF 40x52/58x7.5 NBR (some suppliers round height to 8mm), which conflicts with catalog TC35x52x7. Manufacturer 2011/2012 oil seals pocket guide page 59 (PDF page 60) independently lists 40x52/58x7.5 BASF NBR for 12011153B.",
+        "Owner requested exact matches only on 2026-10-18. This unresolved stock identity cannot be reconciled through imagery; no image replacement or specification change applied."
+      ],
+      "checkedSources": [
+        "https://www.findyourseal.com/",
+        "https://www.oscaro.com/bague-detancheite-moyeu-de-roue-corteco-12011153b-2498071-656-p",
+        "https://www.trodo.com/shaft-seal-manual-transmission-corteco-12011153b",
+        "https://www.autodoc.parts/corteco/381445",
+        "https://www.automag.ro/simering-butuc-roata/corteco/td12011153b",
+        "https://spareto.com/products/corteco-shaft-seal-manual-transmission/12011153b",
+        "https://elartcom.eu/products/shaft-seal-manual-transmission-12011153b-corteco",
+        "https://pasargad-bearing.com/wp-content/uploads/catalogs/oil_seals_pocket_guide_Corteco_01.pdf"
+      ],
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "Corteco 12011153B: exact product image unresolved",
+      "altFa": "Corteco 12011153B: تصویر دقیق محصول تأیید نشده",
+      "checkedQueries": [
+        "Corteco \"12011153B\"",
+        "\"12011153B\" \"seal\"",
+        "\"12011153\" \"Corteco\""
+      ],
+      "exactPartnumberListingFound": true,
+      "currentCatalogIdentity": {
+        "d": 35,
+        "D": 52,
+        "B": 7,
+        "design": "TC",
+        "material": "NBR"
+      },
+      "sourceIdentity": {
+        "d": 40,
+        "D": 52,
+        "secondaryOuterDiameterMm": 58,
+        "B": 7.5,
+        "design": "BASLSF",
+        "material": "NBR"
+      },
+      "technicalEvidenceFile": "docs/catalog-review/research/schaeffler-corteco.json",
+      "replacementImplemented": false,
+      "notes": [
+        "Fresh research confirmed the known identity conflict. Elart exact-part photograph visually inspected; visible molded CORTECO, BASLSF and 40 52/58 7.5 markings agree with the conflicting listing. Candidate remains ignored research evidence only.",
+        "Spareto linked asset is a 251x251 sectional drawing, visually inspected and rejected as a product photograph."
+      ],
+      "originalImage": {
+        "present": true,
+        "value": "/assets/images/oil_seal_photo_1787677410030.webp"
+      },
+      "candidate": {
+        "status": "blocked_identity_conflict",
+        "supplier": "Elart",
+        "sourceUrl": "https://elartcom.eu/products/shaft-seal-manual-transmission-12011153b-corteco",
+        "pageTitle": "CORTECO 12011153B Shaft Seal, manual transmission",
+        "assetUrl": "https://cdn.elartcom.eu/static/images/0140/82011153_002.JPG",
+        "evidencePath": "work/followup-seals/corteco-12011153b-elart.jpg",
+        "sourceEvidencePath": "work/followup-seals/elart-12011153b.html",
+        "sourceSha256": "9dc7f37519a1df16edeb6091a5bab22d0176b021b6bed80a6ce888b09eb417f0",
+        "sha256": "40577e7be5743138f13ff5899c56cc3908b05e76be916c4a362206bfe872a427",
+        "bytes": 180121,
+        "width": 2099,
+        "height": 1799,
+        "listingAssociationVerified": true,
+        "exactPhotographedUnitVerified": false,
+        "imageKind": "supplier_product_photo",
+        "visualInspection": "Actual black oil seal photograph with molded CORTECO, BASLSF and dimensions 40 52/58 7.5 visible. Product code itself not legible.",
+        "reuseTerms": "Not established; source attribution retained."
+      }
+    },
+    {
+      "productId": "pc-corteco-12012014b",
+      "query": "12012014B",
+      "brand": "Corteco",
+      "target": "12012014B",
+      "example": false,
+      "original": "CORTECO 12012014B Viton® TC 50x72x8",
+      "status": "blocked",
+      "supplier": null,
+      "checkedAt": "2026-10-18",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Fresh exact-part and language-variant searches did not establish a Corteco 12012014B listing or associated image. Search results were unrelated matching numeric strings. This does not prove the part is nonexistent.",
+        "Corteco 2011/2012 Oil Seals Pocket Guide has no text match for 12012014; this historic catalog absence is not proof of present-day nonexistence.",
+        "Previously identified 50x72x8 alternatives have different part numbers and remain rejected. Owner requested exact matches only; current image remains unchanged."
+      ],
+      "checkedSources": [
+        "https://www.findyourseal.com/",
+        "https://web.tecalliance.net/ecatcorteco",
+        "https://www.corteco.com/products/sealing/",
+        "https://pasargad-bearing.com/wp-content/uploads/catalogs/oil_seals_pocket_guide_Corteco_01.pdf"
+      ],
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "Corteco 12012014B: exact product image unresolved",
+      "altFa": "Corteco 12012014B: تصویر دقیق محصول تأیید نشده",
+      "checkedQueries": [
+        "Corteco \"12012014B\"",
+        "\"12012014B\" \"seal\"",
+        "\"12012014\" \"Corteco\"",
+        "Corteco \"12012014 B\"",
+        "\"12012014\" \"simmering\"",
+        "\"12012014\" \"сальник\"",
+        "site:corteco.com \"12012014\"",
+        "site:findyourseal.com \"12012014\"",
+        "\"12012014B\" oil seal Corteco Viton"
+      ],
+      "exactPartnumberListingFound": false,
+      "currentCatalogIdentity": {
+        "d": 50,
+        "D": 72,
+        "B": 8,
+        "design": "TC",
+        "material": "FKM"
+      },
+      "sourceIdentity": null,
+      "technicalEvidenceFile": "docs/catalog-review/research/schaeffler-corteco.json",
+      "replacementImplemented": false,
+      "notes": [
+        "Rechecked exact reference, spaced suffix, English/German/Russian seal terminology and manufacturer/finder domain searches on 2026-10-18. No product photo accepted."
+      ],
+      "originalImage": {
+        "present": true,
+        "value": "/assets/images/oil_seal_photo_1787677410030.webp"
+      }
+    }
+  ]
+}

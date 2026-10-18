@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-18",
+  "scope": "Exact SKF 6302-2RSL and 6303-2RSL photograph follow-up. No suffix substitutions or rendered images accepted.",
+  "records": [
+    {
+      "productId": "skf-6302-2rsl",
+      "query": "6302",
+      "brand": "SKF",
+      "target": "6302-2RSL",
+      "example": false,
+      "original": "6302-2RSL",
+      "status": "blocked",
+      "supplier": null,
+      "checkedAt": "2026-10-18",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact Detmeh listing only technical drawing; Bao An listing links a montage covering several bearing types, not target-specific imagery.",
+        "Additional Vietnam catalog source timed out; no target-consistent supplier photograph found.",
+        "2026-10-18: Fresh exact SKF 6302-2RSL SF2V listing links a 600x600 watermarked cutaway rendering; downloaded and visually inspected, rejected because it is not an exact product photograph. Miar exact listing returned a 405 response; image search candidates are 2RS1, 2RSH/C3, 2RS/C3, or 6203-2RSL rather than the requested designation."
+      ],
+      "checkedSources": [
+        "https://detmeh.ru/121791-6302-2rsl.html",
+        "https://baoanjsc.com.vn/san-pham/vong-bi-cau-ranh-sau-don-day-d15-17mm-skf-type-6-6302-2RSL_477174_vn.aspx",
+        "https://vongbicongnghiep.vn/vong-bi-cau-skf-2/",
+        {
+          "assetSha256": "9865e0b2b124033e949c9b285c72a7523b936d51669dfeebb5441309596c85e9",
+          "url": "https://sf2v.ru/spravochnik-podshipnikov/skf/64010/",
+          "result": "Exact SKF 6302-2RSL listing retrieved; its linked cutaway rendering was rejected after visual inspection.",
+          "assetUrl": "https://sf2v.ru/upload/spravochnik-podshipnikov/img/6302-2rsl.png",
+          "pageSha256": "0c733b68fc837fef80046e07f929b0bbb043b9417019b6a68614c857e5bf4e38"
+        },
+        {
+          "result": "Search listing matches brand and designation, but direct page retrieval returned 405 and no verified target photograph could be extracted.",
+          "url": "https://miar62.ru/katalog/podshipniki/sharikovyie/6302-2rsl"
+        },
+        {
+          "result": "Rejected: explicitly LILY brand interchangeable with SKF, not SKF product.",
+          "url": "https://www.lily-bearing.com/products/6302-2rsl/"
+        },
+        {
+          "result": "Search listing matches SKF designation; web retrieval failed and photograph not verified.",
+          "url": "https://themechanic.ru/catalog/podshipnik/6302-2rsl"
+        }
+      ],
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "SKF 6302-2RSL: supplier listing image",
+      "altFa": "SKF 6302-2RSL: تصویر فهرست تأمین‌کننده",
+      "originalImage": {
+        "present": false
+      }
+    },
+    {
+      "productId": "skf-6303-2rsl",
+      "query": "6303",
+      "brand": "SKF",
+      "target": "6303-2RSL",
+      "example": false,
+      "original": "6303-2RSL",
+      "status": "blocked",
+      "supplier": null,
+      "checkedAt": "2026-10-18",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Exact Tri Tin supplier page timed out twice. Podsnab exact listing supplies only a small technical drawing. Other listings have C3 suffix or other brands.",
+        "TST exact listing retrieved, but primary image visibly shows boxed6212/6213/6220/6224 bearings, not6303; rejected despite page association.",
+        "2026-10-18: Tri Tin exact page became readable in web results, but exposed image links were an authorization graphic and sidebar graphic; direct HTML retrieval still timed out. Spainbearing page also timed out. Fresh image-search photos show 2RSH, 2RS/C3, or 6203 rather than exact SKF 6303-2RSL. No exact photograph verified."
+      ],
+      "checkedSources": [
+        "https://tritin.vn/vong-bi-skf/vong-bi-cau-1-day/vong-bi-skf-6303-2rsl/",
+        "https://www.prombearing.ru/catalog/odnoryadnye-radialnye/6303-2rsl-c3/",
+        "https://podsnab.ru/radialnye-sharikovye-podshipniki/391819-6303-2rsl.html",
+        "https://tstvietnam.vn/San-pham/1218/24826/Vong-Bi-SKF-6303-2RSL.html",
+        {
+          "result": "Rechecked 2026-10-18: exact SKU and dimensions readable using web retrieval; exposed image links resolve to Tritin_SKF_Authorized.png and product_sidebar_img-671x800.webp. Direct retrieval timed out.",
+          "url": "https://tritin.vn/vong-bi-skf/vong-bi-cau-1-day/vong-bi-skf-6303-2rsl/"
+        },
+        {
+          "result": "Search title says CHINA *6303-2RSL; product origin/brand uncertain and direct retrieval timed out.",
+          "url": "https://www.spainbearing.com/nsk/SKF63032RSL/"
+        },
+        {
+          "result": "Rejected: explicitly Loyal interchangeable with SKF rather than SKF product.",
+          "url": "https://www.loyal.sg/product/m176527/6303-2rsl.html"
+        },
+        {
+          "result": "Rejected: C3 suffix is not the requested designation.",
+          "url": "https://www.prombearing.ru/catalog/odnoryadnye-radialnye/6303-2rsl-c3/"
+        }
+      ],
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "SKF 6303-2RSL: supplier listing image",
+      "altFa": "SKF 6303-2RSL: تصویر فهرست تأمین‌کننده",
+      "originalImage": {
+        "present": false
+      }
+    }
+  ]
+}

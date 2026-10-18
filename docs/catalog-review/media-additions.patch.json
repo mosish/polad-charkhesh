@@ -2403,6 +2403,46 @@
       ]
     },
     {
+      "id": "pc-ntn-5206-s",
+      "identity": {
+        "code": "NTN 5206 S Double Row",
+        "slug": "ntn-5206-s",
+        "brands": [
+          "NTN"
+        ],
+        "category": "ball",
+        "schematicType": "deep-groove"
+      },
+      "guards": {
+        "images": {
+          "present": true,
+          "value": [
+            "/assets/images/ball_bearing_photo_1787677355061.webp"
+          ]
+        },
+        "isArchived": {
+          "present": false
+        }
+      },
+      "changes": [
+        {
+          "field": "imageUrl",
+          "before": {
+            "present": true,
+            "value": "/assets/images/ball_bearing_photo_1787677355061.webp"
+          },
+          "after": {
+            "present": true,
+            "value": "/product-images/pc-ntn-5206-s-followup.jpg"
+          },
+          "evidence": [
+            "https://maraindustrial.com/cart/bearings/ntn-5206s-bearing-5206.html",
+            "media/ledger.json#pc-ntn-5206-s"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pc-koyo-6207-2rs",
       "identity": {
         "code": "KOYO 6207-2RS (JTEKT Japan)",

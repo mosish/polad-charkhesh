@@ -19,6 +19,10 @@ const overrides: MediaRecord[] = fs.existsSync(`${root}/media-batches/additional
 const byId = new Map(batch.map(r => [r.productId, r]));
 assert.equal(byId.size, baseline.length, 'Media inventory must cover every public product');
 for (const r of overrides) { assert.ok(byId.has(r.productId)); byId.set(r.productId, r); }
+for (const file of fs.readdirSync(`${root}/media-batches`).filter(f => /^followup-.*\.json$/.test(f)).sort()) {
+  const followup: MediaRecord[] = JSON.parse(fs.readFileSync(`${root}/media-batches/${file}`, 'utf8')).records;
+  for (const r of followup) { assert.ok(byId.has(r.productId)); byId.set(r.productId, r); }
+}
 const original = JSON.parse(fs.readFileSync(`${root}/media/skf-6305-2rz.json`, 'utf8'));
 byId.set('skf-6305-2rz', { ...original, status: 'downloaded', example: false, brand: 'SKF', target: '6305-2RZ', blockers: [] });
 const rows: CatalogReviewPatch['rows'] = [];
@@ -50,7 +54,7 @@ const counts = { total: baseline.length, replacements: rows.length, supplierList
 const write = (path: string, value: unknown) => fs.writeFileSync(path, JSON.stringify(value, null, 2) + '\n');
 write(`${root}/media.patch.json`, patch);
 write(`${root}/media-additions.patch.json`, { ...patch, rows: rows.filter(r => r.id !== 'skf-6305-2rz') });
-write(`${root}/media/ledger.json`, { date: '2026-10-15', scope: 'Supplier listing images and owner-authorized examples from listed brands; no technical verification implied.', counts, records });
+write(`${root}/media/ledger.json`, { date: '2026-10-18', scope: 'Supplier listing images and owner-authorized examples from listed brands; no technical verification implied. October 18 follow-up accepts exact matches only.', counts, records });
 write('lib/supplier-media-data.json', metadata);
 const htmlEscape = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 const creditsPath = 'public-site/asset-credits.html';
@@ -69,11 +73,11 @@ fs.mkdirSync('work/image-review', { recursive: true });
 write('work/image-review/preview-products.json', { products: reviewed.map(p => updates.get(p.id) || p), count: reviewed.length });
 const escape = (s: string) => s.replace(/\|/g, '\\|').replace(/\n/g, ' ');
 fs.writeFileSync(`${root}/media/README.md`, [
-  '# Catalog product image replacement — 2026-10-15', '',
-  `${counts.total} products assessed; **${counts.replacements} replacement images prepared and applied in the isolated preview**: ${counts.supplierListingMatches} matching supplier listings and ${counts.labeledExamples} clearly labeled brand/variant examples. ${counts.unresolved} remain unresolved.`, '',
+  '# Catalog product image replacement — 2026-10-18', '',
+  `${counts.total} products assessed; **${counts.replacements} replacement images prepared**: ${counts.supplierListingMatches} matching supplier listings and ${counts.labeledExamples} clearly labeled brand/variant examples. ${counts.unresolved} remain unresolved. The October 18 follow-up accepts exact matches only. Deployment status is recorded separately in the dated deployment reports.`, '',
   'The owner approved example photographs from listed brands for the 43 multi-brand/alternative-variant records. These examples name the pictured brand and designation and do not establish owner stock, technical equivalence or the appearance of every variant. Supplier listing association does not independently verify the photographed unit. Reused/generic supplier images remain labeled supplier images, never certified exact photographs.', '',
   'Use `media.patch.json` for the original catalog baseline, or `media-additions.patch.json` if the earlier SKF 6305-2RZ image-only patch is already applied. Both use the existing guarded Admin importer and may be applied before or after the technical review patch. They change imageUrl only and reject changed owner media/identity. Do not replace the owner database with the scratch preview.', '',
-  'Original downloaded files are stored locally without visual edits. Evidence includes the source page, linked asset, identity observations, dimensions and SHA-256. Source attribution is shown in Quick View and Image credits. Reuse terms remain as recorded in the evidence. The older technical review ledger/report predate this media follow-up; engineering and identity blockers remain unchanged. No live import or deployment was performed.', '',
+  'Original downloaded files are stored locally without visual edits. Evidence includes the source page, linked asset, identity observations, dimensions and SHA-256. Source attribution is shown in Quick View and Image credits. Reuse terms remain as recorded in the evidence. The older technical review ledger/report predate this media follow-up; engineering and identity blockers remain unchanged. The first 100 images were published on October 15; see the dated deployment records for later changes.', '',
   'Rebuild with `pnpm exec tsx scripts/build-catalog-review.ts` then `pnpm exec tsx scripts/build-catalog-media.ts`. The latter reads committed media evidence and existing binaries; it does not access the network or live database.', '',
   '| Product | Result | Pictured item / reason | Source |', '|---|---|---|---|',
   ...records.map(r => `| ${r.productId} | ${r.status === 'downloaded' ? r.example ? 'Labeled example' : 'Supplier listing image' : 'Unresolved'} | ${escape(r.status === 'downloaded' ? `${r.brand} ${r.target}` : r.blockers.join('; '))} | ${r.sourceUrl ? `[Source](${r.sourceUrl})` : 'See ledger search evidence'} |`), '',

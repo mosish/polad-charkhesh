@@ -569,6 +569,16 @@
     "illustration": false,
     "mediaKind": "supplier_listing_image"
   },
+  "/product-images/pc-ntn-5206-s-followup.jpg": {
+    "name": "Mara Industrial Supply",
+    "sourceUrl": "https://maraindustrial.com/cart/bearings/ntn-5206s-bearing-5206.html",
+    "altEn": "NTN 5206S bearing and matching branded box — supplier photograph",
+    "altFa": "بلبرینگ NTN 5206S و جعبه دارای مشخصات مطابق — عکس تأمین‌کننده",
+    "example": false,
+    "pictured": "NTN 5206S",
+    "illustration": false,
+    "mediaKind": "supplier_listing_image"
+  },
   "/product-images/pc-koyo-6207-2rs-supplier.jpg": {
     "name": "Quality Bearings Online",
     "sourceUrl": "https://qualitybearingsonline.co.uk/products/koyo-6207-2rs-deep-groove-bearing-35x72x17",

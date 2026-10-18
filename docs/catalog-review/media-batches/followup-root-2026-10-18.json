@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-10-18",
+  "scope": "Exact matches only per owner instruction; conflicting candidates retained as evidence, not applied.",
+  "records": [
+    {
+      "productId": "pc-fag-6312-tb-p6",
+      "query": "6312",
+      "brand": "FAG",
+      "target": "6312-TB-P6",
+      "example": false,
+      "original": "FAG 6312-TB-P6 Schaeffler",
+      "status": "blocked",
+      "supplier": null,
+      "checkedAt": "2026-10-18",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Only 6312-TB-P6-C3 listings found; C3 is an unapproved additional suffix."
+      ],
+      "checkedSources": [
+        "https://www.abf.store/s/en/bearings/6312-TB-P6-C3-FAG/416094",
+        "https://motionparts.de/products/6312-tb-p6-c3-fag",
+        {
+          "url": "https://www.2rs.bg/6312-tb-p6-c3-fag-bg.html",
+          "result": "Fresh search identifies C3 variant only. Extra clearance suffix conflicts with exact-only owner instruction."
+        },
+        {
+          "url": "https://www.rpmdobrasil.com.br/produto/fag/1838882-6312-tb-p6-c3-fag/6312-tb-p6-c3-fag",
+          "result": "Listing explicitly identifies C3 clearance. Not an exact 6312-TB-P6 match."
+        }
+      ],
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "FAG 6312-TB-P6: supplier listing image",
+      "altFa": "FAG 6312-TB-P6: تصویر فهرست تأمین‌کننده",
+      "originalImage": {
+        "present": true,
+        "value": "/assets/images/ball_bearing_photo_1787677355061.webp"
+      }
+    },
+    {
+      "productId": "pc-ina-nk-25-20",
+      "query": "NK25/20",
+      "brand": "INA",
+      "target": "NK25/20",
+      "example": false,
+      "original": "INA NK 25/20 Heavy Needle Roller",
+      "status": "blocked",
+      "supplier": null,
+      "checkedAt": "2026-10-18",
+      "exactPhotographedUnitVerified": false,
+      "reuseTerms": "Not established; source attribution retained.",
+      "blockers": [
+        "Supplier current listings resolve NK25/20-XL; catalog says 25x35x20 but official NK25/20-XL is 25x33x20. Owner identity resolution required."
+      ],
+      "checkedSources": [
+        "https://www.123bearing.eu/bearing-housing/needle-roller-bearing/needle/nk25-20-ina",
+        "https://www.tristate-bearing.com/ina-nk25-20-xl-inank25-20",
+        {
+          "url": "https://www.mrosupply.com/bearings/2166850_nk2520_ina-bearing/",
+          "result": "Exact-code title, but 25x33x20 dimensions conflict with catalog 25x35x20. Linked image inspected and is cutaway illustration.",
+          "sourcePageSha256": "4e06987860fceea893ec3ebf72d550896494c650081da1f7352c8fcd3771f1bc"
+        },
+        {
+          "url": "https://terminal3.ru/product/nk_25_20_ina/",
+          "result": "Exact-code INA title; photo/drawing composite visually inspected. Listing specifies25x33x20, conflicts with catalog25x35x20. Candidate retained in ignored research only.",
+          "sourcePageSha256": "715e5ab2f202319642d74f395345ba1eb11480a35291e0de3c1d388f4a130542",
+          "assetUrl": "https://terminal3.ru/upload/resize_cache/iblock/f78/1000_601_18cb40ab4de308c7b1c29ceb5215d865c/6lgagnlkm4dgl330nwt87rzv7mrm2poz.jpeg",
+          "sha256": "42aee0a4cbdde69273b632ba4cf752ad1867b2c88b7e3262ea5bc2c7a1f5c7e3"
+        }
+      ],
+      "sourceUrl": null,
+      "assetUrl": null,
+      "localUrl": null,
+      "pageTitle": null,
+      "listingAssociationVerified": false,
+      "sha256": null,
+      "bytes": 0,
+      "width": 0,
+      "height": 0,
+      "altEn": "INA NK25/20: supplier listing image",
+      "altFa": "INA NK25/20: تصویر فهرست تأمین‌کننده",
+      "originalImage": {
+        "present": true,
+        "value": "/assets/images/cylindrical_bearing_photo_1787677431892.webp"
+      }
+    }
+  ]
+}

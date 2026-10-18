@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-15",
-  "scope": "Supplier listing images and owner-authorized examples from listed brands; no technical verification implied.",
+  "date": "2026-10-18",
+  "scope": "Supplier listing images and owner-authorized examples from listed brands; no technical verification implied. October 18 follow-up accepts exact matches only.",
   "counts": {
     "total": 110,
-    "replacements": 100,
-    "supplierListingMatches": 57,
+    "replacements": 101,
+    "supplierListingMatches": 58,
     "labeledExamples": 43,
-    "unresolved": 10,
+    "unresolved": 9,
     "independentlyVerifiedPhotographedUnits": 0
   },
   "records": [
@@ -2299,7 +2299,7 @@
       "original": "FAG 6312-TB-P6 Schaeffler",
       "status": "blocked",
       "supplier": null,
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
@@ -2307,7 +2307,15 @@
       ],
       "checkedSources": [
         "https://www.abf.store/s/en/bearings/6312-TB-P6-C3-FAG/416094",
-        "https://motionparts.de/products/6312-tb-p6-c3-fag"
+        "https://motionparts.de/products/6312-tb-p6-c3-fag",
+        {
+          "url": "https://www.2rs.bg/6312-tb-p6-c3-fag-bg.html",
+          "result": "Fresh search identifies C3 variant only. Extra clearance suffix conflicts with exact-only owner instruction."
+        },
+        {
+          "url": "https://www.rpmdobrasil.com.br/produto/fag/1838882-6312-tb-p6-c3-fag/6312-tb-p6-c3-fag",
+          "result": "Listing explicitly identifies C3 clearance. Not an exact 6312-TB-P6 match."
+        }
       ],
       "sourceUrl": null,
       "assetUrl": null,
@@ -2408,7 +2416,7 @@
       "original": "INA NK 25/20 Heavy Needle Roller",
       "status": "blocked",
       "supplier": null,
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
@@ -2416,7 +2424,19 @@
       ],
       "checkedSources": [
         "https://www.123bearing.eu/bearing-housing/needle-roller-bearing/needle/nk25-20-ina",
-        "https://www.tristate-bearing.com/ina-nk25-20-xl-inank25-20"
+        "https://www.tristate-bearing.com/ina-nk25-20-xl-inank25-20",
+        {
+          "url": "https://www.mrosupply.com/bearings/2166850_nk2520_ina-bearing/",
+          "result": "Exact-code title, but 25x33x20 dimensions conflict with catalog 25x35x20. Linked image inspected and is cutaway illustration.",
+          "sourcePageSha256": "4e06987860fceea893ec3ebf72d550896494c650081da1f7352c8fcd3771f1bc"
+        },
+        {
+          "url": "https://terminal3.ru/product/nk_25_20_ina/",
+          "result": "Exact-code INA title; photo/drawing composite visually inspected. Listing specifies25x33x20, conflicts with catalog25x35x20. Candidate retained in ignored research only.",
+          "sourcePageSha256": "715e5ab2f202319642d74f395345ba1eb11480a35291e0de3c1d388f4a130542",
+          "assetUrl": "https://terminal3.ru/upload/resize_cache/iblock/f78/1000_601_18cb40ab4de308c7b1c29ceb5215d865c/6lgagnlkm4dgl330nwt87rzv7mrm2poz.jpeg",
+          "sha256": "42aee0a4cbdde69273b632ba4cf752ad1867b2c88b7e3262ea5bc2c7a1f5c7e3"
+        }
       ],
       "sourceUrl": null,
       "assetUrl": null,
@@ -2824,18 +2844,15 @@
       "productId": "pc-ntn-5206-s",
       "query": "5206",
       "brand": "NTN",
-      "target": "5206 S",
+      "target": "5206S",
       "example": false,
       "original": "NTN 5206 S Double Row",
-      "status": "blocked",
-      "supplier": "Quality Bearings Online",
-      "checkedAt": "2026-10-15",
+      "status": "downloaded",
+      "supplier": "Mara Industrial Supply",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
-      "blockers": [
-        "Exact listings found; NTN page unavailable and alternate pages403. RS Saudi page retrieved but its referenced image returned404.",
-        "Additional exact supplier alternatives checked; no usable product photograph acquired. See checkedSources."
-      ],
+      "blockers": [],
       "checkedSources": [
         {
           "url": "https://eshop.ntn-snr.com/en/product/5206S-NTN/5206S",
@@ -2864,13 +2881,44 @@
         {
           "url": "https://media.rs-online.com/t_medium/EXA_af8daa.jpg",
           "result": "Observed RS listing thumbnail also404; mainimage variants404."
+        },
+        {
+          "url": "https://www.denzaido.com/page/578281/",
+          "result": "Downloaded exact-listing image; cutaway illustration excluded."
+        },
+        {
+          "url": "https://vongbintn.com/san-pham/Vong-bi-5206S.html",
+          "result": "Exact distributor listing and three matching packaging-only photographs downloaded and inspected; bearing-plus-box photograph from Mara preferred."
+        },
+        {
+          "url": "https://maraindustrial.com/cart/bearings/ntn-5206s-bearing-5206.html",
+          "result": "Exact NTN 5206S listing downloaded. Three gallery photos decoded and inspected. Selected full bearing plus matching box photograph; additional close-up confirms 5206S and UPC."
         }
       ],
-      "listingAssociationVerified": false,
+      "listingAssociationVerified": true,
       "originalImage": {
         "present": true,
         "value": "/assets/images/ball_bearing_photo_1787677355061.webp"
-      }
+      },
+      "sourceUrl": "https://maraindustrial.com/cart/bearings/ntn-5206s-bearing-5206.html",
+      "sourcePageSha256": "1d35caec8563dc14e948a3373f8a0821587dbecd4551857ba056f41832ab9f7a",
+      "assetUrl": "https://maraindustrial.com/454252-large_default/ntn-5206s-bearing-5206.jpg",
+      "localUrl": "/product-images/pc-ntn-5206-s-followup.jpg",
+      "pageTitle": "NTN 5206S Bearing 5206",
+      "listingIdentity": {
+        "brand": "NTN",
+        "designation": "5206S",
+        "description": "Exact NTN 5206S bearing listing; photographs show bearing and matching NTN 5206S box, UPC 4547359536638."
+      },
+      "sha256": "a18c30a4e9a922188072d539e8b063782c9142523f30d6cfa7405008274f0d20",
+      "bytes": 180555,
+      "width": 1000,
+      "height": 1000,
+      "imageFormat": "JPEG",
+      "imageKind": "supplier_listing_image",
+      "altEn": "NTN 5206S bearing and matching branded box — supplier photograph",
+      "altFa": "بلبرینگ NTN 5206S و جعبه دارای مشخصات مطابق — عکس تأمین‌کننده",
+      "visualInspection": "Actual open double-row bearing beside NTN branded box marked 5206S / 5206. Full gallery includes close-up box marking and UPC 4547359536638. Image fully decoded and visually inspected. Physical supplied unit and authenticity not independently verified."
     },
     {
       "productId": "pc-koyo-6207-2rs",
@@ -2969,11 +3017,11 @@
       "original": "KOYO 22218 RHR Spherical Roller",
       "status": "blocked",
       "supplier": "Quality Bearings Online",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
-        "Exact supplier page image inspected: dimensional drawing only, not product photograph. ABF result adds W33 C3 and is not exact suffix match."
+        "Fresh supplier results add W33 and/or C3; no acceptable exact 22218RHR product photograph found. Generic category rendering and original dimensional drawing excluded."
       ],
       "checkedSources": [
         {
@@ -2983,6 +3031,18 @@
         {
           "url": "https://www.abf.store/s/pl/lozyska/22218RHR-W33-C3-KOYO--JTEKT-/569939",
           "result": "Exact supplier page image inspected: dimensional drawing only, not product photograph. ABF result adds W33 C3 and is not exact suffix match."
+        },
+        {
+          "url": "https://www.bearinglookup.com/categories/bearings-spherical-roller-bearing/",
+          "result": "Generic Wikimedia spherical bearing rendering shared across all listings, not exact photographed product; excluded."
+        },
+        {
+          "url": "https://www.zoro.com/koyo-spherical-roller-bearings-22218-rhr-w33/i/G209121428/",
+          "result": "Full designation adds W33; excluded."
+        },
+        {
+          "url": "https://b2b.rombor.com.pl/lozyska-barylkowe-dwurzedowe/20763-22218-rhr-w33-c3-koyo.html",
+          "result": "Full designation adds W33 and C3; excluded."
         }
       ],
       "listingAssociationVerified": false,
@@ -3000,12 +3060,11 @@
       "original": "NACHI 6008-2NSE9 Quest® Japan",
       "status": "blocked",
       "supplier": "Quality Bearings Online",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
-        "Exact listings found; MRO-PT403, LocateBallBearings and Monotaro transfer timeout. PPDistributors adds C3, not exact suffix match. No acceptable decoded exact-listing photograph yet.",
-        "Additional exact supplier alternatives checked; no usable product photograph acquired. See checkedSources."
+        "Fresh exact MIAR listing downloaded, but image is transparent generic cutaway rendering rather than sealed product photo. Machinio, MRO-PT, Motion, KeepSupply and eBay listings inaccessible for usable photographs. No approved exact image acquired."
       ],
       "checkedSources": [
         {
@@ -3031,6 +3090,26 @@
         {
           "url": "https://cdn11.bigcommerce.com/s-iq7rkrc32l/images/stencil/1280x1280/products/228011/373177/singlerowballbearing__04631.1638835201.jpg?c=2",
           "result": "Observed LocateBallBearings listing image download timedout; no decoded image acquired."
+        },
+        {
+          "url": "https://miar62.ru/katalog/podshipniki/sharikovyie/6008-2nse9-42497",
+          "result": "Downloaded page and image; visually inspected transparent generic rendering with exposed balls, excluded."
+        },
+        {
+          "url": "https://www.machinio.com/listings/110309652-nachi-6008-2nse9-rubber-sealed-ball-bearing-nos-in-galion-oh",
+          "result": "Exact listing indexed with images, but direct access returns access failure and web open fails; no usable asset acquired."
+        },
+        {
+          "url": "https://www.keepsupply.com/shop-by-products/shop-by-brand/nachi/ball-bearings.html",
+          "result": "Exact 6008-2NSE9 indexed among other variants; direct page returns challenge, no usable asset acquired."
+        },
+        {
+          "url": "https://mro-pt.com/products/nachi-6008-2nse9.js",
+          "result": "Public Shopify product endpoint unavailable; no usable photograph."
+        },
+        {
+          "url": "https://www.ebay.com/p/1150213896",
+          "result": "Exact and C3 variants indexed; direct page inaccessible, no usable exact photograph acquired."
         }
       ],
       "listingAssociationVerified": false,
@@ -3085,12 +3164,11 @@
       "original": "NACHI NUP 310 EG Cylindrical",
       "status": "blocked",
       "supplier": "Quality Bearings Online",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
-        "Exact designation confirmed on supplier pages. Sfera product page has no product photo; social image is site logo. Partao access403. No product image URL verified.",
-        "Additional exact supplier alternatives checked; no usable product photograph acquired. See checkedSources."
+        "Fresh exact Korbel NUP 310 EG Nachi listing downloaded; its photograph is a shared category image showing several cylindrical bearings, not the exact NUP310EG. Prior exact listings provide dimensional drawing or no photo."
       ],
       "checkedSources": [
         {
@@ -3108,6 +3186,14 @@
         {
           "url": "https://www.tymoty.cz/content/images/product/default/287073.jpg",
           "result": "Downloaded and visually inspected as dimensioned technical illustration; excluded from photo replacement."
+        },
+        {
+          "url": "https://www.korbel-loziska.cz/sortiment/valeckova-loziska/nup-310-eg-nachi",
+          "result": "Exact listing acquired; category photo downloaded and visually inspected. Shows multiple mixed cylindrical bearings, shared across NU/NJ/NUP products; excluded."
+        },
+        {
+          "url": "https://www.korbel-loziska.cz/upload/katalog/valeckove-lozisko-valeckova-loziska.jpg",
+          "result": "Decoded 300x300 category group photograph; not exact individual bearing."
         }
       ],
       "listingAssociationVerified": false,
@@ -3125,19 +3211,22 @@
       "original": "CORTECO 12011153B Simmerring® TC 35x52x7",
       "status": "blocked",
       "supplier": null,
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
-        "Exact Corteco12011153B supplier listings identify a40mm bore,52/58mm outer diameter and7.5mm nominal height (some rounded to8mm), BASLSF NBR. Current record claims TC35x52x7, so the exact partnumber photograph would contradict current stock identity.",
-        "No replacement applied. Owner must resolve whether stock is12011153B BASLSF40x52/58x7.5 or a different35x52x7 TC seal. No different partnumber substituted."
+        "Exact 12011153B listing photo confirmed, but its identity is BASLSF 40x52/58x7.5 NBR (some suppliers round height to 8mm), which conflicts with catalog TC35x52x7. Manufacturer 2011/2012 oil seals pocket guide page 59 (PDF page 60) independently lists 40x52/58x7.5 BASF NBR for 12011153B.",
+        "Owner requested exact matches only on 2026-10-18. This unresolved stock identity cannot be reconciled through imagery; no image replacement or specification change applied."
       ],
       "checkedSources": [
         "https://www.findyourseal.com/",
         "https://www.oscaro.com/bague-detancheite-moyeu-de-roue-corteco-12011153b-2498071-656-p",
         "https://www.trodo.com/shaft-seal-manual-transmission-corteco-12011153b",
         "https://www.autodoc.parts/corteco/381445",
-        "https://www.automag.ro/simering-butuc-roata/corteco/td12011153b"
+        "https://www.automag.ro/simering-butuc-roata/corteco/td12011153b",
+        "https://spareto.com/products/corteco-shaft-seal-manual-transmission/12011153b",
+        "https://elartcom.eu/products/shaft-seal-manual-transmission-12011153b-corteco",
+        "https://pasargad-bearing.com/wp-content/uploads/catalogs/oil_seals_pocket_guide_Corteco_01.pdf"
       ],
       "sourceUrl": null,
       "assetUrl": null,
@@ -3174,11 +3263,31 @@
       "technicalEvidenceFile": "docs/catalog-review/research/schaeffler-corteco.json",
       "replacementImplemented": false,
       "notes": [
-        "Current supplier search corroborates or retains previous identity blocker. No technical changes or product image replacement made."
+        "Fresh research confirmed the known identity conflict. Elart exact-part photograph visually inspected; visible molded CORTECO, BASLSF and 40 52/58 7.5 markings agree with the conflicting listing. Candidate remains ignored research evidence only.",
+        "Spareto linked asset is a 251x251 sectional drawing, visually inspected and rejected as a product photograph."
       ],
       "originalImage": {
         "present": true,
         "value": "/assets/images/oil_seal_photo_1787677410030.webp"
+      },
+      "candidate": {
+        "status": "blocked_identity_conflict",
+        "supplier": "Elart",
+        "sourceUrl": "https://elartcom.eu/products/shaft-seal-manual-transmission-12011153b-corteco",
+        "pageTitle": "CORTECO 12011153B Shaft Seal, manual transmission",
+        "assetUrl": "https://cdn.elartcom.eu/static/images/0140/82011153_002.JPG",
+        "evidencePath": "work/followup-seals/corteco-12011153b-elart.jpg",
+        "sourceEvidencePath": "work/followup-seals/elart-12011153b.html",
+        "sourceSha256": "9dc7f37519a1df16edeb6091a5bab22d0176b021b6bed80a6ce888b09eb417f0",
+        "sha256": "40577e7be5743138f13ff5899c56cc3908b05e76be916c4a362206bfe872a427",
+        "bytes": 180121,
+        "width": 2099,
+        "height": 1799,
+        "listingAssociationVerified": true,
+        "exactPhotographedUnitVerified": false,
+        "imageKind": "supplier_product_photo",
+        "visualInspection": "Actual black oil seal photograph with molded CORTECO, BASLSF and dimensions 40 52/58 7.5 visible. Product code itself not legible.",
+        "reuseTerms": "Not established; source attribution retained."
       }
     },
     {
@@ -3190,18 +3299,19 @@
       "original": "CORTECO 12012014B Viton® TC 50x72x8",
       "status": "blocked",
       "supplier": null,
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
-        "No exact Corteco12012014B supplier or manufacturer listing established in current exact-partnumber searches. Search absence does not prove the part does not exist.",
-        "Existing official finder review at50x72x8 returned FPM12016201B and NBR12010970B/12011177B; these are different references and rejected as image substitutes.",
-        "Stock partnumber/marking must be resolved before assigning an image. No unsupported brand example or alternate partnumber used."
+        "Fresh exact-part and language-variant searches did not establish a Corteco 12012014B listing or associated image. Search results were unrelated matching numeric strings. This does not prove the part is nonexistent.",
+        "Corteco 2011/2012 Oil Seals Pocket Guide has no text match for 12012014; this historic catalog absence is not proof of present-day nonexistence.",
+        "Previously identified 50x72x8 alternatives have different part numbers and remain rejected. Owner requested exact matches only; current image remains unchanged."
       ],
       "checkedSources": [
         "https://www.findyourseal.com/",
         "https://web.tecalliance.net/ecatcorteco",
-        "https://www.corteco.com/products/sealing/"
+        "https://www.corteco.com/products/sealing/",
+        "https://pasargad-bearing.com/wp-content/uploads/catalogs/oil_seals_pocket_guide_Corteco_01.pdf"
       ],
       "sourceUrl": null,
       "assetUrl": null,
@@ -3217,7 +3327,13 @@
       "checkedQueries": [
         "Corteco \"12012014B\"",
         "\"12012014B\" \"seal\"",
-        "\"12012014\" \"Corteco\""
+        "\"12012014\" \"Corteco\"",
+        "Corteco \"12012014 B\"",
+        "\"12012014\" \"simmering\"",
+        "\"12012014\" \"сальник\"",
+        "site:corteco.com \"12012014\"",
+        "site:findyourseal.com \"12012014\"",
+        "\"12012014B\" oil seal Corteco Viton"
       ],
       "exactPartnumberListingFound": false,
       "currentCatalogIdentity": {
@@ -3231,7 +3347,7 @@
       "technicalEvidenceFile": "docs/catalog-review/research/schaeffler-corteco.json",
       "replacementImplemented": false,
       "notes": [
-        "Current supplier search corroborates or retains previous identity blocker. No technical changes or product image replacement made."
+        "Rechecked exact reference, spaced suffix, English/German/Russian seal terminology and manufacturer/finder domain searches on 2026-10-18. No product photo accepted."
       ],
       "originalImage": {
         "present": true,
@@ -3597,17 +3713,37 @@
       "original": "6302-2RSL",
       "status": "blocked",
       "supplier": null,
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
         "Exact Detmeh listing only technical drawing; Bao An listing links a montage covering several bearing types, not target-specific imagery.",
-        "Additional Vietnam catalog source timed out; no target-consistent supplier photograph found."
+        "Additional Vietnam catalog source timed out; no target-consistent supplier photograph found.",
+        "2026-10-18: Fresh exact SKF 6302-2RSL SF2V listing links a 600x600 watermarked cutaway rendering; downloaded and visually inspected, rejected because it is not an exact product photograph. Miar exact listing returned a 405 response; image search candidates are 2RS1, 2RSH/C3, 2RS/C3, or 6203-2RSL rather than the requested designation."
       ],
       "checkedSources": [
         "https://detmeh.ru/121791-6302-2rsl.html",
         "https://baoanjsc.com.vn/san-pham/vong-bi-cau-ranh-sau-don-day-d15-17mm-skf-type-6-6302-2RSL_477174_vn.aspx",
-        "https://vongbicongnghiep.vn/vong-bi-cau-skf-2/"
+        "https://vongbicongnghiep.vn/vong-bi-cau-skf-2/",
+        {
+          "assetSha256": "9865e0b2b124033e949c9b285c72a7523b936d51669dfeebb5441309596c85e9",
+          "url": "https://sf2v.ru/spravochnik-podshipnikov/skf/64010/",
+          "result": "Exact SKF 6302-2RSL listing retrieved; its linked cutaway rendering was rejected after visual inspection.",
+          "assetUrl": "https://sf2v.ru/upload/spravochnik-podshipnikov/img/6302-2rsl.png",
+          "pageSha256": "0c733b68fc837fef80046e07f929b0bbb043b9417019b6a68614c857e5bf4e38"
+        },
+        {
+          "result": "Search listing matches brand and designation, but direct page retrieval returned 405 and no verified target photograph could be extracted.",
+          "url": "https://miar62.ru/katalog/podshipniki/sharikovyie/6302-2rsl"
+        },
+        {
+          "result": "Rejected: explicitly LILY brand interchangeable with SKF, not SKF product.",
+          "url": "https://www.lily-bearing.com/products/6302-2rsl/"
+        },
+        {
+          "result": "Search listing matches SKF designation; web retrieval failed and photograph not verified.",
+          "url": "https://themechanic.ru/catalog/podshipnik/6302-2rsl"
+        }
       ],
       "sourceUrl": null,
       "assetUrl": null,
@@ -4033,18 +4169,35 @@
       "original": "6303-2RSL",
       "status": "blocked",
       "supplier": null,
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-18",
       "exactPhotographedUnitVerified": false,
       "reuseTerms": "Not established; source attribution retained.",
       "blockers": [
         "Exact Tri Tin supplier page timed out twice. Podsnab exact listing supplies only a small technical drawing. Other listings have C3 suffix or other brands.",
-        "TST exact listing retrieved, but primary image visibly shows boxed6212/6213/6220/6224 bearings, not6303; rejected despite page association."
+        "TST exact listing retrieved, but primary image visibly shows boxed6212/6213/6220/6224 bearings, not6303; rejected despite page association.",
+        "2026-10-18: Tri Tin exact page became readable in web results, but exposed image links were an authorization graphic and sidebar graphic; direct HTML retrieval still timed out. Spainbearing page also timed out. Fresh image-search photos show 2RSH, 2RS/C3, or 6203 rather than exact SKF 6303-2RSL. No exact photograph verified."
       ],
       "checkedSources": [
         "https://tritin.vn/vong-bi-skf/vong-bi-cau-1-day/vong-bi-skf-6303-2rsl/",
         "https://www.prombearing.ru/catalog/odnoryadnye-radialnye/6303-2rsl-c3/",
         "https://podsnab.ru/radialnye-sharikovye-podshipniki/391819-6303-2rsl.html",
-        "https://tstvietnam.vn/San-pham/1218/24826/Vong-Bi-SKF-6303-2RSL.html"
+        "https://tstvietnam.vn/San-pham/1218/24826/Vong-Bi-SKF-6303-2RSL.html",
+        {
+          "result": "Rechecked 2026-10-18: exact SKU and dimensions readable using web retrieval; exposed image links resolve to Tritin_SKF_Authorized.png and product_sidebar_img-671x800.webp. Direct retrieval timed out.",
+          "url": "https://tritin.vn/vong-bi-skf/vong-bi-cau-1-day/vong-bi-skf-6303-2rsl/"
+        },
+        {
+          "result": "Search title says CHINA *6303-2RSL; product origin/brand uncertain and direct retrieval timed out.",
+          "url": "https://www.spainbearing.com/nsk/SKF63032RSL/"
+        },
+        {
+          "result": "Rejected: explicitly Loyal interchangeable with SKF rather than SKF product.",
+          "url": "https://www.loyal.sg/product/m176527/6303-2rsl.html"
+        },
+        {
+          "result": "Rejected: C3 suffix is not the requested designation.",
+          "url": "https://www.prombearing.ru/catalog/odnoryadnye-radialnye/6303-2rsl-c3/"
+        }
       ],
       "sourceUrl": null,
       "assetUrl": null,
