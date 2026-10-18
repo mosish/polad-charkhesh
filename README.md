@@ -1,5 +1,7 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
+**English** | [فارسی](README.fa.md)
+
 > **Project status:** Both language domains live with eligibility controls, independent manual calculation and C1-C admin/client contracts deployed. C1 source-quality work is complete with zero lint errors and required CI lint; C1-D is not yet deployed. Engineering acceptance, operations and final audits remain open.
 >
 > **Source of truth for code:** GitHub `main`
@@ -74,6 +76,8 @@ The latest loading-performance update passed **64 tests** on Windows and Ubuntu 
 The two-sheet designer handoff explains the public information architecture, routes and product interactions, followed by the administration modules and data flow. It distinguishes sections of the continuous home page from retained direct routes and shows how the public interface and admin panel use the server, SQLite and uploaded media.
 
 **Downloads:** [Two-page PDF](docs/designer-handoff/polad-charkhesh-designer-handoff.pdf) · [Editable public sitemap (SVG)](docs/designer-handoff/01-public-sitemap.svg) · [Editable admin/data architecture (SVG)](docs/designer-handoff/02-admin-data-architecture.svg) · [Handoff notes and regeneration instructions](docs/designer-handoff/README.md).
+
+**نسخهٔ فارسی:** [معرفی و راهنمای پروژه](README.fa.md) · [PDF فارسی](docs/designer-handoff/polad-charkhesh-designer-handoff-fa.pdf) · [نمودارها و فایل‌های قابل‌ویرایش](docs/designer-handoff/README.fa.md).
 
 ### Public sitemap and visitor flow
 
@@ -217,6 +221,8 @@ pnpm smoke:production
 Do not commit `.env`, `data/`, uploaded files, or credentials. GitHub contains the application source and bundled public assets, not the running site's private content. The [GitHub workflow guide](docs/GITHUB.md) explains synchronization.
 
 ## README update policy
+
+Keep [the Persian README](README.fa.md) and this English version aligned when current status, capabilities, setup commands or the roadmap change. The Persian guide summarizes the current project; the detailed historical log remains in this English document.
 
 This is the living project-status document. With **each completed source change**, update it in the same commit: review the date and status table, record a meaningful milestone or revision, and change the roadmap when a blocker is resolved or discovered. Use ✅ only when the relevant behavior has been verified, not merely implemented. Review the latest `main` and other active work before editing so one contributor does not overwrite another's changes.
 

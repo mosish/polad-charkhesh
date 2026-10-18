@@ -1,5 +1,7 @@
 # Designer handoff
 
+**English** | [فارسی](README.fa.md)
+
 Prepared 18 October 2026 for Polad Charkhesh. These two sheets explain the implemented website structure for web designers and developers.
 
 ## Deliverables
@@ -10,6 +12,12 @@ Prepared 18 October 2026 for Polad Charkhesh. These two sheets explain the imple
 - [Reproducible diagram authoring source](build_diagrams.py).
 
 SVGs contain standard shapes, paths and text. Font substitution and text editability depend on the importing design tool. SVG typography uses Arial/Helvetica and Courier-style route labels; the PDF uses standard Helvetica/Courier fonts.
+
+## Persian edition
+
+The [Persian handoff](README.fa.md) provides fully mirrored RTL diagrams, Persian labels and preserved left-to-right routes. Download the [Persian PDF](polad-charkhesh-designer-handoff-fa.pdf), [public SVG](01-public-sitemap-fa.svg) or [admin/data SVG](02-admin-data-architecture-fa.svg). The localized engineering card also reflects the October 18 reviewed-profile gate and independent manual calculation mode.
+
+To regenerate, install `reportlab`, `arabic-reshaper` and `python-bidi`, then run `python docs/designer-handoff/build_diagrams_fa.py` from the repository root. Render the two PDF pages with Poppler as described in the [Persian instructions](README.fa.md). The SVGs embed the existing repository's Vazirmatn WOFF2 font, and the PDF embeds its TTF subset. The font is distributed under the [SIL Open Font License](FONT-LICENSE.txt).
 
 ## Reading conventions
 
