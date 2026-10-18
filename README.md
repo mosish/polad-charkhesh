@@ -8,6 +8,8 @@
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
+**Engineering toolbox expansion — planning:** [Project definition, phased plan and backlog](docs/engineering-tools/PROJECT_PLAN.md) cover a balanced expansion of selection, calculations, lubrication and maintenance. Implementation and deployment have not started.
+
 **Exact-image follow-up published — 2026-10-18:** NTN 5206S now has a matching supplier photograph of the bearing and marked box. Image replacements total 101; nine unresolved entries remain unchanged under the owner's exact-match-only instruction. [Follow-up evidence and deployment checks](docs/CATALOG_DEPLOYMENT_2026-10-18.md).
 
 **Catalog update published — 2026-10-15:** The owner-authorized update applied 61 technical-record patches and 100 product-image replacements across the existing 110-product catalog. Images include 57 supplier-listing matches and 43 clearly labeled examples; ten unresolved images remain unchanged. [Deployment and verification record](docs/CATALOG_DEPLOYMENT_2026-10-15.md). Manufacturer evidence gaps and final engineering acceptance remain open before company datasheet PDFs; publication does not establish exact photographed-unit verification.
