@@ -1,3 +1,7 @@
+import type { BearingProduct } from '../domain/product';
+import { parse, type PublishedSettings } from './records';
+import { object } from './content-validation';
+export { parse } from './records';
 import { seoDefaults, upgradeSeo, fillProductSeo } from '../domain/seo';
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync, existsSync, statSync } from 'node:fs';
@@ -36,7 +40,6 @@ CREATE TABLE IF NOT EXISTS media(id TEXT PRIMARY KEY,data TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS audit_logs(id TEXT PRIMARY KEY,timestamp TEXT NOT NULL,actor TEXT NOT NULL,action TEXT NOT NULL,entity TEXT);
 CREATE TABLE IF NOT EXISTS backup_snapshots(id TEXT PRIMARY KEY,created_at TEXT NOT NULL,data TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset INTEGER NOT NULL);`);
-export const parse = (r: any) => (r ? JSON.parse(r.data) : null);
 export function transaction<T>(fn: () => T): T {
   db.exec('BEGIN IMMEDIATE');
   try {
@@ -54,26 +57,30 @@ export const allProducts = (archived = false) =>
       `SELECT data FROM products ${archived ? '' : 'WHERE archived=0'} ORDER BY rowid`,
     )
     .all()
-    .map(parse);
+    .map(row => parse<BearingProduct>(row));
 export const product = (id: string) =>
-  parse(
+  parse<BearingProduct>(
     db.prepare('SELECT data FROM products WHERE id=? OR slug=?').get(id, id),
   );
-export function putProduct(p: any) {
+export function putProduct(p: BearingProduct) {
   db.prepare(
     'INSERT INTO products(id,code,slug,category,archived,data) VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET code=excluded.code,slug=excluded.slug,category=excluded.category,archived=excluded.archived,data=excluded.data',
   ).run(
     p.id,
     p.code,
-    p.slug,
+    p.slug ?? null,
     p.category,
     p.isArchived ? 1 : 0,
     JSON.stringify(fillProductSeo(p)),
   );
 }
-export const setting = (kind: string) =>
-  parse(db.prepare('SELECT data FROM settings WHERE kind=?').get(kind));
-export function putSetting(kind: string, data: any) {
+// Published defaults are installed during module initialization before callers run.
+export function setting<K extends keyof PublishedSettings>(kind: K): PublishedSettings[K];
+export function setting(kind: string): unknown;
+export function setting(kind: string): unknown {
+  return parse(db.prepare('SELECT data FROM settings WHERE kind=?').get(kind));
+}
+export function putSetting(kind: string, data: unknown) {
   db.prepare(
     'INSERT INTO settings VALUES(?,?) ON CONFLICT(kind) DO UPDATE SET data=excluded.data',
   ).run(kind, JSON.stringify(data));
@@ -105,7 +112,7 @@ if (!setting('catalog.skf-sealed-2026-09')) {
     });
   });
 }
-const defaults: any = {
+const defaults = {
   company: COMPANY_INFO,
   content: {
     hero: {
@@ -164,19 +171,23 @@ if (!setting('company.identity-arian-tech-2026-10')) {
   transaction(() => {
     for (const kind of ['company', 'content', 'seo']) {
       const value = correctCompanyCopy(setting(kind));
+      if (!object(value)) throw new Error('Missing published settings during identity migration.');
       if (kind === 'company') {
         value.nameEn = value.legalNameEn = COMPANY_INFO.nameEn;
         value.nameFa = value.legalNameFa = COMPANY_INFO.nameFa;
       }
-      if (kind === 'content' && value.copy) {
-        value.copy = Object.fromEntries(Object.values(value.copy).map((entry: any) => [textKey(entry.original), entry]));
+      if (kind === 'content' && object(value.copy)) {
+        value.copy = Object.fromEntries(Object.values(value.copy).map(entry => {
+          if (!object(entry) || typeof entry.original !== 'string') throw new Error('Invalid stored copy entry.');
+          return [textKey(entry.original), entry];
+        }));
       }
       putSetting(kind, value);
     }
     // Existing generated metadata carries the old brand; technical records stay intact.
     for (const p of allProducts(true)) {
       let changed = false;
-      for (const field of ['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa']) {
+      for (const field of ['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa'] as const) {
         if (typeof p[field] !== 'string') continue;
         const next = correctCompanyName(p[field]);
         if (next !== p[field]) { p[field] = next; changed = true; }

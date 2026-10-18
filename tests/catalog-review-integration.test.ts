@@ -17,7 +17,12 @@ void test('110-product review: authenticated preview, conflict rollback, owner e
   const baseline: BearingProduct[] = JSON.parse(readFileSync('docs/catalog-review/baseline.json','utf8')).products;
   const patch: CatalogReviewPatch = JSON.parse(readFileSync('docs/catalog-review/review.patch.json','utf8'));
   const { app } = await import('../api/index');
-  const { db, transaction, putProduct, allProducts, product } = await import('../api/database');
+  const { db, transaction, putProduct, allProducts, product: lookupProduct } = await import('../api/database');
+  const product = (id: string) => {
+    const value = lookupProduct(id);
+    assert.ok(value, `Expected stored product ${id}`);
+    return value;
+  };
   transaction(() => { db.exec('DELETE FROM products'); baseline.forEach(putProduct); });
   const initial = allProducts(true);
   const server = await new Promise<ReturnType<typeof app.listen>>(resolve => {

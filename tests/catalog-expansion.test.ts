@@ -19,10 +19,12 @@ void test('SKF expansion preserves an existing admin-edited catalog and runs onc
   process.env.DATABASE_PATH = filename;
   const database = await import('../api/database');
   try {
-    assert.equal(database.product(original.id).descriptionEn, 'Admin-edited description');
+    assert.equal(database.product(original.id)?.descriptionEn, 'Admin-edited description');
     assert.equal(database.allProducts().length, 1 + skfCatalogAdditions.length);
-    assert.equal(database.setting('catalog.skf-sealed-2026-09').count, skfCatalogAdditions.length);
-    assert.equal(database.product(skfCatalogAdditions[0].id).code, skfCatalogAdditions[0].code);
+    const marker = database.setting('catalog.skf-sealed-2026-09');
+    assert.ok(marker && typeof marker === 'object' && 'count' in marker);
+    assert.equal(marker.count, skfCatalogAdditions.length);
+    assert.equal(database.product(skfCatalogAdditions[0].id)?.code, skfCatalogAdditions[0].code);
   } finally {
     database.db.close();
   }

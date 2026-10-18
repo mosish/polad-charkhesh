@@ -1,3 +1,5 @@
+import { requestBody, sessionUser, type ApiRequest } from './request';
+import type { InquiryData } from './records';
 import { sameShape } from './settings-shape';
 import { Router } from 'express';
 import crypto from 'node:crypto';
@@ -7,7 +9,7 @@ import { validateSettings } from './validation';
 export const content = Router();
 for (const kind of ['company', 'content', 'seo']) {
   content.get('/' + kind, (_req, res) => res.json({ data: setting(kind) }));
-  content.put('/' + kind, authenticated, (req: any, res) => {
+  content.put('/' + kind, authenticated, (req: ApiRequest, res) => {
     const errors = validateSettings(kind, req.body);
     if (kind !== 'content' && !sameShape(req.body, setting(kind)))
       errors.push(
@@ -15,11 +17,11 @@ for (const kind of ['company', 'content', 'seo']) {
       );
     if (errors.length) return res.status(400).json({ error: errors.join(' ') });
     putSetting(kind, req.body);
-    audit(req.user.username, kind.toUpperCase() + '_UPDATED');
+    audit(sessionUser(req).username, kind.toUpperCase() + '_UPDATED');
     res.json({ data: setting(kind) });
   });
 }
-content.post('/inquiries', limit('inquiries', 5, 3600000), (req, res) => {
+content.post('/inquiries', limit('inquiries', 5, 3600000), (req: ApiRequest, res) => {
   const {
     name,
     phone,
@@ -27,7 +29,7 @@ content.post('/inquiries', limit('inquiries', 5, 3600000), (req, res) => {
     email = '',
     message,
     website = '',
-  } = req.body;
+  } = requestBody(req);
   if (website) return res.status(400).json({ error: 'Invalid submission.' });
   if (
     typeof name !== 'string' ||
@@ -69,19 +71,19 @@ content.get('/inquiries', authenticated, (_req, res) =>
     inquiries: db
       .prepare('SELECT * FROM inquiries ORDER BY created_at DESC')
       .all()
-      .map((r: any) => ({ ...r, ...parse(r), data: undefined })),
+      .map(r => ({ ...r, ...parse<InquiryData>(r), data: undefined })),
   }),
 );
-content.patch('/inquiries/:id', authenticated, (req: any, res) => {
-  const status = req.body.status;
-  if (!['new', 'reviewed', 'contacted', 'closed'].includes(status))
+content.patch('/inquiries/:id', authenticated, (req: ApiRequest, res) => {
+  const status = requestBody(req).status;
+  if (typeof status !== 'string' || !['new', 'reviewed', 'contacted', 'closed'].includes(status))
     return res.status(400).json({ error: 'Invalid status.' });
   const r = db
     .prepare('UPDATE inquiries SET status=?,updated_at=? WHERE id=?')
     .run(status, new Date().toISOString(), req.params.id);
   if (!r.changes) return res.status(404).json({ error: 'Inquiry not found.' });
   audit(
-    req.user.username,
+    sessionUser(req).username,
     'INQUIRY_STATUS_CHANGED',
     req.params.id + ':' + status,
   );

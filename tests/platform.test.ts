@@ -184,6 +184,10 @@ void test('secure provisioning, session issuance, CRUD, archive, restore and rol
     403,
   );
   const original = bearingProducts[0];
+  for (const delta of [{ inStock: 'yes' }, { descriptionEn: {} }, { technicalSources: [{ manufacturer: 'SKF', reference: 'catalog', sourceType: [] }] }]) {
+    assert.equal((await req('/products/' + original.id, 'PUT', delta)).r.status, 400);
+    assert.equal((await req('/products', 'POST', { ...original, code: 'INVALID-TYPES', slug: 'invalid-types', ...delta })).r.status, 400);
+  }
   const created = await req('/products', 'POST', {
     ...original,
     code: 'QA-TEST-6204',
@@ -330,6 +334,14 @@ void test('inquiry persistence, status changes and upload validation', async () 
 void test('backup omits secrets, validates restore, snapshots and transactions roll back', async () => {
   const backup = (await req('/system/backup')).b;
   assert.equal(backup.products.length, 110);
+  const catalogBefore = database.allProducts(true);
+  const snapshotCount = () => database.db.prepare('SELECT count(*) n FROM backup_snapshots').get().n;
+  const snapshotsBefore = snapshotCount();
+  for (const delta of [{ inquiries: [null] }, { media: [null] }, { products: [{ ...backup.products[0], id: null }] }]) {
+    assert.equal((await req('/system/restore', 'POST', { confirm: 'RESTORE', backup: { ...backup, ...delta } })).r.status, 400);
+    assert.deepEqual(database.allProducts(true), catalogBefore);
+    assert.equal(snapshotCount(), snapshotsBefore, 'Invalid backup must not start a restore transaction');
+  }
   const text = JSON.stringify(backup);
   assert.ok(!text.includes('password_hash'));
   assert.ok(!text.includes('token_hash'));

@@ -139,13 +139,13 @@ if (production) {
     const p = productSlug ? product(productSlug) : null;
     const fa = languageFor(req.hostname, req.url.split('?')[1] || '');
     const seo = setting('seo'), company = setting('company'), content = setting('content'), products = allProducts();
-    const data = metadataFor(routePath, fa, seo, company, p, content, products, req.url.split('?')[1] || '');
+    const data = metadataFor(routePath, fa, seo, company, p ?? undefined, content, products, req.url.split('?')[1] || '');
     let html = readFileSync(path.resolve('dist/client/index.html'), 'utf8')
       .replace('<html lang="en">', `<html lang="${fa ? 'fa' : 'en'}" dir="${fa ? 'rtl' : 'ltr'}">`)
       .replace(/<title>.*?<\/title>/s, '')
       .replace(/<meta name="description"[^>]*>/, '')
       .replace('</head>', metadataHead(data) + '</head>');
-    html = html.replace('<div id="root"></div>', '<div id="root">' + initialPublicHtml(routePath, fa, { company, content, products }, data.missing, p) + '</div>');
+    html = html.replace('<div id="root"></div>', '<div id="root">' + initialPublicHtml(routePath, fa, { company, content, products }, data.missing, p ?? undefined) + '</div>');
     // The public snapshot is exactly the same API data used by the React app.
     // No account, draft, session, archived product or inquiry data is embedded.
     if (!data.privatePage) html = html.replace('</body>', `<script id="public-data" type="application/json">${jsonForHtml({ company, content, products, seo, fa })}</script></body>`);

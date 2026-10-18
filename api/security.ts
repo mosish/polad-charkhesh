@@ -1,3 +1,6 @@
+import type { Request, RequestHandler, Response, NextFunction } from 'express';
+import type { ApiRequest } from './request';
+import type { SessionUser } from './records';
 import crypto from 'node:crypto';
 import { promisify } from 'node:util';
 import { db, audit } from './database';
@@ -46,16 +49,16 @@ export const cookieOptions = {
   path: '/',
   maxAge: 12 * 3600 * 1000,
 };
-export function getUser(req: any) {
-  const token = req.signedCookies?.pc_session;
+export function getUser(req: Pick<Request, 'signedCookies'>): SessionUser | null {
+  const token: unknown = req.signedCookies?.pc_session;
   if (typeof token !== 'string') return null;
   return db
     .prepare(
       'SELECT a.id,a.username,a.role FROM sessions s JOIN admins a ON a.id=s.admin_id WHERE s.token_hash=? AND s.expires>?',
     )
-    .get(hashToken(token), Date.now()) as any;
+    .get(hashToken(token), Date.now()) as SessionUser | undefined ?? null;
 }
-export function authenticated(req: any, res: any, next: any) {
+export function authenticated(req: ApiRequest, res: Response, next: NextFunction) {
   req.user = getUser(req);
   if (!req.user)
     return res
@@ -63,12 +66,12 @@ export function authenticated(req: any, res: any, next: any) {
       .json({ error: 'Your session has expired. Please sign in.' });
   next();
 }
-export function superadmin(req: any, res: any, next: any) {
+export function superadmin(req: ApiRequest, res: Response, next: NextFunction) {
   if (req.user?.role !== 'superadmin')
     return res.status(403).json({ error: 'Super-admin access required.' });
   next();
 }
-export function issueSession(req: any, res: any, user: any) {
+export function issueSession(res: Response, user: SessionUser) {
   const token = crypto.randomBytes(32).toString('base64url');
   db.prepare('INSERT INTO sessions VALUES(?,?,?)').run(
     hashToken(token),
@@ -78,13 +81,13 @@ export function issueSession(req: any, res: any, user: any) {
   res.cookie('pc_session', token, cookieOptions);
   audit(user.username, 'LOGIN');
 }
-export function limit(scope: string, max: number, windowMs: number) {
-  return (req: any, res: any, next: any) => {
+export function limit(scope: string, max: number, windowMs: number): RequestHandler {
+  return (req, res, next) => {
     const now = Date.now(),
       key = scope + ':' + req.ip;
     const row = db
       .prepare('SELECT * FROM rate_limits WHERE key=?')
-      .get(key) as any;
+      .get(key) as { reset: number; count: number } | undefined;
     if (row && row.reset > now && row.count >= max)
       return res
         .status(429)

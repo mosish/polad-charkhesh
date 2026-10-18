@@ -1,3 +1,5 @@
+import { requestBody, sessionUser, type ApiRequest } from './request';
+import type { MediaRecord } from './records';
 import { Router } from 'express';
 import crypto from 'node:crypto';
 import { mkdirSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
@@ -18,11 +20,12 @@ media.get('/', (_req, res) =>
     media: db
       .prepare('SELECT * FROM media ORDER BY rowid DESC')
       .all()
-      .map(parse),
+      .map(row => parse<MediaRecord>(row)),
   }),
 );
-media.post('/', (req: any, res) => {
-  const { name, mime, base64 } = req.body;
+media.post('/', (req: ApiRequest, res) => {
+  const body = requestBody(req);
+  const { name, mime, base64 } = body;
   if (
     typeof name !== 'string' ||
     name.length > 200 ||
@@ -51,14 +54,7 @@ media.post('/', (req: any, res) => {
       error: 'File contents do not match an allowed image or PDF format.',
     });
   const id = crypto.randomUUID(),
-    ext = (
-      {
-        'image/png': 'png',
-        'image/jpeg': 'jpg',
-        'image/webp': 'webp',
-        'application/pdf': 'pdf',
-      } as any
-    )[mime],
+    ext = mime === 'image/png' ? 'png' : mime === 'image/jpeg' ? 'jpg' : mime === 'image/webp' ? 'webp' : 'pdf',
     filename = id + '.' + ext;
   writeFileSync(path.join(uploadDir, filename), b, { flag: 'wx' });
   const item = {
@@ -70,15 +66,16 @@ media.post('/', (req: any, res) => {
     createdAt: new Date().toISOString(),
   };
   db.prepare('INSERT INTO media VALUES(?,?)').run(id, JSON.stringify(item));
-  audit(req.user.username, 'MEDIA_UPLOADED', id);
+  audit(sessionUser(req).username, 'MEDIA_UPLOADED', id);
   res.status(201).json({ media: item });
 });
-media.delete('/:id', (req: any, res) => {
-  const m = parse(
+media.delete('/:id', (req: ApiRequest, res) => {
+  const body = requestBody(req);
+  const m = parse<MediaRecord>(
     db.prepare('SELECT * FROM media WHERE id=?').get(req.params.id),
   );
   if (!m) return res.status(404).json({ error: 'Media not found.' });
-  if (req.body.confirm !== m.name)
+  if (body.confirm !== m.name)
     return res.status(400).json({ error: 'Confirm the filename.' });
   if (
     db
@@ -94,6 +91,6 @@ media.delete('/:id', (req: any, res) => {
   const p = path.join(uploadDir, path.basename(m.url));
   if (existsSync(p)) unlinkSync(p);
   db.prepare('DELETE FROM media WHERE id=?').run(m.id);
-  audit(req.user.username, 'MEDIA_DELETED', m.id);
+  audit(sessionUser(req).username, 'MEDIA_DELETED', m.id);
   res.json({ success: true });
 });

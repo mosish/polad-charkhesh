@@ -1,11 +1,11 @@
-export function sameShape(value: any, template: any): boolean {
+import { object } from './content-validation';
+
+export function sameShape(value: unknown, template: unknown): boolean {
   if (typeof template === 'string') return typeof value === 'string';
-  if (!template || typeof template !== 'object' || Array.isArray(template))
+  if (!object(template))
     return true;
   return (
-    !!value &&
-    typeof value === 'object' &&
-    !Array.isArray(value) &&
+    object(value) &&
     Object.keys(template).every((k) => sameShape(value[k], template[k])) &&
     Object.keys(value).every((k) => k in template)
   );
