@@ -1,4 +1,6 @@
 import type { BearingProduct } from '../domain/product';
+const isPositiveFinite = (value: number | undefined): value is number =>
+  value !== undefined && Number.isFinite(value) && value > 0;
 export const reliabilityFactors: Record<number, number> = {
   90: 1,
   95: 0.64,
@@ -29,8 +31,8 @@ export function calculate(
     throw new Error(
       'This component is not supported by the bearing-life calculation.',
     );
-  if (!(p.crKn > 0) || !(p.corKn > 0))
-    throw new Error('Positive manufacturer load ratings are required.');
+  if (!isPositiveFinite(p.crKn) || !isPositiveFinite(p.corKn))
+    throw new Error('Positive finite manufacturer load ratings are required.');
   const family = p.schematicType;
   let P = Fr,
     P0 = Fr,
@@ -54,8 +56,8 @@ export function calculate(
         'Spherical thrust bearings require Fa > 0 and Fr ≤ 0.55 Fa.',
       );
     if (
-      p.calculationFactorY === undefined ||
-      p.calculationFactorY0 === undefined
+      !isPositiveFinite(p.calculationFactorY) ||
+      !isPositiveFinite(p.calculationFactorY0)
     )
       throw new Error('Product-specific spherical thrust factors are missing.');
     P = Fa + p.calculationFactorY * Fr;
@@ -68,7 +70,7 @@ export function calculate(
       calculationFactorY2: y2,
       calculationFactorY0: y0,
     } = p;
-    if ([e, y1, y2, y0].some((x) => x === undefined))
+    if (![e, y1, y2, y0].every(isPositiveFinite))
       throw new Error('Product-specific spherical roller factors are missing.');
     P = ratio <= e! ? Fr + y1! * Fa : 0.67 * Fr + y2! * Fa;
     P0 = Fr + y0! * Fa;
@@ -81,7 +83,7 @@ export function calculate(
     const e = p.calculationFactorE,
       y = p.calculationFactorY,
       y0 = p.calculationFactorY0;
-    if ([e, y, y0].some((x) => x === undefined))
+    if (![e, y, y0].every(isPositiveFinite))
       throw new Error('Tapered bearing factors are missing.');
     P = ratio <= e! ? Fr : 0.4 * Fr + y! * Fa;
     P0 = Math.max(Fr, 0.5 * Fr + y0! * Fa);
@@ -90,7 +92,7 @@ export function calculate(
     if (Fa === 0) {
       P = P0 = Fr;
     } else {
-      if (!p.calculationFactorF0)
+      if (!isPositiveFinite(p.calculationFactorF0))
         throw new Error('The product-specific f0 factor is required.');
       const table = [
         [0.172, 0.19, 2.3],
@@ -137,9 +139,13 @@ export function calculate(
   ].includes(family)
     ? 3
     : 10 / 3;
+  if (![P, P0].every(isPositiveFinite))
+    throw new Error('The result exceeds the supported numerical range.');
   const L10 = (p.crKn / P) ** exponent,
-    hours = (L10 * 1e6) / (60 * rpm);
-  if (!Number.isFinite(hours))
+    hours = (L10 * 1e6) / (60 * rpm),
+    adjustedHours = hours * reliabilityFactors[reliability],
+    safety = p.corKn / P0;
+  if (![L10, hours, adjustedHours, safety].every(isPositiveFinite))
     throw new Error('The result exceeds the supported numerical range.');
   return {
     P,
@@ -148,9 +154,9 @@ export function calculate(
     exponent,
     L10,
     hours,
-    adjustedHours: hours * reliabilityFactors[reliability],
+    adjustedHours,
     a1: reliabilityFactors[reliability],
-    safety: p.corKn / P0,
+    safety,
     overspeed:
       rpm > (p.speedLimitingRpm ||
         Math.min(...[p.speedGreaseRpm, p.speedOilRpm].filter((x) => x > 0))),
@@ -160,7 +166,9 @@ export function basicLife(C: number, P: number, rpm: number, roller: boolean) {
   if ([C, P, rpm].some((x) => !Number.isFinite(x) || x <= 0))
     throw new Error('C, P and speed must be positive.');
   const p = roller ? 10 / 3 : 3;
-  const L10=(C/P)**p, hours=L10*1e6/(60*rpm);
-  if(!Number.isFinite(L10)||!Number.isFinite(hours))throw new Error('The result exceeds the supported numerical range.');
-  return {L10,hours};
+  const L10 = (C / P) ** p,
+    hours = L10 * 1e6 / (60 * rpm);
+  if (![L10, hours].every(isPositiveFinite))
+    throw new Error('The result exceeds the supported numerical range.');
+  return { L10, hours };
 }

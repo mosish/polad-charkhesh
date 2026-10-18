@@ -3,9 +3,11 @@
 **Project:** Polad Charkhesh Engineering Toolbox · توسعه جعبه‌ابزار مهندسی پولاد چرخش  
 **Project ID:** ENG-TOOLS-01  
 **Defined:** 2026-10-18  
-**Status:** Plan prepared; implementation and publication have not started.  
+**Status:** Phase 0 started on 2026-10-18; first audit/benchmark package and numeric-validation fixes prepared in source. New toolbox modules and live publication remain pending.
 **Owner preference:** A balanced toolbox covering selection, calculations, lubrication and maintenance.  
 **Baseline:** Source reviewed through `d264db29ed29e798f80147ca3a0949a8d3303f3d`. This is a source assessment, not a fresh audit of every live engineering workflow.
+
+**Execution update:** The owner has now authorized starting the phased completion program and will nominate an engineer later. See [COMPLETE-01](../COMPLETION_PLAN.md), [foundation audit](foundation/AUDIT.md), [catalog eligibility draft](foundation/CATALOG_ELIGIBILITY.md) and [method register](methods/REGISTER.md). The plan's original baseline remains historical; the new audit starts from `4109a7a423154d853ad74f3aca862904c638312c`. Engineering sign-off remains open.
 
 ## 1. Purpose and intended users
 
@@ -101,7 +103,7 @@ Effort below is an initial planning estimate for one developer with access to an
 | 4 — Cases and integration | Local case notebook, validated JSON exchange, inquiry summary, catalog entry points and stale-result handling. | Save/reopen/duplicate/delete and import round trips preserve inputs and correctly flag changed methods/data. | 3–4 days |
 | 5 — Acceptance and release | Independent numerical checks, end-to-end bilingual/mobile review, regression checks, release notes and rollback plan. | Engineering and product acceptance criteria below pass; release decision recorded. | 3–5 days + acceptance review |
 
-Estimated development effort: **21–32 days**, plus review and evidence lead time. These are scope estimates, not a delivery promise. Phase 3 content research can overlap Phase 2; public release waits for all first-release gates. Build new work in an isolated branch and preview; this planning request does not authorize implementation or deployment.
+Estimated development effort: **21–32 days**, plus review and evidence lead time. These are scope estimates, not a delivery promise. Phase 3 content research can overlap Phase 2; public release waits for all first-release gates. Build new work in an isolated branch and preview. The subsequent owner request authorizes implementation; production release remains a separate gated step in COMPLETE-01.
 
 ## 8. Actionable backlog
 
@@ -142,7 +144,7 @@ The owner decides priorities and accepts the product workflow. The developer imp
 
 Dependencies are access to exact manufacturer data, current applicable standards/method references, permission to reproduce any protected tables, and engineering review availability. Do not claim standards compliance from an unverified formula or copy restricted tables merely because they appear online.
 
-The next implementation action is **Phase 0 / ENG-01 through ENG-03**, followed by the workspace prototype. No additional features are required to start the audit; decisions about optional advanced tools can wait. Budget, reviewer assignment and schedule remain open project decisions, not assumptions of approval.
+**Phase 0 / ENG-01 through ENG-03 is in progress.** ENG-01 inventory is complete, ENG-02 has a draft 110-record matrix, and ENG-03 has a method register and initial life/fit benchmarks. Remaining family methods, explicit eligibility contracts and engineering approval are open. The owner will nominate the reviewer later; budget and schedule remain open project decisions.
 
 ## 11. Reference basis
 

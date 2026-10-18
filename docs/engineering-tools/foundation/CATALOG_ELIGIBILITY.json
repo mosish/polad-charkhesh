@@ -1,0 +1,2953 @@
+{
+  "schemaVersion": 1,
+  "snapshotSha256": "e35858d0fe579b2ff91ace2817a7c7e6ee018ec5472fd8c0042ef0a3a632869d",
+  "technicalLedgerDate": "2026-10-15",
+  "scope": "Offline readiness audit of saved public products. Not product verification, a runtime gate or approval. Field matches do not verify family, operating conditions or method applicability.",
+  "counts": {
+    "total": 110,
+    "technicalReview": {
+      "ambiguous_identity": 47,
+      "partial": 61,
+      "blocked_evidence": 2
+    },
+    "productLifeRelease": {
+      "awaiting_engineering_review": 94,
+      "not_applicable": 16
+    },
+    "familyAuditFlags": 11
+  },
+  "records": [
+    {
+      "id": "pc-6204-2rs",
+      "code": "6204-2RSH / 2RS1",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-6308-2z",
+      "code": "6308-2Z / ZZ C3",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-6005-open",
+      "code": "6005 Open / C3",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-6206-c3",
+      "code": "6206-2RS1 C3",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-6310-2z",
+      "code": "6310-2Z / C3",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-30206",
+      "code": "30206 J2/Q",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-30208",
+      "code": "30208 J2/Q",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-32210",
+      "code": "32210 J2/Q",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-32014-x",
+      "code": "32014 X / Q",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-22212-ek",
+      "code": "22212 EK / C3 + H312",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY1, calculationFactorY2, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-22316-cc-w33",
+      "code": "22316 CC/W33 / C3",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY1, calculationFactorY2, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-22220-ek",
+      "code": "22220 EK / C3",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY1, calculationFactorY2, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-nu-208-ecp",
+      "code": "NU 208 ECP / C3",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-nj-212-ecp",
+      "code": "NJ 212 ECP",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-nup-310-ecp",
+      "code": "NUP 310 ECP / C3",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-51106",
+      "code": "51106 Single Direction",
+      "schematicFamily": "thrust",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-51108",
+      "code": "51108 Single Direction",
+      "schematicFamily": "thrust",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-51210",
+      "code": "51210 High Capacity",
+      "schematicFamily": "thrust",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-ucp-205",
+      "code": "UCP 205 (Cast Iron Pillow Block)",
+      "schematicFamily": "pillow-block",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-ucf-208",
+      "code": "UCF 208 (4-Bolt Flange Housing)",
+      "schematicFamily": "pillow-block",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-snl-511-609",
+      "code": "SNL 511-609 (Split Plummer Block)",
+      "schematicFamily": "pillow-block",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-tc-35-52-10",
+      "code": "TC 35-52-10 NBR (Dual Lip)",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-tc-50-72-8-viton",
+      "code": "TC 50-72-8 Viton / FKM High-Temp",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-tc-75-100-12",
+      "code": "TC 75-100-12 NBR Heavy Duty",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-skf-lgmt-2",
+      "code": "SKF LGMT 2 / 1kg",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": false,
+      "missingCombinedLoadFactors": [
+        "calculationFactorF0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-22324-ccja-w33va405",
+      "code": "22324 CCJA/W33VA405 (Vibrating Screen Special)",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY1, calculationFactorY2, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-32218-j2-q",
+      "code": "32218 J2/Q (Heavy Steel Mill & Axle)",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-29420-e",
+      "code": "29420 E (Spherical Roller Thrust Bearing)",
+      "schematicFamily": "thrust",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Description specifies spherical roller thrust, but current thrust branch uses ball exponent.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Description specifies spherical roller thrust, but current thrust branch uses ball exponent.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-nu-2224-ecp",
+      "code": "NU 2224 ECP / C3 (Heavy Refinery Pump)",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-6210-2z-va208",
+      "code": "6210-2Z/VA208 (High-Temp 350°C Kiln Bearing)",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-fkm-tc-80-100-12",
+      "code": "TC 80-100-12 Viton / FKM Petrochemical",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-snl-518-615",
+      "code": "SNL 518-615 (Heavy Mining Split Housing)",
+      "schematicFamily": "pillow-block",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-mobilith-shc-220",
+      "code": "Mobilith SHC 220 Synthetic",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": false,
+      "missingCombinedLoadFactors": [
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-7312-becbm",
+      "code": "7312 BECBM (40° Brass Cage)",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Angular-contact designation currently routed through deep-groove; arrangement/family review required.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [
+        "calculationFactorF0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Angular-contact designation currently routed through deep-groove; arrangement/family review required.",
+        "Combined-load factors missing/invalid: calculationFactorF0.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-7210-becbp",
+      "code": "7210 BECBP / P6",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Angular-contact designation currently routed through deep-groove; arrangement/family review required.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [
+        "calculationFactorF0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Angular-contact designation currently routed through deep-groove; arrangement/family review required.",
+        "Combined-load factors missing/invalid: calculationFactorF0.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-3308-a-2z",
+      "code": "3308 A-2Z/C3 (Double Row)",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Double-row angular-contact candidate currently routed through deep-groove; verify exact variant.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [
+        "calculationFactorF0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Double-row angular-contact candidate currently routed through deep-groove; verify exact variant.",
+        "Combined-load factors missing/invalid: calculationFactorF0.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-1309-ektn9",
+      "code": "1309 EKTN9 (Self-Aligning Tapered Bore)",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Self-aligning designation currently routed through deep-groove.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [
+        "calculationFactorF0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Self-aligning designation currently routed through deep-groove.",
+        "Combined-load factors missing/invalid: calculationFactorF0.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-na-4910",
+      "code": "NA 4910 (Machined Needle Roller)",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Needle family displayed as cylindrical; explicit calculation metadata needed.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Needle family displayed as cylindrical; explicit calculation metadata needed.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-23228-cc-w33",
+      "code": "23228 CC/W33 (Heavy Mining SAG Mill)",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY1, calculationFactorY2, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-32314-j2-q",
+      "code": "32314 J2/Q (Heavy Crusher & Crane Wheel)",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY, calculationFactorY0."
+      ],
+      "ownerResolution": "Confirm manufacturer, complete suffix, clearance and supplied arrangement from owner inventory or package marking; then verify that exact variant. Preserve stable ID/slug. Do not silently select a listed brand."
+    },
+    {
+      "id": "pc-ucp-210",
+      "code": "UCP 210 (50mm Heavy Duty Pillow Block)",
+      "schematicFamily": "pillow-block",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-tc-100-125-13-viton",
+      "code": "TC 100-125-13 Viton / FKM Heavy Refractory",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-tc-60-85-10",
+      "code": "TC 60-85-10 NBR (Dual Lip)",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-skf-6311-c3",
+      "code": "SKF 6311 / C3 Explorer",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "weightKg",
+        "clearanceOptions",
+        "rMin",
+        "calculationFactorF0"
+      ],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-skf-c-2215-k",
+      "code": "SKF C 2215 K CARB® Toroidal",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "CARB family displayed as cylindrical; explicit calculation metadata needed.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "corKn",
+        "clearanceOptions",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "CARB family displayed as cylindrical; explicit calculation metadata needed."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-skf-sy-50-tf",
+      "code": "SKF SY 50 TF (Y-Bearing Unit)",
+      "schematicFamily": "pillow-block",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "weightKg",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-fag-6312-tb-p6",
+      "code": "FAG 6312-TB-P6 Schaeffler",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions"
+      ],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-fag-22216-e1-xl-k",
+      "code": "FAG 22216-E1-XL-K X-Life",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY1, calculationFactorY2, calculationFactorY0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-fag-nj-2312-e-m1a",
+      "code": "FAG NJ2312-E-XL-M1A Cylindrical",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "descriptionEn",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-ina-nk-25-20",
+      "code": "INA NK 25/20 Heavy Needle Roller",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Needle family displayed as cylindrical; explicit calculation metadata needed.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Needle family displayed as cylindrical; explicit calculation metadata needed.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-ina-kr-35-pp",
+      "code": "INA KR 35 PP Cam Follower",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "blocked_evidence",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Cam follower needs track/outer-ring applicability review, not a generic cylindrical assumption.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Manufacturer evidence blocked in technical review.",
+        "Cam follower needs track/outer-ring applicability review, not a generic cylindrical assumption.",
+        "Current required values not matched to accepted field evidence: crKn, corKn."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-timken-lm11749-10",
+      "code": "TIMKEN LM11749 / LM11710 (SET1)",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "weightKg",
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY"
+      ],
+      "methodEvidenceGaps": [
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: calculationFactorY0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-timken-lm67048-10",
+      "code": "TIMKEN LM67048 / LM67010 (SET6)",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "weightKg",
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY"
+      ],
+      "methodEvidenceGaps": [
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: calculationFactorY0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-timken-22220-emw33c3",
+      "code": "TIMKEN 22220EMW33C3 Solid Brass",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "weightKg",
+        "corKn",
+        "calculationFactorY0",
+        "clearanceOptions"
+      ],
+      "methodEvidenceGaps": [
+        "crKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: crKn, calculationFactorE, calculationFactorY1, calculationFactorY2."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-nsk-6206-ddu-cm",
+      "code": "NSK 6206 DDU CM Japan",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "weightKg",
+        "speedGreaseRpm",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "sealingEn",
+        "sealingFa",
+        "clearanceOptions"
+      ],
+      "methodEvidenceGaps": [
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: corKn, calculationFactorF0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-nsk-7010-ctyndblp4",
+      "code": "NSK 7010 CTYNDBLP4 Super Precision",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "Precision angular-contact pair currently routed through deep-groove; pair arrangement unresolved.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [
+        "calculationFactorF0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Resolve manufacturer, suffix and supplied arrangement.",
+        "Precision angular-contact pair currently routed through deep-groove; pair arrangement unresolved.",
+        "Combined-load factors missing/invalid: calculationFactorF0.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-nsk-nu-2214-et",
+      "code": "NSK NU 2214 ET Cylindrical",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedGreaseRpm",
+        "speedOilRpm",
+        "thermalSpeedRatingRpm",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-ntn-6204-llu-c3",
+      "code": "NTN 6204 LLU / C3 Japan",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "speedGreaseRpm",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [
+        "corKn"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: corKn."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-ntn-22214-eakd1",
+      "code": "NTN 22214 EAKD1 ULTAGE®",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedGreaseRpm",
+        "speedOilRpm",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-ntn-5206-s",
+      "code": "NTN 5206 S Double Row",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": "NTN 5206S is double-row angular-contact; current deep-groove branch is inappropriate.",
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [
+        "calculationFactorF0"
+      ],
+      "reviewedFieldsMatchingSnapshot": [
+        "rMin",
+        "crKn",
+        "corKn",
+        "speedGreaseRpm",
+        "speedOilRpm"
+      ],
+      "methodEvidenceGaps": [
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "NTN 5206S is double-row angular-contact; current deep-groove branch is inappropriate.",
+        "Combined-load factors missing/invalid: calculationFactorF0.",
+        "Current required values not matched to accepted field evidence: calculationFactorF0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-koyo-6207-2rs",
+      "code": "KOYO 6207-2RS (JTEKT Japan)",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedGreaseRpm",
+        "calculationFactorF0",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-koyo-30212-jr",
+      "code": "KOYO 30212 JR Tapered Roller",
+      "schematicFamily": "tapered",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "rMin",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedGreaseRpm",
+        "speedOilRpm",
+        "calculationFactorY",
+        "calculationFactorY0"
+      ],
+      "methodEvidenceGaps": [
+        "calculationFactorE"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: calculationFactorE."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-koyo-22218-rhr",
+      "code": "KOYO 22218 RHR Spherical Roller",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "blocked_evidence",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Manufacturer evidence blocked in technical review.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorE, calculationFactorY1, calculationFactorY2, calculationFactorY0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-nachi-6008-2nse9",
+      "code": "NACHI 6008-2NSE9 Quest® Japan",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "speedGreaseRpm",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "sealingEn",
+        "sealingFa",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn",
+        "calculationFactorF0"
+      ],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance.",
+        "Current required values not matched to accepted field evidence: crKn, corKn, calculationFactorF0."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-nachi-22222-ex",
+      "code": "NACHI 22222 EX Quest Spherical",
+      "schematicFamily": "spherical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedOilRpm",
+        "calculationFactorE",
+        "calculationFactorY1",
+        "calculationFactorY2",
+        "calculationFactorY0",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-nachi-nup-310-eg",
+      "code": "NACHI NUP 310 EG Cylindrical",
+      "schematicFamily": "cylindrical",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "crKn",
+        "corKn",
+        "cageMaterialEn",
+        "cageMaterialFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "pc-corteco-12011153b",
+      "code": "CORTECO 12011153B Simmerring® TC 35x52x7",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "pc-corteco-12012014b",
+      "code": "CORTECO 12012014B Viton® TC 50x72x8",
+      "schematicFamily": "oil-seal",
+      "technicalReviewStatus": "ambiguous_identity",
+      "productLifeReleaseStatus": "not_applicable",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [],
+      "methodEvidenceGaps": [
+        "crKn",
+        "corKn"
+      ],
+      "reasons": [
+        "Component is outside the bearing-life method."
+      ],
+      "ownerResolution": "Confirm exact manufacturer, complete designation/variant and supplied arrangement from inventory or package evidence; preserve the stable ID."
+    },
+    {
+      "id": "skf-6002-2z",
+      "code": "6002-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6002-2rsl",
+      "code": "6002-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6002-2rsh",
+      "code": "6002-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6202-2z",
+      "code": "6202-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6202-2rsl",
+      "code": "6202-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6202-2rsh",
+      "code": "6202-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6302-2z",
+      "code": "6302-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6302-2rsl",
+      "code": "6302-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6302-2rsh",
+      "code": "6302-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6003-2z",
+      "code": "6003-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6003-2rsl",
+      "code": "6003-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6003-2rsh",
+      "code": "6003-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6203-2z",
+      "code": "6203-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6203-2rsl",
+      "code": "6203-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6203-2rsh",
+      "code": "6203-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6303-2z",
+      "code": "6303-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6303-2rsl",
+      "code": "6303-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6303-2rsh",
+      "code": "6303-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6004-2z",
+      "code": "6004-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6004-2rsl",
+      "code": "6004-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6004-2rsh",
+      "code": "6004-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6304-2z",
+      "code": "6304-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6304-2rsl",
+      "code": "6304-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6304-2rsh",
+      "code": "6304-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6005-2z",
+      "code": "6005-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6005-2rsl",
+      "code": "6005-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6005-2rsh",
+      "code": "6005-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6205-2z",
+      "code": "6205-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6205-2rsl",
+      "code": "6205-2RSL",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6205-2rsh",
+      "code": "6205-2RSH",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6305-2z",
+      "code": "6305-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6305-2rz",
+      "code": "6305-2RZ",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6305-2rs1",
+      "code": "6305-2RS1",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6006-2z",
+      "code": "6006-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6006-2rz",
+      "code": "6006-2RZ",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6006-2rs1",
+      "code": "6006-2RS1",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6206-2z",
+      "code": "6206-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6206-2rz",
+      "code": "6206-2RZ",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6206-2rs1",
+      "code": "6206-2RS1",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6306-2z",
+      "code": "6306-2Z",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6306-2rz",
+      "code": "6306-2RZ",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "speedReferenceRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa",
+        "descriptionEn",
+        "descriptionFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    },
+    {
+      "id": "skf-6306-2rs1",
+      "code": "6306-2RS1",
+      "schematicFamily": "deep-groove",
+      "technicalReviewStatus": "partial",
+      "productLifeReleaseStatus": "awaiting_engineering_review",
+      "familyAuditFlag": null,
+      "ratingsPresent": true,
+      "missingCombinedLoadFactors": [],
+      "reviewedFieldsMatchingSnapshot": [
+        "d",
+        "D",
+        "B",
+        "crKn",
+        "corKn",
+        "weightKg",
+        "speedLimitingRpm",
+        "rMin",
+        "calculationFactorF0",
+        "cageMaterialEn",
+        "cageMaterialFa",
+        "clearanceOptions",
+        "sealingEn",
+        "sealingFa"
+      ],
+      "methodEvidenceGaps": [],
+      "reasons": [
+        "No engineer-approved method/product eligibility record; technical review is not final acceptance."
+      ],
+      "ownerResolution": null
+    }
+  ]
+}

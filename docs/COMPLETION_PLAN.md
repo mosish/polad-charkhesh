@@ -1,0 +1,62 @@
+# Pending-work completion plan
+
+**Project:** COMPLETE-01 · **Started:** 2026-10-18 · **Status:** execution started, first foundation package prepared.
+
+The owner requested a plan covering every pending area and authorized starting work step by step. The owner will nominate an engineering reviewer later. Developer work, tests and source synchronization can proceed; engineer acceptance remains unassigned. Do not mistake a prepared evidence packet for that acceptance.
+
+## Sequence and completion gates
+
+| Phase | Work | Required evidence to close | Current state |
+| --- | --- | --- | --- |
+| C0 — Establish engineering foundation | Inventory current tools; review method sources; map all 110 products; record identity/family gaps; establish numerical benchmarks; fix demonstrated input-validation defects. Maps to ENG-01–ENG-03. | Reviewed method register and per-method product eligibility, independently derived tests, engineering reviewer sign-off. | **Started.** Inventory, 110-row draft matrix, identity queue and initial benchmark/validation fixes delivered. Remaining methods and approval open. |
+| C1 — Restore code-quality gate | Resolve 197 lint findings in reviewable batches: API validation/types; admin/client types; hooks/React behavior; semantics/accessibility; remaining tooling. Keep rule strength. | Zero lint errors, typecheck/tests/build/bundle checks passing; then remove advisory CI behavior. Record any justified exception with rationale. | Queued; 146 findings are explicit `any`, so this needs type modeling, not blanket autofix. Can proceed while C0 awaits review. |
+| C2 — Resolve catalog and asset evidence | Work through 47 ambiguous identities and two blocked records; finish 61 partial records. Resolve nine exact-image gaps; review 43 examples without treating them as exact identity evidence. Source documents and prepare company PDFs only for technically accepted products. | Every product has an explicit disposition, exact evidence for changed fields and owner decisions where required; guarded patch preview; stable IDs preserved. Every published PDF has exact identity, provenance and version. | Queued. Evidence unavailable is a recorded blocker, not “verified.” Requires owner stock/package evidence for ambiguous identities. |
+| C3 — Implement balanced toolbox | Follow ENG-04–ENG-11: shared bilingual workspace/input contracts; unit converter; life/target-life/static checks; selection/comparison; fit explorer; lubrication/maintenance guidance; local case notebook. | Each module's benchmarks and valid/invalid/unsupported journeys pass; reviewed bilingual guidance; local cases validate imports and stale data; no unsupported method silently runs. | Queued. Manual/unit/fit/workspace work can progress independently; product numerical eligibility requires C0 evidence. |
+| C4 — Full application acceptance | Review admin roles, media, inquiries, restore and audit flows; public catalog/dialog navigation; security; Persian/English content; desktop/tablet/mobile; keyboard and reduced motion. | Dated journey matrix with results, screenshots where useful, resolved blockers, typecheck/tests/lint/build/bundles/production smoke passing. Repeat affected checks after fixes. | Queued. Earlier targeted checks remain evidence, not full sign-off. |
+| C5 — Operations and release | Inspect current Cloudflare DNS/proxy/TLS settings; review VPS networking, SSH hardening, backup retention and recovery; prepare host reboot only with recovery access; stage a pinned release and rollback. | Current configuration evidence; verified server-only backup; recovery/reboot result or explicitly unresolved blocker; approved release with both domains' post-release checks and authoritative catalog comparison. | Queued. Public health is currently good; dashboard and host checks still needed. No hosting change or deployment performed by this package. |
+| C6 — Indexing and closeout | After content and release acceptance, record the indexing decision, verify Search Console ownership and sitemap submission, change noindex when approved, recheck crawled metadata/routes. | Explicit indexing approval; verified robots/header/canonical/hreflang and sitemap behavior on both domains; Search Console evidence; final open-item register. | Queued. Search indexing itself cannot be guaranteed or treated as immediate. |
+
+C1 and evidence research for C2 can proceed while reviewer assignment is pending. C3's independent tools do not need every product verified. Product calculations must remain restricted to an approved subset; catalog-wide completion still requires resolving or explicitly accepting every outstanding disposition. C4 follows implemented work. C5 and C6 are separate release decisions, not consequences of a Git push.
+
+## Work-package protocol
+
+1. Refresh GitHub and inspect the current source/data baseline. Use an isolated implementation branch. Keep public audit snapshots separate from private data.
+2. Choose a bounded task with an ID, trigger/defect, deliverable and exit check. Reproduce defects before changing behavior where practical.
+3. Implement and run the checks relevant to the change. Preserve catalog IDs, SQLite authority, owner content, image presentation and both languages.
+4. Review the diff and publish completed source work to GitHub as authorized. Record test evidence and what is not yet deployed.
+5. Update this tracker and the README from actual evidence. Prepare live changes and rollback before any required final approval.
+
+Do not download private server backups: retain them on the VPS per the owner's instruction. Do not guess manufacturers/suffixes, substitute nearby image variants, restore removed image captions, weaken lint rules to hide errors, or call blocked evidence complete. Do not commit private databases, credentials or uploads.
+
+## First package: C0-A — audit and numeric validation
+
+| Item | State | Deliverable |
+| --- | --- | --- |
+| ENG-01 current behavior inventory | Complete as developer audit | [Foundation audit](engineering-tools/foundation/AUDIT.md) |
+| ENG-02 catalog eligibility draft | Prepared; review open | [110-product matrix and owner queue](engineering-tools/foundation/CATALOG_ELIGIBILITY.md), [machine-readable evidence](engineering-tools/foundation/CATALOG_ELIGIBILITY.json) |
+| ENG-03 method register | Prepared; approval and family benchmarks open | [Method register and benchmark derivations](engineering-tools/methods/REGISTER.md) |
+| C0-NUM finite inputs/results | Implemented and regression tested in source | `lib/engineering.ts`, `lib/showroom.ts`, `tests/engineering-foundation.test.ts` |
+| Release of this package | Not deployed | Source synchronization does not change the running VPS. |
+
+Validation: 75 tests passed with loopback-enabled execution, typecheck passed, production build and bundle budgets passed, isolated production smoke passed, and targeted lint on changed TypeScript files passed. Three new test groups failed before the numeric fixes and passed afterward. Full lint remains 197 errors; it is not cleared by targeted lint. There are no visual changes in this package.
+
+## Next executable packages
+
+1. **C0-B / ENG-02:** explicit calculation-family/arrangement/evidence contracts separate from illustration metadata; tests for the 11 flagged mappings; useful unsupported states. Prepare data corrections without publishing unapproved technical values.
+2. **C1-A:** replace unsafe API validation `any` types with checked unknown-input contracts and regression coverage; rerun full lint and record the exact reduction. This can proceed before reviewer nomination.
+3. **C0-C / ENG-03:** finish manufacturer method excerpts, validity limits and independent benchmarks for equivalent/static loads, interpolation boundaries, reliability and speed-state semantics. Submit the packet to the nominated reviewer when available; do not contact others without authorization.
+4. **C2-A:** collect exact owner identity decisions using the generated queue, then research and prepare conflict-checked field patches and remaining asset candidates.
+
+The existing toolbox estimate of 21–32 developer days covers its original scope only. It does not include all catalog evidence resolution, 197 lint findings, server operations or reviewer waiting time. Re-estimate after C0 and the first C1 batch; no unsupported calendar deadline is promised.
+
+## Closure ledger
+
+| Decision/dependency | Owner | Status |
+| --- | --- | --- |
+| Engineering method and product eligibility acceptance | Engineer to be nominated by owner | Open; owner explicitly deferred nomination |
+| Exact brand/suffix/arrangement for ambiguous inventory | Owner, with engineer review | 47 records in identity queue |
+| Code implementation, audit evidence and checks | Developer | In progress |
+| Persian/English engineering content acceptance | Owner/designated reviewer | Open |
+| Production publication/reboot and indexing decisions | Owner | Prepare concrete release/operation evidence first |
+
+References: [October 18 baseline review](STATUS_REVIEW_2026-10-18.md), [toolbox scope and module gates](engineering-tools/PROJECT_PLAN.md), [deployment procedures](DEPLOYMENT.md).

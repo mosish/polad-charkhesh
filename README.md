@@ -1,12 +1,14 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
-> **Project status:** Both language domains live; catalog/engineering acceptance, 197 lint errors, operational checks and final audits remain open. Engineering expansion is planned, not started.
+> **Project status:** Both language domains live; phased completion work has started. Engineering foundation audit and numeric-validation fixes are prepared in source; catalog acceptance, 197 lint errors, operations and final audits remain open.
 >
 > **Source of truth for code:** GitHub `main`
 >
 > **Last status review:** 2026-10-18 — [fresh checks, evidence and remaining work](docs/STATUS_REVIEW_2026-10-18.md)
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
+
+**Completion program started — 2026-10-18:** [COMPLETE-01](docs/COMPLETION_PLAN.md) sequences engineering foundation, lint, catalog/media, toolbox implementation, full acceptance, operations/release and indexing. The first package includes a 110-product draft eligibility matrix, method register, independent benchmarks and numeric-validation fixes. All 75 tests passed; the owner will nominate an engineer later. This package is not deployed and does not close engineering acceptance.
 
 **Engineering toolbox expansion — planning:** [Project definition, phased plan and backlog](docs/engineering-tools/PROJECT_PLAN.md) cover a balanced expansion of selection, calculations, lubrication and maintenance. Implementation and deployment have not started.
 
@@ -41,7 +43,7 @@ The main feature set is published on both language domains. The current catalog 
 | Product specifications and documents | 🟢 Implemented | Floating panels show image/drawing/exploded controls, key dimensions and contact actions alongside switchable specifications, documents and related components. Related navigation updates the URL and preserves dialog focus. Exact SKU media are incomplete. |
 | Animated bearing visuals | 🟢 Implemented | A full-width 3D banner randomly picks a bearing on each page load, with desktop companion bearings and presentation-speed controls. Older Safari can use a lazy WebGL 1 engine with the same model geometry, studio and motion logic; an animated SVG remains the last recovery path. Assembled mode follows scrolling; Exploded view stays fixed. The global bearing background and hero family buttons are removed. Bilingual typing headlines are editable in Admin. Product panels retain separate product-specific geometry. Models are illustrative. |
 | Loading performance | ✅ Published and checked | One GPU engine selected before download, compressed company fonts, responsive family photos and no redundant startup data refresh. Same 3D geometry and owner media retained. [Measurements](docs/PERFORMANCE_2026-10-14.md). |
-| Engineering workspace | 🟢 Existing tools; expansion planned | Life/known-load estimates, fit limits, comparison and unit conversion exist. [ENG-TOOLS-01](docs/engineering-tools/PROJECT_PLAN.md) defines the balanced expansion; Phase 0 must review methods, family/arrangement rules and catalog eligibility before implementation. |
+| Engineering workspace | 🟡 Foundation work started | Existing tools remain; [ENG-TOOLS-01](docs/engineering-tools/PROJECT_PLAN.md) is now in Phase 0. Inventory, 110-record draft eligibility and initial benchmarks are prepared; numeric validation is fixed in source. Method/family approval and expansion modules remain open. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
 | Admin content and product editing | 🟢 Implemented | Product editing, missing-content filters, bulk actions and reviewed JSON import/export are implemented and tested. SEO previews and saving were reviewed in an isolated browser session; full media, roles and restore UI review remains. |
@@ -174,13 +176,13 @@ These dated entries describe the state at that milestone. Historical “pending,
 
 ## Remaining roadmap
 
-1. **Engineering/catalog foundation:** Start ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03): audit existing methods, exact identities, family/arrangement rules, conflicting values and required factors; define which records can support each calculation. Preserve owner data while preparing reviewed corrections.
+1. **Engineering/catalog foundation:** Complete the started ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03). Inventory and the first audit package are available; explicit eligibility contracts, remaining method benchmarks and the nominated engineer's approval are still needed. [Execution tracker](docs/COMPLETION_PLAN.md).
 2. **Complete media and documents:** Resolve the nine remaining image entries; keep nonmatching substitutes out. Confirm the 43 example-image identities where exact stock is required. Source product documents; defer company datasheet production until technical acceptance.
 3. **Clear lint:** Resolve the freshly confirmed 197 errors, preserve behavior and decide when to enforce lint in CI.
 4. **Complete acceptance:** Finish admin role/restore/inquiry/media integration, security, accessibility, bilingual copy and desktop/tablet/mobile testing. Keep successful targeted checks distinct from this full review.
 5. **Close operational gaps:** Reverify both domains' Cloudflare proxy/edge-certificate state. Review provider networking before the deferred full-host reboot test; confirm earlier SSH-hardening follow-up. Review backup retention and recovery while keeping backups on the VPS as requested.
 6. **Approve indexing:** After content/release acceptance, make an explicit noindex-removal decision and verify Search Console/sitemap submission. No indexing settings changed during this review.
-7. **Implement the balanced engineering expansion:** After its foundation gate, follow the [project plan](docs/engineering-tools/PROJECT_PLAN.md) through workspace design, calculations, lubrication/maintenance, local cases and acceptance. Implementation has not started.
+7. **Implement the balanced engineering expansion:** Foundation work and numeric-validation fixes have started. Follow the [project plan](docs/engineering-tools/PROJECT_PLAN.md) through workspace design, calculations, lubrication/maintenance, local cases and acceptance; these new modules are not yet implemented.
 
 Deployment, an isolated restore drill and service crash recovery are already completed milestones, not first-time tasks still to perform. Future releases still require their own checks, a pinned revision, backup and rollback. [Detailed status review](docs/STATUS_REVIEW_2026-10-18.md).
 

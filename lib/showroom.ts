@@ -79,6 +79,8 @@ export function fitRange(
     throw new Error('Invalid limits');
   const min = (holeMin - shaftMax) * 1000,
     max = (holeMax - shaftMin) * 1000;
+  if (![min, max].every(Number.isFinite))
+    throw new Error('The result exceeds the supported numerical range.');
   return {
     min,
     max,
