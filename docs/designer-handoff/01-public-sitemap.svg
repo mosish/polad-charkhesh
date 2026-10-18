@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+<title>Polad Charkhesh designer handoff</title>
+<rect x="0" y="0" width="1600" height="1100" fill="#FFFFFF" stroke="#FFFFFF"/>
+<text x="56" y="48" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#176B91">POLAD CHARKHESH / DESIGN HANDOFF</text>
+<text x="56" y="100" font-family="Arial,Helvetica,sans-serif" font-size="36" font-weight="700" fill="#152C44">Public sitemap &amp; interaction model</text>
+<text x="56" y="134" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#52677A">Visitor-facing information architecture, URL targets and primary task flow</text>
+<text x="1320" y="48" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#52677A">SHEET 1 / 02</text>
+<path d="M 56,155 L 1544,155" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<text x="56" y="184" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#52677A">Solid lines: page composition</text>
+<text x="420" y="184" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#52677A">Dashed outline: retained direct route</text>
+<text x="870" y="184" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#176B91">Blue arrows: interaction / progression</text>
+<rect x="56" y="211" width="1488" height="65" fill="#152C44" stroke="#152C44"/>
+<text x="78" y="240" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#FFFFFF">PUBLIC HOME</text>
+<text x="78" y="262" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#FFFFFF">/  -  One continuous page with embedded catalogue and engineering workspaces</text>
+<text x="1210" y="248" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">FA / RTL   |   EN / LTR</text>
+<path d="M 800,276 L 800,296" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<path d="M 233,296 L 1367,296" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<path d="M 233,296 L 233,319" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<path d="M 611,296 L 611,319" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<path d="M 989,296 L 989,319" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<path d="M 1367,296 L 1367,319" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<rect x="56" y="319" width="354" height="251" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="56" y="319" width="354" height="47" fill="#F1F6F9" stroke="#B6C5D0"/>
+<text x="73" y="350" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#152C44">01  Company &amp; context</text>
+<text x="74" y="396" font-family="Courier New,monospace" font-size="15" font-weight="400" fill="#176B91">/  |  #about  |  #industries</text>
+<text x="74" y="432" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Hero and quick product search</text>
+<text x="74" y="461" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Capabilities and company profile</text>
+<text x="74" y="490" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Industries and applications</text>
+<text x="74" y="519" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Why choose us / technical support</text>
+<rect x="434" y="319" width="354" height="251" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="434" y="319" width="354" height="47" fill="#F1F6F9" stroke="#B6C5D0"/>
+<text x="451" y="350" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#152C44">02  Product catalogue</text>
+<text x="452" y="396" font-family="Courier New,monospace" font-size="15" font-weight="400" fill="#176B91">/#catalog</text>
+<text x="452" y="432" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Search: code, size, application</text>
+<text x="452" y="461" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Family and dimension filters</text>
+<text x="452" y="490" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Product results and selection</text>
+<text x="452" y="519" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Open product information panel</text>
+<rect x="812" y="319" width="354" height="251" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="812" y="319" width="354" height="47" fill="#F1F6F9" stroke="#B6C5D0"/>
+<text x="829" y="350" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#152C44">03  Engineering workspace</text>
+<text x="830" y="396" font-family="Courier New,monospace" font-size="15" font-weight="400" fill="#176B91">/#engineering</text>
+<text x="830" y="432" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Product selection / input context</text>
+<text x="830" y="461" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Life and equivalent load</text>
+<text x="830" y="490" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Basic rating life and fit limits</text>
+<text x="830" y="519" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Technical comparison</text>
+<text x="830" y="548" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Unit conversion</text>
+<rect x="1190" y="319" width="354" height="251" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="1190" y="319" width="354" height="47" fill="#F1F6F9" stroke="#B6C5D0"/>
+<text x="1207" y="350" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#152C44">04  Contact &amp; inquiry</text>
+<text x="1208" y="396" font-family="Courier New,monospace" font-size="15" font-weight="400" fill="#176B91">/#contact</text>
+<text x="1208" y="432" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Company contact information</text>
+<text x="1208" y="461" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Technical inquiry form</text>
+<text x="1208" y="490" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Submission feedback</text>
+<path d="M 611,570 L 611,605" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 607,598 L 611,605 L 615,598" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<rect x="434" y="605" width="732" height="108" fill="#F1F6F9" stroke="#176B91"/>
+<text x="453" y="633" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#176B91">PRODUCT INFORMATION PANEL</text>
+<text x="453" y="662" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Identity / specifications / images / illustrative 3D / documents</text>
+<text x="453" y="690" font-family="Courier New,monospace" font-size="15" font-weight="400" fill="#52677A">Shareable selection: /?item=:slug#catalog</text>
+<rect x="56" y="605" width="354" height="108" fill="#FFFFFF" stroke="#B6C5D0" stroke-dasharray="5 4"/>
+<text x="74" y="632" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#52677A">RETAINED DIRECT ROUTES</text>
+<text x="74" y="659" font-family="Courier New,monospace" font-size="16" font-weight="400" fill="#176B91">/catalog   /engineering</text>
+<text x="74" y="687" font-family="Courier New,monospace" font-size="16" font-weight="400" fill="#176B91">/product/:slug</text>
+<rect x="1190" y="605" width="354" height="108" fill="#FFFFFF" stroke="#B6C5D0"/>
+<text x="1208" y="633" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="#152C44">SHARED SITE SHELL</text>
+<text x="1208" y="662" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#263B50">Header / section navigation / footer</text>
+<text x="1208" y="690" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#263B50">Language and reading direction</text>
+<text x="56" y="756" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#176B91">PRIMARY VISITOR FLOW</text>
+<rect x="56" y="776" width="276" height="76" fill="#FFFFFF" stroke="#B6C5D0"/>
+<text x="71" y="803" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#176B91">01 / DISCOVER</text>
+<text x="71" y="831" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Search and filter</text>
+<path d="M 336,814 L 354,814" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 347,810 L 354,814 L 347,818" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<rect x="359" y="776" width="276" height="76" fill="#FFFFFF" stroke="#B6C5D0"/>
+<text x="374" y="803" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#176B91">02 / INSPECT</text>
+<text x="374" y="831" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Review product details</text>
+<path d="M 639,814 L 657,814" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 650,810 L 657,814 L 650,818" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<rect x="662" y="776" width="276" height="76" fill="#FFFFFF" stroke="#B6C5D0"/>
+<text x="677" y="803" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#176B91">03 / EVALUATE</text>
+<text x="677" y="831" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Use engineering tools</text>
+<path d="M 942,814 L 960,814" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 953,810 L 960,814 L 953,818" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<rect x="965" y="776" width="276" height="76" fill="#FFFFFF" stroke="#B6C5D0"/>
+<text x="980" y="803" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#176B91">04 / REFERENCE</text>
+<text x="980" y="831" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Read documents</text>
+<path d="M 1245,814 L 1263,814" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1256,810 L 1263,814 L 1256,818" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<rect x="1268" y="776" width="276" height="76" fill="#FFFFFF" stroke="#B6C5D0"/>
+<text x="1283" y="803" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#176B91">05 / CONNECT</text>
+<text x="1283" y="831" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400" fill="#263B50">Send a technical inquiry</text>
+<text x="56" y="883" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#52677A">Recommended walkthrough; users may jump between sections and tools.</text>
+<path d="M 56,906 L 1544,906" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<text x="56" y="937" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#176B91">DESIGN CONTRACT</text>
+<text x="56" y="967" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Preserve bilingual RTL/LTR layouts, technical data hierarchy, product context and clear interaction states.</text>
+<text x="56" y="995" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#52677A">Design review coverage: keyboard/focus, loading, empty/error states, mobile reflow and reduced-motion behavior.</text>
+<text x="56" y="1023" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#52677A">Source: app/Router.tsx; Home.tsx; HomeSections.tsx; Engineering.tsx; lib/public-links.ts. Sections are grouped for readability.</text>
+<path d="M 56,1042 L 1544,1042" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<text x="56" y="1070" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#52677A">18 OCT 2026  |  Source-based structure  |  Simplified for design review; no live acceptance claim</text>
+<text x="1435" y="1070" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#52677A">PC / 01</text>
+</svg>

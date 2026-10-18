@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+<title>Polad Charkhesh designer handoff</title>
+<rect x="0" y="0" width="1600" height="1100" fill="#FFFFFF" stroke="#FFFFFF"/>
+<text x="56" y="48" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#176B91">POLAD CHARKHESH / DESIGN HANDOFF</text>
+<text x="56" y="100" font-family="Arial,Helvetica,sans-serif" font-size="36" font-weight="700" fill="#152C44">Administration &amp; data architecture</text>
+<text x="56" y="134" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#52677A">Application boundaries, content ownership and the operational inquiry loop</text>
+<text x="1320" y="48" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#52677A">SHEET 2 / 02</text>
+<path d="M 56,155 L 1544,155" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<text x="56" y="184" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#52677A">Two-way arrows: requests and responses, or storage reads and writes. Module boundaries are shown explicitly.</text>
+<rect x="56" y="211" width="448" height="251" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="56" y="211" width="448" height="47" fill="#152C44" stroke="#152C44"/>
+<text x="76" y="242" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#FFFFFF">PUBLIC INTERFACE</text>
+<text x="76" y="288" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#152C44">React + TypeScript</text>
+<text x="76" y="323" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Company / catalogue / contact</text>
+<text x="76" y="353" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Client-side engineering tools</text>
+<text x="76" y="383" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Three.js illustrative mechanical views</text>
+<text x="76" y="426" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#52677A">Reads public content; submits inquiries.</text>
+<rect x="550" y="211" width="994" height="251" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="550" y="211" width="994" height="47" fill="#152C44" stroke="#152C44"/>
+<text x="570" y="242" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#FFFFFF">ADMIN CONTROL CENTER</text>
+<text x="1210" y="241" font-family="Courier New,monospace" font-size="17" font-weight="400" fill="#FFFFFF">/admin  |  /admin/</text>
+<text x="570" y="286" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#176B91">Authenticated access / role-based permissions</text>
+<text x="570" y="319" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Overview</text>
+<text x="1015" y="319" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Website editor</text>
+<text x="570" y="346" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Products</text>
+<text x="1015" y="346" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Header</text>
+<text x="570" y="373" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Media</text>
+<text x="1015" y="373" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">SEO</text>
+<text x="570" y="400" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Company</text>
+<text x="1015" y="400" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">System &amp; security</text>
+<text x="570" y="427" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Inquiries</text>
+<text x="1015" y="427" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Audit logs</text>
+<path d="M 280,462 L 280,557" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 276,550 L 280,557 L 284,550" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 280,557 L 280,462" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 276,469 L 280,462 L 284,469" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<text x="66" y="496" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#52677A">Public content responses</text>
+<text x="66" y="521" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#52677A">Inquiry submissions</text>
+<path d="M 1047,462 L 1047,557" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1043,550 L 1047,557 L 1051,550" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1047,557 L 1047,462" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1043,469 L 1047,462 L 1051,469" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<text x="1067" y="496" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#52677A">Authenticated reads / writes</text>
+<text x="1067" y="521" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#52677A">Uploads and status updates</text>
+<rect x="56" y="557" width="1488" height="114" fill="#F1F6F9" stroke="#176B91"/>
+<text x="78" y="593" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#152C44">APPLICATION SERVER</text>
+<text x="78" y="625" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#176B91">Node + Express API</text>
+<text x="530" y="593" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="400" fill="#263B50">Public data and inquiries / protected administration / validation</text>
+<text x="530" y="625" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="400" fill="#263B50">Server sessions / media handling / audit events / backup endpoints</text>
+<text x="78" y="652" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#52677A">Returns saved content and operation results to the relevant interface.</text>
+<path d="M 410,671 L 410,755" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 406,748 L 410,755 L 414,748" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 410,755 L 410,671" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 406,678 L 410,671 L 414,678" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1184,671 L 1184,755" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1180,748 L 1184,755 L 1188,748" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1184,755 L 1184,671" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1180,678 L 1184,671 L 1188,678" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<text x="430" y="713" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#52677A">Read / write structured records</text>
+<text x="1204" y="713" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#52677A">Store / serve file bytes</text>
+<rect x="56" y="755" width="714" height="138" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="56" y="755" width="714" height="43" fill="#F1F6F9" stroke="#B6C5D0"/>
+<text x="76" y="784" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#152C44">SQLITE / AUTHORITATIVE SAVED DATA</text>
+<text x="76" y="831" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Products / website content / company settings / inquiries</text>
+<text x="76" y="862" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Media metadata / accounts and sessions / audit records</text>
+<rect x="830" y="755" width="714" height="138" fill="#FFFFFF" stroke="#B6C5D0"/>
+<rect x="830" y="755" width="714" height="43" fill="#F1F6F9" stroke="#B6C5D0"/>
+<text x="850" y="784" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#152C44">MEDIA STORAGE / UPLOADED FILES</text>
+<text x="850" y="831" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Image and PDF bytes are stored separately from SQLite.</text>
+<text x="850" y="862" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="400" fill="#263B50">Product and content records refer to media resources.</text>
+<text x="56" y="932" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#176B91">INQUIRY OPERATIONS</text>
+<text x="56" y="965" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#152C44">Visitor submits</text>
+<path d="M 225,959 L 270,959" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 263,955 L 270,959 L 263,963" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<text x="290" y="965" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#176C67">NEW</text>
+<text x="540" y="965" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#176C67">REVIEWED</text>
+<text x="830" y="965" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#176C67">CONTACTED</text>
+<text x="1160" y="965" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#176C67">CLOSED</text>
+<path d="M 370,959 L 520,959" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 513,955 L 520,959 L 513,963" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 680,959 L 810,959" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 803,955 L 810,959 L 803,963" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 980,959 L 1140,959" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<path d="M 1133,955 L 1140,959 L 1133,963" fill="none" stroke="#176B91" stroke-width="1.5"/>
+<text x="56" y="996" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400" fill="#52677A">Staff change inquiry status. Engineering formulas remain in application code; routine content is managed in the CMS.</text>
+<text x="56" y="1023" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#52677A">Source: README.md; components/admin/Admin.tsx; platform components. Deployment topology and entity-level schema are outside this view.</text>
+<path d="M 56,1042 L 1544,1042" fill="none" stroke="#B6C5D0" stroke-width="1.5"/>
+<text x="56" y="1070" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#52677A">18 OCT 2026  |  Source-based structure  |  Simplified for design review; no live acceptance claim</text>
+<text x="1435" y="1070" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#52677A">PC / 02</text>
+</svg>

@@ -55,6 +55,24 @@ The main feature set is published on both language domains and the temporary VPS
 
 The latest loading-performance update passed **64 tests** on Windows and Ubuntu 24.04; its external check passed 226 page/language variants. [Payload comparisons and publication evidence](docs/PERFORMANCE_2026-10-14.md). The earlier Safari recovery update passed **59 tests**. TypeScript, production build, JavaScript size budgets and isolated production smoke passed for the recovery update. The published-content SEO audit covers **110 products, 113 routes and 226 language variants** with zero automated findings. Targeted checks cover breadcrumbs, 404, preserved animation, Persian mobile product/exploded views, legacy browser capabilities and section failure recovery. The owner confirmed the phone no longer loses its content; the owner also confirmed the same 3D model appears and moves on Safari after the compatibility update. The final accessibility, security and product-data review remains open. See [mobile recovery evidence](docs/MOBILE_RECOVERY_2026-10-14.md), the [quality report](docs/QUALITY_PHASE_2026-10-13.md) and [SEO checklist](docs/SEO_PREDEPLOY_CHECKLIST.md).
 
+## Website map and designer handoff
+
+The two-sheet designer handoff explains the public information architecture, routes and product interactions, followed by the administration modules and data flow. It distinguishes sections of the continuous home page from retained direct routes and shows how the public interface and admin panel use the server, SQLite and uploaded media.
+
+**Downloads:** [Two-page PDF](docs/designer-handoff/polad-charkhesh-designer-handoff.pdf) · [Editable public sitemap (SVG)](docs/designer-handoff/01-public-sitemap.svg) · [Editable admin/data architecture (SVG)](docs/designer-handoff/02-admin-data-architecture.svg) · [Handoff notes and regeneration instructions](docs/designer-handoff/README.md).
+
+### Public sitemap and visitor flow
+
+[![Public sitemap showing home-page sections, retained routes, product information panel and visitor flow](docs/designer-handoff/01-public-sitemap.png)](docs/designer-handoff/01-public-sitemap.svg)
+
+### Administration and data architecture
+
+[![Administration and data architecture showing frontend and admin modules, Express API, SQLite, media storage and inquiry lifecycle](docs/designer-handoff/02-admin-data-architecture.png)](docs/designer-handoff/02-admin-data-architecture.svg)
+
+These source-based diagrams were prepared on 18 October 2026 for design review. They group related features for readability and do not replace live acceptance testing or an entity-level database schema.
+
+---
+
 ## Public site layout
 
 The primary visitor experience is one continuous page at `/`: company introduction, full searchable catalog, product specifications and documents in a floating panel, mechanical engineering reference tools, industries, and contact. The header and major calls to action jump to these sections instead of opening separate catalog or engineering pages. The catalog shows two complete product rows and a faded preview of the third, then reveals more on request. Family filters form one horizontal row, and text search covers codes, dimensions and applications. Optional dimension selectors offer compatible sizes, and removable filter chips keep active constraints visible. Product selection in the engineering heading supplies the calculation context. Product-specific geometry remains available in the product specifications experience. Existing `/catalog`, `/engineering`, and `/product/:slug` URLs remain available for old bookmarks and indexing.
