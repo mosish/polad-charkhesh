@@ -48,8 +48,7 @@ export function Provider({ children }: { children: ReactNode }) {
     loading: true,
     error: '',
   });
-  const reload = useCallback(() => {
-    setState((s) => ({ ...s, loading: !s.company, error: '' }));
+  const fetchData = useCallback(() => {
     Promise.all([
       api('/products'),
       api('/company'),
@@ -70,8 +69,12 @@ export function Provider({ children }: { children: ReactNode }) {
         setState((s) => ({ ...s, loading: false, error: e.message })),
       );
   },[]);
+  const reload = useCallback(() => {
+    setState(s => ({ ...s, loading: !s.company, error: '' }));
+    fetchData();
+  }, [fetchData]);
   // Production HTML is fresh on every visit. Dev/admin routes still fetch; Retry remains explicit.
-  useEffect(()=>{if(!snapshot)reload();},[snapshot,reload]);
+  useEffect(()=>{if(!snapshot)fetchData();},[snapshot,fetchData]);
   useEffect(() => {
     let alive = true;
     const receive = async (event: MessageEvent<{ type?: string; content?: SiteContent }>) => {
@@ -155,9 +158,9 @@ export function Provider({ children }: { children: ReactNode }) {
 export function DataState() {
   const { loading, error, reload, t } = usePlatform();
   return loading ? (
-    <div className="state" role="status">
+    <output className="state" >
       {t('Loading technical catalog…', 'در حال دریافت کاتالوگ فنی…')}
-    </div>
+    </output>
   ) : error ? (
     <div className="state error" role="alert">
       {error}

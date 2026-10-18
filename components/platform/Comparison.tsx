@@ -79,12 +79,12 @@ export default function Comparison({ initial = [] }: { initial?: string[] }) {
         {t('Show differences only', 'فقط تفاوت‌ها')}
       </label>
       {chosen.length < 2 ? (
-        <p role="status">
+        <output >
           {t(
             'Choose two or three components to compare their specifications.',
             'دو یا سه قطعه را برای مقایسه مشخصات انتخاب کنید.',
           )}
-        </p>
+        </output>
       ) : (
         <div className="table-scroll">
           <table>

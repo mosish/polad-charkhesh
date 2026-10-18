@@ -1,6 +1,7 @@
+import { useUnsavedChanges } from './useUnsavedChanges';
 import type { BearingProduct } from '../../domain/product';
 import { textValue, stringList } from '../../lib/editor-path';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { api, errorMessage } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
 import Dialog from '../platform/Dialog';
@@ -143,16 +144,7 @@ export default function ProductEditor({
   const [sources, setSources] = useState(
     JSON.stringify(p.technicalSources || [], null, 2),
   );
-  useEffect(() => {
-    const warn = (e: BeforeUnloadEvent) => {
-      if (dirty) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-    addEventListener('beforeunload', warn);
-    return () => removeEventListener('beforeunload', warn);
-  }, [dirty]);
+  useUnsavedChanges(dirty);
   const update = (k: keyof BearingProduct, v: BearingProduct[keyof BearingProduct]) => {
     setDirty(true);
     setP({ ...p, [k]: v });
@@ -179,7 +171,7 @@ export default function ProductEditor({
       title={isNew ? t('New component', 'قطعه جدید') : p.code || ''}
       onClose={() => (dirty ? setDiscard(true) : onClose())}
     >
-      {duplicateSource && <p className="note" role="status">{t('Technical details copied from', 'مشخصات فنی کپی شد از')} <code>{duplicateSource}</code>. {t('Enter a new code and URL slug, then review the specifications before saving.', 'کد و نشانی جدید وارد کنید و پیش از ذخیره مشخصات را بررسی کنید.')}</p>}
+      {duplicateSource && <output className="note" >{t('Technical details copied from', 'مشخصات فنی کپی شد از')} <code>{duplicateSource}</code>. {t('Enter a new code and URL slug, then review the specifications before saving.', 'کد و نشانی جدید وارد کنید و پیش از ذخیره مشخصات را بررسی کنید.')}</output>}
       <div className="editor-tabs">
         {Object.keys(groups).map((k) => (
           <button

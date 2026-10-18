@@ -24,6 +24,14 @@ export default function Dialog({
       before?.focus();
     };
   }, []);
+  useEffect(() => {
+    const dialog = ref.current;
+    // A native modal's backdrop is not a separate interactive DOM element.
+    // Escape remains handled by onCancel; inside clicks must not dismiss it.
+    const backdropClick = (event: MouseEvent) => { if (event.target === dialog) onClose(); };
+    dialog?.addEventListener('click', backdropClick);
+    return () => dialog?.removeEventListener('click', backdropClick);
+  }, [onClose]);
   return (
     <dialog
       ref={ref}
@@ -32,9 +40,6 @@ export default function Dialog({
       onCancel={(e) => {
         e.preventDefault();
         onClose();
-      }}
-      onClick={(e) => {
-        if (e.target === ref.current) onClose();
       }}
     >
       <div className="dialog-inner">

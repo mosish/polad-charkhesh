@@ -1,3 +1,4 @@
+import type { SiteContent } from '../../domain/site-content';
 import ManufacturerLibrary from './ManufacturerLibrary';
 import Breadcrumbs from './Breadcrumbs';
 import NotFound from './NotFound';
@@ -53,10 +54,9 @@ function ProductCallOptions({ p, company }: { p: BearingProduct; company: Compan
 }
 export function ProductImage({ p, priority = false }: { p: BearingProduct; priority?: boolean }) {
   const { content, fa, t } = usePlatform();
-  const [failed, setFailed] = useState(false);
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
   const media = mediaFor(p, content);
   const supplier = supplierMedia(media.url);
-  useEffect(() => setFailed(false), [media.url]);
   return p.category === 'lubricant' && !media.url ? (
     <div className="non-bearing-tech">
       <strong>
@@ -67,14 +67,14 @@ export function ProductImage({ p, priority = false }: { p: BearingProduct; prior
         <Copy text="Lubricant · technical reference" />
       </small>
     </div>
-  ) : failed || !media.url ? (
+  ) : failedUrl === media.url || !media.url ? (
     <Schematic p={p} />
   ) : (
     <>
       <ReferenceImage
         src={media.url}
         alt={supplier ? t(supplier.altEn, supplier.altFa) : media.reference ? typeLabel(p.schematicType, t) + ' · ' + t('family reference illustration', 'تصویر مرجع خانواده') : p.code + ' · ' + p[fa ? 'nameFa' : 'nameEn']}
-        onError={() => setFailed(true)}
+        onError={() => setFailedUrl(media.url)}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         width={640}
@@ -134,9 +134,10 @@ export function ProductCard({
 }
 export async function datasheet(
   p: BearingProduct,
-  company: any,
-  content?: any,
+  company: CompanyContactInfo | null,
+  content?: SiteContent | null,
 ) {
+  if (!company) throw new Error('Company details have not loaded. Please retry.');
   const { buildDatasheet } = await import('../../lib/pdf');
   const media = mediaFor(p, content);
   const fontResponse = await fetch('/fonts/IRANSans.ttf');

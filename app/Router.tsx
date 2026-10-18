@@ -17,9 +17,9 @@ export default function Router() {
         <RecoveryBoundary fallback={<WorkspaceRecovery />}>
         <Suspense
           fallback={
-            <main id="main" className="state" role="status">
+            <output id="main" className="state" >
               Loading workspace…
-            </main>
+            </output>
           }
         >
           {path === '/' ? (

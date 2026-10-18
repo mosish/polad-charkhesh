@@ -24,7 +24,7 @@ function HeadlineSequence({ phrases, fa }: { phrases: string[]; fa: boolean }) {
   const [phase, setPhase] = useState<'typing' | 'holding' | 'erasing' | 'waiting'>('typing');
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [visible, setVisible] = useState(false), [tabVisible, setTabVisible] = useState(!document.hidden);
+  const [visible, setVisible] = useState(() => typeof IntersectionObserver !== 'function'), [tabVisible, setTabVisible] = useState(!document.hidden);
   const root = useRef<HTMLDivElement>(null);
   const letters = Array.from(order[index]);
   const stopped = paused || reduced || !visible || !tabVisible;
@@ -34,7 +34,6 @@ function HeadlineSequence({ phrases, fa }: { phrases: string[]; fa: boolean }) {
     const visibility = () => setTabVisible(!document.hidden);
     const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting)) : null;
     if (root.current) observer?.observe(root.current);
-    if (!observer) setVisible(true);
     const unsubscribe = subscribeMediaQuery(media, motion);
     document.addEventListener('visibilitychange', visibility);
     return () => { observer?.disconnect(); unsubscribe(); document.removeEventListener('visibilitychange', visibility); };

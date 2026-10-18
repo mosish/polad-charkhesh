@@ -45,7 +45,8 @@ export default function BearingModel({ p, rpm, paused, playback, compact = false
   const outerTrack = R - gap * .24, innerTrack = r + gap * .24;
   const ball = g.elementDiameter / 2 * (g.rows === 2 ? .77 : 1);
   const steel = `url(#${id}steel)`, dark = `url(#${id}edge)`;
-  return <svg ref={model} className="bearing-render" viewBox={compact ? '55 45 410 340' : '0 0 520 440'} role="img" aria-label={`${p.code}: ${p.schematicType} bearing cutaway, ${p.d} × ${p.D} × ${p.B} mm`}>
+  return <svg ref={model} className="bearing-render" viewBox={compact ? '55 45 410 340' : '0 0 520 440'} aria-labelledby={id+'-title'}>
+    <title id={id+'-title'}>{`${p.code}: ${p.schematicType} bearing cutaway, ${p.d} × ${p.D} × ${p.B} mm`}</title>
     <defs>
       <linearGradient id={id+'steel'} x1="0" y1="0" x2="1" y2="1">
         <stop stopColor="#f4f7fc"/><stop offset=".17" stopColor="#8798af"/><stop offset=".32" stopColor="#e9eff6"/><stop offset=".49" stopColor="#576a83"/><stop offset=".63" stopColor="#f1f5fa"/><stop offset=".8" stopColor="#9cacc0"/><stop offset="1" stopColor="#d7e1ee"/>

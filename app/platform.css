@@ -2282,3 +2282,11 @@ body {
 @media (max-width: 700px) { .seo-initial ul { columns: 1; } }
 
 .seo-overview .admin-stats strong { font-size: 24px; white-space: nowrap; }
+
+/* Native status, grouping and figure elements retain their established layout. */
+output { display: block; }
+fieldset.bearing-view-switch, fieldset.family-options { min-inline-size: 0; border: 0; padding: 0; margin-inline: 0; }
+figure.hero-bearing-canvas { margin: 0; }
+.bearing-angle-control { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: grab; }
+.bearing-angle-control:focus-visible { outline: 2px solid #bedfff; outline-offset: -5px; }
+.bearing-angle-control:disabled { cursor: default; }

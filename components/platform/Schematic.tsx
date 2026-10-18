@@ -7,9 +7,9 @@ export function Schematic({ p }: { p: BearingProduct }) {
     <div className="schematic" dir="ltr">
       <svg
         viewBox="0 0 420 245"
-        role="img"
-        aria-label={`Dimensional schematic: bore ${p.d}, outside diameter ${p.D}, width ${p.B} mm`}
+        aria-labelledby={id + '-title'}
       >
+        <title id={id + '-title'}>{`Dimensional schematic: bore ${p.d}, outside diameter ${p.D}, width ${p.B} mm`}</title>
         <defs>
           <marker
             id={id}

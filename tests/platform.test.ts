@@ -1,3 +1,6 @@
+import type { Server } from 'node:http';
+import type { AddressInfo } from 'node:net';
+import type { BearingProduct } from '../domain/product';
 import { seoDefaults } from '../domain/seo';
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -18,17 +21,17 @@ process.env.UPLOAD_DIR = path.join(
   path.dirname(process.env.DATABASE_PATH),
   'uploads',
 );
-let server: any,
+let server: Server,
   base: string,
   cookie = '',
-  database: any;
+  database: typeof import('../api/database');
 before(async () => {
   const { app } = await import('../api/index');
   database = await import('../api/database');
   await new Promise<void>((resolve, reject) => {
     server = app.listen(0, '127.0.0.1', (error?: Error) => error ? reject(error) : resolve());
   });
-  base = 'http://127.0.0.1:' + server.address().port;
+  base = 'http://127.0.0.1:' + (server.address() as AddressInfo).port;
 });
 after(() => {
   server?.close();
@@ -36,10 +39,10 @@ after(() => {
 });
 async function req(
   url: string,
-  method = 'GET',
-  body?: any,
+  method: string = 'GET',
+  body?: unknown,
   auth = true,
-  extra: any = {},
+  extra: Record<string,string> = {},
 ) {
   const r = await fetch(base + '/api' + url, {
     method,
@@ -48,7 +51,7 @@ async function req(
       ...(auth && cookie ? { Cookie: cookie } : {}),
       ...extra,
     },
-    body: body === undefined ? undefined : JSON.stringify(body),
+    ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   return { r, b: await r.json() };
 }
@@ -58,8 +61,8 @@ void test('catalog preserves 68 legacy identities and adds sourced SKF designati
   const { b } = await req('/products');
   assert.equal(b.count, 110);
   for (const p of bearingProducts) {
-    const actual = b.products.find((v: any) => v.id === p.id);
-    const withoutSeo = (value: any) => Object.fromEntries(Object.entries(value).filter(([key]) => !['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa', 'keywords'].includes(key)));
+    const actual = b.products.find((v: BearingProduct) => v.id === p.id);
+    const withoutSeo = (value: BearingProduct) => Object.fromEntries(Object.entries(value).filter(([key]) => !['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa', 'keywords'].includes(key)));
     assert.deepEqual(withoutSeo(actual), withoutSeo(p), 'SEO enrichment must preserve all technical and media data');
     for (const key of ['metaTitleEn', 'metaTitleFa', 'metaDescriptionEn', 'metaDescriptionFa']) assert.ok(actual[key]?.trim());
   }
@@ -263,18 +266,19 @@ void test('catalog bulk edits and reviewed imports require auth and apply atomic
   assert.equal((await req('/products/import', 'POST', { products: rows, preview: true }, false)).r.status, 401);
   assert.equal((await req('/products/bulk', 'POST', { ids: [original.id], action: 'archive' }, false)).r.status, 401);
   assert.equal((await req('/products/bulk', 'POST', { ids: [original.id, 'missing'], action: 'archive' })).r.status, 404);
-  assert.equal(database.product(original.id).isArchived, original.isArchived);
+  assert.equal(database.product(original.id)!.isArchived, original.isArchived);
   const preview = await req('/products/import', 'POST', { products: rows, preview: true });
   assert.equal(preview.r.status, 200);
   assert.equal(preview.b.created, 1); assert.equal(preview.b.updated, 1);
   assert.equal(database.allProducts().length, 110);
   assert.equal((await req('/products/import', 'POST', { products: rows, confirm: 'IMPORT', revision: 'stale' })).r.status, 409);
   assert.equal((await req('/products/import', 'POST', { products: rows, confirm: 'IMPORT', revision: preview.b.revision })).r.status, 200);
-  const imported = database.allProducts().find((p: any) => p.code === 'IMPORT-TEST');
+  const imported = database.allProducts().find((p) => p.code === 'IMPORT-TEST');
+  assert.ok(imported);
   try {
-    assert.equal(database.product(original.id).nameEn, 'Import updated name');
+    assert.equal(database.product(original.id)?.nameEn, 'Import updated name');
     assert.equal((await req('/products/bulk', 'POST', { ids: [original.id, imported.id], action: 'brands', brands: [' NSK ', 'NSK'] })).r.status, 200);
-    assert.deepEqual(database.product(imported.id).brands, ['NSK']);
+    assert.deepEqual(database.product(imported!.id)!.brands, ['NSK']);
     const latest = await req('/products/import', 'POST', { products: rows, preview: true });
     await req('/products/bulk', 'POST', { ids: [imported.id], action: 'feature' });
     assert.equal((await req('/products/import', 'POST', { products: rows, confirm: 'IMPORT', revision: latest.b.revision })).r.status, 409);
@@ -283,7 +287,7 @@ void test('catalog bulk edits and reviewed imports require auth and apply atomic
     await req('/products/bulk', 'POST', { ids: [imported.id], action: 'restore' });
     assert.equal((await req('/products/' + imported.id, 'GET', undefined, false)).r.status, 200);
     const invalid = await req('/products/import', 'POST', { products: [{ ...original, nameEn: 'Should not save' }, { ...imported, d: 999 }], preview: true });
-    assert.equal(invalid.r.status, 400); assert.equal(database.product(original.id).nameEn, 'Import updated name');
+    assert.equal(invalid.r.status, 400); assert.equal(database.product(original.id)?.nameEn, 'Import updated name');
   } finally {
     database.putProduct(original); database.db.prepare('DELETE FROM products WHERE id=?').run(imported.id);
   }
@@ -335,7 +339,7 @@ void test('backup omits secrets, validates restore, snapshots and transactions r
   const backup = (await req('/system/backup')).b;
   assert.equal(backup.products.length, 110);
   const catalogBefore = database.allProducts(true);
-  const snapshotCount = () => database.db.prepare('SELECT count(*) n FROM backup_snapshots').get().n;
+  const snapshotCount = () => database.db.prepare('SELECT count(*) n FROM backup_snapshots').get()!.n;
   const snapshotsBefore = snapshotCount();
   for (const delta of [{ inquiries: [null] }, { media: [null] }, { products: [{ ...backup.products[0], id: null }] }]) {
     assert.equal((await req('/system/restore', 'POST', { confirm: 'RESTORE', backup: { ...backup, ...delta } })).r.status, 400);
@@ -363,7 +367,7 @@ void test('backup omits secrets, validates restore, snapshots and transactions r
     (
       database.db
         .prepare('SELECT count(*) n FROM backup_snapshots')
-        .get() as any
+        .get() as { n: number }
     ).n,
     1,
   );
@@ -390,6 +394,7 @@ void test('SEO admin settings preserve overrides, validate fields and enrich new
   assert.deepEqual((await req('/seo')).b.data, edited, 'Rejected SEO edits never mutate saved settings');
   await req('/seo', 'PUT', original);
   const product = database.product(bearingProducts[0].id);
+  assert.ok(product);
   const enriched = await req('/products/' + product.id, 'PUT', { ...product, metaTitleEn: '', metaDescriptionFa: '' });
   assert.equal(enriched.r.status, 200);
   assert.ok(enriched.b.product.metaTitleEn); assert.ok(enriched.b.product.metaDescriptionFa);

@@ -53,7 +53,7 @@ export default function Admin() {
     [error, setError] = useState(''),
     [message, setMessage] = useState(''),
     [busy, setBusy] = useState(false),
-    [loaded, setLoaded] = useState<AdminData | null>(null),
+    [loaded, setLoaded] = useState<{ data: AdminData; version: number; userId: string } | null>(null),
     [loadVersion, setLoadVersion] = useState(0),
     [q, setQ] = useState(''),
     [filter, setFilter] = useState('all'),
@@ -72,16 +72,14 @@ export default function Admin() {
     void check();
   }, []);
   // Associate each response with its tab; never render another tab's payload.
-  const data = loaded?.tab === tab ? loaded : null;
-  const load = () => setLoadVersion((version) => version + 1);
+  const data = loaded?.data.tab === tab && loaded.version === loadVersion && loaded.userId === status?.user?.id ? loaded.data : null;
+  const load = () => { setError(''); setLoadVersion((version) => version + 1); };
   useEffect(() => {
     if (!status?.user) return;
     let cancelled = false;
-    setLoaded(null);
-    setError('');
     if (['content', 'header', 'company', 'seo'].includes(tab)) return;
     loadAdminData(tab).then((value) => {
-      if (!cancelled) setLoaded(value);
+      if (!cancelled) { setLoaded({data:value,version:loadVersion,userId:status.user!.id}); setError(''); }
     }).catch((e: unknown) => {
       if (cancelled) return;
       setError(errorMessage(e));
@@ -116,6 +114,8 @@ export default function Admin() {
       return;
     setSettingsDirty(false);
     setTab(x);
+    setLoaded(null);
+    setError('');
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
     setQ('');
@@ -325,9 +325,9 @@ export default function Admin() {
           </div>
         )}
         {message && (
-          <p className="success" role="status">
+          <output className="success" >
             {message === 'saved' ? t('Saved successfully.', 'با موفقیت ذخیره شد.') : message === 'product-saved' ? t('Product saved.', 'محصول ذخیره شد.') : message === 'password-changed' ? t('Password changed. Sign in again.', 'رمز عبور تغییر کرد. دوباره وارد شوید.') : message}
-          </p>
+          </output>
         )}
         {['content', 'header'].includes(tab) ? (
           <WebsiteEditor key={tab} initialTab={tab === 'header' ? 'header' : 'sections'} onDirty={setSettingsDirty} />

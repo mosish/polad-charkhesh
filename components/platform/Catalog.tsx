@@ -1,3 +1,4 @@
+interface CatalogTool { name: string; description: string; inputSchema: { type: string; properties: Record<string, { type: string }>; required: string[]; additionalProperties: boolean }; annotations: { readOnlyHint: boolean }; execute: (input: unknown) => unknown }
 import CategoryIcon from './CategoryIcon';
 import Breadcrumbs from './Breadcrumbs';
 import ManufacturerLibrary from './ManufacturerLibrary';
@@ -34,7 +35,7 @@ function columnsForViewport() {
 }
 export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   const { products, t, loading, error } = usePlatform();
-  const familyScroll = useRef<HTMLDivElement>(null);
+  const familyScroll = useRef<HTMLFieldSetElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const sizeId = useId();
   const params = new URLSearchParams(location.search);
@@ -46,9 +47,12 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   const [sizesOpen, setSizesOpen] = useState(() => ['d', 'D', 'B'].some(key => params.has(key)));
   const [columns, setColumns] = useState(columnsForViewport);
   const [table, setTable] = useState(false),
-    [selected, setSelected] = useState(params.get('item') || ''),
-    [visibleCount, setVisibleCount] = useState(columns * 6),
-    [expanded, setExpanded] = useState(false);
+    [selected, setSelected] = useState(params.get('item') || '');
+  const pageKey = JSON.stringify([q, cat, dimensions, columns]);
+  const [page, setPage] = useState({ key: pageKey, count: columns * 6, expanded: false });
+  if (page.key !== pageKey) setPage({ key: pageKey, count: columns * 6, expanded: false });
+  const expanded = page.key === pageKey && page.expanded;
+  const visibleCount = page.key === pageKey ? page.count : columns * 6;
   const results = useMemo(
     () => searchProducts(products, q, cat, dimensions.d, dimensions.D, dimensions.B),
     [products, q, cat, dimensions],
@@ -65,7 +69,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
     return () => window.removeEventListener('resize', update);
   }, []);
   useEffect(() => {
-    const context = (document as any).modelContext;
+    const context = (document as Document & { modelContext?: { registerTool: (tool: CatalogTool, options: { signal: AbortSignal }) => unknown } }).modelContext;
     if (!context?.registerTool) return;
     const lifecycle = new AbortController();
     Promise.resolve(
@@ -81,8 +85,8 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
             additionalProperties: false,
           },
           annotations: { readOnlyHint: false },
-          execute(input: any) {
-            if (typeof input?.query !== 'string' || input.query.length > 200)
+          execute(input: unknown) {
+            if (!input || typeof input !== 'object' || !('query' in input) || typeof input.query !== 'string' || input.query.length > 200)
               throw new Error('Query must be a short string.');
             setQ(input.query);
             setCat('all');
@@ -112,7 +116,6 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
     }
     history.replaceState(null, '', location.pathname + (next.size ? '?' + next.toString() : '') + location.hash);
   }, [q, cat, dimensions, selected]);
-  useEffect(() => { setExpanded(false); setVisibleCount(columns * 6); }, [q, cat, dimensions, columns]);
   const chooseProduct = (product: BearingProduct) => {
     setSelected(product.slug || product.id);
   };
@@ -121,8 +124,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   const renderCount = table ? Math.max(12, expanded ? visibleCount : 12) : expanded ? visibleCount : columns * 3;
   const moreAvailable = preview || results.length > renderCount;
   const showMore = () => {
-    setVisibleCount((count) => expanded ? count + (table ? 12 : columns * 3) : Math.max(count, table ? 24 : columns * 6));
-    setExpanded(true);
+    setPage({ key: pageKey, expanded: true, count: expanded ? visibleCount + (table ? 12 : columns * 3) : Math.max(visibleCount, table ? 24 : columns * 6) });
   };
   const Container = embedded ? 'div' : 'main';
   return (
@@ -175,10 +177,10 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
       </section>
       <div className="family-bar">
         <div className="family-bar-heading"><span className="section-label">{t('BEARING FAMILIES', 'خانواده بیرینگ')}</span><div className="family-bar-arrows"><button type="button" aria-label={t('Scroll families left', 'پیمایش خانواده‌ها به چپ')} onClick={() => scrollFamilies(-320)}><ChevronLeft size={17} /></button><button type="button" aria-label={t('Scroll families right', 'پیمایش خانواده‌ها به راست')} onClick={() => scrollFamilies(320)}><ChevronRight size={17} /></button></div></div>
-        <div ref={familyScroll} className="family-options" role="group" aria-label={t('Bearing families', 'خانواده‌های بیرینگ')}>
+        <fieldset ref={familyScroll} className="family-options"  aria-label={t('Bearing families', 'خانواده‌های بیرینگ')}>
           <button type="button" aria-pressed={cat === 'all'} className={cat === 'all' ? 'active' : ''} onClick={() => setCat('all')}><span className="category-tile-label">{t('All components', 'همه قطعات')}</span><small>{familyMatches.length}</small><CategoryIcon category="all"/></button>
           {Object.entries(categoryNames).map(([key, names]) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}><span className="category-tile-label">{t(...names)}</span><small>{familyMatches.filter(product => product.category === key).length}</small><CategoryIcon category={key}/></button>)}
-        </div>
+        </fieldset>
       </div>
       <div className="catalog-layout">
         <div className="catalog-results">
@@ -222,7 +224,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
                     {results.slice(0, renderCount).map((p) => (
                       <tr key={p.id}>
                         <td>
-                          <a href={'/product/' + encodeURIComponent(p.slug || p.id)} onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { event.preventDefault(); chooseProduct(p); } }}>
+                          <a aria-label={t('View product details', 'مشاهده جزئیات محصول') + ' ' + p.code} href={'/product/' + encodeURIComponent(p.slug || p.id)} onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { event.preventDefault(); chooseProduct(p); } }}>
                             <code>{p.code}</code>
                           </a>
                         </td>

@@ -1,5 +1,5 @@
 import { bearingScrollState } from '../../lib/bearing-scroll';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import type * as THREE from 'three';
 import { buildBearingRoom } from '../../lib/bearing-room';
 import type { BearingProduct } from '../../domain/product';
@@ -200,20 +200,12 @@ function buildBearing(family: BearingFamily, runtime: typeof THREE) {
 }
 
 export type SceneProps={family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean};
-export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false,cinematic=false,runtime,rendererKind,onFailure}:SceneProps&{runtime:typeof THREE;rendererKind:'webgl1'|'webgl2';onFailure?:()=>void}) {
-  const host=useRef<HTMLDivElement>(null);
-  const controller=useRef<{play:(value:boolean)=>void}|null>(null);
-  const pauseRef=useRef(paused);pauseRef.current=paused;
-  const speedRef=useRef({rpm,playback});speedRef.current={rpm,playback};
-  const viewRef=useRef({exploded,reducedMotion,scrollProgress});viewRef.current={exploded,reducedMotion,scrollProgress};
-  const [failed,setFailed]=useState(false);
-  useEffect(()=>{if(failed)onFailure?.();},[failed,onFailure]);
-  useEffect(()=>{
-    const target=host.current;if(!target || failed)return;
+type SceneMountOptions = Pick<SceneProps, 'family' | 'product'> & { cinematic: boolean; runtime: typeof THREE; fail: () => void; controller: RefObject<{play:(value:boolean)=>void}|null>; pauseRef: RefObject<boolean>; speedRef: RefObject<{rpm:number;playback:number}>; viewRef: RefObject<{exploded:boolean;reducedMotion:boolean;scrollProgress:number|undefined}> };
+function mountBearingScene(target: HTMLElement, {family,product,cinematic,runtime,fail,controller,pauseRef,speedRef,viewRef}: SceneMountOptions) {
     const THREE=runtime;
     const compactScreen=matchMedia('(max-width: 760px)').matches;
     let renderer:THREE.WebGLRenderer;
-    try {renderer=new THREE.WebGLRenderer({alpha:true,antialias:!compactScreen,powerPreference:'low-power'});}catch{setFailed(true);return;}
+    try {renderer=new THREE.WebGLRenderer({alpha:true,antialias:!compactScreen,powerPreference:'low-power'});}catch{fail();return;}
     // Some Safari drivers report shader failure without throwing from render().
     let shaderFailed=false;
     renderer.debug.onShaderError=()=>{shaderFailed=true;};
@@ -225,7 +217,7 @@ export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0
     const pmrem=new THREE.PMREMGenerator(renderer),room=buildBearingRoom(THREE);
     let environment:THREE.WebGLRenderTarget;
     try {environment=pmrem.fromScene(room.scene,.035);scene.environment=environment.texture;}
-    catch {renderer.dispose();renderer.domElement.remove();setFailed(true);return;}
+    catch {renderer.dispose();renderer.domElement.remove();fail();return;}
     finally {room.dispose();pmrem.dispose();}
     const light=new THREE.DirectionalLight('#e4f1ff',3);light.position.set(-3,4,5);scene.add(light);
     const edge=new THREE.DirectionalLight('#a9c8ff',2);edge.position.set(4,-2,1);scene.add(edge);
@@ -321,8 +313,8 @@ export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0
       });
       target.dataset.expansion=expansion.toFixed(3);
       target.dataset.scrollProgress=viewRef.current.scrollProgress?.toFixed(3) || 'manual';
-      try {renderer.render(scene,camera);}catch{running=false;setFailed(true);return;}
-      if(shaderFailed){running=false;setFailed(true);return;}
+      try {renderer.render(scene,camera);}catch{running=false;fail();return;}
+      if(shaderFailed){running=false;fail();return;}
       target.dataset.motionTime=elapsed.toFixed(3);
       if(running||(inView&&!document.hidden&&expansion!==targetExpansion))frame=requestAnimationFrame(draw);
     };
@@ -333,11 +325,26 @@ export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0
     const intersection=typeof IntersectionObserver==='function'?new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;sync();},{threshold:.05}):null;intersection?.observe(target);
     document.addEventListener('visibilitychange',sync);
     controller.current={play(){resize();sync();}};
-    const lost=(event:Event)=>{event.preventDefault();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
+    const lost=(event:Event)=>{event.preventDefault();fail();};renderer.domElement.addEventListener('webglcontextlost',lost);
     return()=>{cancelAnimationFrame(frame);controller.current=null;observer?.disconnect();intersection?.disconnect();window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);companionMaterials.forEach(material=>material.dispose());model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
+}
+
+export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false,cinematic=false,runtime,rendererKind,onFailure}:SceneProps&{runtime:typeof THREE;rendererKind:'webgl1'|'webgl2';onFailure?:()=>void}) {
+  const controller=useRef<{play:(value:boolean)=>void}|null>(null);
+  const pauseRef=useRef(paused);
+  const speedRef=useRef({rpm,playback});
+  const viewRef=useRef({exploded,reducedMotion,scrollProgress});
+  useLayoutEffect(()=>{pauseRef.current=paused;speedRef.current={rpm,playback};viewRef.current={exploded,reducedMotion,scrollProgress};},[paused,rpm,playback,exploded,reducedMotion,scrollProgress]);
+  const [failed,setFailed]=useState(false);
+  useEffect(()=>{if(failed)onFailure?.();},[failed,onFailure]);
+  const mountScene=useCallback((target: HTMLElement | null)=>{
+    if(!target || failed)return;
+    return mountBearingScene(target, {family,product,cinematic,runtime,fail:()=>setFailed(true),controller,pauseRef,speedRef,viewRef});
   },[family,failed,product,cinematic,runtime]);
-  useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,scrollProgress === undefined,ambient ? scrollProgress : undefined]);
-  return failed ? <div className="hero-model-fallback">{fallback}</div> : <div ref={host} className="hero-bearing-canvas" role="img" aria-label={label} data-renderer={rendererKind} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={playback} data-presentation={cinematic?'cinematic':'standard'}>
+  const manualView=scrollProgress === undefined;
+  const ambientProgress=ambient ? scrollProgress : undefined;
+  useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,manualView,ambientProgress]);
+  return failed ? <div className="hero-model-fallback">{fallback}</div> : <figure ref={mountScene} className="hero-bearing-canvas"  aria-label={label} data-renderer={rendererKind} data-family={family} data-product={product?.code} data-rpm={product?rpm:undefined} data-playback={playback} data-presentation={cinematic?'cinematic':'standard'}>
     {partLabels.map((name,i)=><span key={i} className="bearing-part-pin" data-part={i} aria-hidden="true" title={name}>{i+1}</span>)}
-  </div>;
+  </figure>;
 }

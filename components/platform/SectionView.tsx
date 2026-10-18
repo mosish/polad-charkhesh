@@ -5,9 +5,9 @@ export default function SectionView() {
   return (
     <svg
       viewBox="0 0 500 400"
-      role="img"
-      aria-label="Half-section through an idealized radial ball bearing: hatched inner and outer rings with curved raceways, an unsectioned ball and cage"
+      aria-labelledby={id + '-title'}
     >
+      <title id={id + '-title'}>Half-section through an idealized radial ball bearing: hatched inner and outer rings with curved raceways, an unsectioned ball and cage</title>
       <defs>
         <pattern
           id={id + 'h'}

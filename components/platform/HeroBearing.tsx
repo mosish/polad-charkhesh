@@ -32,7 +32,7 @@ export default function HeroBearing() {
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [visible, setVisible] = useState(true);
-  const [sceneReady, setSceneReady] = useState(false);
+  const [sceneReady, setSceneReady] = useState(() => typeof IntersectionObserver !== 'function');
   const [tabVisible, setTabVisible] = useState(!document.hidden);
   const stage = useRef<HTMLDivElement>(null);
   useEffect(()=>configure?.({family,paused,automatic:scrollMode,reduced}),[configure,family,paused,scrollMode,reduced]);
@@ -51,7 +51,6 @@ export default function HeroBearing() {
       if (entry.isIntersecting) setSceneReady(true);
     }, { rootMargin: '160px', threshold: 0 }) : null;
     if (stage.current) observer?.observe(stage.current);
-    if (!observer) setSceneReady(true);
     const unsubscribe = subscribeMediaQuery(media, motion);
     document.addEventListener('visibilitychange', visibility);
     return () => { observer?.disconnect(); unsubscribe(); document.removeEventListener('visibilitychange', visibility); };
@@ -65,45 +64,45 @@ export default function HeroBearing() {
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
     </div>
-    <div className="bearing-view-switch" role="group" aria-label={t('Bearing assembly view','نمای مونتاژ بیرینگ')}>
+    <fieldset className="bearing-view-switch"  aria-label={t('Bearing assembly view','نمای مونتاژ بیرینگ')}>
       <button type="button" aria-pressed={!exploded} onClick={()=>setExploded(false)}>{t('Assembled','مونتاژشده')}</button>
       <button type="button" aria-pressed={exploded} onClick={()=>setExploded(true)}>{t('Exploded view','نمای انفجاری')}</button>
-    </div>
+    </fieldset>
     {!reduced && scrollMode && <div className="bearing-scroll-status"><span>{t('Scroll to explore', 'با اسکرول کاوش کنید')} <span aria-hidden="true">↓</span></span><strong>{phaseLabel}</strong><div className="bearing-scroll-track" aria-hidden="true"><i style={{ transform: `scaleX(${scrollProgress})` }} /></div></div>}
     <div className="hero-bearing-stage" ref={stage}
-      tabIndex={0}
-      role="img"
-      aria-label={t('Bearing view. Use arrow keys to adjust the angle.', 'نمای بیرینگ. برای تنظیم زاویه از کلیدهای جهتی استفاده کنید.')}
       onPointerMove={e => {
         if (e.pointerType !== 'mouse' || stopped) return;
         const rect = e.currentTarget.getBoundingClientRect();
         e.currentTarget.style.setProperty('--tilt-x', ((.5 - (e.clientY - rect.top) / rect.height) * 10) + 'deg');
         e.currentTarget.style.setProperty('--tilt-y', (((e.clientX - rect.left) / rect.width - .5) * 14) + 'deg');
       }}
-      onPointerLeave={resetTilt}
+      onPointerLeave={resetTilt}>
+      <button type="button" className="bearing-angle-control" disabled={stopped} onClick={resetTilt}
+        aria-label={t('Adjust bearing angle with arrow keys; press Enter to reset.', 'تنظیم زاویه بیرینگ با کلیدهای جهت؛ برای بازنشانی Enter را بزنید.')}
       onKeyDown={(e) => {
-        if (stopped) return;
+        const target = stage.current;
+        if (stopped || !target) return;
         const step = 4;
-        const currentX = Number.parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('--tilt-x')) || 0;
-        const currentY = Number.parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('--tilt-y')) || 0;
+        const currentX = Number.parseFloat(getComputedStyle(target).getPropertyValue('--tilt-x')) || 0;
+        const currentY = Number.parseFloat(getComputedStyle(target).getPropertyValue('--tilt-y')) || 0;
         switch (e.key) {
           case 'ArrowUp':
-            e.currentTarget.style.setProperty('--tilt-x', `${Math.min(currentX + step, 12)}deg`);
+            target.style.setProperty('--tilt-x', `${Math.min(currentX + step, 12)}deg`);
             break;
           case 'ArrowDown':
-            e.currentTarget.style.setProperty('--tilt-x', `${Math.max(currentX - step, -12)}deg`);
+            target.style.setProperty('--tilt-x', `${Math.max(currentX - step, -12)}deg`);
             break;
           case 'ArrowLeft':
-            e.currentTarget.style.setProperty('--tilt-y', `${Math.max(currentY - step, -14)}deg`);
+            target.style.setProperty('--tilt-y', `${Math.max(currentY - step, -14)}deg`);
             break;
           case 'ArrowRight':
-            e.currentTarget.style.setProperty('--tilt-y', `${Math.min(currentY + step, 14)}deg`);
+            target.style.setProperty('--tilt-y', `${Math.min(currentY + step, 14)}deg`);
             break;
           default:
             return;
         }
         e.preventDefault();
-      }}>
+      }} />
       <div className="hero-bearing-halo" aria-hidden="true" />
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">

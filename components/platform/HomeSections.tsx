@@ -9,25 +9,12 @@ import {
   Clock,
   CheckCircle2,
   Factory,
-  Flame,
-  Mountain,
-  Wind,
-  Settings2,
-  Droplets,
 } from 'lucide-react';
 import { usePlatform, DataState } from './Context';
 import { api, errorMessage } from '../../lib/api';
 import { publicHref } from '../../lib/public-links';
 const Catalog = lazy(() => import('./Catalog'));
 const Engineering = lazy(() => import('./Engineering'));
-const industries = [
-  ['Steel & metals', 'فولاد و فلزات', 'steel', Factory],
-  ['Mining & cement', 'معدن و سیمان', 'mining', Mountain],
-  ['Oil & petrochemical', 'نفت و پتروشیمی', 'oil', Flame],
-  ['Power generation', 'تولید برق', 'power', Wind],
-  ['Pumps & fluid systems', 'پمپ و سیالات', 'pumps', Droplets],
-  ['Gearboxes & machinery', 'گیربکس و ماشین‌آلات', 'gearboxes', Settings2],
-] as const;
 export default function HomeSections() {
   const { fa, t, company, content, loading, error } = usePlatform();
   const [busy, setBusy] = useState(false),
@@ -38,12 +25,12 @@ export default function HomeSections() {
     <>
       <PageSection id="featured">
         <section className="one-page-workspace" id="catalog">
-          <RecoveryBoundary fallback={<WorkspaceRecovery section="catalog" />}><Suspense fallback={<div className="state" role="status">{t('Loading catalog…', 'در حال بارگذاری کاتالوگ…')}</div>}><Catalog embedded /></Suspense></RecoveryBoundary>
+          <RecoveryBoundary fallback={<WorkspaceRecovery section="catalog" />}><Suspense fallback={<output className="state" >{t('Loading catalog…', 'در حال بارگذاری کاتالوگ…')}</output>}><Catalog embedded /></Suspense></RecoveryBoundary>
         </section>
       </PageSection>
       <PageSection id="engineering">
         <section className="one-page-workspace" id="engineering">
-          <RecoveryBoundary fallback={<WorkspaceRecovery section="engineering" />}><Suspense fallback={<div className="state" role="status">{t('Loading engineering tools…', 'در حال بارگذاری ابزارهای مهندسی…')}</div>}><Engineering embedded /></Suspense></RecoveryBoundary>
+          <RecoveryBoundary fallback={<WorkspaceRecovery section="engineering" />}><Suspense fallback={<output className="state" >{t('Loading engineering tools…', 'در حال بارگذاری ابزارهای مهندسی…')}</output>}><Engineering embedded /></Suspense></RecoveryBoundary>
         </section>
       </PageSection>
       <PageSection id="industries">
@@ -274,12 +261,12 @@ export default function HomeSections() {
               </p>
             )}
             {success && (
-              <p className="success" role="status">
+              <output className="success" >
                 {t(
                   'Your inquiry has been saved. Our team will review your request.',
                   'استعلام شما ثبت شد. تیم فنی درخواست را بررسی خواهد کرد.',
                 )}
-              </p>
+              </output>
             )}
             <button className="button primary" disabled={busy}>
               {t(

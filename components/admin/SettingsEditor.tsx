@@ -1,3 +1,4 @@
+import { useUnsavedChanges } from './useUnsavedChanges';
 import type { CompanyContactInfo } from '../../domain/company';
 import type { SeoSettings } from '../../domain/seo';
 import { readEditorPath, updateEditorPath } from '../../lib/editor-path';
@@ -50,16 +51,7 @@ export default function SettingsEditor({
       .then((r) => setValue(r.data))
       .catch((e) => setError(errorMessage(e)));
   }, [kind]);
-  useEffect(() => {
-    const f = (e: BeforeUnloadEvent) => {
-      if (dirty) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-    addEventListener('beforeunload', f);
-    return () => removeEventListener('beforeunload', f);
-  }, [dirty]);
+  useUnsavedChanges(dirty);
   const update = (path: string[], v: string) => {
     setValue(old => old ? updateEditorPath(old, path, v) : old);
     setDirty(true);
@@ -130,10 +122,10 @@ export default function SettingsEditor({
             <button className="button primary" onClick={save}>
               {t('Save changes', 'ذخیره تغییرات')}
             </button>
-            <span role="status">
+            <output >
               {message ? t('Changes saved.', 'تغییرات ذخیره شد.') :
                 (dirty ? t('Unsaved changes', 'تغییرات ذخیره‌نشده') : '')}
-            </span>
+            </output>
           </div>
         </>
       )}

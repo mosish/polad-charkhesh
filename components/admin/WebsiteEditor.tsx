@@ -1,7 +1,8 @@
+import { useUnsavedChanges } from './useUnsavedChanges';
 import type { ChangeEvent } from 'react';
 import type { SiteContent, ContentCard } from '../../domain/site-content';
 import { readEditorPath, updateEditorPath, textValue } from '../../lib/editor-path';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { api, errorMessage } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
 import MediaPicker from './MediaPicker';
@@ -51,24 +52,15 @@ export default function WebsiteEditor({
       .catch((e) => setError(errorMessage(e)));
   }, []);
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
-  useEffect(() => {
-    const leave = (e: BeforeUnloadEvent) => {
-      if (dirty) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-    window.addEventListener('beforeunload', leave);
-    return () => window.removeEventListener('beforeunload', leave);
-  }, [dirty]);
-  const preview = () =>
+  useUnsavedChanges(dirty);
+  const preview = useCallback(() =>
     frame.current?.contentWindow?.postMessage(
       { type: 'pc-content-preview', content: value },
       location.origin,
-    );
+    ), [value]);
   useEffect(() => {
     if (value) preview();
-  }, [value]);
+  }, [value, preview]);
   const update = (path: (string | number)[], next: unknown) => {
     setValue(old => old ? updateEditorPath(old, path, next) : old);
     setDirty(true);
@@ -195,9 +187,9 @@ export default function WebsiteEditor({
         >
           {t('Discard changes', 'لغو تغییرات')}
         </button>
-        <span role="status">
+        <output >
           {message || (dirty ? t('Unsaved preview', 'پیش‌نمایش ذخیره‌نشده') : '')}
-        </span>
+        </output>
       </div>
       {error && (
         <p role="alert" className="error note">
@@ -445,7 +437,7 @@ export default function WebsiteEditor({
               </label>
               {Object.entries(value.copy)
                 .filter(
-                  ([id, c]) =>
+                  ([, c]) =>
                     (group === 'all' || c.group === group) &&
                     (!q ||
                       [c.en, c.fa, c.original].some((s) =>
@@ -667,7 +659,7 @@ export default function WebsiteEditor({
                 {t('Add menu link', 'افزودن پیوند منو')}
               </button>
               {tab === 'navigation' && <h3>{t('Section button destinations', 'مقصد دکمه‌های بخش‌ها')}</h3>}
-                {Object.keys(value.links).filter((k) => tab !== 'header').map((k) => text(['links', k], linkLabels[k]?.[fa?1:0]||k))}
+                {Object.keys(value.links).filter(() => tab !== 'header').map((k) => text(['links', k], linkLabels[k]?.[fa?1:0]||k))}
             </>
           )}
         </div>

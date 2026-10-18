@@ -1,9 +1,10 @@
+import type { CompanyContactInfo } from '../domain/company';
 import { manufacturerResources } from './manufacturer-resources';
 import { jsPDF } from 'jspdf';
 import type { BearingProduct } from '../domain/product';
 export function buildDatasheet(
   p: BearingProduct,
-  company: any,
+  company: Pick<CompanyContactInfo, 'email' | 'primaryPhoneDisplayEn'>,
   options: {
     fontBase64?: string;
     logo?: Uint8Array | string;

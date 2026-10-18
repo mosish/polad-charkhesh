@@ -1,6 +1,6 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
-> **Project status:** Both language domains live with eligibility controls, independent manual calculation and C1-C admin/client contracts deployed. API and admin/client type cleanup complete; 63 lint errors, engineering acceptance, operations and final audits remain open.
+> **Project status:** Both language domains live with eligibility controls, independent manual calculation and C1-C admin/client contracts deployed. C1 source-quality work is complete with zero lint errors and required CI lint; C1-D is not yet deployed. Engineering acceptance, operations and final audits remain open.
 >
 > **Source of truth for code:** GitHub `main`
 >
@@ -15,6 +15,8 @@ Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering
 **C1-B completed — 2026-10-18:** API requests and stored records now use explicit contracts; product edits, imports and restore share complete product-field validation. Invalid imports return no persistable products, and malformed backup rows are rejected before restore writes. All **89 package tests**, TypeScript, build, bundle budgets and isolated production smoke pass. Lint is **176 → 131**; the API directory has no findings. Subsequently deployed with C1-C. [Delivery evidence](docs/C1B_API_CONTRACTS.md).
 
 **C1-C completed and deployed — 2026-10-18:** Admin workspaces, editors, public context and API responses now have explicit shared types. Nested form edits preserve sibling fields and both languages. **93 tests**, TypeScript, build, bundle checks and isolated production smoke passed on Windows and Ubuntu; lint **131 → 63**. Local browser saves passed for website copy, products and company settings. The pinned release includes C0-A/B and C1-A/B/C; all owner-data hashes are unchanged, the verified backup remains on the VPS only, and **452 external page/language checks** passed. [Delivery and release evidence](docs/C1C_ADMIN_CLIENT_RELEASE.md).
+
+**C1-D completed in source — 2026-10-18:** All remaining **63 lint errors are resolved**, with no rule weakening or suppressions. Lint is now required in CI. **95 tests**, TypeScript, production build, bundle budgets and isolated smoke pass. Targeted browser checks cover keyboard/modal recovery, filter resets, dirty-editor recovery and GPU fallback. Engineering approval remains pending; this package is not deployed. [Delivery evidence](docs/C1D_QUALITY_GATE.md).
 
 **Engineering toolbox expansion — foundation published:** [Project definition, phased plan and backlog](docs/engineering-tools/PROJECT_PLAN.md) cover a balanced expansion of selection, calculations, lubrication and maintenance. Foundation controls are live; method approval and expanded modules remain pending.
 
@@ -59,8 +61,8 @@ The main feature set is published on both language domains. The current catalog 
 | Technical SEO | ✅ Both domains checked; indexing gated | Full external checks passed 226 page/language variants per domain on October 15; later updates received targeted checks. Both domains still return `noindex, nofollow` on October 18. Final indexing approval and Search Console verification/submission remain open. |
 | Product images and documents | 🟡 Partial completion | 101 images published: 58 supplier-listing matches and 43 approved examples; nine exact-image replacements unresolved. No nonempty product `pdfUrl` attachments in the current 110 records. Sources/credits remain; visible image-area captions were removed. Image coverage does not establish exact-SKU or engineering verification. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
-| Repository lint | 🟡 Open blocker; API batches complete | October 18: **63 errors**, down from 197 after API and admin/client type cleanup. No lint rules weakened. CI remains advisory until the backlog is cleared. |
-| Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
+| Repository lint | ✅ Clean; C1 complete | October 18 C1-D: **zero diagnostics**, down from 197 across C1-A/B/C/D. No lint rules weakened or suppressions added. [Evidence](docs/C1D_QUALITY_GATE.md). |
+| Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is a required step; failures fail the workflow. Branch protection and deployment approval are separate. |
 | VPS deployment and production smoke test | ✅ C1-C published; final acceptance open | October 18 pinned release: 93 tests, build/smoke, server-only backup, unchanged data hashes and 452 external page/language checks passed. Earlier owner Admin, certificate renewal, restore drill, service recovery and Safari confirmations remain dated evidence. Current proxy/edge state, full-host reboot, lint, content and complete audit acceptance remain open. [Current release evidence](docs/C1C_ADMIN_CLIENT_RELEASE.md). |
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
@@ -184,7 +186,7 @@ These dated entries describe the state at that milestone. Historical “pending,
 
 1. **Engineering/catalog foundation:** Complete ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03). Inventory and explicit eligibility contracts are implemented; remaining method benchmarks and the nominated engineer's approval are still needed. [Execution tracker](docs/COMPLETION_PLAN.md).
 2. **Complete media and documents:** Resolve the nine remaining image entries; keep nonmatching substitutes out. Confirm the 43 example-image identities where exact stock is required. Source product documents; defer company datasheet production until technical acceptance.
-3. **Clear lint:** Resolve the remaining 63 errors: React/hooks, accessibility, residual types and tooling. Enforce lint in CI when clean. API and admin/client type cleanup is complete.
+3. **Maintain the restored quality gate:** C1-D closed the lint backlog and made CI lint required. Keep it clean during the remaining phases; release C1-D through the pinned-source deployment procedure when publication is requested.
 4. **Complete acceptance:** Finish admin role/restore/inquiry/media integration, security, accessibility, bilingual copy and desktop/tablet/mobile testing. Keep successful targeted checks distinct from this full review.
 5. **Close operational gaps:** Reverify both domains' Cloudflare proxy/edge-certificate state. Review provider networking before the deferred full-host reboot test; confirm earlier SSH-hardening follow-up. Review backup retention and recovery while keeping backups on the VPS as requested.
 6. **Approve indexing:** After content/release acceptance, make an explicit noindex-removal decision and verify Search Console/sitemap submission. No indexing settings changed during this review.

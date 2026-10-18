@@ -1,5 +1,5 @@
 import type { BearingProduct } from '../domain/product';
-export function mediaFor(p: BearingProduct, content?: any) {
+export function mediaFor(p: BearingProduct, content?: { media?: { ballUrl?: string; taperedUrl?: string } } | null) {
   if (p.imageUrl && !p.imageUrl.startsWith('/assets/images/'))
     return { url: p.imageUrl, reference: p.imageUrl.startsWith('/reference-images/') };
   if(p.category==='seal')return {url:'/reference-images/shaft-seal.jpg',reference:true};

@@ -7,7 +7,7 @@ import PortableBearing from './PortableBearing';
 const Scene=lazy(()=>import('./HeroBearingScene'));
 export default function BearingReturn(){
  const journey=useBearingJourney(),{t}=usePlatform();
- const section=useRef<HTMLElement>(null),[visible,setVisible]=useState(false),[loaded,setLoaded]=useState(false);
+ const section=useRef<HTMLElement>(null),[visible,setVisible]=useState(() => typeof IntersectionObserver !== 'function'),[loaded,setLoaded]=useState(() => typeof IntersectionObserver !== 'function');
  const settings=journey?.settings,setProgress=journey?.setReturnProgress;
  useEffect(()=>{
   const node=section.current;if(!node||!settings||!setProgress)return;
@@ -15,11 +15,10 @@ export default function BearingReturn(){
   const measure=()=>{frame=0;if(document.hidden||settings.paused)return;const rect=node.getBoundingClientRect();setProgress(bearingReturnProgress(rect.top,rect.height,innerHeight));};
   const schedule=()=>{if(!frame)frame=requestAnimationFrame(measure);};
   const observer=typeof IntersectionObserver==='function'?new IntersectionObserver(([entry])=>{setVisible(entry.isIntersecting);if(entry.isIntersecting)setLoaded(true);schedule();}):null;observer?.observe(node);
-  if(!observer){setVisible(true);setLoaded(true);}
   const resize=typeof ResizeObserver==='function'?new ResizeObserver(schedule):null;resize?.observe(node);
   window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);document.addEventListener('visibilitychange',schedule);schedule();
   return()=>{cancelAnimationFrame(frame);observer?.disconnect();resize?.disconnect();window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);document.removeEventListener('visibilitychange',schedule);};
- },[settings?.paused,setProgress]);
+ },[settings,setProgress]);
  if(!journey)return null;
  const progress=settings!.reduced||!settings!.automatic?1:journey.returnProgress;
  const fallback=<PortableBearing family={settings!.family} paused={settings!.paused||!visible||!settings!.automatic} reducedMotion={settings!.reduced} scrollProgress={settings!.reduced||!settings!.automatic?undefined:1-progress} label={t('Bearing reassembly · illustrative model','مونتاژ دوباره بیرینگ · مدل نمایشی')}/>;

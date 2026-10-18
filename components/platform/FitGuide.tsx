@@ -50,7 +50,7 @@ export default function FitGuide() {
           </label>
         ))}
       </div>
-      <div className="fit-output" role="status">
+      <output className="fit-output" >
         {result ? (
           <>
             <strong>
@@ -76,7 +76,7 @@ export default function FitGuide() {
             'حدود مثبت وارد کنید؛ حداقل باید کمتر یا مساوی حداکثر باشد.',
           )
         )}
-      </div>
+      </output>
       <p>
         {t(
           'This calculates the dimensional fit only, not a recommended tolerance class or operating internal clearance.',
