@@ -12,7 +12,7 @@ export default function SeoOverview({ seo }: { seo: SeoSettings }) {
     seo,
     company,
     product,
-    content,
+    content ?? undefined,
     products,
   );
   const complete = products.filter((p) =>

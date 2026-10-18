@@ -1,9 +1,12 @@
+import type { ChangeEvent } from 'react';
+import type { SiteContent, ContentCard } from '../../domain/site-content';
+import { readEditorPath, updateEditorPath, textValue } from '../../lib/editor-path';
 import { useEffect, useRef, useState } from 'react';
-import { api } from '../../lib/api';
+import { api, errorMessage } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
 import MediaPicker from './MediaPicker';
 import { textKey } from '../../domain/site-content';
-const sections: any = {
+const sections: Record<string, [string, string]> = {
   hero: ['Hero / first screen', 'صفحه نخست'],
   capabilities: ['Capabilities', 'توانمندی‌ها'],
   about: ['About the company', 'درباره شرکت'],
@@ -20,8 +23,8 @@ const pages = [
   ['/#engineering', 'Engineering section'],
   ['/?item=6204-2rs#catalog', 'Product specifications'],
 ];
-const groupLabels:any={Home:['Homepage','صفحه نخست'],HomeSections:['Home sections','بخش‌های صفحه نخست'],Shell:['Header & footer','سربرگ و پاورقی'],Catalog:['Product catalog','کاتالوگ محصولات'],Product:['Product details','جزئیات محصول'],Engineering:['Engineering tools','ابزارهای مهندسی'],Viewer:['Bearing explorer','نمایش بیرینگ'],Schematic:['Dimensional drawings','نقشه‌های ابعادی'],SectionView:['Section drawing','نقشه مقطع']};
-const linkLabels:any={heroPrimary:['Main hero button','دکمه اصلی صفحه نخست'],heroSecondary:['Hero consultation button','دکمه مشاوره صفحه نخست'],heroVisual:['Hero image button','دکمه تصویر نخست'],capabilities:['Capabilities button','دکمه توانمندی‌ها'],featured:['View all products','مشاهده همه محصولات'],engineering:['Engineering workspace button','دکمه کارگاه مهندسی'],header:['Header consultation button','دکمه مشاوره سربرگ']};
+const groupLabels:Record<string, [string, string]>={Home:['Homepage','صفحه نخست'],HomeSections:['Home sections','بخش‌های صفحه نخست'],Shell:['Header & footer','سربرگ و پاورقی'],Catalog:['Product catalog','کاتالوگ محصولات'],Product:['Product details','جزئیات محصول'],Engineering:['Engineering tools','ابزارهای مهندسی'],Viewer:['Bearing explorer','نمایش بیرینگ'],Schematic:['Dimensional drawings','نقشه‌های ابعادی'],SectionView:['Section drawing','نقشه مقطع']};
+const linkLabels:Record<string, [string, string]>={heroPrimary:['Main hero button','دکمه اصلی صفحه نخست'],heroSecondary:['Hero consultation button','دکمه مشاوره صفحه نخست'],heroVisual:['Hero image button','دکمه تصویر نخست'],capabilities:['Capabilities button','دکمه توانمندی‌ها'],featured:['View all products','مشاهده همه محصولات'],engineering:['Engineering workspace button','دکمه کارگاه مهندسی'],header:['Header consultation button','دکمه مشاوره سربرگ']};
 export default function WebsiteEditor({
   onDirty,
   initialTab = 'sections',
@@ -30,7 +33,7 @@ export default function WebsiteEditor({
   onDirty: (v: boolean) => void;
 }) {
   const { t, fa, reload } = usePlatform();
-  const [value, setValue] = useState<any>(null),
+  const [value, setValue] = useState<SiteContent | null>(null),
     [dirty, setDirty] = useState(false),
     [tab, setTab] = useState(initialTab),
     [error, setError] = useState(''),
@@ -45,7 +48,7 @@ export default function WebsiteEditor({
   useEffect(() => {
     api('/content')
       .then((r) => setValue(r.data))
-      .catch((e) => setError(e.message));
+      .catch((e) => setError(errorMessage(e)));
   }, []);
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
   useEffect(() => {
@@ -66,19 +69,14 @@ export default function WebsiteEditor({
   useEffect(() => {
     if (value) preview();
   }, [value]);
-  const update = (path: (string | number)[], next: any) => {
-    setValue((old: any) => {
-      const v = structuredClone(old);
-      let ref = v;
-      for (const k of path.slice(0, -1)) ref = ref[k];
-      ref[path.at(-1)!] = next;
-      return v;
-    });
+  const update = (path: (string | number)[], next: unknown) => {
+    setValue(old => old ? updateEditorPath(old, path, next) : old);
     setDirty(true);
     setMessage('');
   };
-  const mutate = (fn: (v: any) => void) => {
-    setValue((old: any) => {
+  const mutate = (fn: (v: SiteContent) => void) => {
+    setValue((old) => {
+      if (!old) return old;
       const v = structuredClone(old);
       fn(v);
       return v;
@@ -94,8 +92,8 @@ export default function WebsiteEditor({
       setDirty(false);
       setMessage(t('Website changes saved.', 'تغییرات سایت ذخیره شد.'));
       reload();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(errorMessage(e));
     } finally {
       setBusy(false);
     }
@@ -105,12 +103,11 @@ export default function WebsiteEditor({
     label: string,
     multiline = false,
   ) => {
-    let v = value;
-    for (const k of path) v = v[k];
+    const v = readEditorPath(value, path);
     const props = {
-      value: v ?? '',
+      value: textValue(v),
       dir: String(path.at(-1)).toLowerCase().endsWith('fa') ? 'rtl' : 'ltr',
-      onChange: (e: any) => update(path, e.target.value),
+      onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => update(path, e.target.value),
     };
     return (
       <label key={path.join('.')}>
@@ -130,7 +127,7 @@ export default function WebsiteEditor({
       {text([...path, key + 'Fa'], label + ' · فارسی', multiline)}
     </div>
   );
-  const cardFields = (base: (string | number)[], c: any) => (
+  const cardFields = (base: (string | number)[], c: ContentCard) => (
     <>
       {pair(base, 'title', t('Title', 'عنوان'))}
       {pair(base, 'description', t('Description', 'توضیحات'), true)}
@@ -191,8 +188,8 @@ export default function WebsiteEditor({
               setDirty(false);
               setError('');
               setMessage('');
-            } catch (e: any) {
-              setError(e.message);
+            } catch (e: unknown) {
+              setError(errorMessage(e));
             }
           }}
         >
@@ -260,7 +257,7 @@ export default function WebsiteEditor({
               </p>
               {value.layout.order.map((id: string, index: number) => {
                 const custom = value.layout.custom.find(
-                  (c: any) => c.id === id,
+                  (c: ContentCard) => c.id === id,
                 );
                 return (
                   <div key={id} className="section-order-row">
@@ -330,10 +327,10 @@ export default function WebsiteEditor({
                     {sections[section]?.[fa ? 1 : 0] || t('Footer', 'پاورقی')}
                   </summary>
                   <div className="editor-detail">
-                    {Object.keys(value[section])
+                    {Object.keys(readEditorPath(value, [section]) as Record<string, string>)
                       .filter((k) => k.endsWith('En') && k !== 'typingPhrasesEn')
                       .map((k) =>
-                        pair([section], k.slice(0, -2), ({badge:t('Small heading','عنوان کوتاه'),title:t('Title','عنوان'),description:t('Description','توضیحات')} as any)[k.slice(0,-2)]||k.slice(0,-2), true),
+                        pair([section], k.slice(0, -2), ({badge:t('Small heading','عنوان کوتاه'),title:t('Title','عنوان'),description:t('Description','توضیحات')} as Record<string, string>)[k.slice(0,-2)]||k.slice(0,-2), true),
                       )}
                     {section === 'hero' && <>
                       {pair(['hero'], 'typingPhrases', t('Additional typing phrases (one per line)', 'عبارت‌های تایپ‌شونده بیشتر (هر سطر یک عبارت)'), true)}
@@ -343,7 +340,7 @@ export default function WebsiteEditor({
                 </details>
               ))}
               <h3>{t('Custom sections', 'بخش‌های سفارشی')}</h3>
-              {value.layout.custom.map((c: any, i: number) => (
+              {value.layout.custom.map((c, i: number) => (
                 <details key={c.id} open>
                   <summary>
                     {c[fa ? 'titleFa' : 'titleEn'] ||
@@ -437,25 +434,25 @@ export default function WebsiteEditor({
                   <option value="all">{t('All pages', 'همه صفحات')}</option>
                   {[
                     ...new Set(
-                      Object.values(value.copy).map((c: any) => c.group),
+                      Object.values(value.copy).map((c) => c.group),
                     ),
                   ]
                     .sort()
-                    .map((g: any) => (
+                    .map((g) => (
                         <option key={g} value={g}>{groupLabels[g]?.[fa?1:0]||g}</option>
                     ))}
                 </select>
               </label>
               {Object.entries(value.copy)
                 .filter(
-                  ([id, c]: any) =>
+                  ([id, c]) =>
                     (group === 'all' || c.group === group) &&
                     (!q ||
                       [c.en, c.fa, c.original].some((s) =>
                         s.toLowerCase().includes(q.toLowerCase()),
                       )),
                 )
-                .map(([id, c]: any) => (
+                .map(([id, c]) => (
                   <div className="copy-row" key={id}>
                       <small>{groupLabels[c.group]?.[fa?1:0]||c.group}</small>
                     <div className="form-grid">
@@ -533,14 +530,14 @@ export default function WebsiteEditor({
             </>
           )}
           {tab === 'cards' &&
-            Object.entries(value.cards).map(([kind, cards]: any) => (
+            Object.entries(value.cards).map(([kind, cards]) => (
               <div key={kind}>
                 <h3>
                   {kind === 'reasons'
                     ? t('Why choose us', 'مزیت‌ها')
                     : sections[kind]?.[fa ? 1 : 0] || kind}
                 </h3>
-                {cards.map((c: any, i: number) => (
+                {cards.map((c, i: number) => (
                   <details key={c.id}>
                     <summary>
                       {c[fa ? 'titleFa' : 'titleEn'] ||
@@ -572,7 +569,7 @@ export default function WebsiteEditor({
                           )
                             update(
                               ['cards', kind],
-                              cards.filter((x: any) => x.id !== c.id),
+                              cards.filter((x) => x.id !== c.id),
                             );
                         }}
                       >
@@ -609,7 +606,7 @@ export default function WebsiteEditor({
           {['navigation', 'header'].includes(tab) && (
             <>
               <h3>{t('Main menu', 'منوی اصلی')}</h3>
-              {value.navigation.items.map((n: any, i: number) => (
+              {value.navigation.items.map((n, i: number) => (
                 <div className="copy-row" key={n.id}>
                   {pair(
                     ['navigation', 'items', i],
@@ -640,7 +637,7 @@ export default function WebsiteEditor({
                       update(
                         ['navigation', 'items'],
                         value.navigation.items.filter(
-                          (x: any) => x.id !== n.id,
+                          (x) => x.id !== n.id,
                         ),
                       )
                     }

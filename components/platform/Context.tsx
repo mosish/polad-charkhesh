@@ -1,3 +1,6 @@
+import type { CompanyContactInfo } from '../../domain/company';
+import type { SiteContent } from '../../domain/site-content';
+import type { SeoSettings } from '../../domain/seo';
 import { metadataFor, updateMetadata } from '../../lib/seo';
 import { textKey } from '../../domain/site-content';
 import {
@@ -17,9 +20,9 @@ type State = {
   t: (en: string, fa: string) => string;
   toggle: () => void;
   products: BearingProduct[];
-  company: any;
-  content: any;
-  seo: any;
+  company: CompanyContactInfo | null;
+  content: SiteContent | null;
+  seo: SeoSettings | null;
   loading: boolean;
   error: string;
   reload: () => void;
@@ -39,9 +42,9 @@ export function Provider({ children }: { children: ReactNode }) {
   });
   const [state, setState] = useState(() => snapshot ? { ...snapshot, loading: false, error: '' } : {
     products: [] as BearingProduct[],
-    company: null as any,
-    content: null as any,
-    seo: null as any,
+    company: null as CompanyContactInfo | null,
+    content: null as SiteContent | null,
+    seo: null as SeoSettings | null,
     loading: true,
     error: '',
   });
@@ -71,19 +74,20 @@ export function Provider({ children }: { children: ReactNode }) {
   useEffect(()=>{if(!snapshot)reload();},[snapshot,reload]);
   useEffect(() => {
     let alive = true;
-    const receive = async (event: MessageEvent) => {
+    const receive = async (event: MessageEvent<{ type?: string; content?: SiteContent }>) => {
       if (
         event.origin !== location.origin ||
         event.source !== window.parent ||
         window.parent === window ||
         new URLSearchParams(location.search).get('preview') !== '1' ||
-        event.data?.type !== 'pc-content-preview'
+        event.data?.type !== 'pc-content-preview' || !event.data.content
       )
         return;
+      const previewContent = event.data.content;
       try {
         const status = await api('/auth/status');
         if (alive && status.user)
-          setState((s) => ({ ...s, content: event.data.content }));
+          setState((s) => ({ ...s, content: previewContent }));
       } catch {}
     };
     window.addEventListener('message', receive);
@@ -95,7 +99,7 @@ export function Provider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const brand = state.content?.brand;
     if (!brand || /^\/admin\/*$/.test(location.pathname)) return;
-    for (const key of ['navy', 'accent', 'ink'])
+    for (const key of ['navy', 'accent', 'ink'] as const)
       document.documentElement.style.setProperty(
         '--' + (key === 'accent' ? 'blue' : key),
         brand[key],
@@ -112,7 +116,7 @@ export function Provider({ children }: { children: ReactNode }) {
       try { slug = decodeURIComponent(location.pathname.replace(/\/+$/, '').split('/').pop() || ''); } catch {}
       const p = location.pathname.startsWith('/product/') ? state.products.find((p: BearingProduct) => p.slug === slug) : undefined;
       updateMetadata(
-        metadataFor(location.pathname, fa, state.seo, state.company, p, state.content, state.products, location.search),
+        metadataFor(location.pathname, fa, state.seo, state.company, p, state.content ?? undefined, state.products, location.search),
       );
     }
   }, [fa, state.seo, state.company, state.content, state.products]);
@@ -134,7 +138,7 @@ export function Provider({ children }: { children: ReactNode }) {
           const live = state.seo && [new URL(state.seo.domainEn).hostname, new URL(state.seo.domainFa).hostname].includes(location.hostname);
           if (live && !location.pathname.startsWith('/admin') && params.get('preview') !== '1') {
             params.delete('lang');
-            location.assign(new URL(location.pathname + (params.size ? '?' + params.toString() : '') + location.hash, state.seo[next ? 'domainFa' : 'domainEn']).href);
+            location.assign(new URL(location.pathname + (params.size ? '?' + params.toString() : '') + location.hash, state.seo![next ? 'domainFa' : 'domainEn']).href);
           } else {
             params.set('lang', next ? 'fa' : 'en');
             history.replaceState(null, '', location.pathname + '?' + params.toString() + location.hash);

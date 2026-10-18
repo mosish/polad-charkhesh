@@ -251,7 +251,7 @@ export function TechnicalContent({
             ))}
           </dl>
           <div className="action-row">
-            <ProductCallOptions p={p} company={company} />
+            {company && <ProductCallOptions p={p} company={company} />}
             {full && <button
               type="button"
               className="button"
@@ -410,7 +410,7 @@ function ProductPanelBody({ p, onSelect }: { p: BearingProduct; onSelect: (p: Be
           </div>}
           {stageView !== 'image' && !canExplode && <small className="product-panel-media-note">{t('An exploded 3D model is not available for this component; use its drawing for dimensions.', 'مدل سه‌بعدی انفجاری برای این قطعه موجود نیست؛ برای ابعاد از نقشه استفاده کنید.')}</small>}
           {stageView !== 'image' && <small className="product-panel-media-note">{stageView === 'exploded' ? t('Illustrative geometry based on catalog dimensions; internal parts are estimates, not manufacturer CAD.', 'هندسه نمایشی بر اساس ابعاد کاتالوگ است؛ اجزای داخلی تخمینی‌اند و مدل CAD سازنده نیستند.') : t('Dimensional drawing from the current catalog record.', 'نقشه ابعادی از رکورد فعلی کاتالوگ.')}</small>}
-          <div className="product-panel-contact"><ProductCallOptions p={p} company={company} /></div>
+          <div className="product-panel-contact">{company && <ProductCallOptions p={p} company={company} />}</div>
         </div>
         <div className="product-panel-details">
           <div className="product-panel-identity">

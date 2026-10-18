@@ -1,6 +1,6 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
-> **Project status:** Both language domains live; eligibility controls and independent manual calculation are implemented in source. API/database/import cleanup complete; 131 lint errors, engineering acceptance, operations and final audits remain open.
+> **Project status:** Both language domains live; eligibility controls and independent manual calculation are implemented in source. API and admin/client type cleanup complete; 63 lint errors, engineering acceptance, operations and final audits remain open.
 >
 > **Source of truth for code:** GitHub `main`
 >
@@ -13,6 +13,8 @@ Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering
 **Next packages completed in source — 2026-10-18:** C0-B separates calculation approval from illustration metadata, rejects stale/unapproved product methods and keeps manual tools independent of catalog selection. C1-A replaces unsafe validator input types and reduces lint **197 → 176**. All **83 tests**, typecheck, build, bundle budgets and isolated production smoke passed, with targeted English/Persian browser checks. The approval registry remains empty pending engineering review; these changes are **not deployed**. [Delivery evidence](docs/engineering-tools/foundation/C0B_C1A_DELIVERY.md).
 
 **C1-B completed in source — 2026-10-18:** API requests and stored records now use explicit contracts; product edits, imports and restore share complete product-field validation. Invalid imports return no persistable products, and malformed backup rows are rejected before restore writes. All **89 tests**, TypeScript, build, bundle budgets and isolated production smoke pass. Lint is **176 → 131**; the API directory has no findings. No deployment performed. [Delivery evidence](docs/C1B_API_CONTRACTS.md).
+
+**C1-C completed — 2026-10-18:** Admin workspaces, editors, public context and API responses now have explicit shared types. Nested form edits preserve sibling fields and both languages. **93 tests**, TypeScript, build, bundle checks and isolated production smoke passed; lint **131 → 63**. Local browser saves passed for website copy, products and company settings. [Delivery and release evidence](docs/C1C_ADMIN_CLIENT_RELEASE.md).
 
 **Engineering toolbox expansion — planning:** [Project definition, phased plan and backlog](docs/engineering-tools/PROJECT_PLAN.md) cover a balanced expansion of selection, calculations, lubrication and maintenance. Foundation implementation is in source; expanded modules and deployment remain pending.
 
@@ -57,7 +59,7 @@ The main feature set is published on both language domains. The current catalog 
 | Technical SEO | ✅ Both domains checked; indexing gated | Full external checks passed 226 page/language variants per domain on October 15; later updates received targeted checks. Both domains still return `noindex, nofollow` on October 18. Final indexing approval and Search Console verification/submission remain open. |
 | Product images and documents | 🟡 Partial completion | 101 images published: 58 supplier-listing matches and 43 approved examples; nine exact-image replacements unresolved. No nonempty product `pdfUrl` attachments in the current 110 records. Sources/credits remain; visible image-area captions were removed. Image coverage does not establish exact-SKU or engineering verification. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
-| Repository lint | 🟡 Open blocker; API batches complete | October 18: **131 errors**, down from 197 after validator and API/database/import cleanup. No lint rules weakened. CI remains advisory until the backlog is cleared. |
+| Repository lint | 🟡 Open blocker; API batches complete | October 18: **63 errors**, down from 197 after API and admin/client type cleanup. No lint rules weakened. CI remains advisory until the backlog is cleared. |
 | Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
 | VPS deployment and production smoke test | ✅ Published; final acceptance open | Release-specific build/tests/smoke and live checks passed; both public health endpoints passed again on October 18. Earlier owner Admin, certificate renewal, restore drill, service recovery and Safari confirmations remain dated evidence. Current proxy/edge state, full-host reboot, lint, content and complete audit acceptance remain open. [Current status evidence](docs/STATUS_REVIEW_2026-10-18.md). |
 
@@ -182,7 +184,7 @@ These dated entries describe the state at that milestone. Historical “pending,
 
 1. **Engineering/catalog foundation:** Complete ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03). Inventory and explicit eligibility contracts are implemented; remaining method benchmarks and the nominated engineer's approval are still needed. [Execution tracker](docs/COMPLETION_PLAN.md).
 2. **Complete media and documents:** Resolve the nine remaining image entries; keep nonmatching substitutes out. Confirm the 43 example-image identities where exact stock is required. Source product documents; defer company datasheet production until technical acceptance.
-3. **Clear lint:** Resolve the remaining 131 errors, starting with admin/client and shared-content types, then React/accessibility findings. Enforce lint in CI when clean. API/database/import cleanup is complete.
+3. **Clear lint:** Resolve the remaining 63 errors: React/hooks, accessibility, residual types and tooling. Enforce lint in CI when clean. API and admin/client type cleanup is complete.
 4. **Complete acceptance:** Finish admin role/restore/inquiry/media integration, security, accessibility, bilingual copy and desktop/tablet/mobile testing. Keep successful targeted checks distinct from this full review.
 5. **Close operational gaps:** Reverify both domains' Cloudflare proxy/edge-certificate state. Review provider networking before the deferred full-host reboot test; confirm earlier SSH-hardening follow-up. Review backup retention and recovery while keeping backups on the VPS as requested.
 6. **Approve indexing:** After content/release acceptance, make an explicit noindex-removal decision and verify Search Console/sitemap submission. No indexing settings changed during this review.

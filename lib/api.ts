@@ -1,3 +1,4 @@
+import type { ApiReads } from '../domain/api-contracts';
 export class ApiError extends Error {
   constructor(message: string, readonly status: number) {
     super(message);
@@ -5,7 +6,11 @@ export class ApiError extends Error {
   }
 }
 
-export async function api<T = any>(
+export const errorMessage = (error: unknown) => error instanceof Error ? error.message : 'Request failed. Please retry.';
+
+export function api<P extends keyof ApiReads>(path: P): Promise<ApiReads[P]>;
+export function api<T = unknown>(path: string, method?: string, data?: unknown): Promise<T>;
+export async function api<T = unknown>(
   path: string,
   method = 'GET',
   data?: unknown,

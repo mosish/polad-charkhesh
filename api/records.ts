@@ -1,6 +1,7 @@
 import type { SQLOutputValue } from 'node:sqlite';
 import type { CompanyContactInfo } from '../domain/company';
-import type { PublishedSeoContent, SeoCopy, SeoSettings } from '../domain/seo';
+import type { SeoSettings } from '../domain/seo';
+import type { SiteContent } from '../domain/site-content';
 
 export interface SessionUser {
   id: string;
@@ -27,10 +28,7 @@ export interface InquiryData {
 }
 export interface PublishedSettings {
   company: CompanyContactInfo;
-  content: PublishedSeoContent & {
-    hero: SeoCopy;
-    copy: Record<string, { original: string; en: string; fa: string }>;
-  };
+  content: SiteContent;
   seo: SeoSettings;
 }
 

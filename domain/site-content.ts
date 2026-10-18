@@ -17,7 +17,21 @@ export const sectionIds = [
   'support',
   'contact',
 ];
-export const siteExtras: any = {
+export type SectionCopy = Record<string, string>;
+export interface ContentCard { id: string; titleEn: string; titleFa: string; descriptionEn: string; descriptionFa: string; imageUrl: string; href: string }
+export interface CustomSection extends ContentCard { buttonEn: string; buttonFa: string; enabled: boolean }
+export interface CopyEntry { original: string; en: string; fa: string; group: string }
+export interface SiteExtras {
+  brand: Record<'logoUrl' | 'logoAltEn' | 'logoAltFa' | 'navy' | 'accent' | 'ink', string>;
+  layout: { order: string[]; hidden: string[]; custom: CustomSection[] };
+  media: Record<string, string>;
+  navigation: { items: { id: string; labelEn: string; labelFa: string; href: string }[] };
+  links: Record<string, string>;
+  cards: Record<'capabilities' | 'industries' | 'reasons', ContentCard[]>;
+  copy: Record<string, CopyEntry>;
+}
+export type SiteContent = SiteExtras & Record<'hero' | 'about' | 'why' | 'industries' | 'engineering' | 'contact' | 'footer', SectionCopy>;
+export const siteExtras: SiteExtras = {
   brand: {
     logoUrl: '/brand/logo.png',
     logoAltEn: 'Polad Charkhesh Arian Tech company logo',
@@ -149,12 +163,14 @@ export const siteExtras: any = {
   },
   copy: initialCopy,
 };
-export function upgradeContent(value: any) {
-  const v = structuredClone(value || {});
+export function upgradeContent(value: unknown): Record<string, unknown> {
+  const v: Record<string, unknown> = value && typeof value === 'object' && !Array.isArray(value) ? structuredClone(value) as Record<string, unknown> : {};
   for (const [key, extra] of Object.entries(siteExtras))
     if (v[key] === undefined) v[key] = structuredClone(extra);
-  if (v.media && typeof v.media === 'object' && !Array.isArray(v.media) && v.media.heroPresentation === undefined)
-    v.media.heroPresentation = 'animation';
-  v.copy = { ...initialCopy, ...v.copy };
+  if (v.media && typeof v.media === 'object' && !Array.isArray(v.media) && !('heroPresentation' in v.media))
+    Object.assign(v.media, { heroPresentation: 'animation' });
+  if (v.copy === undefined) v.copy = structuredClone(initialCopy);
+  else if (v.copy && typeof v.copy === 'object' && !Array.isArray(v.copy)) v.copy = { ...initialCopy, ...v.copy };
+  // Preserve malformed values so boundary validation rejects them.
   return v;
 }

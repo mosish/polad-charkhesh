@@ -1,3 +1,7 @@
+import type { AuthStatus, MediaRecord, SystemStatus } from '../../domain/api-contracts';
+import type { BearingProduct } from '../../domain/product';
+import { loadAdminData, type AdminData } from '../../lib/admin-data';
+type Confirmation = { type: 'restore'; p?: never; m?: never } | { type: 'delete'; p: BearingProduct; m?: never } | { type: 'media'; m: MediaRecord; p?: never };
 import { useEffect, useState } from 'react';
 import {
   ArrowUpRight,
@@ -16,7 +20,7 @@ import {
   PanelTop,
   ScrollText,
 } from 'lucide-react';
-import { api, ApiError } from '../../lib/api';
+import { api, ApiError, errorMessage } from '../../lib/api';
 import { readMediaUpload } from '../../lib/media-upload';
 import { usePlatform } from '../platform/Context';
 import Dialog from '../platform/Dialog';
@@ -44,31 +48,31 @@ const tabGroups = [
 ];
 export default function Admin() {
   const { fa, t, toggle, reload, content } = usePlatform();
-  const [status, setStatus] = useState<any>(null),
+  const [status, setStatus] = useState<AuthStatus | null>(null),
     [tab, setTab] = useState('overview'),
     [error, setError] = useState(''),
     [message, setMessage] = useState(''),
     [busy, setBusy] = useState(false),
-    [loaded, setLoaded] = useState<any>(null),
+    [loaded, setLoaded] = useState<AdminData | null>(null),
     [loadVersion, setLoadVersion] = useState(0),
     [q, setQ] = useState(''),
     [filter, setFilter] = useState('all'),
-    [edit, setEdit] = useState<any>(undefined),
-    [confirm, setConfirm] = useState<any>(null),
+    [edit, setEdit] = useState<Partial<BearingProduct> | null | undefined>(undefined),
+    [confirm, setConfirm] = useState<Confirmation | null>(null),
     [typed, setTyped] = useState(''),
-    [backup, setBackup] = useState<any>(null),
+    [backup, setBackup] = useState<unknown>(null),
     [settingsDirty, setSettingsDirty] = useState(false),
     [mobileMenuOpen, setMobileMenuOpen] = useState(false),
     [duplicateSource, setDuplicateSource] = useState('');
   const check = () =>
     api('/auth/status')
       .then(setStatus)
-      .catch((e) => setError(e.message));
+      .catch((e) => setError(errorMessage(e)));
   useEffect(() => {
     void check();
   }, []);
   // Associate each response with its tab; never render another tab's payload.
-  const data = loaded?.tab === tab ? loaded.value : null;
+  const data = loaded?.tab === tab ? loaded : null;
   const load = () => setLoadVersion((version) => version + 1);
   useEffect(() => {
     if (!status?.user) return;
@@ -76,20 +80,16 @@ export default function Admin() {
     setLoaded(null);
     setError('');
     if (['content', 'header', 'company', 'seo'].includes(tab)) return;
-    const route = tab === 'products' ? '/products?includeArchived=true'
-      : tab === 'inquiries' ? '/inquiries'
-      : tab === 'media' ? '/media'
-      : tab === 'audit' ? '/system/audit' : '/system/status';
-    api(route).then((value) => {
-      if (!cancelled) setLoaded({ tab, value });
-    }).catch((e) => {
+    loadAdminData(tab).then((value) => {
+      if (!cancelled) setLoaded(value);
+    }).catch((e: unknown) => {
       if (cancelled) return;
-      setError(e.message);
-      if (e.message.includes('session')) void check();
+      setError(errorMessage(e));
+      if (e instanceof ApiError && e.status === 401) void check();
     });
     return () => { cancelled = true; };
   }, [tab, status?.user, loadVersion]);
-  const act = async (path: string, method: string, body?: any) => {
+  const act = async (path: string, method: string, body?: unknown) => {
     setBusy(true);
     try {
       const r = await api(path, method, body);
@@ -98,8 +98,8 @@ export default function Admin() {
       load();
       reload();
       return r;
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(errorMessage(e));
       throw e;
     } finally {
       setBusy(false);
@@ -169,8 +169,8 @@ export default function Admin() {
               );
               await check();
               setError('');
-            } catch (e: any) {
-              setError(e.message);
+            } catch (e: unknown) {
+              setError(errorMessage(e));
             } finally {
               setBusy(false);
             }
@@ -337,7 +337,7 @@ export default function Admin() {
           <div className="state">
             {t('Loading workspace…', 'در حال دریافت اطلاعات…')}
           </div>
-        ) : tab === 'overview' ? (
+        ) : data.tab === 'overview' ? (
           <>
             <div className="admin-stats">
               {[
@@ -351,7 +351,7 @@ export default function Admin() {
                 ['auditEvents', 'Audit events', 'رویداد ثبت‌شده'],
               ].map(([k, e, f]) => (
                 <div key={k}>
-                  <strong>{data[k] ?? 0}</strong>
+                  <strong>{data.value[k as keyof SystemStatus] ?? 0}</strong>
                   <span>{t(e, f)}</span>
                 </div>
               ))}
@@ -397,16 +397,16 @@ export default function Admin() {
               </div>
             </div>
           </>
-        ) : tab === 'products' ? (
-          <CatalogWorkspace products={data.products} request={act} canDelete={status.user.role === 'superadmin'}
+        ) : data.tab === 'products' ? (
+          <CatalogWorkspace products={data.value.products} request={act} canDelete={status.user.role === 'superadmin'}
             onEdit={p => { setDuplicateSource(''); setEdit(p); }}
             onDelete={p => { setConfirm({ type: 'delete', p }); setTyped(''); }}
             onDuplicate={p => {
-              const template: any = structuredClone(p);
-              for (const key of ['id', 'code', 'slug', 'createdAt', 'updatedAt', 'updatedBy', 'isArchived']) delete template[key];
+              const template: Partial<BearingProduct> = structuredClone(p);
+              for (const key of ['id', 'code', 'slug', 'createdAt', 'updatedAt', 'updatedBy', 'isArchived'] as const) delete template[key];
               setDuplicateSource(p.code); setEdit({ ...template, code: '', slug: '', featured: false });
             }} />
-        ) : tab === 'inquiries' ? (
+        ) : data.tab === 'inquiries' ? (
           <>
             <div className="catalog-toolbar">
               <input
@@ -424,7 +424,7 @@ export default function Admin() {
                 ))}
               </select>
             </div>
-            {!data.inquiries.length ? (
+            {!data.value.inquiries.length ? (
               <div className="state">
                 {t(
                   'No inquiries yet. Submitted website inquiries will appear here.',
@@ -432,13 +432,13 @@ export default function Admin() {
                 )}
               </div>
             ) : (
-              data.inquiries
+              data.value.inquiries
                 .filter(
-                  (i: any) =>
+                  (i) =>
                     JSON.stringify(i).toLowerCase().includes(q.toLowerCase()) &&
                     (filter === 'all' || i.status === filter),
                 )
-                .map((i: any) => (
+                .map((i) => (
                   <article className="panel inquiry" key={i.id}>
                     <div className="row">
                       <strong>
@@ -467,7 +467,7 @@ export default function Admin() {
                 ))
             )}
           </>
-        ) : tab === 'media' ? (
+        ) : data.tab === 'media' ? (
           <>
             <div className="panel">
               <h3>{t('Upload technical media', 'بارگذاری رسانه فنی')}</h3>
@@ -501,7 +501,7 @@ export default function Admin() {
               />
             </div>
             <div className="media-grid">
-              {data.media.map((m: any) => (
+              {data.value.media.map((m) => (
                 <div className="panel" key={m.id}>
                   {m.mime.startsWith('image/') ? (
                     <img src={m.url} alt={m.name} />
@@ -536,7 +536,7 @@ export default function Admin() {
               ))}
             </div>
           </>
-        ) : tab === 'audit' ? (
+        ) : data.tab === 'audit' ? (
           <div className="table-scroll">
             <table>
               <thead>
@@ -548,7 +548,7 @@ export default function Admin() {
                 </tr>
               </thead>
               <tbody>
-                {data.logs.map((l: any) => (
+                {data.value.logs.map((l) => (
                   <tr key={l.id}>
                     <td>{l.timestamp}</td>
                     <td>{l.actor}</td>
@@ -566,8 +566,8 @@ export default function Admin() {
             <div className="panel">
               <h3>{t('System status', 'وضعیت سیستم')}</h3>
               <p>
-                {t('Database', 'پایگاه داده')}: {data.database} ·{' '}
-                {t('Version', 'نسخه')}: {data.version} · {data.products}{' '}
+                {t('Database', 'پایگاه داده')}: {data.value.database} ·{' '}
+                {t('Version', 'نسخه')}: {data.value.version} · {data.value.products}{' '}
                 {t('products', 'محصول')}
               </p>
               <a className="button" href="/api/system/backup" download>
@@ -595,8 +595,8 @@ export default function Admin() {
                           setBackup(JSON.parse(await f.text()));
                           setConfirm({ type: 'restore' });
                           setTyped('');
-                        } catch (e: any) {
-                          setError(e.message);
+                        } catch (e: unknown) {
+                          setError(errorMessage(e));
                         }
                       }}
                     />
@@ -613,8 +613,8 @@ export default function Admin() {
                   await api('/auth/change-password', 'POST', form);
                   setMessage('password-changed');
                   await check();
-                } catch (e: any) {
-                  setError(e.message);
+                } catch (e: unknown) {
+                  setError(errorMessage(e));
                 }
               }}
             >

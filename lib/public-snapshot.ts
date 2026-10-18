@@ -1,3 +1,5 @@
+import type { CompanyContactInfo } from '../domain/company';
+import type { SiteContent } from '../domain/site-content';
 import type {BearingProduct} from '../domain/product';
 import type {SeoSettings} from '../domain/seo';
 
@@ -7,6 +9,6 @@ export function parsePublicSnapshot(text:string|null){
   try{
     const data:unknown=JSON.parse(text||'null');
     if(!object(data)||!Array.isArray(data.products)||!object(data.company)||!object(data.content)||!object(data.seo))return null;
-    return {...data,fa:typeof data.fa==='boolean'?data.fa:undefined,products:data.products as BearingProduct[],company:data.company,content:data.content,seo:data.seo as SeoSettings};
+    return {...data,fa:typeof data.fa==='boolean'?data.fa:undefined,products:data.products as BearingProduct[],company:data.company as unknown as CompanyContactInfo,content:data.content as unknown as SiteContent,seo:data.seo as SeoSettings};
   }catch{return null;}
 }

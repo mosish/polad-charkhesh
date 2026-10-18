@@ -63,7 +63,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         </a>
         <button ref={menuButton} className="public-menu-toggle" aria-expanded={menuOpen} aria-controls="public-navigation" aria-label={t(menuOpen ? 'Close navigation' : 'Open navigation', menuOpen ? 'بستن ناوبری' : 'باز کردن ناوبری')} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
         <nav id="public-navigation" className={menuOpen ? 'is-open' : ''} aria-label={t('Main navigation', 'ناوبری اصلی')}>
-          {content?.navigation?.items?.map((item: any) => (
+          {content?.navigation?.items?.map((item) => (
             <a key={item.id} href={publicHref(item.href)} onClick={() => setMenuOpen(false)}>
               {item[fa ? 'labelFa' : 'labelEn']}
             </a>

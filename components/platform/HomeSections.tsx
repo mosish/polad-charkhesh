@@ -16,7 +16,7 @@ import {
   Droplets,
 } from 'lucide-react';
 import { usePlatform, DataState } from './Context';
-import { api } from '../../lib/api';
+import { api, errorMessage } from '../../lib/api';
 import { publicHref } from '../../lib/public-links';
 const Catalog = lazy(() => import('./Catalog'));
 const Engineering = lazy(() => import('./Engineering'));
@@ -33,7 +33,7 @@ export default function HomeSections() {
   const [busy, setBusy] = useState(false),
     [formError, setFormError] = useState(''),
     [success, setSuccess] = useState(false);
-  if (loading || error) return <DataState />;
+  if (loading || error || !company || !content) return <DataState />;
   return (
     <>
       <PageSection id="featured">
@@ -63,7 +63,7 @@ export default function HomeSections() {
             </p>
           </div>
           <div className="industry-grid">
-            {content.cards.industries.map((card: any, i: number) => (
+            {content.cards.industries.map((card, i: number) => (
               <a key={card.id} href={publicHref(card.href || '/catalog')}>
                 <span className="industry-number">
                   {String(i + 1).padStart(2, '0')}
@@ -100,7 +100,7 @@ export default function HomeSections() {
             <p>{content.why[fa ? 'descriptionFa' : 'descriptionEn']}</p>
           </div>
           <div className="reasons">
-            {content.cards.reasons.map((card: any, i: number) => (
+            {content.cards.reasons.map((card, i: number) => (
               <div key={card.id}>
                 <span>{String(i + 1).padStart(2, '0')}</span>
                 <div>
@@ -201,8 +201,8 @@ export default function HomeSections() {
                 );
                 setSuccess(true);
                 form.reset();
-              } catch (e: any) {
-                setFormError(e.message);
+              } catch (e: unknown) {
+                setFormError(errorMessage(e));
               } finally {
                 setBusy(false);
               }

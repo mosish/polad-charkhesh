@@ -1,9 +1,11 @@
+import type { BearingProduct } from '../../domain/product';
+import { textValue, stringList } from '../../lib/editor-path';
 import { useEffect, useState } from 'react';
-import { api } from '../../lib/api';
+import { api, errorMessage } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
 import Dialog from '../platform/Dialog';
 import MediaPicker from './MediaPicker';
-const groups: any = {
+const groups: Record<string, (keyof BearingProduct)[]> = {
   Identity: [
     'code',
     'slug',
@@ -54,7 +56,7 @@ const groups: any = {
     'keywords',
   ],
 };
-const faGroups: any = {
+const faGroups: Record<string, string> = {
   Identity: 'هویت',
   Dimensions: 'ابعاد',
   Loads: 'بار',
@@ -90,7 +92,7 @@ const arrays = new Set([
   'images',
   'keywords',
 ]);
-const blank = {
+const blank: Partial<BearingProduct> = {
   code: '',
   slug: '',
   nameEn: '',
@@ -125,14 +127,14 @@ export default function ProductEditor({
   onClose,
   onSaved,
 }: {
-  product: any;
+  product: Partial<BearingProduct> | null;
   duplicateSource?: string;
   onClose: () => void;
   onSaved: () => void;
 }) {
   const { fa, t } = usePlatform();
   const isNew = !product?.id;
-  const [p, setP] = useState<any>(product || blank),
+  const [p, setP] = useState<Partial<BearingProduct>>(product || blank),
     [tab, setTab] = useState('Identity'),
     [dirty, setDirty] = useState(false),
     [discard, setDiscard] = useState(false),
@@ -151,7 +153,7 @@ export default function ProductEditor({
     addEventListener('beforeunload', warn);
     return () => removeEventListener('beforeunload', warn);
   }, [dirty]);
-  const update = (k: string, v: any) => {
+  const update = (k: keyof BearingProduct, v: BearingProduct[keyof BearingProduct]) => {
     setDirty(true);
     setP({ ...p, [k]: v });
   };
@@ -160,21 +162,21 @@ export default function ProductEditor({
     try {
       const data = { ...p, technicalSources: JSON.parse(sources) };
       await api(
-        '/products' + (isNew ? '' : '/' + product.id),
+        '/products' + (isNew ? '' : '/' + product?.id),
         isNew ? 'POST' : 'PUT',
         data,
       );
       setDirty(false);
       onSaved();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(errorMessage(e));
     } finally {
       setBusy(false);
     }
   };
   return (
     <Dialog
-      title={isNew ? t('New component', 'قطعه جدید') : p.code}
+      title={isNew ? t('New component', 'قطعه جدید') : p.code || ''}
       onClose={() => (dirty ? setDiscard(true) : onClose())}
     >
       {duplicateSource && <p className="note" role="status">{t('Technical details copied from', 'مشخصات فنی کپی شد از')} <code>{duplicateSource}</code>. {t('Enter a new code and URL slug, then review the specifications before saving.', 'کد و نشانی جدید وارد کنید و پیش از ذخیره مشخصات را بررسی کنید.')}</p>}
@@ -190,7 +192,7 @@ export default function ProductEditor({
         ))}
       </div>
       <div className="form-grid editor-fields">
-        {groups[tab].map((k: string) =>
+        {groups[tab].map((k: keyof BearingProduct) =>
           ['imageUrl', 'pdfUrl'].includes(k) ? (
             <MediaPicker
               key={k}
@@ -200,7 +202,7 @@ export default function ProductEditor({
                   : t('Product PDF', 'فایل PDF محصول')
               }
               pdf={k === 'pdfUrl'}
-              value={p[k] || ''}
+              value={textValue(p[k])}
               onChange={(url) => update(k, url)}
             />
           ) : k === 'images' ? (
@@ -233,7 +235,7 @@ export default function ProductEditor({
               k === 'schematicType' ||
               k === 'speedReferenceType' ? (
                 <select
-                  value={p[k] || ''}
+                  value={textValue(p[k])}
                   onChange={(e) => update(k, e.target.value)}
                 >
                   {(k === 'category'
@@ -294,7 +296,7 @@ export default function ProductEditor({
               ) : arrays.has(k) ? (
                 <textarea
                   rows={3}
-                  value={(p[k] || []).join('\n')}
+                  value={stringList(p[k]).join('\n')}
                   onChange={(e) =>
                     update(k, e.target.value.split('\n').filter(Boolean))
                   }
@@ -302,14 +304,14 @@ export default function ProductEditor({
               ) : k.startsWith('description') ? (
                 <textarea
                   rows={4}
-                  value={p[k] || ''}
+                  value={textValue(p[k])}
                   onChange={(e) => update(k, e.target.value)}
                 />
               ) : (
                 <input
                   type={numeric.has(k) ? 'number' : 'text'}
                   step="any"
-                  value={p[k] ?? ''}
+                  value={textValue(p[k])}
                   dir={k.endsWith('Fa') ? 'rtl' : 'ltr'}
                   onChange={(e) =>
                     update(
@@ -329,8 +331,8 @@ export default function ProductEditor({
       </div>
       {!isNew && (
         <p className="muted">
-          {t('Last updated', 'آخرین ویرایش')}: {product.updatedAt || '—'} ·{' '}
-          {product.updatedBy || '—'}
+          {t('Last updated', 'آخرین ویرایش')}: {product?.updatedAt || '—'} ·{' '}
+          {product?.updatedBy || '—'}
         </p>
       )}
       {error && (

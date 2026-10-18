@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement, ReactNode } from 'react';
+import { cloneElement, isValidElement, ReactNode, type CSSProperties } from 'react';
 import { usePlatform } from './Context';
 import { publicHref } from '../../lib/public-links';
 export default function PageSection({
@@ -11,11 +11,11 @@ export default function PageSection({
   const { content } = usePlatform();
   if (content?.layout?.hidden?.includes(id)) return null;
   const order = content?.layout?.order?.indexOf(id) ?? 0;
-  return isValidElement(children) ? (
-    cloneElement<any>(children as any, {
+  return isValidElement<{ style?: CSSProperties; 'data-section'?: string }>(children) ? (
+    cloneElement(children, {
       'data-section': id,
       style: {
-        ...(children as any).props.style,
+        ...children.props.style,
         order: order < 0 ? 100 : order,
       },
     })
@@ -28,8 +28,8 @@ export function CustomSections() {
   return (
     <>
       {content?.layout?.custom
-        ?.filter((c: any) => c.enabled)
-        .map((c: any) => (
+        ?.filter((c) => c.enabled)
+        .map((c) => (
           <PageSection key={c.id} id={c.id}>
             <section className="section custom-section" id={c.id}>
               <div>

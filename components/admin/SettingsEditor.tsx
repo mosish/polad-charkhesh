@@ -1,6 +1,9 @@
+import type { CompanyContactInfo } from '../../domain/company';
+import type { SeoSettings } from '../../domain/seo';
+import { readEditorPath, updateEditorPath } from '../../lib/editor-path';
 import SeoOverview from './SeoOverview';
 import { useEffect, useState } from 'react';
-import { api } from '../../lib/api';
+import { api, errorMessage } from '../../lib/api';
 import { usePlatform } from '../platform/Context';
 const seoLabels: Record<string, [string, string]> = {
   titleEn: ['Search title · English', 'عنوان جستجو · انگلیسی'], titleFa: ['Search title · Persian', 'عنوان جستجو · فارسی'],
@@ -36,16 +39,16 @@ export default function SettingsEditor({
   onDirty: (dirty: boolean) => void;
 }) {
   const { t, reload } = usePlatform();
-  const [value, setValue] = useState<any>(null),
+  const [value, setValue] = useState<CompanyContactInfo | SeoSettings | null>(null),
     [error, setError] = useState(''),
     [message, setMessage] = useState(''),
     [dirty, setDirty] = useState(false),
     [companyGroup, setCompanyGroup] = useState('identity');
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
   useEffect(() => {
-    api('/' + kind)
+    api<{ data: CompanyContactInfo | SeoSettings }>('/' + kind)
       .then((r) => setValue(r.data))
-      .catch((e) => setError(e.message));
+      .catch((e) => setError(errorMessage(e)));
   }, [kind]);
   useEffect(() => {
     const f = (e: BeforeUnloadEvent) => {
@@ -58,18 +61,14 @@ export default function SettingsEditor({
     return () => removeEventListener('beforeunload', f);
   }, [dirty]);
   const update = (path: string[], v: string) => {
-    const next = structuredClone(value);
-    let ref = next;
-    for (const k of path.slice(0, -1)) ref = ref[k];
-    ref[path.at(-1)!] = v;
-    setValue(next);
+    setValue(old => old ? updateEditorPath(old, path, v) : old);
     setDirty(true);
     setMessage('');
   };
   const labelFor = (key: string) => kind === 'company' && companyLabels[key]
     ? t(...companyLabels[key])
     : kind === 'seo' && seoLabels[key] ? t(...seoLabels[key]) : key.replace(/([a-z])([A-Z])/g, '$1 $2');
-  function fields(obj: any, prefix: string[] = []): React.ReactNode {
+  function fields(obj: object, prefix: string[] = []): React.ReactNode {
     return Object.entries(obj).map(([k, v]) =>
       typeof v === 'object' && v && !Array.isArray(v) ? (
         <fieldset key={k}>
@@ -107,8 +106,8 @@ export default function SettingsEditor({
       setMessage('saved');
       setError('');
       reload();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(errorMessage(e));
     }
   };
   return (
@@ -117,11 +116,11 @@ export default function SettingsEditor({
         <p>{error || t('Loading…', 'در حال دریافت…')}</p>
       ) : (
         <>
-          {kind === 'seo' && <SeoOverview seo={value} />}
+          {kind === 'seo' && 'domainEn' in value && <SeoOverview seo={value} />}
           {kind === 'company' && <div className="settings-section-tabs" role="tablist" aria-label={t('Company settings sections', 'بخش‌های تنظیمات شرکت')}>
             {companyGroups.map((group) => <button key={group.id} type="button" role="tab" aria-selected={companyGroup === group.id} onClick={() => setCompanyGroup(group.id)}>{t(group.en, group.fa)}</button>)}
           </div>}
-          <div className="form-grid">{fields(kind === 'company' ? Object.fromEntries(companyGroups.find((group) => group.id === companyGroup)!.keys.filter((key) => key in value).map((key) => [key, value[key]])) : value)}</div>
+          <div className="form-grid">{fields(kind === 'company' ? Object.fromEntries(companyGroups.find((group) => group.id === companyGroup)!.keys.filter((key) => key in value).map((key) => [key, readEditorPath(value, [key])])) : value)}</div>
           {error && (
             <p className="error" role="alert">
               {error}

@@ -126,7 +126,7 @@ export default function Home() {
       </PageSection>
       <PageSection id="capabilities">
         <section className="capabilities">
-          {content?.cards?.capabilities.map((card: any) => (
+          {content?.cards?.capabilities.map((card) => (
             <div key={card.id}>
               {card.imageUrl ? (
                 <img className="card-icon-image" src={card.imageUrl} alt="" width={64} height={64} />
