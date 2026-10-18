@@ -1,6 +1,6 @@
 # Pending-work completion plan
 
-**Project:** COMPLETE-01 · **Started:** 2026-10-18 · **Status:** C0-A/B and C1-A/B/C are deployed; C1-D completes the source-quality gate in source. Engineering sign-off and remaining phases are open.
+**Project:** COMPLETE-01 · **Started:** 2026-10-18 · **Status:** C0-A/B and C1-A/B/C are deployed; C1-D quality and C0-C method evidence packages are complete in source. Engineering sign-off and remaining phases are open.
 
 The owner requested a plan covering every pending area and authorized starting work step by step. The owner will nominate an engineering reviewer later. Developer work, tests and source synchronization can proceed; engineer acceptance remains unassigned. Do not mistake a prepared evidence packet for that acceptance.
 
@@ -8,7 +8,7 @@ The owner requested a plan covering every pending area and authorized starting w
 
 | Phase | Work | Required evidence to close | Current state |
 | --- | --- | --- | --- |
-| C0 — Establish engineering foundation | Inventory current tools; review method sources; map all 110 products; record identity/family gaps; establish numerical benchmarks; fix demonstrated input-validation defects. Maps to ENG-01–ENG-03. | Reviewed method register and per-method product eligibility, independently derived tests, engineering reviewer sign-off. | **In progress.** Audit, eligibility contracts/runtime checks, independent manual mode and initial benchmarks delivered. Remaining methods and approval open. |
+| C0 — Establish engineering foundation | Inventory current tools; review method sources; map all 110 products; record identity/family gaps; establish numerical benchmarks; fix demonstrated input-validation defects. Maps to ENG-01–ENG-03. | Reviewed method register and per-method product eligibility, independently derived tests, engineering reviewer sign-off. | **In progress.** C0-C developer evidence and arithmetic benchmarks complete; reviewer acceptance, interpolation policy and enforceable operating envelopes remain open. |
 | C1 — Restore code-quality gate | Resolve the original 197 lint findings in reviewable batches: API validation/types; admin/client types; hooks/React behavior; semantics/accessibility; remaining tooling. Keep rule strength. | Zero lint errors, typecheck/tests/build/bundle checks passing; then remove advisory CI behavior. Record any justified exception with rationale. | **Complete in source.** C1-A/B/C/D resolve all 197 original findings: zero diagnostics, no rule weakening, 95 passing tests and required CI lint. C1-D is not deployed. |
 | C2 — Resolve catalog and asset evidence | Work through 47 ambiguous identities and two blocked records; finish 61 partial records. Resolve nine exact-image gaps; review 43 examples without treating them as exact identity evidence. Source documents and prepare company PDFs only for technically accepted products. | Every product has an explicit disposition, exact evidence for changed fields and owner decisions where required; guarded patch preview; stable IDs preserved. Every published PDF has exact identity, provenance and version. | Queued. Evidence unavailable is a recorded blocker, not “verified.” Requires owner stock/package evidence for ambiguous identities. |
 | C3 — Implement balanced toolbox | Follow ENG-04–ENG-11: shared bilingual workspace/input contracts; unit converter; life/target-life/static checks; selection/comparison; fit explorer; lubrication/maintenance guidance; local case notebook. | Each module's benchmarks and valid/invalid/unsupported journeys pass; reviewed bilingual guidance; local cases validate imports and stale data; no unsupported method silently runs. | Queued. Manual/unit/fit/workspace work can progress independently; product numerical eligibility requires C0 evidence. |
@@ -34,7 +34,7 @@ Do not download private server backups: retain them on the VPS per the owner's i
 | --- | --- | --- |
 | ENG-01 current behavior inventory | Complete as developer audit | [Foundation audit](engineering-tools/foundation/AUDIT.md) |
 | ENG-02 catalog eligibility draft | Prepared; review open | [110-product matrix and owner queue](engineering-tools/foundation/CATALOG_ELIGIBILITY.md), [machine-readable evidence](engineering-tools/foundation/CATALOG_ELIGIBILITY.json) |
-| ENG-03 method register | Prepared; approval and family benchmarks open | [Method register and benchmark derivations](engineering-tools/methods/REGISTER.md) |
+| ENG-03 method register | C0-C developer packet complete; engineering acceptance open | [Method register](engineering-tools/methods/REGISTER.md), [source evidence and family benchmarks](engineering-tools/methods/C0C_EVIDENCE.md) |
 | C0-NUM finite inputs/results | Implemented and regression tested in source | `lib/engineering.ts`, `lib/showroom.ts`, `tests/engineering-foundation.test.ts` |
 | Release of this package | Deployed with C1-C | Included in the October 18 pinned release; see the release record below. |
 
@@ -54,12 +54,17 @@ C0-B/C1-A validation: **83 tests**, typecheck, build, bundle budgets and isolate
 
 **C1-D:** remaining React/hooks, semantics/accessibility and type/tooling findings are resolved. Full lint has zero diagnostics; 95 tests and release checks pass. Required CI lint replaces the advisory step. [Evidence and verification limits](C1D_QUALITY_GATE.md). Source-only delivery; engineering approval remains pending.
 
+**C0-C:** manufacturer publications retrieved with exact pages/editions and hashes; independent equivalent/static-load, interpolation and reliability benchmarks added. Unsupported deep-groove lower clamping is removed. Spherical-thrust calculations now require reviewed SKF series/run-out choices, and old method-version profiles fail eligibility. **107 tests pass**, including all unapproved-product guards. The production registry remains empty. [Evidence, method limits and reviewer decisions](engineering-tools/methods/C0C_EVIDENCE.md). Source-only; no deployment or catalog edits.
+
+C0-C verification: TypeScript, zero-diagnostic full lint, production build, bundle budgets, isolated production smoke and diff checks passed. The concurrent Persian documentation/diagram commit `d453c4d` was preserved; both README languages are updated.
+
 ## Next executable packages
 
 **Current deployment:** `d41f111bf48a570cd89930c1f16271140047d67b` on both domains, October 18. All 93 tests passed on Windows and Ubuntu; 452 external page/language checks passed. All nine database tables and uploads were unchanged across activation. Backups stay on the VPS only. [Deployment evidence](C1C_ADMIN_CLIENT_RELEASE.md). This publication does not close engineering acceptance or the remaining C5 operations work.
 
-1. **C0-C / ENG-03:** finish manufacturer method excerpts, validity limits and independent benchmarks for equivalent/static loads, interpolation boundaries and reliability. Speed states are implemented, but their application-specific evidence still needs review. Submit the packet to the nominated reviewer when available; do not contact others without authorization.
-2. **C2-A:** collect exact owner identity decisions using the generated queue, then research and prepare conflict-checked field patches and remaining asset candidates.
+1. **C3-A / ENG-04–ENG-05:** implement shared bilingual numerical-input contracts and the independent unit converter. Specify blank/invalid/localized input behavior, reverse conversions and temperature versus temperature differences; test these before extending the manual workspace. This can proceed while owner/reviewer decisions are pending.
+2. **C2-A:** collect exact owner identity decisions using the generated queue, then research and prepare conflict-checked field patches and remaining asset candidates. Do not guess missing identities.
+3. **C0 approval follow-through:** submit the prepared C0-C packet when the engineer is nominated; resolve interpolation/applicability decisions and implement approved operating-envelope enforcement before enabling any catalog profile. Do not contact others without authorization.
 
 The existing toolbox estimate of 21–32 developer days covers its original scope only. It does not include all catalog evidence resolution, 197 lint findings, server operations or reviewer waiting time. Re-estimate after C0 and the first C1 batch; no unsupported calendar deadline is promised.
 

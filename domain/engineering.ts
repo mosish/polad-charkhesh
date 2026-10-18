@@ -9,8 +9,14 @@ export interface ReviewedCalculationProfile {
   productId: string;
   /** Canonical technical snapshot, not a security signature. Changed data invalidates review. */
   technicalRevision: string;
-  methodVersion: 'catalog-life/1';
+  /** Scope and exclusions: docs/engineering-tools/methods/C0C_EVIDENCE.md. */
+  methodVersion: 'catalog-life/2';
   family: CalculationFamily;
+  /** Mandatory for spherical thrust; reviewed SKF series, never inferred from illustration or generic Y fields. */
+  sphericalThrust?: {
+    series: '292' | '293' | '294';
+    runout: 'affects-load' | 'does-not-affect-load';
+  };
   arrangement: string;
   loadCases: readonly LoadCase[];
   reviewedBy: string;

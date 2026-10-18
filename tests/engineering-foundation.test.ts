@@ -36,7 +36,7 @@ void test('life methods reject numeric underflow and overflow', () => {
 
 void test('product calculation rejects nonfinite ratings and invalid required factors', () => {
   const ball = bearingProducts[0];
-  for (const invalid of [NaN, Infinity, -Infinity, 0, -1]) {
+  for (const invalid of [undefined, NaN, Infinity, -Infinity, 0, -1]) {
     for (const key of ['crKn', 'corKn', 'calculationFactorF0'] as const) {
       const product = { ...ball, [key]: invalid };
       assert.throws(() => calculate(product, 2, 1, 1500, 90, false, fixtureProfile(product)), /ratings|factor/);
@@ -44,7 +44,7 @@ void test('product calculation rejects nonfinite ratings and invalid required fa
   }
   const spherical = bearingProducts.find((product) => product.schematicType === 'spherical')!;
   for (const key of ['calculationFactorE', 'calculationFactorY1', 'calculationFactorY2', 'calculationFactorY0'] as const) {
-    for (const invalid of [NaN, Infinity, -1, 0]) {
+    for (const invalid of [undefined, NaN, Infinity, -Infinity, -1, 0]) {
       const product = { ...spherical, [key]: invalid };
       assert.throws(() => calculate(product, 2, 1, 1500, 90, false, fixtureProfile(product, 'spherical')), /factors/);
     }
@@ -56,6 +56,9 @@ void test('fit benchmarks cover clearance, interference, transition and numeric 
     [[20, 20.01, 19.98, 19.99], [10, 30, 'clearance']],
     [[20, 20.01, 20.02, 20.03], [-30, -10, 'interference']],
     [[20, 20.01, 20.005, 20.015], [-15, 5, 'transition']],
+    [[20, 21, 19, 20], [0, 2000, 'clearance']],
+    [[20, 21, 21, 22], [-2000, 0, 'interference']],
+    [[20, 20, 20, 20], [0, 0, 'clearance']],
   ] as const) {
     const result = fitRange(limits[0], limits[1], limits[2], limits[3]);
     close(result.min, expected[0]);

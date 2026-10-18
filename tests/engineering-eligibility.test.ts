@@ -69,4 +69,7 @@ void test('speed distinguishes unknown limits from an actual comparison and neve
   assert.equal(both.status, 'exceeded');
   assert.equal(both.limit, 1500);
   assert.equal(both.basis, 'conservative-lubricant');
+  assert.deepEqual(assessCatalogSpeed({ ...product, speedGreaseRpm: NaN, speedOilRpm: 2000 }, 2000), { status: 'within', limit: 2000, basis: 'conservative-lubricant' });
+  assert.deepEqual(assessCatalogSpeed({ ...product, speedLimitingRpm: 3000, speedGreaseRpm: 1500 }, 2500), { status: 'within', limit: 3000, basis: 'limiting' });
+  for (const rpm of [0, -1, NaN, Infinity]) assert.equal(assessCatalogSpeed({ ...product, speedLimitingRpm: 1000 }, rpm).status, 'unknown');
 });

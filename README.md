@@ -2,7 +2,7 @@
 
 **English** | [فارسی](README.fa.md)
 
-> **Project status:** Both language domains live with eligibility controls, independent manual calculation and C1-C admin/client contracts deployed. C1 source-quality work is complete with zero lint errors and required CI lint; C1-D is not yet deployed. Engineering acceptance, operations and final audits remain open.
+> **Project status:** Both language domains live with eligibility controls, independent manual calculation and C1-C admin/client contracts deployed. C1 quality and C0-C method-evidence work are complete in source; C1-D and C0-C are not deployed. Engineering acceptance, operations and final audits remain open.
 >
 > **Source of truth for code:** GitHub `main`
 >
@@ -19,6 +19,8 @@ Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering
 **C1-C completed and deployed — 2026-10-18:** Admin workspaces, editors, public context and API responses now have explicit shared types. Nested form edits preserve sibling fields and both languages. **93 tests**, TypeScript, build, bundle checks and isolated production smoke passed on Windows and Ubuntu; lint **131 → 63**. Local browser saves passed for website copy, products and company settings. The pinned release includes C0-A/B and C1-A/B/C; all owner-data hashes are unchanged, the verified backup remains on the VPS only, and **452 external page/language checks** passed. [Delivery and release evidence](docs/C1C_ADMIN_CLIENT_RELEASE.md).
 
 **C1-D completed in source — 2026-10-18:** All remaining **63 lint errors are resolved**, with no rule weakening or suppressions. Lint is now required in CI. **95 tests**, TypeScript, production build, bundle budgets and isolated smoke pass. Targeted browser checks cover keyboard/modal recovery, filter resets, dirty-editor recovery and GPU fallback. Engineering approval remains pending; this package is not deployed. [Delivery evidence](docs/C1D_QUALITY_GATE.md).
+
+**C0-C completed as a developer package — 2026-10-18:** Manufacturer methods now have retrieved page/edition evidence, file hashes and independent load/static/interpolation/reliability benchmarks. The calculator rejects unsupported lower-table values and requires explicit SKF series/run-out choices for spherical thrust. **107 tests pass**; all production product profiles remain unapproved. Engineering acceptance, interpolation policy and operating-envelope enforcement remain open. Source-only delivery. [Method evidence and limitations](docs/engineering-tools/methods/C0C_EVIDENCE.md).
 
 **Engineering toolbox expansion — foundation published:** [Project definition, phased plan and backlog](docs/engineering-tools/PROJECT_PLAN.md) cover a balanced expansion of selection, calculations, lubrication and maintenance. Foundation controls are live; method approval and expanded modules remain pending.
 
@@ -53,7 +55,7 @@ The main feature set is published on both language domains. The current catalog 
 | Product specifications and documents | 🟢 Implemented | Floating panels show image/drawing/exploded controls, key dimensions and contact actions alongside switchable specifications, documents and related components. Related navigation updates the URL and preserves dialog focus. Exact SKU media are incomplete. |
 | Animated bearing visuals | 🟢 Implemented | A full-width 3D banner randomly picks a bearing on each page load, with desktop companion bearings and presentation-speed controls. Older Safari can use a lazy WebGL 1 engine with the same model geometry, studio and motion logic; an animated SVG remains the last recovery path. Assembled mode follows scrolling; Exploded view stays fixed. The global bearing background and hero family buttons are removed. Bilingual typing headlines are editable in Admin. Product panels retain separate product-specific geometry. Models are illustrative. |
 | Loading performance | ✅ Published and checked | One GPU engine selected before download, compressed company fonts, responsive family photos and no redundant startup data refresh. Same 3D geometry and owner media retained. [Measurements](docs/PERFORMANCE_2026-10-14.md). |
-| Engineering workspace | 🟡 Eligibility controls deployed; approval open | Live product calculations require a current reviewed profile, independent of geometry; manual inputs work without a product. No production profile is approved yet. [Phase 0](docs/engineering-tools/PROJECT_PLAN.md) method review and the expanded modules remain open. |
+| Engineering workspace | 🟡 C0-C evidence complete in source; approval open | Live product calculations require a current reviewed profile, independent of geometry; manual inputs work without a product. C0-C adds sourced methods and arithmetic benchmarks, with 107 passing tests overall. No production profile is approved; application-envelope enforcement and [Phase 0](docs/engineering-tools/PROJECT_PLAN.md) engineering acceptance remain open. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
 | Admin content and product editing | 🟢 Implemented | Product editing, missing-content filters, bulk actions and reviewed JSON import/export are implemented and tested. SEO previews and saving were reviewed in an isolated browser session; full media, roles and restore UI review remains. |
@@ -188,7 +190,7 @@ These dated entries describe the state at that milestone. Historical “pending,
 
 ## Remaining roadmap
 
-1. **Engineering/catalog foundation:** Complete ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03). Inventory and explicit eligibility contracts are implemented; remaining method benchmarks and the nominated engineer's approval are still needed. [Execution tracker](docs/COMPLETION_PLAN.md).
+1. **Engineering/catalog foundation:** Complete ENG-TOOLS-01 Phase 0 acceptance (ENG-01–ENG-03). C0-C source evidence and arithmetic benchmarks are prepared; the nominated engineer must accept scope/interpolation and define operating envelopes before product profiles can be enabled. Next independent implementation is C3-A / ENG-04–ENG-05: bilingual input contracts and unit conversion. [Execution tracker](docs/COMPLETION_PLAN.md).
 2. **Complete media and documents:** Resolve the nine remaining image entries; keep nonmatching substitutes out. Confirm the 43 example-image identities where exact stock is required. Source product documents; defer company datasheet production until technical acceptance.
 3. **Maintain the restored quality gate:** C1-D closed the lint backlog and made CI lint required. Keep it clean during the remaining phases; release C1-D through the pinned-source deployment procedure when publication is requested.
 4. **Complete acceptance:** Finish admin role/restore/inquiry/media integration, security, accessibility, bilingual copy and desktop/tablet/mobile testing. Keep successful targeted checks distinct from this full review.

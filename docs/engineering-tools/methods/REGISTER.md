@@ -1,24 +1,26 @@
-# Engineering method register — review draft v0.1
+# Engineering method register — review draft v0.2
 
 Prepared 2026-10-18 for ENG-03. Developer: implementation/evidence preparation. Engineering approver: **unassigned; owner will nominate later**. None of these rows constitutes engineering release approval. Synthetic tests validate arithmetic and software boundaries, not a real bearing application.
+
+**C0-C developer evidence complete:** [retrieved publications, exact pages, hashes, method scope, independent derivations and remaining decisions](C0C_EVIDENCE.md). Software contract: `catalog-life/2`. This supersedes the initial source leads below; engineering acceptance and enforceable application envelopes remain open.
 
 | ID | Method / units | Current evidence and domain | Remaining gate |
 | --- | --- | --- | --- |
 | LIFE-BASIC-01 | L10 in million revolutions; L10h in hours; C/P in matching force units; n in rpm | Constant equivalent load/speed, ball exponent 3 or roller exponent 10/3. [NSK, Dynamic Load Ratings and Fatigue Life](https://www.nsk.com/tools-resources/abc-bearings/dynamic-load-ratings-and-fatigue-life/) checked October 18; web publication has no edition number. Six benchmarks below. | Reviewer confirms applicability and disclosure. C/P and bearing type must be established independently. |
 | CAPACITY-TARGET-01 | Required C from target L10h, known P, n and exponent | Algebraic inversion of LIFE-BASIC-01; not yet implemented. | Three benchmarks plus invalid/range tests; same applicability limits. |
-| LOAD-RADIAL-01 | P/P0 in kN for applicable pure radial cases | Existing deep-groove/cylindrical/needle/CARB branches. | Exact family/arrangement eligibility and static rating semantics; “cylindrical” illustration is insufficient. |
-| LOAD-DGBB-01 | Deep-groove combined P/P0, e/Y via f0 Fa/C0 | Existing hardcoded interpolation table and coefficients. | Exact manufacturer table/page, clearance/load assumptions, lower-clamp rule, every boundary and invalid factor tests. No method sign-off yet. |
-| LOAD-SPHERICAL-01 | Equivalent dynamic/static loads using e/Y1/Y2/Y0 | Existing spherical branch. [SKF spherical roller application discussion](https://evolution.skf.com/en/spherical-roller-bearings-in-fans/) provides a method lead, not universal application approval. | Exact product factors, static-load source, restrictions and branch benchmarks. |
-| LOAD-TAPERED-01 | P/P0 with e/Y/Y0 and induced axial loads | Existing acknowledgment and factors. | Reviewed arrangement/load solution; independent cases on both sides of e; exact static/dynamic sources. |
-| LOAD-THRUST-01 | Pure axial thrust ball and spherical roller thrust | Separate formulas/exponents required; current catalog 29420 routing conflicts with description. | Exact family, load cases, combined-load conditions and approved factors. Generic Y/Y0 fields are not a method definition. |
-| RELIABILITY-01 | a1 × basic life for 90/95/98/99% | Existing factors 1/.64/.37/.25. SKF Rolling bearings, publication 17000/1 EN, printed p.90 table 3 is an indexed source lead. Direct PDF retrieval failed in this session. | Retrieve/confirm edition/page and benchmark multipliers; do not call this full modified life. |
-| STATIC-SAFETY-01 | s0 = C0/P0, dimensionless | Arithmetic ratio only; no automatic required minimum. | Approved P0 method and application-specific acceptance criteria. |
-| SPEED-CHECK-01 | rpm comparison | Current code conflates unknown limits and a passing boolean. | Separate reference/limiting/lubricant-specific values and unknown state. Thermal reference speed is not automatically a limit. |
+| LOAD-RADIAL-01 | P/P0 in kN for applicable pure radial cases | SKF pp.509/606/849 and NSK C021; radial axis/exponents tested. | Exact family/arrangement eligibility, minimum loads and rating semantics; illustration is insufficient. |
+| LOAD-DGBB-01 | Deep-groove combined P/P0, e/Y via f0 Fa/C0 | NSK E1103d C021 and A055 retrieved; all knots/midpoints, static branches, bounds and invalid inputs tested. Unsupported lower clamp removed. | Manufacturer/clearance applicability and e-interpolation convention need acceptance. No extrapolation. |
+| LOAD-SPHERICAL-01 | Equivalent dynamic/static loads using e/Y1/Y2/Y0 | SKF p.784 retrieved; both branches, equality, pure axial and static-ratio benchmarks pass. | Exact product factors, mounting and operating envelope approval. |
+| LOAD-TAPERED-01 | P/P0 with e/Y/Y0 and induced axial loads | SKF p.680 single-row method retrieved; both dynamic/static branches and equality tested. | Reviewed operating-load solution; matched-pair totals/double-row methods excluded. |
+| LOAD-THRUST-01 | Pure axial thrust ball and spherical roller thrust | SKF pp.469/917 retrieved. Ball method tested; spherical-thrust series and run-out model now mandatory in profile, with six branch benchmarks. | Exact identity and arrangement approval; 29420 conflict remains unresolved. Minimum-load/application checks not implemented. |
+| RELIABILITY-01 | a1 × basic life for 90/95/98/99% | SKF October 2018 p.90 table 3 retrieved and visually checked; NSK ISO table corroborates. Four multiplier benchmarks pass. | Reviewer acceptance; reliability-only adjustment, not full modified life. |
+| STATIC-SAFETY-01 | s0 = C0/P0, dimensionless | SKF p.105 and family load pages retrieved. Arithmetic ratio tested; no automatic required minimum. | Approved maximum-load case and application-specific acceptance criteria. |
+| SPEED-CHECK-01 | rpm comparison | C0-B implemented unknown/within/exceeded and identified comparison basis. SKF pp.135–136 retrieved; equality, invalid/reference-only and fallback tests pass. | Application thermal/lubrication limits and software precedence need review; a catalog comparison is not suitability approval. |
 | FIT-LIMITS-01 | Worst-case diameter differences in µm from mm inputs | Dimensional subtraction; three synthetic cases below. Equality is currently classified as clearance if min=0, interference if max=0 and min<0. | Review boundary wording and input precision; not tolerance selection or operating clearance. |
 | UNITS-01 | Unit conversions | Existing mm/in, kN/N, °C/°F and rpm/rad/s arithmetic. | Exact definitions, locale/blank/invalid handling, reverse conversions and temperature-difference distinction. |
 | GUIDANCE-01 | Lubrication/maintenance preparation | Non-numerical first-release workflows only. | Reviewed sources and bilingual paths; no unsupported intervals, grease compatibility or definitive diagnosis. |
 
-SKF reference lead: [Rolling bearings 17000/1 EN](https://www.skf.com/binaries/pub12/Images/0901d196802809de-Rolling-bearings---17000_1-EN_tcm_12-121486.pdf). Search-index visibility does not replace retrieving and reviewing the relevant pages. Full proprietary/standards tables are not reproduced here.
+The [C0-C packet](C0C_EVIDENCE.md) records the successful manufacturer-host retrieval after the earlier web-reader failures. Full proprietary catalogs are not redistributed.
 
 ## Independent basic-life fixtures
 
@@ -48,3 +50,5 @@ Minimum is smallest hole minus largest shaft; maximum is largest hole minus smal
 ## Approval record template
 
 For each method record: approver/date, method version, exact publication/revision/page or stable web section, supported family/arrangement, mandatory input evidence, units, assumptions/exclusions, benchmark IDs/tolerances, boundary tests and approved product subset. Record rejection/revision reasons as well. An empty approval field never defaults to approval.
+
+Before releasing any profile, also specify an enforceable operating envelope and how minimum-load, maximum-load, lubrication, temperature, misalignment and speed requirements will be checked. C0-C's arithmetic tests do not provide those application checks.

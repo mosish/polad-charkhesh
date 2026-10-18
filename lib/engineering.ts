@@ -3,7 +3,8 @@ import type { ReviewedCalculationProfile } from '../domain/engineering';
 import { calculationEligibility, eligibilityMessage } from './engineering-eligibility';
 const isPositiveFinite = (value: number | undefined): value is number =>
   value !== undefined && Number.isFinite(value) && value > 0;
-export const reliabilityFactors: Record<number, number> = {
+// SKF 17000/1 EN (October 2018), p.90 table 3. Reliability only, not aSKF/aISO.
+export const reliabilityFactors: Readonly<Record<number, number>> = {
   90: 1,
   95: 0.64,
   98: 0.37,
@@ -63,14 +64,14 @@ export function calculate(
       throw new Error(
         'Spherical thrust bearings require Fa > 0 and Fr ≤ 0.55 Fa.',
       );
-    if (
-      !isPositiveFinite(p.calculationFactorY) ||
-      !isPositiveFinite(p.calculationFactorY0)
-    )
-      throw new Error('Product-specific spherical thrust factors are missing.');
-    P = Fa + p.calculationFactorY * Fr;
-    P0 = Fa + p.calculationFactorY0 * Fr;
-    formula = `P = Fa + ${p.calculationFactorY} Fr`;
+    // SKF 17000/1 EN p.917: X/X0 depend on series; runout selects the dynamic branch.
+    const method = eligibility.profile.sphericalThrust;
+    if (!method) throw new Error('Reviewed spherical thrust arrangement is missing.');
+    const [x, x0] = { '292': [1.1, 2.5], '293': [1.2, 2.7], '294': [1.3, 2.9] }[method.series];
+    const multiplier = method.runout === 'does-not-affect-load' ? 0.88 : 1;
+    P = multiplier * (Fa + x * Fr);
+    P0 = Fa + x0 * Fr;
+    formula = multiplier === 1 ? `P = Fa + ${x} Fr` : `P = 0.88 (Fa + ${x} Fr)`;
   } else if (family === 'spherical') {
     const {
       calculationFactorE: e,
@@ -102,6 +103,7 @@ export function calculate(
     } else {
       if (!isPositiveFinite(p.calculationFactorF0))
         throw new Error('The product-specific f0 factor is required.');
+      // NSK E1103d (2025), C021. This is not a generic cross-manufacturer table.
       const table = [
         [0.172, 0.19, 2.3],
         [0.345, 0.22, 1.99],
@@ -114,9 +116,10 @@ export function calculate(
         [6.89, 0.44, 1],
       ];
       const value = (p.calculationFactorF0 * Fa) / p.corKn;
-      if (value > 6.89)
+      // No sourced extrapolation or endpoint clamp: keep this method within the table.
+      if (!Number.isFinite(value) || value < 0.172 || value > 6.89)
         throw new Error(
-          'Combined loading exceeds the supported factor table. Consult the manufacturer.',
+          'Combined loading is outside the supported factor table. Consult the manufacturer.',
         );
       let e = table[0][1],
         y = table[0][2];
@@ -124,7 +127,7 @@ export function calculate(
         if (value <= table[i][0]) {
           const a = table[i - 1],
             b = table[i],
-            f = Math.max(0, (value - a[0]) / (b[0] - a[0]));
+            f = (value - a[0]) / (b[0] - a[0]);
           e = a[1] + f * (b[1] - a[1]);
           y = a[2] + f * (b[2] - a[2]);
           break;

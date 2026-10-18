@@ -30,13 +30,18 @@ export function calculationEligibility(
   if (profile.productId !== product.id || profile.technicalRevision !== calculationRevision(product)) return { eligible: false, reason: 'stale-review' };
   if (['angular-contact', 'self-aligning-ball', 'cam-follower'].includes(profile.family)) return { eligible: false, reason: 'unsupported-family' };
   if (
-    profile.methodVersion !== 'catalog-life/1' ||
+    profile.methodVersion !== 'catalog-life/2' ||
     !['deep-groove', 'cylindrical', 'needle', 'carb', 'spherical', 'tapered', 'thrust-ball', 'spherical-thrust'].includes(profile.family) ||
     !profile.arrangement.trim() || !profile.reviewedBy.trim() ||
     !/^\d{4}-\d{2}-\d{2}$/.test(profile.reviewedAt) ||
     !profile.loadCases.length || !profile.loadCases.every((value) => ['radial', 'axial', 'combined'].includes(value)) ||
     !profile.evidence.length || !profile.evidence.every((source) => source.url.startsWith('https://') && source.reference.trim())
   ) return { eligible: false, reason: 'invalid-review' };
+  if (profile.family === 'spherical-thrust' && (
+    !profile.sphericalThrust ||
+    !['292', '293', '294'].includes(profile.sphericalThrust.series) ||
+    !['affects-load', 'does-not-affect-load'].includes(profile.sphericalThrust.runout)
+  )) return { eligible: false, reason: 'invalid-review' };
   return { eligible: true, profile };
 }
 
