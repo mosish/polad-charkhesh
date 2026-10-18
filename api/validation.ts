@@ -1,4 +1,4 @@
-import { validateContent } from './content-validation';
+import { object, validateContent } from './content-validation';
 export const categories = [
   'ball',
   'roller',
@@ -27,27 +27,27 @@ const fields =
   `id code slug category nameFa nameEn descriptionFa descriptionEn inStock featured isArchived d D B weightKg crKn corKn speedGreaseRpm speedOilRpm speedReferenceRpm speedLimitingRpm thermalSpeedRatingRpm speedReferenceType cageMaterialFa cageMaterialEn sealingFa sealingEn clearanceOptions schematicType rMin contactAngle calculationFactorE calculationFactorX calculationFactorY calculationFactorY0 calculationFactorY1 calculationFactorY2 calculationFactorF0 imageUrl images pdfUrl applicationsFa applicationsEn industryIds brands technicalSources metaTitleFa metaTitleEn metaDescriptionFa metaDescriptionEn keywords createdAt updatedAt updatedBy`.split(
     ' ',
   );
-export function safeUrl(s: any) {
+export function safeUrl(s: unknown): s is string {
   return (
     typeof s === 'string' &&
     (s === '' || /^\/(?!\/)[^\s]*$/.test(s) || /^https:\/\/[^\s]+$/.test(s))
   );
 }
-export function validateProduct(p: any) {
+export function validateProduct(p: unknown) {
   const errors: string[] = [];
-  if (!p || typeof p !== 'object' || Array.isArray(p))
+  if (!object(p))
     return ['Product must be an object.'];
   for (const k of Object.keys(p))
     if (!fields.includes(k)) errors.push(`Unknown product field: ${k}`);
   for (const k of ['code', 'slug', 'nameEn', 'nameFa'])
     if (typeof p[k] !== 'string' || !p[k].trim() || p[k].length > 200)
       errors.push(`${k} is required (maximum 200 characters).`);
-  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug || ''))
+  if (typeof p.slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug))
     errors.push('Use a lowercase URL slug with single hyphens.');
-  if (!categories.includes(p.category)) errors.push('Invalid category.');
-  if (!schematics.includes(p.schematicType))
+  if (typeof p.category !== 'string' || !categories.includes(p.category)) errors.push('Invalid category.');
+  if (typeof p.schematicType !== 'string' || !schematics.includes(p.schematicType))
     errors.push('Invalid schematic type.');
-  const nonrotary = ['lubricant'].includes(p.category);
+  const nonrotary = p.category === 'lubricant';
   for (const k of [
     'd',
     'D',
@@ -65,7 +65,7 @@ export function validateProduct(p: any) {
       p[k] > 200000
     )
       errors.push(`${k} must be a finite non-negative number.`);
-  if (!nonrotary && (!(p.d > 0) || !(p.D > p.d) || !(p.B > 0)))
+  if (!nonrotary && (typeof p.d !== 'number' || typeof p.D !== 'number' || typeof p.B !== 'number' || !(p.d > 0) || !(p.D > p.d) || !(p.B > 0)))
     errors.push('Dimensions must satisfy 0 < d < D and B > 0.');
   for (const k of fields
     .filter((x) => x.startsWith('calculationFactor'))
@@ -91,20 +91,20 @@ export function validateProduct(p: any) {
       p[k] !== undefined &&
       (!Array.isArray(p[k]) ||
         p[k].length > 100 ||
-        p[k].some((x: any) => typeof x !== 'string' || x.length > 1000))
+        p[k].some((x: unknown) => typeof x !== 'string' || x.length > 1000))
     )
       errors.push(`${k} must be an array of short strings.`);
   for (const k of ['imageUrl', 'pdfUrl'])
     if (p[k] !== undefined && !safeUrl(p[k])) errors.push(`Invalid ${k}.`);
-  if (Array.isArray(p.images) && p.images.some((x: any) => !safeUrl(x)))
+  if (Array.isArray(p.images) && p.images.some((x: unknown) => !safeUrl(x)))
     errors.push('Invalid image URL.');
   if (
     p.technicalSources !== undefined &&
     (!Array.isArray(p.technicalSources) ||
       p.technicalSources.length > 30 ||
       p.technicalSources.some(
-        (s: any) =>
-          !s ||
+        (s: unknown) =>
+          !object(s) ||
           typeof s.manufacturer !== 'string' ||
           typeof s.reference !== 'string' ||
           (s.url && !safeUrl(s.url)),
@@ -116,7 +116,7 @@ export function validateProduct(p: any) {
       errors.push(`${k} is too long.`);
   return errors;
 }
-export function safeObject(x: any, depth = 0): boolean {
+export function safeObject(x: unknown, depth = 0): boolean {
   if (depth > 15) return false;
   if (x && typeof x === 'object') {
     if (
@@ -129,14 +129,15 @@ export function safeObject(x: any, depth = 0): boolean {
   }
   return true;
 }
-export function validateSettings(kind: string, x: any) {
-  if (!x || typeof x !== 'object' || Array.isArray(x) || !safeObject(x))
+export function validateSettings(kind: string, x: unknown) {
+  if (!object(x) || !safeObject(x))
     return ['Invalid settings.'];
   if (JSON.stringify(x).length > (kind === 'content' ? 500000 : 80000))
     return ['Settings too large.'];
   if (kind === 'seo') {
     for (const k of ['domainEn', 'domainFa']) {
       try {
+        if (typeof x[k] !== 'string') return ['Invalid canonical domain.'];
         const u = new URL(x[k]);
         if (
           u.protocol !== 'https:' ||
@@ -149,7 +150,9 @@ export function validateSettings(kind: string, x: any) {
       }
     }
     if (x.ogImage && !safeUrl(x.ogImage)) return ['Invalid image URL.'];
-    for (const page of [x, ...Object.values(x.pages || {})] as any[]) {
+    if (x.pages !== undefined && !object(x.pages)) return ['Invalid SEO pages.'];
+    for (const page of [x, ...Object.values(object(x.pages) ? x.pages : {})]) {
+      if (!object(page)) return ['Invalid SEO page.'];
       for (const key of ['titleEn', 'titleFa', 'descriptionEn', 'descriptionFa'])
         if (typeof page?.[key] !== 'string' || !page[key].trim() || page[key].length > (/title/i.test(key) ? 300 : 1000))
           return ['Fill every English and Persian SEO title and description (titles up to 300 characters, descriptions up to 1000).'];
@@ -161,7 +164,7 @@ export function validateSettings(kind: string, x: any) {
     for (const [k, v] of Object.entries(x)) {
       if (typeof v === 'string' && v.length > 3000)
         return ['Company field too long.'];
-      if (/Url$/.test(k) && !safeUrl(v))
+      if (k.endsWith('Url') && !safeUrl(v))
         return ['Use safe HTTPS contact links.'];
     }
   }

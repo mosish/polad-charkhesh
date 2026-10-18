@@ -1,6 +1,6 @@
 # Pending-work completion plan
 
-**Project:** COMPLETE-01 · **Started:** 2026-10-18 · **Status:** execution started, first foundation package prepared.
+**Project:** COMPLETE-01 · **Started:** 2026-10-18 · **Status:** C0-A, C0-B and C1-A developer packages complete in source; engineering sign-off and remaining phases open.
 
 The owner requested a plan covering every pending area and authorized starting work step by step. The owner will nominate an engineering reviewer later. Developer work, tests and source synchronization can proceed; engineer acceptance remains unassigned. Do not mistake a prepared evidence packet for that acceptance.
 
@@ -8,8 +8,8 @@ The owner requested a plan covering every pending area and authorized starting w
 
 | Phase | Work | Required evidence to close | Current state |
 | --- | --- | --- | --- |
-| C0 — Establish engineering foundation | Inventory current tools; review method sources; map all 110 products; record identity/family gaps; establish numerical benchmarks; fix demonstrated input-validation defects. Maps to ENG-01–ENG-03. | Reviewed method register and per-method product eligibility, independently derived tests, engineering reviewer sign-off. | **Started.** Inventory, 110-row draft matrix, identity queue and initial benchmark/validation fixes delivered. Remaining methods and approval open. |
-| C1 — Restore code-quality gate | Resolve 197 lint findings in reviewable batches: API validation/types; admin/client types; hooks/React behavior; semantics/accessibility; remaining tooling. Keep rule strength. | Zero lint errors, typecheck/tests/build/bundle checks passing; then remove advisory CI behavior. Record any justified exception with rationale. | Queued; 146 findings are explicit `any`, so this needs type modeling, not blanket autofix. Can proceed while C0 awaits review. |
+| C0 — Establish engineering foundation | Inventory current tools; review method sources; map all 110 products; record identity/family gaps; establish numerical benchmarks; fix demonstrated input-validation defects. Maps to ENG-01–ENG-03. | Reviewed method register and per-method product eligibility, independently derived tests, engineering reviewer sign-off. | **In progress.** Audit, eligibility contracts/runtime checks, independent manual mode and initial benchmarks delivered. Remaining methods and approval open. |
+| C1 — Restore code-quality gate | Resolve the original 197 lint findings in reviewable batches: API validation/types; admin/client types; hooks/React behavior; semantics/accessibility; remaining tooling. Keep rule strength. | Zero lint errors, typecheck/tests/build/bundle checks passing; then remove advisory CI behavior. Record any justified exception with rationale. | **In progress.** C1-A product/content validators complete: 21 findings removed; 176 remain, including 126 explicit `any`. |
 | C2 — Resolve catalog and asset evidence | Work through 47 ambiguous identities and two blocked records; finish 61 partial records. Resolve nine exact-image gaps; review 43 examples without treating them as exact identity evidence. Source documents and prepare company PDFs only for technically accepted products. | Every product has an explicit disposition, exact evidence for changed fields and owner decisions where required; guarded patch preview; stable IDs preserved. Every published PDF has exact identity, provenance and version. | Queued. Evidence unavailable is a recorded blocker, not “verified.” Requires owner stock/package evidence for ambiguous identities. |
 | C3 — Implement balanced toolbox | Follow ENG-04–ENG-11: shared bilingual workspace/input contracts; unit converter; life/target-life/static checks; selection/comparison; fit explorer; lubrication/maintenance guidance; local case notebook. | Each module's benchmarks and valid/invalid/unsupported journeys pass; reviewed bilingual guidance; local cases validate imports and stale data; no unsupported method silently runs. | Queued. Manual/unit/fit/workspace work can progress independently; product numerical eligibility requires C0 evidence. |
 | C4 — Full application acceptance | Review admin roles, media, inquiries, restore and audit flows; public catalog/dialog navigation; security; Persian/English content; desktop/tablet/mobile; keyboard and reduced motion. | Dated journey matrix with results, screenshots where useful, resolved blockers, typecheck/tests/lint/build/bundles/production smoke passing. Repeat affected checks after fixes. | Queued. Earlier targeted checks remain evidence, not full sign-off. |
@@ -40,12 +40,19 @@ Do not download private server backups: retain them on the VPS per the owner's i
 
 Validation: 75 tests passed with loopback-enabled execution, typecheck passed, production build and bundle budgets passed, isolated production smoke passed, and targeted lint on changed TypeScript files passed. Three new test groups failed before the numeric fixes and passed afterward. Full lint remains 197 errors; it is not cleared by targeted lint. There are no visual changes in this package.
 
+## Completed continuation packages
+
+**C0-B:** calculation family/arrangement/evidence contracts now govern catalog calculations independently of illustrations. Changed technical data invalidates reviews; absent approvals cannot produce results. Manual mode works independently and preserves inputs. All eleven flagged mappings are tested.
+
+**C1-A:** product and website-content validators use checked unknown inputs; malformed SEO containers fail explicitly. Lint reduced from 197 to 176 without rule changes.
+
+Latest validation: **83 tests**, typecheck, build, bundle budgets and isolated production smoke pass. Targeted English/Persian browser checks include missing products, blank/reset behavior, input preservation and an empty catalog. [Delivery evidence and remaining limits](engineering-tools/foundation/C0B_C1A_DELIVERY.md). Neither package is deployed.
+
 ## Next executable packages
 
-1. **C0-B / ENG-02:** explicit calculation-family/arrangement/evidence contracts separate from illustration metadata; tests for the 11 flagged mappings; useful unsupported states. Prepare data corrections without publishing unapproved technical values.
-2. **C1-A:** replace unsafe API validation `any` types with checked unknown-input contracts and regression coverage; rerun full lint and record the exact reduction. This can proceed before reviewer nomination.
-3. **C0-C / ENG-03:** finish manufacturer method excerpts, validity limits and independent benchmarks for equivalent/static loads, interpolation boundaries, reliability and speed-state semantics. Submit the packet to the nominated reviewer when available; do not contact others without authorization.
-4. **C2-A:** collect exact owner identity decisions using the generated queue, then research and prepare conflict-checked field patches and remaining asset candidates.
+1. **C1-B:** continue typed API/database/import contracts, then admin/client and React/accessibility findings. Clear the remaining 176 errors in bounded batches before enabling enforced CI lint.
+2. **C0-C / ENG-03:** finish manufacturer method excerpts, validity limits and independent benchmarks for equivalent/static loads, interpolation boundaries and reliability. Speed states are implemented, but their application-specific evidence still needs review. Submit the packet to the nominated reviewer when available; do not contact others without authorization.
+3. **C2-A:** collect exact owner identity decisions using the generated queue, then research and prepare conflict-checked field patches and remaining asset candidates.
 
 The existing toolbox estimate of 21–32 developer days covers its original scope only. It does not include all catalog evidence resolution, 197 lint findings, server operations or reviewer waiting time. Re-estimate after C0 and the first C1 batch; no unsupported calendar deadline is promised.
 

@@ -1,10 +1,10 @@
 import { sectionIds, siteExtras } from '../domain/site-content';
-const object = (v: any) => !!v && typeof v === 'object' && !Array.isArray(v);
-const short = (v: any, max = 5000) => typeof v === 'string' && v.length <= max;
-export const contentUrl = (v: any) =>
+export const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
+const short = (v: unknown, max = 5000): v is string => typeof v === 'string' && v.length <= max;
+export const contentUrl = (v: unknown): v is string =>
   short(v, 2000) &&
   (v === '' || /^\/(?!\/)[^\s\\]*$/.test(v) || /^https:\/\/[^\s\\]+$/.test(v));
-export function validateContent(v: any): string[] {
+export function validateContent(v: unknown): string[] {
   const fail = (message: string) => [message];
   if (!object(v)) return fail('Invalid website content.');
   const legacy = [
@@ -22,12 +22,13 @@ export function validateContent(v: any): string[] {
   for (const key of legacy)
     if (!object(v[key]) || Object.values(v[key]).some((x) => !short(x)))
       return fail('Section text must contain short bilingual strings.');
+  const brand = v.brand;
   if (
-    !object(v.brand) ||
-    !contentUrl(v.brand.logoUrl) ||
-    !short(v.brand.logoAltEn) ||
-    !short(v.brand.logoAltFa) ||
-    ['navy', 'accent', 'ink'].some((k) => !/^#[0-9a-fA-F]{6}$/.test(v.brand[k]))
+    !object(brand) ||
+    !contentUrl(brand.logoUrl) ||
+    !short(brand.logoAltEn) ||
+    !short(brand.logoAltFa) ||
+    ['navy', 'accent', 'ink'].some((k) => typeof brand[k] !== 'string' || !/^#[0-9a-fA-F]{6}$/.test(brand[k]))
   )
     return fail('Invalid logo or brand colors.');
   if (
@@ -37,7 +38,7 @@ export function validateContent(v: any): string[] {
     )
   )
     return fail('Use local or HTTPS image URLs.');
-  if (v.media.heroPresentation !== undefined && !['animation', 'photo'].includes(v.media.heroPresentation))
+  if (v.media.heroPresentation !== undefined && v.media.heroPresentation !== 'animation' && v.media.heroPresentation !== 'photo')
     return fail('Choose animation or photo for the homepage visual.');
   if (!object(v.links) || Object.values(v.links).some((x) => !contentUrl(x)))
     return fail('Invalid section links.');
@@ -46,7 +47,7 @@ export function validateContent(v: any): string[] {
     !Array.isArray(v.navigation.items) ||
     v.navigation.items.length > 12 ||
     v.navigation.items.some(
-      (i: any) =>
+      (i: unknown) =>
         !object(i) ||
         !short(i.id, 100) ||
         !short(i.labelEn, 100) ||
@@ -62,7 +63,7 @@ export function validateContent(v: any): string[] {
     layout.custom.length > 20
   )
     return fail('Invalid page layout.');
-  const card = (i: any) =>
+  const card = (i: unknown): i is Record<string, unknown> & { id: string } =>
     object(i) &&
     short(i.id, 100) &&
     /^[a-z0-9-]+$/.test(i.id) &&
@@ -73,7 +74,7 @@ export function validateContent(v: any): string[] {
     contentUrl(i.href);
   if (
     layout.custom.some(
-      (c: any) =>
+      (c: unknown) =>
         !card(c) ||
         !short(c.buttonEn, 100) ||
         !short(c.buttonFa, 100) ||
@@ -81,30 +82,31 @@ export function validateContent(v: any): string[] {
     )
   )
     return fail('Invalid custom section.');
-  const ids = [...sectionIds, ...layout.custom.map((c: any) => c.id)];
+  const ids = [...sectionIds, ...layout.custom.map((c: unknown) => object(c) ? c.id : undefined)];
   if (
     new Set(ids).size !== ids.length ||
     !Array.isArray(layout.order) ||
     layout.order.length !== ids.length ||
     new Set(layout.order).size !== ids.length ||
-    layout.order.some((i: any) => !ids.includes(i))
+    layout.order.some((i: unknown) => !ids.includes(i))
   )
     return fail('Page order must contain every section exactly once.');
   if (
     !Array.isArray(layout.hidden) ||
-    layout.hidden.some((id: any) => !ids.includes(id))
+    layout.hidden.some((id: unknown) => !ids.includes(id))
   )
     return fail('Invalid hidden section.');
+  const cards = v.cards;
   if (
-    !object(v.cards) ||
-    Object.keys(v.cards).some(
+    !object(cards) ||
+    Object.keys(cards).some(
       (k) => !['capabilities', 'industries', 'reasons'].includes(k),
     ) ||
     ['capabilities', 'industries', 'reasons'].some(
       (k) =>
-        !Array.isArray(v.cards[k]) ||
-        v.cards[k].length > 30 ||
-        v.cards[k].some((c: any) => !card(c)),
+        !Array.isArray(cards[k]) ||
+        cards[k].length > 30 ||
+        cards[k].some((c: unknown) => !card(c)),
     )
   )
     return fail('Invalid section cards.');
@@ -112,7 +114,7 @@ export function validateContent(v: any): string[] {
     !object(v.copy) ||
     Object.keys(v.copy).length > 1000 ||
     Object.entries(v.copy).some(
-      ([k, e]: any) =>
+      ([k, e]) =>
         !/^txt_[a-f0-9]+$/.test(k) ||
         !object(e) ||
         !['original', 'en', 'fa', 'group'].every((p) => short(e[p])),

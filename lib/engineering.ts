@@ -1,4 +1,6 @@
 import type { BearingProduct } from '../domain/product';
+import type { ReviewedCalculationProfile } from '../domain/engineering';
+import { calculationEligibility, eligibilityMessage } from './engineering-eligibility';
 const isPositiveFinite = (value: number | undefined): value is number =>
   value !== undefined && Number.isFinite(value) && value > 0;
 export const reliabilityFactors: Record<number, number> = {
@@ -14,7 +16,13 @@ export function calculate(
   rpm: number,
   reliability = 90,
   arrangementConfirmed = false,
+  profile?: ReviewedCalculationProfile,
 ) {
+  const eligibility = calculationEligibility(p, profile);
+  if (!eligibility.eligible) throw new Error(eligibilityMessage(eligibility.reason, false));
+  const loadCase = Fa === 0 ? 'radial' : Fr === 0 ? 'axial' : 'combined';
+  if (!eligibility.profile.loadCases.includes(loadCase))
+    throw new Error('This load case is outside the reviewed arrangement.');
   if (
     [Fr, Fa, rpm].some((x) => !Number.isFinite(x)) ||
     Fr < 0 ||
@@ -33,7 +41,7 @@ export function calculate(
     );
   if (!isPositiveFinite(p.crKn) || !isPositiveFinite(p.corKn))
     throw new Error('Positive finite manufacturer load ratings are required.');
-  const family = p.schematicType;
+  const family = eligibility.profile.family;
   let P = Fr,
     P0 = Fr,
     formula = 'P = Fr';
@@ -43,7 +51,7 @@ export function calculate(
       throw new Error(
         'Radial-only calculation: axial load is unsupported for NU/N, needle and CARB configurations.',
       );
-  } else if (family === 'thrust') {
+  } else if (family === 'thrust-ball') {
     if (Fr > 0 || Fa <= 0)
       throw new Error(
         'Flat thrust bearings require pure axial load: Fr = 0 and Fa > 0.',
@@ -133,7 +141,7 @@ export function calculate(
   } else throw new Error('This bearing family is not supported.');
   const exponent = [
     'deep-groove',
-    'thrust',
+    'thrust-ball',
     'angular-contact',
     'self-aligning-ball',
   ].includes(family)
@@ -157,10 +165,16 @@ export function calculate(
     adjustedHours,
     a1: reliabilityFactors[reliability],
     safety,
-    overspeed:
-      rpm > (p.speedLimitingRpm ||
-        Math.min(...[p.speedGreaseRpm, p.speedOilRpm].filter((x) => x > 0))),
+    speed: assessCatalogSpeed(p, rpm),
   };
+}
+
+export function assessCatalogSpeed(product: BearingProduct, rpm: number) {
+  const lubricantLimits = [product.speedGreaseRpm, product.speedOilRpm].filter(isPositiveFinite);
+  const limit = isPositiveFinite(product.speedLimitingRpm) ? product.speedLimitingRpm : lubricantLimits.length ? Math.min(...lubricantLimits) : undefined;
+  const basis = isPositiveFinite(product.speedLimitingRpm) ? 'limiting' : 'conservative-lubricant';
+  if (!isPositiveFinite(rpm) || limit === undefined) return { status: 'unknown' as const };
+  return { status: rpm > limit ? 'exceeded' as const : 'within' as const, limit, basis };
 }
 export function basicLife(C: number, P: number, rpm: number, roller: boolean) {
   if ([C, P, rpm].some((x) => !Number.isFinite(x) || x <= 0))

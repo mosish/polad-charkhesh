@@ -1,6 +1,6 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
-> **Project status:** Both language domains live; phased completion work has started. Engineering foundation audit and numeric-validation fixes are prepared in source; catalog acceptance, 197 lint errors, operations and final audits remain open.
+> **Project status:** Both language domains live; eligibility controls and independent manual calculation are implemented in source. First validator-cleanup batch complete; 176 lint errors, engineering acceptance, operations and final audits remain open.
 >
 > **Source of truth for code:** GitHub `main`
 >
@@ -9,6 +9,8 @@
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
 **Completion program started — 2026-10-18:** [COMPLETE-01](docs/COMPLETION_PLAN.md) sequences engineering foundation, lint, catalog/media, toolbox implementation, full acceptance, operations/release and indexing. The first package includes a 110-product draft eligibility matrix, method register, independent benchmarks and numeric-validation fixes. All 75 tests passed; the owner will nominate an engineer later. This package is not deployed and does not close engineering acceptance.
+
+**Next packages completed in source — 2026-10-18:** C0-B separates calculation approval from illustration metadata, rejects stale/unapproved product methods and keeps manual tools independent of catalog selection. C1-A replaces unsafe validator input types and reduces lint **197 → 176**. All **83 tests**, typecheck, build, bundle budgets and isolated production smoke passed, with targeted English/Persian browser checks. The approval registry remains empty pending engineering review; these changes are **not deployed**. [Delivery evidence](docs/engineering-tools/foundation/C0B_C1A_DELIVERY.md).
 
 **Engineering toolbox expansion — planning:** [Project definition, phased plan and backlog](docs/engineering-tools/PROJECT_PLAN.md) cover a balanced expansion of selection, calculations, lubrication and maintenance. Implementation and deployment have not started.
 
@@ -43,7 +45,7 @@ The main feature set is published on both language domains. The current catalog 
 | Product specifications and documents | 🟢 Implemented | Floating panels show image/drawing/exploded controls, key dimensions and contact actions alongside switchable specifications, documents and related components. Related navigation updates the URL and preserves dialog focus. Exact SKU media are incomplete. |
 | Animated bearing visuals | 🟢 Implemented | A full-width 3D banner randomly picks a bearing on each page load, with desktop companion bearings and presentation-speed controls. Older Safari can use a lazy WebGL 1 engine with the same model geometry, studio and motion logic; an animated SVG remains the last recovery path. Assembled mode follows scrolling; Exploded view stays fixed. The global bearing background and hero family buttons are removed. Bilingual typing headlines are editable in Admin. Product panels retain separate product-specific geometry. Models are illustrative. |
 | Loading performance | ✅ Published and checked | One GPU engine selected before download, compressed company fonts, responsive family photos and no redundant startup data refresh. Same 3D geometry and owner media retained. [Measurements](docs/PERFORMANCE_2026-10-14.md). |
-| Engineering workspace | 🟡 Foundation work started | Existing tools remain; [ENG-TOOLS-01](docs/engineering-tools/PROJECT_PLAN.md) is now in Phase 0. Inventory, 110-record draft eligibility and initial benchmarks are prepared; numeric validation is fixed in source. Method/family approval and expansion modules remain open. |
+| Engineering workspace | 🟡 Eligibility implementation complete; approval open | In source, product calculations require a current reviewed profile, independent of geometry; manual inputs work without a product. No production profile is approved yet. [Phase 0](docs/engineering-tools/PROJECT_PLAN.md) method review and the expanded modules remain open. Live site still runs the earlier release. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
 | Admin content and product editing | 🟢 Implemented | Product editing, missing-content filters, bulk actions and reviewed JSON import/export are implemented and tested. SEO previews and saving were reviewed in an isolated browser session; full media, roles and restore UI review remains. |
@@ -53,7 +55,7 @@ The main feature set is published on both language domains. The current catalog 
 | Technical SEO | ✅ Both domains checked; indexing gated | Full external checks passed 226 page/language variants per domain on October 15; later updates received targeted checks. Both domains still return `noindex, nofollow` on October 18. Final indexing approval and Search Console verification/submission remain open. |
 | Product images and documents | 🟡 Partial completion | 101 images published: 58 supplier-listing matches and 43 approved examples; nine exact-image replacements unresolved. No nonempty product `pdfUrl` attachments in the current 110 records. Sources/credits remain; visible image-area captions were removed. Image coverage does not establish exact-SKU or engineering verification. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
-| Repository lint | 🟡 Open blocker | Rerun on October 18: **197 errors**, exit code 1. No autofix performed. CI still treats lint as advisory; passing other checks does not clear this backlog. |
+| Repository lint | 🟡 Open blocker; first batch complete | October 18: **176 errors**, down from 197 after product/content validator cleanup. No lint rules weakened. CI remains advisory until the backlog is cleared. |
 | Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
 | VPS deployment and production smoke test | ✅ Published; final acceptance open | Release-specific build/tests/smoke and live checks passed; both public health endpoints passed again on October 18. Earlier owner Admin, certificate renewal, restore drill, service recovery and Safari confirmations remain dated evidence. Current proxy/edge state, full-host reboot, lint, content and complete audit acceptance remain open. [Current status evidence](docs/STATUS_REVIEW_2026-10-18.md). |
 
@@ -176,9 +178,9 @@ These dated entries describe the state at that milestone. Historical “pending,
 
 ## Remaining roadmap
 
-1. **Engineering/catalog foundation:** Complete the started ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03). Inventory and the first audit package are available; explicit eligibility contracts, remaining method benchmarks and the nominated engineer's approval are still needed. [Execution tracker](docs/COMPLETION_PLAN.md).
+1. **Engineering/catalog foundation:** Complete ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03). Inventory and explicit eligibility contracts are implemented; remaining method benchmarks and the nominated engineer's approval are still needed. [Execution tracker](docs/COMPLETION_PLAN.md).
 2. **Complete media and documents:** Resolve the nine remaining image entries; keep nonmatching substitutes out. Confirm the 43 example-image identities where exact stock is required. Source product documents; defer company datasheet production until technical acceptance.
-3. **Clear lint:** Resolve the freshly confirmed 197 errors, preserve behavior and decide when to enforce lint in CI.
+3. **Clear lint:** Resolve the remaining 176 errors, preserve behavior and enforce lint in CI when clean. The first product/content validator batch is complete.
 4. **Complete acceptance:** Finish admin role/restore/inquiry/media integration, security, accessibility, bilingual copy and desktop/tablet/mobile testing. Keep successful targeted checks distinct from this full review.
 5. **Close operational gaps:** Reverify both domains' Cloudflare proxy/edge-certificate state. Review provider networking before the deferred full-host reboot test; confirm earlier SSH-hardening follow-up. Review backup retention and recovery while keeping backups on the VPS as requested.
 6. **Approve indexing:** After content/release acceptance, make an explicit noindex-removal decision and verify Search Console/sitemap submission. No indexing settings changed during this review.

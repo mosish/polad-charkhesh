@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import { bearingProducts } from '../domain/catalog';
 import { basicLife, calculate } from '../lib/engineering';
 import { fitRange } from '../lib/showroom';
+import { fixtureProfile } from './fixtures/calculation-profile';
 
 function close(actual: number, expected: number) {
   assert.ok(Math.abs(actual - expected) <= Math.max(1e-9, Math.abs(expected) * 1e-12), `${actual} != ${expected}`);
@@ -29,20 +30,23 @@ void test('life methods reject numeric underflow and overflow', () => {
   assert.throws(() => basicLife(1, 1, Number.MAX_VALUE, false), /numerical range/);
   assert.throws(() => basicLife(1e200, 1e-200, 1000, true), /numerical range/);
   const ball = bearingProducts[0];
-  assert.throws(() => calculate({ ...ball, crKn: 1e-200 }, 1e200, 0, 1000), /numerical range/);
+  const underflow = { ...ball, crKn: 1e-200 };
+  assert.throws(() => calculate(underflow, 1e200, 0, 1000, 90, false, fixtureProfile(underflow)), /numerical range/);
 });
 
 void test('product calculation rejects nonfinite ratings and invalid required factors', () => {
   const ball = bearingProducts[0];
   for (const invalid of [NaN, Infinity, -Infinity, 0, -1]) {
-    assert.throws(() => calculate({ ...ball, crKn: invalid }, 2, 0, 1500));
-    assert.throws(() => calculate({ ...ball, corKn: invalid }, 2, 0, 1500));
-    assert.throws(() => calculate({ ...ball, calculationFactorF0: invalid }, 2, 1, 1500));
+    for (const key of ['crKn', 'corKn', 'calculationFactorF0'] as const) {
+      const product = { ...ball, [key]: invalid };
+      assert.throws(() => calculate(product, 2, 1, 1500, 90, false, fixtureProfile(product)), /ratings|factor/);
+    }
   }
   const spherical = bearingProducts.find((product) => product.schematicType === 'spherical')!;
   for (const key of ['calculationFactorE', 'calculationFactorY1', 'calculationFactorY2', 'calculationFactorY0'] as const) {
     for (const invalid of [NaN, Infinity, -1, 0]) {
-      assert.throws(() => calculate({ ...spherical, [key]: invalid }, 2, 1, 1500));
+      const product = { ...spherical, [key]: invalid };
+      assert.throws(() => calculate(product, 2, 1, 1500, 90, false, fixtureProfile(product, 'spherical')), /factors/);
     }
   }
 });

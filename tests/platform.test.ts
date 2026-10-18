@@ -5,6 +5,7 @@ import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { basicLife, calculate } from '../lib/engineering';
+import { fixtureProfile } from './fixtures/calculation-profile';
 import { bearingProducts } from '../domain/catalog';
 import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
 import { validateProduct, validateSettings } from '../api/validation';
@@ -103,25 +104,26 @@ void test('basic ball and roller life regression; invalid input rejected', () =>
 });
 void test('family restrictions prevent misleading outputs', () => {
   const nu = bearingProducts.find((p) => p.schematicType === 'cylindrical')!;
-  assert.throws(() => calculate(nu, 2, 1, 1500));
+  assert.throws(() => calculate(nu, 2, 1, 1500, 90, false, fixtureProfile(nu, 'cylindrical')), /Radial-only/);
   const thrust = bearingProducts.find((p) => p.schematicType === 'thrust')!;
-  assert.throws(() => calculate(thrust, 1, 2, 1500));
+  assert.throws(() => calculate(thrust, 1, 2, 1500, 90, false, fixtureProfile(thrust, 'thrust-ball')), /pure axial/);
   const tapered = bearingProducts.find((p) => p.schematicType === 'tapered')!;
-  assert.throws(() => calculate(tapered, 2, 1, 1500));
+  assert.throws(() => calculate(tapered, 2, 1, 1500, 90, false, fixtureProfile(tapered, 'tapered')), /arrangement/);
   const seal = bearingProducts.find((p) => p.category === 'seal')!;
   assert.throws(() => calculate(seal, 2, 0, 1500));
   const ball = bearingProducts[0],
-    r = calculate(ball, 2, 0, 1500, 95);
+    r = calculate(ball, 2, 0, 1500, 95, false, fixtureProfile(ball));
   assert.equal(r.P, 2);
   assert.equal(r.exponent, 3);
   assert.equal(r.adjustedHours, r.hours * 0.64);
   const sph = bearingProducts.find((p) => p.schematicType === 'spherical')!;
   assert.throws(() =>
-    calculate({ ...sph, calculationFactorY1: undefined }, 2, 1, 1500),
+    calculate({ ...sph, calculationFactorY1: undefined }, 2, 1, 1500, 90, false, fixtureProfile({ ...sph, calculationFactorY1: undefined }, 'spherical')),
+    /factors/,
   );
   const skf = skfCatalogAdditions.find((p) => p.code === '6002-2RSH')!;
-  assert.equal(calculate(skf, 2, 0, 14000).overspeed, false);
-  assert.equal(calculate(skf, 2, 0, 14001).overspeed, true);
+  assert.equal(calculate(skf, 2, 0, 14000, 90, false, fixtureProfile(skf)).speed.status, 'within');
+  assert.equal(calculate(skf, 2, 0, 14001, 90, false, fixtureProfile(skf)).speed.status, 'exceeded');
 });
 void test('unauthorized API, CSRF and malformed payload defenses', async () => {
   assert.equal(

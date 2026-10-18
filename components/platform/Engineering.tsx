@@ -6,7 +6,7 @@ import Copy from './Copy';
 import { useMemo, useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { calculate, basicLife } from '../../lib/engineering';
-import type { BearingProduct } from '../../domain/product';
+import { calculationEligibility, eligibilityMessage, selectedCalculationProduct } from '../../lib/engineering-eligibility';
 import { usePlatform, DataState } from './Context';
 
 type ToolTab = 'life' | 'basic' | 'fits' | 'compare' | 'converter';
@@ -14,18 +14,18 @@ type CalculationPreview =
   | { kind: 'life'; value: ReturnType<typeof calculate> }
   | { kind: 'basic'; value: ReturnType<typeof basicLife> }
   | { kind: 'error'; message: string }
+  | { kind: 'unavailable'; message: string }
   | { kind: 'incomplete' }
   | { kind: 'idle' };
 
 const numberInput = (value: string) => value.trim() === '' ? NaN : Number(value);
-const isRollerProduct = (product?: BearingProduct) => Boolean(product && ['tapered', 'spherical', 'cylindrical', 'needle', 'carb', 'spherical-thrust'].includes(product.schematicType));
 
 export default function Engineering({ embedded = false }: { embedded?: boolean }) {
   const { products, fa, t, loading, error, content } = usePlatform();
   const [selected, setSelected] = useState(
-    new URLSearchParams(location.search).get('product') || '6204-2rs',
+    new URLSearchParams(location.search).get('product') || '',
   );
-  const [tab, setTab] = useState<ToolTab>('life'),
+  const [tab, setTab] = useState<ToolTab>(selected ? 'life' : 'basic'),
     [fr, setFr] = useState('2'),
     [axial, setAxial] = useState('0'),
     [rpm, setRpm] = useState('1500'),
@@ -33,31 +33,38 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
     [confirmed, setConfirmed] = useState(false);
   const [val, setVal] = useState(25.4),
     [unit, setUnit] = useState('mm-inch');
-  const [cOverride, setCOverride] = useState<string | null>(null),
-    [load, setLoad] = useState('2'),
-    [rollerOverride, setRollerOverride] = useState<boolean | null>(null);
-  const p = products.find((x) => x.slug === selected || x.id === selected) || products[0];
-  const c = cOverride ?? (p?.crKn > 0 ? String(p.crKn) : '');
-  const roller = rollerOverride ?? isRollerProduct(p);
+  const [c, setC] = useState(''),
+    [load, setLoad] = useState(''),
+    [bearingType, setBearingType] = useState<'' | 'ball' | 'roller'>('');
+  const p = selectedCalculationProduct(products, selected);
+  const eligibility = calculationEligibility(p);
+  const roller = bearingType === 'roller';
   const preview = useMemo<CalculationPreview>(() => {
-    if (!p || (tab !== 'life' && tab !== 'basic')) return { kind: 'idle' };
+    if (tab !== 'life' && tab !== 'basic') return { kind: 'idle' };
+    if (tab === 'life') {
+      const state = calculationEligibility(p);
+      if (!state.eligible) return { kind: 'unavailable', message: eligibilityMessage(state.reason, fa) };
+    }
+    if (tab === 'basic' && !bearingType) return { kind: 'incomplete' };
     if ((tab === 'basic' ? [c, load, rpm] : [fr, axial, rpm]).some((value) => value.trim() === '')) return { kind: 'incomplete' };
     try {
       if (tab === 'basic') return { kind: 'basic', value: basicLife(numberInput(c), numberInput(load), numberInput(rpm), roller) };
+      if (!p) return { kind: 'idle' };
       return { kind: 'life', value: calculate(p, numberInput(fr), numberInput(axial), numberInput(rpm), rel, confirmed) };
     } catch (e) {
-      return { kind: 'error', message: e instanceof Error ? e.message : 'Calculation unavailable.' };
+      return { kind: 'error', message: fa ? 'ورودی‌های عددی، بار، سرعت و محدوده مجاز روش را بررسی کنید.' : e instanceof Error ? e.message : 'Calculation unavailable.' };
     }
-  }, [p, tab, c, load, rpm, roller, fr, axial, rel, confirmed]);
+  }, [p, tab, c, load, rpm, roller, bearingType, fr, axial, rel, confirmed, fa]);
   const resetInputs = () => {
-    setFr(['thrust', 'spherical-thrust'].includes(p?.schematicType || '') ? '0' : '2');
-    setAxial(['thrust', 'spherical-thrust'].includes(p?.schematicType || '') ? '2' : '0');
+    const axialFamily = eligibility.eligible && ['thrust-ball', 'spherical-thrust'].includes(eligibility.profile.family);
+    setFr(axialFamily ? '0' : '2');
+    setAxial(axialFamily ? '2' : '0');
     setRpm('1500');
     setRel(90);
     setConfirmed(false);
-    setCOverride(null);
-    setLoad('2');
-    setRollerOverride(null);
+    setC('');
+    setLoad('');
+    setBearingType('');
   };
   const Container = embedded ? 'div' : 'main';
   return (
@@ -76,15 +83,14 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
             {t('Selected component', 'قطعه انتخاب‌شده')}
             <select
               value={p?.slug || p?.id || ''}
-              disabled={!products.length}
+              disabled={loading || Boolean(error) || !products.some((product) => !product.isArchived)}
               onChange={(event) => {
                 setSelected(event.target.value);
-                setCOverride(null);
-                setRollerOverride(null);
                 setConfirmed(false);
               }}
             >
-              {products.map((product) => <option key={product.id} value={product.slug || product.id}>{product.code}</option>)}
+              <option value="">{t('Select a catalog product (optional for manual tools)', 'انتخاب محصول کاتالوگ (برای ابزار دستی اختیاری)')}</option>
+              {products.filter((product) => !product.isArchived).map((product) => <option key={product.id} value={product.slug || product.id}>{product.code}</option>)}
             </select>
             {p && <small dir="ltr">{p.d} × {p.D} × {p.B} mm{p.crKn > 0 ? ` · Cr ${p.crKn} kN` : ''}</small>}
           </label>
@@ -97,7 +103,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
         </p>
       </section>
       <DataState />
-      {!loading && !error && p && (
+      {(
         <>
           <div className="section engineering-section">
             <div className="tool-header">
@@ -122,14 +128,23 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                 </button>
               ))}
             </div>
-            {tab==='compare'?<Comparison key={p.id} initial={[p.id]}/>:tab==='fits'?<FitGuide/>:['life', 'basic'].includes(tab) ? (
+            {tab==='compare'?<Comparison key={p?.id || 'manual'} initial={p ? [p.id] : []}/>:tab==='fits'?<FitGuide/>: preview.kind === 'unavailable' ? (
+              <section className="panel" aria-live="polite">
+                <h3>{t('Product calculation unavailable', 'محاسبه بر اساس محصول در دسترس نیست')}</h3>
+                <p>{preview.message}</p>
+                <div className="calculation-actions">
+                  <button type="button" className="button" onClick={() => setTab('basic')}>{t('Use verified manual inputs', 'ورود دستی مقادیر تأییدشده')}</button>
+                  <a className="button" href="/#contact">{t('Contact an engineer', 'ارتباط با کارشناس')}</a>
+                </div>
+              </section>
+            ) : ['life', 'basic'].includes(tab) ? (
               <div className="calculator-grid">
                 <div className="panel">
                   <div className="section-label">
                     {t('OPERATING CONDITIONS', 'شرایط کارکرد')}
                   </div>
                   <h3>{t('Basic rating life', 'عمر نامی پایه')}</h3>
-                  <p className="engineering-live-hint">{t('Example operating inputs are shown; results update as you edit them.', 'ورودی‌های کاری نمونه نمایش داده شده‌اند؛ نتیجه با تغییر آنها به‌روز می‌شود.')}</p>
+                  <p className="engineering-live-hint">{tab === 'basic' ? t('Independent manual calculation. Enter verified C, P and bearing type; no catalog ratings are copied.', 'محاسبه مستقل دستی است. مقادیر تأییدشده C و P و نوع بیرینگ را وارد کنید؛ اطلاعات کاتالوگ کپی نمی‌شود.') : t('Example operating inputs are shown; results update as you edit them.', 'ورودی‌های کاری نمونه نمایش داده شده‌اند؛ نتیجه با تغییر آنها به‌روز می‌شود.')}</p>
                   {tab === 'life' ? (
                     <>
                       <div className="form-grid">
@@ -167,7 +182,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                           ))}
                         </select>
                       </label>
-                      {p.schematicType === 'tapered' && (
+                      {eligibility.eligible && eligibility.profile.family === 'tapered' && (
                         <label className="check">
                           <input
                             type="checkbox"
@@ -191,7 +206,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                             min="0.001"
                             step="any"
                             value={c}
-                            onChange={(e) => setCOverride(e.target.value)}
+                            onChange={(e) => setC(e.target.value)}
                           />
                         </label>
                         <label>
@@ -208,9 +223,10 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                       <label>
                         {t('Bearing type', 'نوع بیرینگ')}
                         <select
-                          value={roller ? 'roller' : 'ball'}
-                          onChange={(e) => setRollerOverride(e.target.value === 'roller')}
+                          value={bearingType}
+                          onChange={(e) => setBearingType(e.target.value as '' | 'ball' | 'roller')}
                         >
+                          <option value="">{t('Select bearing type', 'نوع بیرینگ را انتخاب کنید')}</option>
                           <option value="ball">
                             <Copy text="Ball · p = 3" />
                           </option>
@@ -239,7 +255,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                   </label>
                   <button className="button" type="button" onClick={resetInputs}>
                     <RotateCcw size={17} />
-                    {t('Reset example inputs', 'بازنشانی ورودی‌های نمونه')}
+                    {tab === 'basic' ? t('Clear manual inputs', 'پاک کردن ورودی‌های دستی') : t('Reset example inputs', 'بازنشانی ورودی‌های نمونه')}
                   </button>
                 </div>
                 <div className="calculation-result" aria-live="polite">
@@ -256,7 +272,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                       </h3>
                       <p className="error">{preview.message}</p>
                       <div className="calculation-actions">
-                        {tab === 'life' && p.crKn > 0 && (
+                        {tab === 'life' && (
                           <button type="button" className="button" onClick={() => setTab('basic')}>
                             {t('Use known equivalent load', 'استفاده از بار معادل معلوم')}
                           </button>
@@ -322,12 +338,14 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                       </div>
                       <code>{preview.kind === 'life' ? preview.value.formula : 'L10 = (C/P)^p'}</code>
                       <p>{t('L10 is a statistical fatigue-life estimate, not a guaranteed service interval.','L10 برآورد آماری عمر خستگی است و زمان سرویس تضمین‌شده نیست.')}</p>
-                      {preview.kind === 'life' && preview.value.overspeed && (
-                        <p className="error">
-                          {t(
-                            'Speed exceeds at least one catalog lubricant speed rating. Check the lubricant-specific limit.',
-                            'سرعت از حد مجاز حداقل یکی از روانکارها بالاتر است. حد مرتبط با روانکار را بررسی کنید.',
-                          )}
+                      {preview.kind === 'life' && (
+                        <p className={preview.value.speed.status === 'exceeded' ? 'error' : 'note'}>
+                          {preview.value.speed.status === 'unknown' ? t('Speed limit unknown; no speed acceptance is established.', 'حد سرعت نامشخص است؛ مجاز بودن سرعت تأیید نشده است.') : <>
+                            {preview.value.speed.status === 'exceeded' ? t('Entered speed exceeds ', 'سرعت واردشده بیشتر است از ') : t('Entered speed is within ', 'سرعت واردشده در محدوده است: ')}
+                            {preview.value.speed.basis === 'limiting' ? t('the catalog limiting speed: ', 'سرعت حدی کاتالوگ: ') : t('the lowest available lubricant speed rating: ', 'کمترین حد سرعت روانکار موجود: ')}
+                            {preview.value.speed.limit.toLocaleString()} rpm.
+                            {' '}{t('This comparison does not establish application suitability.', 'این مقایسه مناسب بودن برای کاربرد را تأیید نمی‌کند.')}
+                          </>}
                         </p>
                       )}
                     </>

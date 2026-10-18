@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import type { BearingProduct } from '../domain/product';
+import { calculationFamilyFlags as familyFlags } from '../domain/engineering';
 
 // Offline review only: no database connection, network access or catalog mutation.
 // Input must be a saved PUBLIC /api/products response, never a private admin backup.
@@ -21,20 +22,6 @@ type ReviewRecord = {
 };
 const ledger = JSON.parse(readFileSync('docs/catalog-review/ledger.json', 'utf8')) as { reviewDate: string; records: ReviewRecord[] };
 const records = new Map(ledger.records.map((record) => [record.id, record]));
-// Manually identified audit flags, NOT approved taxonomy corrections or manufacturer sign-off.
-const familyFlags: Record<string, string> = {
-  'pc-7312-becbm': 'Angular-contact designation currently routed through deep-groove; arrangement/family review required.',
-  'pc-7210-becbp': 'Angular-contact designation currently routed through deep-groove; arrangement/family review required.',
-  'pc-3308-a-2z': 'Double-row angular-contact candidate currently routed through deep-groove; verify exact variant.',
-  'pc-1309-ektn9': 'Self-aligning designation currently routed through deep-groove.',
-  'pc-nsk-7010-ctyndblp4': 'Precision angular-contact pair currently routed through deep-groove; pair arrangement unresolved.',
-  'pc-ntn-5206-s': 'NTN 5206S is double-row angular-contact; current deep-groove branch is inappropriate.',
-  'pc-29420-e': 'Description specifies spherical roller thrust, but current thrust branch uses ball exponent.',
-  'pc-na-4910': 'Needle family displayed as cylindrical; explicit calculation metadata needed.',
-  'pc-ina-nk-25-20': 'Needle family displayed as cylindrical; explicit calculation metadata needed.',
-  'pc-skf-c-2215-k': 'CARB family displayed as cylindrical; explicit calculation metadata needed.',
-  'pc-ina-kr-35-pp': 'Cam follower needs track/outer-ring applicability review, not a generic cylindrical assumption.',
-};
 const positive = (value: unknown) => typeof value === 'number' && Number.isFinite(value) && value > 0;
 const factorKeys: Partial<Record<BearingProduct['schematicType'], (keyof BearingProduct)[]>> = {
   'deep-groove': ['calculationFactorF0'],

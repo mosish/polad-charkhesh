@@ -3,11 +3,13 @@
 **Project:** Polad Charkhesh Engineering Toolbox · توسعه جعبه‌ابزار مهندسی پولاد چرخش  
 **Project ID:** ENG-TOOLS-01  
 **Defined:** 2026-10-18  
-**Status:** Phase 0 started on 2026-10-18; first audit/benchmark package and numeric-validation fixes prepared in source. New toolbox modules and live publication remain pending.
+**Status:** Phase 0 in progress; audit, initial benchmarks, numeric validation, explicit eligibility controls and independent manual mode are implemented in source. Method approval, new toolbox modules and publication remain pending.
 **Owner preference:** A balanced toolbox covering selection, calculations, lubrication and maintenance.  
 **Baseline:** Source reviewed through `d264db29ed29e798f80147ca3a0949a8d3303f3d`. This is a source assessment, not a fresh audit of every live engineering workflow.
 
 **Execution update:** The owner has now authorized starting the phased completion program and will nominate an engineer later. See [COMPLETE-01](../COMPLETION_PLAN.md), [foundation audit](foundation/AUDIT.md), [catalog eligibility draft](foundation/CATALOG_ELIGIBILITY.md) and [method register](methods/REGISTER.md). The plan's original baseline remains historical; the new audit starts from `4109a7a423154d853ad74f3aca862904c638312c`. Engineering sign-off remains open.
+
+**C0-B update:** [Eligibility and validation delivery](foundation/C0B_C1A_DELIVERY.md) separates methods from illustration metadata, requires current reviewed profiles and keeps manual mode independent. The approval registry remains empty. Historical observations below describe the planning baseline; this update supersedes the old runtime behavior.
 
 ## 1. Purpose and intended users
 
@@ -144,7 +146,7 @@ The owner decides priorities and accepts the product workflow. The developer imp
 
 Dependencies are access to exact manufacturer data, current applicable standards/method references, permission to reproduce any protected tables, and engineering review availability. Do not claim standards compliance from an unverified formula or copy restricted tables merely because they appear online.
 
-**Phase 0 / ENG-01 through ENG-03 is in progress.** ENG-01 inventory is complete, ENG-02 has a draft 110-record matrix, and ENG-03 has a method register and initial life/fit benchmarks. Remaining family methods, explicit eligibility contracts and engineering approval are open. The owner will nominate the reviewer later; budget and schedule remain open project decisions.
+**Phase 0 / ENG-01 through ENG-03 is in progress.** ENG-01 inventory is complete; ENG-02 has a 110-record draft matrix and implemented eligibility contracts; ENG-03 has a method register and initial life/fit benchmarks. Remaining family methods and engineering approval are open. The owner will nominate the reviewer later; budget and schedule remain open project decisions.
 
 ## 11. Reference basis
 
