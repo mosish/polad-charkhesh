@@ -207,7 +207,7 @@ void test('initial HTML exposes published product links and specs safely without
   );
   assert.match(product, /<h1>.*6204/s);
   assert.match(product, /Dynamic load rating/);
-  assert.match(product, /Family reference/);
+  assert.ok(!product.includes('<figcaption>'));
   assert.equal(
     initialPublicHtml(
       '/admin',

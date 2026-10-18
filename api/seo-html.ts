@@ -68,7 +68,7 @@ export function initialPublicHtml(
     if (media.url){
       const resized=referenceMedia(media.url);
       const image=`<img src="${publicUrl(resized?.src||media.url,true)}" ${resized?`srcset="${e(resized.srcSet)}" sizes="(max-width: 760px) 90vw, 640px"`:''} alt="${e(media.reference ? t(p.category + ' bearing family reference illustration', 'تصویر مرجع خانواده بیرینگ') : p[fa ? 'nameFa' : 'nameEn'])}" width="400" height="400" decoding="async"/>`;
-      body+=`<figure>${resized?`<picture><source type="image/webp" srcset="${e(resized.webpSrcSet)}" sizes="(max-width: 760px) 90vw, 640px"/>${image}</picture>`:image}${media.reference?'<figcaption>'+t('Family reference · illustration only','تصویر مرجع خانواده · صرفاً نمایشی')+'</figcaption>':''}</figure>`;
+      body+=`<figure>${resized?`<picture><source type="image/webp" srcset="${e(resized.webpSrcSet)}" sizes="(max-width: 760px) 90vw, 640px"/>${image}</picture>`:image}</figure>`;
     }
     body +=
       `<h2>${t('Technical specifications', 'مشخصات فنی')}</h2><dl>` +
