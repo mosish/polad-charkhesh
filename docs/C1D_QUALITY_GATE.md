@@ -1,6 +1,6 @@
 # C1-D — Restore the required source-quality gate
 
-**Date:** 2026-10-18 · **Status:** implementation and local validation complete; GitHub synchronization is part of delivery. This package has not been deployed. The live runtime remains the C1-C release recorded in [the deployment evidence](C1C_ADMIN_CLIENT_RELEASE.md).
+**Date:** 2026-10-18 · **Status:** implementation and local validation complete; GitHub synchronization is part of delivery. Subsequently deployed with C0-C/C3-A at `46272c6e8a9f0c95da739b1b21539dc2e9dde60d`; see [the release evidence](engineering-tools/C3A_INPUTS_UNITS.md).
 
 ## Result
 

@@ -13,7 +13,7 @@
 
 ## 1. Purpose and intended users
 
-**Publication update — 2026-10-18:** Foundation controls and C1-A/B/C admin/API contracts are live on both domains at `d41f111bf48a570cd89930c1f16271140047d67b`. Manual calculation works; the approval registry remains empty and catalog calculations require review. [Release checks and preserved owner-data evidence](../C1C_ADMIN_CLIENT_RELEASE.md).
+**Publication update — 2026-10-18:** Foundation controls, C1 quality, C0-C evidence controls and C3-A input/unit tools are live on both domains at `46272c6e8a9f0c95da739b1b21539dc2e9dde60d`. Manual calculation works; the approval registry remains empty and catalog calculations require review. [Release checks and preserved owner-data evidence](C3A_INPUTS_UNITS.md).
 
 Expand `/engineering` into a practical workspace where a visitor can choose a component, describe operating conditions, perform supported calculations, compare alternatives, and prepare a useful technical inquiry. Serve design engineers, maintenance technicians and technical purchasing staff without adding commerce features.
 

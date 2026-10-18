@@ -1,6 +1,6 @@
 # C0-C / ENG-03 — method evidence and regression packet
 
-Prepared 2026-10-18. **Developer package complete; engineering acceptance pending.** The owner will nominate the engineer later. No production calculation profiles have been approved or added. This source package is not deployed.
+Prepared 2026-10-18. **Developer package complete; engineering acceptance pending.** The owner will nominate the engineer later. No production calculation profiles have been approved or added. Subsequently deployed with C1-D/C3-A at `46272c6e8a9f0c95da739b1b21539dc2e9dde60d`; [release evidence](../C3A_INPUTS_UNITS.md). Engineering acceptance remains pending.
 
 ## Source retrieval record
 

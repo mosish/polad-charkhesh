@@ -1,6 +1,6 @@
 # C3-A — bilingual numerical inputs and unit conversion
 
-**Date:** 2026-10-18 · **Scope:** ENG-05 and the numerical-input/state portion of ENG-04. Implementation and local acceptance complete; publication evidence is recorded below after deployment. Engineering approval remains pending and the production calculation-profile registry stays empty.
+**Date:** 2026-10-18 · **Scope:** ENG-05 and the numerical-input/state portion of ENG-04. Implemented and deployed; publication evidence is below. Engineering approval remains pending and the production calculation-profile registry stays empty.
 
 ## Input contract
 
@@ -30,13 +30,24 @@ Pressure derives psi from lbf/in²; torque derives lbf·ft from force × length.
 ## Verification
 
 - **120/120 tests passed**, including 13 C3-A groups: locale grammar, invalid/blank states, localized manual/fit parity, fixed benchmarks for every quantity, every supported direction, round trips, limits and display precision. Fixed comparison tolerance is max(1e-10 absolute, 1e-12 relative); factors are not used to generate their own expected fixtures.
-- TypeScript, zero-diagnostic full lint, production build, bundle budgets and isolated production smoke passed on Windows. Initial payload remains 84.3 KB gzip; largest JS chunk 403.5 KB gzip, within budgets.
+- TypeScript, zero-diagnostic full lint, production build, bundle budgets and isolated production smoke passed on Windows. Initial payload remains 84.3 KB gzip; largest JS chunk 403.5 KB uncompressed (131.5 KB gzip), within budgets.
 - Browser checks: mixed Persian/Arabic manual inputs produced L10 = 1000 million revolutions and L10h ≈ 16,667 h for C=20 kN, P=2 kN, ball bearing, 1000 rpm. Localized fit inputs produced 10–30 µm clearance. The unapproved 6204 product still shows the unavailable/verified-manual-input path.
 - Converter checks: ۲۵٫۴ mm → 1 in; reverse swap → 25.4 mm; Persian 0 °C → ۳۲ °F; below-zero and comma inputs show errors; clearing removes the result. Quantity, language and tool changes retain their drafts. Keyboard traversal reaches the conversion controls/reference link.
 - English/Persian layouts checked at 360, 768 and 1440 px. No page-level horizontal overflow; the existing mobile tool strip scrolls within its container. No browser console errors in the local acceptance session. This is targeted C3-A acceptance, not completion of C4 or engineering sign-off.
 
 ## Release and next package
 
-Owner explicitly authorized deployment of completed C1-D/C0-C work and C3-A. Stage a pinned GitHub source, run Ubuntu checks and an isolated owner-data startup probe, keep verified backups on the VPS, compare all table/upload fingerprints across activation, and check both domains. No catalog-field, database migration, image, approval, indexing or infrastructure-setting changes are part of this package.
+Published **2026-10-18 10:39:08 UTC** on both domains. Runtime source: `46272c6e8a9f0c95da739b1b21539dc2e9dde60d`, including C1-D, C0-C and C3-A. Later documentation-only commits do not change this runtime revision.
+
+- [GitHub CI run](https://github.com/mosish/polad-charkhesh/actions/runs/39119859082) passed both jobs, including dependency audit, installer guards and required lint. The VPS independently installed the locked dependencies and passed TypeScript, zero-diagnostic lint, **120/120 tests**, build, bundle budgets and isolated production smoke.
+- A verified server-only backup copy started under the candidate with all 110 products and unchanged table/upload fingerprints. Final activation backup: `/var/backups/polad-charkhesh/backup-2026-10-18T10-39-08.544Z-e1d692`. Neither private backups nor owner data were downloaded or committed.
+- The first activation's health probe incorrectly used port 3000, so its rollback trap restored the previous release. The existing service was verified healthy on port 3001, all data hashes matched across rollback, and the corrected activation passed. Private attempt logs were retained.
+- The current symlink points to the pinned candidate; application and Nginx are active and local health is `ok`. Previous release `d41f111bf48a570cd89930c1f16271140047d67b` and its hashed assets remain for rollback/open clients.
+- Every database-table and upload fingerprint matched across successful activation: 110 products, one administrator, three sessions, six settings, 44 audit rows, eight rate-limit rows, zero inquiry/media/backup-snapshot rows and zero upload files. No catalog fields, images, credentials or owner content were changed.
+- Live browser checks: English force conversion accepts Persian ۲٫۵ kN and displays 2500 N; manual C=30/P=3/ball/1500 rpm displays 1000 million revolutions and 11,111 h; NTN 5206 S remains blocked pending family/arrangement review. The Persian domain defaults to Persian and converts ۱۰ Δ°C to ۱۸ Δ°F.
+
+Trusted-HTTPS route checks executed from the VPS passed **226 page/language variants per domain (452 total)**, four initial assets and **115 resolved local image assets per domain**, health, admin entry, robots, sitemap, llms and favicon. Both domains expose identical products; default languages are correct, private backup returns 401, unknown pages return 404 and noindex is retained. Seven legacy image placeholders still resolve through the existing family fallback. The Windows full-route batch encountered intermittent response-body timeouts and was stopped after the VPS batch passed; live browser acceptance from Windows passed on both domains. This is not an independent global uptime measurement.
+
+Private deployment logs and fingerprints remain under `/root/polad-preparation/c3a-*`. No database migrations, product approvals, indexing changes, DNS changes, credential changes or host reboot were performed. Engineering/content acceptance and full C4/C5 acceptance remain open.
 
 Next executable package: **C3-B — independent manual target-life worksheet and explicit result assumptions**, the manual portion of ENG-06. Product-specific static/speed/life expansion remains gated on reviewed methods, applicability and operating envelopes. C2 identity decisions and C0 engineering acceptance remain open in parallel.
