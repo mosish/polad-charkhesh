@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-18T07:09:36.862Z",
+  "runtimeRelease": "bcdba02aa66adbca216b25feb9ee0e3c1e53ab66",
+  "results": [
+    {
+      "origin": "https://poladcharkhesh.com",
+      "products": 110,
+      "changedProducts": 1,
+      "imageHashMatched": true,
+      "other109ProductsUnchanged": true,
+      "technicalFieldsUnchanged": true,
+      "language": "en"
+    },
+    {
+      "origin": "https://poladcharkhesh.ir",
+      "products": 110,
+      "changedProducts": 1,
+      "imageHashMatched": true,
+      "other109ProductsUnchanged": true,
+      "technicalFieldsUnchanged": true,
+      "language": "fa"
+    }
+  ]
+}
