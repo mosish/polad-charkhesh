@@ -1,10 +1,10 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
-> **Project status:** Both language domains live with trusted HTTPS; English Cloudflare proxy activation and final acceptance remain open
+> **Project status:** Both language domains live; catalog/engineering acceptance, 197 lint errors, operational checks and final audits remain open. Engineering expansion is planned, not started.
 >
 > **Source of truth for code:** GitHub `main`
 >
-> **Last status review:** 2026-10-15
+> **Last status review:** 2026-10-18 — [fresh checks, evidence and remaining work](docs/STATUS_REVIEW_2026-10-18.md)
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
@@ -12,11 +12,13 @@ Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering
 
 **Exact-image follow-up published — 2026-10-18:** NTN 5206S now has a matching supplier photograph of the bearing and marked box. Image replacements total 101; nine unresolved entries remain unchanged under the owner's exact-match-only instruction. [Follow-up evidence and deployment checks](docs/CATALOG_DEPLOYMENT_2026-10-18.md).
 
+**Image presentation updated — 2026-10-18:** Labels, badges and source captions were removed from product image areas at the owner's request. Images, accessible descriptions and the separate Image credits page are preserved. [Published change and checks](docs/IMAGE_LABEL_REMOVAL_2026-10-18.md).
+
 **Catalog update published — 2026-10-15:** The owner-authorized update applied 61 technical-record patches and 100 product-image replacements across the existing 110-product catalog. Images include 57 supplier-listing matches and 43 clearly labeled examples; ten unresolved images remain unchanged. [Deployment and verification record](docs/CATALOG_DEPLOYMENT_2026-10-15.md). Manufacturer evidence gaps and final engineering acceptance remain open before company datasheet PDFs; publication does not establish exact photographed-unit verification.
 
-**Live Persian website:** [poladcharkhesh.ir](https://poladcharkhesh.ir/) · [Admin login](https://poladcharkhesh.ir/admin/). Cloudflare proxying, Full (strict), a valid origin certificate and automatic renewal are active. The existing 110-product catalog and owner account were preserved. The [temporary IP origin](https://213.176.28.119/) remains available. Indexing remains gated by final content/audit acceptance. [Deployment evidence and remaining checks](docs/VPS_DEPLOYMENT_2026-10-14.md).
+**Live Persian website:** [poladcharkhesh.ir](https://poladcharkhesh.ir/) · [Admin login](https://poladcharkhesh.ir/admin/). Trusted HTTPS and public health passed on October 18. Persian defaults, preserved owner data and earlier certificate-renewal checks are recorded in the [deployment evidence](docs/VPS_DEPLOYMENT_2026-10-14.md). Today's DNS/HTTP checks show direct VPS delivery; reverify current Cloudflare proxy/edge settings rather than assuming the earlier proxy state still applies. Indexing remains gated.
 
-**Live English website:** [poladcharkhesh.com](https://poladcharkhesh.com/) · [Admin login](https://poladcharkhesh.com/admin/). The registrar NS blocker is resolved. Independent apex/www HTTPS and its renewal dry-run passed; `.com` defaults to English and `.ir` to Persian. English Cloudflare Full (strict) is saved; records remain DNS only while its edge certificate finishes validation; the zone is now active. [Activation evidence](docs/ENGLISH_DOMAIN_2026-10-15.md).
+**Live English website:** [poladcharkhesh.com](https://poladcharkhesh.com/) · [Admin login](https://poladcharkhesh.com/admin/). The registrar blocker was resolved; trusted HTTPS and public health passed again on October 18. `.com` defaults to English and `.ir` to Persian. The [October 15 activation record](docs/ENGLISH_DOMAIN_2026-10-15.md) left English Cloudflare proxy activation pending. Today's requests still show direct VPS delivery; the dashboard's current certificate/proxy state has not been rechecked.
 
 **Install from GitHub on Ubuntu 24.04:** [English instructions](docs/GITHUB_VPS_INSTALL.md) · [راهنمای کامل فارسی](docs/UBUNTU_24_GUIDE_FA.md). The repository includes the admin panel and API. The first-install helper builds a pinned source revision and supports private owner-data restoration or an explicitly new database; its default HTTPS workflow is restricted staging. Credentials, databases and uploaded files must remain outside GitHub. The existing VPS has now been published using the separate deployment recorded above; do not rerun the first-install helper on it.
 
@@ -28,30 +30,30 @@ This is **not an online shop**. There are no prices, carts, checkout, payments, 
 
 ## Current project status
 
-The main feature set is published on both language domains and the temporary VPS address. Owner-authenticated administration, an unchanged-settings save on the real Persian origin and targeted Persian mobile preview checks passed. The current work is to **verify manufacturer data and content, complete final audits, and complete English Cloudflare edge activation**. Successful deployment checks do not mean manufacturer data and every browser workflow have been approved.
+The main feature set is published on both language domains. The current catalog has 110 products, 101 replacement images and no product PDF attachments. Earlier owner-authenticated administration, isolated restore and service-recovery checks passed; final acceptance remains open. The latest recorded application release is `326782d58fa8065c2219c6011a24a9eff1473ba3`; later documentation commits do not deploy automatically. The next engineering step is the planned method/data audit, not an assumption that all catalog inputs are verified.
 
 | Area | Status | What this means now |
 | --- | --- | --- |
 | Public website and industrial visual system | 🟢 Implemented | Responsive dark glass design, company branding, and a unified single-page public journey are in place; final device review remains. |
 | Persian/English experience | 🟢 Implemented | RTL/LTR and language switching exist; final copy parity needs review. |
-| Canonical product seed | ✅ Verified in tests | All 68 legacy identities are preserved, and 42 SKF sealed deep-groove designations bring the bundled catalog to 110 records. Current SKU verification remains a launch task. |
+| Catalog identity and technical data | 🟡 Partially reviewed | 110 identities preserved; 61 technical-record patches published. The last technical review has 61 partial, 47 ambiguous and two blocked entries, with no complete manufacturer-verification sign-off. SQLite remains authoritative. |
 | Catalog search and product comparison | ✅ Verified in tests | Search-first catalog with optional dependent size filters, active-filter chips, live family counts and shareable filtered URLs; up to three-product comparison remains in the engineering workspace. |
 | Product specifications and documents | 🟢 Implemented | Floating panels show image/drawing/exploded controls, key dimensions and contact actions alongside switchable specifications, documents and related components. Related navigation updates the URL and preserves dialog focus. Exact SKU media are incomplete. |
 | Animated bearing visuals | 🟢 Implemented | A full-width 3D banner randomly picks a bearing on each page load, with desktop companion bearings and presentation-speed controls. Older Safari can use a lazy WebGL 1 engine with the same model geometry, studio and motion logic; an animated SVG remains the last recovery path. Assembled mode follows scrolling; Exploded view stays fixed. The global bearing background and hero family buttons are removed. Bilingual typing headlines are editable in Admin. Product panels retain separate product-specific geometry. Models are illustrative. |
 | Loading performance | ✅ Published and checked | One GPU engine selected before download, compressed company fonts, responsive family photos and no redundant startup data refresh. Same 3D geometry and owner media retained. [Measurements](docs/PERFORMANCE_2026-10-14.md). |
-| Engineering workspace | 🟢 Implemented | Life and known-load estimates show example results immediately and recalculate as inputs change. Fit limits, comparison, and unit conversion remain on the homepage; application review remains essential. |
+| Engineering workspace | 🟢 Existing tools; expansion planned | Life/known-load estimates, fit limits, comparison and unit conversion exist. [ENG-TOOLS-01](docs/engineering-tools/PROJECT_PLAN.md) defines the balanced expansion; Phase 0 must review methods, family/arrangement rules and catalog eligibility before implementation. |
 | Express API and SQLite persistence | ✅ Verified in tests | Products, settings, inquiries, accounts, media metadata, and audit records persist locally. |
 | Admin authentication and roles | ✅ Verified in tests | Server sessions, first-run setup, protected APIs, and role checks are implemented. |
 | Admin content and product editing | 🟢 Implemented | Product editing, missing-content filters, bulk actions and reviewed JSON import/export are implemented and tested. SEO previews and saving were reviewed in an isolated browser session; full media, roles and restore UI review remains. |
-| Physical media upload | 🟢 Implemented | PNG, JPEG, WebP, and PDF upload/delete are supported; production storage and backup need checking. |
+| Physical media upload | ✅ Targeted production checks passed | PNG/JPEG/WebP/PDF handling is implemented; isolated upload/download/removal and persistent storage/backup were checked during deployment. Full admin workflow acceptance remains open. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
-| Backup and restore | 🟢 Implemented | Admin JSON export/restore is tested. A separate verified SQLite-and-uploads backup command is ready for an offline server backup; a live-host restore drill remains. |
-| Technical SEO | ✅ Verified locally and on `.ir` | 113 routes pass bilingual content and production HTTP checks. Shared breadcrumbs, LocalBusiness/Product schema, canonical/hreflang, robots, sitemap, llms.txt, branded 404, favicon and alt-text improvements are implemented. [Checklist and evidence](docs/SEO_PREDEPLOY_CHECKLIST.md). English Cloudflare edge activation and indexing approval remain pending. |
-| Exact product photos and manufacturer PDFs | 🟡 Pending content | Exact SKU photos are still missing. SKF's public product/image hosts blocked reliable access, so the 42 new records use clearly labeled family-reference visuals and link to SKF's official catalog. Admin uploads can replace each image later. |
+| Backup and restore | ✅ Backup and isolated restore checked | Verified VPS backups, an isolated restore drill and service crash recovery are recorded. Full-host reboot acceptance remains separate. Keep backups on the VPS only per the owner's current instruction. |
+| Technical SEO | ✅ Both domains checked; indexing gated | Full external checks passed 226 page/language variants per domain on October 15; later updates received targeted checks. Both domains still return `noindex, nofollow` on October 18. Final indexing approval and Search Console verification/submission remain open. |
+| Product images and documents | 🟡 Partial completion | 101 images published: 58 supplier-listing matches and 43 approved examples; nine exact-image replacements unresolved. No nonempty product `pdfUrl` attachments in the current 110 records. Sources/credits remain; visible image-area captions were removed. Image coverage does not establish exact-SKU or engineering verification. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
-| Repository lint | 🟡 In progress | Tooling now uses the platform TypeScript configuration and Vite-appropriate rules. Current count is 197 findings; new compatibility/fallback files pass targeted lint, but repository lint still fails and remains a launch blocker. |
+| Repository lint | 🟡 Open blocker | Rerun on October 18: **197 errors**, exit code 1. No autofix performed. CI still treats lint as advisory; passing other checks does not clear this backlog. |
 | Automated source checks | 🟢 Configured | GitHub Actions runs type checks, regression tests, build and isolated production smoke checks on main pushes and pull requests. Lint is reported explicitly as advisory while the backlog remains. Branch protection and deployment approval are separate. |
-| VPS deployment and production smoke test | 🟡 Both domains live; final acceptance open | Existing owner data published on both language-domain HTTPS origins and the temporary IP. All 64 source tests, 226 live language/page checks, owner-authenticated admin workflows, Persian mobile preview, certificate renewal, restore drill and real service crash recovery passed. The owner confirmed Safari content and intermediate animation recovery; the owner also confirmed the published 3D model appears and moves on Safari. English Cloudflare edge activation, host reboot, lint/content and full audit remain open. [Deployment evidence](docs/VPS_DEPLOYMENT_2026-10-14.md). |
+| VPS deployment and production smoke test | ✅ Published; final acceptance open | Release-specific build/tests/smoke and live checks passed; both public health endpoints passed again on October 18. Earlier owner Admin, certificate renewal, restore drill, service recovery and Safari confirmations remain dated evidence. Current proxy/edge state, full-host reboot, lint, content and complete audit acceptance remain open. [Current status evidence](docs/STATUS_REVIEW_2026-10-18.md). |
 
 **Legend:** ✅ verified in an applicable test or check · 🟢 implemented, with final review remaining · 🟡 pending work or validation · ⬜ not started · 🔴 blocked.
 
@@ -99,7 +101,7 @@ Administrators can:
 - Set featured/availability fields and attach a gallery image or PDF document.
 - Archive and restore records; permanent deletion requires an archived record, a super-admin, and typed confirmation.
 
-The 68 legacy products remain unchanged; 42 SKF catalog entries are added once to existing databases without overwriting admin edits or archived records. Future edits live in SQLite. Duplication does not alter the source record or silently create a catalog item: it opens a reviewable draft.
+The catalog preserves 68 legacy identities plus 42 SKF entries. Technical and media changes were subsequently applied through guarded review patches; the legacy values are not all unchanged. Current edits live in SQLite. Duplication does not alter the source record or silently create a catalog item: it opens a reviewable draft.
 
 ### Website content and company settings
 
@@ -122,13 +124,13 @@ Backup JSON includes catalog, content/settings, inquiries, and media metadata. I
 - **Runtime data:** SQLite is authoritative for saved products and website content. The bundled catalog seeds a newly created product table; the one-time SKF expansion inserts missing records into existing databases without overwriting admin edits.
 - **Local paths:** `data/platform.sqlite` for the database and `data/uploads` for uploaded files. Both are excluded from Git.
 
-The current Node/SQLite application is prepared for a VPS. It is not a Cloudflare Worker deployment. Pushing source to GitHub does not publish the site. See [architecture](docs/ARCHITECTURE.md), [data model](docs/DATA_MODEL.md), and [deployment preparation](docs/DEPLOYMENT.md).
+The current Node/SQLite application is running on the existing VPS. It is not a Cloudflare Worker deployment. Pushing source to GitHub does not publish the site. See [architecture](docs/ARCHITECTURE.md), [data model](docs/DATA_MODEL.md), and [deployment procedures](docs/DEPLOYMENT.md).
 
 ## Product and engineering principles
 
 Products are engineering catalog entries, not retail merchandise. A product may include designation, family, manufacturer reference, dimensions, load/speed ratings, applications, source notes, gallery images, and documents.
 
-The 3D views use catalog dimensions and vary rolling-element types, but raceways, cages, and internal details are illustrative estimates rather than manufacturer CAD. The generated PDFs are Polad Charkhesh Arian Tech summaries of imported records, **not manufacturer-issued documents**. Family reference images are labeled and are not exact-SKU photographs. Basic bearing-life and fit results are guidance, not a substitute for manufacturer selection or review of operating conditions. See [engineering calculations](docs/ENGINEERING_CALCULATIONS.md).
+The 3D views use catalog dimensions and vary rolling-element types, but raceways, cages, and internal details are illustrative estimates rather than manufacturer CAD. The existing PDF generator produces company summaries, **not manufacturer-issued documents**; verified company datasheet production remains gated by catalog acceptance. Images include supplier listings, examples and unresolved references. Their provenance remains in the ledger and Image credits page; visible image-area labels were removed at the owner's request. Basic bearing-life and fit results require applicable manufacturer data and operating-condition review. See [engineering calculations](docs/ENGINEERING_CALCULATIONS.md).
 
 The 42 new SKF entries are transcribed from the [official SKF sealed single-row deep-groove table, section 1.2](https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf). The table reports **reference** and **limiting** speed, which the site displays under those names rather than treating them as grease/oil-specific ratings. Blank cage, clearance, and application fields remain blank where this source did not identify them. These records are catalog references, not a claim that Polad Charkhesh Arian Tech stocks each variant.
 
@@ -143,6 +145,8 @@ Keep the public experience focused on company presentation, technical discovery,
 ---
 
 ## Development history
+
+These dated entries describe the state at that milestone. Historical “pending,” “unchanged,” “labeled” and “not deployed” statements are superseded by the current status and roadmap above/below; they are retained as evidence, not current instructions.
 
 - **2026-09-08 — Foundation:** Built the public site, migrated the 68-product seed, added Express/SQLite, server-side admin authentication, editing, inquiries, backups, and initial engineering tools.
 - **2026-09-08 — Bearing experience:** Added liquid-glass styling, animated families, exploded views, double-row spherical rollers, and product-aware 3D Bearing Explorer models.
@@ -170,14 +174,15 @@ Keep the public experience focused on company presentation, technical discovery,
 
 ## Remaining roadmap
 
-1. **Integration audit:** Check each visible admin flow from UI through API and SQLite to the public site, including product editing/archive, company settings, CMS preview/save, uploads, inquiry statuses, SEO, account roles, restore, and audit logs.
-2. **Data and media verification:** Review company details and the 68 legacy records against original manufacturer data. Recheck the 42 SKF additions against current SKU pages and attach exact product photographs and manufacturer-issued documents when an authorized asset source is available.
-3. **Browser and accessibility QA:** Exercise desktop, tablet, mobile, Persian RTL, English LTR, forms, dialogs, loading/error states, keyboard access, and reduced motion.
-4. **Production readiness:** Verify secrets, HTTPS and reverse proxy behavior, cookies, rate limits, persistent paths, permissions, logs, and recoverable backups of SQLite and uploads.
-5. **Deployment candidate:** Once launch blockers are resolved, rerun type checks, tests, build, and end-to-end checks; identify the release commit or tag.
-6. **VPS deployment and smoke test:** Deploy the approved candidate, then verify domains, assets, login, content edits, product pages, inquiries, backups, and logs in production.
+1. **Engineering/catalog foundation:** Start ENG-TOOLS-01 Phase 0 (ENG-01–ENG-03): audit existing methods, exact identities, family/arrangement rules, conflicting values and required factors; define which records can support each calculation. Preserve owner data while preparing reviewed corrections.
+2. **Complete media and documents:** Resolve the nine remaining image entries; keep nonmatching substitutes out. Confirm the 43 example-image identities where exact stock is required. Source product documents; defer company datasheet production until technical acceptance.
+3. **Clear lint:** Resolve the freshly confirmed 197 errors, preserve behavior and decide when to enforce lint in CI.
+4. **Complete acceptance:** Finish admin role/restore/inquiry/media integration, security, accessibility, bilingual copy and desktop/tablet/mobile testing. Keep successful targeted checks distinct from this full review.
+5. **Close operational gaps:** Reverify both domains' Cloudflare proxy/edge-certificate state. Review provider networking before the deferred full-host reboot test; confirm earlier SSH-hardening follow-up. Review backup retention and recovery while keeping backups on the VPS as requested.
+6. **Approve indexing:** After content/release acceptance, make an explicit noindex-removal decision and verify Search Console/sitemap submission. No indexing settings changed during this review.
+7. **Implement the balanced engineering expansion:** After its foundation gate, follow the [project plan](docs/engineering-tools/PROJECT_PLAN.md) through workspace design, calculations, lubrication/maintenance, local cases and acceptance. Implementation has not started.
 
-Any visible admin control should work end to end or be clearly disabled before launch. Future work should prioritize verified gaps and launch blockers over speculative features.
+Deployment, an isolated restore drill and service crash recovery are already completed milestones, not first-time tasks still to perform. Future releases still require their own checks, a pinned revision, backup and rollback. [Detailed status review](docs/STATUS_REVIEW_2026-10-18.md).
 
 ---
 
@@ -213,7 +218,9 @@ GitHub `main` is the source of truth for application code. Before work, read the
 
 ## Launch philosophy
 
-Major local features are already present. Prioritize launch blockers, real product data, integration defects, security, backups, and deployment preparation. Defer unrelated feature expansion until the site is stable and the business approves its public content.
+The site is live, while manufacturer/content and final acceptance gates remain open. Prioritize confirmed defects and the engineering expansion's foundation audit; feature development must not imply that unresolved catalog data has been verified. Publication and indexing approval are separate decisions.
+
+The dated implementation notes below are historical snapshots. Use the current status table and remaining roadmap for present-day work.
 
 
 ### 2026-10-04 — Bilingual SEO overhaul
