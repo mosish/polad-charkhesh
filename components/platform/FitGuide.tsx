@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { usePlatform } from './Context';
 import { fitRange } from '../../lib/showroom';
+import { engineeringNumber } from '../../lib/engineering-input';
+import EngineeringNumberInput, { EngineeringInputHint } from './EngineeringNumberInput';
 export default function FitGuide() {
   const { t } = usePlatform();
   const [limits, setLimits] = useState(['20', '20.01', '20.005', '20.015']);
   let result: ReturnType<typeof fitRange> | undefined;
   try {
     result = fitRange(
-      ...(limits.map((v) => (v.trim() ? Number(v) : NaN)) as [
+      ...(limits.map((v) => engineeringNumber(v)) as [
         number,
         number,
         number,
@@ -27,6 +29,7 @@ export default function FitGuide() {
           'حدود تأییدشده قطرهای جفت‌شونده را بر حسب میلی‌متر وارد کنید. مقدار مثبت لقی و مقدار منفی تداخل است.',
         )}
       </p>
+      <EngineeringInputHint />
       <div className="form-grid">
         {[
           t('Hole minimum / mm', 'حداقل سوراخ / mm'),
@@ -36,17 +39,7 @@ export default function FitGuide() {
         ].map((label, i) => (
           <label key={i}>
             {label}
-            <input
-              type="number"
-              min="0"
-              step="0.001"
-              value={limits[i]}
-              onChange={(e) =>
-                setLimits((old) =>
-                  old.map((v, j) => (j === i ? e.target.value : v)),
-                )
-              }
-            />
+            <EngineeringNumberInput value={limits[i]} constraint="positive" onChange={value => setLimits(old => old.map((v, j) => j === i ? value : v))} />
           </label>
         ))}
       </div>

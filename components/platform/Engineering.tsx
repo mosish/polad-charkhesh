@@ -3,7 +3,10 @@ import Breadcrumbs from './Breadcrumbs';
 import Comparison from './Comparison';
 import FitGuide from './FitGuide';
 import Copy from './Copy';
-import { useMemo, useState } from 'react';
+import EngineeringNumberInput, { EngineeringInputHint } from './EngineeringNumberInput';
+import UnitConverter from './UnitConverter';
+import { engineeringNumber as numberInput } from '../../lib/engineering-input';
+import { useId, useMemo, useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { calculate, basicLife } from '../../lib/engineering';
 import { calculationEligibility, eligibilityMessage, selectedCalculationProduct } from '../../lib/engineering-eligibility';
@@ -18,9 +21,8 @@ type CalculationPreview =
   | { kind: 'incomplete' }
   | { kind: 'idle' };
 
-const numberInput = (value: string) => value.trim() === '' ? NaN : Number(value);
-
 export default function Engineering({ embedded = false }: { embedded?: boolean }) {
+  const inputPrefix = useId();
   const { products, fa, t, loading, error, content } = usePlatform();
   const [selected, setSelected] = useState(
     new URLSearchParams(location.search).get('product') || '',
@@ -31,8 +33,6 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
     [rpm, setRpm] = useState('1500'),
     [rel, setRel] = useState(90),
     [confirmed, setConfirmed] = useState(false);
-  const [val, setVal] = useState(25.4),
-    [unit, setUnit] = useState('mm-inch');
   const [c, setC] = useState(''),
     [load, setLoad] = useState(''),
     [bearingType, setBearingType] = useState<'' | 'ball' | 'roller'>('');
@@ -128,7 +128,9 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                 </button>
               ))}
             </div>
-            {tab==='compare'?<Comparison key={p?.id || 'manual'} initial={p ? [p.id] : []}/>:tab==='fits'?<FitGuide/>: preview.kind === 'unavailable' ? (
+            <div hidden={tab !== 'converter'}><UnitConverter /></div>
+            <div hidden={tab !== 'fits'}><FitGuide /></div>
+            {tab==='compare'?<Comparison key={p?.id || 'manual'} initial={p ? [p.id] : []}/>: preview.kind === 'unavailable' ? (
               <section className="panel" aria-live="polite">
                 <h3>{t('Product calculation unavailable', 'محاسبه بر اساس محصول در دسترس نیست')}</h3>
                 <p>{preview.message}</p>
@@ -145,28 +147,17 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                   </div>
                   <h3>{t('Basic rating life', 'عمر نامی پایه')}</h3>
                   <p className="engineering-live-hint">{tab === 'basic' ? t('Independent manual calculation. Enter verified C, P and bearing type; no catalog ratings are copied.', 'محاسبه مستقل دستی است. مقادیر تأییدشده C و P و نوع بیرینگ را وارد کنید؛ اطلاعات کاتالوگ کپی نمی‌شود.') : t('Example operating inputs are shown; results update as you edit them.', 'ورودی‌های کاری نمونه نمایش داده شده‌اند؛ نتیجه با تغییر آنها به‌روز می‌شود.')}</p>
+                  <EngineeringInputHint />
                   {tab === 'life' ? (
                     <>
                       <div className="form-grid">
                         <label>
                           {t('Radial load Fr / kN', 'بار شعاعی Fr / kN')}
-                          <input
-                            type="number"
-                            min="0"
-                            step="any"
-                            value={fr}
-                            onChange={(e) => setFr(e.target.value)}
-                          />
+                          <EngineeringNumberInput value={fr} onChange={setFr} constraint="nonnegative" />
                         </label>
                         <label>
                           {t('Axial load Fa / kN', 'بار محوری Fa / kN')}
-                          <input
-                            type="number"
-                            min="0"
-                            step="any"
-                            value={axial}
-                            onChange={(e) => setAxial(e.target.value)}
-                          />
+                          <EngineeringNumberInput value={axial} onChange={setAxial} constraint="nonnegative" />
                         </label>
                       </div>
                       <label>
@@ -199,25 +190,13 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                   ) : (
                     <>
                       <div className="form-grid">
-                        <label>
+                        <label htmlFor={`${inputPrefix}-c`}>
                           <Copy text="C / kN" />
-                          <input
-                            type="number"
-                            min="0.001"
-                            step="any"
-                            value={c}
-                            onChange={(e) => setC(e.target.value)}
-                          />
+                          <EngineeringNumberInput inputId={`${inputPrefix}-c`} value={c} onChange={setC} constraint="positive" />
                         </label>
-                        <label>
+                        <label htmlFor={`${inputPrefix}-p`}>
                           <Copy text="P / kN" />
-                          <input
-                            type="number"
-                            min="0.001"
-                            step="any"
-                            value={load}
-                            onChange={(e) => setLoad(e.target.value)}
-                          />
+                          <EngineeringNumberInput inputId={`${inputPrefix}-p`} value={load} onChange={setLoad} constraint="positive" />
                         </label>
                       </div>
                       <label>
@@ -245,13 +224,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                   )}
                   <label>
                     {t('Rotational speed / rpm', 'سرعت دوران / rpm')}
-                    <input
-                      type="number"
-                      min="1"
-                      step="any"
-                      value={rpm}
-                      onChange={(e) => setRpm(e.target.value)}
-                    />
+                    <EngineeringNumberInput value={rpm} onChange={setRpm} constraint="positive" />
                   </label>
                   <button className="button" type="button" onClick={resetInputs}>
                     <RotateCcw size={17} />
@@ -372,58 +345,6 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                     )}
                   </p>
                 </div>
-              </div>
-            ) : tab === 'converter' ? (
-              <div className="panel converter">
-                <h3>
-                  {t('Engineering unit converter', 'تبدیل واحدهای مهندسی')}
-                </h3>
-                <div className="form-grid">
-                  <label>
-                    {t('Value', 'مقدار')}
-                    <input
-                      type="number"
-                      step="any"
-                      value={val}
-                      onChange={(e) => setVal(+e.target.value)}
-                    />
-                  </label>
-                  <label>
-                    {t('Conversion', 'تبدیل')}
-                    <select
-                      value={unit}
-                      onChange={(e) => setUnit(e.target.value)}
-                    >
-                      <option value="mm-inch">
-                        <Copy text="mm → inch" />
-                      </option>
-                      <option value="inch-mm">
-                        <Copy text="inch → mm" />
-                      </option>
-                      <option value="kn-n">
-                        <Copy text="kN → N" />
-                      </option>
-                      <option value="c-f">
-                        <Copy text="°C → °F" />
-                      </option>
-                      <option value="rpm-rad">
-                        <Copy text="rpm → rad/s" />
-                      </option>
-                    </select>
-                  </label>
-                </div>
-                <output className="result-number">
-                  {(unit === 'mm-inch'
-                    ? val / 25.4
-                    : unit === 'inch-mm'
-                      ? val * 25.4
-                      : unit === 'kn-n'
-                        ? val * 1000
-                        : unit === 'c-f'
-                          ? (val * 9) / 5 + 32
-                          : (val * Math.PI) / 30
-                  ).toLocaleString(undefined, { maximumFractionDigits: 6 })}
-                </output>
               </div>
             ) : null}
             {!embedded && <ManufacturerLibrary/>}

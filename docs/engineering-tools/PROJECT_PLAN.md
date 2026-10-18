@@ -3,7 +3,7 @@
 **Project:** Polad Charkhesh Engineering Toolbox · توسعه جعبه‌ابزار مهندسی پولاد چرخش  
 **Project ID:** ENG-TOOLS-01  
 **Defined:** 2026-10-18  
-**Status:** Phase 0 in progress; audit, initial benchmarks, numeric validation, explicit eligibility controls and independent manual mode are implemented and published. Method approval and new toolbox modules remain pending.
+**Status:** Phase 0 in progress; audit, initial benchmarks, numeric validation, explicit eligibility controls and independent manual mode are implemented and published. C3-A input contracts and unit conversion are implemented; method approval and the remaining modules are pending.
 **Owner preference:** A balanced toolbox covering selection, calculations, lubrication and maintenance.  
 **Baseline:** Source reviewed through `d264db29ed29e798f80147ca3a0949a8d3303f3d`. This is a source assessment, not a fresh audit of every live engineering workflow.
 
@@ -148,7 +148,7 @@ The owner decides priorities and accepts the product workflow. The developer imp
 
 Dependencies are access to exact manufacturer data, current applicable standards/method references, permission to reproduce any protected tables, and engineering review availability. Do not claim standards compliance from an unverified formula or copy restricted tables merely because they appear online.
 
-**Phase 0 / ENG-01 through ENG-03 is in progress.** ENG-01 inventory is complete; ENG-02 has a 110-record draft matrix and implemented eligibility contracts. ENG-03 now has the [C0-C manufacturer evidence and independent benchmark packet](methods/C0C_EVIDENCE.md), including corrected spherical-thrust method selection and explicit interpolation limits. Engineering acceptance, the e-interpolation convention and enforceable operating envelopes remain open; no production profile is approved. The owner will nominate the reviewer later; budget and schedule remain open project decisions. Next independent implementation: C3-A / ENG-04–ENG-05 input contracts and unit conversion.
+**Phase 0 / ENG-01 through ENG-03 is in progress.** ENG-01 inventory is complete; ENG-02 has a 110-record draft matrix and implemented eligibility contracts. ENG-03 now has the [C0-C manufacturer evidence and independent benchmark packet](methods/C0C_EVIDENCE.md), including corrected spherical-thrust method selection and explicit interpolation limits. Engineering acceptance, the e-interpolation convention and enforceable operating envelopes remain open; no production profile is approved. The owner will nominate the reviewer later; budget and schedule remain open project decisions. **C3-A / ENG-05 and the numerical-input portion of ENG-04 are implemented:** shared localized parsing, eight bidirectional unit groups, preserved transient drafts and explicit blank/invalid states. 120 tests and targeted bilingual browser checks pass. [Contract and evidence](C3A_INPUTS_UNITS.md). Next: C3-B independent manual target-life worksheet and result assumptions; remaining workspace/cases and approved-product methods stay open.
 
 ## 11. Reference basis
 
