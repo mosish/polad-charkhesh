@@ -6,7 +6,7 @@ import Copy from './Copy';
 import EngineeringNumberInput, { EngineeringInputHint } from './EngineeringNumberInput';
 import UnitConverter from './UnitConverter';
 import { engineeringNumber as numberInput } from '../../lib/engineering-input';
-import { useId, useMemo, useState } from 'react';
+import { useId, useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { calculate, basicLife } from '../../lib/engineering';
 import { calculationEligibility, eligibilityMessage, selectedCalculationProduct } from '../../lib/engineering-eligibility';
@@ -17,7 +17,6 @@ type CalculationPreview =
   | { kind: 'life'; value: ReturnType<typeof calculate> }
   | { kind: 'basic'; value: ReturnType<typeof basicLife> }
   | { kind: 'error'; message: string }
-  | { kind: 'unavailable'; message: string }
   | { kind: 'incomplete' }
   | { kind: 'idle' };
 
@@ -38,23 +37,20 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
     [bearingType, setBearingType] = useState<'' | 'ball' | 'roller'>('');
   const p = selectedCalculationProduct(products, selected);
   const eligibility = calculationEligibility(p);
+  const manual = tab === 'basic' || (tab === 'life' && !eligibility.eligible);
   const roller = bearingType === 'roller';
-  const preview = useMemo<CalculationPreview>(() => {
+  const preview = ((): CalculationPreview => {
     if (tab !== 'life' && tab !== 'basic') return { kind: 'idle' };
-    if (tab === 'life') {
-      const state = calculationEligibility(p);
-      if (!state.eligible) return { kind: 'unavailable', message: eligibilityMessage(state.reason, fa) };
-    }
-    if (tab === 'basic' && !bearingType) return { kind: 'incomplete' };
-    if ((tab === 'basic' ? [c, load, rpm] : [fr, axial, rpm]).some((value) => value.trim() === '')) return { kind: 'incomplete' };
+    if (manual && !bearingType) return { kind: 'incomplete' };
+    if ((manual ? [c, load, rpm] : [fr, axial, rpm]).some((value) => value.trim() === '')) return { kind: 'incomplete' };
     try {
-      if (tab === 'basic') return { kind: 'basic', value: basicLife(numberInput(c), numberInput(load), numberInput(rpm), roller) };
+      if (manual) return { kind: 'basic', value: basicLife(numberInput(c), numberInput(load), numberInput(rpm), roller) };
       if (!p) return { kind: 'idle' };
       return { kind: 'life', value: calculate(p, numberInput(fr), numberInput(axial), numberInput(rpm), rel, confirmed) };
     } catch (e) {
       return { kind: 'error', message: fa ? 'ورودی‌های عددی، بار، سرعت و محدوده مجاز روش را بررسی کنید.' : e instanceof Error ? e.message : 'Calculation unavailable.' };
     }
-  }, [p, tab, c, load, rpm, roller, bearingType, fr, axial, rel, confirmed, fa]);
+  })();
   const resetInputs = () => {
     const axialFamily = eligibility.eligible && ['thrust-ball', 'spherical-thrust'].includes(eligibility.profile.family);
     setFr(axialFamily ? '0' : '2');
@@ -82,6 +78,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
           <label className="engineering-product-picker">
             {t('Selected component', 'قطعه انتخاب‌شده')}
             <select
+              aria-describedby={`${inputPrefix}-product-help`}
               value={p?.slug || p?.id || ''}
               disabled={loading || Boolean(error) || !products.some((product) => !product.isArchived)}
               onChange={(event) => {
@@ -89,9 +86,10 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                 setConfirmed(false);
               }}
             >
-              <option value="">{t('Select a catalog product (optional for manual tools)', 'انتخاب محصول کاتالوگ (برای ابزار دستی اختیاری)')}</option>
+              <option value="">{t('Select a product', 'انتخاب محصول')}</option>
               {products.filter((product) => !product.isArchived).map((product) => <option key={product.id} value={product.slug || product.id}>{product.code}</option>)}
             </select>
+            <small id={`${inputPrefix}-product-help`}>{t('Optional for manual calculation, fits and conversion.', 'برای محاسبه دستی، انطباق و تبدیل واحد اختیاری است.')}</small>
             {p && <small dir="ltr">{p.d} × {p.D} × {p.B} mm{p.crKn > 0 ? ` · Cr ${p.crKn} kN` : ''}</small>}
           </label>
         </div>
@@ -111,8 +109,8 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
             </div>
             <div className="tool-tabs">
               {([
-                ['life', 'Life & equivalent load', 'عمر و بار معادل'],
-                ['basic', 'Known equivalent load', 'بار معادل معلوم'],
+                ['life', 'Product life & load', 'عمر و بار محصول'],
+                ['basic', 'Manual rating life', 'محاسبه دستی عمر'],
                 ['fits', 'Fit limits', 'حدود انطباق'],
                 ['compare', 'Technical comparison', 'مقایسه فنی'],
                 ['converter', 'Unit converter', 'تبدیل واحد'],
@@ -130,25 +128,23 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
             </div>
             <div hidden={tab !== 'converter'}><UnitConverter /></div>
             <div hidden={tab !== 'fits'}><FitGuide /></div>
-            {tab==='compare'?<Comparison key={p?.id || 'manual'} initial={p ? [p.id] : []}/>: preview.kind === 'unavailable' ? (
-              <section className="panel" aria-live="polite">
-                <h3>{t('Product calculation unavailable', 'محاسبه بر اساس محصول در دسترس نیست')}</h3>
-                <p>{preview.message}</p>
-                <div className="calculation-actions">
-                  <button type="button" className="button" onClick={() => setTab('basic')}>{t('Use verified manual inputs', 'ورود دستی مقادیر تأییدشده')}</button>
-                  <a className="button" href="/#contact">{t('Contact an engineer', 'ارتباط با کارشناس')}</a>
-                </div>
-              </section>
-            ) : ['life', 'basic'].includes(tab) ? (
+            {tab === 'life' && !eligibility.eligible && <section className="note engineering-review-note" aria-live="polite">
+              <h3>{t('Manual calculation is available', 'محاسبه دستی در دسترس است')}</h3>
+              <p>{eligibility.reason === 'no-selection' && !selected
+                ? t('Product load calculations need a selected, reviewed product. Enter verified C, P and bearing type below to calculate basic rating life independently.', 'محاسبه بار بر اساس محصول به انتخاب محصول بررسی‌شده نیاز دارد. برای محاسبه مستقل عمر نامی پایه، مقادیر تأییدشده C و P و نوع بیرینگ را در پایین وارد کنید.')
+                : eligibilityMessage(eligibility.reason, fa)}</p>
+              <p>{t('Engineering approval is pending. This manual result does not approve the selected product.', 'تأیید مهندسی در انتظار بررسی است. نتیجه دستی به‌معنی تأیید محصول انتخاب‌شده نیست.')}</p>
+            </section>}
+            {tab === 'compare' ? <Comparison key={p?.id || 'manual'} initial={p ? [p.id] : []} /> : ['life', 'basic'].includes(tab) ? (
               <div className="calculator-grid">
                 <div className="panel">
                   <div className="section-label">
                     {t('OPERATING CONDITIONS', 'شرایط کارکرد')}
                   </div>
-                  <h3>{t('Basic rating life', 'عمر نامی پایه')}</h3>
-                  <p className="engineering-live-hint">{tab === 'basic' ? t('Independent manual calculation. Enter verified C, P and bearing type; no catalog ratings are copied.', 'محاسبه مستقل دستی است. مقادیر تأییدشده C و P و نوع بیرینگ را وارد کنید؛ اطلاعات کاتالوگ کپی نمی‌شود.') : t('Example operating inputs are shown; results update as you edit them.', 'ورودی‌های کاری نمونه نمایش داده شده‌اند؛ نتیجه با تغییر آنها به‌روز می‌شود.')}</p>
+                  <h3>{manual ? t('Manual basic rating life', 'محاسبه دستی عمر نامی پایه') : t('Basic rating life', 'عمر نامی پایه')}</h3>
+                  <p className="engineering-live-hint">{manual ? t('Independent manual calculation. Enter verified C, P and bearing type; no catalog ratings are copied.', 'محاسبه مستقل دستی است. مقادیر تأییدشده C و P و نوع بیرینگ را وارد کنید؛ اطلاعات کاتالوگ کپی نمی‌شود.') : t('Example operating inputs are shown; results update as you edit them.', 'ورودی‌های کاری نمونه نمایش داده شده‌اند؛ نتیجه با تغییر آنها به‌روز می‌شود.')}</p>
                   <EngineeringInputHint />
-                  {tab === 'life' ? (
+                  {!manual ? (
                     <>
                       <div className="form-grid">
                         <label>
@@ -228,7 +224,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                   </label>
                   <button className="button" type="button" onClick={resetInputs}>
                     <RotateCcw size={17} />
-                    {tab === 'basic' ? t('Clear manual inputs', 'پاک کردن ورودی‌های دستی') : t('Reset example inputs', 'بازنشانی ورودی‌های نمونه')}
+                    {manual ? t('Clear manual inputs', 'پاک کردن ورودی‌های دستی') : t('Reset example inputs', 'بازنشانی ورودی‌های نمونه')}
                   </button>
                 </div>
                 <div className="calculation-result" aria-live="polite">
@@ -245,7 +241,7 @@ export default function Engineering({ embedded = false }: { embedded?: boolean }
                       </h3>
                       <p className="error">{preview.message}</p>
                       <div className="calculation-actions">
-                        {tab === 'life' && (
+                        {!manual && (
                           <button type="button" className="button" onClick={() => setTab('basic')}>
                             {t('Use known equivalent load', 'استفاده از بار معادل معلوم')}
                           </button>
