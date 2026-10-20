@@ -10,7 +10,7 @@
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
-**Engineering entry fix — 2026-10-20:** The product tab now offers manual rating-life inputs directly when selection or engineering approval is missing, with clear bilingual guidance and no copied catalog ratings. Product approval remains pending. [Correction and checks](docs/engineering-tools/ENGINEERING_ENTRY_FIX_2026-10-20.md).
+**Engineering entry fix deployed — 2026-10-20:** The product tab now offers manual rating-life inputs directly when selection or engineering approval is missing, with clear bilingual guidance and no copied catalog ratings. Verified live in English and Persian; all 120 tests pass. Product approval remains pending. [Correction and release evidence](docs/engineering-tools/ENGINEERING_ENTRY_FIX_2026-10-20.md).
 
 **Completion program started — 2026-10-18:** [COMPLETE-01](docs/COMPLETION_PLAN.md) sequences engineering foundation, lint, catalog/media, toolbox implementation, full acceptance, operations/release and indexing. The first package includes a 110-product draft eligibility matrix, method register, independent benchmarks and numeric-validation fixes. All 75 package tests passed; the owner will nominate an engineer later. Subsequently deployed with C1-C; engineering acceptance remains open.
 
@@ -48,7 +48,7 @@ This is **not an online shop**. There are no prices, carts, checkout, payments, 
 
 ## Current project status
 
-The main feature set is published on both language domains. The current catalog has 110 products, 101 replacement images and no product PDF attachments. Earlier owner-authenticated administration, isolated restore and service-recovery checks passed; final acceptance remains open. The current application release is `46272c6e8a9f0c95da739b1b21539dc2e9dde60d`; later documentation commits do not deploy automatically. The engineering foundation and eligibility controls are live; method review and approval remain open.
+The main feature set is published on both language domains. The current catalog has 110 products, 101 replacement images and no product PDF attachments. Earlier owner-authenticated administration, isolated restore and service-recovery checks passed; final acceptance remains open. The current application release is `bb0ef61b0bfc89077bacfe0dd113d52363c8af9f`; later documentation commits do not deploy automatically. The engineering foundation and eligibility controls are live; method review and approval remain open.
 
 | Area | Status | What this means now |
 | --- | --- | --- |
