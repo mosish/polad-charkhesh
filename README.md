@@ -10,6 +10,10 @@
 
 Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
+**Persian copy correction — source ready, not deployed, 2026-10-20:** Ten English placeholders now have Persian translations, with a guarded one-time migration that preserves CMS edits. “PDF datasheet” is clarified as “Catalog summary PDF”; manufacturer links remain conditional. All 122 tests and local quality checks pass. [Changes and seven-claim fact-check](docs/PERSIAN_COPY_AUDIT_2026-10-20.md).
+
+**اصلاح ترجمه فارسی — آماده در سورس، هنوز منتشر نشده، ۲۰ اکتبر ۲۰۲۶:** ده عبارت انگلیسی ترجمه شد؛ اصلاح یک‌باره پایگاه داده، متن‌های سفارشی مدیر را حفظ می‌کند. عنوان PDF به «خلاصه کاتالوگ (PDF)» تغییر کرد. هر ۱۲۲ آزمون موفق است؛ تأیید مهندسی همچنان در انتظار است. [گزارش بررسی](docs/PERSIAN_COPY_AUDIT_2026-10-20.md).
+
 **Engineering entry fix deployed — 2026-10-20:** The product tab now offers manual rating-life inputs directly when selection or engineering approval is missing, with clear bilingual guidance and no copied catalog ratings. Verified live in English and Persian; all 120 tests pass. Product approval remains pending. [Correction and release evidence](docs/engineering-tools/ENGINEERING_ENTRY_FIX_2026-10-20.md).
 
 **Completion program started — 2026-10-18:** [COMPLETE-01](docs/COMPLETION_PLAN.md) sequences engineering foundation, lint, catalog/media, toolbox implementation, full acceptance, operations/release and indexing. The first package includes a 110-product draft eligibility matrix, method register, independent benchmarks and numeric-validation fixes. All 75 package tests passed; the owner will nominate an engineer later. Subsequently deployed with C1-C; engineering acceptance remains open.

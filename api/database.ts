@@ -10,7 +10,7 @@ import crypto from 'node:crypto';
 import { bearingProducts } from '../domain/catalog';
 import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
 import { COMPANY_INFO } from '../domain/company';
-import { upgradeContent, textKey } from '../domain/site-content';
+import { upgradeContent, textKey, correctLegacyPersianCopy } from '../domain/site-content';
 import { correctCompanyCopy, correctCompanyName } from '../domain/company-identity';
 if (
   process.env.NODE_ENV === 'production' &&
@@ -165,6 +165,21 @@ for (const [k, v] of Object.entries(defaults))
 const upgradedContent = upgradeContent(setting('content'));
 if (JSON.stringify(upgradedContent) !== JSON.stringify(setting('content')))
   putSetting('content', upgradedContent);
+
+// Once per database: do not overwrite subsequent owner changes on restart.
+if (!setting('content.persian-copy-2026-10-20')) {
+  transaction(() => {
+    const { content, count } = correctLegacyPersianCopy(setting('content'));
+    if (count) {
+      putSetting('content', content);
+      audit('system', 'content.persian-copy.corrected', String(count));
+    }
+    putSetting('content.persian-copy-2026-10-20', {
+      appliedAt: new Date().toISOString(),
+      count,
+    });
+  });
+}
 
 // Owner-requested identity correction, once per database. Keep all unrelated data.
 if (!setting('company.identity-arian-tech-2026-10')) {

@@ -174,3 +174,28 @@ export function upgradeContent(value: unknown): Record<string, unknown> {
   // Preserve malformed values so boundary validation rejects them.
   return v;
 }
+
+/** Repair only the known shipped English placeholders, preserving CMS edits. */
+export function correctLegacyPersianCopy(value: unknown) {
+  const content = structuredClone(value);
+  let count = 0;
+  if (!content || typeof content !== 'object' || !('copy' in content) ||
+      !content.copy || typeof content.copy !== 'object' || Array.isArray(content.copy))
+    return { content, count };
+  for (const key of [
+    'txt_c65a7b7e', 'txt_24f15219', 'txt_72465cd3', 'txt_c621221c',
+    'txt_d296efe8', 'txt_610978d3', 'txt_e7e24e0a', 'txt_3f2102c2',
+    'txt_2fbf8adf', 'txt_b65ef932',
+  ] as const) {
+    const entry: unknown = Reflect.get(content.copy, key);
+    const corrected = initialCopy[key];
+    if (entry && typeof entry === 'object' &&
+        'original' in entry && entry.original === corrected.original &&
+        'en' in entry && entry.en === corrected.en &&
+        'fa' in entry && entry.fa === corrected.original) {
+      entry.fa = corrected.fa;
+      count++;
+    }
+  }
+  return { content, count };
+}

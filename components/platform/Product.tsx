@@ -270,7 +270,7 @@ export function TechnicalContent({
               }
             >
               <Download size={16} />
-              {t('PDF datasheet', 'دیتاشیت PDF')}
+              {t('Catalog summary PDF', 'خلاصه کاتالوگ (PDF)')}
             </button>
           </div>
           {error && <p role="alert">{error}</p>}

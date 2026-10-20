@@ -320,13 +320,13 @@
   "txt_2fbf8adf": {
     "original": "Ball · p = 3",
     "en": "Ball · p = 3",
-    "fa": "Ball · p = 3",
+    "fa": "بلبرینگ · p = 3",
     "group": "Engineering"
   },
   "txt_b65ef932": {
     "original": "Roller · p = 10/3",
     "en": "Roller · p = 10/3",
-    "fa": "Roller · p = 10/3",
+    "fa": "رولبرینگ · p = 10/3",
     "group": "Engineering"
   },
   "txt_5375da14": {
@@ -470,19 +470,19 @@
   "txt_c65a7b7e": {
     "original": "Engineered for",
     "en": "Engineered for",
-    "fa": "Engineered for",
+    "fa": "مهندسی برای",
     "group": "Home"
   },
   "txt_24f15219": {
     "original": "what keeps",
     "en": "what keeps",
-    "fa": "what keeps",
+    "fa": "آنچه صنعت را",
     "group": "Home"
   },
   "txt_72465cd3": {
     "original": "industry moving.",
     "en": "industry moving.",
-    "fa": "industry moving.",
+    "fa": "به حرکت وا می‌دارد.",
     "group": "Home"
   },
   "txt_7921e47c": {
@@ -680,7 +680,7 @@
   "txt_d296efe8": {
     "original": "BASIC RATING LIFE",
     "en": "BASIC RATING LIFE",
-    "fa": "BASIC RATING LIFE",
+    "fa": "عمر نامی پایه",
     "group": "HomeSections"
   },
   "txt_12b7710": {
@@ -710,7 +710,7 @@
   "txt_c621221c": {
     "original": "Roller bearings",
     "en": "Roller bearings",
-    "fa": "Roller bearings",
+    "fa": "رولبرینگ‌ها",
     "group": "HomeSections"
   },
   "txt_364895c4": {
@@ -1070,19 +1070,19 @@
   "txt_610978d3": {
     "original": "SIDE VIEW",
     "en": "SIDE VIEW",
-    "fa": "SIDE VIEW",
+    "fa": "نمای جانبی",
     "group": "Schematic"
   },
   "txt_e7e24e0a": {
     "original": "DIMENSIONAL ENVELOPE · mm · NOT TO SCALE",
     "en": "DIMENSIONAL ENVELOPE · mm · NOT TO SCALE",
-    "fa": "DIMENSIONAL ENVELOPE · mm · NOT TO SCALE",
+    "fa": "محدوده ابعادی (میلی‌متر) · بدون مقیاس",
     "group": "Schematic"
   },
   "txt_3f2102c2": {
     "original": "AXIAL HALF-SECTION / IDEALIZED BALL BEARING",
     "en": "AXIAL HALF-SECTION / IDEALIZED BALL BEARING",
-    "fa": "AXIAL HALF-SECTION / IDEALIZED BALL BEARING",
+    "fa": "نیم‌برش محوری / بلبرینگ شماتیک",
     "group": "SectionView"
   },
   "txt_e8ed2f56": {
@@ -2782,6 +2782,12 @@
     "en": "Shaft seal",
     "fa": "آب‌بند شفت",
     "group": "Products"
+  },
+  "txt_950c83ee": {
+    "original": "Catalog summary PDF",
+    "en": "Catalog summary PDF",
+    "fa": "خلاصه کاتالوگ (PDF)",
+    "group": "Product"
   },
   "txt_8587a934": {
     "original": "Password changed. Sign in again.",
