@@ -29,7 +29,7 @@ jobs:
             -e POLAD_INSTALLER_TEST=1 ubuntu:24.04 bash -ec '
               apt-get update -qq
               apt-get install -y -qq nginx openssl shellcheck >/dev/null
-              shellcheck /workspace/deploy/install-ubuntu.sh /workspace/deploy/test-installer.sh
+              shellcheck /workspace/deploy/install-ubuntu.sh /workspace/deploy/test-installer.sh /workspace/deploy/encrypted-backup.sh
               bash /workspace/deploy/test-installer.sh
             '
   verify:

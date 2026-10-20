@@ -16,8 +16,11 @@ install -d -m 0700 "$ROOT"
 if [[ ! -f $CONFIG/backup-age.key ]]; then age-keygen -o "$CONFIG/backup-age.key"; fi
 chmod 0600 "$CONFIG/backup-age.key"
 RECIPIENT=$(age-keygen -y "$CONFIG/backup-age.key")
-# shellcheck disable=SC1091
-set -a; source "$CONFIG/env"; set +a
+set -a
+# Private runtime configuration is deliberately absent from source control.
+# shellcheck source=/dev/null
+source "$CONFIG/env"
+set +a
 [[ ${DATABASE_PATH:-} == /* && ${UPLOAD_DIR:-} == /* ]] || exit 1
 AVAILABLE=$(df -PB1 "$ROOT" | awk 'NR==2 {print $4}')
 SOURCE_SIZE=$(du -sb "$DATABASE_PATH" "$UPLOAD_DIR" | awk '{total+=$1} END {print total}')
