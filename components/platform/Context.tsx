@@ -34,19 +34,21 @@ function publicSnapshot() {
 export const usePlatform = () => useContext(Context);
 export function Provider({ children }: { children: ReactNode }) {
   const [snapshot]=useState(publicSnapshot);
+  const [localizedCopy, setLocalizedCopy] = useState(snapshot?.localizedCopy);
   const [fa, setFa] = useState(() => {
     const initial = snapshot||undefined;
     let saved: string | null = null;
     try { saved = localStorage.getItem('pc-language'); } catch { /* Storage can be disabled. */ }
     return clientLanguage(location.hostname, location.search, saved, initial);
   });
-  const [state, setState] = useState(() => snapshot ? { ...snapshot, loading: false, error: '' } : {
+  const [state, setState] = useState(() => snapshot ? { ...snapshot, indexingEnabled: snapshot.indexingEnabled === true, loading: false, error: '' } : {
     products: [] as BearingProduct[],
     company: null as CompanyContactInfo | null,
     content: null as SiteContent | null,
     seo: null as SeoSettings | null,
     loading: true,
     error: '',
+    indexingEnabled: false,
   });
   const fetchData = useCallback(() => {
     Promise.all([
@@ -55,7 +57,8 @@ export function Provider({ children }: { children: ReactNode }) {
       api('/content'),
       api('/seo'),
     ])
-      .then(([p, c, b, s]) =>
+      .then(([p, c, b, s]) => {
+        setLocalizedCopy(undefined);
         setState({
           products: p.products,
           company: c.data,
@@ -63,8 +66,9 @@ export function Provider({ children }: { children: ReactNode }) {
           seo: s.data,
           loading: false,
           error: '',
-        }),
-      )
+          indexingEnabled: s.indexingEnabled === true,
+        });
+      })
       .catch((e) =>
         setState((s) => ({ ...s, loading: false, error: e.message })),
       );
@@ -75,6 +79,11 @@ export function Provider({ children }: { children: ReactNode }) {
   }, [fetchData]);
   // Production HTML is fresh on every visit. Dev/admin routes still fetch; Retry remains explicit.
   useEffect(()=>{if(!snapshot)fetchData();},[snapshot,fetchData]);
+  // A same-origin language switch (development or ?lang=...) loads CMS overrides
+  // for the other language. Live domain switches get a fresh localized document.
+  useEffect(() => {
+    if (snapshot && fa !== snapshot.fa && localizedCopy) fetchData();
+  }, [fa, snapshot, localizedCopy, fetchData]);
   useEffect(() => {
     let alive = true;
     const receive = async (event: MessageEvent<{ type?: string; content?: SiteContent }>) => {
@@ -118,17 +127,19 @@ export function Provider({ children }: { children: ReactNode }) {
       let slug = '';
       try { slug = decodeURIComponent(location.pathname.replace(/\/+$/, '').split('/').pop() || ''); } catch {}
       const p = location.pathname.startsWith('/product/') ? state.products.find((p: BearingProduct) => p.slug === slug) : undefined;
-      updateMetadata(
-        metadataFor(location.pathname, fa, state.seo, state.company, p, state.content ?? undefined, state.products, location.search),
-      );
+      const metadata = metadataFor(location.pathname, fa, state.seo, state.company, p, state.content ?? undefined, state.products, location.search);
+      if (!state.indexingEnabled) metadata.robots = 'noindex,nofollow';
+      updateMetadata(metadata);
     }
-  }, [fa, state.seo, state.company, state.content, state.products]);
+  }, [fa, state.seo, state.company, state.content, state.products, state.indexingEnabled]);
   return (
     <Context.Provider
       value={{
         ...state,
         fa,
         t: (e, f) => {
+          if (!location.pathname.startsWith('/admin') && localizedCopy && fa === snapshot?.fa)
+            return localizedCopy[textKey(e)] ?? (fa ? f : e);
           const entry =
             /^\/admin\/*$/.test(location.pathname)
               ? null

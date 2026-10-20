@@ -4,6 +4,7 @@ import type { SessionUser } from './records';
 import crypto from 'node:crypto';
 import { promisify } from 'node:util';
 import { db, audit } from './database';
+import { mfaRequired } from './mfa';
 const pbkdf2 = promisify(crypto.pbkdf2);
 export const production = process.env.NODE_ENV === 'production';
 if (
@@ -49,15 +50,20 @@ export const cookieOptions = {
   path: '/',
   maxAge: 12 * 3600 * 1000,
 };
-export function getUser(req: Pick<Request, 'signedCookies'>): SessionUser | null {
+export function getSessionUser(req: Pick<Request, 'signedCookies'>, requireAssurance = true): SessionUser | null {
   const token: unknown = req.signedCookies?.pc_session;
   if (typeof token !== 'string') return null;
   return db
     .prepare(
-      'SELECT a.id,a.username,a.role FROM sessions s JOIN admins a ON a.id=s.admin_id WHERE s.token_hash=? AND s.expires>?',
+      `SELECT a.id,a.username,a.role FROM sessions s JOIN admins a ON a.id=s.admin_id
+       LEFT JOIN session_assurance v ON v.token_hash=s.token_hash
+       LEFT JOIN admin_mfa m ON m.admin_id=a.id
+       WHERE s.token_hash=? AND s.expires>? AND
+       (?=0 OR (COALESCE(v.mfa_verified,0)=1 OR (?=0 AND m.secret IS NULL)))`,
     )
-    .get(hashToken(token), Date.now()) as SessionUser | undefined ?? null;
+    .get(hashToken(token), Date.now(), requireAssurance ? 1 : 0, mfaRequired ? 1 : 0) as SessionUser | undefined ?? null;
 }
+export const getUser = (req: Pick<Request, 'signedCookies'>) => getSessionUser(req);
 export function authenticated(req: ApiRequest, res: Response, next: NextFunction) {
   req.user = getUser(req);
   if (!req.user)
@@ -71,15 +77,44 @@ export function superadmin(req: ApiRequest, res: Response, next: NextFunction) {
     return res.status(403).json({ error: 'Super-admin access required.' });
   next();
 }
-export function issueSession(res: Response, user: SessionUser) {
+export function issueSession(res: Response, user: SessionUser, verified = false) {
   const token = crypto.randomBytes(32).toString('base64url');
+  const pending = !verified && (mfaRequired || Boolean(db.prepare('SELECT secret FROM admin_mfa WHERE admin_id=?').get(user.id)?.secret));
+  const maxAge = pending ? 10 * 60_000 : cookieOptions.maxAge;
   db.prepare('INSERT INTO sessions VALUES(?,?,?)').run(
     hashToken(token),
     user.id,
-    Date.now() + 12 * 3600 * 1000,
+    Date.now() + maxAge,
   );
-  res.cookie('pc_session', token, cookieOptions);
-  audit(user.username, 'LOGIN');
+  db.prepare('INSERT INTO session_assurance VALUES(?,?)').run(hashToken(token), verified ? 1 : 0);
+  res.cookie('pc_session', token, { ...cookieOptions, maxAge });
+  audit(user.username, pending ? 'MFA_ENROLLMENT_SESSION' : 'LOGIN');
+}
+export function accountKey(username: string) { return hashToken('login-account:' + username.toLowerCase()); }
+export function accountLocked(username: string) {
+  return Number(db.prepare('SELECT locked_until FROM login_failures WHERE key=?').get(accountKey(username))?.locked_until || 0) > Date.now();
+}
+export function failedLogin(username: string) {
+  const now = Date.now(), key = accountKey(username);
+  db.prepare(`INSERT INTO login_failures VALUES(?,1,?,0)
+    ON CONFLICT(key) DO UPDATE SET count=CASE WHEN reset>? THEN count+1 ELSE 1 END,
+    reset=CASE WHEN reset>? THEN reset ELSE excluded.reset END,
+    locked_until=CASE WHEN reset>? AND count>=4 THEN ? ELSE 0 END`
+  ).run(key, now + 900_000, now, now, now, now + 900_000);
+  audit('anonymous', 'AUTH_FAILURE', key);
+  if (accountLocked(username)) {
+    audit('system', 'SECURITY_ALERT_ACCOUNT_LOCKED', key);
+    console.warn(JSON.stringify({ event: 'SECURITY_ALERT_ACCOUNT_LOCKED', account: key, at: new Date(now).toISOString() }));
+  }
+}
+export function clearLoginFailures(username: string) {
+  db.prepare('DELETE FROM login_failures WHERE key=?').run(accountKey(username));
+}
+export function cleanupSecurityState(now = Date.now()) {
+  db.prepare('DELETE FROM sessions WHERE expires<=?').run(now);
+  db.prepare('DELETE FROM rate_limits WHERE reset<=?').run(now);
+  db.prepare('DELETE FROM login_failures WHERE reset<=? AND locked_until<=?').run(now, now);
+  db.prepare('UPDATE admin_mfa SET pending_secret=NULL,pending_expires=0 WHERE pending_expires>0 AND pending_expires<=?').run(now);
 }
 export function limit(scope: string, max: number, windowMs: number): RequestHandler {
   return (req, res, next) => {

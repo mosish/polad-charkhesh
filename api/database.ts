@@ -34,6 +34,10 @@ CREATE TABLE IF NOT EXISTS settings(kind TEXT PRIMARY KEY,data TEXT NOT NULL CHE
 CREATE TABLE IF NOT EXISTS admins(id TEXT PRIMARY KEY,username TEXT UNIQUE NOT NULL,password_hash TEXT NOT NULL,role TEXT NOT NULL CHECK(role IN('superadmin','editor')));
 CREATE TABLE IF NOT EXISTS sessions(token_hash TEXT PRIMARY KEY,admin_id TEXT REFERENCES admins(id) ON DELETE CASCADE,expires INTEGER NOT NULL);
 CREATE INDEX IF NOT EXISTS session_admin ON sessions(admin_id);
+CREATE INDEX IF NOT EXISTS session_expiry ON sessions(expires);
+CREATE TABLE IF NOT EXISTS session_assurance(token_hash TEXT PRIMARY KEY REFERENCES sessions(token_hash) ON DELETE CASCADE,mfa_verified INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS admin_mfa(admin_id TEXT PRIMARY KEY REFERENCES admins(id) ON DELETE CASCADE,secret TEXT,pending_secret TEXT,pending_expires INTEGER NOT NULL DEFAULT 0,last_step INTEGER NOT NULL DEFAULT -1,recovery TEXT NOT NULL DEFAULT '[]');
+CREATE TABLE IF NOT EXISTS login_failures(key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset INTEGER NOT NULL,locked_until INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS inquiries(id TEXT PRIMARY KEY,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,status TEXT NOT NULL,data TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS inquiry_status ON inquiries(status,created_at);
 CREATE TABLE IF NOT EXISTS media(id TEXT PRIMARY KEY,data TEXT NOT NULL);

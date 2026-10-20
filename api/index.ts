@@ -10,10 +10,13 @@ import { products } from './products';
 import { content } from './content';
 import { system } from './system';
 import { media, uploadDir } from './media';
-import { cookieSecret, production, getUser } from './security';
+import { cookieSecret, production, getUser, cleanupSecurityState } from './security';
 import { safeObject } from './validation';
 import { allProducts, setting, product, db } from './database';
 import { publicError } from './http-errors';
+import { accessBoundary } from './access';
+import { indexingEnabled } from './indexing';
+import { compactPublicContent } from '../lib/public-snapshot';
 export const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 'loopback');
@@ -25,11 +28,13 @@ app.use((req, res, next) => {
     'Content-Security-Policy':
       `default-src 'self'; script-src 'self'${production ? '' : " 'unsafe-inline'"}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'${production ? '' : ' ws:'}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'`,
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+    'X-Robots-Tag': 'noindex, nofollow',
   });
   if (production) res.set('Strict-Transport-Security', 'max-age=31536000');
   next();
 });
 app.use(cookieParser(cookieSecret));
+app.use(accessBoundary);
 app.use((req, res, next) => {
   if (req.method === 'GET' && req.query.preview === '1' && getUser(req)) {
     res.set('X-Frame-Options', 'SAMEORIGIN');
@@ -101,7 +106,9 @@ app.get('/llms.txt', (req, res) => {
 });
 app.get('/robots.txt', (req, res) => {
   const seo = setting('seo');
-  res.type('text/plain').send('User-agent: *\nDisallow: /api/\nSitemap: ' + pageUrl('/sitemap.xml', seo, languageFor(req.hostname)) + '\n');
+  res.type('text/plain').send(indexingEnabled
+    ? 'User-agent: *\nDisallow: /api/\nDisallow: /admin/\nSitemap: ' + pageUrl('/sitemap.xml', seo, languageFor(req.hostname)) + '\n'
+    : 'User-agent: *\nDisallow: /\n');
 });
 app.get('/sitemap.xml', (req, res) => {
   const seo = setting('seo'), fa = languageFor(req.hostname);
@@ -140,17 +147,18 @@ if (production) {
     const fa = languageFor(req.hostname, req.url.split('?')[1] || '');
     const seo = setting('seo'), company = setting('company'), content = setting('content'), products = allProducts();
     const data = metadataFor(routePath, fa, seo, company, p ?? undefined, content, products, req.url.split('?')[1] || '');
+    if (!indexingEnabled) data.robots = 'noindex,nofollow';
     let html = readFileSync(path.resolve('dist/client/index.html'), 'utf8')
       .replace('<html lang="en">', `<html lang="${fa ? 'fa' : 'en'}" dir="${fa ? 'rtl' : 'ltr'}">`)
       .replace(/<title>.*?<\/title>/s, '')
       .replace(/<meta name="description"[^>]*>/, '')
       .replace('</head>', metadataHead(data) + '</head>');
     html = html.replace('<div id="root"></div>', '<div id="root">' + initialPublicHtml(routePath, fa, { company, content, products }, data.missing, p ?? undefined) + '</div>');
-    // The public snapshot is exactly the same API data used by the React app.
+    // Published records are preserved; only the copy dictionary is language-scoped.
     // No account, draft, session, archived product or inquiry data is embedded.
-    if (!data.privatePage) html = html.replace('</body>', `<script id="public-data" type="application/json">${jsonForHtml({ company, content, products, seo, fa })}</script></body>`);
+    if (!data.privatePage) html = html.replace('</body>', `<script id="public-data" type="application/json">${jsonForHtml({ company, ...compactPublicContent(content, fa), products, seo, fa, indexingEnabled })}</script></body>`);
     res.set('Cache-Control', data.privatePage ? 'private, no-store' : 'no-cache');
-    if (data.privatePage) res.set('X-Robots-Tag', 'noindex, nofollow');
+    res.set('X-Robots-Tag', data.robots.startsWith('index,follow') ? 'index, follow' : 'noindex, nofollow');
     res.status(data.missing ? 404 : 200).send(html);
   });
 }
@@ -163,6 +171,9 @@ const handleError: ErrorRequestHandler = (err: unknown, _req, res, _next) => {
 };
 app.use(handleError);
 if (!process.env.TEST_IMPORT) {
+  cleanupSecurityState();
+  const cleanupTimer = setInterval(cleanupSecurityState, 3600_000);
+  cleanupTimer.unref();
   const server = app.listen(
     Number(process.env.PORT) || 3001,
     process.env.HOST || '127.0.0.1',

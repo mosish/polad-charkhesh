@@ -28,6 +28,7 @@ import ProductEditor from './ProductEditor';
 import SettingsEditor from './SettingsEditor';
 import WebsiteEditor from './WebsiteEditor';
 import CatalogWorkspace from './CatalogWorkspace';
+import MfaSetup from './MfaSetup';
 const tabs = [
   ['overview', 'Overview', 'نمای کلی', LayoutDashboard],
   ['products', 'Products', 'محصولات', Package],
@@ -133,6 +134,15 @@ export default function Admin() {
         )}
       </main>
     );
+  if (status.enrollmentRequired)
+    return <main id="main" className="admin-login">
+      <div className="login-intro">
+        <h1>{t('Set up two-step verification', 'راه‌اندازی تأیید دومرحله‌ای')}</h1>
+        <p>{t('Add your authenticator before opening the administration workspace. This enrollment session expires in ten minutes.', 'پیش از ورود به مدیریت، رمزساز خود را اضافه کنید. نشست راه‌اندازی پس از ده دقیقه منقضی می‌شود.')}</p>
+        <button className="button" onClick={async () => { await api('/auth/logout', 'POST', {}); await check(); }}>{t('Sign out', 'خروج')}</button>
+      </div>
+      <MfaSetup onDone={check} />
+    </main>;
   if (!status.user)
     return (
       <main id="main" className="admin-login">
@@ -215,6 +225,10 @@ export default function Admin() {
               }
             />
           </label>
+          {status.isConfigured && <label>
+            {t('Authenticator or recovery code (if enabled)', 'کد رمزساز یا بازیابی (در صورت فعال بودن)')}
+            <input dir="ltr" name="code" autoComplete="one-time-code" maxLength={35} />
+          </label>}
           {!status.isConfigured && (
             <label>
               {t(
@@ -262,6 +276,7 @@ export default function Admin() {
           {tabGroups.map((group) => <div className="admin-nav-group" key={group.labelEn}>
             <span className="admin-nav-label">{t(group.labelEn, group.labelFa)}</span>
             {group.ids.map((id) => {
+              if (id === 'audit' && status.user?.role !== 'superadmin') return null;
               const item = tabs.find(([key]) => key === id)!;
               const [k, e, f, Icon] = item;
               return <button key={k} className={tab === k ? 'active' : ''} aria-current={tab === k ? 'page' : undefined} onClick={() => changeTab(k)}>
@@ -351,7 +366,7 @@ export default function Admin() {
                 ['auditEvents', 'Audit events', 'رویداد ثبت‌شده'],
               ].map(([k, e, f]) => (
                 <div key={k}>
-                  <strong>{data.value[k as keyof SystemStatus] ?? 0}</strong>
+                  <strong>{Number(data.value[k as keyof SystemStatus] ?? 0)}</strong>
                   <span>{t(e, f)}</span>
                 </div>
               ))}
@@ -570,9 +585,16 @@ export default function Admin() {
                 {t('Version', 'نسخه')}: {data.value.version} · {data.value.products}{' '}
                 {t('products', 'محصول')}
               </p>
-              <a className="button" href="/api/system/backup" download>
+              {Boolean(data.value.securityAlerts?.length) && <div>
+                <h4>{t('Recent security alerts', 'هشدارهای امنیتی اخیر')}</h4>
+                <ul>{data.value.securityAlerts?.map((alert, i) => <li key={i}>
+                  <time dateTime={alert.timestamp}>{new Date(alert.timestamp).toLocaleString(fa ? 'fa-IR' : 'en-GB')}</time>
+                  {' · '}{alert.action === 'SECURITY_ALERT_ACCOUNT_LOCKED' ? t('Account temporarily locked after failed sign-ins', 'قفل موقت حساب پس از ورودهای ناموفق') : t('A recovery code was used', 'یک کد بازیابی استفاده شده است')}
+                </li>)}</ul>
+              </div>}
+              {status.user.role === 'superadmin' && <a className="button" href="/api/system/backup" download>
                 {t('Download secure backup', 'دریافت نسخه پشتیبان')}
-              </a>
+              </a>}
               <p className="note">
                 {t(
                   'Backups exclude passwords and sessions. Media metadata is included; copy the uploads directory separately.',
@@ -604,6 +626,7 @@ export default function Admin() {
                 </>
               )}
             </div>
+            {status.mfaAvailable && <MfaSetup enabled={status.mfaEnabled} onDone={check} />}
             <form
               className="panel"
               onSubmit={async (e) => {

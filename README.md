@@ -2,6 +2,12 @@
 
 **English** | [فارسی](README.fa.md)
 
+**Security remediation — 2026-10-20:** Mandatory MFA, account lockout, upload
+sanitization, Access token validation, encrypted local backup tooling and a single
+indexing switch are implemented. All 134 tests and local source/build checks pass.
+Production activation is tracked separately in the [remediation record](docs/SECURITY_REMEDIATION_2026-10-20.md).
+Engineering approval and indexing release remain pending.
+
 > **Project status:** Both language domains live with eligibility controls, independent manual calculation and C1-C admin/client contracts deployed. C1-D quality, C0-C method evidence and C3-A bilingual numerical inputs/unit conversion are deployed. Engineering acceptance, operations and final audits remain open.
 >
 > **Source of truth for code:** GitHub `main`

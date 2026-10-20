@@ -4,6 +4,11 @@
 
 The owner requested a plan covering every pending area and authorized starting work step by step. The owner will nominate an engineering reviewer later. Developer work, tests and source synchronization can proceed; engineer acceptance remains unassigned. Do not mistake a prepared evidence packet for that acceptance.
 
+**Security workstream, October 20:** The supplied audit now has a tested application
+remediation package (134 tests) and operational rollout in progress. Track exact
+activation and remaining owner actions in the [security record](SECURITY_REMEDIATION_2026-10-20.md).
+This does not close engineering acceptance or the complete C4/C5 journey matrix.
+
 ## Sequence and completion gates
 
 | Phase | Work | Required evidence to close | Current state |

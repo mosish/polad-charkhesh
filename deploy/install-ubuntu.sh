@@ -135,7 +135,7 @@ if command -v ss >/dev/null; then
 fi
 printf 'Installing commit %s as RESTRICTED STAGING, not approving a public launch.\n' "$REF"
 apt-get update
-apt-get install -y ca-certificates curl git xz-utils nginx certbot ufw openssl unattended-upgrades
+apt-get install -y ca-certificates curl git xz-utils nginx certbot ufw openssl unattended-upgrades qpdf util-linux age
 dpkg-reconfigure -f noninteractive unattended-upgrades
 systemctl enable --now apt-daily.timer apt-daily-upgrade.timer
 ufw allow "$SSH_PORT/tcp"
@@ -204,6 +204,7 @@ umask 077
   printf 'NODE_ENV=production\nHOST=127.0.0.1\nPORT=3001\n'
   printf 'DATABASE_PATH=%s/platform.sqlite\nUPLOAD_DIR=%s/uploads\n' "$DATA" "$DATA"
   printf 'SESSION_SECRET=%s\nCOOKIE_SECRET=%s\n' "$(openssl rand -hex 32)" "$(openssl rand -hex 32)"
+  printf 'MFA_ENCRYPTION_KEY=%s\nMFA_REQUIRED=true\nENABLE_SEARCH_INDEXING=false\n' "$(openssl rand -hex 32)"
   if [[ $INITIALIZE == 1 ]]; then
     printf 'ALLOW_INITIALIZE_DATABASE=1\nSETUP_TOKEN=%s\n' "$(openssl rand -hex 32)"
   fi

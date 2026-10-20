@@ -8,7 +8,12 @@ import { randomBytes } from 'node:crypto';
 import net from 'node:net';
 import { auditPublishedSeo } from '../lib/seo-audit';
 import {referenceMedia} from '../lib/reference-media';
+import sharp from 'sharp';
 
+process.env.MFA_REQUIRED = 'false'; // Required-MFA cases run in security-hardening.test.ts.
+process.env.ENABLE_SEARCH_INDEXING = 'false';
+delete process.env.CLOUDFLARE_ACCESS_ISSUER;
+delete process.env.CLOUDFLARE_ACCESS_AUDIENCE;
 const root = process.cwd();
 const serverFile = path.join(root, 'dist/server/index.js');
 const clientFile = path.join(root, 'dist/client/index.html');
@@ -30,6 +35,7 @@ const child = spawn(process.execPath, [serverFile], {
   env: {
     ...process.env,
     NODE_ENV: 'production',
+    MFA_REQUIRED: 'false', // MFA-required enrollment/recovery has a separate integration suite.
     ALLOW_INITIALIZE_DATABASE: '1',
     TEST_IMPORT: '',
     HOST: '127.0.0.1',
@@ -134,6 +140,12 @@ try {
   assert.equal(home.status, 200, 'English homepage');
   assert.match(home.body, /<html lang="en" dir="ltr">/);
   assert.match(home.body, /rel="canonical" href="https:\/\/poladcharkhesh\.com\/"/);
+  assert.match(home.body, /name="robots" content="noindex,nofollow"/);
+  assert.equal(home.headers['x-robots-tag'], 'noindex, nofollow');
+  const embedded = JSON.parse(home.body.match(/id="public-data" type="application\/json">(.*?)<\/script>/s)![1]);
+  assert.equal(embedded.indexingEnabled, false);
+  assert.deepEqual(embedded.content.copy, {});
+  assert.ok(Object.keys(embedded.localizedCopy).length > 400);
   assert.ok(home.headers['strict-transport-security'], 'HSTS header');
   assert.ok(home.headers['content-security-policy'], 'Content security policy');
   assert.match(String(home.headers['content-security-policy']), /script-src 'self';/);
@@ -202,8 +214,7 @@ try {
     assert.ok(guide.body.includes(`https://${host}/catalog`));
     assert.ok(!guide.body.includes('/admin'));
     const robots = await request('/robots.txt', host);
-    assert.ok(robots.body.includes(`Sitemap: https://${host}/sitemap.xml`));
-    assert.match(robots.body, /Disallow: \/api\//);
+    assert.equal(robots.body, 'User-agent: *\nDisallow: /\n');
     for (const route of ['/', '/catalog', '/engineering', ...products.map((item: { slug: string }) => '/product/' + encodeURIComponent(item.slug))]) {
       const response = await request(route, host);
       assert.equal(response.status, 200, `${host}${route}`);
@@ -261,15 +272,16 @@ try {
 
   const upload = await request('/api/media', 'poladcharkhesh.com', {
     method: 'POST', cookie: sessionCookie,
-    body: { name: 'smoke.png', mime: 'image/png', base64: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y0EtOYAAAAASUVORK5CYII=' },
+    body: { name: 'smoke.png', mime: 'image/png', base64: (await sharp({ create: { width: 4, height: 4, channels: 3, background: 'white' } }).png().toBuffer()).toString('base64') },
   });
   assert.equal(upload.status, 201, 'Administrator can upload media');
   const uploadUrl = JSON.parse(upload.body).media.url;
+  assert.match(uploadUrl, /\.webp$/);
   assert.equal((await request(uploadUrl)).status, 200, 'Uploaded media is served');
   assert.equal((await request('/api/system/backup', 'poladcharkhesh.com', { cookie: sessionCookie })).status, 200, 'Administrator can export metadata backup');
   assert.equal((await request('/api/auth/logout', 'poladcharkhesh.com', { method: 'POST', body: {}, cookie: sessionCookie })).status, 200, 'Administrator can sign out');
   assert.equal((await request('/api/system/status', 'poladcharkhesh.com', { cookie: sessionCookie })).status, 401, 'Signed-out session is revoked');
-  assert.match((await request('/robots.txt')).body, /Sitemap: https:\/\/poladcharkhesh\.com\/sitemap\.xml/);
+  assert.equal((await request('/robots.txt')).body, 'User-agent: *\nDisallow: /\n');
   assert.match((await request('/sitemap.xml')).body, /https:\/\/poladcharkhesh\.com\/product\//);
   if (process.platform !== 'win32') {
     const stopped = new Promise<number | null>((resolve, reject) => {

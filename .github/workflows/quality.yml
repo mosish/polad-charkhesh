@@ -47,6 +47,8 @@ jobs:
         run: npm install --global pnpm@11.25.0
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
+      - name: Install bounded PDF parser
+        run: sudo apt-get update -qq && sudo apt-get install -y qpdf util-linux
       - name: TypeScript
         run: pnpm typecheck
       - name: Dependency security audit

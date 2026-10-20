@@ -42,16 +42,17 @@ system.get('/status', (_req, res) => {
     auditEvents: count('SELECT count(*) n FROM audit_logs'),
     brands: brands.size,
     factorsRecorded: products.filter((p) => !p.isArchived && [p.calculationFactorE,p.calculationFactorY,p.calculationFactorF0].some((v) => typeof v === 'number' && Number.isFinite(v))).length,
+    securityAlerts: db.prepare("SELECT timestamp,action FROM audit_logs WHERE action LIKE 'SECURITY_ALERT_%' ORDER BY timestamp DESC LIMIT 10").all(),
   });
 });
-system.get('/audit', (_req, res) =>
+system.get('/audit', superadmin, (_req, res) =>
   res.json({
     logs: db
       .prepare('SELECT * FROM audit_logs ORDER BY timestamp DESC LIMIT 300')
       .all(),
   }),
 );
-system.get('/backup', (req: ApiRequest, res) => {
+system.get('/backup', superadmin, (req: ApiRequest, res) => {
   audit(sessionUser(req).username, 'BACKUP_EXPORTED');
   res.attachment('polad-charkhesh-backup.json').json(snapshot());
 });

@@ -6,9 +6,10 @@ import crypto from 'node:crypto';
 import { setting, putSetting, db, audit, parse } from './database';
 import { authenticated, limit } from './security';
 import { validateSettings } from './validation';
+import { indexingEnabled } from './indexing';
 export const content = Router();
 for (const kind of ['company', 'content', 'seo']) {
-  content.get('/' + kind, (_req, res) => res.json({ data: setting(kind) }));
+  content.get('/' + kind, (_req, res) => res.json({ data: setting(kind), ...(kind === 'seo' ? { indexingEnabled } : {}) }));
   content.put('/' + kind, authenticated, (req: ApiRequest, res) => {
     const errors = validateSettings(kind, req.body);
     if (kind !== 'content' && !sameShape(req.body, setting(kind)))
