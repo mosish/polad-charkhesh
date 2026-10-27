@@ -18,6 +18,7 @@ import { accessBoundary } from './access';
 import { indexingEnabled } from './indexing';
 import { compactPublicContent } from '../lib/public-snapshot';
 import { publicPagePaths } from '../domain/catalog-hubs';
+import { analytics, pruneWebsiteStatistics } from './analytics';
 export const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 'loopback');
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 });
 // Browser clients send plain JSON; reject compressed request bodies before
 // allocating a decompression stream (GHSA-27r3-jxmh-p828 defense in depth).
+app.use('/api/analytics', express.json({ limit: '1kb', inflate: false }));
 app.use(express.json({ limit: '12mb', inflate: false }));
 app.use('/api', (req, res, next) => {
   res.set('Cache-Control', 'no-store');
@@ -85,6 +87,7 @@ app.get('/api/health', (_req, res) => {
   }
 });
 app.use('/api/auth', auth);
+app.use('/api/analytics', analytics);
 app.use('/api/products', products);
 app.use('/api', content);
 app.use('/api/system', system);
@@ -175,7 +178,8 @@ const handleError: ErrorRequestHandler = (err: unknown, _req, res, _next) => {
 app.use(handleError);
 if (!process.env.TEST_IMPORT) {
   cleanupSecurityState();
-  const cleanupTimer = setInterval(cleanupSecurityState, 3600_000);
+  pruneWebsiteStatistics();
+  const cleanupTimer = setInterval(() => { cleanupSecurityState(); pruneWebsiteStatistics(); }, 3600_000);
   cleanupTimer.unref();
   const server = app.listen(
     Number(process.env.PORT) || 3001,

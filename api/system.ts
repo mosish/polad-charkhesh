@@ -12,8 +12,14 @@ import {
   audit,
 } from './database';
 import { authenticated, superadmin } from './security';
+import { websiteStatistics } from './analytics';
+import { serverMetrics } from './server-metrics';
 export const system = Router();
 system.use(authenticated);
+system.get('/dashboard', async (_req, res) => {
+  const server = await serverMetrics();
+  res.json({ sampledAt: new Date().toISOString(), website: websiteStatistics(), server });
+});
 export function snapshot() {
   return {
     version: 1,
