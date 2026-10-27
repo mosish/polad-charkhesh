@@ -1,5 +1,7 @@
 # Security remediation — 20 October 2026
 
+**October 27 update:** The application controls, encrypted backup verification and VPS-local monitoring have been activated and checked. See the [current activation record](SECURITY_RELEASE_2026-10-27.md). Historical source-checkpoint statements below retain their original date and scope.
+
 This package addresses the supplied security audit. Engineering approval remains
 pending. Public indexing is disabled. Production activation and perimeter
 verification are recorded below only after they actually occur.
