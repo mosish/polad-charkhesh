@@ -3,7 +3,7 @@
 import https from 'node:https';
 import { execFileSync } from 'node:child_process';
 import { DatabaseSync } from 'node:sqlite';
-import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, renameSync, statfsSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, statfsSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -106,7 +106,12 @@ export async function monitor() {
   return report;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-  try { const result = await monitor(); if (result.status !== 'healthy') process.exitCode = 1; }
+// The production `current` directory is a symlink. Node resolves import.meta.url
+// to the release directory while argv retains the launch alias.
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
+  try {
+    if (process.argv.includes('--check-launch')) console.log('MONITOR_ENTRYPOINT_OK');
+    else { const result = await monitor(); if (result.status !== 'healthy') process.exitCode = 1; }
+  }
   catch { console.error('OPERATIONS_ALERT: monitoring could not complete.'); process.exitCode = 1; }
 }
