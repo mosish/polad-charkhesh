@@ -8,4 +8,6 @@ map $upstream_http_x_robots_tag $polad_robots {
 # In each proxied website server block, replace hardcoded X-Robots-Tag with:
 # proxy_hide_header X-Robots-Tag;
 # add_header X-Robots-Tag $polad_robots always;
-# Keep ENABLE_SEARCH_INDEXING=false until owner and engineering approval.
+# Keep ENABLE_SEARCH_INDEXING=false until explicit owner indexing-release approval.
+# The 2026-10-27 public release was approved separately from pending engineering
+# acceptance; see docs/INDEXING_RELEASE_2026-10-27.md for scope and verification.

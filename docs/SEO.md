@@ -44,7 +44,12 @@ The image-credit utility page has `noindex,follow` and stays outside the sitemap
 
 ## Sitemap and launch steps
 
-`/sitemap.xml` is generated from active records on each domain. It currently lists 113 canonical URLs per language: three public pages plus 110 products. Each entry identifies the equivalent language URLs. Archived products disappear immediately. No false `lastmod` timestamp is generated from an old seed date or server startup. `/robots.txt` advertises the sitemap for the domain receiving the request.
+`/sitemap.xml` is generated from active records on each domain. It currently lists 117 canonical URLs per language: three public pages, four category hubs and 110 products. Each entry identifies the equivalent language URLs. Archived products disappear immediately. No false `lastmod` timestamp is generated from an old seed date or server startup. `/robots.txt` advertises the sitemap for the domain receiving the request.
+
+The owner approved indexing all public pages on both domains on 27 October 2026.
+The runtime indexing flag is enabled on the live VPS; admin, API, preview and
+missing responses retain `noindex`. Engineering approval remains pending.
+See [the indexing release evidence](INDEXING_RELEASE_2026-10-27.md).
 
 After hosting and TLS are configured:
 
