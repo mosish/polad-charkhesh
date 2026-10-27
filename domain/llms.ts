@@ -1,5 +1,6 @@
 import type { CompanyContactInfo } from './company';
 import { pageUrl, upgradeSeo } from './seo';
+import { catalogHubs, hubPath } from './catalog-hubs';
 
 const plain = (value: string) => value.replace(/[\r\n]+/g, ' ').replace(/([\\`*_[\]<>#])/g, '\\$1');
 
@@ -19,6 +20,7 @@ export function llmsText(value: unknown, company: CompanyContactInfo, fa: boolea
     '## ' + t('Public pages', 'صفحات عمومی'),
     link(t('Company website', 'وب‌سایت شرکت'), '/', t('Company information, capabilities, industries and contact details.', 'معرفی شرکت، توانمندی‌ها، صنایع و اطلاعات تماس.')),
     link(t('Product catalog', 'کاتالوگ محصولات'), '/catalog', t('Published components with links to individual product specifications and available source documents.', 'قطعات منتشرشده همراه با پیوند مشخصات هر محصول و مستندات مرجع موجود.')),
+    ...catalogHubs.map(hub => link(hub[fa ? 'fa' : 'en'].title, hubPath(hub), hub[fa ? 'fa' : 'en'].description)),
     link(t('Engineering tools', 'ابزارهای مهندسی'), '/engineering', t('Bearing life, equivalent load, fit limits, comparison and unit conversion. Read assumptions; results do not replace manufacturer verification.', 'عمر بیرینگ، بار معادل، حدود انطباق، مقایسه و تبدیل واحد؛ فرضیات را مطالعه کنید. نتایج جایگزین تأیید سازنده نیستند.')),
     link(t('Sitemap', 'نقشه سایت'), '/sitemap.xml', t('Current published page URLs and language alternatives.', 'نشانی صفحات منتشرشده و نسخه‌های زبانی.')),
     '',

@@ -17,6 +17,9 @@ import {
 import { usePlatform, DataState } from './Context';
 import { ProductCard, ShowroomProductPanel } from './Product';
 import type { BearingProduct } from '../../domain/product';
+import { hubPath, productBelongsToHub, type CatalogHub } from '../../domain/catalog-hubs';
+import { CatalogHubGuide, CatalogHubLinks } from './CatalogHubContent';
+import TechnicalText from './TechnicalText';
 export const categoryNames: Record<string, readonly [string, string]> = {
   ball: ['Ball bearings', 'بلبرینگ'],
   roller: ['Tapered roller', 'رولبرینگ مخروطی'],
@@ -33,8 +36,9 @@ function columnsForViewport() {
   if (window.innerWidth <= 1100) return 2;
   return window.innerWidth >= 1500 ? 4 : 3;
 }
-export default function Catalog({ embedded = false }: { embedded?: boolean }) {
+export default function Catalog({ embedded = false, hub }: { embedded?: boolean; hub?: CatalogHub }) {
   const { products, t, loading, error } = usePlatform();
+  const catalogProducts = useMemo(() => hub ? products.filter(product => productBelongsToHub(product, hub)) : products, [products, hub]);
   const familyScroll = useRef<HTMLFieldSetElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const sizeId = useId();
@@ -54,11 +58,11 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   const expanded = page.key === pageKey && page.expanded;
   const visibleCount = page.key === pageKey ? page.count : columns * 6;
   const results = useMemo(
-    () => searchProducts(products, q, cat, dimensions.d, dimensions.D, dimensions.B),
-    [products, q, cat, dimensions],
+    () => searchProducts(catalogProducts, q, cat, dimensions.d, dimensions.D, dimensions.B),
+    [catalogProducts, q, cat, dimensions],
   );
-  const sizes = useMemo(() => dimensionOptions(products, q, cat, dimensions), [products, q, cat, dimensions]);
-  const familyMatches = useMemo(() => searchProducts(products, q, 'all', dimensions.d, dimensions.D, dimensions.B), [products, q, dimensions]);
+  const sizes = useMemo(() => dimensionOptions(catalogProducts, q, cat, dimensions), [catalogProducts, q, cat, dimensions]);
+  const familyMatches = useMemo(() => searchProducts(catalogProducts, q, 'all', dimensions.d, dimensions.D, dimensions.B), [catalogProducts, q, dimensions]);
   const activeSizes = (Object.keys(dimensions) as DimensionKey[]).filter(key => dimensions[key]);
   const hasFilters = !!q || cat !== 'all' || activeSizes.length > 0;
   const clearFilters = () => { setQ(''); setCat('all'); setDimensions(emptyDimensions()); };
@@ -93,7 +97,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
             setDimensions(emptyDimensions());
             setSelected('');
             return {
-              products: searchProducts(products, input.query).map((p) => ({
+              products: searchProducts(catalogProducts, input.query).map((p) => ({
                 code: p.code,
                 slug: p.slug,
                 d: p.d,
@@ -107,7 +111,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
       ),
     ).catch(() => {});
     return () => lifecycle.abort();
-  }, [products]);
+  }, [catalogProducts]);
   useEffect(() => {
     const next = new URLSearchParams(location.search);
     for (const key of ['q', 'category', 'd', 'D', 'B', 'item']) next.delete(key);
@@ -119,7 +123,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   const chooseProduct = (product: BearingProduct) => {
     setSelected(product.slug || product.id);
   };
-  const currentProduct = products.find((product) => !product.isArchived && (product.slug === selected || product.id === selected));
+  const currentProduct = catalogProducts.find((product) => !product.isArchived && (product.slug === selected || product.id === selected));
   const preview = !table && !expanded && results.length > columns * 2;
   const renderCount = table ? Math.max(12, expanded ? visibleCount : 12) : expanded ? visibleCount : columns * 3;
   const moreAvailable = preview || results.length > renderCount;
@@ -130,7 +134,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
   return (
     <Container id={embedded ? undefined : 'main'} className={embedded ? 'catalog-workspace embedded-workspace' : 'catalog-workspace'}>
       <section className={embedded ? 'section-heading catalog-intro' : 'page-heading'}>
-        {!embedded && <Breadcrumbs route="/catalog" />}
+        {!embedded && <Breadcrumbs route={hub ? hubPath(hub) : '/catalog'} />}
         <div className="section-label">
           {embedded ? '02 / ' : ''}{t(
             'PRODUCT SHOWROOM / TECHNICAL DISCOVERY',
@@ -138,15 +142,17 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
           )}
         </div>
         {embedded ? <h2>{t('Explore every component.', 'همه قطعات را بررسی کنید.')}</h2> : <h1>
-          {t('Industrial bearing catalog', 'کاتالوگ بیرینگ صنعتی')}
+          <TechnicalText text={hub ? t(hub.en.title, hub.fa.title) : t('Industrial bearing catalog', 'کاتالوگ بیرینگ صنعتی')} />
         </h1>}
         <p>
-          {t(
+          <TechnicalText text={hub ? t(hub.en.description, hub.fa.description) : t(
             'Search by designation, dimensions or application. Explore the details, then speak to our engineering team.',
             'بر اساس شماره فنی، ابعاد یا کاربرد جستجو کنید؛ مشخصات را بررسی کنید و با تیم فنی در ارتباط باشید.',
-          )}
+          )} />
         </p>
+        {hub && <a className="catalog-guide-jump" href="#selection-guide">{t('Read the selection guide', 'مطالعه راهنمای انتخاب')} ↓</a>}
       </section>
+      <CatalogHubLinks current={hub} />
       <section className="catalog-finder" aria-label={t('Find a component', 'یافتن قطعه')}>
         <label htmlFor={sizeId + '-search'}>{t('Search the catalog', 'جستجوی کاتالوگ')}</label>
         <div className="catalog-finder-row">
@@ -179,7 +185,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
         <div className="family-bar-heading"><span className="section-label">{t('BEARING FAMILIES', 'خانواده بیرینگ')}</span><div className="family-bar-arrows"><button type="button" aria-label={t('Scroll families left', 'پیمایش خانواده‌ها به چپ')} onClick={() => scrollFamilies(-320)}><ChevronLeft size={17} /></button><button type="button" aria-label={t('Scroll families right', 'پیمایش خانواده‌ها به راست')} onClick={() => scrollFamilies(320)}><ChevronRight size={17} /></button></div></div>
         <fieldset ref={familyScroll} className="family-options"  aria-label={t('Bearing families', 'خانواده‌های بیرینگ')}>
           <button type="button" aria-pressed={cat === 'all'} className={cat === 'all' ? 'active' : ''} onClick={() => setCat('all')}><span className="category-tile-label">{t('All components', 'همه قطعات')}</span><small>{familyMatches.length}</small><CategoryIcon category="all"/></button>
-          {Object.entries(categoryNames).map(([key, names]) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}><span className="category-tile-label">{t(...names)}</span><small>{familyMatches.filter(product => product.category === key).length}</small><CategoryIcon category={key}/></button>)}
+          {Object.entries(categoryNames).filter(([key]) => !hub || catalogProducts.some(product => product.category === key)).map(([key, names]) => <button type="button" key={key} aria-pressed={cat === key} className={cat === key ? 'active' : ''} onClick={() => setCat(key)}><span className="category-tile-label">{t(...names)}</span><small>{familyMatches.filter(product => product.category === key).length}</small><CategoryIcon category={key}/></button>)}
         </fieldset>
       </div>
       <div className="catalog-layout">
@@ -263,6 +269,7 @@ export default function Catalog({ embedded = false }: { embedded?: boolean }) {
           {moreAvailable && <button className="button catalog-more" onClick={showMore}>{t('Show more components', 'نمایش قطعات بیشتر')} <span>↓</span></button>}
         </div>
       </div>
+      {hub && <CatalogHubGuide hub={hub} />}
       <div className="section catalog-library"><ManufacturerLibrary /></div>
       {currentProduct && <ShowroomProductPanel p={currentProduct} onSelect={chooseProduct} onClose={() => setSelected('')} />}
     </Container>
