@@ -9,6 +9,7 @@ import net from 'node:net';
 import { auditPublishedSeo } from '../lib/seo-audit';
 import {referenceMedia} from '../lib/reference-media';
 import sharp from 'sharp';
+import { publicPagePaths, catalogHubs, hubPath, productBelongsToHub } from '../domain/catalog-hubs';
 
 process.env.MFA_REQUIRED = 'false'; // Required-MFA cases run in security-hardening.test.ts.
 process.env.ENABLE_SEARCH_INDEXING = 'false';
@@ -215,7 +216,7 @@ try {
     assert.ok(!guide.body.includes('/admin'));
     const robots = await request('/robots.txt', host);
     assert.equal(robots.body, 'User-agent: *\nDisallow: /\n');
-    for (const route of ['/', '/catalog', '/engineering', ...products.map((item: { slug: string }) => '/product/' + encodeURIComponent(item.slug))]) {
+    for (const route of [...publicPagePaths(), ...products.map((item: { slug: string }) => '/product/' + encodeURIComponent(item.slug))]) {
       const response = await request(route, host);
       assert.equal(response.status, 200, `${host}${route}`);
       assert.equal((response.body.match(/<h1\b/g) || []).length, 1, `${route}: one initial heading`);
@@ -223,6 +224,18 @@ try {
       assert.match(response.body, /"@type":"LocalBusiness"/);
       assert.ok(response.body.includes(`rel="canonical" href="https://${host}${route}"`));
     }
+    for (const hub of catalogHubs) {
+      const page = await request(hubPath(hub), host);
+      const graph = JSON.parse(page.body.match(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/s)![1])['@graph'];
+      const collection = graph.find((item: { '@type': string }) => item['@type'] === 'ItemList');
+      assert.equal(collection.itemListElement.length, products.filter((product: import('../domain/product').BearingProduct) => productBelongsToHub(product, hub)).length);
+      assert.match(page.body, /id="selection-guide"/);
+      assert.match(page.body, /class="catalog-hub-references"/);
+      const trailing = await request(hubPath(hub) + '/?q=6204', host);
+      assert.equal(trailing.status, 200);
+      assert.ok(trailing.body.includes(`rel="canonical" href="https://${host}${hubPath(hub)}"`));
+    }
+    assert.equal((await request('/catalog/unknown-family', host)).status, 404);
   }
   const favicon = await request('/favicon.svg');
   assert.equal(favicon.status, 200);
@@ -251,7 +264,8 @@ try {
   assert.equal(preview.headers['x-robots-tag'], 'noindex, nofollow');
   for (const host of ['poladcharkhesh.com', 'poladcharkhesh.ir']) {
     const sitemap = await request('/sitemap.xml', host);
-    assert.equal((sitemap.body.match(/<loc>/g) || []).length, products.length + 3);
+    assert.equal((sitemap.body.match(/<loc>/g) || []).length, products.length + publicPagePaths().length);
+    for (const hub of catalogHubs) assert.ok(sitemap.body.includes('<loc>https://' + host + hubPath(hub) + '</loc>'));
     assert.match(sitemap.body, /hreflang="x-default"/);
     assert.ok(!sitemap.body.includes('/admin'));
     assert.ok(sitemap.body.includes('<loc>https://' + host + '/product/'));

@@ -2,6 +2,8 @@ import type { BearingProduct } from './product';
 import type { CompanyContactInfo } from './company';
 import { mediaFor } from '../lib/media';
 import { breadcrumbsFor } from './breadcrumbs';
+import { catalogHubForPath, productBelongsToHub } from './catalog-hubs';
+import { documentedManufacturer, productHeading, productSpecifications } from './product-presentation';
 
 export const seoDefaults = {
   titleEn: 'Polad Charkhesh Arian Tech | Industrial Bearings & Engineering',
@@ -156,16 +158,22 @@ export function metadataFor(
   search = '',
 ) {
   const seo = upgradeSeo(value),
-    route = canonicalPath(path);
+    route = canonicalPath(path),
+    hub = catalogHubForPath(route);
   const missing = route.startsWith('/product/')
     ? !p || Boolean(p.isArchived)
-    : !['/', '/catalog', '/engineering', '/admin'].includes(route);
+    : !hub && !['/', '/catalog', '/engineering', '/admin'].includes(route);
   const privatePage =
     route === '/admin' ||
     missing ||
     new URLSearchParams(search).get('preview') === '1';
   const page =
-    route === '/catalog'
+    hub ? {
+      titleEn: hub.en.title + ' | ' + company.nameEn,
+      titleFa: hub.fa.title + ' | ' + company.nameFa,
+      descriptionEn: hub.en.description,
+      descriptionFa: hub.fa.description,
+    } : route === '/catalog'
       ? seo.pages.catalog
       : route === '/engineering'
         ? seo.pages.engineering
@@ -253,7 +261,7 @@ export function metadataFor(
       ];
   if (!privatePage) {
     graph.push({
-      '@type': route === '/catalog' ? 'CollectionPage' : 'WebPage',
+      '@type': route === '/catalog' || hub ? 'CollectionPage' : 'WebPage',
       '@id': canonical + '#webpage',
       url: canonical,
       name: data.title,
@@ -263,44 +271,32 @@ export function metadataFor(
       ...(p ? { mainEntity: { '@id': canonical + '#product' } } : {}),
     });
     if (p) {
+      const manufacturer = documentedManufacturer(p);
       graph.push({
         '@type': 'Product',
         '@id': canonical + '#product',
         url: canonical,
-        name: p[fa ? 'nameFa' : 'nameEn'] || p.code,
+        name: productHeading(p, fa),
         sku: p.code,
+        model: p.code,
+        ...(manufacturer ? { brand: { '@type': 'Brand', name: manufacturer }, manufacturer: { '@type': 'Organization', name: manufacturer } } : {}),
         description: p[fa ? 'descriptionFa' : 'descriptionEn'],
         category: p.category,
         ...(exactImage ? { image: exactImage } : {}),
-        additionalProperty: (
-          [
-            ['d', 'Bore diameter', 'mm'],
-            ['D', 'Outside diameter', 'mm'],
-            ['B', 'Width', 'mm'],
-            ['weightKg', 'Weight', 'kg'],
-            ['crKn', 'Dynamic load rating', 'kN'],
-            ['corKn', 'Static load rating', 'kN'],
-          ] as Array<[keyof BearingProduct, string, string]>
-        )
-          .filter(
-            ([key]) =>
-              typeof p[key] === 'number' &&
-              Number.isFinite(p[key]) &&
-              (p[key] as number) > 0,
-          )
-          .map(([key, name, unitText]) => ({
+        additionalProperty: productSpecifications(p, fa)
+          .filter(row => row.quantity)
+          .map(row => ({
             '@type': 'PropertyValue',
-            name,
-            value: p[key],
-            unitText,
+            name: row.label,
+            ...row.quantity,
           })),
       });
     }
-    if (route === '/catalog')
+    if (route === '/catalog' || hub)
       graph.push({
         '@type': 'ItemList',
         itemListElement: products
-          .filter((item) => !item.isArchived)
+          .filter((item) => !item.isArchived && (!hub || productBelongsToHub(item, hub)))
           .map((item, i) => ({
             '@type': 'ListItem',
             position: i + 1,

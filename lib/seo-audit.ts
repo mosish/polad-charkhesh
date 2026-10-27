@@ -2,6 +2,7 @@ import type { BearingProduct } from '../domain/product';
 import type { CompanyContactInfo } from '../domain/company';
 import { metadataFor, pageUrl, upgradeSeo, type PublishedSeoContent } from '../domain/seo';
 import { initialPublicHtml } from '../api/seo-html';
+import { publicPagePaths } from '../domain/catalog-hubs';
 
 export interface PublicSeoSnapshot {
   products: BearingProduct[];
@@ -17,7 +18,7 @@ const unfinished = /\blorem ipsum\b|\bcoming soon\b|\byour company\b|\b(?:TODO|T
 export function auditPublishedSeo(snapshot: PublicSeoSnapshot) {
   const products = snapshot.products.filter(p => !p.isArchived);
   const seo = upgradeSeo(snapshot.seo);
-  const routes = ['/', '/catalog', '/engineering', ...products.map(p => '/product/' + p.slug)];
+  const routes = [...publicPagePaths(), ...products.map(p => '/product/' + p.slug)];
   const issues: SeoIssue[] = [];
   for (const fa of [false, true]) {
     const titles = new Map<string, string>(), headings = new Map<string, string>();

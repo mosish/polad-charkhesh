@@ -17,6 +17,7 @@ import { publicError } from './http-errors';
 import { accessBoundary } from './access';
 import { indexingEnabled } from './indexing';
 import { compactPublicContent } from '../lib/public-snapshot';
+import { publicPagePaths } from '../domain/catalog-hubs';
 export const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 'loopback');
@@ -114,7 +115,7 @@ app.get('/robots.txt', (req, res) => {
 });
 app.get('/sitemap.xml', (req, res) => {
   const seo = setting('seo'), fa = languageFor(req.hostname);
-  const routes = ['/', '/catalog', '/engineering', ...allProducts().map((p) => '/product/' + p.slug)];
+  const routes = [...publicPagePaths(), ...allProducts().map((p) => '/product/' + p.slug)];
   res.type('application/xml').send('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'
     + routes.map((route) => '<url><loc>' + escapeHtml(pageUrl(route, seo, fa)) + '</loc>'
       + [['en', false], ['fa', true], ['x-default', false]].map(([lang, persian]) => '<xhtml:link rel="alternate" hreflang="' + lang + '" href="' + escapeHtml(pageUrl(route, seo, Boolean(persian))) + '"/>').join('') + '</url>').join('') + '</urlset>');

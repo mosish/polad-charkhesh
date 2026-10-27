@@ -221,7 +221,7 @@ void test('SEO defaults preserve owner edits and technical values without invent
     assert.equal(product[key], undefined);
   assert.equal(
     (product.additionalProperty as Array<{ name: string; value: number }>).find(
-      (item) => item.name === 'Dynamic load rating',
+      (item) => item.name === 'Dynamic load rating C',
     )?.value,
     p.crKn,
   );

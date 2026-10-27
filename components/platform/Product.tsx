@@ -19,6 +19,10 @@ import { bearingGeometry } from '../../lib/bearing-motion';
 import { usePlatform, DataState } from './Context';
 import Dialog from './Dialog';
 import { Schematic } from './Schematic';
+import ProductSpecificationTable from './ProductSpecificationTable';
+import { productHeading } from '../../domain/product-presentation';
+import { hubPath, productHub } from '../../domain/catalog-hubs';
+import TechnicalText from './TechnicalText';
 const BearingScene = lazy(() => import('./HeroBearingScene'));
 const schematicLabels: Record<string, readonly [string, string]> = {
   'deep-groove': ['Deep groove', 'شیار عمیق'],
@@ -106,7 +110,7 @@ export function ProductCard({
       <div className="product-info">
         <span className="product-card-family">{typeLabel(p.schematicType, t)}</span>
         <code dir="ltr">{p.code}</code>
-        <h3>{p[fa ? 'nameFa' : 'nameEn']}</h3>
+        <h3><TechnicalText text={p[fa ? 'nameFa' : 'nameEn']} /></h3>
         {p.category === 'lubricant' ? <p className="dimension-row"><span>{t('Weight', 'وزن')} <b dir="ltr">{p.weightKg} kg</b></span></p> : <p className="dimension-row" dir="ltr">
           <span>
             <Copy text="d" />
@@ -197,19 +201,6 @@ export function TechnicalContent({
   const [viewerReset,setViewerReset]=useState(0);
   const [rpm,setRpm]=useState(0);
   const canExplode = bearingGeometry(p).supported;
-  const rows = [
-    ['d / D / B', `${p.d} / ${p.D} / ${p.B} mm`],
-    [t('Weight', 'وزن'), p.weightKg + ' kg'],
-    [t('Dynamic rating Cr', 'بار دینامیکی Cr'), p.crKn + ' kN'],
-    [t('Static rating C₀r', 'بار استاتیکی C₀r'), p.corKn + ' kN'],
-    ...(p.speedLimitingRpm ? [
-      [t('Reference speed', 'سرعت مرجع'), p.speedReferenceRpm ? `${p.speedReferenceRpm} rpm` : '—'],
-      [t('Limiting speed', 'سرعت حدی'), `${p.speedLimitingRpm} rpm`],
-    ] : [[t('Grease / oil speed', 'سرعت گریس / روغن'), `${p.speedGreaseRpm} / ${p.speedOilRpm} rpm`]]),
-    [t('Cage', 'قفسه'), p[fa ? 'cageMaterialFa' : 'cageMaterialEn'] || '—'],
-    [t('Sealing', 'آب‌بندی'), p[fa ? 'sealingFa' : 'sealingEn']],
-    [t('Clearance', 'لقی'), p.clearanceOptions.join(' · ')],
-  ];
   return (
     <>
       <div className="product-detail-grid">
@@ -238,19 +229,10 @@ export function TechnicalContent({
         </div>
         <div>
           <div className="section-label">{typeLabel(p.schematicType, t)}</div>
-          {inline ? <h3 className="product-code" dir="ltr">{p.code}</h3> : <h1 className="product-code" dir="ltr">
-            {p.code}
-          </h1>}
-          {inline ? <h4 className="product-title">{p[fa ? 'nameFa' : 'nameEn']}</h4> : <h2 className="product-title">{p[fa ? 'nameFa' : 'nameEn']}</h2>}
+          {inline ? <h3 className="product-code" dir="ltr">{p.code}</h3> : <h1 className="product-title"><TechnicalText text={productHeading(p, fa)} /></h1>}
+          {inline && <h4 className="product-title">{p[fa ? 'nameFa' : 'nameEn']}</h4>}
           <p className="muted">{p[fa ? 'descriptionFa' : 'descriptionEn']}</p>
-          <dl className="specs">
-            {rows.map(([k, v]) => (
-              <div key={k}>
-                <dt>{k}</dt>
-                <dd dir="auto">{v}</dd>
-              </div>
-            ))}
-          </dl>
+          <ProductSpecificationTable product={p} />
           <div className="action-row">
             {company && <ProductCallOptions p={p} company={company} />}
             {full && <button
@@ -473,10 +455,12 @@ export default function ProductPage() {
       </main>
     );
   if (!p) return <NotFound productCode={slug} />;
+  const hub = productHub(p);
   return (
     <main id="main" className="section">
       <Breadcrumbs route={'/product/' + p.slug} product={p} />
       <TechnicalContent p={p} full />
+      {hub && <p className="product-hub-backlink"><a href={hubPath(hub)}>{t('Explore this component family', 'بررسی خانواده این قطعه')}: {hub[fa ? 'fa' : 'en'].title}</a></p>}
       <h2>{t('Related components', 'قطعات مرتبط')}</h2>
       <div className="product-grid">
         {relatedComponents(p, products)

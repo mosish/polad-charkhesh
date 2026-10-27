@@ -1,0 +1,46 @@
+.catalog-hub-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-block: 22px 30px;
+  margin-inline: 4%;
+}
+.catalog-hub-links a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface, rgba(128, 149, 176, .06));
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.catalog-hub-links a[aria-current="page"] { border-color: var(--accent); }
+.catalog-hub-links a:hover { border-color: var(--accent); }
+.catalog-hub-links small { color: var(--muted); font-size: .78rem; }
+.embedded-workspace .catalog-hub-links, .seo-initial .catalog-hub-links { margin-inline: 0; }
+.catalog-hub-guide { margin-block: 52px 28px; margin-inline: auto; width: 92%; max-width: 84ch; line-height: 1.9; }
+.catalog-hub-guide section { margin-block: 30px; }
+.catalog-hub-guide h2 { font-size: clamp(1.2rem, 2vw, 1.65rem); line-height: 1.6; }
+.catalog-hub-guide p { color: var(--muted); }
+.catalog-hub-references { padding-block: 20px; border-top: 1px solid var(--line); }
+.catalog-hub-references ul { columns: 1; padding-inline-start: 24px; overflow-wrap: anywhere; }
+.catalog-guide-jump { display: inline-block; margin-block: 10px 0; }
+.product-spec-table-wrap { width: 100%; min-width: 0; margin-block: 24px; }
+.product-spec-table { width: 100%; border-collapse: collapse; font-size: .9rem; line-height: 1.7; table-layout: fixed; }
+.product-spec-table caption { text-align: start; font-weight: 650; padding-block: 0 14px; }
+.product-spec-table th, .product-spec-table td { border-bottom: 1px solid var(--line); padding: 12px 10px; text-align: start; overflow-wrap: anywhere; }
+.product-spec-table th { width: 55%; font-weight: 500; }
+.product-spec-table thead { color: var(--muted); }
+.product-spec-table td { font-variant-numeric: tabular-nums; }
+.product-hub-backlink { margin-block: 28px; overflow-wrap: anywhere; }
+.product-detail-grid h1.product-title { font-size: clamp(1.4rem, 2.4vw, 2.1rem) !important; line-height: 1.6; }
+@media (max-width: 1000px) { .catalog-hub-links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 540px) {
+  .catalog-hub-links { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .catalog-hub-links a { padding: 16px; gap: 8px; }
+  .catalog-hub-guide { margin-block-start: 32px; }
+  .product-spec-table th, .product-spec-table td { padding: 10px 6px; }
+}
