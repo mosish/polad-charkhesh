@@ -1,0 +1,241 @@
+{
+  "date": "2026-10-27",
+  "applicationSecurityCommit": "3ecb2b40a6d5c037fe725adebdf79def60157cb3",
+  "observedApplicationRelease": "367021c6fad31fecdcdfbbefd00d0f769e618232",
+  "monitorImplementationCommit": "16c1203553eb0a136bc93e53acbfb5f0748c58d4",
+  "sourceTests": {
+    "combinedWindows": 142,
+    "securityPackageWindowsAndVpsUbuntu": 138,
+    "skips": 0
+  },
+  "live": [
+    {
+      "status": "passed",
+      "origin": "https://poladcharkhesh.ir",
+      "products": 110,
+      "pages": 226,
+      "assets": 6,
+      "checks": [
+        "trusted TLS",
+        "health",
+        "both languages and all product pages",
+        "unique titles and canonical/hreflang",
+        "admin routes",
+        "SEO files and custom 404",
+        "unauthenticated private-API denial",
+        "security headers",
+        "referenced local assets"
+      ],
+      "limitations": [
+        "Does not authenticate as the owner or replace browser, accessibility or engineering-data review."
+      ],
+      "checkedAt": "2026-10-27T10:07:18.568Z"
+    },
+    {
+      "status": "passed",
+      "origin": "https://poladcharkhesh.com",
+      "products": 110,
+      "pages": 226,
+      "assets": 6,
+      "checks": [
+        "trusted TLS",
+        "health",
+        "both languages and all product pages",
+        "unique titles and canonical/hreflang",
+        "admin routes",
+        "SEO files and custom 404",
+        "unauthenticated private-API denial",
+        "security headers",
+        "referenced local assets"
+      ],
+      "limitations": [
+        "Does not authenticate as the owner or replace browser, accessibility or engineering-data review."
+      ],
+      "checkedAt": "2026-10-27T10:07:30.079Z"
+    }
+  ],
+  "tls": [
+    {
+      "domain": "poladcharkhesh.ir",
+      "protocol": "TLS1.0",
+      "result": "rejected",
+      "reason": "TLSV1_ALERT_PROTOCOL_VERSION"
+    },
+    {
+      "domain": "poladcharkhesh.ir",
+      "protocol": "TLS1.1",
+      "result": "rejected",
+      "reason": "TLSV1_ALERT_PROTOCOL_VERSION"
+    },
+    {
+      "domain": "poladcharkhesh.ir",
+      "protocol": "TLS1.2",
+      "result": "accepted",
+      "cipher": "ECDHE-ECDSA-AES256-GCM-SHA384"
+    },
+    {
+      "domain": "poladcharkhesh.ir",
+      "protocol": "TLS1.3",
+      "result": "accepted",
+      "cipher": "TLS_AES_256_GCM_SHA384"
+    },
+    {
+      "domain": "poladcharkhesh.com",
+      "protocol": "TLS1.0",
+      "result": "rejected",
+      "reason": "TLSV1_ALERT_PROTOCOL_VERSION"
+    },
+    {
+      "domain": "poladcharkhesh.com",
+      "protocol": "TLS1.1",
+      "result": "rejected",
+      "reason": "TLSV1_ALERT_PROTOCOL_VERSION"
+    },
+    {
+      "domain": "poladcharkhesh.com",
+      "protocol": "TLS1.2",
+      "result": "accepted",
+      "cipher": "ECDHE-ECDSA-AES256-GCM-SHA384"
+    },
+    {
+      "domain": "poladcharkhesh.com",
+      "protocol": "TLS1.3",
+      "result": "accepted",
+      "cipher": "TLS_AES_256_GCM_SHA384"
+    }
+  ],
+  "publicChecks": [
+    {
+      "domain": "poladcharkhesh.ir",
+      "paths": [
+        {
+          "path": "/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "security_headers": {
+            "X-Content-Type-Options": "nosniff",
+            "X-Frame-Options": "DENY",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+            "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+            "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+            "Strict-Transport-Security": "max-age=31536000",
+            "X-Robots-Tag": "noindex, nofollow"
+          },
+          "meta_noindex": true
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "content_type": "text/plain; charset=utf-8",
+          "body": "User-agent: *\nDisallow: /\n"
+        },
+        {
+          "path": "/api/auth/status",
+          "status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "body": "{\"isConfigured\":true,\"user\":null,\"enrollmentRequired\":false,\"mfaEnabled\":false,\"mfaAvailable\":true,\"mfaRequired\":true}"
+        },
+        {
+          "path": "/.env",
+          "status": 404
+        },
+        {
+          "path": "/.env.production",
+          "status": 404
+        },
+        {
+          "path": "/.git/HEAD",
+          "status": 404
+        },
+        {
+          "path": "/.git/config",
+          "status": 404
+        },
+        {
+          "path": "/package.json",
+          "status": 404
+        },
+        {
+          "path": "/pnpm-lock.yaml",
+          "status": 404
+        },
+        {
+          "path": "/dist/server/index.js",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "domain": "poladcharkhesh.com",
+      "paths": [
+        {
+          "path": "/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "security_headers": {
+            "X-Content-Type-Options": "nosniff",
+            "X-Frame-Options": "DENY",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+            "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+            "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+            "Strict-Transport-Security": "max-age=31536000",
+            "X-Robots-Tag": "noindex, nofollow"
+          },
+          "meta_noindex": true
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "content_type": "text/plain; charset=utf-8",
+          "body": "User-agent: *\nDisallow: /\n"
+        },
+        {
+          "path": "/api/auth/status",
+          "status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "body": "{\"isConfigured\":true,\"user\":null,\"enrollmentRequired\":false,\"mfaEnabled\":false,\"mfaAvailable\":true,\"mfaRequired\":true}"
+        },
+        {
+          "path": "/.env",
+          "status": 404
+        },
+        {
+          "path": "/.env.production",
+          "status": 404
+        },
+        {
+          "path": "/.git/HEAD",
+          "status": 404
+        },
+        {
+          "path": "/.git/config",
+          "status": 404
+        },
+        {
+          "path": "/package.json",
+          "status": 404
+        },
+        {
+          "path": "/pnpm-lock.yaml",
+          "status": 404
+        },
+        {
+          "path": "/dist/server/index.js",
+          "status": 404
+        }
+      ]
+    }
+  ],
+  "media": {
+    "displayedUrlsDecoded": 105,
+    "failures": 0,
+    "qualification": "Loading/decoding only; not exact identity or reuse clearance"
+  },
+  "indexingReleased": false,
+  "engineeringApproved": false,
+  "limits": [
+    "No owner authenticator enrollment performed by the agent.",
+    "No forensic compromise certification.",
+    "Private operational records, credentials and backups excluded."
+  ]
+}
