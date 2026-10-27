@@ -22,6 +22,7 @@ export function protectedAccessPath(path: string, method: string, query: Record<
   if (/^\/admin(?:\/|$)/i.test(path) || query.preview === '1') return true;
   if (!/^\/api(?:\/|$)/i.test(path)) return false;
   if (method === 'POST' && path === '/api/inquiries') return false;
+  if (method === 'POST' && path === '/api/analytics/pageview') return false;
   if (['GET', 'HEAD'].includes(method) &&
       /^\/api\/(?:health|products(?:\/[^/]+)?|company|content|seo)\/?$/.test(path) &&
       query.includeArchived !== 'true') return false;

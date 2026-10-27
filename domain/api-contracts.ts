@@ -3,6 +3,7 @@ import type { CompanyContactInfo } from './company';
 import type { SiteContent } from './site-content';
 import type { SeoSettings } from './seo';
 import type { SessionUser, MediaRecord, InquiryData } from '../api/records';
+import type { DashboardSnapshot } from './dashboard';
 export type { SessionUser, MediaRecord } from '../api/records';
 export interface AuthStatus {
   isConfigured: boolean; user: SessionUser | null;
@@ -22,4 +23,5 @@ export interface ApiReads {
   '/inquiries': { inquiries: Inquiry[] };
   '/system/audit': { logs: AuditLog[] };
   '/system/status': SystemStatus;
+  '/system/dashboard': DashboardSnapshot;
 }
