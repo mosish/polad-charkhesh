@@ -6,6 +6,7 @@ export function publicError(error: unknown) {
   if (value.errcode === 5 || value.errcode === 6)
     return { status: 503, error: 'Database is busy. Please try again shortly.' };
   if (value.status === 413) return { status: 413, error: 'Request too large.' };
+  if (value.status === 415) return { status: 415, error: 'Unsupported request encoding or media type.' };
   if (value.status === 400) return { status: 400, error: 'Malformed request.' };
   return { status: 500, error: 'Unable to complete the request.' };
 }

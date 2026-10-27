@@ -49,7 +49,9 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(express.json({ limit: '12mb' }));
+// Browser clients send plain JSON; reject compressed request bodies before
+// allocating a decompression stream (GHSA-27r3-jxmh-p828 defense in depth).
+app.use(express.json({ limit: '12mb', inflate: false }));
 app.use('/api', (req, res, next) => {
   res.set('Cache-Control', 'no-store');
   if (!safeObject(req.body))

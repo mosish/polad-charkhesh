@@ -4,3 +4,9 @@ allowBuilds:
   sharp: true
   workerd: true
 
+# Security fixes published after the last application release. Scope overrides
+# to the existing parents rather than changing unrelated direct dependencies.
+overrides:
+  express>body-parser: 2.4.0
+  jspdf>dompurify: 3.4.17
+
