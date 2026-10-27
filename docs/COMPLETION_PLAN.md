@@ -9,6 +9,8 @@ remediation package (134 tests) and operational rollout in progress. Track exact
 activation and remaining owner actions in the [security record](SECURITY_REMEDIATION_2026-10-20.md).
 This does not close engineering acceptance or the complete C4/C5 journey matrix.
 
+**Security activation, October 27:** The tested application package is active; VPS-local encrypted backup/restore checking and five-minute monitoring are verified. A concurrent Persian SEO release was preserved. The combined source passes 142 tests; both domains passed 452 route/language checks. [Current evidence](SECURITY_RELEASE_2026-10-27.md). Owner enrollment, engineering/catalog acceptance, the complete C4/C5 matrix and indexing remain separate gates.
+
 ## Sequence and completion gates
 
 | Phase | Work | Required evidence to close | Current state |

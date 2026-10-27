@@ -2,6 +2,8 @@
 
 **English** | [فارسی](README.fa.md)
 
+**Security activation — 2026-10-27:** Dependency patches, mandatory-MFA enforcement, safer uploads, verified VPS-local encrypted backups and local monitoring are active. The combined source passes 142 tests, and both domains pass 452 page/language checks. Main is protected and full-history secret scanning is required. Engineering/catalog acceptance and indexing remain gated. [Activation and verification](docs/SECURITY_RELEASE_2026-10-27.md).
+
 **Security remediation — 2026-10-20:** Mandatory MFA, account lockout, upload
 sanitization, Access token validation, encrypted local backup tooling and a single
 indexing switch are implemented. All 134 tests and local source/build checks pass.
@@ -58,7 +60,7 @@ This is **not an online shop**. There are no prices, carts, checkout, payments, 
 
 ## Current project status
 
-The main feature set is published on both language domains. The current catalog has 110 products, 101 replacement images and no product PDF attachments. Earlier owner-authenticated administration, isolated restore and service-recovery checks passed; final acceptance remains open. The current application release is `bb0ef61b0bfc89077bacfe0dd113d52363c8af9f`; later documentation commits do not deploy automatically. The engineering foundation and eligibility controls are live; method review and approval remain open.
+The main feature set is published on both language domains. The current catalog has 110 products, 101 replacement images and no product PDF attachments. Earlier owner-authenticated administration, isolated restore and service-recovery checks passed; final acceptance remains open. The application observed at the October 27 security closeout is `367021c6fad31fecdcdfbbefd00d0f769e618232`, including the security activation and separate Persian brand update; source/documentation commits do not deploy automatically. The engineering foundation and eligibility controls are live; method review and approval remain open.
 
 | Area | Status | What this means now |
 | --- | --- | --- |
