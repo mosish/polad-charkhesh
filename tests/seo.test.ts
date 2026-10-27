@@ -16,6 +16,8 @@ import { siteExtras } from '../domain/site-content';
 import { breadcrumbsFor } from '../domain/breadcrumbs';
 import { llmsText } from '../domain/llms';
 import { auditPublishedSeo } from '../lib/seo-audit';
+import { publicHref } from '../lib/public-links';
+import { catalogHubs, hubPath } from '../domain/catalog-hubs';
 const p = bearingProducts[0];
 const content = {
   ...siteExtras,
@@ -27,6 +29,36 @@ const content = {
   engineering: { titleEn: 'Make the numbers work' },
   contact: { titleEn: 'Contact the team' },
 };
+
+void test('encoded product aliases share the clean canonical, alternate and schema URLs', () => {
+  const encoded = '/product/' + p.slug!.replace('6', '%36').replace('-', '%2D');
+  for (const fa of [false, true]) {
+    const data = metadataFor(encoded + '/?lang=fa&item=unrelated', fa, seoDefaults, COMPANY_INFO, p);
+    const clean = `https://poladcharkhesh.${fa ? 'ir' : 'com'}/product/${p.slug}`;
+    assert.equal(data.canonical, clean);
+    assert.equal(data.alternates.fa, 'https://poladcharkhesh.ir/product/' + p.slug);
+    assert.equal(data.structuredData['@graph'].find(item => item['@type'] === 'Product')?.url, clean);
+    const crumbs = data.structuredData['@graph'].find(item => item['@type'] === 'BreadcrumbList')?.itemListElement as Array<{ item: string }>;
+    assert.equal(crumbs.at(-1)?.item, clean);
+  }
+});
+
+void test('initial public HTML links to canonical language routes while local previews retain language controls', () => {
+  for (const fa of [false, true]) {
+    const origin = 'https://poladcharkhesh.' + (fa ? 'ir' : 'com');
+    const published = initialPublicHtml('/catalog', fa, { company: COMPANY_INFO, content, products: [p], seo: seoDefaults, hostname: 'poladcharkhesh.com' }, false);
+    assert.ok(published.includes(`href="${origin}/product/${p.slug}"`));
+    assert.ok(published.includes(`href="${origin}/engineering"`));
+    assert.ok(!published.includes('?lang='));
+    const preview = initialPublicHtml('/catalog', fa, { company: COMPANY_INFO, content, products: [p], seo: seoDefaults, hostname: '127.0.0.1' }, false);
+    assert.ok(preview.includes(`href="/product/${p.slug}?lang=${fa ? 'fa' : 'en'}"`));
+  }
+  for (const hub of catalogHubs) assert.equal(publicHref(hubPath(hub)), hubPath(hub));
+  assert.equal(publicHref('/product/' + p.slug + '?lang=fa'), '/product/' + p.slug + '?lang=fa');
+  assert.equal(publicHref('/catalogue'), '/catalogue');
+  assert.equal(publicHref('/catalog?q=6204'), '/?q=6204#catalog');
+  assert.equal(publicHref('/engineering/'), '/#engineering');
+});
 
 void test('Persian brand metadata upgrades legacy defaults and preserves owner overrides', () => {
   const old = { ...seoDefaults,

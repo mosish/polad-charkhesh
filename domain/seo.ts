@@ -134,7 +134,14 @@ export function fillProductSeo(p: BearingProduct): BearingProduct {
   };
 }
 export function canonicalPath(path: string) {
-  return path.split(/[?#]/)[0].replace(/^\/+/, '/').replace(/\/+$/, '') || '/';
+  const route = path.split(/[?#]/)[0].replace(/^\/+/, '/').replace(/\/+$/, '') || '/';
+  if (route.startsWith('/product/')) {
+    try {
+      const slug = decodeURIComponent(route.slice('/product/'.length));
+      if (/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return '/product/' + slug;
+    } catch { /* Malformed or non-product paths retain their ordinary 404 handling. */ }
+  }
+  return route;
 }
 export function pageUrl(
   path: string,

@@ -25,7 +25,7 @@ export function auditPublishedSeo(snapshot: PublicSeoSnapshot) {
     for (const route of routes) {
       const product = products.find(p => route === '/product/' + p.slug);
       const data = metadataFor(route, fa, seo, snapshot.company, product, snapshot.content, products);
-      const html = initialPublicHtml(route, fa, { ...snapshot, products }, data.missing, product);
+      const html = initialPublicHtml(route, fa, { ...snapshot, products, seo, hostname: new URL(seo[fa ? 'domainFa' : 'domainEn']).hostname }, data.missing, product);
       const report = (issue: string) => issues.push({ route, language: fa ? 'fa' : 'en', issue });
       for (const [value, label, seen] of [[data.title, 'title', titles], [text(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] || ''), 'H1', headings]] as const) {
         if (!value.trim()) report(`Missing ${label}`);
@@ -43,8 +43,9 @@ export function auditPublishedSeo(snapshot: PublicSeoSnapshot) {
       for (const anchor of html.matchAll(/<a\b[^>]*href="([^"]*)"/g)) {
         const url = anchor[1];
         if (url === '#') report('Empty or invalid destination');
-        if (!url.startsWith('/') || url.startsWith('/uploads/')) continue;
-        const path = new URL(url, 'https://audit.invalid').pathname;
+        const target = new URL(url, pageUrl(route, seo, fa));
+        if (![new URL(seo.domainEn).hostname, new URL(seo.domainFa).hostname].includes(target.hostname) || target.pathname.startsWith('/uploads/')) continue;
+        const path = target.pathname;
         if (!routes.includes(decodeURI(path)) && !/\.(pdf|png|jpe?g|webp|svg)$/i.test(path)) report(`Broken internal page link: ${path}`);
       }
     }

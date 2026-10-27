@@ -236,7 +236,18 @@ try {
       assert.ok(trailing.body.includes(`rel="canonical" href="https://${host}${hubPath(hub)}"`));
     }
     assert.equal((await request('/catalog/unknown-family', host)).status, 404);
+    const cleanProductPath = '/product/' + products[0].slug;
+    const encodedProductPath = '/product/' + products[0].slug.replace(/^./, (character: string) => '%' + character.charCodeAt(0).toString(16)).replace('-', '%2D');
+    const alias = await request(encodedProductPath + '/?lang=' + (host.endsWith('.ir') ? 'fa' : 'en'), host);
+    assert.equal(alias.status, 200);
+    assert.ok(alias.body.includes(`rel="canonical" href="https://${host}${cleanProductPath}"`));
+    const catalogSource = await request('/catalog', host);
+    assert.ok(catalogSource.body.includes(`<a href="https://${host}${cleanProductPath}"`), 'Initial links use the clean canonical URL');
+    assert.ok(!catalogSource.body.includes('<a href="/product/'), 'Production HTML does not add language-query aliases to product links');
   }
+  const forcedPersian = await request('/catalog?lang=fa', 'poladcharkhesh.com');
+  assert.ok(forcedPersian.body.includes('rel="canonical" href="https://poladcharkhesh.ir/catalog"'));
+  assert.ok(forcedPersian.body.includes('<a href="https://poladcharkhesh.ir/product/'));
   const favicon = await request('/favicon.svg');
   assert.equal(favicon.status, 200);
   assert.match(String(favicon.headers['content-type']), /image\/svg\+xml/);

@@ -15,7 +15,7 @@ server {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl http2;
     server_name www.poladcharkhesh.com;
     ssl_certificate /etc/letsencrypt/live/polad-domains/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/polad-domains/privkey.pem;
@@ -24,7 +24,7 @@ server {
     return 301 https://poladcharkhesh.com$request_uri;
 }
 server {
-    listen 443 ssl;
+    listen 443 ssl http2;
     server_name www.poladcharkhesh.ir;
     ssl_certificate /etc/letsencrypt/live/polad-domains/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/polad-domains/privkey.pem;
@@ -34,7 +34,7 @@ server {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl http2;
     server_name poladcharkhesh.com poladcharkhesh.ir;
     ssl_certificate /etc/letsencrypt/live/polad-domains/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/polad-domains/privkey.pem;
@@ -46,7 +46,7 @@ server {
     gzip on;
     gzip_vary on;
     gzip_min_length 1024;
-    gzip_types text/css application/javascript application/json application/xml image/svg+xml;
+    gzip_types text/css text/javascript application/javascript application/json application/xml image/svg+xml;
     location / {
         proxy_pass http://127.0.0.1:3001;
         proxy_http_version 1.1;
