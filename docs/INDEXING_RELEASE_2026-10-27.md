@@ -50,16 +50,41 @@ kept on the VPS in
 `/var/backups/polad-charkhesh/indexing-release-20261027T120658Z/`.
 No database, uploaded file or private environment backup was downloaded.
 
-## Search Console follow-up
+## Search Console submission and remaining Google-side status
 
-Search Console submission was not performed: browser automation could not safely
-control the current Firefox session and stopped. For each verified domain property:
+After Firefox automation stopped, the owner requested Chrome. Both verified
+domain properties were accessible in the signed-in Chrome session. Submitted
+`https://poladcharkhesh.ir/sitemap.xml` and
+`https://poladcharkhesh.com/sitemap.xml` through the Sitemaps interface. The Persian
+submission displayed "Sitemap submitted successfully"; both sitemap reports
+registered their submitted URLs. Submission is not successful processing: both
+reports still showed "Couldn't fetch" with zero discovered pages at that time.
 
-1. Open **Sitemaps** and submit `https://<domain>/sitemap.xml`.
-2. Inspect `https://<domain>/` in **URL Inspection**, run **Test live URL**, and
-   request indexing once it reports the page is available to Google.
-3. Monitor the indexing report. A previously cached robots result can remain
-   visible until Google fetches the updated file.
+Google's actual homepage live tests at 15:45 (.ir) and 15:48 (.com), Tehran time,
+still reported "Blocked by robots.txt" and disabled Request indexing. The older
+Google Index records cited the previous noindex header, from 18 October (.ir)
+and 21 October (.com). Neither homepage was confirmed indexed.
+
+The current public robots files returned 200 with the new allow-public rules,
+also when independently requested with the Google Inspection Tool user-agent.
+This does not impersonate a verified Google crawler or prove Google's own fetch.
+A cached robots file appears to explain the discrepancy; it is not directly
+confirmed because the new properties' Settings pages showed no robots report yet
+and disabled Open report. No manual robots-recrawl request was available there.
+
+Google generally caches robots.txt for up to 24 hours and can retain it longer
+when refreshing fails. See
+<https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt#caching>.
+Its robots report supports a recrawl request once that report becomes available:
+<https://support.google.com/webmasters/answer/6062598?hl=en>.
+
+Next, rerun each homepage's live test after Google refreshes robots.txt, and
+request indexing when available. Check the sitemap processing status as well.
+If the block persists after the usual cache period, inspect Google's current
+robots version, DNS resolution and server-side Google fetch evidence rather than
+assuming it is still a cache delay. Both live-test tabs were left open in Chrome.
+Screenshots of submission and live-test results are saved in the ignored
+`outputs/indexing-release/` folder.
 
 Inspect a public HTML page to request page indexing; the sitemap belongs in the
 Sitemaps report. Allowing crawling and submitting URLs do not guarantee inclusion
