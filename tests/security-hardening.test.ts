@@ -1,6 +1,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
+import { gzipSync } from 'node:zlib';
 import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -32,6 +33,17 @@ async function request(route: string, body?: unknown, session = cookie, method =
   });
   return { status: response.status, data: await response.json(), cookie: response.headers.get('set-cookie')?.split(';')[0] || '' };
 }
+void test('compressed JSON is rejected before decompression and the server remains healthy', async () => {
+  const response = await fetch(base + '/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Content-Encoding': 'gzip' },
+    body: gzipSync(JSON.stringify({ username: 'synthetic', password: 'invalid' })),
+  });
+  assert.equal(response.status, 415);
+  assert.deepEqual(await response.json(), { error: 'Unsupported request encoding or media type.' });
+  assert.equal((await request('/health')).status, 200);
+  assert.equal((await request('/auth/login', {})).status, 400);
+});
 void test('TOTP matches RFC 6238 SHA-1 reference vectors and rejects replay', () => {
   const rfcSecret = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ';
   for (const [time, expected] of [[59, '94287082'], [1111111109, '07081804'], [1111111111, '14050471'], [1234567890, '89005924'], [2000000000, '69279037'], [20000000000, '65353130']] as const)

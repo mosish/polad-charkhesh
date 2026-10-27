@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Published RFC 6238 SHA-1 test vector, never an application credential"
+condition = "AND"
+paths = ['''^tests/security-hardening\.test\.ts$''']
+regexTarget = "secret"
+regexes = ['''^GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ$''']

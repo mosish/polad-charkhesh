@@ -1,0 +1,20 @@
+[Unit]
+Description=Polad Charkhesh local operations and security observations
+After=network-online.target polad-charkhesh.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/polad-charkhesh/current
+ExecStart=/usr/local/bin/node /opt/polad-charkhesh/current/deploy/monitor.mjs
+StateDirectory=polad-monitor
+StateDirectoryMode=0700
+UMask=0077
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+NoNewPrivileges=true
+CapabilityBoundingSet=
+ReadWritePaths=/var/lib/polad-monitor
+TimeoutStartSec=60

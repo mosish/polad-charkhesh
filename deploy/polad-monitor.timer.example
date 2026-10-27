@@ -1,0 +1,12 @@
+[Unit]
+Description=Check Polad Charkhesh operations every five minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+RandomizedDelaySec=20
+Persistent=true
+Unit=polad-monitor.service
+
+[Install]
+WantedBy=timers.target
