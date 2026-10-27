@@ -18,7 +18,7 @@ const companyGroups = [
   { id: 'identity', en: 'Identity', fa: 'هویت شرکت', keys: ['nameFa','nameEn','legalNameFa','legalNameEn','sloganFa','sloganEn','website'] },
   { id: 'contact', en: 'Contact', fa: 'راه‌های ارتباطی', keys: ['email','primaryPhone','primaryPhoneDisplayFa','primaryPhoneDisplayEn','primaryPhoneTel','landlinePhone','landlinePhoneDisplayFa','landlinePhoneDisplayEn','landlinePhoneTel','whatsappNumber','whatsappUrl'] },
   { id: 'hours', en: 'Working hours', fa: 'ساعات کاری', keys: ['workingHoursFa','workingHoursEn','workingHoursShortFa','workingHoursShortEn'] },
-  { id: 'location', en: 'Address & maps', fa: 'آدرس و نقشه‌ها', keys: ['addressFa','addressEn','cityFa','cityEn','districtFa','districtEn','streetFa','streetEn','plate','maps'] },
+  { id: 'location', en: 'Address & maps', fa: 'آدرس و نقشه‌ها', keys: ['addressFa','addressEn','cityFa','cityEn','regionFa','regionEn','countryCode','districtFa','districtEn','streetFa','streetEn','plate','maps'] },
 ];
 const companyLabels: Record<string, [string, string]> = {
   nameFa: ['Company name · Persian','نام شرکت · فارسی'], nameEn: ['Company name · English','نام شرکت · انگلیسی'],
@@ -29,7 +29,7 @@ const companyLabels: Record<string, [string, string]> = {
   landlinePhone: ['Landline number','شماره تلفن ثابت'], landlinePhoneDisplayFa: ['Landline display · Persian','نمایش تلفن ثابت · فارسی'], landlinePhoneDisplayEn: ['Landline display · English','نمایش تلفن ثابت · انگلیسی'], landlinePhoneTel: ['Landline phone link','پیوند تلفن ثابت'],
   whatsappNumber: ['WhatsApp number','شماره واتس‌اپ'], whatsappUrl: ['WhatsApp URL','پیوند واتس‌اپ'],
   workingHoursFa: ['Working hours · Persian','ساعات کاری · فارسی'], workingHoursEn: ['Working hours · English','ساعات کاری · انگلیسی'], workingHoursShortFa: ['Short hours · Persian','ساعات کوتاه · فارسی'], workingHoursShortEn: ['Short hours · English','ساعات کوتاه · انگلیسی'],
-  addressFa: ['Address · Persian','آدرس · فارسی'], addressEn: ['Address · English','آدرس · انگلیسی'], cityFa: ['City · Persian','شهر · فارسی'], cityEn: ['City · English','شهر · انگلیسی'], districtFa: ['District · Persian','منطقه · فارسی'], districtEn: ['District · English','منطقه · انگلیسی'], streetFa: ['Street · Persian','خیابان · فارسی'], streetEn: ['Street · English','خیابان · انگلیسی'], plate: ['Building number','شماره پلاک'],
+  addressFa: ['Address · Persian','آدرس · فارسی'], addressEn: ['Address · English','آدرس · انگلیسی'], cityFa: ['City · Persian','شهر · فارسی'], cityEn: ['City · English','شهر · انگلیسی'], regionFa: ['Province · Persian','استان · فارسی'], regionEn: ['Province · English','استان · انگلیسی'], countryCode: ['Country code (ISO 3166-1)','کد کشور (ISO 3166-1)'], districtFa: ['District · Persian','منطقه · فارسی'], districtEn: ['District · English','منطقه · انگلیسی'], streetFa: ['Street · Persian','خیابان · فارسی'], streetEn: ['Street · English','خیابان · انگلیسی'], plate: ['Building number','شماره پلاک'],
   maps: ['Map links','پیوندهای نقشه'], google: ['Google Maps','گوگل‌مپ'], neshan: ['Neshan','نشان'], balad: ['Balad','بلد'],
 };
 export default function SettingsEditor({
