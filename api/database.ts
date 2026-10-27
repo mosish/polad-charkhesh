@@ -44,6 +44,11 @@ CREATE TABLE IF NOT EXISTS media(id TEXT PRIMARY KEY,data TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS audit_logs(id TEXT PRIMARY KEY,timestamp TEXT NOT NULL,actor TEXT NOT NULL,action TEXT NOT NULL,entity TEXT);
 CREATE TABLE IF NOT EXISTS backup_snapshots(id TEXT PRIMARY KEY,created_at TEXT NOT NULL,data TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset INTEGER NOT NULL);`);
+db.exec(`CREATE TABLE IF NOT EXISTS website_pageviews(
+  day TEXT NOT NULL,domain TEXT NOT NULL,path TEXT NOT NULL,language TEXT NOT NULL,
+  views INTEGER NOT NULL DEFAULT 0,PRIMARY KEY(day,domain,path,language));
+CREATE TABLE IF NOT EXISTS website_statistics_metadata(id INTEGER PRIMARY KEY CHECK(id=1),started_at TEXT NOT NULL);`);
+db.prepare('INSERT OR IGNORE INTO website_statistics_metadata VALUES(1,?)').run(new Date().toISOString());
 export function transaction<T>(fn: () => T): T {
   db.exec('BEGIN IMMEDIATE');
   try {

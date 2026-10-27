@@ -2,7 +2,7 @@ import type { AuthStatus, MediaRecord, SystemStatus } from '../../domain/api-con
 import type { BearingProduct } from '../../domain/product';
 import { loadAdminData, type AdminData } from '../../lib/admin-data';
 type Confirmation = { type: 'restore'; p?: never; m?: never } | { type: 'delete'; p: BearingProduct; m?: never } | { type: 'media'; m: MediaRecord; p?: never };
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   ArrowUpRight,
   Package,
@@ -29,6 +29,7 @@ import SettingsEditor from './SettingsEditor';
 import WebsiteEditor from './WebsiteEditor';
 import CatalogWorkspace from './CatalogWorkspace';
 import MfaSetup from './MfaSetup';
+import DashboardSummary from './DashboardSummary';
 const tabs = [
   ['overview', 'Overview', 'نمای کلی', LayoutDashboard],
   ['products', 'Products', 'محصولات', Package],
@@ -65,13 +66,13 @@ export default function Admin() {
     [settingsDirty, setSettingsDirty] = useState(false),
     [mobileMenuOpen, setMobileMenuOpen] = useState(false),
     [duplicateSource, setDuplicateSource] = useState('');
-  const check = () =>
+  const check = useCallback(() =>
     api('/auth/status')
       .then(setStatus)
-      .catch((e) => setError(errorMessage(e)));
+      .catch((e) => setError(errorMessage(e))), []);
   useEffect(() => {
     void check();
-  }, []);
+  }, [check]);
   // Associate each response with its tab; never render another tab's payload.
   const data = loaded?.data.tab === tab && loaded.version === loadVersion && loaded.userId === status?.user?.id ? loaded.data : null;
   const load = () => { setError(''); setLoadVersion((version) => version + 1); };
@@ -87,7 +88,7 @@ export default function Admin() {
       if (e instanceof ApiError && e.status === 401) void check();
     });
     return () => { cancelled = true; };
-  }, [tab, status?.user, loadVersion]);
+  }, [tab, status?.user, loadVersion, check]);
   const act = async (path: string, method: string, body?: unknown) => {
     setBusy(true);
     try {
@@ -344,6 +345,7 @@ export default function Admin() {
             {message === 'saved' ? t('Saved successfully.', 'با موفقیت ذخیره شد.') : message === 'product-saved' ? t('Product saved.', 'محصول ذخیره شد.') : message === 'password-changed' ? t('Password changed. Sign in again.', 'رمز عبور تغییر کرد. دوباره وارد شوید.') : message}
           </output>
         )}
+        {tab === 'overview' && <DashboardSummary key={status.user.id} onSessionExpired={check} />}
         {['content', 'header'].includes(tab) ? (
           <WebsiteEditor key={tab} initialTab={tab === 'header' ? 'header' : 'sections'} onDirty={setSettingsDirty} />
         ) : ['company', 'seo'].includes(tab) ? (

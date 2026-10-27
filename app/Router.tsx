@@ -5,6 +5,7 @@ import Home from '../components/platform/Home';
 import NotFound from '../components/platform/NotFound';
 import RecoveryBoundary, { WorkspaceRecovery } from '../components/platform/RecoveryBoundary';
 import { catalogHubForPath } from '../domain/catalog-hubs';
+import PageView from '../components/platform/PageView';
 const Catalog = lazy(() => import('../components/platform/Catalog')),
   Product = lazy(() => import('../components/platform/Product')),
   Engineering = lazy(() => import('../components/platform/Engineering')),
@@ -15,6 +16,7 @@ export default function Router() {
   const Layout = path === '/admin' ? Fragment : Shell;
   return (
     <Provider>
+      <PageView />
       <Layout>
         <RecoveryBoundary fallback={<WorkspaceRecovery />}>
         <Suspense
