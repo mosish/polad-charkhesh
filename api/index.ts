@@ -159,7 +159,7 @@ if (production) {
       .replace(/<title>.*?<\/title>/s, '')
       .replace(/<meta name="description"[^>]*>/, '')
       .replace('</head>', metadataHead(data) + '</head>');
-    html = html.replace('<div id="root"></div>', '<div id="root">' + initialPublicHtml(routePath, fa, { company, content, products }, data.missing, p ?? undefined) + '</div>');
+    html = html.replace('<div id="root"></div>', '<div id="root">' + initialPublicHtml(routePath, fa, { company, content, products, seo, hostname: req.hostname }, data.missing, p ?? undefined) + '</div>');
     // Published records are preserved; only the copy dictionary is language-scoped.
     // No account, draft, session, archived product or inquiry data is embedded.
     if (!data.privatePage) html = html.replace('</body>', `<script id="public-data" type="application/json">${jsonForHtml({ company, ...compactPublicContent(content, fa), products, seo, fa, indexingEnabled })}</script></body>`);

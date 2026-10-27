@@ -1,6 +1,6 @@
 import type { BearingProduct } from '../domain/product';
 import type { CompanyContactInfo } from '../domain/company';
-import type { PublishedSeoContent } from '../domain/seo';
+import type { PublishedSeoContent, SeoSettings } from '../domain/seo';
 import { escapeHtml as e } from '../domain/seo';
 import { mediaFor } from '../lib/media';
 import { relatedComponents } from '../lib/catalog-quality';
@@ -38,6 +38,8 @@ export function initialPublicHtml(
     company: CompanyContactInfo;
     content: PublishedSeoContent;
     products: BearingProduct[];
+    seo?: Pick<SeoSettings, 'domainEn' | 'domainFa'>;
+    hostname?: string;
   },
   missing: boolean,
   p?: BearingProduct,
@@ -47,7 +49,8 @@ export function initialPublicHtml(
   const hub = catalogHubForPath(route);
   if (route === '/admin') return '';
   const lang = '?lang=' + (fa ? 'fa' : 'en');
-  const href = (url: string) => e(url + lang);
+  const live = data.seo && data.hostname && [data.seo.domainEn, data.seo.domainFa].some(origin => new URL(origin).hostname === data.hostname);
+  const href = (url: string) => e(live ? new URL(url, data.seo![fa ? 'domainFa' : 'domainEn']).href : url + lang);
   const productLink = (item: BearingProduct) =>
     `<a href="${href('/product/' + encodeURIComponent(item.slug || item.id))}"><bdi dir="ltr">${e(item.code)}</bdi> · ${technical(item[fa ? 'nameFa' : 'nameEn'])}</a>`;
   const listing = (items: BearingProduct[]) =>
