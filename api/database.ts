@@ -9,7 +9,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { bearingProducts } from '../domain/catalog';
 import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
-import { COMPANY_INFO } from '../domain/company';
+import { COMPANY_INFO, upgradeCompanyGeography } from '../domain/company';
 import { upgradeContent, textKey, correctLegacyPersianCopy } from '../domain/site-content';
 import { correctCompanyCopy, correctCompanyName } from '../domain/company-identity';
 if (
@@ -219,6 +219,9 @@ if (!setting('company.identity-arian-tech-2026-10')) {
 }
 
 // SEO-only enrichment: preserve every technical field and nonblank custom override.
+const upgradedCompany = upgradeCompanyGeography(setting('company'));
+if (JSON.stringify(upgradedCompany) !== JSON.stringify(setting('company')))
+  putSetting('company', upgradedCompany);
 const upgradedSeo = upgradeSeo(setting('seo'));
 if (JSON.stringify(upgradedSeo) !== JSON.stringify(setting('seo')))
   putSetting('seo', upgradedSeo);

@@ -37,6 +37,9 @@ export interface CompanyContactInfo {
   addressEn: string;
   cityFa: string;
   cityEn: string;
+  regionFa?: string;
+  regionEn?: string;
+  countryCode?: string;
   districtFa: string;
   districtEn: string;
   streetFa: string;
@@ -89,6 +92,9 @@ export const COMPANY_INFO: CompanyContactInfo = {
   addressEn: 'No. 433, Dardasht Street, Narmak, Tehran, Iran',
   cityFa: 'تهران',
   cityEn: 'Tehran',
+  regionFa: 'تهران',
+  regionEn: 'Tehran',
+  countryCode: 'IR',
   districtFa: 'نارمک',
   districtEn: 'Narmak',
   streetFa: 'خیابان دردشت',
@@ -107,6 +113,16 @@ export const COMPANY_INFO: CompanyContactInfo = {
     balad: 'https://balad.ir',
   },
 };
+
+/** Add the owner's confirmed province/country while preserving existing CMS values. */
+export function upgradeCompanyGeography(company: CompanyContactInfo): CompanyContactInfo {
+  return {
+    regionFa: COMPANY_INFO.regionFa,
+    regionEn: COMPANY_INFO.regionEn,
+    countryCode: COMPANY_INFO.countryCode,
+    ...company,
+  };
+}
 
 /**
  * Generate a prefilled WhatsApp inquiry URL

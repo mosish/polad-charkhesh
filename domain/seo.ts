@@ -5,11 +5,11 @@ import { breadcrumbsFor } from './breadcrumbs';
 
 export const seoDefaults = {
   titleEn: 'Polad Charkhesh Arian Tech | Industrial Bearings & Engineering',
-  titleFa: 'پولاد چرخش آرین تک | بیرینگ صنعتی و مشاوره مهندسی',
+  titleFa: 'پولاد چرخش آرین تک | تأمین تخصصی انواع بلبرینگ و رولبرینگ صنعتی',
   descriptionEn:
     'Explore industrial bearings, seals and housings with technical specifications, product documents, 3D models and bearing engineering tools from Polad Charkhesh Arian Tech.',
   descriptionFa:
-    'کاتالوگ بیرینگ صنعتی، آب‌بند و محفظه بیرینگ پولاد چرخش آرین تک؛ مشخصات فنی، مستندات محصول، مدل سه‌بعدی و ابزارهای محاسبات مهندسی بیرینگ.',
+    'شرکت پولاد چرخش آرین تک؛ مرکز تخصصی تأمین، مشاوره فنی و فروش انواع بلبرینگ، رولبرینگ، یاتاقان و کاسه نمد صنعتی برندهای SKF، FAG، TIMKEN، NSK و NTN در تهران.',
   domainEn: 'https://poladcharkhesh.com',
   domainFa: 'https://poladcharkhesh.ir',
   verification: '',
@@ -70,10 +70,12 @@ export function upgradeSeo(value: unknown = {}): SeoSettings {
     'Industrial bearing identification, technical product data and engineering consultation.'
   )
     saved.descriptionEn = seoDefaults.descriptionEn;
-  if (
-    saved.descriptionFa ===
-    'شناسایی و تأمین بیرینگ صنعتی، کاتالوگ فنی و مشاوره مهندسی.'
-  )
+  if (saved.titleFa === 'پولاد چرخش آرین تک | بیرینگ صنعتی و مشاوره مهندسی')
+    saved.titleFa = seoDefaults.titleFa;
+  if ([
+    'شناسایی و تأمین بیرینگ صنعتی، کاتالوگ فنی و مشاوره مهندسی.',
+    'کاتالوگ بیرینگ صنعتی، آب‌بند و محفظه بیرینگ پولاد چرخش آرین تک؛ مشخصات فنی، مستندات محصول، مدل سه‌بعدی و ابزارهای محاسبات مهندسی بیرینگ.',
+  ].includes(String(saved.descriptionFa)))
     saved.descriptionFa = seoDefaults.descriptionFa;
   if (saved.keywords === 'bearings, industrial engineering')
     saved.keywords = seoDefaults.keywords;
@@ -214,16 +216,26 @@ export function metadataFor(
     '@type': 'LocalBusiness',
     '@id': orgId,
     name: company[fa ? 'nameFa' : 'nameEn'],
+    alternateName: company[fa ? 'nameEn' : 'nameFa'],
     legalName: company[fa ? 'legalNameFa' : 'legalNameEn'],
     url: pageUrl('/', seo, fa),
     logo: absoluteImage(content?.brand?.logoUrl || '/brand/logo.png'),
     telephone:
       company.primaryPhoneTel?.replace(/^tel:/, '') || company.primaryPhone,
     email: company.email,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: company.primaryPhoneTel?.replace(/^tel:/, '') || company.primaryPhone,
+      contactType: 'sales',
+      areaServed: company.countryCode,
+      availableLanguage: ['Persian', 'English'],
+    },
     address: {
       '@type': 'PostalAddress',
       streetAddress: company[fa ? 'addressFa' : 'addressEn'],
       addressLocality: company[fa ? 'cityFa' : 'cityEn'],
+      addressRegion: company[fa ? 'regionFa' : 'regionEn'],
+      addressCountry: company.countryCode,
     },
   };
   const graph: Record<string, unknown>[] = privatePage

@@ -11,7 +11,7 @@ import {
 } from '../domain/seo';
 import { initialPublicHtml } from '../api/seo-html';
 import { bearingProducts } from '../domain/catalog';
-import { COMPANY_INFO } from '../domain/company';
+import { COMPANY_INFO, upgradeCompanyGeography } from '../domain/company';
 import { siteExtras } from '../domain/site-content';
 import { breadcrumbsFor } from '../domain/breadcrumbs';
 import { llmsText } from '../domain/llms';
@@ -27,6 +27,55 @@ const content = {
   engineering: { titleEn: 'Make the numbers work' },
   contact: { titleEn: 'Contact the team' },
 };
+
+void test('Persian brand metadata upgrades legacy defaults and preserves owner overrides', () => {
+  const old = { ...seoDefaults,
+    titleFa: 'پولاد چرخش آرین تک | بیرینگ صنعتی و مشاوره مهندسی',
+    descriptionFa: 'کاتالوگ بیرینگ صنعتی، آب‌بند و محفظه بیرینگ پولاد چرخش آرین تک؛ مشخصات فنی، مستندات محصول، مدل سه‌بعدی و ابزارهای محاسبات مهندسی بیرینگ.',
+  };
+  const upgraded = upgradeSeo(old);
+  assert.equal(upgraded.titleFa, 'پولاد چرخش آرین تک | تأمین تخصصی انواع بلبرینگ و رولبرینگ صنعتی');
+  assert.equal(upgraded.descriptionFa, 'شرکت پولاد چرخش آرین تک؛ مرکز تخصصی تأمین، مشاوره فنی و فروش انواع بلبرینگ، رولبرینگ، یاتاقان و کاسه نمد صنعتی برندهای SKF، FAG، TIMKEN، NSK و NTN در تهران.');
+  assert.equal(old.titleFa, 'پولاد چرخش آرین تک | بیرینگ صنعتی و مشاوره مهندسی');
+  assert.equal(upgraded.titleEn, old.titleEn);
+  assert.equal(upgraded.descriptionEn, old.descriptionEn);
+  assert.deepEqual(upgraded.pages, old.pages);
+  assert.deepEqual(upgradeSeo(upgraded), upgraded);
+  const custom = { ...old, titleFa: 'عنوان اختصاصی مدیر', descriptionFa: 'توضیحات اختصاصی مدیر' };
+  assert.deepEqual(upgradeSeo(custom), custom);
+  const metadata = metadataFor('/', true, upgraded, COMPANY_INFO);
+  const head = metadataHead(metadata);
+  assert.ok(head.includes('<title>' + upgraded.titleFa + '</title>'));
+  assert.ok(head.includes('name="description" content="' + upgraded.descriptionFa + '"'));
+  assert.equal(metadata.canonical, 'https://poladcharkhesh.ir/');
+});
+
+void test('company schema shares the published bilingual identity, geography and sales contact', () => {
+  const legacy = { ...COMPANY_INFO };
+  delete legacy.regionFa; delete legacy.regionEn; delete legacy.countryCode;
+  const upgraded = upgradeCompanyGeography(legacy);
+  assert.equal(upgraded.countryCode, 'IR');
+  assert.equal(upgraded.regionEn, 'Tehran');
+  assert.deepEqual(upgradeCompanyGeography(upgraded), upgraded);
+  assert.equal(legacy.countryCode, undefined);
+  const custom = { ...upgraded, nameEn: 'Owner English name', primaryPhoneTel: 'tel:+982111111111', regionFa: 'استان سفارشی', regionEn: 'Custom province', countryCode: 'IR' };
+  assert.deepEqual(upgradeCompanyGeography(custom), custom);
+  for (const fa of [false, true]) {
+    const metadata = metadataFor('/', fa, seoDefaults, custom, undefined, { brand: { logoUrl: '/brand/published-logo.png' } });
+    const businesses = metadata.structuredData['@graph'].filter(item => item['@type'] === 'LocalBusiness');
+    assert.equal(businesses.length, 1);
+    const business = businesses[0];
+    assert.equal(business.name, custom[fa ? 'nameFa' : 'nameEn']);
+    assert.equal(business.alternateName, custom[fa ? 'nameEn' : 'nameFa']);
+    assert.equal(business.logo, `https://poladcharkhesh.${fa ? 'ir' : 'com'}/brand/published-logo.png`);
+    assert.deepEqual(business.contactPoint, { '@type': 'ContactPoint', telephone: '+982111111111', contactType: 'sales', areaServed: 'IR', availableLanguage: ['Persian', 'English'] });
+    assert.equal((business.address as Record<string, string>).addressRegion, custom[fa ? 'regionFa' : 'regionEn']);
+    assert.equal((business.address as Record<string, string>).addressCountry, 'IR');
+    assert.equal(business.sameAs, undefined, 'Placeholder map URLs must not become identity claims');
+    const head = metadataHead(metadata);
+    assert.equal((head.match(/type="application\/ld\+json"/g) || []).length, 1);
+  }
+});
 
 void test('bilingual canonicals, page overrides and robots remain consistent', () => {
   const en = metadataFor(
