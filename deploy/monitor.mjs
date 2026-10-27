@@ -2,7 +2,6 @@
 // VPS-local observations only. No mail, webhooks, credentials or backup exports.
 import https from 'node:https';
 import { execFileSync } from 'node:child_process';
-import { DatabaseSync } from 'node:sqlite';
 import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, statfsSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -22,6 +21,17 @@ export function assessOperations(facts) {
       issues.push(site.domain + ': TLS certificate has fewer than seven days remaining.');
   }
   return issues;
+}
+
+export function securityEventsFromJournal(text, checkedAt) {
+  return text.split('\n').flatMap(line => {
+    try {
+      const value = JSON.parse(line);
+      if (!/^SECURITY_ALERT_[A-Z_]+$/.test(value.event || '')) return [];
+      return [{ timestamp: typeof value.at === 'string' && Number.isFinite(Date.parse(value.at)) ? value.at : checkedAt,
+        action: value.event }];
+    } catch { return []; }
+  });
 }
 
 function request(domain, route) {
@@ -88,13 +98,13 @@ export async function monitor() {
   let securityEvents = [];
   let lastSecurityCheckAt = previous.lastSecurityCheckAt || new Date(Date.now() - 86400000).toISOString();
   try {
-    const db = new DatabaseSync('/var/lib/polad-charkhesh/platform.sqlite', { readOnly: true });
-    try {
-      // Never copy actors, inquiries, tokens, audit entities or other owner data.
-      securityEvents = db.prepare("SELECT timestamp,action FROM audit_logs WHERE action LIKE 'SECURITY_ALERT_%' AND timestamp>? ORDER BY timestamp LIMIT 100")
-        .all(lastSecurityCheckAt);
-      lastSecurityCheckAt = checkedAt;
-    } finally { db.close(); }
+    // Account lockouts and recovery use already emit structured warnings. Read
+    // the service journal without bypassing permissions on the private database.
+    const journal = execFileSync('journalctl', ['--unit=polad-charkhesh.service', '--since=' + lastSecurityCheckAt,
+      '--output=cat', '--no-pager', '--lines=1001'], { encoding: 'utf8', timeout: 5000, maxBuffer: 2 * 1024 * 1024 });
+    securityEvents = securityEventsFromJournal(journal, checkedAt);
+    if (journal.trim().split('\n').length > 1000) issues.push('Security journal scan reached its bound; inspect the service journal.');
+    else lastSecurityCheckAt = checkedAt;
   } catch { issues.push('Security event log could not be inspected.'); }
   const report = { checkedAt, status: issues.length ? 'attention' : 'healthy', issues, facts, latestBackup,
     lastSecurityCheckAt, securityEvents };
