@@ -2,13 +2,15 @@
 
 **English** | [فارسی](README.fa.md)
 
-**Security activation — 2026-10-27:** Dependency patches, mandatory-MFA enforcement, safer uploads, verified VPS-local encrypted backups and local monitoring are active. The combined source passes 142 tests, and both domains pass 452 page/language checks. Main is protected and full-history secret scanning is required. Engineering/catalog acceptance and indexing remain gated. [Activation and verification](docs/SECURITY_RELEASE_2026-10-27.md).
+**Public indexing released — 2026-10-27:** The owner approved indexing all public pages on both domains. All 234 sitemap URLs pass live indexability and canonical checks; admin/API/preview responses remain noindex. Both sitemaps were submitted through Chrome. Google still reports the previous robots block in live tests, so Google processing and homepage indexing requests remain pending. Engineering acceptance is still open. [Release evidence and follow-up](docs/INDEXING_RELEASE_2026-10-27.md).
+
+**Security activation — 2026-10-27:** Dependency patches, mandatory-MFA enforcement, safer uploads, verified VPS-local encrypted backups and local monitoring are active. The combined source passes 142 tests, and both domains pass 452 page/language checks. Main is protected and full-history secret scanning is required. Engineering/catalog acceptance remains gated; the subsequent public indexing release is recorded above. [Activation and verification](docs/SECURITY_RELEASE_2026-10-27.md).
 
 **Security remediation — 2026-10-20:** Mandatory MFA, account lockout, upload
 sanitization, Access token validation, encrypted local backup tooling and a single
 indexing switch are implemented. All 134 tests and local source/build checks pass.
 Production activation is tracked separately in the [remediation record](docs/SECURITY_REMEDIATION_2026-10-20.md).
-Engineering approval and indexing release remain pending.
+Engineering approval remains pending; public indexing was subsequently released on 27 October 2026.
 
 > **Project status:** Both language domains live with eligibility controls, independent manual calculation and C1-C admin/client contracts deployed. C1-D quality, C0-C method evidence and C3-A bilingual numerical inputs/unit conversion are deployed. Engineering acceptance, operations and final audits remain open.
 >
@@ -78,7 +80,7 @@ The main feature set is published on both language domains. The current catalog 
 | Physical media upload | ✅ Targeted production checks passed | PNG/JPEG/WebP/PDF handling is implemented; isolated upload/download/removal and persistent storage/backup were checked during deployment. Full admin workflow acceptance remains open. |
 | Inquiry and audit workflows | ✅ Verified in tests | Inquiries persist with status changes; audit events are recorded. |
 | Backup and restore | ✅ Backup and isolated restore checked | Verified VPS backups, an isolated restore drill and service crash recovery are recorded. Full-host reboot acceptance remains separate. Keep backups on the VPS only per the owner's current instruction. |
-| Technical SEO | ✅ Both domains checked; indexing gated | Full external checks passed 226 page/language variants per domain on October 15; later updates received targeted checks. Both domains still return `noindex, nofollow` on October 18. Final indexing approval and Search Console verification/submission remain open. |
+| Technical SEO | ✅ Public indexing enabled; Google refresh pending | On October 27, all 234 sitemap URLs returned indexable HTML/headers and matching canonicals. Both verified Search Console properties received sitemap submissions. Google live tests still report the previous robots block; indexing requests remain disabled pending refresh. [Evidence](docs/INDEXING_RELEASE_2026-10-27.md). |
 | Product images and documents | 🟡 Partial completion | 101 images published: 58 supplier-listing matches and 43 approved examples; nine exact-image replacements unresolved. No nonempty product `pdfUrl` attachments in the current 110 records. Sources/credits remain; visible image-area captions were removed. Image coverage does not establish exact-SKU or engineering verification. |
 | Full browser, accessibility, and security audit | 🟡 Pending | Targeted checks exist, but a final end-to-end production review has not been completed. |
 | Repository lint | ✅ Clean; C1 complete | October 18 C1-D: **zero diagnostics**, down from 197 across C1-A/B/C/D. No lint rules weakened or suppressions added. [Evidence](docs/C1D_QUALITY_GATE.md). |
@@ -211,7 +213,7 @@ These dated entries describe the state at that milestone. Historical “pending,
 3. **Maintain the restored quality gate:** C1-D closed the lint backlog and made CI lint required. Keep it clean during the remaining phases; C1-D is deployed with C0-C/C3-A through the pinned-source procedure.
 4. **Complete acceptance:** Finish admin role/restore/inquiry/media integration, security, accessibility, bilingual copy and desktop/tablet/mobile testing. Keep successful targeted checks distinct from this full review.
 5. **Close operational gaps:** Reverify both domains' Cloudflare proxy/edge-certificate state. Review provider networking before the deferred full-host reboot test; confirm earlier SSH-hardening follow-up. Review backup retention and recovery while keeping backups on the VPS as requested.
-6. **Approve indexing:** After content/release acceptance, make an explicit noindex-removal decision and verify Search Console/sitemap submission. No indexing settings changed during this review.
+6. **Complete Google processing:** Owner-approved public indexing and sitemap submission were completed on October 27. Recheck Google after its robots refresh, request homepage indexing when enabled, and verify sitemap processing. Engineering acceptance remains separate and pending.
 7. **Implement the balanced engineering expansion:** Foundation work and numeric-validation fixes have started. Follow the [project plan](docs/engineering-tools/PROJECT_PLAN.md) through workspace design, calculations, lubrication/maintenance, local cases and acceptance; these new modules are not yet implemented.
 
 Deployment, an isolated restore drill and service crash recovery are already completed milestones, not first-time tasks still to perform. Future releases still require their own checks, a pinned revision, backup and rollback. [Detailed status review](docs/STATUS_REVIEW_2026-10-18.md).
