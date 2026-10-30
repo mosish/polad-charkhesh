@@ -57,7 +57,7 @@
 .ball-bearing-type-grid a { display: inline-flex; align-items: center; min-height: 44px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: .9rem; overflow-wrap: anywhere; }
 .ball-bearing-type-grid a:hover { border-color: var(--accent); }
 .ball-bearing-type-grid a:focus-visible, .ball-bearing-contact a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.ball-bearing-contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; border-block: 1px solid var(--line); }
+.ball-bearing-contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; padding-inline-end: 28px; border-block: 1px solid var(--line); }
 .ball-bearing-contact > div { flex: 1 1 320px; }
 .ball-bearing-contact p { margin: 0; }
 .ball-bearing-contact .button { display: flex; flex-direction: column; gap: 4px; text-align: center; max-width: 100%; }
