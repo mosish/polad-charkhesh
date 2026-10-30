@@ -12,7 +12,7 @@ Both sitemap Success/117 reports were reconfirmed. Twelve priority public respon
 
 The English homepage still exposes the historical 21 October noindex crawl record. One later retry in this continuation did not show an acceptance receipt; no accepted request or indexed English homepage is claimed.
 
-The first source package adds bilingual bearing-type identification cards, exact sourced product-example links and a company contact prompt to the existing ball-bearing hub, including initial HTML. A range-compatible qs update resolves a fresh dependency-audit finding. Source checks and responsive review are recorded in the [Persian baseline, phased plan, cost priorities and implementation report](SEO_GROWTH_PLAN_2026-10-30.fa.md). This package is local/PR work, **not a production deployment**; engineering approval remains pending.
+The first source package adds bilingual bearing-type identification cards, exact sourced product-example links and a company contact prompt to the existing ball-bearing hub, including initial HTML. A range-compatible qs update resolves a fresh dependency-audit finding. Source checks and responsive review are recorded in the [Persian baseline, phased plan, cost priorities and implementation report](SEO_GROWTH_PLAN_2026-10-30.fa.md). The package was subsequently deployed to both domains with the owner's authorization. [Activation evidence](SEO_GROWTH_RELEASE_2026-10-30.md) records 234 public/10 private checks from both the VPS and workstation, preserved data/configuration and live bilingual review. Engineering approval remains pending.
 
 ## Earlier same-day inspection (before the later confirmation)
 
