@@ -9,6 +9,7 @@ import {referenceMedia} from '../lib/reference-media';
 import { catalogHubs, catalogHubForPath, hubPath, productBelongsToHub, productHub } from '../domain/catalog-hubs';
 import { productHeading, productSpecifications } from '../domain/product-presentation';
 import { catalogHubGuides } from '../domain/catalog-hub-guides';
+import { ballBearingExamples, ballBearingIntro } from '../domain/ball-bearing-navigation';
 import { technicalTextParts } from '../domain/technical-text';
 const technical = (text: string) => technicalTextParts(text).map(part => part.ltr ? `<bdi dir="ltr">${e(part.text)}</bdi>` : e(part.text)).join('');
 function publicUrl(value: unknown, image = false) {
@@ -105,8 +106,27 @@ export function initialPublicHtml(
       contacts;
   } else if (hub) {
     const copy = hub[fa ? 'fa' : 'en'];
+    let navigation = '';
+    if (hub.slug === 'ball-bearings') {
+      const language = fa ? 'fa' : 'en';
+      const intro = ballBearingIntro[language];
+      const cards = ballBearingExamples(products).map(group => {
+        const examples = group.products.map(product =>
+          `<li><a href="${href('/product/' + encodeURIComponent(product.slug!))}"><bdi dir="ltr">${e(product.code)}</bdi></a></li>`,
+        ).join('');
+        return `<section><h3>${e(group[language].title)}</h3><p>${e(group[language].text)}</p>`
+          + (examples ? `<span class="ball-bearing-example-label">${e(intro.examples)}</span><ul>${examples}</ul>` : `<p>${e(intro.empty)}</p>`)
+          + '</section>';
+      }).join('');
+      navigation = '<section class="ball-bearing-navigation" aria-labelledby="ball-bearing-types-heading">'
+        + `<h2 id="ball-bearing-types-heading">${e(intro.title)}</h2><p>${e(intro.text)}</p>`
+        + `<div class="ball-bearing-type-grid">${cards}</div>`
+        + `<aside class="ball-bearing-contact"><div><h3>${e(intro.contactTitle)}</h3><p>${e(intro.contactText)}</p></div>`
+        + (company.primaryPhoneTel ? `<a class="button" href="${publicUrl(company.primaryPhoneTel)}">${e(intro.contact)}<bdi dir="ltr">${e(company[fa ? 'primaryPhoneDisplayFa' : 'primaryPhoneDisplayEn'])}</bdi></a>` : '')
+        + '</aside></section>';
+    }
     body = `<h1>${technical(copy.title)}</h1><p>${technical(copy.description)}</p><a href="#selection-guide">${t('Read the selection guide', 'مطالعه راهنمای انتخاب')}</a>`
-      + hubLinks + `<h2>${t('Products in this family', 'محصولات این خانواده')}</h2>`
+      + navigation + hubLinks + `<h2>${t('Products in this family', 'محصولات این خانواده')}</h2>`
       + listing(products.filter(item => productBelongsToHub(item, hub)))
       + `<article id="selection-guide" class="catalog-hub-guide">${catalogHubGuides[hub.slug][fa ? 'fa' : 'en'].map(section => `<section><h2>${technical(section.title)}</h2><p>${technical(section.text)}</p></section>`).join('')}`
       + `<aside class="catalog-hub-references"><h2>${t('Technical references', 'مراجع فنی')}</h2><ul>${hub.references.map(reference => `<li><a href="${publicUrl(reference.url)}">${e(reference.title)}</a></li>`).join('')}</ul>`
