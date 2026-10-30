@@ -21,6 +21,10 @@ export const catalogHubs: CatalogHub[] = [
     },
     "references": [
       {
+        "title": "NSK — Introduction to bearings and bearing types",
+        "url": "https://www.nsk.com/tools-resources/introduction-bearings/"
+      },
+      {
         "title": "Schaeffler — Technical Pocket Guide",
         "url": "https://www.schaeffler.us/remotemedien/media/_shared_media/08_media_library/01_publications/schaeffler_2/catalogue_1/downloads_6/stt_de_en.pdf"
       }

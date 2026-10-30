@@ -2,7 +2,20 @@
 
 The owner authorized diagnosing and fixing public Google visibility on both company domains. Public indexing was already enabled on 27 October; today's inspection does not reclassify unreviewed engineering data as approved.
 
-## Confirmed current state
+## Later same-day inspection and first ranking-work package
+
+A fresh signed-in Search Console inspection now confirms **both the Persian homepage and `/catalog` are indexed**, in addition to the ball-bearing hub. The homepage crawl is displayed as 30 October, 15:47:18, and catalog crawl as 15:53:01; both are Googlebot smartphone, successful/indexing allowed, with Google-selected canonical matching the inspected HTTPS URL. The UI did not label the timezone beside those times. No already-accepted Persian request was repeated.
+
+Performance baseline, Web, selected 1–28 October (the charts expose only 26–28 October): Persian domain **2 impressions, 0 clicks, 0% CTR, average position 1**, with no query rows. Both impressions belong to the old HTTP homepage, one in Iran and one in the US, all Desktop. English domain **0 impressions / 0 clicks**, with no query/page/country/device rows; its displayed position 0 is not a measured ranking. This is insufficient evidence for the broad bearing keyword or a growth claim.
+
+Both sitemap Success/117 reports were reconfirmed. Twelve priority public responses passed a new HTTP check, with matching indexable HTML/canonical/hreflang on the eight HTML pages; HTTP homepages redirect 301 to same-domain HTTPS. This smaller no-timeout sample does not close the earlier intermittent-delivery concern.
+
+The English homepage still exposes the historical 21 October noindex crawl record. One later retry in this continuation did not show an acceptance receipt; no accepted request or indexed English homepage is claimed.
+
+The first source package adds bilingual bearing-type identification cards, exact sourced product-example links and a company contact prompt to the existing ball-bearing hub, including initial HTML. A range-compatible qs update resolves a fresh dependency-audit finding. Source checks and responsive review are recorded in the [Persian baseline, phased plan, cost priorities and implementation report](SEO_GROWTH_PLAN_2026-10-30.fa.md). This package is local/PR work, **not a production deployment**; engineering approval remains pending.
+
+## Earlier same-day inspection (before the later confirmation)
+
 
 - Both verified Search Console domain properties show their sitemap as **Success**, last read **29 October 2026**, with **117 discovered pages** each. Sitemap processing has recovered from the earlier fetch failures. Discovered pages are not an indexed-page count.
 - Search Console reports `https://poladcharkhesh.ir/catalog/ball-bearings` as **URL is on Google / Page is indexed**, with one valid breadcrumb item and HTTPS. The earlier empty `site:` search was not a complete inventory of Google's index and must not be interpreted as proof that the entire Persian domain is absent.

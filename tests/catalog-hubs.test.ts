@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { catalogHubs, catalogHubForPath, hubPath, productBelongsToHub, productHub, publicPagePaths } from '../domain/catalog-hubs';
 import { catalogHubGuides } from '../domain/catalog-hub-guides';
+import { ballBearingExamples, ballBearingIntro } from '../domain/ball-bearing-navigation';
 import { documentedManufacturer, productHeading, productSpecifications } from '../domain/product-presentation';
 import { bearingProducts } from '../domain/catalog';
 import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
@@ -77,7 +78,7 @@ void test('category metadata, source HTML and JSON-LD describe only their own pu
     assert.equal((html.match(/<h1\b/g) || []).length, 1);
     for (const section of catalogHubGuides[hub.slug][fa ? 'fa' : 'en']) assert.ok(html.replace(/<\/?bdi[^>]*>/g, '').includes(escapeHtml(section.text)));
     const links = [...html.matchAll(/href="(\/product\/[^"?]+)\?/g)].map(match => match[1]);
-    assert.deepEqual(links, expected.map(product => '/product/' + product.slug));
+    assert.deepEqual([...new Set(links)].sort(), expected.map(product => '/product/' + product.slug).sort());
     const preview = metadataFor(route, fa, seoDefaults, COMPANY_INFO, undefined, siteExtras, products, 'preview=1');
     assert.equal(preview.robots, 'noindex,nofollow');
     assert.deepEqual(preview.structuredData['@graph'], []);
@@ -144,4 +145,51 @@ void test('RTL technical prose isolates complete codes and standards without rew
   assert.equal(parts.map(part => part.text).join(''), text);
   assert.deepEqual(parts.filter(part => part.ltr).map(part => part.text), ['6204-2RS', 'ISO 281', 'SKF']);
   assert.ok(initialPublicHtml('/catalog/ball-bearings', true, snapshot, false).includes('<bdi dir="ltr">6204-2RS</bdi>'));
+});
+
+void test('bearing examples exclude archived, unrelated and unaddressable records without changing product data', () => {
+  const example = skf;
+  const input = [
+    { ...example, id: 'archived', code: '000', isArchived: true },
+    { ...example, id: 'no-slug', code: '001', slug: undefined },
+    { ...example, id: 'roller', code: '002', category: 'thrust' as const, schematicType: 'spherical-thrust' as const },
+    { ...example, id: 'ambiguous', code: '003', brands: ['SKF', 'NSK'] },
+    ...products,
+  ];
+  const before = JSON.stringify(input);
+  const groups = ballBearingExamples(input);
+  assert.equal(groups[0].products.length, 3);
+  assert.ok(groups[0].products.includes(skf));
+  assert.deepEqual(groups.map(group => group.type), ['deep-groove', 'angular-contact', 'self-aligning-ball', 'thrust']);
+  for (const group of groups) {
+    assert.ok(group.products.length <= 3);
+    for (const product of group.products) {
+      assert.ok(product.slug && !product.isArchived);
+      assert.ok(products.includes(product));
+      assert.equal(product.schematicType, group.type);
+      assert.ok(documentedManufacturer(product));
+    }
+  }
+  assert.equal(JSON.stringify(input), before);
+  assert.ok(ballBearingExamples([]).every(group => group.products.length === 0));
+});
+
+void test('ball-bearing navigation is useful before JavaScript in both languages and keeps links canonical', () => {
+  for (const fa of [false, true]) {
+    const origin = 'https://poladcharkhesh.' + (fa ? 'ir' : 'com');
+    const html = initialPublicHtml('/catalog/ball-bearings', fa, { ...snapshot, hostname: new URL(origin).hostname }, false);
+    const copy = ballBearingIntro[fa ? 'fa' : 'en'];
+    assert.ok(html.includes(escapeHtml(copy.title)));
+    assert.ok(html.includes(escapeHtml(copy.contactText)));
+    assert.ok(html.includes('href="' + COMPANY_INFO.primaryPhoneTel + '"'));
+    for (const group of ballBearingExamples(products)) {
+      assert.ok(html.includes(escapeHtml(group[fa ? 'fa' : 'en'].title)));
+      for (const product of group.products) assert.ok(html.includes('href="' + origin + '/product/' + product.slug + '"'));
+    }
+    assert.ok(!html.includes('?lang='));
+    assert.ok(!initialPublicHtml('/catalog/roller-bearings', fa, snapshot, false).includes(copy.title));
+    const empty = initialPublicHtml('/catalog/ball-bearings', fa, { ...snapshot, products: [] }, false);
+    assert.ok(empty.includes(escapeHtml(copy.empty)));
+    assert.ok(!empty.includes('/product/'));
+  }
 });
