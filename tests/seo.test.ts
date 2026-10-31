@@ -30,6 +30,38 @@ const content = {
   contact: { titleEn: 'Contact the team' },
 };
 
+void test('reported technical catalog pages retain identity and breadcrumbs without ineligible Product snippets in either language', () => {
+  for (const slug of ['51210', 'skf-6206-2rz']) {
+    const product = bearingProducts.find(item => item.slug === slug);
+    assert.ok(product, `Reported catalog record ${slug} exists`);
+    const before = JSON.stringify(product);
+    for (const fa of [false, true]) {
+      const data = metadataFor('/product/' + slug, fa, seoDefaults, COMPANY_INFO, product);
+      const graph = data.structuredData['@graph'];
+      const page = graph.find(item => item['@type'] === 'WebPage');
+      const item = graph.find(item => item['@type'] === 'Thing');
+      assert.ok(page && item);
+      assert.equal(item.identifier, product.code);
+      assert.equal(item.description, product[fa ? 'descriptionFa' : 'descriptionEn']);
+      assert.deepEqual(page.mainEntity, { '@id': item['@id'] });
+      assert.deepEqual(item.mainEntityOfPage, { '@id': page['@id'] });
+      assert.equal(graph.filter(item => item['@type'] === 'BreadcrumbList').length, 1);
+      const check = (value: unknown): void => {
+        if (!value || typeof value !== 'object') return;
+        for (const [key, child] of Object.entries(value)) {
+          if (key === '@type') assert.ok(!['Product', 'Offer', 'Review', 'AggregateRating'].includes(String(child)));
+          assert.ok(!['offers', 'aggregateRating', 'review'].includes(key));
+          check(child);
+        }
+      };
+      check(graph);
+      assert.equal(data.robots, 'index,follow,max-image-preview:large');
+      assert.equal(data.canonical, `https://poladcharkhesh.${fa ? 'ir' : 'com'}/product/${slug}`);
+    }
+    assert.equal(JSON.stringify(product), before, 'Structured-data output cannot modify catalog records');
+  }
+});
+
 void test('encoded product aliases share the clean canonical, alternate and schema URLs', () => {
   const encoded = '/product/' + p.slug!.replace('6', '%36').replace('-', '%2D');
   for (const fa of [false, true]) {
@@ -37,7 +69,7 @@ void test('encoded product aliases share the clean canonical, alternate and sche
     const clean = `https://poladcharkhesh.${fa ? 'ir' : 'com'}/product/${p.slug}`;
     assert.equal(data.canonical, clean);
     assert.equal(data.alternates.fa, 'https://poladcharkhesh.ir/product/' + p.slug);
-    assert.equal(data.structuredData['@graph'].find(item => item['@type'] === 'Product')?.url, clean);
+    assert.equal(data.structuredData['@graph'].find(item => item['@type'] === 'Thing')?.url, clean);
     const crumbs = data.structuredData['@graph'].find(item => item['@type'] === 'BreadcrumbList')?.itemListElement as Array<{ item: string }>;
     assert.equal(crumbs.at(-1)?.item, clean);
   }
@@ -240,10 +272,10 @@ void test('SEO defaults preserve owner edits and technical values without invent
     content,
   );
   const product = data.structuredData['@graph'].find(
-    (item) => item['@type'] === 'Product',
+    (item) => item['@type'] === 'Thing',
   );
-  if (!product) throw new Error('Product schema is missing');
-  assert.equal(product.sku, p.code);
+  if (!product) throw new Error('Catalog item description is missing');
+  assert.equal(product.identifier, p.code);
   assert.equal(
     product.image,
     undefined,
@@ -251,12 +283,7 @@ void test('SEO defaults preserve owner edits and technical values without invent
   );
   for (const key of ['offers', 'aggregateRating', 'review', 'brand', 'mpn'])
     assert.equal(product[key], undefined);
-  assert.equal(
-    (product.additionalProperty as Array<{ name: string; value: number }>).find(
-      (item) => item.name === 'Dynamic load rating C',
-    )?.value,
-    p.crKn,
-  );
+  assert.equal(enriched.crKn, p.crKn, 'Engineering values remain in the catalog record');
   assert.equal(data.title, 'Owner title');
   assert.equal(
     data.structuredData['@graph'].filter(

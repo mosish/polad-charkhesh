@@ -3,7 +3,7 @@ import type { CompanyContactInfo } from './company';
 import { mediaFor } from '../lib/media';
 import { breadcrumbsFor } from './breadcrumbs';
 import { catalogHubForPath, productBelongsToHub } from './catalog-hubs';
-import { documentedManufacturer, productHeading, productSpecifications } from './product-presentation';
+import { productHeading } from './product-presentation';
 
 export const seoDefaults = {
   titleEn: 'Polad Charkhesh Arian Tech | Industrial Bearings & Engineering',
@@ -275,28 +275,20 @@ export function metadataFor(
       description: data.description,
       inLanguage: fa ? 'fa' : 'en',
       isPartOf: { '@id': pageUrl('/', seo, fa) + '#website' },
-      ...(p ? { mainEntity: { '@id': canonical + '#product' } } : {}),
+      ...(p ? { mainEntity: { '@id': canonical + '#catalog-item' } } : {}),
     });
     if (p) {
-      const manufacturer = documentedManufacturer(p);
+      // These are technical catalog pages without published offers or reviews.
+      // Describe the item without emitting an ineligible Google Product snippet.
       graph.push({
-        '@type': 'Product',
-        '@id': canonical + '#product',
+        '@type': 'Thing',
+        '@id': canonical + '#catalog-item',
         url: canonical,
         name: productHeading(p, fa),
-        sku: p.code,
-        model: p.code,
-        ...(manufacturer ? { brand: { '@type': 'Brand', name: manufacturer }, manufacturer: { '@type': 'Organization', name: manufacturer } } : {}),
+        identifier: p.code,
+        mainEntityOfPage: { '@id': canonical + '#webpage' },
         description: p[fa ? 'descriptionFa' : 'descriptionEn'],
-        category: p.category,
         ...(exactImage ? { image: exactImage } : {}),
-        additionalProperty: productSpecifications(p, fa)
-          .filter(row => row.quantity)
-          .map(row => ({
-            '@type': 'PropertyValue',
-            name: row.label,
-            ...row.quantity,
-          })),
       });
     }
     if (route === '/catalog' || hub)
