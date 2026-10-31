@@ -87,7 +87,7 @@ void test('category metadata, source HTML and JSON-LD describe only their own pu
   assert.equal(auditPublishedSeo(snapshot).pages, products.length + 7);
 });
 
-void test('manufacturer markup needs a sole brand and an official source naming the complete designation', () => {
+void test('manufacturer identification needs a sole brand and an official source naming the complete designation', () => {
   assert.equal(documentedManufacturer(skf), 'SKF');
   assert.equal(productHeading(skf, true), skf.nameFa);
   const noBrandInName = { ...skf, nameFa: 'بلبرینگ شیار عمیق ' + skf.code };
@@ -106,13 +106,14 @@ void test('manufacturer markup needs a sole brand and an official source naming 
   ]) {
     assert.equal(documentedManufacturer(candidate), undefined);
     const data = metadataFor('/product/' + candidate.slug, false, seoDefaults, COMPANY_INFO, candidate);
-    const entity = data.structuredData['@graph'].find(item => item['@type'] === 'Product');
+    const entity = data.structuredData['@graph'].find(item => item['@type'] === 'Thing');
+    assert.ok(entity);
     assert.equal(entity?.manufacturer, undefined);
     assert.equal(entity?.brand, undefined);
   }
 });
 
-void test('product heading, semantic specification table and model schema share the same exact record', () => {
+void test('product heading, semantic specification table and catalog description share the same exact record', () => {
   const before = JSON.stringify(skf);
   const rows = productSpecifications(skf, false);
   assert.equal(rows.find(row => row.key === 'd')?.value, '15 mm');
@@ -129,9 +130,8 @@ void test('product heading, semantic specification table and model schema share 
     assert.ok(html.includes('<th scope="row">'));
     assert.ok(html.includes('26000 rpm'));
     const data = metadataFor('/product/' + skf.slug, fa, seoDefaults, COMPANY_INFO, skf);
-    const entity = data.structuredData['@graph'].find(item => item['@type'] === 'Product');
-    assert.equal(entity?.model, skf.code);
-    assert.deepEqual(entity?.manufacturer, { '@type': 'Organization', name: 'SKF' });
+    const entity = data.structuredData['@graph'].find(item => item['@type'] === 'Thing');
+    assert.equal(entity?.identifier, skf.code);
     assert.equal(entity?.offers, undefined);
     assert.equal(entity?.name, productHeading(skf, fa));
     assert.deepEqual(breadcrumbsFor('/product/' + skf.slug, fa, skf).map(item => item.path), ['/', '/catalog', '/catalog/ball-bearings', '/product/' + skf.slug]);

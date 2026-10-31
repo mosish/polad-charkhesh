@@ -186,7 +186,9 @@ try {
   assert.ok(products.length >= 110, 'Expanded product catalog');
   const product = await request('/product/' + encodeURIComponent(products[0].slug));
   assert.equal(product.status, 200, 'Product page');
-  assert.match(product.body, /"@type":"Product"/);
+  const productGraph = JSON.parse(product.body.match(/id="site-structured-data" type="application\/ld\+json">(.*?)<\/script>/s)![1])['@graph'];
+  assert.ok(productGraph.some((item: Record<string, unknown>) => item['@type'] === 'Thing' && item.identifier === products[0].code), 'Catalog item identity is present');
+  assert.ok(!productGraph.some((item: Record<string, unknown>) => item['@type'] === 'Product'), 'Noncommercial pages do not emit incomplete Product snippets');
   assert.equal((await request('/product/' + encodeURIComponent(products[0].slug) + '/')).status, 200, 'Product trailing slash');
 
   const missing = await request('/missing-page');
