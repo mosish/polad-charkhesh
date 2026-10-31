@@ -12,12 +12,12 @@ export const catalogHubs: CatalogHub[] = [
   {
     "slug": "ball-bearings",
     "en": {
-      "title": "Ball bearings: deep groove, angular contact and thrust",
-      "description": "Compare ball bearing designations, dimensions, sealing and documented speed ratings. Explore deep groove, angular contact, self-aligning and thrust families."
+      "title": "Ball bearings: types, dimensions and selection guide",
+      "description": "What is a ball bearing? Explore bearing types, read dimensions and complete designations, compare catalog components and prepare a technical enquiry with Polad Charkhesh."
     },
     "fa": {
-      "title": "انواع بلبرینگ شیار عمیق، تماس زاویه‌ای و کف‌گرد",
-      "description": "راهنمای انتخاب بلبرینگ شیار عمیق، تماس زاویه‌ای، خودتنظیم و کف‌گرد؛ مقایسه شماره فنی، ابعاد، آب‌بندی و اطلاعات سرعت هر محصول."
+      "title": "بلبرینگ چیست؟ انواع و راهنمای انتخاب صنعتی",
+      "description": "آشنایی با بلبرینگ و تفاوت آن با رولبرینگ؛ انواع شیار عمیق، تماس زاویه‌ای، خودتنظیم و کف‌گرد، خواندن ابعاد و شماره فنی و بررسی قطعات با پولاد چرخش آرین تک."
     },
     "references": [
       {

@@ -18,7 +18,7 @@ import { usePlatform, DataState } from './Context';
 import { ProductCard, ShowroomProductPanel } from './Product';
 import type { BearingProduct } from '../../domain/product';
 import { hubPath, productBelongsToHub, type CatalogHub } from '../../domain/catalog-hubs';
-import { BallBearingNavigation, CatalogHubGuide, CatalogHubLinks } from './CatalogHubContent';
+import { BallBearingNavigation, BallBearingOverview, CatalogHubGuide, CatalogHubLinks } from './CatalogHubContent';
 import TechnicalText from './TechnicalText';
 export const categoryNames: Record<string, readonly [string, string]> = {
   ball: ['Ball bearings', 'بلبرینگ'],
@@ -152,9 +152,9 @@ export default function Catalog({ embedded = false, hub }: { embedded?: boolean;
         </p>
         {hub && <a className="catalog-guide-jump" href="#selection-guide">{t('Read the selection guide', 'مطالعه راهنمای انتخاب')} ↓</a>}
       </section>
-      {hub?.slug === 'ball-bearings' && <BallBearingNavigation />}
+      {hub?.slug === 'ball-bearings' && <><BallBearingOverview /><BallBearingNavigation /></>}
       <CatalogHubLinks current={hub} />
-      <section className="catalog-finder" aria-label={t('Find a component', 'یافتن قطعه')}>
+      <section id={hub?.slug === 'ball-bearings' ? 'bearing-components' : undefined} className="catalog-finder" aria-label={t('Find a component', 'یافتن قطعه')}>
         <label htmlFor={sizeId + '-search'}>{t('Search the catalog', 'جستجوی کاتالوگ')}</label>
         <div className="catalog-finder-row">
           <div className="search-field">

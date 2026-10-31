@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { catalogHubs, catalogHubForPath, hubPath, productBelongsToHub, productHub, publicPagePaths } from '../domain/catalog-hubs';
 import { catalogHubGuides } from '../domain/catalog-hub-guides';
 import { ballBearingExamples, ballBearingIntro } from '../domain/ball-bearing-navigation';
+import { ballBearingLearning } from '../domain/ball-bearing-learning';
 import { documentedManufacturer, productHeading, productSpecifications } from '../domain/product-presentation';
 import { bearingProducts } from '../domain/catalog';
 import { skfCatalogAdditions } from '../domain/skf-catalog-additions';
@@ -191,5 +192,20 @@ void test('ball-bearing navigation is useful before JavaScript in both languages
     const empty = initialPublicHtml('/catalog/ball-bearings', fa, { ...snapshot, products: [] }, false);
     assert.ok(empty.includes(escapeHtml(copy.empty)));
     assert.ok(!empty.includes('/product/'));
+  }
+});
+
+void test('bearing learning content is visible before JavaScript with resolving in-page links in both languages', () => {
+  for (const fa of [false, true]) {
+    const language = fa ? 'fa' : 'en';
+    const copy = ballBearingLearning[language];
+    const html = initialPublicHtml('/catalog/ball-bearings', fa, snapshot, false);
+    for (const value of [copy.definition, copy.difference, copy.dimensionsText, ...copy.questions.flatMap(item => [item.question, item.answer])]) assert.ok(html.includes(escapeHtml(value)));
+    const fragmentLinks = [...html.matchAll(/href="#([^"]+)"/g)].map(match => match[1]);
+    for (const id of fragmentLinks) assert.equal((html.match(new RegExp('id="' + id + '"', 'g')) || []).length, 1, id);
+    for (const [symbol, label] of copy.dimensions) assert.ok(html.includes(`<th scope="row"><bdi dir="ltr">${symbol}</bdi></th><td>${label}</td>`));
+    assert.ok(!initialPublicHtml('/catalog/roller-bearings', fa, snapshot, false).includes(copy.definition));
+    const graph = metadataFor('/catalog/ball-bearings', fa, seoDefaults, COMPANY_INFO, undefined, siteExtras, products).structuredData['@graph'];
+    assert.ok(!graph.some(item => ['FAQPage', 'Product', 'Offer', 'Review', 'AggregateRating'].includes(String(item['@type']))));
   }
 });
