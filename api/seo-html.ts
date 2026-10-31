@@ -10,6 +10,7 @@ import { catalogHubs, catalogHubForPath, hubPath, productBelongsToHub, productHu
 import { productHeading, productSpecifications } from '../domain/product-presentation';
 import { catalogHubGuides } from '../domain/catalog-hub-guides';
 import { ballBearingExamples, ballBearingIntro } from '../domain/ball-bearing-navigation';
+import { ballBearingLearning } from '../domain/ball-bearing-learning';
 import { technicalTextParts } from '../domain/technical-text';
 const technical = (text: string) => technicalTextParts(text).map(part => part.ltr ? `<bdi dir="ltr">${e(part.text)}</bdi>` : e(part.text)).join('');
 function publicUrl(value: unknown, image = false) {
@@ -107,9 +108,15 @@ export function initialPublicHtml(
   } else if (hub) {
     const copy = hub[fa ? 'fa' : 'en'];
     let navigation = '';
+    let learningQuestions = '';
     if (hub.slug === 'ball-bearings') {
       const language = fa ? 'fa' : 'en';
       const intro = ballBearingIntro[language];
+      const learning = ballBearingLearning[language];
+      learningQuestions = `<section id="bearing-questions" class="ball-bearing-questions" aria-labelledby="bearing-questions-title"><h2>${e(learning.dimensionsTitle)}</h2><p>${e(learning.dimensionsText)}</p>`
+        + `<table><caption>${e(learning.dimensionsTitle)}</caption><thead><tr>${learning.columns.map(label => `<th scope="col">${e(label)}</th>`).join('')}</tr></thead>`
+        + `<tbody>${learning.dimensions.map(([symbol, label]) => `<tr><th scope="row"><bdi dir="ltr">${e(symbol)}</bdi></th><td>${e(label)}</td></tr>`).join('')}</tbody></table>`
+        + `<h2 id="bearing-questions-title">${e(learning.questionsTitle)}</h2>${learning.questions.map(item => `<section><h3>${e(item.question)}</h3><p>${e(item.answer)}</p></section>`).join('')}</section>`;
       const cards = ballBearingExamples(products).map(group => {
         const examples = group.products.map(product =>
           `<li><a href="${href('/product/' + encodeURIComponent(product.slug!))}"><bdi dir="ltr">${e(product.code)}</bdi></a></li>`,
@@ -118,7 +125,10 @@ export function initialPublicHtml(
           + (examples ? `<span class="ball-bearing-example-label">${e(intro.examples)}</span><ul>${examples}</ul>` : `<p>${e(intro.empty)}</p>`)
           + '</section>';
       }).join('');
-      navigation = '<section class="ball-bearing-navigation" aria-labelledby="ball-bearing-types-heading">'
+      navigation = `<section class="ball-bearing-overview" aria-labelledby="bearing-definition"><h2 id="bearing-definition">${e(learning.title)}</h2><p>${e(learning.definition)}</p>`
+        + `<h3>${e(learning.differenceTitle)}</h3><p>${e(learning.difference)}</p><a href="${href('/catalog/roller-bearings')}">${e(learning.rollerLink)} ↗</a>`
+        + `<nav class="bearing-contents" aria-label="${e(learning.contentsLabel)}"><a href="#ball-bearing-types-heading">${e(learning.typesLink)}</a><a href="#bearing-components">${e(learning.productsLink)}</a><a href="#selection-guide">${e(learning.guideLink)}</a><a href="#bearing-questions">${e(learning.questionsLink)}</a></nav></section>`
+        + '<section class="ball-bearing-navigation" aria-labelledby="ball-bearing-types-heading">'
         + `<h2 id="ball-bearing-types-heading">${e(intro.title)}</h2><p>${e(intro.text)}</p>`
         + `<div class="ball-bearing-type-grid">${cards}</div>`
         + `<aside class="ball-bearing-contact"><div><h3>${e(intro.contactTitle)}</h3><p>${e(intro.contactText)}</p></div>`
@@ -126,9 +136,10 @@ export function initialPublicHtml(
         + '</aside></section>';
     }
     body = `<h1>${technical(copy.title)}</h1><p>${technical(copy.description)}</p><a href="#selection-guide">${t('Read the selection guide', 'مطالعه راهنمای انتخاب')}</a>`
-      + navigation + hubLinks + `<h2>${t('Products in this family', 'محصولات این خانواده')}</h2>`
+      + navigation + hubLinks + `<h2${hub.slug === 'ball-bearings' ? ' id="bearing-components"' : ''}>${t('Products in this family', 'محصولات این خانواده')}</h2>`
       + listing(products.filter(item => productBelongsToHub(item, hub)))
       + `<article id="selection-guide" class="catalog-hub-guide">${catalogHubGuides[hub.slug][fa ? 'fa' : 'en'].map(section => `<section><h2>${technical(section.title)}</h2><p>${technical(section.text)}</p></section>`).join('')}`
+      + learningQuestions
       + `<aside class="catalog-hub-references"><h2>${t('Technical references', 'مراجع فنی')}</h2><ul>${hub.references.map(reference => `<li><a href="${publicUrl(reference.url)}">${e(reference.title)}</a></li>`).join('')}</ul>`
       + `<a href="${href('/engineering')}">${t('Open engineering tools', 'مشاهده ابزارهای مهندسی')}</a> · <a href="/#contact">${t('Discuss the application', 'بررسی فنی کاربرد')}</a></aside></article>`;
   } else if (route === '/catalog')

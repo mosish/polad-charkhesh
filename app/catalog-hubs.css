@@ -46,6 +46,19 @@
 }
 
 .ball-bearing-navigation { width: 92%; margin: 24px auto 32px; }
+.ball-bearing-overview { width: 92%; margin: 24px auto; max-width: 100ch; line-height: 1.9; }
+.ball-bearing-overview h2 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+.ball-bearing-overview h3, .ball-bearing-questions h3 { font-size: 1.05rem; line-height: 1.8; }
+.ball-bearing-overview p { color: var(--muted); }
+.bearing-contents { display: flex; flex-wrap: wrap; gap: 10px; margin-block: 20px; }
+.bearing-contents a { padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; min-height: 44px; text-decoration: none; }
+.bearing-contents a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ball-bearing-questions table { width: 100%; border-collapse: collapse; margin-block: 24px; }
+.ball-bearing-questions caption { text-align: start; padding-block: 8px; }
+.ball-bearing-questions th, .ball-bearing-questions td { text-align: start; padding: 10px; border-bottom: 1px solid var(--line); }
+.ball-bearing-questions th[scope="row"] { width: 25%; }
+#bearing-definition, #ball-bearing-types-heading, #bearing-components, #bearing-questions, #selection-guide { scroll-margin-block-start: 130px; }
+.seo-initial .ball-bearing-overview { width: 100%; }
 .ball-bearing-navigation > h2 { font-size: clamp(1.15rem, 2vw, 1.5rem); line-height: 1.6; }
 .ball-bearing-navigation p { color: var(--muted); line-height: 1.85; max-width: 90ch; }
 .ball-bearing-type-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-block: 20px; }
