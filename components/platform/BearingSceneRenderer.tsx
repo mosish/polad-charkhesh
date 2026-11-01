@@ -6,198 +6,9 @@ import type { BearingProduct } from '../../domain/product';
 import { buildProductBearing3D } from '../../lib/product-bearing-3d';
 import { advanceRotation } from '../../lib/bearing-motion';
 
-export type BearingFamily = 'thrust' | 'ball' | 'roller' | 'accessories' | 'engineered' | 'track';
-
-// Illustrative family geometry, not manufacturer CAD or a rated operating simulation.
-function buildBearing(family: BearingFamily, runtime: typeof THREE) {
-  const THREE = runtime;
-  const root = new THREE.Group(), shell = new THREE.Group(), moving = new THREE.Group(), cage = new THREE.Group(), elements = new THREE.Group();
-  const textures: THREE.Texture[] = [];
-  const spins: THREE.Mesh[] = [];
-  // Subtle turning marks and micro-roughness, generated locally without image downloads.
-  const grainData = new Uint8Array(256 * 256 * 4);
-  let seed = 19;
-  for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) {
-    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-    const value = Math.round(190 + Math.sin(y * 2.7) * 13 + ((seed / 4294967296) - .5) * 16);
-    const offset = (y * 256 + x) * 4;
-    grainData[offset] = grainData[offset + 1] = grainData[offset + 2] = value; grainData[offset + 3] = 255;
-  }
-  const grain = new THREE.DataTexture(grainData, 256, 256);
-  grain.wrapS = grain.wrapT = THREE.RepeatWrapping; grain.repeat.set(3, 2);
-  grain.magFilter = THREE.LinearFilter; grain.minFilter = THREE.LinearMipmapLinearFilter;
-  grain.generateMipmaps = true; grain.needsUpdate = true; textures.push(grain);
-  const steel = new THREE.MeshStandardMaterial({color: '#bfc9d2', metalness: 1, roughness: .3, roughnessMap: grain, bumpMap: grain, bumpScale: .004});
-  const polished = new THREE.MeshStandardMaterial({color: '#e7ebee', metalness: 1, roughness: .16, roughnessMap: grain});
-  const bronze = new THREE.MeshStandardMaterial({color: '#b78b45', metalness: .85, roughness: .3});
-  const dark = new THREE.MeshStandardMaterial({color: '#303c48', metalness: .65, roughness: .34});
-  const materials: THREE.Material[] = [steel, polished, bronze, dark];
-  const mesh = (geometry: THREE.BufferGeometry, material: THREE.Material, group = shell) => {
-    const m = new THREE.Mesh(geometry, material); group.add(m); return m;
-  };
-  const lathe = (points: number[][], material = steel, group = shell) => {
-    const geometry = new THREE.LatheGeometry(points.map(([r,z]) => new THREE.Vector2(r,z)), 128);
-    geometry.rotateX(Math.PI / 2);
-    return mesh(geometry, material, group);
-  };
-  const torus = (radius: number, tube: number, z: number, material = polished, group = shell) => {
-    const m = mesh(new THREE.TorusGeometry(radius,tube,8,128),material,group); m.position.z=z; return m;
-  };
-  const cylinder=(radius:number,depth:number,z:number,material:THREE.Material,group:THREE.Group)=>{
-    const m=mesh(new THREE.CylinderGeometry(radius,radius,depth,64),material,group);
-    m.rotation.x=Math.PI/2;m.position.z=z;return m;
-  };
-  root.add(shell,moving,cage,elements);
-  if (family === 'thrust') {
-    // T921 envelope proportions (234.95 / 546.1 / 127 mm), illustrative TTHD construction.
-    // Axial race washers sandwich one row of radially oriented tapered rollers.
-    for (const [group, sign] of [[shell, -1], [moving, 1]] as const) {
-      lathe([[.99,sign*.535],[2.26,sign*.535],[2.3,sign*.495],[2.3,sign*.26],[2.24,sign*.22],[1.06,sign*.29],[.99,sign*.33],[.99,sign*.535]],steel,group);
-      for(let j=0;j<5;j++)torus(2.08+j*.035,.002,sign*.536,polished,group);
-      torus(1.015,.014,sign*.53,polished,group);
-    }
-    torus(1.13,.065,0,bronze,cage);torus(2.12,.065,0,bronze,cage);
-    const rollerGeometry=new THREE.CylinderGeometry(.22,.12,.91,32);
-    for(let i=0;i<28;i++){
-      const a=i*Math.PI*2/28;
-      const roller=mesh(rollerGeometry,polished,elements);
-      roller.position.set(Math.cos(a)*1.63,Math.sin(a)*1.63,0);
-      roller.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(Math.cos(a),Math.sin(a),0));
-      const between=a+Math.PI/28;
-      const bridge=mesh(new THREE.BoxGeometry(1.04,.045,.055),bronze,cage);
-      bridge.position.set(Math.cos(between)*1.63,Math.sin(between)*1.63,0);bridge.rotation.z=between;
-    }
-  } else if (family === 'accessories') {
-    // A tapered adapter sleeve, locknut and tab washer around a shaft seat.
-    lathe([[1.02,-.85],[1.11,-.85],[1.37,.7],[1.37,.85],[1.06,.85],[1.02,-.85]],steel,shell);
-    torus(1.35,.025,.82,polished,shell);
-    lathe([[1.4,.45],[1.88,.45],[1.94,.5],[1.94,.95],[1.88,1],[1.4,1],[1.4,.45]],dark,elements);
-    for(let i=0;i<8;i++){
-      const a=i*Math.PI/4;
-      const notch=mesh(new THREE.BoxGeometry(.16,.22,.58),steel,elements);
-      notch.position.set(Math.cos(a)*1.91,Math.sin(a)*1.91,.73);notch.rotation.z=a;
-    }
-    lathe([[1.37,.19],[1.85,.19],[1.85,.29],[1.37,.29],[1.37,.19]],bronze,cage);
-    const tab=mesh(new THREE.BoxGeometry(.18,.28,.12),bronze,cage);tab.position.set(0,1.84,.24);
-    cylinder(.97,1.7,0,dark,moving);torus(.97,.025,.87,polished,moving);
-  } else if (family === 'engineered') {
-    // Mounted bearing unit: cast housing, insert, retaining hardware and shaft.
-    const base=mesh(new THREE.BoxGeometry(5.05,.48,1.55),dark,shell);base.position.y=-1.99;
-    lathe([[1.61,-.69],[2.28,-.69],[2.3,-.62],[2.3,.62],[2.28,.69],[1.61,.69],[1.61,-.69]],steel,shell);
-    for(const x of [-1.87,1.87]){
-      const foot=mesh(new THREE.BoxGeometry(.85,.45,1.5),steel,shell);foot.position.set(x,-1.6,0);
-      cylinder(.19,.18,.87,dark,cage).position.set(x,-1.96,.87);
-      cylinder(.29,.11,.99,polished,cage).position.set(x,-1.96,.99);
-    }
-    lathe([[1.34,-.62],[1.55,-.62],[1.6,-.53],[1.6,.53],[1.55,.62],[1.34,.62],[1.34,-.62]],polished,elements);
-    for(let i=0;i<14;i++){
-      const a=i*Math.PI/7;
-      const ball=mesh(new THREE.SphereGeometry(.19,20,16),polished,elements);
-      ball.position.set(Math.cos(a)*1.28,Math.sin(a)*1.28,0);
-    }
-    lathe([[.84,-.72],[1.1,-.72],[1.1,.72],[.84,.72],[.84,-.72]],bronze,moving);
-    cylinder(.8,2.05,0,dark,moving);
-  } else if (family === 'track') {
-    // Stud cam follower: broad outer tread rotates about a fixed integral stud.
-    lathe([[1.78,-.73],[2.22,-.73],[2.29,-.66],[2.29,.66],[2.22,.73],[1.78,.73],[1.78,-.73]],steel,shell);
-    for(const z of [-.52,.52])torus(2.25,.018,z,polished,shell);
-    for(let i=0;i<21;i++){
-      const a=i*Math.PI*2/21;
-      const needle=cylinder(.17,1.12,0,polished,elements);
-      needle.position.set(Math.cos(a)*1.59,Math.sin(a)*1.59,0);
-    }
-    lathe([[1.06,-.83],[1.85,-.83],[1.85,-.69],[1.06,-.69],[1.06,-.83]],bronze,cage);
-    cylinder(1.41,1.55,0,dark,moving);
-    cylinder(.69,1.24,1.4,steel,moving);
-    cylinder(.86,.2,2.02,polished,moving);
-    mesh(new THREE.CircleGeometry(.29,6),dark,moving).position.z=2.122;
-    torus(.98,.035,.79,polished,moving);
-  } else if (family === 'roller') {
-    // Two inclined rows of barrel rollers share a concave spherical outer raceway.
-    const half=.8;
-    const race=Array.from({length:25},(_,i)=>{const z=half-i*2*half/24;return [Math.sqrt(2.08**2-z*z),z];});
-    lathe([[2.26,-half],[2.3,-half+.04],[2.3,half-.04],[2.26,half],...race,[2.26,-half]]);
-    lathe([[1.45,-half],[1.48,-.74],[1.38,-.43],[1.48,-.09],[1.5,0],[1.48,.09],[1.38,.43],[1.48,.74],[1.45,half],[1.08,half],[1.045,.76],[1.045,-.76],[1.08,-half],[1.45,-half]],steel,moving);
-    torus(2.26,.013,half-.004);
-    torus(1.08,.013,half-.004,polished,moving);
-    const profile=[new THREE.Vector2(0,-.32),...Array.from({length:17},(_,i)=>{const z=-.32+i*.04;return new THREE.Vector2(.28-.08*(z/.32)**2,z);}),new THREE.Vector2(0,.32)];
-    const rollerGeometry=new THREE.LatheGeometry(profile,40);
-    const rollerEndGeometry = new THREE.CircleGeometry(.188, 32);
-    for(const row of [-1,1]) {
-      for(const z of [row*.09,row*.73])torus(1.69,.045,z,bronze,cage);
-      for(let i=0;i<16;i++) {
-        const a=i*Math.PI*2/16, pitch=1.69;
-        const roller=mesh(rollerGeometry,polished,elements);
-        spins.push(roller);
-        roller.position.set(Math.cos(a)*pitch,Math.sin(a)*pitch,row*.41);
-        roller.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(-row*.2*Math.cos(a),-row*.2*Math.sin(a),1).normalize());
-        for (const sign of [-1, 1]) {
-          const endFace = new THREE.Mesh(rollerEndGeometry, steel);
-          endFace.rotation.x = -sign * Math.PI / 2; endFace.position.y = sign * .321;
-          roller.add(endFace);
-        }
-        const between=a+Math.PI/16;
-        const bridge=mesh(new THREE.BoxGeometry(.1,.065,.66),bronze,cage);
-        bridge.position.set(Math.cos(between)*pitch,Math.sin(between)*pitch,row*.41);
-        bridge.rotation.z=between;
-      }
-    }
-  } else {
-    const precision = family === 'ball';
-    const half = precision ? .35 : .48;
-    // Chamfered shoulders and recessed raceways expose the rolling elements.
-    lathe([[2.265,-half],[2.3,-half+.035],[2.3,half-.035],[2.265,half],[precision ? 2.07 : 1.98,half],[precision ? 2.035 : 1.945,half-.04],[precision ? 2.035 : 1.945,.18],[2.015,.08],[2.04,0],[2.015,-.1],[1.95,-.2],[1.95,-half+.04],[1.99,-half],[2.265,-half]]);
-    lathe([[1.42,-half],[1.46,-half+.04],[1.46,-.18],[1.39,-.07],[1.38,0],[1.40,.1],[1.46,.2],[1.46,half-.04],[1.42,half],[1.08,half],[1.045,half-.035],[1.045,-half+.035],[1.08,-half],[1.42,-half]],steel,moving);
-    torus(2.265,.013,half-.004);
-    torus(1.085,.013,half-.004,polished,moving);
-    const count = precision ? 17 : 14, pitch = 1.71, radius = precision ? .303 : .272;
-    const elementGeometry = precision ? new THREE.SphereGeometry(radius,32,24) : new THREE.LatheGeometry([
-      new THREE.Vector2(0,-.365),new THREE.Vector2(radius-.025,-.365),new THREE.Vector2(radius,-.34),new THREE.Vector2(radius,.34),new THREE.Vector2(radius-.025,.365),new THREE.Vector2(0,.365)
-    ],48);
-    if (!precision) elementGeometry.rotateX(Math.PI/2);
-    const cageMaterial = precision ? steel : bronze;
-    torus(1.46,.045,precision ? -.09 : .395,cageMaterial,cage);
-    torus(1.955,.045,precision ? -.09 : .395,cageMaterial,cage);
-    torus(1.71,.065,-.33,cageMaterial,cage);
-    for(let i=0;i<count;i++) {
-      const a=i*Math.PI*2/count, x=Math.cos(a)*pitch,y=Math.sin(a)*pitch;
-      const element=mesh(elementGeometry,polished,elements);element.position.set(x,y,0);
-      spins.push(element);
-      const bridge=mesh(new THREE.BoxGeometry(.53,.065,precision ? .15 : .8),cageMaterial,cage);
-      const between=a+Math.PI/count;bridge.position.set(Math.cos(between)*pitch,Math.sin(between)*pitch,precision ? -.12 : 0);bridge.rotation.z=between;
-      if (precision) {
-        // Pressed-steel pockets and rivets make the cage readable at banner scale.
-        const pocket = mesh(new THREE.TorusGeometry(.286, .018, 8, 32), steel, cage);
-        pocket.position.set(x, y, .135);
-        const rivet = mesh(new THREE.SphereGeometry(.042, 12, 8), polished, cage);
-        rivet.scale.z = .45;
-        rivet.position.set(Math.cos(between) * pitch, Math.sin(between) * pitch, -.015);
-      }
-      if(!precision) {
-        const cap=mesh(new THREE.CircleGeometry(radius-.035,40),steel,elements);cap.position.set(x,y,.367);
-        const dimple=mesh(new THREE.CircleGeometry(.037,20),dark,elements);dimple.position.set(x,y,.368);
-      }
-    }
-  }
-  // Fine concentric machining lines and restrained laser-style face markings.
-  if(family==='ball'||family==='roller'){
-    const front=family==='roller' ? .8 : .35;
-    for(let i=0;i<6;i++)torus(2.035+i*.035,.0015,front+.001,steel);
-    const canvas=document.createElement('canvas');canvas.width=canvas.height=1024;
-    const ctx=canvas.getContext('2d')!;ctx.translate(512,512);ctx.fillStyle='#27313d';ctx.font='500 20px Arial';ctx.textAlign='center';
-    const label=family==='ball' ? 'POLAD CHARKHESH ARIAN TECH  •  BALL BEARINGS' : 'POLAD CHARKHESH ARIAN TECH  •  ROLLER BEARINGS';
-    Array.from(label).forEach((c,i)=>{ctx.save();ctx.rotate((i-(label.length-1)/2)*.028);ctx.fillText(c,0,-469);ctx.restore();});
-    const engraving=new THREE.CanvasTexture(canvas);engraving.colorSpace=THREE.SRGBColorSpace;textures.push(engraving);
-    const ink=new THREE.MeshBasicMaterial({map:engraving,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1});materials.push(ink);
-    mesh(new THREE.PlaneGeometry(4.6,4.6),ink).position.z=front+.002;
-  }
-  return {root, moving, cage, elements, spins, parts:[shell,elements,cage,moving], setExploded(amount:number){
-    [shell,elements,cage,moving].forEach((part,i)=>{part.position.z=(i-1.5)*2.7*amount;});
-  }, dispose(){
-    const geometries=new Set<THREE.BufferGeometry>();root.traverse(o=>{if(o instanceof THREE.Mesh)geometries.add(o.geometry);});
-    geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());
-  }};
-}
+import {buildBearing, type BearingFamily} from '../../lib/bearing-family-3d';
+import {createTrioBounds, layoutBearingTrio} from '../../lib/bearing-trio-layout';
+export type {BearingFamily} from '../../lib/bearing-family-3d';
 
 export type SceneProps={family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean;companions?:readonly [BearingFamily,BearingFamily]};
 type SceneMountOptions = Pick<SceneProps, 'family' | 'product' | 'companions'> & { cinematic: boolean; runtime: typeof THREE; fail: () => void; controller: RefObject<{play:(value:boolean)=>void}|null>; pauseRef: RefObject<boolean>; speedRef: RefObject<{rpm:number;playback:number}>; viewRef: RefObject<{exploded:boolean;reducedMotion:boolean;scrollProgress:number|undefined}> };
@@ -230,13 +41,15 @@ function mountBearingScene(target: HTMLElement, {family,product,companions:compa
         const side=index===0?-1:1;
         const companion=buildBearing(companionFamily,THREE);
         companion.root.position.set(side*3.25,-.6,-1.7);
-        companion.root.scale.setScalar(.86);
+        companion.root.scale.setScalar(.72);
         companion.root.rotation.set(.22,-side*.24,side*.12);
         companions.push(companion);scene.add(companion.root);
       });
       target.dataset.companions=companionFamilies.join(',');
       target.dataset.companionExpansion='0';
     }
+    const trioBounds=createTrioBounds(THREE);
+    if(cinematic)camera.far=100;
     let frame=0,previous=0,elapsed=0,running=false,inView=true;
     let expansion=viewRef.current.exploded?1:0;
     let shaftAngle=0,cageAngle=0,spinAngle=0;
@@ -284,7 +97,10 @@ function mountBearingScene(target: HTMLElement, {family,product,companions:compa
           companion.moving.rotation.z=elapsed*.28;
           companion.cage.rotation.z=companion.elements.rotation.z=elapsed*.12;
         });
-        if(cinematic){camera.position.z=Math.max(8.8,((target.clientWidth<=760?5.5:3.05)+expansion*2.2)/(Math.tan(17*Math.PI/180)*Math.min(camera.aspect,1.5)));camera.updateProjectionMatrix();}
+        if(cinematic && companions.length===2){
+          layoutBearingTrio(model.root,[companions[0].root,companions[1].root],camera,trioBounds);
+          target.dataset.trioGap=Math.min(trioBounds.centre.min.x-trioBounds.left.max.x,trioBounds.right.min.x-trioBounds.centre.max.x).toFixed(4);
+        } else if(cinematic){camera.position.z=Math.max(8.8,(3.05+expansion*2.2)/(Math.tan(17*Math.PI/180)*Math.min(camera.aspect,1.5)));camera.updateProjectionMatrix();}
         else if(scrollView){camera.position.z=Math.max(9.8,(2.65+expansion*1.5)/(Math.tan(17*Math.PI/180)*camera.aspect));camera.updateProjectionMatrix();}
       }
       model.root.updateMatrixWorld(true);
