@@ -6,7 +6,7 @@ import PortableBearing from './PortableBearing';
 import { usePlatform } from './Context';
 import type { BearingFamily } from './HeroBearingScene';
 import {useBearingJourney} from './BearingJourney';
-import { chooseHeroFamily } from '../../lib/hero-presentation';
+import { chooseHeroLineup } from '../../lib/hero-presentation';
 import {subscribeMediaQuery} from '../../lib/browser-compat';
 import RecoveryBoundary from './RecoveryBoundary';
 const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
@@ -14,10 +14,12 @@ const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 export default function HeroBearing() {
   const { t } = usePlatform();
   const journey=useBearingJourney(),configure=journey?.configure;
-  const [family] = useState<BearingFamily>(() => journey?.settings.family || chooseHeroFamily(null));
+  const [lineup] = useState(() => journey?.lineup || chooseHeroLineup(null));
+  const family = lineup[1] as BearingFamily;
   const [playback, setPlayback] = useState(1);
   const [exploded,setExploded] = useState(false);
-  const scrollMode = !exploded;
+  const scrollMode = true;
+  const [manualView,setManualView] = useState(false);
   const families: {id: BearingFamily; label: string; detail: string; caption: string}[] = [
     {id:'ball',label:t('Ball bearings','بلبرینگ‌ها'),detail:t('Angular-contact ball bearing','بلبرینگ تماس زاویه‌ای'),caption:t('Precision balls for spindle applications','ساچمه‌های دقیق برای کاربردهای اسپیندل')},
     {id:'roller',label:t('Roller bearings','رولبرینگ‌ها'),detail:t('Double-row spherical roller bearing','رولبرینگ بشکه‌ای دو ردیفه'),caption:t('Two rows of barrel-shaped rollers','دو ردیف غلتک بشکه‌ای')},
@@ -39,7 +41,8 @@ export default function HeroBearing() {
   const stopped = paused || reduced || !visible || !tabVisible;
   const scrollProgress = useBearingScroll(stage, scrollMode && !paused && !reduced);
   const scrollState = bearingScrollState(scrollProgress);
-  const followView = scrollMode && !reduced;
+  useEffect(()=>{const follow=()=>setManualView(false);window.addEventListener('scroll',follow,{passive:true});return()=>window.removeEventListener('scroll',follow);},[]);
+  const followView = !manualView && !reduced;
   const showParts = followView ? scrollState.phase === 'components' : exploded;
   const phaseLabel = !followView ? (exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده')) : scrollState.phase === 'assembled' ? t('Assembled', 'مونتاژشده') : scrollState.phase === 'components' ? t('Components revealed', 'نمای اجزای بیرینگ') : t('Opening the assembly', 'باز شدن مجموعه');
   useEffect(() => {
@@ -59,14 +62,15 @@ export default function HeroBearing() {
     stage.current?.style.setProperty('--tilt-x', '0deg');
     stage.current?.style.setProperty('--tilt-y', '0deg');
   };
-  const sceneFallback = <PortableBearing family={family} label={selected.detail+' · '+t('Illustrative model','مدل نمایشی')} paused={stopped} reducedMotion={reduced} exploded={exploded} playback={playback} scrollProgress={followView?scrollProgress:undefined}/>;
+  const centralFallback = <PortableBearing family={family} label={selected.detail+' · '+t('Illustrative model','مدل نمایشی')} paused={stopped} reducedMotion={reduced} exploded={exploded} playback={playback} scrollProgress={followView?scrollProgress:undefined}/>;
+  const sceneFallback = <div className="hero-portable-trio"><div className="hero-portable-side hero-portable-left"><PortableBearing family={lineup[0]} label={families.find(f=>f.id===lineup[0])!.detail} paused={stopped} reducedMotion={reduced} playback={playback}/></div><div className="hero-portable-centre">{centralFallback}</div><div className="hero-portable-side hero-portable-right"><PortableBearing family={lineup[2]} label={families.find(f=>f.id===lineup[2])!.detail} paused={stopped} reducedMotion={reduced} playback={playback}/></div></div>;
   return <div className={'hero-visual hero-bearing-showcase hero-bearing-banner' + (stopped ? ' is-still' : '')} data-scroll-mode={followView ? 'auto' : 'manual'}>
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
     </div>
     <fieldset className="bearing-view-switch"  aria-label={t('Bearing assembly view','نمای مونتاژ بیرینگ')}>
-      <button type="button" aria-pressed={!exploded} onClick={()=>setExploded(false)}>{t('Assembled','مونتاژشده')}</button>
-      <button type="button" aria-pressed={exploded} onClick={()=>setExploded(true)}>{t('Exploded view','نمای انفجاری')}</button>
+      <button type="button" aria-pressed={!exploded} onClick={()=>{setExploded(false);setManualView(true);}}>{t('Assembled','مونتاژشده')}</button>
+      <button type="button" aria-pressed={exploded} onClick={()=>{setExploded(true);setManualView(true);}}>{t('Exploded view','نمای انفجاری')}</button>
     </fieldset>
     {!reduced && scrollMode && <div className="bearing-scroll-status"><span>{t('Scroll to explore', 'با اسکرول کاوش کنید')} <span aria-hidden="true">↓</span></span><strong>{phaseLabel}</strong><div className="bearing-scroll-track" aria-hidden="true"><i style={{ transform: `scaleX(${scrollProgress})` }} /></div></div>}
     <div className="hero-bearing-stage" ref={stage}
@@ -107,7 +111,7 @@ export default function HeroBearing() {
       <div className="hero-bearing-orbit" aria-hidden="true" />
       <div className="hero-bearing-tilt hero-bearing-model">
         {sceneReady ? <RecoveryBoundary fallback={<div className="hero-model-fallback">{sceneFallback}</div>}><Suspense fallback={sceneFallback}>
-          <HeroBearingScene cinematic family={family} paused={stopped} playback={playback} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={sceneFallback}/>
+          <HeroBearingScene cinematic companions={[lineup[0],lineup[2]]} family={family} paused={stopped} playback={playback} exploded={exploded} scrollProgress={followView ? scrollProgress : undefined} reducedMotion={reduced} partLabels={partLabels} label={selected.detail+' · '+(followView ? phaseLabel : exploded ? t('Exploded view','نمای انفجاری') : t('Assembled','مونتاژشده'))} fallback={sceneFallback}/>
         </Suspense></RecoveryBoundary> : sceneFallback}
       </div>
       <span className="hero-bearing-caption">{t('Illustrative model · motion slowed for clarity','مدل نمایشی · حرکت آهسته برای وضوح بیشتر')}</span>
