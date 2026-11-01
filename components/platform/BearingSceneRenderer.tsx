@@ -199,9 +199,9 @@ function buildBearing(family: BearingFamily, runtime: typeof THREE) {
   }};
 }
 
-export type SceneProps={family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean};
-type SceneMountOptions = Pick<SceneProps, 'family' | 'product'> & { cinematic: boolean; runtime: typeof THREE; fail: () => void; controller: RefObject<{play:(value:boolean)=>void}|null>; pauseRef: RefObject<boolean>; speedRef: RefObject<{rpm:number;playback:number}>; viewRef: RefObject<{exploded:boolean;reducedMotion:boolean;scrollProgress:number|undefined}> };
-function mountBearingScene(target: HTMLElement, {family,product,cinematic,runtime,fail,controller,pauseRef,speedRef,viewRef}: SceneMountOptions) {
+export type SceneProps={family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean;companions?:readonly [BearingFamily,BearingFamily]};
+type SceneMountOptions = Pick<SceneProps, 'family' | 'product' | 'companions'> & { cinematic: boolean; runtime: typeof THREE; fail: () => void; controller: RefObject<{play:(value:boolean)=>void}|null>; pauseRef: RefObject<boolean>; speedRef: RefObject<{rpm:number;playback:number}>; viewRef: RefObject<{exploded:boolean;reducedMotion:boolean;scrollProgress:number|undefined}> };
+function mountBearingScene(target: HTMLElement, {family,product,companions:companionFamilies,cinematic,runtime,fail,controller,pauseRef,speedRef,viewRef}: SceneMountOptions) {
     const THREE=runtime;
     const compactScreen=matchMedia('(max-width: 760px)').matches;
     let renderer:THREE.WebGLRenderer;
@@ -224,32 +224,18 @@ function mountBearingScene(target: HTMLElement, {family,product,cinematic,runtim
     const productModel=product ? buildProductBearing3D(product,THREE) : undefined;
     const heroModel=product ? undefined : buildBearing(family,THREE);
     const model=productModel || heroModel!;scene.add(model.root);
-    const companionMaterials: THREE.Material[] = [];
-    const companions: THREE.Group[] = [];
-    if (cinematic && !product && !compactScreen) {
-      // Reuse mesh geometry; omit these secondary bearings on narrow screens.
-      for (const side of [-1, 1]) {
-        const companion = model.root.clone(true);
-        const materialCopies = new Map<THREE.Material, THREE.Material>();
-        companion.traverse(object => {
-          if (!(object instanceof THREE.Mesh)) return;
-          const copy = (source: THREE.Material) => {
-            if (!materialCopies.has(source)) {
-              const material = source.clone(); material.transparent = true;
-              if (material instanceof THREE.MeshStandardMaterial) {
-                material.color.multiplyScalar(.5); material.envMapIntensity = .6;
-                material.roughness = Math.max(.28, material.roughness);
-              }
-              materialCopies.set(source, material); companionMaterials.push(material);
-            }
-            return materialCopies.get(source)!;
-          };
-          object.material = Array.isArray(object.material) ? object.material.map(copy) : copy(object.material);
-        });
-        companion.position.set(side * 3.25, -.6, -1.7);
-        companion.scale.setScalar(.86); companion.rotation.set(.22, -side * .24, side * .12);
-        companions.push(companion); scene.add(companion);
-      }
+    const companions: ReturnType<typeof buildBearing>[] = [];
+    if (cinematic && !product && companionFamilies) {
+      companionFamilies.forEach((companionFamily,index) => {
+        const side=index===0?-1:1;
+        const companion=buildBearing(companionFamily,THREE);
+        companion.root.position.set(side*3.25,-.6,-1.7);
+        companion.root.scale.setScalar(.86);
+        companion.root.rotation.set(.22,-side*.24,side*.12);
+        companions.push(companion);scene.add(companion.root);
+      });
+      target.dataset.companions=companionFamilies.join(',');
+      target.dataset.companionExpansion='0';
     }
     let frame=0,previous=0,elapsed=0,running=false,inView=true;
     let expansion=viewRef.current.exploded?1:0;
@@ -262,7 +248,7 @@ function mountBearingScene(target: HTMLElement, {family,product,cinematic,runtim
       const seconds=previous&&running?delta:0;previous=now;
       const scrollView=viewRef.current.scrollProgress === undefined ? undefined : bearingScrollState(viewRef.current.scrollProgress);
       const targetExpansion=scrollView ? scrollView.expansion : viewRef.current.exploded?1:0;
-      expansion=viewRef.current.reducedMotion?targetExpansion:THREE.MathUtils.damp(expansion,targetExpansion,7,Math.min(delta,.05));
+      expansion=viewRef.current.reducedMotion?targetExpansion:THREE.MathUtils.damp(expansion,targetExpansion,7,Math.min(delta,cinematic?.25:.05));
       if(Math.abs(expansion-targetExpansion)<.001)expansion=targetExpansion;
       elapsed+=product ? seconds : Math.min(seconds,.05)*speedRef.current.playback;
       if(productModel){
@@ -293,15 +279,12 @@ function mountBearingScene(target: HTMLElement, {family,product,cinematic,runtim
         }
         heroModel!.setExploded(expansion);
         heroModel!.spins.forEach(spin => spin.rotateY(-Math.min(seconds,.05)*speedRef.current.playback*1.2));
-        companions.forEach((companion, index) => {
-          companion.visible = target.clientWidth > 760 && expansion < .65;
-          companion.position.x = (index === 0 ? -1 : 1) * (3.25 + expansion * 2);
-          companion.position.y = -.6 - expansion * 2;
-          companion.children[1].rotation.z = elapsed * .28;
-          companion.children[2].rotation.z = companion.children[3].rotation.z = elapsed * .12;
+        // Independent assemblies: only the central model receives setExploded.
+        companions.forEach(companion => {
+          companion.moving.rotation.z=elapsed*.28;
+          companion.cage.rotation.z=companion.elements.rotation.z=elapsed*.12;
         });
-        companionMaterials.forEach(material => { material.opacity = Math.max(0, 1 - expansion / .65); });
-        if(cinematic){camera.position.z=Math.max(8.8,(3.05+expansion*2.2)/(Math.tan(17*Math.PI/180)*Math.min(camera.aspect,1.5)));camera.updateProjectionMatrix();}
+        if(cinematic){camera.position.z=Math.max(8.8,((target.clientWidth<=760?5.5:3.05)+expansion*2.2)/(Math.tan(17*Math.PI/180)*Math.min(camera.aspect,1.5)));camera.updateProjectionMatrix();}
         else if(scrollView){camera.position.z=Math.max(9.8,(2.65+expansion*1.5)/(Math.tan(17*Math.PI/180)*camera.aspect));camera.updateProjectionMatrix();}
       }
       model.root.updateMatrixWorld(true);
@@ -326,10 +309,10 @@ function mountBearingScene(target: HTMLElement, {family,product,cinematic,runtim
     document.addEventListener('visibilitychange',sync);
     controller.current={play(){resize();sync();}};
     const lost=(event:Event)=>{event.preventDefault();fail();};renderer.domElement.addEventListener('webglcontextlost',lost);
-    return()=>{cancelAnimationFrame(frame);controller.current=null;observer?.disconnect();intersection?.disconnect();window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);companionMaterials.forEach(material=>material.dispose());model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
+    return()=>{cancelAnimationFrame(frame);controller.current=null;observer?.disconnect();intersection?.disconnect();window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',sync);renderer.domElement.removeEventListener('webglcontextlost',lost);companions.forEach(companion=>companion.dispose());model.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
 }
 
-export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false,cinematic=false,runtime,rendererKind,onFailure}:SceneProps&{runtime:typeof THREE;rendererKind:'webgl1'|'webgl2';onFailure?:()=>void}) {
+export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0,playback=1,exploded=false,reducedMotion=false,partLabels=[],scrollProgress,ambient=false,cinematic=false,companions,runtime,rendererKind,onFailure}:SceneProps&{runtime:typeof THREE;rendererKind:'webgl1'|'webgl2';onFailure?:()=>void}) {
   const controller=useRef<{play:(value:boolean)=>void}|null>(null);
   const pauseRef=useRef(paused);
   const speedRef=useRef({rpm,playback});
@@ -337,10 +320,11 @@ export function BearingSceneRenderer({family,paused,label,fallback,product,rpm=0
   useLayoutEffect(()=>{pauseRef.current=paused;speedRef.current={rpm,playback};viewRef.current={exploded,reducedMotion,scrollProgress};},[paused,rpm,playback,exploded,reducedMotion,scrollProgress]);
   const [failed,setFailed]=useState(false);
   useEffect(()=>{if(failed)onFailure?.();},[failed,onFailure]);
+  const leftCompanion=companions?.[0],rightCompanion=companions?.[1];
   const mountScene=useCallback((target: HTMLElement | null)=>{
     if(!target || failed)return;
-    return mountBearingScene(target, {family,product,cinematic,runtime,fail:()=>setFailed(true),controller,pauseRef,speedRef,viewRef});
-  },[family,failed,product,cinematic,runtime]);
+    return mountBearingScene(target, {family,product,companions:leftCompanion && rightCompanion ? [leftCompanion,rightCompanion] : undefined,cinematic,runtime,fail:()=>setFailed(true),controller,pauseRef,speedRef,viewRef});
+  },[family,failed,product,cinematic,runtime,leftCompanion,rightCompanion]);
   const manualView=scrollProgress === undefined;
   const ambientProgress=ambient ? scrollProgress : undefined;
   useEffect(()=>controller.current?.play(!paused),[paused,rpm,playback,exploded,reducedMotion,manualView,ambientProgress]);
