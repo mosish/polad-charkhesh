@@ -109,6 +109,6 @@
 /* Same three-model composition while WebGL loads or is unavailable. */
 .hero-portable-trio { position:relative; width:100%; height:100%; direction:ltr; }
 .hero-portable-trio > div { position:absolute; top:0; height:100%; }
-.hero-portable-centre { width:48%; left:26%; z-index:1; }
-.hero-portable-side { width:24%; opacity:.8; transform:translateY(12%) scale(.85); }
+.hero-portable-centre { width:64%; left:18%; z-index:1; }
+.hero-portable-side { width:36%; opacity:.8; transform:translateY(12%) scale(.85); }
 .hero-portable-left { left:0; }.hero-portable-right { right:0; }
