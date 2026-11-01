@@ -1,5 +1,5 @@
 import {
-  ACESFilmicToneMapping, BoxGeometry, CanvasTexture, CircleGeometry, CylinderGeometry,
+  ACESFilmicToneMapping, Box3, BoxGeometry, CanvasTexture, CircleGeometry, CylinderGeometry,
   DataTexture, DirectionalLight, Group, LatheGeometry, LinearFilter, LinearMipmapLinearFilter,
   MathUtils, Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneGeometry,
   PMREMGenerator, RepeatWrapping, Scene, SphereGeometry, SRGBColorSpace, TorusGeometry,
@@ -10,7 +10,7 @@ import {BearingSceneRenderer, type SceneProps} from './BearingSceneRenderer';
 
 // Named exports keep unused Three.js features outside the selected renderer.
 const runtime={
-  ACESFilmicToneMapping, BoxGeometry, CanvasTexture, CircleGeometry, CylinderGeometry,
+  ACESFilmicToneMapping, Box3, BoxGeometry, CanvasTexture, CircleGeometry, CylinderGeometry,
   DataTexture, DirectionalLight, Group, LatheGeometry, LinearFilter, LinearMipmapLinearFilter,
   MathUtils, Mesh, MeshBasicMaterial, MeshStandardMaterial, PerspectiveCamera, PlaneGeometry,
   PMREMGenerator, RepeatWrapping, Scene, SphereGeometry, SRGBColorSpace, TorusGeometry,
