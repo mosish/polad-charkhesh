@@ -7,7 +7,7 @@ import { buildProductBearing3D } from '../../lib/product-bearing-3d';
 import { advanceRotation } from '../../lib/bearing-motion';
 
 import {buildBearing, type BearingFamily} from '../../lib/bearing-family-3d';
-import {createTrioBounds, layoutBearingTrio} from '../../lib/bearing-trio-layout';
+import {renderBearingTrio, setBearingPresentationLayer} from '../../lib/bearing-trio-composition';
 export type {BearingFamily} from '../../lib/bearing-family-3d';
 
 export type SceneProps={family:BearingFamily;paused:boolean;label:string;fallback:React.ReactNode;product?:BearingProduct;rpm?:number;playback?:number;exploded?:boolean;reducedMotion?:boolean;partLabels?:string[];scrollProgress?:number;ambient?:boolean;cinematic?:boolean;companions?:readonly [BearingFamily,BearingFamily]};
@@ -35,20 +35,22 @@ function mountBearingScene(target: HTMLElement, {family,product,companions:compa
     const productModel=product ? buildProductBearing3D(product,THREE) : undefined;
     const heroModel=product ? undefined : buildBearing(family,THREE);
     const model=productModel || heroModel!;scene.add(model.root);
+    setBearingPresentationLayer(model.root,'centre');
+    light.layers.enable(1);edge.layers.enable(1);
     const companions: ReturnType<typeof buildBearing>[] = [];
     if (cinematic && !product && companionFamilies) {
       companionFamilies.forEach((companionFamily,index) => {
         const side=index===0?-1:1;
         const companion=buildBearing(companionFamily,THREE);
         companion.root.position.set(side*3.25,-.6,-1.7);
-        companion.root.scale.setScalar(.72);
+        companion.root.scale.setScalar(.86);
         companion.root.rotation.set(.22,-side*.24,side*.12);
+        setBearingPresentationLayer(companion.root,'side');
         companions.push(companion);scene.add(companion.root);
       });
       target.dataset.companions=companionFamilies.join(',');
       target.dataset.companionExpansion='0';
     }
-    const trioBounds=createTrioBounds(THREE);
     if(cinematic)camera.far=100;
     let frame=0,previous=0,elapsed=0,running=false,inView=true;
     let expansion=viewRef.current.exploded?1:0;
@@ -97,10 +99,7 @@ function mountBearingScene(target: HTMLElement, {family,product,companions:compa
           companion.moving.rotation.z=elapsed*.28;
           companion.cage.rotation.z=companion.elements.rotation.z=elapsed*.12;
         });
-        if(cinematic && companions.length===2){
-          layoutBearingTrio(model.root,[companions[0].root,companions[1].root],camera,trioBounds);
-          target.dataset.trioGap=Math.min(trioBounds.centre.min.x-trioBounds.left.max.x,trioBounds.right.min.x-trioBounds.centre.max.x).toFixed(4);
-        } else if(cinematic){camera.position.z=Math.max(8.8,(3.05+expansion*2.2)/(Math.tan(17*Math.PI/180)*Math.min(camera.aspect,1.5)));camera.updateProjectionMatrix();}
+        if(cinematic){camera.position.z=Math.max(8.8,((target.clientWidth<=760?5.5:3.05)+expansion*2.2)/(Math.tan(17*Math.PI/180)*Math.min(camera.aspect,1.5)));camera.updateProjectionMatrix();}
         else if(scrollView){camera.position.z=Math.max(9.8,(2.65+expansion*1.5)/(Math.tan(17*Math.PI/180)*camera.aspect));camera.updateProjectionMatrix();}
       }
       model.root.updateMatrixWorld(true);
@@ -112,7 +111,7 @@ function mountBearingScene(target: HTMLElement, {family,product,companions:compa
       });
       target.dataset.expansion=expansion.toFixed(3);
       target.dataset.scrollProgress=viewRef.current.scrollProgress?.toFixed(3) || 'manual';
-      try {renderer.render(scene,camera);}catch{running=false;fail();return;}
+      try {if(cinematic && companions.length===2){renderBearingTrio(renderer,scene,camera);target.dataset.composition='centre-in-front';}else renderer.render(scene,camera);}catch{running=false;fail();return;}
       if(shaderFailed){running=false;fail();return;}
       target.dataset.motionTime=elapsed.toFixed(3);
       if(running||(inView&&!document.hidden&&expansion!==targetExpansion))frame=requestAnimationFrame(draw);

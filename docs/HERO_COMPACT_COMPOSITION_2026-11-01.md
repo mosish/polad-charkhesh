@@ -1,0 +1,9 @@
+# Compact bearing trio and foreground composition — 2026-11-01
+
+The clearance correction spread the models apart and lost the intended overlapping composition. Restore the original companion offsets (±3.25), scale (.86), central scale and cinematic camera behavior. The SVG fallback also returns to its original compact slots.
+
+Render the two independent background illustrations first, clear only depth, then render the complete central assembly in front. Internal depth testing remains active within each assembly; central exploded parts can occlude each other normally. A side stud cannot overwrite the solid face of the centre model. Both lights illuminate both presentation layers. Renderer and camera state are restored even after a render failure. Product viewers and the continuous background use their existing single-pass rendering.
+
+The superseded world/projected-gap layout and its separation-specific tests were removed because silhouette overlap is intentional. Replacement tests cover complete nested-mesh layer assignment and render-state restoration. The actual WebGL pixel check covers all 60 distinct trios, three scroll states and desktop/mobile aspect ratios (360 frames). Every opaque central-model pixel is compared against a central-only render. It checks 3,588,876 opaque pixels with zero mismatches; a shared-depth negative control reproduces 604 overwritten pixels for the reported thrust/track/roller case.
+
+162 tests, TypeScript, lint, build, bundle budgets and isolated production smoke pass. Full-resolution images of the exact reported trio at assembled, half-open and fully exploded positions are under ignored `outputs/hero-compact/`. Catalog values, engineering approval, languages and public SEO behavior are unchanged. This source record does not itself activate a release; deployment evidence is recorded in the PR.
