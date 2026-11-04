@@ -94,9 +94,10 @@
 
 /* Reserve the longest phrase's space so typing never moves the content below. */
 .hero-headline { position: relative; max-width: 1080px; margin-inline: auto; }
-.liquid-glass .hero-headline h1.typing-headline { display: grid; padding-inline: 30px; margin-block: 12px 18px; }
+.liquid-glass .hero-headline h1.typing-headline { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); padding-inline: 30px; margin-block: 12px 18px; }
 .typing-headline .headline-reserve, .typing-headline .headline-typed { grid-area: 1 / 1; align-self: center; }
 .typing-headline .headline-reserve { visibility: hidden; pointer-events: none; }
+.typing-headline .headline-typed { position: absolute; inset: 0 30px; align-content: center; }
 .typing-headline .headline-accessible { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .typing-cursor { display: inline-block; width: 2px; height: .8em; margin-inline-start: 5px; vertical-align: -.02em; background: #b8dcf9; animation: headline-blink 1s step-end infinite; }
 .typing-cursor.is-still { animation: none; opacity: .45; }

@@ -13,15 +13,15 @@ export default function TypingHeadline() {
 
 function HeadlineSequence({ phrases, fa }: { phrases: string[]; fa: boolean }) {
   const [order] = useState(() => {
-    const shuffled = [...phrases];
+    const shuffled = phrases.slice(1);
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return shuffled;
+    return [phrases[0], ...shuffled];
   });
-  const [index, setIndex] = useState(0), [count, setCount] = useState(0);
-  const [phase, setPhase] = useState<'typing' | 'holding' | 'erasing' | 'waiting'>('typing');
+  const [index, setIndex] = useState(0), [count, setCount] = useState(() => Array.from(phrases[0]).length);
+  const [phase, setPhase] = useState<'typing' | 'holding' | 'erasing' | 'waiting'>('holding');
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [visible, setVisible] = useState(() => typeof IntersectionObserver !== 'function'), [tabVisible, setTabVisible] = useState(!document.hidden);

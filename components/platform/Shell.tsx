@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { usePlatform } from './Context';
 import { publicHref } from '../../lib/public-links';
+import BrandLogo from './BrandLogo';
 export default function Shell({ children }: { children: React.ReactNode }) {
   const { fa, t, toggle, company, content } = usePlatform();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -46,9 +47,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       </div>
       <header ref={header} className={'navigation' + (menuOpen ? ' menu-open' : '')}>
         <a href="/" className="brand">
-          <img
+          <BrandLogo
             className="brand-logo"
-            src={content?.brand?.logoUrl || '/brand/logo.png'}
+            source={content?.brand?.logoUrl}
             width={560}
             height={575}
             alt={
@@ -86,9 +87,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       <ScrollReveal/>
       <footer>
         <a href="/" className="footer-brand">
-          <img
+          <BrandLogo
             className="brand-logo"
-            src={content?.brand?.logoUrl || '/brand/logo.png'}
+            source={content?.brand?.logoUrl}
             width={560}
             height={575}
             alt={
