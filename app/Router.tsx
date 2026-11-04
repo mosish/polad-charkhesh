@@ -1,19 +1,21 @@
-import { Fragment, lazy, Suspense } from 'react';
+import { Fragment, lazy, Suspense, type ComponentType } from 'react';
 import { Provider } from '../components/platform/Context';
 import Shell from '../components/platform/Shell';
 import Home from '../components/platform/Home';
 import NotFound from '../components/platform/NotFound';
 import RecoveryBoundary, { WorkspaceRecovery } from '../components/platform/RecoveryBoundary';
-import { catalogHubForPath } from '../domain/catalog-hubs';
+import { catalogHubForPath, type CatalogHub } from '../domain/catalog-hubs';
 import PageView from '../components/platform/PageView';
 const Catalog = lazy(() => import('../components/platform/Catalog')),
   Product = lazy(() => import('../components/platform/Product')),
   Engineering = lazy(() => import('../components/platform/Engineering')),
   Admin = lazy(() => import('../components/admin/Admin'));
-export default function Router() {
+export default function Router({ workspace }: { workspace?: ComponentType<{ hub?: CatalogHub }> } = {}) {
   const path = location.pathname.replace(/\/+$/, '') || '/';
   const hub = catalogHubForPath(path);
   const Layout = path === '/admin' ? Fragment : Shell;
+  const CatalogPage = workspace || Catalog, ProductPage = workspace || Product,
+    EngineeringPage = workspace || Engineering, AdminPage = workspace || Admin;
   return (
     <Provider>
       <PageView />
@@ -29,15 +31,15 @@ export default function Router() {
           {path === '/' ? (
             <Home />
           ) : path === '/catalog' ? (
-            <Catalog />
+            <CatalogPage />
           ) : hub ? (
-            <Catalog hub={hub} />
+            <CatalogPage hub={hub} />
           ) : path.startsWith('/product/') ? (
-            <Product />
+            <ProductPage />
           ) : path === '/engineering' ? (
-            <Engineering />
+            <EngineeringPage />
           ) : path === '/admin' ? (
-            <Admin />
+            <AdminPage />
           ) : (
             <NotFound />
           )}

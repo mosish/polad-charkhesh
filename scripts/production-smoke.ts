@@ -254,7 +254,12 @@ try {
   assert.equal(favicon.status, 200);
   assert.match(String(favicon.headers['content-type']), /image\/svg\+xml/);
   assert.match(favicon.body, /viewBox="0 0 640 640"/);
-  assert.match(home.body, /href="\/favicon.svg"/);
+  const iconUrl = home.body.match(/href="(\/brand\/favicon-[a-f0-9]{12}\.png)"/)?.[1];
+  assert.ok(iconUrl);
+  const optimizedIcon = await request(iconUrl);
+  assert.equal(optimizedIcon.status, 200);
+  assert.match(String(optimizedIcon.headers['content-type']), /image\/png/);
+  assert.match(String(optimizedIcon.headers['cache-control']), /max-age=31536000, immutable/);
   assert.match(home.body, /rel="describedby" href="\/llms.txt"/);
   assert.match((await request('/', 'unknown-host.invalid')).body, /rel="canonical" href="https:\/\/poladcharkhesh\.com\/"/);
   const editedContent = { ...savedContent, hero: { ...savedContent.hero, titleEn: 'Production smoke title' } };

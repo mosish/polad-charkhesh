@@ -15,20 +15,25 @@ export default function ScrollReveal() {
       { threshold: 0.06 },
     );
     const elements = new Set<Element>();
-    const scan = () =>
+    const scan = () => {
+      // Read geometry as one batch before adding classes that invalidate layout.
+      const pending: Element[] = [];
       document
         .querySelectorAll('main > section, main .product-grid > *, main .panel')
         .forEach((el) => {
           if (elements.has(el)) return;
           elements.add(el);
           if (el.getBoundingClientRect().top > innerHeight) {
-            el.classList.add('reveal-pending');
-            observer.observe(el);
+            pending.push(el);
           }
         });
+      pending.forEach(el => { el.classList.add('reveal-pending'); observer.observe(el); });
+    };
     scan();
     let scanFrame = 0;
-    const mutation = new MutationObserver(() => {
+    const mutation = new MutationObserver(records => {
+      // Typing changes text nodes, not the set of sections/cards to reveal.
+      if (!records.some(record => Array.from(record.addedNodes).some(node => node.nodeType === 1))) return;
       if (!scanFrame) scanFrame = requestAnimationFrame(() => { scanFrame = 0; scan(); });
     });
     const root = document.querySelector('#root');
