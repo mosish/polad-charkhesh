@@ -1,5 +1,7 @@
 # Engineering Toolbox Expansion
 
+**17 November 2026 source update:** the owner requested all six workbench improvements plus additional-tool research. The [new manual package](WORKBENCH_2026-11-17.md) implements target capacity, scenario/sensitivity comparison, visual fits, local cases, lubrication/maintenance worksheets, rotating duty-cycle life and shaft power/torque. The product-approval registry stays empty. This supersedes the old "Next: C3-B" implementation queue; engineering acceptance and production release remain separate. Earlier dated statements below are retained as history.
+
 **Project:** Polad Charkhesh Engineering Toolbox · توسعه جعبه‌ابزار مهندسی پولاد چرخش  
 **Project ID:** ENG-TOOLS-01  
 **Defined:** 2026-10-18  

@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { usePlatform } from './Context';
 import { fitRange } from '../../lib/showroom';
-import { engineeringNumber } from '../../lib/engineering-input';
-import EngineeringNumberInput, { EngineeringInputHint } from './EngineeringNumberInput';
+import {
+  engineeringNumber,
+  formatEngineeringNumber,
+} from '../../lib/engineering-input';
+import EngineeringNumberInput, {
+  EngineeringInputHint,
+} from './EngineeringNumberInput';
 export default function FitGuide() {
-  const { t } = usePlatform();
+  const { t, fa } = usePlatform();
   const [limits, setLimits] = useState(['20', '20.01', '20.005', '20.015']);
   let result: ReturnType<typeof fitRange> | undefined;
   try {
@@ -39,15 +44,22 @@ export default function FitGuide() {
         ].map((label, i) => (
           <label key={i}>
             {label}
-            <EngineeringNumberInput value={limits[i]} constraint="positive" onChange={value => setLimits(old => old.map((v, j) => j === i ? value : v))} />
+            <EngineeringNumberInput
+              value={limits[i]}
+              constraint="positive"
+              onChange={(value) =>
+                setLimits((old) => old.map((v, j) => (j === i ? value : v)))
+              }
+            />
           </label>
         ))}
       </div>
-      <output className="fit-output" >
+      <output className="fit-output">
         {result ? (
           <>
             <strong>
-              {result.min.toFixed(1)} … {result.max.toFixed(1)} µm
+              {formatEngineeringNumber(result.min, fa)} …{' '}
+              {formatEngineeringNumber(result.max, fa)} µm
             </strong>
             <span>
               {result.kind === 'clearance'
