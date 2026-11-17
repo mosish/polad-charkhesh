@@ -678,7 +678,7 @@ export default function EngineeringWorkbench({
                           ...old,
                           rows: [
                             ...old.rows,
-                            { ...row, label: `${row.label} +` },
+                            { ...row, label: `${row.label.slice(0, 57)} +` },
                           ],
                         }))
                       }

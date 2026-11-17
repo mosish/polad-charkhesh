@@ -8,7 +8,7 @@ import EngineeringNumberInput, {
 } from './EngineeringNumberInput';
 import UnitConverter from './UnitConverter';
 import { engineeringNumber as numberInput } from '../../lib/engineering-input';
-import { lazy, Suspense, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { calculate, basicLife } from '../../lib/engineering';
 import {
@@ -18,7 +18,7 @@ import {
 } from '../../lib/engineering-eligibility';
 import { usePlatform, DataState } from './Context';
 import { formatEngineeringNumber } from '../../lib/engineering-input';
-const EngineeringWorkbench = lazy(() => import('./EngineeringWorkbench'));
+import EngineeringWorkbench from './EngineeringWorkbench';
 
 type ToolTab =
   | 'workbench'
@@ -228,18 +228,7 @@ export default function Engineering({
             </div>
             {workbenchVisited && (
               <div hidden={tab !== 'workbench'}>
-                <Suspense
-                  fallback={
-                    <p aria-live="polite">
-                      {t(
-                        'Loading engineering workbench…',
-                        'در حال بارگذاری میز کار مهندسی…',
-                      )}
-                    </p>
-                  }
-                >
-                  <EngineeringWorkbench product={p} />
-                </Suspense>
+                <EngineeringWorkbench product={p} />
               </div>
             )}
             <div hidden={tab !== 'converter'}>

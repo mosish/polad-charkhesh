@@ -42,6 +42,6 @@ Regression tolerance: max(10^-10 absolute,10^-12 relative), not a physical-accur
 
 ## Speed and release boundaries
 
-The workbench and CSS are lazy chunks; no new network request is made when typing. Calculations are memoized separately from notes/case naming and capped at eight rows. Existing animation, reduced-motion behavior, catalog and administrator workflows are preserved. There is no new charting dependency, server write endpoint or database migration.
+The workbench and CSS load with the lazy engineering route, avoiding an extra post-mount module waterfall. No new network request is made when typing. Calculations are memoized separately from notes/case naming and capped at eight rows; case revision checks are cached separately. Existing animation, reduced-motion behavior, catalog and administrator workflows are preserved. There is no new charting dependency, server write endpoint or database migration.
 
 Local verification and screenshots are recorded in the task's `outputs/engineering-workbench-report.fa.md`. Engineering reviewer acceptance and approval of catalog subsets remain open. Source synchronization does not deploy this package; production needs its own reviewable backup/rollback and owner approval.
