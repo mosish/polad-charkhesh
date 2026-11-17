@@ -1,5 +1,7 @@
 # Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
 
+**17 November 2026 — engineering workbench source:** target-life capacity, manual scenarios/sensitivity, visual fits, local JSON cases, lubrication/maintenance checklists, variable-duty life and shaft power/torque are implemented. Local checks: 175 tests, types, lint, build, bundle budgets and isolated production smoke pass. [Methods, research and boundaries](docs/engineering-tools/WORKBENCH_2026-11-17.md). Engineering acceptance and production release remain open; no catalog calculation profile is approved by this package.
+
 **English** | [فارسی](README.fa.md)
 
 **Google visibility checked — 2026-10-30:** Search Console now confirms the Persian homepage, catalog and ball-bearing hub are indexed. Both sitemaps remain Success/117 discovered URLs. Web baseline (selected October 1–28, charts October 26–28) is 2 impressions/0 clicks for .ir and 0/0 for .com; there is no usable keyword baseline yet. The English homepage still has its historic noindex record and no accepted submission is confirmed. The first bilingual hub/contact package is now deployed on both domains at `d999f4d6638add30149f22cab6aeeb8891380048`; 157 VPS tests and the 234 public/10 private checks from the VPS and workstation passed. [Activation evidence](docs/SEO_GROWTH_RELEASE_2026-10-30.md). Engineering approval remains pending. [Baseline, phased work and cost priorities (Persian)](docs/SEO_GROWTH_PLAN_2026-10-30.fa.md) · [Indexing evidence](docs/SEARCH_VISIBILITY_2026-10-30.md).

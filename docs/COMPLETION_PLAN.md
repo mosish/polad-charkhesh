@@ -1,5 +1,7 @@
 # Pending-work completion plan
 
+**17 November 2026 C3 source update:** the [manual workbench package](engineering-tools/WORKBENCH_2026-11-17.md) implements target capacity, scenarios, visual fits, local case exchange, condition-led maintenance/lubrication, rotating duty-cycle life and shaft power/torque. It preserves catalog approval gates and does not close C0 engineering acceptance, catalog C2, complete application C4 or production C5 release. Earlier dated statuses remain historical.
+
 **Project:** COMPLETE-01 · **Started:** 2026-10-18 · **Status:** C0-A/B and C1-A/B/C are deployed; C1-D quality, C0-C method evidence and C3-A input/unit packages are deployed. Engineering sign-off and remaining phases are open.
 
 The owner requested a plan covering every pending area and authorized starting work step by step. The owner will nominate an engineering reviewer later. Developer work, tests and source synchronization can proceed; engineer acceptance remains unassigned. Do not mistake a prepared evidence packet for that acceptance.
