@@ -95,6 +95,17 @@ export default function EngineeringWorkbench({
   const importInput = useRef<HTMLInputElement>(null);
   const v = draft.values;
   const lubeReview = lubricationReview(v);
+  const caseStatuses = useMemo(
+    () =>
+      new Map(cases.map((item) => [item.id, caseStaleness(item, products)])),
+    [cases, products],
+  );
+  const dirty = opened
+    ? tool !== opened.tool ||
+      name.trim() !== opened.name ||
+      JSON.stringify(draft) !== JSON.stringify(opened.draft)
+    : Boolean(name.trim()) ||
+      JSON.stringify(draft) !== JSON.stringify(initialWorkbookDraft());
   const format = (value: number) => formatEngineeringNumber(value, fa);
   const update = (key: string, value: string) =>
     setDraft((old) => ({ ...old, values: { ...old.values, [key]: value } }));
@@ -377,6 +388,16 @@ export default function EngineeringWorkbench({
     }
   };
   const openCase = (item: EngineeringCase) => {
+    if (
+      dirty &&
+      !window.confirm(
+        t(
+          'This worksheet has unsaved edits. Open the saved case and discard those edits?',
+          'این کاربرگ تغییرات ذخیره‌نشده دارد. پروندهٔ ذخیره‌شده باز و تغییرات فعلی کنار گذاشته شوند؟',
+        ),
+      )
+    )
+      return;
     setDraft({
       ...cloneDraft(item.draft),
       values: { ...initialWorkbookDraft().values, ...item.draft.values },
@@ -1171,7 +1192,14 @@ export default function EngineeringWorkbench({
             disabled={
               cases.length >= 20 || needsRecalculation || storageBlocked
             }
-            onClick={() => persist([...cases, newCase()])}
+            onClick={() => {
+              const item = newCase();
+              if (persist([...cases, item])) {
+                setOpened(item);
+                setOpenedProduct(item.product);
+                setName(item.name);
+              }
+            }}
           >
             {t('Save new case', 'ذخیرهٔ پروندهٔ جدید')}
           </button>
@@ -1212,6 +1240,22 @@ export default function EngineeringWorkbench({
             {t('Import JSON', 'ورود JSON')}
           </button>
         </div>
+        <p className="note">
+          {dirty
+            ? t(
+                'Current edits are not saved yet. Save a new case or update the opened case.',
+                'تغییرات فعلی هنوز ذخیره نشده‌اند. پروندهٔ جدید ذخیره کنید یا پروندهٔ باز را به‌روزرسانی کنید.',
+              )
+            : opened
+              ? t(
+                  'Current worksheet matches the saved snapshot.',
+                  'کاربرگ فعلی با نسخهٔ ذخیره‌شده یکسان است.',
+                )
+              : t(
+                  'Save a case to keep this worksheet.',
+                  'برای نگهداری این کاربرگ، یک پرونده ذخیره کنید.',
+                )}
+        </p>
         <input
           ref={importInput}
           type="file"
@@ -1267,7 +1311,7 @@ export default function EngineeringWorkbench({
                   {new Date(item.savedAt).toLocaleDateString(
                     fa ? 'fa-IR' : 'en-US',
                   )}
-                  {caseStaleness(item, products)
+                  {caseStatuses.get(item.id)
                     ? t(' · needs recalculation', ' · نیازمند محاسبه دوباره')
                     : ''}
                 </small>
@@ -1296,9 +1340,21 @@ export default function EngineeringWorkbench({
                 </button>
                 <button
                   type="button"
-                  onClick={() =>
-                    persist(cases.filter((entry) => entry.id !== item.id))
-                  }
+                  onClick={() => {
+                    if (
+                      persist(cases.filter((entry) => entry.id !== item.id)) &&
+                      opened?.id === item.id
+                    ) {
+                      setOpened(undefined);
+                      setOpenedProduct(undefined);
+                      setMessage(
+                        t(
+                          'Local snapshot deleted; current worksheet inputs were kept.',
+                          'نسخهٔ محلی حذف شد؛ ورودی‌های کاربرگ فعلی حفظ شدند.',
+                        ),
+                      );
+                    }
+                  }}
                 >
                   {t('Delete local case', 'حذف پروندهٔ محلی')}
                 </button>
