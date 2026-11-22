@@ -1,4 +1,5 @@
 import initialCopy from './site-copy.json';
+import { contactNavigationItem } from './site-navigation';
 
 export function textKey(text: string) {
   let h = 2166136261;
@@ -75,6 +76,7 @@ export const siteExtras: SiteExtras = {
         labelFa: 'درباره ما',
         href: '/#about',
       },
+      contactNavigationItem,
     ],
   },
   links: {

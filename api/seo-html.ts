@@ -50,9 +50,13 @@ export function initialPublicHtml(
   const { company, content, products } = data;
   const hub = catalogHubForPath(route);
   if (route === '/admin') return '';
-  const lang = '?lang=' + (fa ? 'fa' : 'en');
   const live = data.seo && data.hostname && [data.seo.domainEn, data.seo.domainFa].some(origin => new URL(origin).hostname === data.hostname);
-  const href = (url: string) => e(live ? new URL(url, data.seo![fa ? 'domainFa' : 'domainEn']).href : url + lang);
+  const href = (url: string) => {
+    if (live) return e(new URL(url, data.seo![fa ? 'domainFa' : 'domainEn']).href);
+    const target = new URL(url, 'https://poladcharkhesh.invalid');
+    target.searchParams.set('lang', fa ? 'fa' : 'en');
+    return e(target.pathname + target.search + target.hash);
+  };
   const productLink = (item: BearingProduct) =>
     `<a href="${href('/product/' + encodeURIComponent(item.slug || item.id))}"><bdi dir="ltr">${e(item.code)}</bdi> · ${technical(item[fa ? 'nameFa' : 'nameEn'])}</a>`;
   const listing = (items: BearingProduct[]) =>
@@ -166,7 +170,7 @@ export function initialPublicHtml(
     ] as const) {
       const section = content[id] || {};
       sections[id] =
-        `<section id="${id}">${section[fa ? 'titleFa' : 'titleEn'] ? '<h2>' + e(section[fa ? 'titleFa' : 'titleEn']) + '</h2>' : ''}${section[fa ? 'descriptionFa' : 'descriptionEn'] ? '<p>' + e(section[fa ? 'descriptionFa' : 'descriptionEn']) + '</p>' : ''}` +
+        `<section id="${id === 'about' ? 'introduction' : id === 'why' ? 'about' : id}">${section[fa ? 'titleFa' : 'titleEn'] ? '<h2>' + e(section[fa ? 'titleFa' : 'titleEn']) + '</h2>' : ''}${section[fa ? 'descriptionFa' : 'descriptionEn'] ? '<p>' + e(section[fa ? 'descriptionFa' : 'descriptionEn']) + '</p>' : ''}` +
         (content.cards?.[id] || [])
           .map(
             (card) =>
@@ -194,5 +198,5 @@ export function initialPublicHtml(
   }
   const crumbs = missing ? [] : breadcrumbsFor(route, fa, p);
   if (crumbs.length) body = `<nav class="breadcrumbs" aria-label="${t('Breadcrumbs', 'مسیر صفحه')}"><ol>${crumbs.map((item, index) => `<li>${index === crumbs.length - 1 ? `<span aria-current="page">${technical(item.label)}</span>` : `<a href="${href(item.path)}">${technical(item.label)}</a>`}</li>`).join('')}</ol></nav>` + body;
-  return `<div class="seo-initial"><header><a href="${href('/')}">${e(company[fa ? 'nameFa' : 'nameEn'])}</a><nav><a href="${href('/catalog')}">${t('Products', 'محصولات')}</a> · <a href="${href('/engineering')}">${t('Engineering tools', 'ابزارهای مهندسی')}</a></nav></header><main id="main">${body}</main><footer>${e(content.footer?.[fa ? 'descriptionFa' : 'descriptionEn'])}</footer></div>`;
+  return `<div class="seo-initial"><header><a href="${href('/')}">${e(company[fa ? 'nameFa' : 'nameEn'])}</a><nav><a href="${href('/catalog')}">${t('Products', 'محصولات')}</a> · <a href="${href('/engineering')}">${t('Engineering tools', 'ابزارهای مهندسی')}</a> · <a href="${href('/#about')}">${t('Company', 'درباره ما')}</a> · <a href="${href('/#contact')}">${t('Contact us', 'تماس با ما')}</a></nav></header><main id="main">${body}</main><footer>${e(content.footer?.[fa ? 'descriptionFa' : 'descriptionEn'])}</footer></div>`;
 }

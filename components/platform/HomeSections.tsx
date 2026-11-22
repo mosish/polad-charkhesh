@@ -78,7 +78,7 @@ export default function HomeSections() {
         </section>
       </PageSection>
       <PageSection id="why">
-        <section className="section why-section">
+        <section className="section why-section" id="about">
           <div>
             <div className="section-label">
               05 / {t('WHY POLAD CHARKHESH ARIAN TECH', 'چرا پولاد چرخش آرین تک')}

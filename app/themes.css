@@ -50,7 +50,7 @@ html[data-theme='light'] .language-choice input:checked+span { color:#153554; }
 html[data-theme='light'] .language-choice:has(input:focus-visible) { outline-color:#225c9f; }
 @media(prefers-reduced-motion:reduce) { .language-thumb { transition:none; } }
 @media(prefers-reduced-motion:reduce) { .theme-scene,.theme-thumb,.theme-orb,.theme-orb i,.theme-stars,.theme-clouds,.theme-choice-content { transition:none; } }
-@media(max-width:1280px) { .liquid-glass .navigation .nav-contact { display:none; } }
+@media(max-width:1320px) { .liquid-glass .navigation .nav-contact { display:none; } }
 @media(min-width:761px) and (max-width:1000px) {
   .liquid-glass .navigation { flex-wrap:wrap; }
   .liquid-glass .navigation .brand { margin-inline-end:auto; min-width:0; }
@@ -144,3 +144,6 @@ html[data-theme='light'] .bearing-toggle-choice:has(input:focus-visible) { outli
   .hero-bearing-banner .hero-assembly-toggle { bottom:57px; }
 }
 @media(prefers-reduced-motion:reduce) { .bearing-toggle-thumb { transition:none; } }
+
+/* Keep lower homepage destinations clear of the sticky, responsive navigation. */
+html { scroll-padding-top:var(--public-header-offset,140px); }

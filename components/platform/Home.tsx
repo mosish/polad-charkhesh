@@ -12,17 +12,10 @@ import HeroBearing from './HeroBearing';
 import TypingHeadline from './TypingHeadline';
 import BearingReturn from './BearingReturn';
 import { publicHref } from '../../lib/public-links';
-import { useEffect } from 'react';
+import { useHomeAnchors } from './useHomeAnchors';
 export default function Home() {
   const { fa, t, content, loading, company } = usePlatform();
-  useEffect(() => {
-    if (loading || !location.hash) return;
-    let id: string;
-    try { id = decodeURIComponent(location.hash.slice(1)); }
-    catch { return; }
-    const timer = window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' }), 120);
-    return () => window.clearTimeout(timer);
-  }, [loading]);
+  useHomeAnchors(loading);
   return (
     <main id="main" className="managed-home">
       {content?.layout?.hidden?.includes('hero') && <h1 className="section">{company?.[fa ? 'nameFa' : 'nameEn'] || t('Polad Charkhesh Arian Tech', 'پولاد چرخش آرین تک')}</h1>}
@@ -150,7 +143,7 @@ export default function Home() {
         </section>
       </PageSection>
       <PageSection id="about">
-        <section className="section intro" id="about">
+        <section className="section intro" id="introduction">
           <div className="section-label">
             01 / {t('THE RIGHT COMPONENT', 'قطعه مناسب')}
           </div>
