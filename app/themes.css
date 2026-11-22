@@ -1,9 +1,22 @@
 /* Public light palette: cold silver, navy ink and machined blue. Dark rules stay intact. */
-.theme-toggle { display:grid; place-items:center; flex:0 0 44px; width:44px; height:44px; padding:0; border:1px solid var(--glass-line); border-radius:50%; background:#ffffff09; color:var(--glass-text); cursor:pointer; }
-.theme-control { position:relative; }
-.theme-control select { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
-.theme-control:focus-within { outline:2px solid var(--blue); outline-offset:4px; }
-.theme-auto-mark { position:absolute; inset-inline-end:5px; bottom:5px; }
+.theme-toggle { position:relative; isolation:isolate; min-inline-size:0; margin:0; display:grid; grid-template-columns:repeat(3,1fr); flex:0 0 158px; width:158px; height:52px; padding:3px; border:1px solid #b2d8f838; border-radius:999px; background:linear-gradient(180deg,#07121fd9,#1a2e43); color:#b5c9df; box-shadow:inset 0 2px 5px #020b1680,0 1px 0 #ffffff0d; }
+.theme-thumb { position:absolute; z-index:-1; top:3px; bottom:3px; left:3px; width:calc((100% - 6px)/3); border:1px solid #c8e9ff66; border-radius:999px; background:linear-gradient(145deg,#aecde754,#50769870); box-shadow:inset 0 1px 1px #ffffff45,0 2px 6px #0005; transform:translateX(100%); transition:transform .24s cubic-bezier(.2,.8,.2,1),background .24s,box-shadow .24s; }
+.theme-toggle[data-mode='dark'] .theme-thumb { transform:translateX(0); background:linear-gradient(145deg,#5076a3,#243f66); box-shadow:inset 0 1px 1px #d1eaff70,0 0 12px #7babed30; }
+.theme-toggle[data-mode='light'] .theme-thumb { transform:translateX(200%); background:linear-gradient(145deg,#ffe9a9,#c8a55d); box-shadow:inset 0 1px 1px #fff9,0 0 12px #ffe0a338; }
+.theme-choice { position:relative; display:grid; place-items:center; min-width:0; margin:0; cursor:pointer; }
+.theme-choice input[type='radio'] { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer; }
+.theme-choice-content { display:grid; place-items:center; pointer-events:none; font-size:11px; font-weight:600; line-height:1; color:#b5c9df; }
+.theme-choice input:checked + .theme-choice-content { color:#fff; }
+.theme-choice:has(input[value='light']:checked) .theme-choice-content { color:#433415; }
+.theme-choice:has(input:focus-visible) { outline:2px solid #acd9ff; outline-offset:3px; border-radius:999px; }
+.theme-choice:hover .theme-choice-content { filter:brightness(1.2); }
+@media(prefers-reduced-motion:reduce) { .theme-thumb { transition:none; } }
+@media(max-width:1280px) { .liquid-glass .navigation .nav-contact { display:none; } }
+@media(min-width:761px) and (max-width:1000px) {
+  .liquid-glass .navigation { flex-wrap:wrap; }
+  .liquid-glass .navigation .brand { margin-inline-end:auto; min-width:0; }
+  .liquid-glass .navigation nav { order:4; flex-basis:100%; justify-content:center; }
+}
 html[data-theme='light'] { color-scheme:light; background:#f3f6fa; }
 html[data-theme='light'] body.liquid-glass {
   --glass-text:#172d46; --glass-muted:#4d6379; --glass-line:#193f672b;
@@ -50,9 +63,18 @@ html[data-theme='light'] body.liquid-glass .workbench-formula { background:#e2ed
 html[data-theme='light'] body.liquid-glass .workbench-bars i { background:#225c9f; }
 html[data-theme='light'] body.liquid-glass .breadcrumbs [aria-current] { color:#4d6379; }
 html[data-theme='light'] body.liquid-glass :is(.comparison-dock,.not-found-card,.site-recovery,.public-recovery-snapshot) { background:var(--glass-fill); color:var(--glass-text); border-color:var(--glass-line); }
+html[data-theme='light'] body.liquid-glass .theme-toggle { background:linear-gradient(180deg,#cedbe8,#e7eff7); border-color:#9bb5d180; box-shadow:inset 0 2px 4px #22446820,0 1px 0 #fff; }
+html[data-theme='light'] body.liquid-glass .theme-thumb { background:linear-gradient(145deg,#fff,#dbe9f6); border-color:#adc5db; box-shadow:inset 0 1px 0 #fff,0 2px 5px #27496930; }
+html[data-theme='light'] body.liquid-glass .theme-choice-content { color:#47617b; }
+html[data-theme='light'] body.liquid-glass .theme-choice input:checked + .theme-choice-content { color:#193d65; }
+html[data-theme='light'] body.liquid-glass .theme-toggle[data-mode='light'] .theme-thumb { background:linear-gradient(145deg,#fff4ce,#f0d18b); border-color:#c3a565; }
+html[data-theme='light'] body.liquid-glass .theme-choice:has(input[value='light']:checked) .theme-choice-content { color:#674908; }
+html[data-theme='light'] body.liquid-glass .theme-choice:has(input:focus-visible) { outline-color:#225c9f; }
 @media(max-width:760px) {
-  .theme-toggle { order:2; flex-basis:40px; width:40px; height:40px; }
-  .liquid-glass .navigation .brand { flex:1 1 0; gap:8px; }
+  .theme-toggle { order:2; margin-inline-end:auto; }
+  .liquid-glass .navigation .brand { order:0; flex:1 1 calc(100% - 60px); gap:8px; }
+  .liquid-glass .navigation .public-menu-toggle { order:1; }
+  .liquid-glass .navigation .language { order:3; }
   .liquid-glass .navigation .brand-logo { width:42px; height:44px; padding:3px; flex-shrink:0; }
   .liquid-glass .navigation .brand>span { white-space:normal; font-size:11px; line-height:1.6; letter-spacing:0; }
   .liquid-glass .navigation .brand small { display:none; }
