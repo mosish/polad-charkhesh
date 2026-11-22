@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import { usePlatform } from './Context';
 
-export default function LanguageToggle({ onSelect }: { onSelect: () => void }) {
+export default function LanguageToggle({ onSelect }: { onSelect?: () => void }) {
   const { fa, t, toggle } = usePlatform();
   const name = useId();
   return <fieldset className="language-toggle" aria-label={t('Site language', 'زبان سایت')} dir="ltr" data-language={fa ? 'fa' : 'en'}>
@@ -13,7 +13,7 @@ export default function LanguageToggle({ onSelect }: { onSelect: () => void }) {
       <span className="language-thumb" />
     </span>
     {(['fa', 'en'] as const).map(language => <label className="language-choice" key={language} title={language === 'fa' ? 'فارسی' : 'English'}>
-      <input type="radio" name={name} value={language} checked={fa === (language === 'fa')} aria-label={language === 'fa' ? 'فارسی' : 'English'} onChange={() => { onSelect(); toggle(); }} />
+      <input type="radio" name={name} value={language} checked={fa === (language === 'fa')} aria-label={language === 'fa' ? 'فارسی' : 'English'} onChange={() => { onSelect?.(); toggle(); }} />
       <span>{language === 'fa' ? 'FA' : 'EN'}</span>
     </label>)}
   </fieldset>;

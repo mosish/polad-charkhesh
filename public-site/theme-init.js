@@ -1,10 +1,6 @@
 // Run before paint using visitor-local time, not server time.
 (function () {
   const root = document.documentElement;
-  if (/^\/admin(?:\/|$)/.test(location.pathname)) {
-    root.dataset.theme = 'dark';
-    return;
-  }
   const valid = value => value === 'light' || value === 'dark' ? value : 'auto';
   const saved = () => {
     try { return valid(localStorage.getItem('pc-theme')); } catch { return 'auto'; }

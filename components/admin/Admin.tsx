@@ -49,7 +49,7 @@ const tabGroups = [
   { labelEn: 'Administration', labelFa: 'مدیریت سامانه', ids: ['system', 'audit'] },
 ];
 export default function Admin() {
-  const { fa, t, toggle, reload, content } = usePlatform();
+  const { fa, t, reload, content } = usePlatform();
   const [status, setStatus] = useState<AuthStatus | null>(null),
     [tab, setTab] = useState('overview'),
     [error, setError] = useState(''),
@@ -319,7 +319,6 @@ export default function Admin() {
           {t('Sign out', 'خروج')}
         </button>
         <a className="admin-site-link" href="/" target="_blank" rel="noreferrer">{t('View website', 'مشاهده وب‌سایت')} <ArrowUpRight size={16} /></a>
-        <button onClick={toggle}>{fa ? 'English' : 'فارسی'}</button>
       </aside>
       <div className="admin-content">
         <div className="admin-heading">

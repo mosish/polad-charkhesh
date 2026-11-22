@@ -43,15 +43,18 @@ void test('automatic pages update at time boundaries and synchronize manual over
   assert.equal(b.document.documentElement.dataset.themeMode, 'auto');
   assert.equal(b.document.documentElement.dataset.theme, 'light');
 });
-void test('blocked storage still permits manual overrides and administration remains dark', () => {
+void test('blocked storage permits manual overrides on public and administration pages', () => {
   const b = browser(null, 12, true);
   b.window.poladTheme!.setPreference('dark'); b.tick();
   assert.equal(b.document.documentElement.dataset.theme, 'dark');
   b.window.poladTheme!.setPreference('auto');
   assert.equal(b.document.documentElement.dataset.theme, 'light');
   for (const path of ['/admin', '/admin/']) {
-    const a = browser('light', 12, false, path);
+    const a = browser('light', 23, false, path);
+    assert.equal(a.document.documentElement.dataset.theme, 'light');
+    a.window.poladTheme!.setPreference('auto');
     assert.equal(a.document.documentElement.dataset.theme, 'dark');
-    assert.equal(a.window.poladTheme, undefined);
+    a.clock.hour = 7; a.tick();
+    assert.equal(a.document.documentElement.dataset.theme, 'light');
   }
 });
