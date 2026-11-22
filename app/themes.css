@@ -103,6 +103,9 @@ html[data-theme='light'] body.liquid-glass .workbench-bars i { background:#225c9
 html[data-theme='light'] body.liquid-glass .breadcrumbs [aria-current] { color:#4d6379; }
 html[data-theme='light'] body.liquid-glass :is(.comparison-dock,.not-found-card,.site-recovery,.public-recovery-snapshot) { background:var(--glass-fill); color:var(--glass-text); border-color:var(--glass-line); }
 html[data-theme='light'] body.liquid-glass .theme-toggle { background:#528ac1; border-color:#83a8ce; }
+html[data-theme='light'] body.liquid-glass .contact-details :is(a,span,b) { color:var(--glass-text); }
+html[data-theme='light'] body.liquid-glass .contact-details small { color:var(--glass-muted); }
+html[data-theme='light'] body.liquid-glass .contact-details svg { color:var(--blue); }
 @media(max-width:760px) {
   .theme-toggle { order:2; margin-inline-end:auto; }
   .liquid-glass .navigation .brand { order:0; flex:1 1 calc(100% - 60px); gap:8px; }
