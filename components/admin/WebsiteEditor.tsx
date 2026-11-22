@@ -1,3 +1,4 @@
+import { companyProfileFields } from '../../domain/company-profile';
 import { useUnsavedChanges } from './useUnsavedChanges';
 import type { ChangeEvent } from 'react';
 import type { SiteContent, ContentCard } from '../../domain/site-content';
@@ -322,7 +323,7 @@ export default function WebsiteEditor({
                     {Object.keys(readEditorPath(value, [section]) as Record<string, string>)
                       .filter((k) => k.endsWith('En') && k !== 'typingPhrasesEn')
                       .map((k) =>
-                        pair([section], k.slice(0, -2), ({badge:t('Small heading','عنوان کوتاه'),title:t('Title','عنوان'),description:t('Description','توضیحات')} as Record<string, string>)[k.slice(0,-2)]||k.slice(0,-2), true),
+                        pair([section], k.slice(0, -2), ({...Object.fromEntries(companyProfileFields.map(field => [field.key,t(field.en,field.fa)])),badge:t('Small heading','عنوان کوتاه'),title:t('Title','عنوان'),description:t('Description','توضیحات')} as Record<string, string>)[k.slice(0,-2)]||k.slice(0,-2), true),
                       )}
                     {section === 'hero' && <>
                       {pair(['hero'], 'typingPhrases', t('Additional typing phrases (one per line)', 'عبارت‌های تایپ‌شونده بیشتر (هر سطر یک عبارت)'), true)}

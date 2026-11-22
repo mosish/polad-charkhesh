@@ -1,3 +1,4 @@
+import { companyProfileDefaults } from './company-profile';
 import initialCopy from './site-copy.json';
 import { contactNavigationItem } from './site-navigation';
 
@@ -173,6 +174,8 @@ export function upgradeContent(value: unknown): Record<string, unknown> {
     Object.assign(v.media, { heroPresentation: 'animation' });
   if (v.copy === undefined) v.copy = structuredClone(initialCopy);
   else if (v.copy && typeof v.copy === 'object' && !Array.isArray(v.copy)) v.copy = { ...initialCopy, ...v.copy };
+  if (v.why && typeof v.why === 'object' && !Array.isArray(v.why))
+    v.why = { ...companyProfileDefaults, ...v.why };
   // Preserve malformed values so boundary validation rejects them.
   return v;
 }

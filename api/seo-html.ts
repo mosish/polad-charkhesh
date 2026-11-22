@@ -1,3 +1,4 @@
+import { companyProfile } from '../domain/company-profile';
 import type { BearingProduct } from '../domain/product';
 import type { CompanyContactInfo } from '../domain/company';
 import type { PublishedSeoContent, SeoSettings } from '../domain/seo';
@@ -177,6 +178,7 @@ export function initialPublicHtml(
               `<article><h3>${e(card[fa ? 'titleFa' : 'titleEn'])}</h3><p>${e(card[fa ? 'descriptionFa' : 'descriptionEn'])}</p></article>`,
           )
           .join('') +
+        (id === 'why' ? companyProfile(section,fa).map(field => `<article><h3>${e(field.title)}</h3><p${field.brands?' dir="ltr"':''}>${e(field.text)}</p></article>`).join('') : '') +
         '</section>';
     }
     for (const item of content.layout?.custom || [])

@@ -147,3 +147,10 @@ html[data-theme='light'] .bearing-toggle-choice:has(input:focus-visible) { outli
 
 /* Keep lower homepage destinations clear of the sticky, responsive navigation. */
 html { scroll-padding-top:var(--public-header-offset,140px); }
+
+.company-profile { grid-column:1/-1; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 44px; margin-top:24px; border-top:1px solid var(--glass-line); }
+.company-profile article { min-width:0; padding:26px 0; border-bottom:1px solid var(--glass-line); }
+.company-profile h3 { font-size:18px; line-height:1.6; margin-bottom:10px; }
+.company-profile p { font-size:14px; line-height:2; color:var(--glass-muted); overflow-wrap:anywhere; }
+.company-profile-brands p { font-size:13px; line-height:2.2; text-align:start; word-spacing:4px; }
+@media(max-width:760px) { .company-profile { grid-template-columns:1fr; gap:0; margin-top:12px; }.company-profile article { padding:22px 0; }.company-profile h3 { font-size:16px; } }

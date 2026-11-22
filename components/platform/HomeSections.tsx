@@ -1,3 +1,4 @@
+import { companyProfile } from '../../domain/company-profile';
 import PageSection from './PageSection';
 import RecoveryBoundary, { WorkspaceRecovery } from './RecoveryBoundary';
 import { lazy, Suspense, useState } from 'react';
@@ -107,6 +108,12 @@ export default function HomeSections() {
                 )}
               </div>
             ))}
+          </div>
+          <div className="company-profile" aria-label={t('Company history and capabilities','سوابق و توانمندی‌های شرکت')}>
+            {companyProfile(content.why,fa).map(field => <article key={field.id} className={field.brands?'company-profile-brands':''}>
+              <h3>{field.title}</h3>
+              <p dir={field.brands?'ltr':undefined}>{field.text}</p>
+            </article>)}
           </div>
         </section>
       </PageSection>
