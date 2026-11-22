@@ -1,7 +1,7 @@
 /** Company profile supplied by the owner in Scan_0001.jpg; years use the Iranian calendar. */
 export const companyProfileFields = [
   { key:'profileHistory', en:'Our history', fa:'سابقهٔ فعالیت',
-    textEn:'Polad Charkhesh Arian Tech began operating in 1378 SH as a specialist supplier of industrial, agricultural and automotive bearings, high-temperature grease and seals. Following the development of its technical expertise, the company was formally registered in 1394 SH and expanded its activities across Iran.',
+    textEn:'Polad Charkhesh Arian Tak began operating in 1378 SH as a specialist supplier of industrial, agricultural and automotive bearings, high-temperature grease and seals. Following the development of its technical expertise, the company was formally registered in 1394 SH and expanded its activities across Iran.',
     textFa:'پولاد چرخش آرین تک فعالیت خود را از سال ۱۳۷۸ با تهیه و توزیع انواع بیرینگ صنعتی، کشاورزی و خودرویی، گریس نسوز و کاسه‌نمد آغاز کرد. پس از گسترش تجربه و مهارت‌های فنی، شرکت در سال ۱۳۹۴ به‌صورت رسمی ثبت شد و دامنهٔ فعالیت خود را در سراسر ایران توسعه داد.' },
   { key:'profileScope', en:'What we supply', fa:'حوزه‌های تأمین',
     textEn:'Our supply activities cover bearings for industrial machinery, agriculture, rail, oil and gas, together with machinery components and equipment. Particular areas include parts for oil and drilling rigs and the steel industry. Sourcing also extends to other industrial requirements through domestic and international manufacturers and suppliers.',

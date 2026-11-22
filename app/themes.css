@@ -157,3 +157,9 @@ html { scroll-padding-top:var(--public-header-offset,140px); }
 .company-profile p { font-size:14px; line-height:2; color:var(--glass-muted); overflow-wrap:anywhere; }
 .company-profile-brands p { font-size:13px; line-height:2.2; text-align:start; word-spacing:4px; }
 @media(max-width:760px) { .company-profile { grid-template-columns:1fr; gap:0; margin-top:12px; }.company-profile article { padding:22px 0; }.company-profile h3 { font-size:16px; } }
+
+/* Compact, centered search action in the shared inset-glass language. */
+.liquid-glass .hero-search button { display:grid; place-items:center; flex:0 0 44px; width:44px; height:44px; padding:0; border-radius:999px; border:1px solid #c6e5ff80; background:linear-gradient(145deg,#a4caee45,#7da3d02b); color:#edf5ff; box-shadow:inset 0 1px 2px #fff5,0 2px 5px #07132640; }
+.liquid-glass .hero-search button:hover { background:#90b5de40; }
+html[data-theme='light'] body.liquid-glass .hero-search button { color:#153554; background:linear-gradient(145deg,#f5fbff,#d5e8f8); border-color:#88accc; box-shadow:inset 0 1px 2px #fff,0 2px 4px #284b6d25; }
+html[data-theme='light'] body.liquid-glass .hero-search button:hover { background:#d0e1f2; }

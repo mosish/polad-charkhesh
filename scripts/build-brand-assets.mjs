@@ -1,0 +1,22 @@
+import sharp from 'sharp';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const input=await readFile(process.argv[2]);
+const root='public-site/brand/';
+const meta=await sharp(input).metadata();
+await writeFile(root+'logo.png',input);
+const hash=b=>createHash('sha256').update(b).digest('hex').slice(0,12);
+const variants=[];
+for(const width of [64,128,256]){const b=await sharp(input).resize({width}).webp({quality:90,effort:6}).toBuffer();const url=`/brand/logo-${width}-${hash(b)}.webp`;await writeFile('public-site'+url,b);variants.push({width,url,bytes:b.length});}
+const iconBase=await sharp(input).resize(42,42,{fit:'contain',background:'#ffffff'}).png().toBuffer();
+const icon=await sharp(iconBase).extend({top:3,bottom:3,left:3,right:3,background:'#ffffff'}).flatten({background:'#fff'}).png().toBuffer();
+const favicon=`/brand/favicon-${hash(icon)}.png`;await writeFile('public-site'+favicon,icon);
+const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#152443"/><rect x="55" y="65" width="450" height="500" rx="30" fill="white"/><image href="data:image/png;base64,${input.toString('base64')}" x="80" y="95" width="400" height="440" preserveAspectRatio="xMidYMid meet"/><g fill="#fff" font-family="Arial,sans-serif" font-weight="bold" font-size="46"><text x="555" y="245">Polad Charkhesh</text><text x="555" y="310">Arian Tak</text></g><text x="555" y="375" fill="#bdd4ee" font-family="Arial,sans-serif" font-size="24">Industrial bearings &amp; technical supply</text><text x="555" y="475" fill="#bdd4ee" font-family="Arial,sans-serif" font-size="23">poladcharkhesh.com</text></svg>`;
+const social=await sharp(Buffer.from(svg)).png().toBuffer();const socialUrl=`/brand/social-preview-${hash(social)}.png`;await writeFile('public-site'+socialUrl,social);await writeFile(root+'social-preview.png',social);
+const fallback=await sharp(input).resize(128,128).png().toBuffer();
+await writeFile('public-site/favicon.svg',`<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640"><title>Polad Charkhesh Arian Tak</title><rect width="640" height="640" rx="72" fill="white"/><image href="data:image/png;base64,${fallback.toString('base64')}" x="40" y="32" width="560" height="575" preserveAspectRatio="xMidYMid meet"/></svg>`);
+await writeFile('lib/brand-assets.ts',`// Derived from the owner-supplied transparent PNG.\nexport const brandDimensions = ${JSON.stringify({width:meta.width,height:meta.height})};\nexport const brandFavicon = '${favicon}';\nexport const brandSocialImage = '${socialUrl}';\n`);
+let lib=await readFile('lib/brand-logo.ts','utf8');lib=lib.replace(/export const brandVariants = \[[\s\S]*?\];/,`export const brandVariants = ${JSON.stringify(variants,null,2)};`).replace("sizes: '54px'","sizes: '68px'");await writeFile('lib/brand-logo.ts',lib);
+let html=await readFile('index.html','utf8');html=html.replace(/\/brand\/favicon-[a-f0-9]+\.png/,favicon);await writeFile('index.html',html);
+let test=await readFile('tests/brand-logo.test.ts','utf8');if(!test.includes("import { brandFavicon }")) test="import { brandFavicon } from '../lib/brand-assets';\n"+test;test=test.replace("'public-site/brand/favicon-af94365cf274.png'","'public-site' + brandFavicon");await writeFile('tests/brand-logo.test.ts',test);
+console.log(JSON.stringify({width:meta.width,height:meta.height,alpha:meta.hasAlpha,variants,favicon,socialUrl}));

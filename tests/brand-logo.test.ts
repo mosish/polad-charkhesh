@@ -1,3 +1,4 @@
+import { brandFavicon } from '../lib/brand-assets';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -20,7 +21,7 @@ void test('bundled responsive logos decode, match content hashes and reduce byte
     );
   }
   const icon = await sharp(
-    'public-site/brand/favicon-af94365cf274.png',
+    'public-site' + brandFavicon,
   ).metadata();
   assert.equal(icon.width, 48);
   assert.equal(icon.height, 48);

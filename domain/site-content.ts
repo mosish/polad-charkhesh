@@ -36,7 +36,7 @@ export type SiteContent = SiteExtras & Record<'hero' | 'about' | 'why' | 'indust
 export const siteExtras: SiteExtras = {
   brand: {
     logoUrl: '/brand/logo.png',
-    logoAltEn: 'Polad Charkhesh Arian Tech company logo',
+    logoAltEn: 'Polad Charkhesh Arian Tak company logo',
     logoAltFa: 'نشان شرکت پولاد چرخش آرین تک',
     navy: '#152443',
     accent: '#2454bf',

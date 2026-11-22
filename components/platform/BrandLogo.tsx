@@ -10,7 +10,7 @@ export default function BrandLogo({
   return (
     <picture style={{ display: 'contents' }}>
       {image.srcSet && (
-        <source type="image/webp" srcSet={image.srcSet} sizes={image.sizes} />
+        <source type="image/webp" srcSet={image.srcSet} sizes={props.sizes || image.sizes} />
       )}
       <img {...props} alt={alt} src={source || '/brand/logo.png'} />
     </picture>

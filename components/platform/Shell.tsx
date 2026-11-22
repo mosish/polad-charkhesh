@@ -1,3 +1,4 @@
+import { brandDimensions } from '../../lib/brand-assets';
 import {BearingJourneyProvider} from './BearingJourney';
 import {subscribeMediaQuery} from '../../lib/browser-compat';
 import ScrollReveal from './ScrollReveal';
@@ -62,22 +63,22 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             'تأمین تخصصی بیرینگ و قطعات صنعتی',
           )}
         </span>
-        <span>{company?.landlinePhoneDisplayEn || 'POLAD CHARKHESH ARIAN TECH'}</span>
+        <span>{company?.landlinePhoneDisplayEn || 'POLAD CHARKHESH ARIAN TAK'}</span>
       </div>
       <header ref={header} className={'navigation' + (menuOpen ? ' menu-open' : '')}>
         <a href="/" className="brand">
           <BrandLogo
             className="brand-logo"
             source={content?.brand?.logoUrl}
-            width={560}
-            height={575}
+            width={brandDimensions.width}
+            height={brandDimensions.height}
             alt={
               content?.brand?.[fa ? 'logoAltFa' : 'logoAltEn'] ||
-              t('Polad Charkhesh Arian Tech company logo', 'نشان شرکت پولاد چرخش آرین تک')
+              t('Polad Charkhesh Arian Tak company logo', 'نشان شرکت پولاد چرخش آرین تک')
             }
           />
           <span>
-            {t('POLAD CHARKHESH ARIAN TECH', 'پولاد چرخش آرین تک')}
+            {t('POLAD CHARKHESH ARIAN TAK', 'پولاد چرخش آرین تک')}
             <small>{t('INDUSTRIAL ENGINEERING', 'مهندسی و تأمین صنعتی')}</small>
           </span>
         </a>
@@ -103,14 +104,14 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <BrandLogo
             className="brand-logo"
             source={content?.brand?.logoUrl}
-            width={560}
-            height={575}
+            width={brandDimensions.width}
+            height={brandDimensions.height}
             alt={
               content?.brand?.[fa ? 'logoAltFa' : 'logoAltEn'] ||
-              t('Polad Charkhesh Arian Tech company logo', 'نشان شرکت پولاد چرخش آرین تک')
+              t('Polad Charkhesh Arian Tak company logo', 'نشان شرکت پولاد چرخش آرین تک')
             }
           />
-          <span>{t('POLAD CHARKHESH ARIAN TECH', 'پولاد چرخش آرین تک')}</span>
+          <span>{t('POLAD CHARKHESH ARIAN TAK', 'پولاد چرخش آرین تک')}</span>
         </a>
         <span>{content?.footer?.[fa ? 'descriptionFa' : 'descriptionEn']}</span>
         <a href="/asset-credits.html">{t('Image credits', 'منابع تصاویر')}</a>

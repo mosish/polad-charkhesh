@@ -1,5 +1,5 @@
 /**
- * Polad Charkhesh Arian Tech Centralized Company Data & Contact Information
+ * Polad Charkhesh Arian Tak Centralized Company Data & Contact Information
  *
  * Single source of truth for company contact details, address,
  * working hours, and digital communication channels.
@@ -62,16 +62,16 @@ export interface CompanyContactInfo {
 
 export const COMPANY_INFO: CompanyContactInfo = {
   nameFa: 'پولاد چرخش آرین تک',
-  nameEn: 'Polad Charkhesh Arian Tech',
+  nameEn: 'Polad Charkhesh Arian Tak',
   legalNameFa: 'پولاد چرخش آرین تک',
-  legalNameEn: 'Polad Charkhesh Arian Tech',
+  legalNameEn: 'Polad Charkhesh Arian Tak',
   sloganFa: 'تأمین و توزیع تخصصی انواع بیرینگ‌های صنایع نفت، معدن و فولاد',
   sloganEn:
     'Supply and distribution of all types of oil, mining and steel bearings',
   website: 'https://poladcharkhesh.ir',
   email: 'info@poladcharkhesh.ir',
 
-  // Primary phone number as designated for Polad Charkhesh Arian Tech
+  // Primary phone number as designated for Polad Charkhesh Arian Tak
   primaryPhone: '09127195313',
   primaryPhoneDisplayFa: '۰۹۱۲-۷۱۹۵۳۱۳',
   primaryPhoneDisplayEn: '0912-7195313',
