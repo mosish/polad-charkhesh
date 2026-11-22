@@ -14,6 +14,7 @@ import {
 import { usePlatform } from './Context';
 import { publicHref } from '../../lib/public-links';
 import BrandLogo from './BrandLogo';
+import ThemeToggle from './ThemeToggle';
 export default function Shell({ children }: { children: React.ReactNode }) {
   const { fa, t, toggle, company, content } = usePlatform();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -70,6 +71,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             </a>
           ))}
         </nav>
+        <ThemeToggle />
         <button
           className="language"
           onClick={() => { setMenuOpen(false); toggle(); }}

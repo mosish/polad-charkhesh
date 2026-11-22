@@ -1,0 +1,56 @@
+/* Public light palette: cold silver, navy ink and machined blue. Dark rules stay intact. */
+.theme-toggle { display:grid; place-items:center; flex:0 0 44px; width:44px; height:44px; padding:0; border:1px solid var(--glass-line); border-radius:50%; background:#ffffff09; color:var(--glass-text); cursor:pointer; }
+html[data-theme='light'] { color-scheme:light; background:#f3f6fa; }
+html[data-theme='light'] body.liquid-glass {
+  --glass-text:#172d46; --glass-muted:#4d6379; --glass-line:#193f672b;
+  --glass-fill:linear-gradient(135deg,#ffffffed,#edf3fae6 65%,#ffffffc9);
+  --glass-shadow:inset 0 1px 0 #fff,0 12px 36px #2445660c;
+  --muted:#4d6379; --line:#193f672b; --paper:#fff; --navy:#172d46; --blue:#225c9f; --accent:#225c9f; --border:#aec2d7;
+  color-scheme:light; color:var(--glass-text); background:#f3f6fa;
+  background-image:radial-gradient(ellipse at 82% 4%,#cfdeee80,transparent 40%),radial-gradient(ellipse at 3% 60%,#e2ebf4,transparent 55%);
+}
+html[data-theme='light'] body.liquid-glass :is(h1,h2,h3,h4,h5,strong,b,code,dt,dd,label,button,a,input,textarea,select,summary,th,td) { color:var(--glass-text); }
+html[data-theme='light'] body.liquid-glass :is(p,small,.utility,.section-label,.eyebrow,.brand small,.visual-top,.visual-bottom,.breadcrumbs,.result-count,.dimension-row,.card-cta,.search-hints,.privacy-note,.viewer-notes,.product-panel-context,.product-panel-media-note,.product-panel-document-note,.bearing-scroll-status,.hero-bearing-caption,.hero-bearing-heading,.bearing-parts-key,.resource-grid span,.catalog-sizes b,.catalog-filter-summary,.catalog-results-heading .result-count span) { color:var(--glass-muted); }
+html[data-theme='light'] body.liquid-glass :is(.navigation,footer,.dialog) { background:linear-gradient(120deg,#fffffff2,#e8f0f9ed); border-color:var(--glass-line); box-shadow:var(--glass-shadow); }
+html[data-theme='light'] body.liquid-glass .navigation nav a:hover { color:#174f8e; background:#dbe8f6; }
+html[data-theme='light'] body.liquid-glass :is(.panel,.product-card,.hero-visual,.formula-board,.industry-grid>a,.viewer,.calculation-result,.filter-body,.source-note,.manufacturer-library,.catalog-finder,.catalog-view-controls,.related-link,.product-panel-specs>div,.product-panel-related button,.engineering-product-picker,.one-page-workspace,.support-strip,.engineering-invitation,.bearing-return,.capabilities,.workbench-task-list button,.workbench-panel,.workbench-result,.workbench-case,.workbench-summary) { background:var(--glass-fill); border-color:var(--glass-line); box-shadow:var(--glass-shadow); }
+html[data-theme='light'] body.liquid-glass :is(.button,.icon-button,.tool-tabs button,.viewer-tabs button,.presets button,.family-options button,.family-bar-arrows button,.catalog-size-toggle,.bearing-view-switch button,.hero-bearing-actions button,.theme-toggle,.language,.public-menu-toggle,.floating>a,.floating>button,.catalog-active-filters button,.headline-pause) { color:var(--glass-text); background:#e4edf6; border-color:#9bb5d166; }
+html[data-theme='light'] body.liquid-glass :is(.button.primary,.nav-contact,.family-options button.active,.tool-tabs button.active,.viewer-tabs button.active,.presets button.active,.icon-button.active,.workbench-task-list button.active) { color:#fff; background:linear-gradient(125deg,#235c98,#184576); border-color:#174a81; }
+html[data-theme='light'] body.liquid-glass .family-options button.active :is(small,svg) { color:#e8f2ff; }
+html[data-theme='light'] body.liquid-glass :is(input:not([type='checkbox']):not([type='range']),textarea,select,option) { color:var(--glass-text); background:#f8fbff; border-color:#9bb5d180; box-shadow:none; }
+html[data-theme='light'] body.liquid-glass :is(input,textarea)::placeholder { color:#60778e; }
+html[data-theme='light'] body.liquid-glass :is(.hero-search,.search-field) { background:#ffffffcf; border-color:#9bb5d180; box-shadow:0 8px 24px #2445660a; color:var(--muted); }
+html[data-theme='light'] body.liquid-glass :is(.hero-search,.search-field) input { background:transparent; border:0; }
+html[data-theme='light'] body.liquid-glass :is(.search-hints a,.chips span,.note,.callout,.product-panel-parts-key) { color:#294e73; background:#e2edf8; border-color:#9bb5d180; }
+html[data-theme='light'] body.liquid-glass :is(.hero-scroll:has(.hero-cinematic),.hero-cinematic .hero-copy) { background:linear-gradient(#e7eff7,#f3f6fa); }
+html[data-theme='light'] body.liquid-glass .hero-bearing-stage::after { background:linear-gradient(180deg,transparent 40%,#e7eff780 65%,#e7eff7 90%),linear-gradient(90deg,#e7eff7b0,transparent 20%,transparent 80%,#e7eff7b0); }
+html[data-theme='light'] body.liquid-glass .hero-last { color:#225c9f; }
+html[data-theme='light'] body.liquid-glass .hero-bearing-footer strong { color:#172d46; }
+html[data-theme='light'] body.liquid-glass :is(.hero-bearing-actions select,.bearing-view-switch button[aria-pressed='true']) { background:#d6e5f4; color:#172d46; }
+html[data-theme='light'] body.liquid-glass :is(.hero-cinematic .hero-copy>p,.hero-cinematic .eyebrow,.hero-bearing-footer small,.bearing-return p,.bearing-return small,.embedded-workspace .catalog-intro p,.embedded-workspace .engineering-intro p) { color:#4d6379; }
+html[data-theme='light'] body.liquid-glass .catalog-grid-preview::after { background:linear-gradient(transparent,#f3f6fadb 75%,#f3f6fa); }
+html[data-theme='light'] body.liquid-glass :is(.product-info h3,.product-info code,.product-panel-resources h3,.product-panel-related h3,.product-panel-related span,.product-panel-identity p,.product-panel-context b,.specs dd,.result-metrics strong) { color:#294e73; }
+html[data-theme='light'] body.liquid-glass th { background:#e3ecf6; }
+html[data-theme='light'] body.liquid-glass .dialog::backdrop { background:#19344d66; }
+html[data-theme='light'] body.liquid-glass .product-float .dialog-heading { background:#eef4fa; }
+html[data-theme='light'] body.liquid-glass :is(.floating,.table-scroll) { background:#f5f9fcd9; }
+html[data-theme='light'] body.liquid-glass .family-options .category-icon { color:#46649d; }
+html[data-theme='light'] body.liquid-glass :is(a:hover,.card-cta) { color:#174f8e; }
+html[data-theme='light'] body.liquid-glass :is(button,a,input,textarea,select):focus-visible { outline-color:#225c9f; }
+html[data-theme='light'] body.liquid-glass ::selection { color:#fff; background:#235c98; }
+html[data-theme='light'] body.liquid-glass :is(.breadcrumbs span,.workbench-task-list button span,.workbench-case-list small,.workbench-fit figcaption,.product-panel-specs dt,.resource-grid span) { color:#4d6379; }
+html[data-theme='light'] body.liquid-glass .workbench-task-list button.active :is(strong,span) { color:#fff; }
+html[data-theme='light'] body.liquid-glass .engineering-workbench button:not(.active) { background:#e4edf6; color:#172d46; }
+html[data-theme='light'] body.liquid-glass .engineering-workbench button:hover:not(:disabled) { background:#d0e1f2; color:#172d46; }
+html[data-theme='light'] body.liquid-glass .workbench-formula { background:#e2edf8; color:#172d46; }
+html[data-theme='light'] body.liquid-glass .workbench-bars i { background:#225c9f; }
+html[data-theme='light'] body.liquid-glass .breadcrumbs [aria-current] { color:#4d6379; }
+html[data-theme='light'] body.liquid-glass :is(.comparison-dock,.not-found-card,.site-recovery,.public-recovery-snapshot) { background:var(--glass-fill); color:var(--glass-text); border-color:var(--glass-line); }
+@media(max-width:760px) {
+  .theme-toggle { order:2; flex-basis:40px; width:40px; height:40px; }
+  .liquid-glass .navigation .brand { flex:1 1 0; gap:8px; }
+  .liquid-glass .navigation .brand-logo { width:42px; height:44px; padding:3px; flex-shrink:0; }
+  .liquid-glass .navigation .brand>span { white-space:normal; font-size:11px; line-height:1.6; letter-spacing:0; }
+  .liquid-glass .navigation .brand small { display:none; }
+  html[data-theme='light'] body.liquid-glass .navigation nav.is-open { background:#f2f7fc; }
+}

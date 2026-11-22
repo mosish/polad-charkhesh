@@ -9,6 +9,7 @@ import './seo.css';
 import './catalog-refinement.css';
 import './catalog-hubs.css';
 import './hero-banner.css';
+import './themes.css';
 document.body.classList.add('liquid-glass');
 // Keep the readable server HTML until the selected workspace is downloaded.
 // Mounting its Suspense fallback first briefly placed the footer above results.
