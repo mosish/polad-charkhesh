@@ -3,7 +3,6 @@ import {subscribeMediaQuery} from '../../lib/browser-compat';
 import ScrollReveal from './ScrollReveal';
 import { useEffect, useRef, useState } from 'react';
 import {
-  Globe2,
   ArrowUpRight,
   Phone,
   ArrowUp,
@@ -15,8 +14,9 @@ import { usePlatform } from './Context';
 import { publicHref } from '../../lib/public-links';
 import BrandLogo from './BrandLogo';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 export default function Shell({ children }: { children: React.ReactNode }) {
-  const { fa, t, toggle, company, content } = usePlatform();
+  const { fa, t, company, content } = usePlatform();
   const [menuOpen, setMenuOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -72,14 +72,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           ))}
         </nav>
         <ThemeToggle />
-        <button
-          className="language"
-          onClick={() => { setMenuOpen(false); toggle(); }}
-          aria-label={t('Switch to Persian', 'تغییر زبان به انگلیسی')}
-        >
-          <Globe2 size={16} />
-          {fa ? 'EN' : 'فارسی'}
-        </button>
+        <LanguageToggle onSelect={() => setMenuOpen(false)} />
         <a className="nav-contact" href={publicHref(content?.links?.header || '/#contact')}>
           {t('Let’s talk engineering', 'مشاوره مهندسی')}
           <ArrowUpRight size={16} />
