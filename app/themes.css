@@ -1,5 +1,9 @@
 /* Public light palette: cold silver, navy ink and machined blue. Dark rules stay intact. */
 .theme-toggle { display:grid; place-items:center; flex:0 0 44px; width:44px; height:44px; padding:0; border:1px solid var(--glass-line); border-radius:50%; background:#ffffff09; color:var(--glass-text); cursor:pointer; }
+.theme-control { position:relative; }
+.theme-control select { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
+.theme-control:focus-within { outline:2px solid var(--blue); outline-offset:4px; }
+.theme-auto-mark { position:absolute; inset-inline-end:5px; bottom:5px; }
 html[data-theme='light'] { color-scheme:light; background:#f3f6fa; }
 html[data-theme='light'] body.liquid-glass {
   --glass-text:#172d46; --glass-muted:#4d6379; --glass-line:#193f672b;

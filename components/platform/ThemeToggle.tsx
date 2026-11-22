@@ -1,25 +1,35 @@
 import { useEffect, useState } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { Clock3, Moon, Sun } from 'lucide-react';
 import { usePlatform } from './Context';
 
+type ThemePreference = 'auto' | 'light' | 'dark';
+declare global {
+  interface Window {
+    poladTheme?: { setPreference(value: ThemePreference): void; refresh(): void };
+  }
+}
+const readTheme = () => ({
+  preference: (document.documentElement.dataset.themeMode || 'auto') as ThemePreference,
+  light: document.documentElement.dataset.theme === 'light',
+});
 export default function ThemeToggle() {
   const { t } = usePlatform();
-  const [light, setLight] = useState(() => document.documentElement.dataset.theme === 'light');
+  const [theme, setTheme] = useState(readTheme);
   useEffect(() => {
-    const changed = (event: StorageEvent) => {
-      if (event.key !== 'pc-theme' && event.key !== null) return;
-      const next = event.newValue === 'light';
-      document.documentElement.dataset.theme = next ? 'light' : 'dark';
-      setLight(next);
-    };
-    window.addEventListener('storage', changed);
-    return () => window.removeEventListener('storage', changed);
+    const changed = () => setTheme(readTheme());
+    window.addEventListener('polad-theme-change', changed);
+    window.poladTheme?.refresh();
+    changed();
+    return () => window.removeEventListener('polad-theme-change', changed);
   }, []);
-  const label = light ? t('Switch to dark mode', 'تغییر به حالت تیره') : t('Switch to light mode', 'تغییر به حالت روشن');
-  return <button type="button" className="theme-toggle" aria-label={label} title={label} aria-pressed={light} onClick={() => {
-    const next = !light;
-    document.documentElement.dataset.theme = next ? 'light' : 'dark';
-    setLight(next);
-    try { localStorage.setItem('pc-theme', next ? 'light' : 'dark'); } catch { /* Still works for this visit. */ }
-  }}>{light ? <Moon size={18} aria-hidden="true" /> : <Sun size={18} aria-hidden="true" />}</button>;
+  const automatic = t('Automatic · local time (07:00–19:00 light)', 'خودکار · ساعت دستگاه (۷ تا ۱۹ روشن)');
+  return <div className="theme-toggle theme-control" title={theme.preference === 'auto' ? automatic : t(theme.light ? 'Light mode' : 'Dark mode', theme.light ? 'حالت روشن' : 'حالت تیره')}>
+    {theme.light ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+    {theme.preference === 'auto' && <Clock3 className="theme-auto-mark" size={10} aria-hidden="true" />}
+    <select aria-label={t('Color theme', 'حالت نمایش')} value={theme.preference} onChange={event => window.poladTheme?.setPreference(event.target.value as ThemePreference)}>
+      <option value="auto">{automatic}</option>
+      <option value="light">{t('Light mode', 'حالت روشن')}</option>
+      <option value="dark">{t('Dark mode', 'حالت تیره')}</option>
+    </select>
+  </div>;
 }
