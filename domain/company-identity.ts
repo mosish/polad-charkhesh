@@ -1,9 +1,8 @@
 /** Correct the former display name without changing domains, identifiers or other copy. */
 export function correctCompanyName(text: string) {
   return text
-    .replace(/Polad Charkhesh(?! Arian Tech)/g, 'Polad Charkhesh Arian Tech')
-    .replace(/POLAD CHARKHESH(?! ARIAN TECH)/g, 'POLAD CHARKHESH ARIAN TECH')
-    .replace(/\bPoladCharkhesh\b/g, 'Polad Charkhesh Arian Tech')
+    .replace(/\bPolad Charkhesh(?: Arian (?:Tech|Tak))?\b/gi, value => value === value.toUpperCase() ? 'POLAD CHARKHESH ARIAN TAK' : 'Polad Charkhesh Arian Tak')
+    .replace(/\bPoladCharkhesh\b/g, 'Polad Charkhesh Arian Tak')
     .replace(/پولاد چرخِ?ش(?! آرین تک)/g, 'پولاد چرخش آرین تک');
 }
 

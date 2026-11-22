@@ -1,4 +1,4 @@
-# Polad Charkhesh Arian Tech — پولاد چرخش آرین تک
+# Polad Charkhesh Arian Tak — پولاد چرخش آرین تک
 
 **17 November 2026 — engineering workbench source:** target-life capacity, manual scenarios/sensitivity, visual fits, local JSON cases, lubrication/maintenance checklists, variable-duty life and shaft power/torque are implemented. Local checks: 175 tests, types, lint, build, bundle budgets and isolated production smoke pass. [Methods, research and boundaries](docs/engineering-tools/WORKBENCH_2026-11-17.md). Engineering acceptance and production release remain open; no catalog calculation profile is approved by this package.
 
@@ -20,7 +20,7 @@ Engineering approval remains pending; public indexing was subsequently released 
 >
 > **Last status review:** 2026-10-18 — [fresh checks, evidence and remaining work](docs/STATUS_REVIEW_2026-10-18.md)
 
-Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
+Polad Charkhesh Arian Tak is a bilingual Persian/English industrial engineering website for presenting the company, bearings, technical product information, documents, interactive models, and engineering tools.
 
 **Persian copy correction — source ready, not deployed, 2026-10-20:** Ten English placeholders now have Persian translations, with a guarded one-time migration that preserves CMS edits. “PDF datasheet” is clarified as “Catalog summary PDF”; manufacturer links remain conditional. All 122 tests and local quality checks pass. [Changes and seven-claim fact-check](docs/PERSIAN_COPY_AUDIT_2026-10-20.md).
 
@@ -58,7 +58,7 @@ Polad Charkhesh Arian Tech is a bilingual Persian/English industrial engineering
 
 This is **not an online shop**. There are no prices, carts, checkout, payments, or Buy Now flows. The intended visitor journey is:
 
-**Find a product → Review its specifications → Explore engineering guidance → Read its documents → Contact Polad Charkhesh Arian Tech**
+**Find a product → Review its specifications → Explore engineering guidance → Read its documents → Contact Polad Charkhesh Arian Tak**
 
 ---
 
@@ -168,7 +168,7 @@ Products are engineering catalog entries, not retail merchandise. A product may 
 
 The 3D views use catalog dimensions and vary rolling-element types, but raceways, cages, and internal details are illustrative estimates rather than manufacturer CAD. The existing PDF generator produces company summaries, **not manufacturer-issued documents**; verified company datasheet production remains gated by catalog acceptance. Images include supplier listings, examples and unresolved references. Their provenance remains in the ledger and Image credits page; visible image-area labels were removed at the owner's request. Basic bearing-life and fit results require applicable manufacturer data and operating-condition review. See [engineering calculations](docs/ENGINEERING_CALCULATIONS.md).
 
-The 42 new SKF entries are transcribed from the [official SKF sealed single-row deep-groove table, section 1.2](https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf). The table reports **reference** and **limiting** speed, which the site displays under those names rather than treating them as grease/oil-specific ratings. Blank cage, clearance, and application fields remain blank where this source did not identify them. These records are catalog references, not a claim that Polad Charkhesh Arian Tech stocks each variant.
+The 42 new SKF entries are transcribed from the [official SKF sealed single-row deep-groove table, section 1.2](https://cdn.skfmediahub.skf.com/api/public/0901d1968063464b/pdf_preview_medium/0901d1968063464b_pdf_preview_medium.pdf). The table reports **reference** and **limiting** speed, which the site displays under those names rather than treating them as grease/oil-specific ratings. Blank cage, clearance, and application fields remain blank where this source did not identify them. These records are catalog references, not a claim that Polad Charkhesh Arian Tak stocks each variant.
 
 ## Design and language direction
 
@@ -342,7 +342,7 @@ The main headline now types through a shuffled set of English or Persian enginee
 
 ### Company identity and engineering-note contrast — 2026-10-13
 
-The site now uses **Polad Charkhesh Arian Tech / پولاد چرخش آرین تک** in both languages, including public navigation, administration, generated datasheets, metadata and company schema. A one-time identity migration updates saved company/content/SEO records and product metadata while preserving technical data, contact details, URLs and owner-written content outside the old name. A verified private local backup was made before starting the updated preview.
+The site now uses **Polad Charkhesh Arian Tak / پولاد چرخش آرین تک** in both languages, including public navigation, administration, generated datasheets, metadata and company schema. A one-time identity migration updates saved company/content/SEO records and product metadata while preserving technical data, contact details, URLs and owner-written content outside the old name. A verified private local backup was made before starting the updated preview.
 
 Dark-theme notes now explicitly pair light text with a dark navy background instead of inheriting the light-theme fill. The engineering disclaimer has a measured contrast above 11:1, clear padding, rounded corners and a direction-aware accent border. Browser checks covered English and Persian; 53 tests, typecheck, build, bundle budgets, production smoke and the 110-product SEO audit passed. No deployment was performed.
 

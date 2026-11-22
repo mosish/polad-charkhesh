@@ -1,3 +1,4 @@
+import { companyProfileFields } from '../../domain/company-profile';
 import { useUnsavedChanges } from './useUnsavedChanges';
 import type { ChangeEvent } from 'react';
 import type { SiteContent, ContentCard } from '../../domain/site-content';
@@ -224,7 +225,7 @@ export default function WebsiteEditor({
               {pair(['brand'], 'logoAlt', t('Logo description', 'توضیح نشان'))}
               {[
                 ['BEARINGS. ENGINEERING. CONTINUITY.', 'Top strip text', 'متن نوار بالا'],
-                ['POLAD CHARKHESH ARIAN TECH', 'Company name', 'نام شرکت'],
+                ['POLAD CHARKHESH ARIAN TAK', 'Company name', 'نام شرکت'],
                 ['INDUSTRIAL ENGINEERING', 'Company subtitle', 'زیرعنوان شرکت'],
                 ['Let’s talk engineering', 'Contact button label', 'عنوان دکمه تماس'],
               ].map(([original, en, f]) => (
@@ -322,7 +323,7 @@ export default function WebsiteEditor({
                     {Object.keys(readEditorPath(value, [section]) as Record<string, string>)
                       .filter((k) => k.endsWith('En') && k !== 'typingPhrasesEn')
                       .map((k) =>
-                        pair([section], k.slice(0, -2), ({badge:t('Small heading','عنوان کوتاه'),title:t('Title','عنوان'),description:t('Description','توضیحات')} as Record<string, string>)[k.slice(0,-2)]||k.slice(0,-2), true),
+                        pair([section], k.slice(0, -2), ({...Object.fromEntries(companyProfileFields.map(field => [field.key,t(field.en,field.fa)])),badge:t('Small heading','عنوان کوتاه'),title:t('Title','عنوان'),description:t('Description','توضیحات')} as Record<string, string>)[k.slice(0,-2)]||k.slice(0,-2), true),
                       )}
                     {section === 'hero' && <>
                       {pair(['hero'], 'typingPhrases', t('Additional typing phrases (one per line)', 'عبارت‌های تایپ‌شونده بیشتر (هر سطر یک عبارت)'), true)}

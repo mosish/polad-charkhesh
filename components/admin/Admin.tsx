@@ -1,3 +1,5 @@
+import BrandLogo from '../platform/BrandLogo';
+import { brandDimensions } from '../../lib/brand-assets';
 import type { AuthStatus, MediaRecord, SystemStatus } from '../../domain/api-contracts';
 import type { BearingProduct } from '../../domain/product';
 import { loadAdminData, type AdminData } from '../../lib/admin-data';
@@ -49,7 +51,7 @@ const tabGroups = [
   { labelEn: 'Administration', labelFa: 'مدیریت سامانه', ids: ['system', 'audit'] },
 ];
 export default function Admin() {
-  const { fa, t, toggle, reload, content } = usePlatform();
+  const { fa, t, reload, content } = usePlatform();
   const [status, setStatus] = useState<AuthStatus | null>(null),
     [tab, setTab] = useState('overview'),
     [error, setError] = useState(''),
@@ -148,14 +150,15 @@ export default function Admin() {
     return (
       <main id="main" className="admin-login">
         <div className="login-intro">
-          <img
+          <BrandLogo
             className="admin-brand-logo"
-            src={content?.brand?.logoUrl || '/brand/logo.png'}
-            width={560}
-            height={575}
-            alt={t('Polad Charkhesh Arian Tech company logo', 'نشان شرکت پولاد چرخش آرین تک')}
+            sizes="112px"
+            source={content?.brand?.logoUrl || '/brand/logo.png'}
+            width={brandDimensions.width}
+            height={brandDimensions.height}
+            alt={t('Polad Charkhesh Arian Tak company logo', 'نشان شرکت پولاد چرخش آرین تک')}
           />
-          <div className="section-label">POLAD CHARKHESH ARIAN TECH / ADMINISTRATION</div>
+          <div className="section-label">POLAD CHARKHESH ARIAN TAK / ADMINISTRATION</div>
           <h1>
             {t('Precision behind\nthe platform.', 'مدیریت دقیق\nسامانه صنعتی.')}
           </h1>
@@ -319,7 +322,6 @@ export default function Admin() {
           {t('Sign out', 'خروج')}
         </button>
         <a className="admin-site-link" href="/" target="_blank" rel="noreferrer">{t('View website', 'مشاهده وب‌سایت')} <ArrowUpRight size={16} /></a>
-        <button onClick={toggle}>{fa ? 'English' : 'فارسی'}</button>
       </aside>
       <div className="admin-content">
         <div className="admin-heading">

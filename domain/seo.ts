@@ -1,3 +1,4 @@
+import { brandSocialImage } from '../lib/brand-assets';
 import type { BearingProduct } from './product';
 import type { CompanyContactInfo } from './company';
 import { mediaFor } from '../lib/media';
@@ -6,10 +7,10 @@ import { catalogHubForPath, productBelongsToHub } from './catalog-hubs';
 import { productHeading } from './product-presentation';
 
 export const seoDefaults = {
-  titleEn: 'Polad Charkhesh Arian Tech | Industrial Bearings & Engineering',
+  titleEn: 'Polad Charkhesh Arian Tak | Industrial Bearings & Engineering',
   titleFa: 'پولاد چرخش آرین تک | تأمین تخصصی انواع بلبرینگ و رولبرینگ صنعتی',
   descriptionEn:
-    'Explore industrial bearings, seals and housings with technical specifications, product documents, 3D models and bearing engineering tools from Polad Charkhesh Arian Tech.',
+    'Explore industrial bearings, seals and housings with technical specifications, product documents, 3D models and bearing engineering tools from Polad Charkhesh Arian Tak.',
   descriptionFa:
     'شرکت پولاد چرخش آرین تک؛ مرکز تخصصی تأمین، مشاوره فنی و فروش انواع بلبرینگ، رولبرینگ، یاتاقان و کاسه نمد صنعتی برندهای SKF، FAG، TIMKEN، NSK و NTN در تهران.',
   domainEn: 'https://poladcharkhesh.com',
@@ -17,10 +18,10 @@ export const seoDefaults = {
   verification: '',
   keywords:
     'industrial bearings, bearing specifications, بلبرینگ, رولربیرینگ, بیرینگ صنعتی',
-  ogImage: '/brand/social-preview.png',
+  ogImage: brandSocialImage,
   pages: {
     catalog: {
-      titleEn: 'Bearing Catalog & Technical Specifications | Polad Charkhesh Arian Tech',
+      titleEn: 'Bearing Catalog & Technical Specifications | Polad Charkhesh Arian Tak',
       titleFa: 'کاتالوگ بیرینگ و مشخصات فنی | پولاد چرخش آرین تک',
       descriptionEn:
         'Find bearings, seals and housings by designation, family and dimensions. Explore specifications, available documents and interactive product views.',
@@ -28,7 +29,7 @@ export const seoDefaults = {
         'جستجوی بیرینگ، آب‌بند و محفظه بر اساس کد، خانواده و ابعاد؛ مشاهده مشخصات فنی، مستندات موجود و نمایش تعاملی محصول.',
     },
     engineering: {
-      titleEn: 'Bearing Life & Load Engineering Tools | Polad Charkhesh Arian Tech',
+      titleEn: 'Bearing Life & Load Engineering Tools | Polad Charkhesh Arian Tak',
       titleFa: 'ابزار محاسبه عمر و بار بیرینگ | پولاد چرخش آرین تک',
       descriptionEn:
         'Explore bearing life, equivalent load and shaft fit reference tools using catalog components. Review calculation inputs, assumptions and engineering results.',
@@ -106,13 +107,13 @@ const tidy = (v: unknown) =>
   typeof v === 'string' ? v.replace(/\s+/g, ' ').trim() : '';
 export function productSeo(p: BearingProduct, fa: boolean) {
   const name = tidy(p[fa ? 'nameFa' : 'nameEn']) || p.code;
-  const title = `${name.includes(p.code) ? name : p.code + ' ' + name} | ${fa ? 'پولاد چرخش آرین تک' : 'Polad Charkhesh Arian Tech'}`;
+  const title = `${name.includes(p.code) ? name : p.code + ' ' + name} | ${fa ? 'پولاد چرخش آرین تک' : 'Polad Charkhesh Arian Tak'}`;
   const dimensions = [p.d, p.D, p.B].every((v) => Number.isFinite(v) && v > 0)
     ? `${p.d} × ${p.D} × ${p.B} ${fa ? 'میلی‌متر' : 'mm'}`
     : '';
   const description = fa
     ? `${name}${dimensions ? '؛ ابعاد ' + dimensions : ''}. مشخصات فنی، مستندات موجود و نمایش محصول در کاتالوگ پولاد چرخش آرین تک.`
-    : `${name}${dimensions ? ', ' + dimensions : ''}. Explore technical specifications, available documents and product views in the Polad Charkhesh Arian Tech catalog.`;
+    : `${name}${dimensions ? ', ' + dimensions : ''}. Explore technical specifications, available documents and product views in the Polad Charkhesh Arian Tak catalog.`;
   return {
     title: tidy(p[fa ? 'metaTitleFa' : 'metaTitleEn']) || title,
     description:
@@ -189,16 +190,16 @@ export function metadataFor(
     ? {
         title: fa
           ? 'صفحه یافت نشد | پولاد چرخش آرین تک'
-          : 'Page not found | Polad Charkhesh Arian Tech',
+          : 'Page not found | Polad Charkhesh Arian Tak',
         description: fa
           ? 'صفحه مورد نظر یافت نشد. کاتالوگ محصولات پولاد چرخش آرین تک را مشاهده کنید.'
-          : 'This page could not be found. Explore the Polad Charkhesh Arian Tech product catalog.',
+          : 'This page could not be found. Explore the Polad Charkhesh Arian Tak product catalog.',
       }
     : route === '/admin'
       ? {
           title: fa
             ? 'مدیریت سایت | پولاد چرخش آرین تک'
-            : 'Website administration | Polad Charkhesh Arian Tech',
+            : 'Website administration | Polad Charkhesh Arian Tak',
           description: '',
         }
       : p

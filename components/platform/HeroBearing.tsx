@@ -1,7 +1,8 @@
 import { bearingScrollState } from '../../lib/bearing-scroll';
 import { useBearingScroll } from './useBearingScroll';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { Pause, Play } from 'lucide-react';
+import { Box, Layers, Pause, Play } from 'lucide-react';
+import BearingToggle from './BearingToggle';
 import PortableBearing from './PortableBearing';
 import { usePlatform } from './Context';
 import type { BearingFamily } from './HeroBearingScene';
@@ -12,7 +13,7 @@ import RecoveryBoundary from './RecoveryBoundary';
 const HeroBearingScene = lazy(() => import('./HeroBearingScene'));
 
 export default function HeroBearing() {
-  const { t } = usePlatform();
+  const { t, fa } = usePlatform();
   const journey=useBearingJourney(),configure=journey?.configure;
   const [lineup] = useState(() => journey?.lineup || chooseHeroLineup(null));
   const family = lineup[1] as BearingFamily;
@@ -68,10 +69,13 @@ export default function HeroBearing() {
     <div className="hero-bearing-heading">
       <span><i aria-hidden="true" />{t('PRECISION IN MOTION', 'دقت در حرکت')}</span>
     </div>
-    <fieldset className="bearing-view-switch"  aria-label={t('Bearing assembly view','نمای مونتاژ بیرینگ')}>
-      <button type="button" aria-pressed={!exploded} onClick={()=>{setExploded(false);setManualView(true);}}>{t('Assembled','مونتاژشده')}</button>
-      <button type="button" aria-pressed={exploded} onClick={()=>{setExploded(true);setManualView(true);}}>{t('Exploded view','نمای انفجاری')}</button>
-    </fieldset>
+    <BearingToggle className="hero-assembly-toggle" label={t('Bearing assembly view','نمای مونتاژ بیرینگ')} direction={fa ? 'rtl' : 'ltr'}
+      value={(followView ? scrollState.expansion >= .5 : exploded) ? 'exploded' : 'assembled'}
+      onChange={value => { setExploded(value === 'exploded'); setManualView(true); }}
+      options={[
+        { value:'assembled', label:t('Assembled','مونتاژشده'), content:<><Box size={14} aria-hidden="true" />{t('Assembled','مونتاژشده')}</> },
+        { value:'exploded', label:t('Exploded view','نمای انفجاری'), content:<><Layers size={14} aria-hidden="true" />{t('Exploded view','نمای انفجاری')}</> },
+      ]} />
     {!reduced && scrollMode && <div className="bearing-scroll-status"><span>{t('Scroll to explore', 'با اسکرول کاوش کنید')} <span aria-hidden="true">↓</span></span><strong>{phaseLabel}</strong><div className="bearing-scroll-track" aria-hidden="true"><i style={{ transform: `scaleX(${scrollProgress})` }} /></div></div>}
     <div className="hero-bearing-stage" ref={stage}
       onPointerMove={e => {
@@ -120,14 +124,14 @@ export default function HeroBearing() {
     <div className="hero-bearing-footer">
       <div aria-live="polite"><small>{selected.caption}</small><strong>{selected.detail}</strong></div>
       <div className="hero-bearing-actions">
-        <button type="button" aria-label={t(stopped ? 'Play bearing animation' : 'Pause bearing animation', stopped ? 'شروع حرکت بیرینگ' : 'توقف حرکت بیرینگ')}
-          title={t(stopped ? 'Play bearing animation' : 'Pause bearing animation', stopped ? 'شروع حرکت بیرینگ' : 'توقف حرکت بیرینگ')}
-          onClick={() => { if (reduced) setReduced(false); setPaused(!stopped); resetTilt(); }}>
-          {stopped ? <Play size={16}/> : <Pause size={16}/>}
-        </button>
-        <select aria-label={t('Animation speed', 'سرعت انیمیشن')} value={playback} onChange={event => setPlayback(Number(event.target.value))}>
-          <option value={.5}>0.5×</option><option value={1}>1×</option><option value={1.5}>1.5×</option>
-        </select>
+        <BearingToggle className="bearing-playback-toggle" label={t('Bearing animation playback', 'پخش حرکت بیرینگ')} value={stopped ? 'pause' : 'play'}
+          onChange={value => { if (value === 'play' && reduced) setReduced(false); setPaused(value === 'pause'); resetTilt(); }}
+          options={[
+            { value:'pause', label:t('Pause bearing animation','توقف حرکت بیرینگ'), content:<Pause size={15} aria-hidden="true" /> },
+            { value:'play', label:t('Play bearing animation','شروع حرکت بیرینگ'), content:<Play size={15} aria-hidden="true" /> },
+          ]} />
+        <BearingToggle className="bearing-speed-toggle" label={t('Animation speed', 'سرعت انیمیشن')} value={String(playback)} onChange={value => setPlayback(Number(value))}
+          options={[.5,1,1.5].map(speed => ({ value:String(speed), label:speed+'×', content:speed+'×' }))} />
       </div>
     </div>
   </div>;

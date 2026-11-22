@@ -180,7 +180,7 @@ export function buildBearing(family: BearingFamily, runtime: typeof THREE) {
     if (typeof document !== 'undefined') {
     const canvas=document.createElement('canvas');canvas.width=canvas.height=1024;
     const ctx=canvas.getContext('2d')!;ctx.translate(512,512);ctx.fillStyle='#27313d';ctx.font='500 20px Arial';ctx.textAlign='center';
-    const label=family==='ball' ? 'POLAD CHARKHESH ARIAN TECH  •  BALL BEARINGS' : 'POLAD CHARKHESH ARIAN TECH  •  ROLLER BEARINGS';
+    const label=family==='ball' ? 'POLAD CHARKHESH ARIAN TAK  •  BALL BEARINGS' : 'POLAD CHARKHESH ARIAN TAK  •  ROLLER BEARINGS';
     Array.from(label).forEach((c,i)=>{ctx.save();ctx.rotate((i-(label.length-1)/2)*.028);ctx.fillText(c,0,-469);ctx.restore();});
     const engraving=new THREE.CanvasTexture(canvas);engraving.colorSpace=THREE.SRGBColorSpace;textures.push(engraving);
     const ink=new THREE.MeshBasicMaterial({map:engraving,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1});materials.push(ink);

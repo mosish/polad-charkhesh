@@ -1,4 +1,6 @@
+import { companyProfileDefaults } from './company-profile';
 import initialCopy from './site-copy.json';
+import { contactNavigationItem } from './site-navigation';
 
 export function textKey(text: string) {
   let h = 2166136261;
@@ -34,7 +36,7 @@ export type SiteContent = SiteExtras & Record<'hero' | 'about' | 'why' | 'indust
 export const siteExtras: SiteExtras = {
   brand: {
     logoUrl: '/brand/logo.png',
-    logoAltEn: 'Polad Charkhesh Arian Tech company logo',
+    logoAltEn: 'Polad Charkhesh Arian Tak company logo',
     logoAltFa: 'نشان شرکت پولاد چرخش آرین تک',
     navy: '#152443',
     accent: '#2454bf',
@@ -75,6 +77,7 @@ export const siteExtras: SiteExtras = {
         labelFa: 'درباره ما',
         href: '/#about',
       },
+      contactNavigationItem,
     ],
   },
   links: {
@@ -171,6 +174,8 @@ export function upgradeContent(value: unknown): Record<string, unknown> {
     Object.assign(v.media, { heroPresentation: 'animation' });
   if (v.copy === undefined) v.copy = structuredClone(initialCopy);
   else if (v.copy && typeof v.copy === 'object' && !Array.isArray(v.copy)) v.copy = { ...initialCopy, ...v.copy };
+  if (v.why && typeof v.why === 'object' && !Array.isArray(v.why))
+    v.why = { ...companyProfileDefaults, ...v.why };
   // Preserve malformed values so boundary validation rejects them.
   return v;
 }

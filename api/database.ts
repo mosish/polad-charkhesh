@@ -1,3 +1,4 @@
+import { brandSocialImage } from '../lib/brand-assets';
 import type { BearingProduct } from '../domain/product';
 import { parse, type PublishedSettings } from './records';
 import { object } from './content-validation';
@@ -191,7 +192,7 @@ if (!setting('content.persian-copy-2026-10-20')) {
 }
 
 // Owner-requested identity correction, once per database. Keep all unrelated data.
-if (!setting('company.identity-arian-tech-2026-10')) {
+if (!setting('company.identity-arian-tech-2026-10') || !setting('company.identity-arian-tak-2026-11')) {
   transaction(() => {
     for (const kind of ['company', 'content', 'seo']) {
       const value = correctCompanyCopy(setting(kind));
@@ -200,6 +201,8 @@ if (!setting('company.identity-arian-tech-2026-10')) {
         value.nameEn = value.legalNameEn = COMPANY_INFO.nameEn;
         value.nameFa = value.legalNameFa = COMPANY_INFO.nameFa;
       }
+      if (kind === 'content' && object(value.brand)) value.brand.logoUrl = '/brand/logo.png';
+      if (kind === 'seo' && (value.ogImage === '/brand/social-preview.png' || typeof value.ogImage === 'string' && /^\/brand\/social-preview-[a-f0-9]+\.png$/.test(value.ogImage))) value.ogImage = brandSocialImage;
       if (kind === 'content' && object(value.copy)) {
         value.copy = Object.fromEntries(Object.values(value.copy).map(entry => {
           if (!object(entry) || typeof entry.original !== 'string') throw new Error('Invalid stored copy entry.');
@@ -219,6 +222,7 @@ if (!setting('company.identity-arian-tech-2026-10')) {
       if (changed) db.prepare('UPDATE products SET data=? WHERE id=?').run(JSON.stringify(p), p.id);
     }
     putSetting('company.identity-arian-tech-2026-10', { appliedAt: new Date().toISOString() });
+    putSetting('company.identity-arian-tak-2026-11', { appliedAt: new Date().toISOString() });
     audit('system', 'company.identity.corrected', COMPANY_INFO.nameEn);
   });
 }
